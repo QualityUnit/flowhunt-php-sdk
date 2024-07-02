@@ -1,6 +1,6 @@
 {
     "name": "flowhunt/flowhunt-php-sdk",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "FlowHunt API",
     "keywords": [
         "openapitools",
@@ -12,7 +12,7 @@
         "api"
     ],
     "homepage": "https://openapi-generator.tech",
-    "license": "unlicense",
+    "license": "GPL-2.0",
     "authors": [
         {
             "name": "OpenAPI",

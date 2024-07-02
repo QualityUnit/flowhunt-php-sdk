@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flow_id** | **mixed** | The flow ID |
-**url** | [**\OpenAPI\Client\Model\Url3**](Url3.md) |  | [optional]
+**flow_id** | **string** | The flow ID |
+**url** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

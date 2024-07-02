@@ -105,7 +105,7 @@ $apiInstance = new OpenAPI\Client\Api\TagsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tag_id = NULL; // mixed
+$tag_id = 'tag_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -120,7 +120,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tag_id** | [**mixed**](../Model/.md)|  | |
+| **tag_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -143,7 +143,7 @@ try {
 ## `searchTags()`
 
 ```php
-searchTags($workspace_id, $tag_search_request): mixed
+searchTags($workspace_id, $tag_search_request): \OpenAPI\Client\Model\TagResponse[]
 ```
 
 Search Tags
@@ -190,7 +190,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\TagResponse[]**](../Model/TagResponse.md)
 
 ### Authorization
 
@@ -235,7 +235,7 @@ $apiInstance = new OpenAPI\Client\Api\TagsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tag_id = NULL; // mixed
+$tag_id = 'tag_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $tag_update_request = new \OpenAPI\Client\Model\TagUpdateRequest(); // \OpenAPI\Client\Model\TagUpdateRequest
 
@@ -251,7 +251,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tag_id** | [**mixed**](../Model/.md)|  | |
+| **tag_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **tag_update_request** | [**\OpenAPI\Client\Model\TagUpdateRequest**](../Model/TagUpdateRequest.md)|  | |
 

@@ -4,31 +4,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**schedule_id** | **mixed** |  |
-**domain_id** | **mixed** |  |
-**url_id** | **mixed** |  |
-**url** | [**\OpenAPI\Client\Model\Url1**](Url1.md) |  |
-**last_text_timestamp** | [**\OpenAPI\Client\Model\LastTextTimestamp**](LastTextTimestamp.md) |  |
-**page_screenshot** | [**\OpenAPI\Client\Model\ScheduleUrlDetailResponsePageScreenshot**](ScheduleUrlDetailResponsePageScreenshot.md) |  |
-**url_title** | [**\OpenAPI\Client\Model\UrlTitle**](UrlTitle.md) |  |
-**url_meta_description** | [**\OpenAPI\Client\Model\UrlMetaDescription**](UrlMetaDescription.md) |  |
-**url_og_image** | [**\OpenAPI\Client\Model\UrlOgImage**](UrlOgImage.md) |  |
-**is_original_url** | **mixed** |  |
-**dest_url_id** | [**\OpenAPI\Client\Model\DestUrlId**](DestUrlId.md) |  |
-**created_at** | **mixed** |  |
-**url_text** | [**\OpenAPI\Client\Model\UrlText**](UrlText.md) |  |
-**faq_id** | **mixed** | FAQ ID |
-**workspace_id** | **mixed** | Workspace ID |
-**cat_id** | **mixed** | Category ID |
-**question** | **mixed** | Question |
-**answer** | [**\OpenAPI\Client\Model\Answer1**](Answer1.md) |  | [optional]
-**parent_faq_id** | [**\OpenAPI\Client\Model\ParentFaqId**](ParentFaqId.md) |  | [optional]
-**status** | **mixed** | Document status |
-**updated_at** | **mixed** | Document updated at |
-**indexed_at** | [**\OpenAPI\Client\Model\IndexedAt**](IndexedAt.md) |  | [optional]
-**doc_id** | **mixed** | Document ID |
-**doc_name** | **mixed** | Document name |
-**doc_type** | **mixed** | Document type |
-**user_status** | **mixed** | User status |
+**schedule_id** | **string** |  |
+**domain_id** | **string** |  |
+**url_id** | **string** |  |
+**url** | **string** |  |
+**last_text_timestamp** | **\DateTime** |  |
+**page_screenshot** | [**\OpenAPI\Client\Model\UrlScreenshotResponse**](UrlScreenshotResponse.md) |  |
+**url_title** | **string** |  |
+**url_meta_description** | **string** |  |
+**url_og_image** | **string** |  |
+**is_original_url** | **bool** |  |
+**dest_url_id** | **string** |  |
+**created_at** | **\DateTime** |  |
+**url_text** | **array<string,string>[]** |  |
+**faq_id** | **string** | FAQ ID |
+**workspace_id** | **string** | Workspace ID |
+**cat_id** | **string** | Category ID |
+**question** | **string** | Question |
+**answer** | **string** |  | [optional]
+**parent_faq_id** | **string** |  | [optional]
+**status** | **string** | Document status |
+**updated_at** | **\DateTime** | Document updated at |
+**indexed_at** | **\DateTime** |  | [optional]
+**doc_id** | **string** | Document ID |
+**doc_name** | **string** | Document name |
+**doc_type** | **string** | Document type |
+**user_status** | **string** | User status |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

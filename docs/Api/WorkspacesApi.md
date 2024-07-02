@@ -38,7 +38,7 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_id = NULL; // mixed
+$workspace_id = 'workspace_id_example'; // string
 $workspace_user_create_request = new \OpenAPI\Client\Model\WorkspaceUserCreateRequest(); // \OpenAPI\Client\Model\WorkspaceUserCreateRequest
 
 try {
@@ -53,7 +53,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_id** | [**mixed**](../Model/.md)|  | |
+| **workspace_id** | **string**|  | |
 | **workspace_user_create_request** | [**\OpenAPI\Client\Model\WorkspaceUserCreateRequest**](../Model/WorkspaceUserCreateRequest.md)|  | |
 
 ### Return type
@@ -156,7 +156,7 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_id = NULL; // mixed
+$workspace_id = 'workspace_id_example'; // string
 
 try {
     $result = $apiInstance->deleteWorkspace($workspace_id);
@@ -170,7 +170,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_id** | [**mixed**](../Model/.md)|  | |
+| **workspace_id** | **string**|  | |
 
 ### Return type
 
@@ -214,8 +214,8 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_id = NULL; // mixed
-$user_id = NULL; // mixed
+$workspace_id = 'workspace_id_example'; // string
+$user_id = 'user_id_example'; // string
 
 try {
     $result = $apiInstance->deleteWorkspaceMember($workspace_id, $user_id);
@@ -229,8 +229,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_id** | [**mixed**](../Model/.md)|  | |
-| **user_id** | [**mixed**](../Model/.md)|  | |
+| **workspace_id** | **string**|  | |
+| **user_id** | **string**|  | |
 
 ### Return type
 
@@ -274,7 +274,7 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_id = NULL; // mixed
+$workspace_id = 'workspace_id_example'; // string
 $workspace_search_request = new \OpenAPI\Client\Model\WorkspaceSearchRequest(); // \OpenAPI\Client\Model\WorkspaceSearchRequest
 
 try {
@@ -289,7 +289,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_id** | [**mixed**](../Model/.md)|  | |
+| **workspace_id** | **string**|  | |
 | **workspace_search_request** | [**\OpenAPI\Client\Model\WorkspaceSearchRequest**](../Model/WorkspaceSearchRequest.md)|  | |
 
 ### Return type
@@ -334,7 +334,7 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_id = NULL; // mixed
+$workspace_id = 'workspace_id_example'; // string
 $workspace_update_request = new \OpenAPI\Client\Model\WorkspaceUpdateRequest(); // \OpenAPI\Client\Model\WorkspaceUpdateRequest
 
 try {
@@ -349,7 +349,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_id** | [**mixed**](../Model/.md)|  | |
+| **workspace_id** | **string**|  | |
 | **workspace_update_request** | [**\OpenAPI\Client\Model\WorkspaceUpdateRequest**](../Model/WorkspaceUpdateRequest.md)|  | |
 
 ### Return type
@@ -394,8 +394,8 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_id = NULL; // mixed
-$user_id = NULL; // mixed
+$workspace_id = 'workspace_id_example'; // string
+$user_id = 'user_id_example'; // string
 $workspace_user_update_request = new \OpenAPI\Client\Model\WorkspaceUserUpdateRequest(); // \OpenAPI\Client\Model\WorkspaceUserUpdateRequest
 
 try {
@@ -410,8 +410,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_id** | [**mixed**](../Model/.md)|  | |
-| **user_id** | [**mixed**](../Model/.md)|  | |
+| **workspace_id** | **string**|  | |
+| **user_id** | **string**|  | |
 | **workspace_user_update_request** | [**\OpenAPI\Client\Model\WorkspaceUserUpdateRequest**](../Model/WorkspaceUserUpdateRequest.md)|  | |
 
 ### Return type

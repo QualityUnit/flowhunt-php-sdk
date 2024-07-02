@@ -40,7 +40,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$session_id = NULL; // mixed
+$session_id = 'session_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -55,7 +55,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **session_id** | [**mixed**](../Model/.md)|  | |
+| **session_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -105,7 +105,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$session_id = NULL; // mixed
+$session_id = 'session_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -120,7 +120,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **session_id** | [**mixed**](../Model/.md)|  | |
+| **session_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -143,7 +143,7 @@ try {
 ## `searchChatbotSessionsView()`
 
 ```php
-searchChatbotSessionsView($workspace_id, $flow_session_view_search_request): mixed
+searchChatbotSessionsView($workspace_id, $flow_session_view_search_request): \OpenAPI\Client\Model\FlowSessionViewResponse[]
 ```
 
 Search Chatbot Sessions View
@@ -190,7 +190,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\FlowSessionViewResponse[]**](../Model/FlowSessionViewResponse.md)
 
 ### Authorization
 
@@ -235,7 +235,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$session_id = NULL; // mixed
+$session_id = 'session_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $flow_session_view_update_request = new \OpenAPI\Client\Model\FlowSessionViewUpdateRequest(); // \OpenAPI\Client\Model\FlowSessionViewUpdateRequest
 
@@ -251,7 +251,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **session_id** | [**mixed**](../Model/.md)|  | |
+| **session_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **flow_session_view_update_request** | [**\OpenAPI\Client\Model\FlowSessionViewUpdateRequest**](../Model/FlowSessionViewUpdateRequest.md)|  | |
 

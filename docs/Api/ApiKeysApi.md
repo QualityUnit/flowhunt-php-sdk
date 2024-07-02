@@ -95,7 +95,7 @@ $apiInstance = new OpenAPI\Client\Api\ApiKeysApi(
     new GuzzleHttp\Client(),
     $config
 );
-$api_key_id = NULL; // mixed
+$api_key_id = 'api_key_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -110,7 +110,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **api_key_id** | [**mixed**](../Model/.md)|  | |
+| **api_key_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -133,7 +133,7 @@ try {
 ## `searchApiKey()`
 
 ```php
-searchApiKey($workspace_id, $api_key_search_request): mixed
+searchApiKey($workspace_id, $api_key_search_request): \OpenAPI\Client\Model\ApiKeyResponse[]
 ```
 
 Search Api Key
@@ -175,7 +175,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\ApiKeyResponse[]**](../Model/ApiKeyResponse.md)
 
 ### Authorization
 
@@ -215,7 +215,7 @@ $apiInstance = new OpenAPI\Client\Api\ApiKeysApi(
     new GuzzleHttp\Client(),
     $config
 );
-$api_key_id = NULL; // mixed
+$api_key_id = 'api_key_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $api_key_update_request = new \OpenAPI\Client\Model\ApiKeyUpdateRequest(); // \OpenAPI\Client\Model\ApiKeyUpdateRequest
 
@@ -231,7 +231,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **api_key_id** | [**mixed**](../Model/.md)|  | |
+| **api_key_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **api_key_update_request** | [**\OpenAPI\Client\Model\ApiKeyUpdateRequest**](../Model/ApiKeyUpdateRequest.md)|  | |
 

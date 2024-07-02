@@ -181,7 +181,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$doc_id = NULL; // mixed
+$doc_id = 'doc_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -196,7 +196,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **doc_id** | [**mixed**](../Model/.md)|  | |
+| **doc_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -246,7 +246,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$cat_id = NULL; // mixed
+$cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -261,7 +261,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cat_id** | [**mixed**](../Model/.md)|  | |
+| **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -311,7 +311,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$faq_id = NULL; // mixed
+$faq_id = 'faq_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -326,7 +326,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **faq_id** | [**mixed**](../Model/.md)|  | |
+| **faq_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -376,7 +376,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$doc_id = NULL; // mixed
+$doc_id = 'doc_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -391,7 +391,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **doc_id** | [**mixed**](../Model/.md)|  | |
+| **doc_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -441,7 +441,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$doc_id = NULL; // mixed
+$doc_id = 'doc_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -456,7 +456,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **doc_id** | [**mixed**](../Model/.md)|  | |
+| **doc_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -479,7 +479,7 @@ try {
 ## `searchDocumentCategories()`
 
 ```php
-searchDocumentCategories($workspace_id, $document_category_search_request): mixed
+searchDocumentCategories($workspace_id, $document_category_search_request): \OpenAPI\Client\Model\DocumentCategoryResponse[]
 ```
 
 Search Document Categories
@@ -526,7 +526,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\DocumentCategoryResponse[]**](../Model/DocumentCategoryResponse.md)
 
 ### Authorization
 
@@ -544,7 +544,7 @@ try {
 ## `searchDocuments()`
 
 ```php
-searchDocuments($workspace_id, $document_search_request): mixed
+searchDocuments($workspace_id, $document_search_request): \OpenAPI\Client\Model\DocumentResponse[]
 ```
 
 Search Documents
@@ -591,7 +591,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\DocumentResponse[]**](../Model/DocumentResponse.md)
 
 ### Authorization
 
@@ -609,7 +609,7 @@ try {
 ## `searchFaqs()`
 
 ```php
-searchFaqs($workspace_id, $faq_search_request): mixed
+searchFaqs($workspace_id, $faq_search_request): \OpenAPI\Client\Model\FaqResponse[]
 ```
 
 Search Faqs
@@ -656,7 +656,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\FaqResponse[]**](../Model/FaqResponse.md)
 
 ### Authorization
 
@@ -701,7 +701,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$doc_id = NULL; // mixed
+$doc_id = 'doc_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $document_update_request = new \OpenAPI\Client\Model\DocumentUpdateRequest(); // \OpenAPI\Client\Model\DocumentUpdateRequest
 
@@ -717,7 +717,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **doc_id** | [**mixed**](../Model/.md)|  | |
+| **doc_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **document_update_request** | [**\OpenAPI\Client\Model\DocumentUpdateRequest**](../Model/DocumentUpdateRequest.md)|  | |
 
@@ -768,7 +768,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$cat_id = NULL; // mixed
+$cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $document_category_update_request = new \OpenAPI\Client\Model\DocumentCategoryUpdateRequest(); // \OpenAPI\Client\Model\DocumentCategoryUpdateRequest
 
@@ -784,7 +784,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cat_id** | [**mixed**](../Model/.md)|  | |
+| **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **document_category_update_request** | [**\OpenAPI\Client\Model\DocumentCategoryUpdateRequest**](../Model/DocumentCategoryUpdateRequest.md)|  | |
 
@@ -835,7 +835,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$faq_id = NULL; // mixed
+$faq_id = 'faq_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $faq_update_request = new \OpenAPI\Client\Model\FaqUpdateRequest(); // \OpenAPI\Client\Model\FaqUpdateRequest
 
@@ -851,7 +851,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **faq_id** | [**mixed**](../Model/.md)|  | |
+| **faq_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **faq_update_request** | [**\OpenAPI\Client\Model\FaqUpdateRequest**](../Model/FaqUpdateRequest.md)|  | |
 
@@ -902,9 +902,9 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$cat_id = NULL; // mixed
+$cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$file = NULL; // mixed
+$file = "/path/to/file.txt"; // \SplFileObject
 
 try {
     $result = $apiInstance->uploadDocument($cat_id, $workspace_id, $file);
@@ -918,9 +918,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cat_id** | [**mixed**](../Model/.md)|  | |
+| **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **file** | [**mixed**](../Model/mixed.md)|  | |
+| **file** | **\SplFileObject****\SplFileObject**|  | |
 
 ### Return type
 
@@ -969,7 +969,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$cat_id = NULL; // mixed
+$cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $app_url = new \OpenAPI\Client\Model\AppUrl(); // \OpenAPI\Client\Model\AppUrl
 
@@ -985,7 +985,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cat_id** | [**mixed**](../Model/.md)|  | |
+| **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **app_url** | [**\OpenAPI\Client\Model\AppUrl**](../Model/AppUrl.md)|  | |
 

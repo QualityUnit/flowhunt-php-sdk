@@ -174,7 +174,7 @@ $apiInstance = new OpenAPI\Client\Api\PromptsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$prompt_id = NULL; // mixed
+$prompt_id = 'prompt_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -189,7 +189,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **prompt_id** | [**mixed**](../Model/.md)|  | |
+| **prompt_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -239,7 +239,7 @@ $apiInstance = new OpenAPI\Client\Api\PromptsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$cat_id = NULL; // mixed
+$cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -254,7 +254,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cat_id** | [**mixed**](../Model/.md)|  | |
+| **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -277,7 +277,7 @@ try {
 ## `searchPromptCategories()`
 
 ```php
-searchPromptCategories($workspace_id, $prompt_category_search_request): mixed
+searchPromptCategories($workspace_id, $prompt_category_search_request): \OpenAPI\Client\Model\PromptCategoryResponse[]
 ```
 
 Search Prompt Categories
@@ -324,7 +324,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\PromptCategoryResponse[]**](../Model/PromptCategoryResponse.md)
 
 ### Authorization
 
@@ -342,7 +342,7 @@ try {
 ## `searchPrompts()`
 
 ```php
-searchPrompts($workspace_id, $prompt_search_request): mixed
+searchPrompts($workspace_id, $prompt_search_request): \OpenAPI\Client\Model\PromptResponse[]
 ```
 
 Search Prompts
@@ -389,7 +389,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\PromptResponse[]**](../Model/PromptResponse.md)
 
 ### Authorization
 
@@ -434,7 +434,7 @@ $apiInstance = new OpenAPI\Client\Api\PromptsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$prompt_id = NULL; // mixed
+$prompt_id = 'prompt_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $prompt_update_request = new \OpenAPI\Client\Model\PromptUpdateRequest(); // \OpenAPI\Client\Model\PromptUpdateRequest
 
@@ -450,7 +450,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **prompt_id** | [**mixed**](../Model/.md)|  | |
+| **prompt_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **prompt_update_request** | [**\OpenAPI\Client\Model\PromptUpdateRequest**](../Model/PromptUpdateRequest.md)|  | |
 
@@ -501,7 +501,7 @@ $apiInstance = new OpenAPI\Client\Api\PromptsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$cat_id = NULL; // mixed
+$cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $prompt_category_update_request = new \OpenAPI\Client\Model\PromptCategoryUpdateRequest(); // \OpenAPI\Client\Model\PromptCategoryUpdateRequest
 
@@ -517,7 +517,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cat_id** | [**mixed**](../Model/.md)|  | |
+| **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **prompt_category_update_request** | [**\OpenAPI\Client\Model\PromptCategoryUpdateRequest**](../Model/PromptCategoryUpdateRequest.md)|  | |
 

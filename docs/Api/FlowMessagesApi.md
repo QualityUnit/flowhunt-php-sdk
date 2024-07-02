@@ -10,7 +10,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `searchFlowMessages()`
 
 ```php
-searchFlowMessages($session_id, $workspace_id): mixed
+searchFlowMessages($session_id, $workspace_id): \OpenAPI\Client\Model\FlowMessageResponse[]
 ```
 
 Search Flow Messages
@@ -37,7 +37,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowMessagesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$session_id = NULL; // mixed
+$session_id = 'session_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -52,12 +52,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **session_id** | [**mixed**](../Model/.md)|  | |
+| **session_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\FlowMessageResponse[]**](../Model/FlowMessageResponse.md)
 
 ### Authorization
 

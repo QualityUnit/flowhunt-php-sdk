@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**workspace_id** | **mixed** | Workspace ID |
-**schedule_id** | **mixed** | Schedule ID |
-**url** | **mixed** | URL to be scheduled |
-**frequency** | [**\OpenAPI\Client\Model\ScheduleFrequency**](ScheduleFrequency.md) |  |
-**schedule_type** | [**\OpenAPI\Client\Model\ScheduleType**](ScheduleType.md) |  |
-**start_time** | [**\OpenAPI\Client\Model\StartTime**](StartTime.md) |  | [optional]
-**end_time** | [**\OpenAPI\Client\Model\EndTime**](EndTime.md) |  | [optional]
-**status** | [**\OpenAPI\Client\Model\ScheduleStatus**](ScheduleStatus.md) |  |
-**status_message** | [**\OpenAPI\Client\Model\StatusMessage**](StatusMessage.md) |  | [optional]
-**cnt_scheduled** | [**\OpenAPI\Client\Model\CntScheduled**](CntScheduled.md) |  |
-**cnt_completed** | [**\OpenAPI\Client\Model\CntCompleted**](CntCompleted.md) |  |
-**cnt_failed** | [**\OpenAPI\Client\Model\CntFailed**](CntFailed.md) |  |
+**workspace_id** | **string** | Workspace ID |
+**schedule_id** | **string** | Schedule ID |
+**url** | **string** | URL to be scheduled |
+**frequency** | [**\OpenAPI\Client\Model\ScheduleFrequency**](ScheduleFrequency.md) | Frequency of the schedule D - Daily, W - Weekly, M - Monthly, Y - Yearly |
+**schedule_type** | [**\OpenAPI\Client\Model\ScheduleType**](ScheduleType.md) | Type of the schedule (U - URL, D - Domain, S - Sitemap) |
+**start_time** | **\DateTime** |  | [optional]
+**end_time** | **\DateTime** |  | [optional]
+**status** | [**\OpenAPI\Client\Model\ScheduleStatus**](ScheduleStatus.md) | Status of the schedule (N - New, F - Finished, P - Pending, E - Error, C - Cancelled |
+**status_message** | **string** |  | [optional]
+**cnt_scheduled** | **int** |  |
+**cnt_completed** | **int** |  |
+**cnt_failed** | **int** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

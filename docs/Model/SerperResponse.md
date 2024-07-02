@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **mixed** |  |
+**id** | **string** |  |
 **status** | [**\OpenAPI\Client\Model\TaskStatuses**](TaskStatuses.md) |  |
-**result** | [**\OpenAPI\Client\Model\SerperResponseResult**](SerperResponseResult.md) |  | [optional]
-**error_message** | [**\OpenAPI\Client\Model\ErrorMessage**](ErrorMessage.md) |  | [optional]
+**result** | [**\OpenAPI\Client\Model\SerperResult**](SerperResult.md) |  | [optional]
+**error_message** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **mixed** | Title | [optional]
-**link** | **mixed** | Link | [optional]
-**snippet** | [**\OpenAPI\Client\Model\Snippet**](Snippet.md) |  | [optional]
-**position** | **mixed** | Position | [optional]
-**date** | **\DateTime** |  | [optional]
-**rating** | [**\OpenAPI\Client\Model\Rating**](Rating.md) |  | [optional]
-**rating_count** | [**\OpenAPI\Client\Model\Ratingcount**](Ratingcount.md) |  | [optional]
-**price_range** | [**\OpenAPI\Client\Model\Pricerange**](Pricerange.md) |  | [optional]
-**sitelinks** | [**\OpenAPI\Client\Model\Sitelinks**](Sitelinks.md) |  | [optional]
+**title** | **string** | Title | [optional] [default to '']
+**link** | **string** | Link | [optional] [default to '']
+**snippet** | **string** |  | [optional]
+**position** | **int** | Position | [optional] [default to 0]
+**date** | **string** |  | [optional]
+**rating** | **float** |  | [optional]
+**rating_count** | **int** |  | [optional]
+**price_range** | **string** |  | [optional]
+**sitelinks** | [**\OpenAPI\Client\Model\SiteLink[]**](SiteLink.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

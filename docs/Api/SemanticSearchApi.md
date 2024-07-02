@@ -13,7 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `getSimilarDocsByDocId()`
 
 ```php
-getSimilarDocsByDocId($workspace_id, $document_similarity_request): mixed
+getSimilarDocsByDocId($workspace_id, $document_similarity_request): \OpenAPI\Client\Model\VectorDocumentResponse[]
 ```
 
 Get Similar Docs By Doc Id
@@ -60,7 +60,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\VectorDocumentResponse[]**](../Model/VectorDocumentResponse.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ try {
 ## `getSimilarDocsByQuery()`
 
 ```php
-getSimilarDocsByQuery($workspace_id, $query_similarity_request): mixed
+getSimilarDocsByQuery($workspace_id, $query_similarity_request): \OpenAPI\Client\Model\VectorDocumentResponse[]
 ```
 
 Get Similar Docs By Query
@@ -125,7 +125,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\VectorDocumentResponse[]**](../Model/VectorDocumentResponse.md)
 
 ### Authorization
 

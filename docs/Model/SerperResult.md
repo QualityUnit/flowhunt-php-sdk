@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**search_parameters** | [**\OpenAPI\Client\Model\Searchparameters**](Searchparameters.md) |  | [optional]
-**organic** | [**\OpenAPI\Client\Model\Organic**](Organic.md) |  | [optional]
-**people_also_ask** | [**\OpenAPI\Client\Model\Peoplealsoask**](Peoplealsoask.md) |  | [optional]
-**related_searches** | [**\OpenAPI\Client\Model\Relatedsearches**](Relatedsearches.md) |  | [optional]
+**search_parameters** | **object** |  | [optional]
+**organic** | [**\OpenAPI\Client\Model\OrganicPosition[]**](OrganicPosition.md) |  | [optional]
+**people_also_ask** | [**\OpenAPI\Client\Model\RelatedQuestion[]**](RelatedQuestion.md) |  | [optional]
+**related_searches** | [**\OpenAPI\Client\Model\RelatedSearch[]**](RelatedSearch.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -17,7 +17,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createSchedules()`
 
 ```php
-createSchedules($workspace_id, $body): mixed
+createSchedules($workspace_id, $schedule_create_request): \OpenAPI\Client\Model\ScheduleResponse[]
 ```
 
 Create Schedules
@@ -45,10 +45,10 @@ $apiInstance = new OpenAPI\Client\Api\SchedulesApi(
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$body = NULL; // mixed
+$schedule_create_request = array(new \OpenAPI\Client\Model\ScheduleCreateRequest()); // \OpenAPI\Client\Model\ScheduleCreateRequest[]
 
 try {
-    $result = $apiInstance->createSchedules($workspace_id, $body);
+    $result = $apiInstance->createSchedules($workspace_id, $schedule_create_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SchedulesApi->createSchedules: ', $e->getMessage(), PHP_EOL;
@@ -60,11 +60,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **body** | **mixed**|  | |
+| **schedule_create_request** | [**\OpenAPI\Client\Model\ScheduleCreateRequest[]**](../Model/ScheduleCreateRequest.md)|  | |
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\ScheduleResponse[]**](../Model/ScheduleResponse.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ $apiInstance = new OpenAPI\Client\Api\SchedulesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$schedule_id = NULL; // mixed
+$schedule_id = 'schedule_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -124,7 +124,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **schedule_id** | [**mixed**](../Model/.md)|  | |
+| **schedule_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -174,7 +174,7 @@ $apiInstance = new OpenAPI\Client\Api\SchedulesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$schedule_id = NULL; // mixed
+$schedule_id = 'schedule_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -189,7 +189,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **schedule_id** | [**mixed**](../Model/.md)|  | |
+| **schedule_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -239,9 +239,9 @@ $apiInstance = new OpenAPI\Client\Api\SchedulesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$schedule_id = NULL; // mixed
-$url_id = NULL; // mixed
-$domain_id = NULL; // mixed
+$schedule_id = 'schedule_id_example'; // string
+$url_id = 'url_id_example'; // string
+$domain_id = 'domain_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -256,9 +256,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **schedule_id** | [**mixed**](../Model/.md)|  | |
-| **url_id** | [**mixed**](../Model/.md)|  | |
-| **domain_id** | [**mixed**](../Model/.md)|  | |
+| **schedule_id** | **string**|  | |
+| **url_id** | **string**|  | |
+| **domain_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -281,7 +281,7 @@ try {
 ## `getSchedules()`
 
 ```php
-getSchedules($workspace_id, $schedule_search_request): mixed
+getSchedules($workspace_id, $schedule_search_request): \OpenAPI\Client\Model\ScheduleResponse[]
 ```
 
 Get Schedules
@@ -328,7 +328,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\ScheduleResponse[]**](../Model/ScheduleResponse.md)
 
 ### Authorization
 
@@ -373,7 +373,7 @@ $apiInstance = new OpenAPI\Client\Api\SchedulesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$schedule_id = NULL; // mixed
+$schedule_id = 'schedule_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -388,7 +388,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **schedule_id** | [**mixed**](../Model/.md)|  | |
+| **schedule_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -411,7 +411,7 @@ try {
 ## `searchScheduleUrls()`
 
 ```php
-searchScheduleUrls($workspace_id, $schedule_url_search_request): mixed
+searchScheduleUrls($workspace_id, $schedule_url_search_request): \OpenAPI\Client\Model\ScheduleUrlResponse[]
 ```
 
 Search Schedule Urls
@@ -458,7 +458,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\ScheduleUrlResponse[]**](../Model/ScheduleUrlResponse.md)
 
 ### Authorization
 
@@ -503,7 +503,7 @@ $apiInstance = new OpenAPI\Client\Api\SchedulesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$schedule_id = NULL; // mixed
+$schedule_id = 'schedule_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $schedule_update_request = new \OpenAPI\Client\Model\ScheduleUpdateRequest(); // \OpenAPI\Client\Model\ScheduleUpdateRequest
 
@@ -519,7 +519,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **schedule_id** | [**mixed**](../Model/.md)|  | |
+| **schedule_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **schedule_update_request** | [**\OpenAPI\Client\Model\ScheduleUpdateRequest**](../Model/ScheduleUpdateRequest.md)|  | |
 

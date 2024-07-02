@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **mixed** |  |
+**id** | **string** |  |
 **status** | [**\OpenAPI\Client\Model\TaskStatuses**](TaskStatuses.md) |  |
-**result** | [**\OpenAPI\Client\Model\Result2**](Result2.md) |  | [optional]
-**error_message** | [**\OpenAPI\Client\Model\ErrorMessage**](ErrorMessage.md) |  | [optional]
+**result** | **string** |  | [optional]
+**error_message** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

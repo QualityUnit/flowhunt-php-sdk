@@ -72,7 +72,7 @@ This endpoint does not need any parameter.
 ## `searchCreditTransactions()`
 
 ```php
-searchCreditTransactions($workspace_id, $credit_transaction_search_request): mixed
+searchCreditTransactions($workspace_id, $credit_transaction_search_request): \OpenAPI\Client\Model\CreditTransactionResponse[]
 ```
 
 Search Credit Transactions
@@ -119,7 +119,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\CreditTransactionResponse[]**](../Model/CreditTransactionResponse.md)
 
 ### Authorization
 
@@ -137,7 +137,7 @@ try {
 ## `searchDailyCreditTransactions()`
 
 ```php
-searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request): mixed
+searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request): \OpenAPI\Client\Model\CreditDailyTransactionResponse[]
 ```
 
 Search Daily Credit Transactions
@@ -184,7 +184,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\CreditDailyTransactionResponse[]**](../Model/CreditDailyTransactionResponse.md)
 
 ### Authorization
 

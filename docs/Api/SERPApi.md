@@ -160,8 +160,8 @@ $apiInstance = new OpenAPI\Client\Api\SERPApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = NULL; // mixed
-$tag = new \OpenAPI\Client\Model\Tag(); // Tag
+$id = 'id_example'; // string
+$tag = 'tag_example'; // string
 
 try {
     $result = $apiInstance->serpVolumesPingback($id, $tag);
@@ -175,8 +175,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | [**mixed**](../Model/.md)|  | |
-| **tag** | [**Tag**](../Model/.md)|  | |
+| **id** | **string**|  | |
+| **tag** | **string**|  | |
 
 ### Return type
 

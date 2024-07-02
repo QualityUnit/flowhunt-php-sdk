@@ -106,7 +106,7 @@ $apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$chatbot_id = NULL; // mixed
+$chatbot_id = 'chatbot_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -121,7 +121,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **chatbot_id** | [**mixed**](../Model/.md)|  | |
+| **chatbot_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -171,7 +171,7 @@ $apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$chatbot_id = NULL; // mixed
+$chatbot_id = 'chatbot_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -186,7 +186,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **chatbot_id** | [**mixed**](../Model/.md)|  | |
+| **chatbot_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -209,7 +209,7 @@ try {
 ## `searchChatbots()`
 
 ```php
-searchChatbots($workspace_id, $chatbot_search_request): mixed
+searchChatbots($workspace_id, $chatbot_search_request): \OpenAPI\Client\Model\ChatbotResponse[]
 ```
 
 Search Chatbots
@@ -256,7 +256,7 @@ try {
 
 ### Return type
 
-**mixed**
+[**\OpenAPI\Client\Model\ChatbotResponse[]**](../Model/ChatbotResponse.md)
 
 ### Authorization
 
@@ -301,7 +301,7 @@ $apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$chatbot_id = NULL; // mixed
+$chatbot_id = 'chatbot_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $chatbot_update_request = new \OpenAPI\Client\Model\ChatbotUpdateRequest(); // \OpenAPI\Client\Model\ChatbotUpdateRequest
 
@@ -317,7 +317,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **chatbot_id** | [**mixed**](../Model/.md)|  | |
+| **chatbot_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **chatbot_update_request** | [**\OpenAPI\Client\Model\ChatbotUpdateRequest**](../Model/ChatbotUpdateRequest.md)|  | |
 

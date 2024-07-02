@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**messages** | **mixed** | The flow messages |
+**messages** | [**\OpenAPI\Client\Model\FlowSessionMessage[]**](FlowSessionMessage.md) | The flow messages |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

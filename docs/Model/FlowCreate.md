@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **mixed** | The flow name |
-**description** | **mixed** | The flow description |
-**config** | [**\OpenAPI\Client\Model\FlowConfig**](FlowConfig.md) |  |
-**flow_type** | [**\OpenAPI\Client\Model\FlowCreateFlowType**](FlowCreateFlowType.md) |  | [optional]
+**name** | **string** | The flow name |
+**description** | **string** | The flow description |
+**config** | [**\OpenAPI\Client\Model\FlowConfig**](FlowConfig.md) | The flow configuration |
+**flow_type** | [**\OpenAPI\Client\Model\FlowType**](FlowType.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
