@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionsApi
+ * CreditsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\io.flowhunt;
+namespace OpenAPI\Client\Flowhunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowSessionsApi Class Doc Comment
+ * CreditsApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FlowSessionsApi
+class CreditsApi
 {
     /**
      * @var ClientInterface
@@ -71,16 +71,13 @@ class FlowSessionsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'deleteChatbotSessionView' => [
+        'getCreditBalance' => [
             'application/json',
         ],
-        'getChatbotSessionView' => [
+        'searchCreditTransactions' => [
             'application/json',
         ],
-        'searchChatbotSessionsView' => [
-            'application/json',
-        ],
-        'updateChatbotSessionView' => [
+        'searchDailyCreditTransactions' => [
             'application/json',
         ],
     ];
@@ -132,40 +129,36 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionView
+     * Operation getCreditBalance
      *
-     * Delete Chatbot Session View
+     * Get Credit Balance
      *
-     * @param  mixed $session_id session_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\CreditBalanceResponse
      */
-    public function deleteChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getCreditBalance(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        list($response) = $this->deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
+        list($response) = $this->getCreditBalanceWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation deleteChatbotSessionViewWithHttpInfo
+     * Operation getCreditBalanceWithHttpInfo
      *
-     * Delete Chatbot Session View
+     * Get Credit Balance
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreditBalanceResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getCreditBalanceWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $request = $this->getCreditBalanceRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -204,11 +197,11 @@ class FlowSessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\CreditBalanceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\OpenAPI\Client\Model\CreditBalanceResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -226,40 +219,13 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreditBalanceResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\OpenAPI\Client\Model\CreditBalanceResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -292,15 +258,7 @@ class FlowSessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\OpenAPI\Client\Model\CreditBalanceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -311,20 +269,18 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionViewAsync
+     * Operation getCreditBalanceAsync
      *
-     * Delete Chatbot Session View
+     * Get Credit Balance
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getCreditBalanceAsync(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        return $this->deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
+        return $this->getCreditBalanceAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -333,21 +289,19 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionViewAsyncWithHttpInfo
+     * Operation getCreditBalanceAsyncWithHttpInfo
      *
-     * Delete Chatbot Session View
+     * Get Credit Balance
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getCreditBalanceAsyncWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreditBalanceResponse';
+        $request = $this->getCreditBalanceRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -386,431 +340,26 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'deleteChatbotSessionView'
+     * Create request for operation 'getCreditBalance'
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getCreditBalanceRequest(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
 
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling deleteChatbotSessionView'
-            );
-        }
 
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteChatbotSessionView'
-            );
-        }
-
-
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
+        $resourcePath = '/v2/credits/balance';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getChatbotSessionView
-     *
-     * Get Chatbot Session View
-     *
-     * @param  mixed $session_id session_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function getChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        list($response) = $this->getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getChatbotSessionViewWithHttpInfo
-     *
-     * Get Chatbot Session View
-     *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionViewResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionViewResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionViewResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionViewResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getChatbotSessionViewAsync
-     *
-     * Get Chatbot Session View
-     *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        return $this->getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getChatbotSessionViewAsyncWithHttpInfo
-     *
-     * Get Chatbot Session View
-     *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
-        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getChatbotSessionView'
-     *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling getChatbotSessionView'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getChatbotSessionView'
-            );
-        }
-
-
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -876,40 +425,40 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation searchChatbotSessionsView
+     * Operation searchCreditTransactions
      *
-     * Search Chatbot Sessions View
+     * Search Credit Transactions
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function searchChatbotSessionsView($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchCreditTransactions($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
     {
-        list($response) = $this->searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType);
+        list($response) = $this->searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchChatbotSessionsViewWithHttpInfo
+     * Operation searchCreditTransactionsWithHttpInfo
      *
-     * Search Chatbot Sessions View
+     * Search Credit Transactions
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
     {
-        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
+        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1055,20 +604,20 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation searchChatbotSessionsViewAsync
+     * Operation searchCreditTransactionsAsync
      *
-     * Search Chatbot Sessions View
+     * Search Credit Transactions
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchChatbotSessionsViewAsync($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchCreditTransactionsAsync($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
     {
-        return $this->searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType)
+        return $this->searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1077,21 +626,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation searchChatbotSessionsViewAsyncWithHttpInfo
+     * Operation searchCreditTransactionsAsyncWithHttpInfo
      *
-     * Search Chatbot Sessions View
+     * Search Credit Transactions
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
     {
         $returnType = 'mixed';
-        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
+        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1130,34 +679,34 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'searchChatbotSessionsView'
+     * Create request for operation 'searchCreditTransactions'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchChatbotSessionsView'
+                'Missing the required parameter $workspace_id when calling searchCreditTransactions'
             );
         }
 
-        // verify the required parameter 'flow_session_view_search_request' is set
-        if ($flow_session_view_search_request === null || (is_array($flow_session_view_search_request) && count($flow_session_view_search_request) === 0)) {
+        // verify the required parameter 'credit_transaction_search_request' is set
+        if ($credit_transaction_search_request === null || (is_array($credit_transaction_search_request) && count($credit_transaction_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $flow_session_view_search_request when calling searchChatbotSessionsView'
+                'Missing the required parameter $credit_transaction_search_request when calling searchCreditTransactions'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/search';
+        $resourcePath = '/v2/credits/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1184,12 +733,12 @@ class FlowSessionsApi
         );
 
         // for model (json/xml)
-        if (isset($flow_session_view_search_request)) {
+        if (isset($credit_transaction_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_transaction_search_request));
             } else {
-                $httpBody = $flow_session_view_search_request;
+                $httpBody = $credit_transaction_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1247,42 +796,40 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionView
+     * Operation searchDailyCreditTransactions
      *
-     * Update Chatbot Session View
+     * Search Daily Credit Transactions
      *
-     * @param  mixed $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function updateChatbotSessionView($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        list($response) = $this->updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        list($response) = $this->searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateChatbotSessionViewWithHttpInfo
+     * Operation searchDailyCreditTransactionsWithHttpInfo
      *
-     * Update Chatbot Session View
+     * Search Daily Credit Transactions
      *
-     * @param  mixed $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1321,11 +868,11 @@ class FlowSessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionViewResponse' === '\SplFileObject') {
+                    if ('mixed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionViewResponse' !== 'string') {
+                        if ('mixed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1343,7 +890,7 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionViewResponse', []),
+                        ObjectSerializer::deserialize($content, 'mixed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1376,7 +923,7 @@ class FlowSessionsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
+            $returnType = 'mixed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1409,7 +956,7 @@ class FlowSessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionViewResponse',
+                        'mixed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1428,21 +975,20 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionViewAsync
+     * Operation searchDailyCreditTransactionsAsync
      *
-     * Update Chatbot Session View
+     * Search Daily Credit Transactions
      *
-     * @param  mixed $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotSessionViewAsync($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function searchDailyCreditTransactionsAsync($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        return $this->updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType)
+        return $this->searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1451,22 +997,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionViewAsyncWithHttpInfo
+     * Operation searchDailyCreditTransactionsAsyncWithHttpInfo
      *
-     * Update Chatbot Session View
+     * Search Daily Credit Transactions
      *
-     * @param  mixed $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
-        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        $returnType = 'mixed';
+        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1505,42 +1050,34 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'updateChatbotSessionView'
+     * Create request for operation 'searchDailyCreditTransactions'
      *
-     * @param  mixed $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling updateChatbotSessionView'
-            );
-        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateChatbotSessionView'
+                'Missing the required parameter $workspace_id when calling searchDailyCreditTransactions'
             );
         }
 
-        // verify the required parameter 'flow_session_view_update_request' is set
-        if ($flow_session_view_update_request === null || (is_array($flow_session_view_update_request) && count($flow_session_view_update_request) === 0)) {
+        // verify the required parameter 'credit_daily_transaction_search_request' is set
+        if ($credit_daily_transaction_search_request === null || (is_array($credit_daily_transaction_search_request) && count($credit_daily_transaction_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $flow_session_view_update_request when calling updateChatbotSessionView'
+                'Missing the required parameter $credit_daily_transaction_search_request when calling searchDailyCreditTransactions'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
+        $resourcePath = '/v2/credits/search_daily';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1558,14 +1095,6 @@ class FlowSessionsApi
         ) ?? []);
 
 
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1575,12 +1104,12 @@ class FlowSessionsApi
         );
 
         // for model (json/xml)
-        if (isset($flow_session_view_update_request)) {
+        if (isset($credit_daily_transaction_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_daily_transaction_search_request));
             } else {
-                $httpBody = $flow_session_view_update_request;
+                $httpBody = $credit_daily_transaction_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1630,7 +1159,7 @@ class FlowSessionsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'PUT',
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

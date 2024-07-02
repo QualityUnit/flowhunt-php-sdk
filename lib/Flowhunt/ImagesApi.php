@@ -1,6 +1,6 @@
 <?php
 /**
- * CreditsApi
+ * ImagesApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\io.flowhunt;
+namespace OpenAPI\Client\Flowhunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreditsApi Class Doc Comment
+ * ImagesApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class CreditsApi
+class ImagesApi
 {
     /**
      * @var ClientInterface
@@ -71,13 +71,10 @@ class CreditsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getCreditBalance' => [
+        'convertImage' => [
             'application/json',
         ],
-        'searchCreditTransactions' => [
-            'application/json',
-        ],
-        'searchDailyCreditTransactions' => [
+        'optimizeImage' => [
             'application/json',
         ],
     ];
@@ -129,336 +126,40 @@ class CreditsApi
     }
 
     /**
-     * Operation getCreditBalance
+     * Operation convertImage
      *
-     * Get Credit Balance
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreditBalanceResponse
-     */
-    public function getCreditBalance(string $contentType = self::contentTypes['getCreditBalance'][0])
-    {
-        list($response) = $this->getCreditBalanceWithHttpInfo($contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getCreditBalanceWithHttpInfo
-     *
-     * Get Credit Balance
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreditBalanceResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getCreditBalanceWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
-    {
-        $request = $this->getCreditBalanceRequest($contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\CreditBalanceResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CreditBalanceResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreditBalanceResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\OpenAPI\Client\Model\CreditBalanceResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreditBalanceResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getCreditBalanceAsync
-     *
-     * Get Credit Balance
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getCreditBalanceAsync(string $contentType = self::contentTypes['getCreditBalance'][0])
-    {
-        return $this->getCreditBalanceAsyncWithHttpInfo($contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getCreditBalanceAsyncWithHttpInfo
-     *
-     * Get Credit Balance
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getCreditBalanceAsyncWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\CreditBalanceResponse';
-        $request = $this->getCreditBalanceRequest($contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getCreditBalance'
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getCreditBalanceRequest(string $contentType = self::contentTypes['getCreditBalance'][0])
-    {
-
-
-        $resourcePath = '/v2/credits/balance';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation searchCreditTransactions
-     *
-     * Search Credit Transactions
+     * Convert Image
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function searchCreditTransactions($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function convertImage($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        list($response) = $this->searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType);
+        list($response) = $this->convertImageWithHttpInfo($workspace_id, $image_convert_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchCreditTransactionsWithHttpInfo
+     * Operation convertImageWithHttpInfo
      *
-     * Search Credit Transactions
+     * Convert Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function convertImageWithHttpInfo($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
+        $request = $this->convertImageRequest($workspace_id, $image_convert_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -497,11 +198,11 @@ class CreditsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('mixed' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\DownloadFileResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('mixed' !== 'string') {
+                        if ('\OpenAPI\Client\Model\DownloadFileResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -519,7 +220,7 @@ class CreditsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DownloadFileResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -552,7 +253,7 @@ class CreditsApi
                     ];
             }
 
-            $returnType = 'mixed';
+            $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -585,7 +286,7 @@ class CreditsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'mixed',
+                        '\OpenAPI\Client\Model\DownloadFileResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -604,20 +305,20 @@ class CreditsApi
     }
 
     /**
-     * Operation searchCreditTransactionsAsync
+     * Operation convertImageAsync
      *
-     * Search Credit Transactions
+     * Convert Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchCreditTransactionsAsync($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function convertImageAsync($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        return $this->searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType)
+        return $this->convertImageAsyncWithHttpInfo($workspace_id, $image_convert_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -626,21 +327,21 @@ class CreditsApi
     }
 
     /**
-     * Operation searchCreditTransactionsAsyncWithHttpInfo
+     * Operation convertImageAsyncWithHttpInfo
      *
-     * Search Credit Transactions
+     * Convert Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function convertImageAsyncWithHttpInfo($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        $returnType = 'mixed';
-        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+        $request = $this->convertImageRequest($workspace_id, $image_convert_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -679,34 +380,34 @@ class CreditsApi
     }
 
     /**
-     * Create request for operation 'searchCreditTransactions'
+     * Create request for operation 'convertImage'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function convertImageRequest($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchCreditTransactions'
+                'Missing the required parameter $workspace_id when calling convertImage'
             );
         }
 
-        // verify the required parameter 'credit_transaction_search_request' is set
-        if ($credit_transaction_search_request === null || (is_array($credit_transaction_search_request) && count($credit_transaction_search_request) === 0)) {
+        // verify the required parameter 'image_convert_request' is set
+        if ($image_convert_request === null || (is_array($image_convert_request) && count($image_convert_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $credit_transaction_search_request when calling searchCreditTransactions'
+                'Missing the required parameter $image_convert_request when calling convertImage'
             );
         }
 
 
-        $resourcePath = '/v2/credits/search';
+        $resourcePath = '/v2/images/convert';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -733,12 +434,12 @@ class CreditsApi
         );
 
         // for model (json/xml)
-        if (isset($credit_transaction_search_request)) {
+        if (isset($image_convert_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_transaction_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($image_convert_request));
             } else {
-                $httpBody = $credit_transaction_search_request;
+                $httpBody = $image_convert_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -796,40 +497,40 @@ class CreditsApi
     }
 
     /**
-     * Operation searchDailyCreditTransactions
+     * Operation optimizeImage
      *
-     * Search Daily Credit Transactions
+     * Optimize Image
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function optimizeImage($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        list($response) = $this->searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType);
+        list($response) = $this->optimizeImageWithHttpInfo($workspace_id, $image_optimize_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchDailyCreditTransactionsWithHttpInfo
+     * Operation optimizeImageWithHttpInfo
      *
-     * Search Daily Credit Transactions
+     * Optimize Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function optimizeImageWithHttpInfo($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
+        $request = $this->optimizeImageRequest($workspace_id, $image_optimize_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -868,11 +569,11 @@ class CreditsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('mixed' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\DownloadFileResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('mixed' !== 'string') {
+                        if ('\OpenAPI\Client\Model\DownloadFileResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -890,7 +591,7 @@ class CreditsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DownloadFileResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -923,7 +624,7 @@ class CreditsApi
                     ];
             }
 
-            $returnType = 'mixed';
+            $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -956,7 +657,7 @@ class CreditsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'mixed',
+                        '\OpenAPI\Client\Model\DownloadFileResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -975,20 +676,20 @@ class CreditsApi
     }
 
     /**
-     * Operation searchDailyCreditTransactionsAsync
+     * Operation optimizeImageAsync
      *
-     * Search Daily Credit Transactions
+     * Optimize Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchDailyCreditTransactionsAsync($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function optimizeImageAsync($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        return $this->searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType)
+        return $this->optimizeImageAsyncWithHttpInfo($workspace_id, $image_optimize_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -997,21 +698,21 @@ class CreditsApi
     }
 
     /**
-     * Operation searchDailyCreditTransactionsAsyncWithHttpInfo
+     * Operation optimizeImageAsyncWithHttpInfo
      *
-     * Search Daily Credit Transactions
+     * Optimize Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function optimizeImageAsyncWithHttpInfo($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        $returnType = 'mixed';
-        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+        $request = $this->optimizeImageRequest($workspace_id, $image_optimize_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1050,34 +751,34 @@ class CreditsApi
     }
 
     /**
-     * Create request for operation 'searchDailyCreditTransactions'
+     * Create request for operation 'optimizeImage'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function optimizeImageRequest($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchDailyCreditTransactions'
+                'Missing the required parameter $workspace_id when calling optimizeImage'
             );
         }
 
-        // verify the required parameter 'credit_daily_transaction_search_request' is set
-        if ($credit_daily_transaction_search_request === null || (is_array($credit_daily_transaction_search_request) && count($credit_daily_transaction_search_request) === 0)) {
+        // verify the required parameter 'image_optimize_request' is set
+        if ($image_optimize_request === null || (is_array($image_optimize_request) && count($image_optimize_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $credit_daily_transaction_search_request when calling searchDailyCreditTransactions'
+                'Missing the required parameter $image_optimize_request when calling optimizeImage'
             );
         }
 
 
-        $resourcePath = '/v2/credits/search_daily';
+        $resourcePath = '/v2/images/optimize';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1104,12 +805,12 @@ class CreditsApi
         );
 
         // for model (json/xml)
-        if (isset($credit_daily_transaction_search_request)) {
+        if (isset($image_optimize_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_daily_transaction_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($image_optimize_request));
             } else {
-                $httpBody = $credit_daily_transaction_search_request;
+                $httpBody = $image_optimize_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

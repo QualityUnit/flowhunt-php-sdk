@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiKeysApi
+ * TagsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\io.flowhunt;
+namespace OpenAPI\Client\Flowhunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * ApiKeysApi Class Doc Comment
+ * TagsApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ApiKeysApi
+class TagsApi
 {
     /**
      * @var ClientInterface
@@ -71,16 +71,16 @@ class ApiKeysApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createApiKey' => [
+        'createTag' => [
             'application/json',
         ],
-        'deleteApiKey' => [
+        'deleteTag' => [
             'application/json',
         ],
-        'searchApiKey' => [
+        'searchTags' => [
             'application/json',
         ],
-        'updateApiKey' => [
+        'updateTag' => [
             'application/json',
         ],
     ];
@@ -132,40 +132,40 @@ class ApiKeysApi
     }
 
     /**
-     * Operation createApiKey
+     * Operation createTag
      *
-     * Create Api Key
+     * Create Tag
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request api_key_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function createApiKey($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createTag($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        list($response) = $this->createApiKeyWithHttpInfo($workspace_id, $api_key_create_request, $contentType);
+        list($response) = $this->createTagWithHttpInfo($workspace_id, $tag_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createApiKeyWithHttpInfo
+     * Operation createTagWithHttpInfo
      *
-     * Create Api Key
+     * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createApiKeyWithHttpInfo($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createTagWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        $request = $this->createApiKeyRequest($workspace_id, $api_key_create_request, $contentType);
+        $request = $this->createTagRequest($workspace_id, $tag_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -204,11 +204,11 @@ class ApiKeysApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiKeyResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiKeyResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TagResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -226,7 +226,7 @@ class ApiKeysApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiKeyResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TagResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -259,7 +259,7 @@ class ApiKeysApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
+            $returnType = '\OpenAPI\Client\Model\TagResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -292,7 +292,7 @@ class ApiKeysApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiKeyResponse',
+                        '\OpenAPI\Client\Model\TagResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -311,20 +311,20 @@ class ApiKeysApi
     }
 
     /**
-     * Operation createApiKeyAsync
+     * Operation createTagAsync
      *
-     * Create Api Key
+     * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiKeyAsync($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createTagAsync($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        return $this->createApiKeyAsyncWithHttpInfo($workspace_id, $api_key_create_request, $contentType)
+        return $this->createTagAsyncWithHttpInfo($workspace_id, $tag_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -333,21 +333,21 @@ class ApiKeysApi
     }
 
     /**
-     * Operation createApiKeyAsyncWithHttpInfo
+     * Operation createTagAsyncWithHttpInfo
      *
-     * Create Api Key
+     * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiKeyAsyncWithHttpInfo($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createTagAsyncWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
-        $request = $this->createApiKeyRequest($workspace_id, $api_key_create_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\TagResponse';
+        $request = $this->createTagRequest($workspace_id, $tag_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -386,34 +386,34 @@ class ApiKeysApi
     }
 
     /**
-     * Create request for operation 'createApiKey'
+     * Create request for operation 'createTag'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createApiKeyRequest($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createTagRequest($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createApiKey'
+                'Missing the required parameter $workspace_id when calling createTag'
             );
         }
 
-        // verify the required parameter 'api_key_create_request' is set
-        if ($api_key_create_request === null || (is_array($api_key_create_request) && count($api_key_create_request) === 0)) {
+        // verify the required parameter 'tag_create_request' is set
+        if ($tag_create_request === null || (is_array($tag_create_request) && count($tag_create_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $api_key_create_request when calling createApiKey'
+                'Missing the required parameter $tag_create_request when calling createTag'
             );
         }
 
 
-        $resourcePath = '/v2/api_keys/create';
+        $resourcePath = '/v2/tags/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -440,12 +440,12 @@ class ApiKeysApi
         );
 
         // for model (json/xml)
-        if (isset($api_key_create_request)) {
+        if (isset($tag_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_key_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_create_request));
             } else {
-                $httpBody = $api_key_create_request;
+                $httpBody = $tag_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -471,6 +471,11 @@ class ApiKeysApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -498,40 +503,40 @@ class ApiKeysApi
     }
 
     /**
-     * Operation deleteApiKey
+     * Operation deleteTag
      *
-     * Delete Api Key
+     * Delete Tag
      *
-     * @param  mixed $api_key_id api_key_id (required)
+     * @param  mixed $tag_id tag_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function deleteApiKey($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    public function deleteTag($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
-        list($response) = $this->deleteApiKeyWithHttpInfo($api_key_id, $workspace_id, $contentType);
+        list($response) = $this->deleteTagWithHttpInfo($tag_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deleteApiKeyWithHttpInfo
+     * Operation deleteTagWithHttpInfo
      *
-     * Delete Api Key
+     * Delete Tag
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteApiKeyWithHttpInfo($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    public function deleteTagWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
-        $request = $this->deleteApiKeyRequest($api_key_id, $workspace_id, $contentType);
+        $request = $this->deleteTagRequest($tag_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -677,20 +682,20 @@ class ApiKeysApi
     }
 
     /**
-     * Operation deleteApiKeyAsync
+     * Operation deleteTagAsync
      *
-     * Delete Api Key
+     * Delete Tag
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteApiKeyAsync($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    public function deleteTagAsync($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
-        return $this->deleteApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, $contentType)
+        return $this->deleteTagAsyncWithHttpInfo($tag_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -699,21 +704,21 @@ class ApiKeysApi
     }
 
     /**
-     * Operation deleteApiKeyAsyncWithHttpInfo
+     * Operation deleteTagAsyncWithHttpInfo
      *
-     * Delete Api Key
+     * Delete Tag
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    public function deleteTagAsyncWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->deleteApiKeyRequest($api_key_id, $workspace_id, $contentType);
+        $request = $this->deleteTagRequest($tag_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -752,34 +757,34 @@ class ApiKeysApi
     }
 
     /**
-     * Create request for operation 'deleteApiKey'
+     * Create request for operation 'deleteTag'
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteApiKeyRequest($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    public function deleteTagRequest($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
 
-        // verify the required parameter 'api_key_id' is set
-        if ($api_key_id === null || (is_array($api_key_id) && count($api_key_id) === 0)) {
+        // verify the required parameter 'tag_id' is set
+        if ($tag_id === null || (is_array($tag_id) && count($tag_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $api_key_id when calling deleteApiKey'
+                'Missing the required parameter $tag_id when calling deleteTag'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteApiKey'
+                'Missing the required parameter $workspace_id when calling deleteTag'
             );
         }
 
 
-        $resourcePath = '/v2/api_keys/{api_key_id}';
+        $resourcePath = '/v2/tags/{tag_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -798,10 +803,10 @@ class ApiKeysApi
 
 
         // path params
-        if ($api_key_id !== null) {
+        if ($tag_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'api_key_id' . '}',
-                ObjectSerializer::toPathValue($api_key_id),
+                '{' . 'tag_id' . '}',
+                ObjectSerializer::toPathValue($tag_id),
                 $resourcePath
             );
         }
@@ -838,6 +843,11 @@ class ApiKeysApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -865,40 +875,40 @@ class ApiKeysApi
     }
 
     /**
-     * Operation searchApiKey
+     * Operation searchTags
      *
-     * Search Api Key
+     * Search Tags
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request api_key_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function searchApiKey($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
+    public function searchTags($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        list($response) = $this->searchApiKeyWithHttpInfo($workspace_id, $api_key_search_request, $contentType);
+        list($response) = $this->searchTagsWithHttpInfo($workspace_id, $tag_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchApiKeyWithHttpInfo
+     * Operation searchTagsWithHttpInfo
      *
-     * Search Api Key
+     * Search Tags
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchApiKeyWithHttpInfo($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
+    public function searchTagsWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        $request = $this->searchApiKeyRequest($workspace_id, $api_key_search_request, $contentType);
+        $request = $this->searchTagsRequest($workspace_id, $tag_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1044,20 +1054,20 @@ class ApiKeysApi
     }
 
     /**
-     * Operation searchApiKeyAsync
+     * Operation searchTagsAsync
      *
-     * Search Api Key
+     * Search Tags
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchApiKeyAsync($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
+    public function searchTagsAsync($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        return $this->searchApiKeyAsyncWithHttpInfo($workspace_id, $api_key_search_request, $contentType)
+        return $this->searchTagsAsyncWithHttpInfo($workspace_id, $tag_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1066,21 +1076,21 @@ class ApiKeysApi
     }
 
     /**
-     * Operation searchApiKeyAsyncWithHttpInfo
+     * Operation searchTagsAsyncWithHttpInfo
      *
-     * Search Api Key
+     * Search Tags
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchApiKeyAsyncWithHttpInfo($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
+    public function searchTagsAsyncWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
         $returnType = 'mixed';
-        $request = $this->searchApiKeyRequest($workspace_id, $api_key_search_request, $contentType);
+        $request = $this->searchTagsRequest($workspace_id, $tag_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1119,34 +1129,34 @@ class ApiKeysApi
     }
 
     /**
-     * Create request for operation 'searchApiKey'
+     * Create request for operation 'searchTags'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchApiKeyRequest($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
+    public function searchTagsRequest($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchApiKey'
+                'Missing the required parameter $workspace_id when calling searchTags'
             );
         }
 
-        // verify the required parameter 'api_key_search_request' is set
-        if ($api_key_search_request === null || (is_array($api_key_search_request) && count($api_key_search_request) === 0)) {
+        // verify the required parameter 'tag_search_request' is set
+        if ($tag_search_request === null || (is_array($tag_search_request) && count($tag_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $api_key_search_request when calling searchApiKey'
+                'Missing the required parameter $tag_search_request when calling searchTags'
             );
         }
 
 
-        $resourcePath = '/v2/api_keys/search';
+        $resourcePath = '/v2/tags/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1173,12 +1183,12 @@ class ApiKeysApi
         );
 
         // for model (json/xml)
-        if (isset($api_key_search_request)) {
+        if (isset($tag_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_key_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_search_request));
             } else {
-                $httpBody = $api_key_search_request;
+                $httpBody = $tag_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1204,6 +1214,11 @@ class ApiKeysApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -1231,42 +1246,42 @@ class ApiKeysApi
     }
 
     /**
-     * Operation updateApiKey
+     * Operation updateTag
      *
-     * Update Api Key
+     * Update Tag
      *
-     * @param  mixed $api_key_id api_key_id (required)
+     * @param  mixed $tag_id tag_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request api_key_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function updateApiKey($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
+    public function updateTag($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        list($response) = $this->updateApiKeyWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, $contentType);
+        list($response) = $this->updateTagWithHttpInfo($tag_id, $workspace_id, $tag_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateApiKeyWithHttpInfo
+     * Operation updateTagWithHttpInfo
      *
-     * Update Api Key
+     * Update Tag
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateApiKeyWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
+    public function updateTagWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        $request = $this->updateApiKeyRequest($api_key_id, $workspace_id, $api_key_update_request, $contentType);
+        $request = $this->updateTagRequest($tag_id, $workspace_id, $tag_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1305,11 +1320,11 @@ class ApiKeysApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiKeyResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiKeyResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TagResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1327,7 +1342,7 @@ class ApiKeysApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiKeyResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TagResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1360,7 +1375,7 @@ class ApiKeysApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
+            $returnType = '\OpenAPI\Client\Model\TagResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1393,7 +1408,7 @@ class ApiKeysApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiKeyResponse',
+                        '\OpenAPI\Client\Model\TagResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1412,21 +1427,21 @@ class ApiKeysApi
     }
 
     /**
-     * Operation updateApiKeyAsync
+     * Operation updateTagAsync
      *
-     * Update Api Key
+     * Update Tag
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateApiKeyAsync($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
+    public function updateTagAsync($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        return $this->updateApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, $contentType)
+        return $this->updateTagAsyncWithHttpInfo($tag_id, $workspace_id, $tag_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1435,22 +1450,22 @@ class ApiKeysApi
     }
 
     /**
-     * Operation updateApiKeyAsyncWithHttpInfo
+     * Operation updateTagAsyncWithHttpInfo
      *
-     * Update Api Key
+     * Update Tag
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
+    public function updateTagAsyncWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
-        $request = $this->updateApiKeyRequest($api_key_id, $workspace_id, $api_key_update_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\TagResponse';
+        $request = $this->updateTagRequest($tag_id, $workspace_id, $tag_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1489,42 +1504,42 @@ class ApiKeysApi
     }
 
     /**
-     * Create request for operation 'updateApiKey'
+     * Create request for operation 'updateTag'
      *
-     * @param  mixed $api_key_id (required)
+     * @param  mixed $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateApiKeyRequest($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
+    public function updateTagRequest($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
 
-        // verify the required parameter 'api_key_id' is set
-        if ($api_key_id === null || (is_array($api_key_id) && count($api_key_id) === 0)) {
+        // verify the required parameter 'tag_id' is set
+        if ($tag_id === null || (is_array($tag_id) && count($tag_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $api_key_id when calling updateApiKey'
+                'Missing the required parameter $tag_id when calling updateTag'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateApiKey'
+                'Missing the required parameter $workspace_id when calling updateTag'
             );
         }
 
-        // verify the required parameter 'api_key_update_request' is set
-        if ($api_key_update_request === null || (is_array($api_key_update_request) && count($api_key_update_request) === 0)) {
+        // verify the required parameter 'tag_update_request' is set
+        if ($tag_update_request === null || (is_array($tag_update_request) && count($tag_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $api_key_update_request when calling updateApiKey'
+                'Missing the required parameter $tag_update_request when calling updateTag'
             );
         }
 
 
-        $resourcePath = '/v2/api_keys/{api_key_id}';
+        $resourcePath = '/v2/tags/{tag_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1543,10 +1558,10 @@ class ApiKeysApi
 
 
         // path params
-        if ($api_key_id !== null) {
+        if ($tag_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'api_key_id' . '}',
-                ObjectSerializer::toPathValue($api_key_id),
+                '{' . 'tag_id' . '}',
+                ObjectSerializer::toPathValue($tag_id),
                 $resourcePath
             );
         }
@@ -1559,12 +1574,12 @@ class ApiKeysApi
         );
 
         // for model (json/xml)
-        if (isset($api_key_update_request)) {
+        if (isset($tag_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_key_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_update_request));
             } else {
-                $httpBody = $api_key_update_request;
+                $httpBody = $tag_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1590,6 +1605,11 @@ class ApiKeysApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();

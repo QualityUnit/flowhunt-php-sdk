@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowMessagesApi
+ * HealthApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\io.flowhunt;
+namespace OpenAPI\Client\Flowhunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowMessagesApi Class Doc Comment
+ * HealthApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FlowMessagesApi
+class HealthApi
 {
     /**
      * @var ClientInterface
@@ -71,7 +71,7 @@ class FlowMessagesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'searchFlowMessages' => [
+        'health' => [
             'application/json',
         ],
     ];
@@ -123,40 +123,36 @@ class FlowMessagesApi
     }
 
     /**
-     * Operation searchFlowMessages
+     * Operation health
      *
-     * Search Flow Messages
+     * Health
      *
-     * @param  mixed $session_id session_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\Health
      */
-    public function searchFlowMessages($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function health(string $contentType = self::contentTypes['health'][0])
     {
-        list($response) = $this->searchFlowMessagesWithHttpInfo($session_id, $workspace_id, $contentType);
+        list($response) = $this->healthWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation searchFlowMessagesWithHttpInfo
+     * Operation healthWithHttpInfo
      *
-     * Search Flow Messages
+     * Health
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Health, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchFlowMessagesWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function healthWithHttpInfo(string $contentType = self::contentTypes['health'][0])
     {
-        $request = $this->searchFlowMessagesRequest($session_id, $workspace_id, $contentType);
+        $request = $this->healthRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,11 +191,11 @@ class FlowMessagesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('mixed' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Health' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('mixed' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Health' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -217,40 +213,13 @@ class FlowMessagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'mixed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Health', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = 'mixed';
+            $returnType = '\OpenAPI\Client\Model\Health';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -283,15 +252,7 @@ class FlowMessagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'mixed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\OpenAPI\Client\Model\Health',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -302,20 +263,18 @@ class FlowMessagesApi
     }
 
     /**
-     * Operation searchFlowMessagesAsync
+     * Operation healthAsync
      *
-     * Search Flow Messages
+     * Health
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchFlowMessagesAsync($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function healthAsync(string $contentType = self::contentTypes['health'][0])
     {
-        return $this->searchFlowMessagesAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
+        return $this->healthAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -324,21 +283,19 @@ class FlowMessagesApi
     }
 
     /**
-     * Operation searchFlowMessagesAsyncWithHttpInfo
+     * Operation healthAsyncWithHttpInfo
      *
-     * Search Flow Messages
+     * Health
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchFlowMessagesAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function healthAsyncWithHttpInfo(string $contentType = self::contentTypes['health'][0])
     {
-        $returnType = 'mixed';
-        $request = $this->searchFlowMessagesRequest($session_id, $workspace_id, $contentType);
+        $returnType = '\OpenAPI\Client\Model\Health';
+        $request = $this->healthRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -377,59 +334,26 @@ class FlowMessagesApi
     }
 
     /**
-     * Create request for operation 'searchFlowMessages'
+     * Create request for operation 'health'
      *
-     * @param  mixed $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchFlowMessagesRequest($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function healthRequest(string $contentType = self::contentTypes['health'][0])
     {
 
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling searchFlowMessages'
-            );
-        }
 
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchFlowMessages'
-            );
-        }
-
-
-        $resourcePath = '/v2/chatbots/search/{session_id}';
+        $resourcePath = '/v2/monitoring/health/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -463,15 +387,6 @@ class FlowMessagesApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -487,7 +402,7 @@ class FlowMessagesApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
