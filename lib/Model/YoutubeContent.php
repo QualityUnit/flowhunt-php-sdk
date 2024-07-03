@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentContent
+ * YoutubeContent
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * DocumentContent Class Doc Comment
+ * YoutubeContent Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentContent implements ModelInterface, ArrayAccess, \JsonSerializable
+class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentContent implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentContent';
+    protected static $openAPIModelName = 'YoutubeContent';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -66,7 +66,7 @@ class DocumentContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_type' => 'string',
         'encoding' => 'string',
         'description' => 'string',
-        'content' => 'string[][]',
+        'content' => 'string',
         'metadata' => 'object',
         'alt_content' => 'string[]',
         'content_hash' => 'string',
@@ -731,7 +731,7 @@ class DocumentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets content
      *
-     * @return string[][]|null
+     * @return string|null
      */
     public function getContent()
     {
@@ -741,7 +741,7 @@ class DocumentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets content
      *
-     * @param string[][]|null $content content
+     * @param string|null $content content
      *
      * @return self
      */

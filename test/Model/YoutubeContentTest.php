@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentContentTest
+ * YoutubeContentTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DocumentContentTest Class Doc Comment
+ * YoutubeContentTest Class Doc Comment
  *
  * @category    Class
- * @description DocumentContent
+ * @description YoutubeContent
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class DocumentContentTest extends TestCase
+class YoutubeContentTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class DocumentContentTest extends TestCase
     }
 
     /**
-     * Test "DocumentContent"
+     * Test "YoutubeContent"
      */
-    public function testDocumentContent()
+    public function testYoutubeContent()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

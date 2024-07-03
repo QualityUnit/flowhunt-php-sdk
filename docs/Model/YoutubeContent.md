@@ -1,4 +1,4 @@
-# # DocumentContent
+# # YoutubeContent
 
 ## Properties
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **content_type** | **string** |  | [optional]
 **encoding** | **string** |  | [optional]
 **description** | **string** |  | [optional]
-**content** | **string[][]** |  | [optional]
+**content** | **string** |  | [optional]
 **metadata** | **object** |  | [optional]
 **alt_content** | **string[]** |  | [optional]
 **content_hash** | **string** |  | [optional]

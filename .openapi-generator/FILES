@@ -151,6 +151,7 @@ docs/Model/WorkspaceUpdateRequest.md
 docs/Model/WorkspaceUserCreateRequest.md
 docs/Model/WorkspaceUserResponse.md
 docs/Model/WorkspaceUserUpdateRequest.md
+docs/Model/YoutubeContent.md
 docs/Model/YoutubeTranscriptRequest.md
 docs/Model/YoutubeTranscriptResponse.md
 git_push.sh
@@ -305,6 +306,7 @@ lib/Model/WorkspaceUpdateRequest.php
 lib/Model/WorkspaceUserCreateRequest.php
 lib/Model/WorkspaceUserResponse.php
 lib/Model/WorkspaceUserUpdateRequest.php
+lib/Model/YoutubeContent.php
 lib/Model/YoutubeTranscriptRequest.php
 lib/Model/YoutubeTranscriptResponse.php
 lib/ObjectSerializer.php
@@ -456,5 +458,6 @@ test/Model/WorkspaceUpdateRequestTest.php
 test/Model/WorkspaceUserCreateRequestTest.php
 test/Model/WorkspaceUserResponseTest.php
 test/Model/WorkspaceUserUpdateRequestTest.php
+test/Model/YoutubeContentTest.php
 test/Model/YoutubeTranscriptRequestTest.php
 test/Model/YoutubeTranscriptResponseTest.php
