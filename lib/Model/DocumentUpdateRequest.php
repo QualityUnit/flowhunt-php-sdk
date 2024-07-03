@@ -58,7 +58,8 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'doc_name' => 'string',
-        'user_status' => '\OpenAPI\Client\Model\UserDocumentStatus'
+        'user_status' => '\OpenAPI\Client\Model\UserDocumentStatus',
+        'cat_id' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'doc_name' => null,
-        'user_status' => null
+        'user_status' => null,
+        'cat_id' => 'uuid'
     ];
 
     /**
@@ -80,7 +82,8 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'doc_name' => true,
-        'user_status' => true
+        'user_status' => true,
+        'cat_id' => true
     ];
 
     /**
@@ -170,7 +173,8 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'doc_name' => 'doc_name',
-        'user_status' => 'user_status'
+        'user_status' => 'user_status',
+        'cat_id' => 'cat_id'
     ];
 
     /**
@@ -180,7 +184,8 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'doc_name' => 'setDocName',
-        'user_status' => 'setUserStatus'
+        'user_status' => 'setUserStatus',
+        'cat_id' => 'setCatId'
     ];
 
     /**
@@ -190,7 +195,8 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'doc_name' => 'getDocName',
-        'user_status' => 'getUserStatus'
+        'user_status' => 'getUserStatus',
+        'cat_id' => 'getCatId'
     ];
 
     /**
@@ -252,6 +258,7 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $this->setIfExists('doc_name', $data ?? [], null);
         $this->setIfExists('user_status', $data ?? [], null);
+        $this->setIfExists('cat_id', $data ?? [], null);
     }
 
     /**
@@ -360,6 +367,40 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['user_status'] = $user_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets cat_id
+     *
+     * @return string|null
+     */
+    public function getCatId()
+    {
+        return $this->container['cat_id'];
+    }
+
+    /**
+     * Sets cat_id
+     *
+     * @param string|null $cat_id cat_id
+     *
+     * @return self
+     */
+    public function setCatId($cat_id)
+    {
+        if (is_null($cat_id)) {
+            array_push($this->openAPINullablesSetToNull, 'cat_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cat_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cat_id'] = $cat_id;
 
         return $this;
     }

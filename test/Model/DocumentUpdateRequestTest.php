@@ -96,4 +96,13 @@ class DocumentUpdateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "cat_id"
+     */
+    public function testPropertyCatId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
