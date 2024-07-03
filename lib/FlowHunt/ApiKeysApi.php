@@ -1,6 +1,6 @@
 <?php
 /**
- * CreditsApi
+ * ApiKeysApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Flowhunt;
+namespace OpenAPI\Client\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreditsApi Class Doc Comment
+ * ApiKeysApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class CreditsApi
+class ApiKeysApi
 {
     /**
      * @var ClientInterface
@@ -71,13 +71,16 @@ class CreditsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getCreditBalance' => [
+        'createApiKey' => [
             'application/json',
         ],
-        'searchCreditTransactions' => [
+        'deleteApiKey' => [
             'application/json',
         ],
-        'searchDailyCreditTransactions' => [
+        'searchApiKey' => [
+            'application/json',
+        ],
+        'updateApiKey' => [
             'application/json',
         ],
     ];
@@ -129,36 +132,40 @@ class CreditsApi
     }
 
     /**
-     * Operation getCreditBalance
+     * Operation createApiKey
      *
-     * Get Credit Balance
+     * Create Api Key
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request api_key_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreditBalanceResponse
+     * @return \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function getCreditBalance(string $contentType = self::contentTypes['getCreditBalance'][0])
+    public function createApiKey($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
     {
-        list($response) = $this->getCreditBalanceWithHttpInfo($contentType);
+        list($response) = $this->createApiKeyWithHttpInfo($workspace_id, $api_key_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getCreditBalanceWithHttpInfo
+     * Operation createApiKeyWithHttpInfo
      *
-     * Get Credit Balance
+     * Create Api Key
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreditBalanceResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCreditBalanceWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
+    public function createApiKeyWithHttpInfo($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
     {
-        $request = $this->getCreditBalanceRequest($contentType);
+        $request = $this->createApiKeyRequest($workspace_id, $api_key_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -197,11 +204,11 @@ class CreditsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\CreditBalanceResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CreditBalanceResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiKeyResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -219,13 +226,40 @@ class CreditsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreditBalanceResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiKeyResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CreditBalanceResponse';
+            $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -258,7 +292,15 @@ class CreditsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreditBalanceResponse',
+                        '\OpenAPI\Client\Model\ApiKeyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -269,18 +311,20 @@ class CreditsApi
     }
 
     /**
-     * Operation getCreditBalanceAsync
+     * Operation createApiKeyAsync
      *
-     * Get Credit Balance
+     * Create Api Key
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCreditBalanceAsync(string $contentType = self::contentTypes['getCreditBalance'][0])
+    public function createApiKeyAsync($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
     {
-        return $this->getCreditBalanceAsyncWithHttpInfo($contentType)
+        return $this->createApiKeyAsyncWithHttpInfo($workspace_id, $api_key_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -289,19 +333,21 @@ class CreditsApi
     }
 
     /**
-     * Operation getCreditBalanceAsyncWithHttpInfo
+     * Operation createApiKeyAsyncWithHttpInfo
      *
-     * Get Credit Balance
+     * Create Api Key
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCreditBalanceAsyncWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
+    public function createApiKeyAsyncWithHttpInfo($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreditBalanceResponse';
-        $request = $this->getCreditBalanceRequest($contentType);
+        $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
+        $request = $this->createApiKeyRequest($workspace_id, $api_key_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -340,26 +386,425 @@ class CreditsApi
     }
 
     /**
-     * Create request for operation 'getCreditBalance'
+     * Create request for operation 'createApiKey'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiKeyCreateRequest $api_key_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCreditBalanceRequest(string $contentType = self::contentTypes['getCreditBalance'][0])
+    public function createApiKeyRequest($workspace_id, $api_key_create_request, string $contentType = self::contentTypes['createApiKey'][0])
     {
 
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createApiKey'
+            );
+        }
 
-        $resourcePath = '/v2/credits/balance';
+        // verify the required parameter 'api_key_create_request' is set
+        if ($api_key_create_request === null || (is_array($api_key_create_request) && count($api_key_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_key_create_request when calling createApiKey'
+            );
+        }
+
+
+        $resourcePath = '/v2/api_keys/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($api_key_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_key_create_request));
+            } else {
+                $httpBody = $api_key_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteApiKey
+     *
+     * Delete Api Key
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function deleteApiKey($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    {
+        list($response) = $this->deleteApiKeyWithHttpInfo($api_key_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteApiKeyWithHttpInfo
+     *
+     * Delete Api Key
+     *
+     * @param  string $api_key_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteApiKeyWithHttpInfo($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    {
+        $request = $this->deleteApiKeyRequest($api_key_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\Completed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteApiKeyAsync
+     *
+     * Delete Api Key
+     *
+     * @param  string $api_key_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteApiKeyAsync($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    {
+        return $this->deleteApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteApiKeyAsyncWithHttpInfo
+     *
+     * Delete Api Key
+     *
+     * @param  string $api_key_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\Completed';
+        $request = $this->deleteApiKeyRequest($api_key_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteApiKey'
+     *
+     * @param  string $api_key_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteApiKeyRequest($api_key_id, $workspace_id, string $contentType = self::contentTypes['deleteApiKey'][0])
+    {
+
+        // verify the required parameter 'api_key_id' is set
+        if ($api_key_id === null || (is_array($api_key_id) && count($api_key_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_key_id when calling deleteApiKey'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling deleteApiKey'
+            );
+        }
+
+
+        $resourcePath = '/v2/api_keys/{api_key_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($api_key_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'api_key_id' . '}',
+                ObjectSerializer::toPathValue($api_key_id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -393,11 +838,6 @@ class CreditsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -417,7 +857,7 @@ class CreditsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'GET',
+            'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -425,40 +865,40 @@ class CreditsApi
     }
 
     /**
-     * Operation searchCreditTransactions
+     * Operation searchApiKey
      *
-     * Search Credit Transactions
+     * Search Api Key
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request api_key_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreditTransactionResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\ApiKeyResponse[]|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function searchCreditTransactions($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function searchApiKey($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
     {
-        list($response) = $this->searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType);
+        list($response) = $this->searchApiKeyWithHttpInfo($workspace_id, $api_key_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchCreditTransactionsWithHttpInfo
+     * Operation searchApiKeyWithHttpInfo
      *
-     * Search Credit Transactions
+     * Search Api Key
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreditTransactionResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\ApiKeyResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function searchApiKeyWithHttpInfo($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
     {
-        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
+        $request = $this->searchApiKeyRequest($workspace_id, $api_key_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -497,11 +937,11 @@ class CreditsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\CreditTransactionResponse[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiKeyResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CreditTransactionResponse[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiKeyResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -519,7 +959,7 @@ class CreditsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreditTransactionResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiKeyResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -552,7 +992,7 @@ class CreditsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CreditTransactionResponse[]';
+            $returnType = '\OpenAPI\Client\Model\ApiKeyResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -585,7 +1025,7 @@ class CreditsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreditTransactionResponse[]',
+                        '\OpenAPI\Client\Model\ApiKeyResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -604,20 +1044,20 @@ class CreditsApi
     }
 
     /**
-     * Operation searchCreditTransactionsAsync
+     * Operation searchApiKeyAsync
      *
-     * Search Credit Transactions
+     * Search Api Key
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchCreditTransactionsAsync($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function searchApiKeyAsync($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
     {
-        return $this->searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType)
+        return $this->searchApiKeyAsyncWithHttpInfo($workspace_id, $api_key_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -626,21 +1066,21 @@ class CreditsApi
     }
 
     /**
-     * Operation searchCreditTransactionsAsyncWithHttpInfo
+     * Operation searchApiKeyAsyncWithHttpInfo
      *
-     * Search Credit Transactions
+     * Search Api Key
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function searchApiKeyAsyncWithHttpInfo($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreditTransactionResponse[]';
-        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\ApiKeyResponse[]';
+        $request = $this->searchApiKeyRequest($workspace_id, $api_key_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -679,34 +1119,34 @@ class CreditsApi
     }
 
     /**
-     * Create request for operation 'searchCreditTransactions'
+     * Create request for operation 'searchApiKey'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeySearchRequest $api_key_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    public function searchApiKeyRequest($workspace_id, $api_key_search_request, string $contentType = self::contentTypes['searchApiKey'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchCreditTransactions'
+                'Missing the required parameter $workspace_id when calling searchApiKey'
             );
         }
 
-        // verify the required parameter 'credit_transaction_search_request' is set
-        if ($credit_transaction_search_request === null || (is_array($credit_transaction_search_request) && count($credit_transaction_search_request) === 0)) {
+        // verify the required parameter 'api_key_search_request' is set
+        if ($api_key_search_request === null || (is_array($api_key_search_request) && count($api_key_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $credit_transaction_search_request when calling searchCreditTransactions'
+                'Missing the required parameter $api_key_search_request when calling searchApiKey'
             );
         }
 
 
-        $resourcePath = '/v2/credits/search';
+        $resourcePath = '/v2/api_keys/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -733,12 +1173,12 @@ class CreditsApi
         );
 
         // for model (json/xml)
-        if (isset($credit_transaction_search_request)) {
+        if (isset($api_key_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_transaction_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_key_search_request));
             } else {
-                $httpBody = $credit_transaction_search_request;
+                $httpBody = $api_key_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -764,11 +1204,6 @@ class CreditsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -796,40 +1231,42 @@ class CreditsApi
     }
 
     /**
-     * Operation searchDailyCreditTransactions
+     * Operation updateApiKey
      *
-     * Search Daily Credit Transactions
+     * Update Api Key
      *
+     * @param  string $api_key_id api_key_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request api_key_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreditDailyTransactionResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function updateApiKey($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
     {
-        list($response) = $this->searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType);
+        list($response) = $this->updateApiKeyWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchDailyCreditTransactionsWithHttpInfo
+     * Operation updateApiKeyWithHttpInfo
      *
-     * Search Daily Credit Transactions
+     * Update Api Key
      *
+     * @param  string $api_key_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreditDailyTransactionResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\ApiKeyResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function updateApiKeyWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
     {
-        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
+        $request = $this->updateApiKeyRequest($api_key_id, $workspace_id, $api_key_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -868,11 +1305,11 @@ class CreditsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\CreditDailyTransactionResponse[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CreditDailyTransactionResponse[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiKeyResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -890,7 +1327,7 @@ class CreditsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreditDailyTransactionResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiKeyResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -923,7 +1360,7 @@ class CreditsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CreditDailyTransactionResponse[]';
+            $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -956,7 +1393,7 @@ class CreditsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreditDailyTransactionResponse[]',
+                        '\OpenAPI\Client\Model\ApiKeyResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -975,20 +1412,21 @@ class CreditsApi
     }
 
     /**
-     * Operation searchDailyCreditTransactionsAsync
+     * Operation updateApiKeyAsync
      *
-     * Search Daily Credit Transactions
+     * Update Api Key
      *
+     * @param  string $api_key_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchDailyCreditTransactionsAsync($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function updateApiKeyAsync($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
     {
-        return $this->searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType)
+        return $this->updateApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -997,21 +1435,22 @@ class CreditsApi
     }
 
     /**
-     * Operation searchDailyCreditTransactionsAsyncWithHttpInfo
+     * Operation updateApiKeyAsyncWithHttpInfo
      *
-     * Search Daily Credit Transactions
+     * Update Api Key
      *
+     * @param  string $api_key_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function updateApiKeyAsyncWithHttpInfo($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreditDailyTransactionResponse[]';
-        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\ApiKeyResponse';
+        $request = $this->updateApiKeyRequest($api_key_id, $workspace_id, $api_key_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1050,34 +1489,42 @@ class CreditsApi
     }
 
     /**
-     * Create request for operation 'searchDailyCreditTransactions'
+     * Create request for operation 'updateApiKey'
      *
+     * @param  string $api_key_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiKeyUpdateRequest $api_key_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
+    public function updateApiKeyRequest($api_key_id, $workspace_id, $api_key_update_request, string $contentType = self::contentTypes['updateApiKey'][0])
     {
+
+        // verify the required parameter 'api_key_id' is set
+        if ($api_key_id === null || (is_array($api_key_id) && count($api_key_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_key_id when calling updateApiKey'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchDailyCreditTransactions'
+                'Missing the required parameter $workspace_id when calling updateApiKey'
             );
         }
 
-        // verify the required parameter 'credit_daily_transaction_search_request' is set
-        if ($credit_daily_transaction_search_request === null || (is_array($credit_daily_transaction_search_request) && count($credit_daily_transaction_search_request) === 0)) {
+        // verify the required parameter 'api_key_update_request' is set
+        if ($api_key_update_request === null || (is_array($api_key_update_request) && count($api_key_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $credit_daily_transaction_search_request when calling searchDailyCreditTransactions'
+                'Missing the required parameter $api_key_update_request when calling updateApiKey'
             );
         }
 
 
-        $resourcePath = '/v2/credits/search_daily';
+        $resourcePath = '/v2/api_keys/{api_key_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1095,6 +1542,14 @@ class CreditsApi
         ) ?? []);
 
 
+        // path params
+        if ($api_key_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'api_key_id' . '}',
+                ObjectSerializer::toPathValue($api_key_id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1104,12 +1559,12 @@ class CreditsApi
         );
 
         // for model (json/xml)
-        if (isset($credit_daily_transaction_search_request)) {
+        if (isset($api_key_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_daily_transaction_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_key_update_request));
             } else {
-                $httpBody = $credit_daily_transaction_search_request;
+                $httpBody = $api_key_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1135,11 +1590,6 @@ class CreditsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -1159,7 +1609,7 @@ class CreditsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

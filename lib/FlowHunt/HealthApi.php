@@ -1,6 +1,6 @@
 <?php
 /**
- * VideosApi
+ * HealthApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Flowhunt;
+namespace OpenAPI\Client\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * VideosApi Class Doc Comment
+ * HealthApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class VideosApi
+class HealthApi
 {
     /**
      * @var ClientInterface
@@ -71,7 +71,7 @@ class VideosApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getYoutubeTranscript' => [
+        'health' => [
             'application/json',
         ],
     ];
@@ -123,40 +123,36 @@ class VideosApi
     }
 
     /**
-     * Operation getYoutubeTranscript
+     * Operation health
      *
-     * Get Youtube Transcript
+     * Health
      *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\YoutubeTranscriptResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\Health
      */
-    public function getYoutubeTranscript($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function health(string $contentType = self::contentTypes['health'][0])
     {
-        list($response) = $this->getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType);
+        list($response) = $this->healthWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation getYoutubeTranscriptWithHttpInfo
+     * Operation healthWithHttpInfo
      *
-     * Get Youtube Transcript
+     * Health
      *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\YoutubeTranscriptResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Health, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function healthWithHttpInfo(string $contentType = self::contentTypes['health'][0])
     {
-        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
+        $request = $this->healthRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,11 +191,11 @@ class VideosApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\YoutubeTranscriptResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Health' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\YoutubeTranscriptResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Health' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -217,40 +213,13 @@ class VideosApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\YoutubeTranscriptResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Health', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\YoutubeTranscriptResponse';
+            $returnType = '\OpenAPI\Client\Model\Health';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -283,15 +252,7 @@ class VideosApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\YoutubeTranscriptResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\OpenAPI\Client\Model\Health',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -302,20 +263,18 @@ class VideosApi
     }
 
     /**
-     * Operation getYoutubeTranscriptAsync
+     * Operation healthAsync
      *
-     * Get Youtube Transcript
+     * Health
      *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getYoutubeTranscriptAsync($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function healthAsync(string $contentType = self::contentTypes['health'][0])
     {
-        return $this->getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType)
+        return $this->healthAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -324,21 +283,19 @@ class VideosApi
     }
 
     /**
-     * Operation getYoutubeTranscriptAsyncWithHttpInfo
+     * Operation healthAsyncWithHttpInfo
      *
-     * Get Youtube Transcript
+     * Health
      *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function healthAsyncWithHttpInfo(string $contentType = self::contentTypes['health'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\YoutubeTranscriptResponse';
-        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\Health';
+        $request = $this->healthRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -377,49 +334,24 @@ class VideosApi
     }
 
     /**
-     * Create request for operation 'getYoutubeTranscript'
+     * Create request for operation 'health'
      *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function healthRequest(string $contentType = self::contentTypes['health'][0])
     {
 
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getYoutubeTranscript'
-            );
-        }
 
-        // verify the required parameter 'youtube_transcript_request' is set
-        if ($youtube_transcript_request === null || (is_array($youtube_transcript_request) && count($youtube_transcript_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $youtube_transcript_request when calling getYoutubeTranscript'
-            );
-        }
-
-
-        $resourcePath = '/v2/videos/youtube/transcript';
+        $resourcePath = '/v2/monitoring/health/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
 
@@ -431,14 +363,7 @@ class VideosApi
         );
 
         // for model (json/xml)
-        if (isset($youtube_transcript_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($youtube_transcript_request));
-            } else {
-                $httpBody = $youtube_transcript_request;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -462,15 +387,6 @@ class VideosApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -486,7 +402,7 @@ class VideosApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -1,6 +1,6 @@
 <?php
 /**
- * SERPApi
+ * ImagesApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Flowhunt;
+namespace OpenAPI\Client\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * SERPApi Class Doc Comment
+ * ImagesApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SERPApi
+class ImagesApi
 {
     /**
      * @var ClientInterface
@@ -71,13 +71,10 @@ class SERPApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'serpSearch' => [
+        'convertImage' => [
             'application/json',
         ],
-        'serpVolumes' => [
-            'application/json',
-        ],
-        'serpVolumesPingback' => [
+        'optimizeImage' => [
             'application/json',
         ],
     ];
@@ -129,40 +126,40 @@ class SERPApi
     }
 
     /**
-     * Operation serpSearch
+     * Operation convertImage
      *
-     * Serp Search
+     * Convert Image
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request serp_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SerperResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function serpSearch($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function convertImage($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        list($response) = $this->serpSearchWithHttpInfo($workspace_id, $serp_search_request, $contentType);
+        list($response) = $this->convertImageWithHttpInfo($workspace_id, $image_convert_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation serpSearchWithHttpInfo
+     * Operation convertImageWithHttpInfo
      *
-     * Serp Search
+     * Convert Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SerperResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function serpSearchWithHttpInfo($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function convertImageWithHttpInfo($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        $request = $this->serpSearchRequest($workspace_id, $serp_search_request, $contentType);
+        $request = $this->convertImageRequest($workspace_id, $image_convert_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -201,11 +198,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SerperResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\DownloadFileResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SerperResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\DownloadFileResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -223,7 +220,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerperResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DownloadFileResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -256,7 +253,7 @@ class SERPApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SerperResponse';
+            $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -289,7 +286,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SerperResponse',
+                        '\OpenAPI\Client\Model\DownloadFileResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -308,20 +305,20 @@ class SERPApi
     }
 
     /**
-     * Operation serpSearchAsync
+     * Operation convertImageAsync
      *
-     * Serp Search
+     * Convert Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpSearchAsync($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function convertImageAsync($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        return $this->serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_request, $contentType)
+        return $this->convertImageAsyncWithHttpInfo($workspace_id, $image_convert_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -330,21 +327,21 @@ class SERPApi
     }
 
     /**
-     * Operation serpSearchAsyncWithHttpInfo
+     * Operation convertImageAsyncWithHttpInfo
      *
-     * Serp Search
+     * Convert Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function convertImageAsyncWithHttpInfo($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SerperResponse';
-        $request = $this->serpSearchRequest($workspace_id, $serp_search_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+        $request = $this->convertImageRequest($workspace_id, $image_convert_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -383,34 +380,34 @@ class SERPApi
     }
 
     /**
-     * Create request for operation 'serpSearch'
+     * Create request for operation 'convertImage'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageConvertRequest $image_convert_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['convertImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function serpSearchRequest($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function convertImageRequest($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling serpSearch'
+                'Missing the required parameter $workspace_id when calling convertImage'
             );
         }
 
-        // verify the required parameter 'serp_search_request' is set
-        if ($serp_search_request === null || (is_array($serp_search_request) && count($serp_search_request) === 0)) {
+        // verify the required parameter 'image_convert_request' is set
+        if ($image_convert_request === null || (is_array($image_convert_request) && count($image_convert_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $serp_search_request when calling serpSearch'
+                'Missing the required parameter $image_convert_request when calling convertImage'
             );
         }
 
 
-        $resourcePath = '/v2/serp/serp/search';
+        $resourcePath = '/v2/images/convert';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -437,12 +434,12 @@ class SERPApi
         );
 
         // for model (json/xml)
-        if (isset($serp_search_request)) {
+        if (isset($image_convert_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($serp_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($image_convert_request));
             } else {
-                $httpBody = $serp_search_request;
+                $httpBody = $image_convert_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -500,40 +497,40 @@ class SERPApi
     }
 
     /**
-     * Operation serpVolumes
+     * Operation optimizeImage
      *
-     * Serp Volumes
+     * Optimize Image
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request serp_volume_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SerpVolumeScheduleResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function serpVolumes($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
+    public function optimizeImage($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        list($response) = $this->serpVolumesWithHttpInfo($workspace_id, $serp_volume_request, $contentType);
+        list($response) = $this->optimizeImageWithHttpInfo($workspace_id, $image_optimize_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation serpVolumesWithHttpInfo
+     * Operation optimizeImageWithHttpInfo
      *
-     * Serp Volumes
+     * Optimize Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SerpVolumeScheduleResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function serpVolumesWithHttpInfo($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
+    public function optimizeImageWithHttpInfo($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        $request = $this->serpVolumesRequest($workspace_id, $serp_volume_request, $contentType);
+        $request = $this->optimizeImageRequest($workspace_id, $image_optimize_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -572,11 +569,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SerpVolumeScheduleResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\DownloadFileResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SerpVolumeScheduleResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\DownloadFileResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -594,7 +591,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerpVolumeScheduleResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DownloadFileResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -627,7 +624,7 @@ class SERPApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SerpVolumeScheduleResponse';
+            $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -660,7 +657,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SerpVolumeScheduleResponse',
+                        '\OpenAPI\Client\Model\DownloadFileResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -679,20 +676,20 @@ class SERPApi
     }
 
     /**
-     * Operation serpVolumesAsync
+     * Operation optimizeImageAsync
      *
-     * Serp Volumes
+     * Optimize Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpVolumesAsync($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
+    public function optimizeImageAsync($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        return $this->serpVolumesAsyncWithHttpInfo($workspace_id, $serp_volume_request, $contentType)
+        return $this->optimizeImageAsyncWithHttpInfo($workspace_id, $image_optimize_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -701,21 +698,21 @@ class SERPApi
     }
 
     /**
-     * Operation serpVolumesAsyncWithHttpInfo
+     * Operation optimizeImageAsyncWithHttpInfo
      *
-     * Serp Volumes
+     * Optimize Image
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpVolumesAsyncWithHttpInfo($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
+    public function optimizeImageAsyncWithHttpInfo($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SerpVolumeScheduleResponse';
-        $request = $this->serpVolumesRequest($workspace_id, $serp_volume_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+        $request = $this->optimizeImageRequest($workspace_id, $image_optimize_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -754,34 +751,34 @@ class SERPApi
     }
 
     /**
-     * Create request for operation 'serpVolumes'
+     * Create request for operation 'optimizeImage'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ImageOptimizeRequest $image_optimize_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['optimizeImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function serpVolumesRequest($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
+    public function optimizeImageRequest($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling serpVolumes'
+                'Missing the required parameter $workspace_id when calling optimizeImage'
             );
         }
 
-        // verify the required parameter 'serp_volume_request' is set
-        if ($serp_volume_request === null || (is_array($serp_volume_request) && count($serp_volume_request) === 0)) {
+        // verify the required parameter 'image_optimize_request' is set
+        if ($image_optimize_request === null || (is_array($image_optimize_request) && count($image_optimize_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $serp_volume_request when calling serpVolumes'
+                'Missing the required parameter $image_optimize_request when calling optimizeImage'
             );
         }
 
 
-        $resourcePath = '/v2/serp/serp/volumes';
+        $resourcePath = '/v2/images/optimize';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -808,12 +805,12 @@ class SERPApi
         );
 
         // for model (json/xml)
-        if (isset($serp_volume_request)) {
+        if (isset($image_optimize_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($serp_volume_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($image_optimize_request));
             } else {
-                $httpBody = $serp_volume_request;
+                $httpBody = $image_optimize_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -864,368 +861,6 @@ class SERPApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation serpVolumesPingback
-     *
-     * Serp Volumes Pingback
-     *
-     * @param  string $id id (required)
-     * @param  string $tag tag (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumesPingback'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SerpVolumeResponse|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function serpVolumesPingback($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
-    {
-        list($response) = $this->serpVolumesPingbackWithHttpInfo($id, $tag, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation serpVolumesPingbackWithHttpInfo
-     *
-     * Serp Volumes Pingback
-     *
-     * @param  string $id (required)
-     * @param  string $tag (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumesPingback'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SerpVolumeResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function serpVolumesPingbackWithHttpInfo($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
-    {
-        $request = $this->serpVolumesPingbackRequest($id, $tag, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\SerpVolumeResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SerpVolumeResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerpVolumeResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\OpenAPI\Client\Model\SerpVolumeResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SerpVolumeResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation serpVolumesPingbackAsync
-     *
-     * Serp Volumes Pingback
-     *
-     * @param  string $id (required)
-     * @param  string $tag (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumesPingback'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function serpVolumesPingbackAsync($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
-    {
-        return $this->serpVolumesPingbackAsyncWithHttpInfo($id, $tag, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation serpVolumesPingbackAsyncWithHttpInfo
-     *
-     * Serp Volumes Pingback
-     *
-     * @param  string $id (required)
-     * @param  string $tag (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumesPingback'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function serpVolumesPingbackAsyncWithHttpInfo($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\SerpVolumeResponse';
-        $request = $this->serpVolumesPingbackRequest($id, $tag, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'serpVolumesPingback'
-     *
-     * @param  string $id (required)
-     * @param  string $tag (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumesPingback'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function serpVolumesPingbackRequest($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling serpVolumesPingback'
-            );
-        }
-
-        // verify the required parameter 'tag' is set
-        if ($tag === null || (is_array($tag) && count($tag) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $tag when calling serpVolumesPingback'
-            );
-        }
-
-
-        $resourcePath = '/v2/serp/serp/volumes/pingback/{id}/{tag}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($tag !== null) {
-            $resourcePath = str_replace(
-                '{' . 'tag' . '}',
-                ObjectSerializer::toPathValue($tag),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

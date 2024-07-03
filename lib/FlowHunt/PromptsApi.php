@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspacesApi
+ * PromptsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Flowhunt;
+namespace OpenAPI\Client\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * WorkspacesApi Class Doc Comment
+ * PromptsApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class WorkspacesApi
+class PromptsApi
 {
     /**
      * @var ClientInterface
@@ -71,25 +71,28 @@ class WorkspacesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'addWorkspaceMember' => [
+        'createPrompt' => [
             'application/json',
         ],
-        'createWorkspace' => [
+        'createPromptCategory' => [
             'application/json',
         ],
-        'deleteWorkspace' => [
+        'deletePrompt' => [
             'application/json',
         ],
-        'deleteWorkspaceMember' => [
+        'deletePromptCategory' => [
             'application/json',
         ],
-        'getWorkspaceUsers' => [
+        'searchPromptCategories' => [
             'application/json',
         ],
-        'updateWorkspace' => [
+        'searchPrompts' => [
             'application/json',
         ],
-        'updateWorkspaceMember' => [
+        'updatePrompt' => [
+            'application/json',
+        ],
+        'updatePromptCategory' => [
             'application/json',
         ],
     ];
@@ -141,40 +144,782 @@ class WorkspacesApi
     }
 
     /**
-     * Operation addWorkspaceMember
+     * Operation createPrompt
      *
-     * Add Workspace Member
+     * Create Prompt
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceMember'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCreateRequest $prompt_create_request prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\PromptResponse|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function createPrompt($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        list($response) = $this->createPromptWithHttpInfo($workspace_id, $prompt_create_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createPromptWithHttpInfo
+     *
+     * Create Prompt
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\PromptResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createPromptWithHttpInfo($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        $request = $this->createPromptRequest($workspace_id, $prompt_create_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\PromptResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\PromptResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PromptResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\PromptResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\PromptResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createPromptAsync
+     *
+     * Create Prompt
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptAsync($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        return $this->createPromptAsyncWithHttpInfo($workspace_id, $prompt_create_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPromptAsyncWithHttpInfo
+     *
+     * Create Prompt
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptAsyncWithHttpInfo($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\PromptResponse';
+        $request = $this->createPromptRequest($workspace_id, $prompt_create_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createPrompt'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createPromptRequest($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createPrompt'
+            );
+        }
+
+        // verify the required parameter 'prompt_create_request' is set
+        if ($prompt_create_request === null || (is_array($prompt_create_request) && count($prompt_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_create_request when calling createPrompt'
+            );
+        }
+
+
+        $resourcePath = '/v2/prompts/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($prompt_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_create_request));
+            } else {
+                $httpBody = $prompt_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createPromptCategory
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCategoryCreateRequest $prompt_category_create_request prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\PromptCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function createPromptCategory($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        list($response) = $this->createPromptCategoryWithHttpInfo($workspace_id, $prompt_category_create_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createPromptCategoryWithHttpInfo
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\PromptCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createPromptCategoryWithHttpInfo($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        $request = $this->createPromptCategoryRequest($workspace_id, $prompt_category_create_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\PromptCategoryResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\PromptCategoryResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PromptCategoryResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\PromptCategoryResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\PromptCategoryResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createPromptCategoryAsync
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptCategoryAsync($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        return $this->createPromptCategoryAsyncWithHttpInfo($workspace_id, $prompt_category_create_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPromptCategoryAsyncWithHttpInfo
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptCategoryAsyncWithHttpInfo($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\PromptCategoryResponse';
+        $request = $this->createPromptCategoryRequest($workspace_id, $prompt_category_create_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createPromptCategory'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createPromptCategoryRequest($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createPromptCategory'
+            );
+        }
+
+        // verify the required parameter 'prompt_category_create_request' is set
+        if ($prompt_category_create_request === null || (is_array($prompt_category_create_request) && count($prompt_category_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_category_create_request when calling createPromptCategory'
+            );
+        }
+
+
+        $resourcePath = '/v2/prompts/categories/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($prompt_category_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_create_request));
+            } else {
+                $httpBody = $prompt_category_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deletePrompt
+     *
+     * Delete Prompt
+     *
+     * @param  string $prompt_id prompt_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function addWorkspaceMember($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceMember'][0])
+    public function deletePrompt($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
-        list($response) = $this->addWorkspaceMemberWithHttpInfo($workspace_id, $workspace_user_create_request, $contentType);
+        list($response) = $this->deletePromptWithHttpInfo($prompt_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation addWorkspaceMemberWithHttpInfo
+     * Operation deletePromptWithHttpInfo
      *
-     * Add Workspace Member
+     * Delete Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addWorkspaceMemberWithHttpInfo($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceMember'][0])
+    public function deletePromptWithHttpInfo($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
-        $request = $this->addWorkspaceMemberRequest($workspace_id, $workspace_user_create_request, $contentType);
+        $request = $this->deletePromptRequest($prompt_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -320,20 +1065,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation addWorkspaceMemberAsync
+     * Operation deletePromptAsync
      *
-     * Add Workspace Member
+     * Delete Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addWorkspaceMemberAsync($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceMember'][0])
+    public function deletePromptAsync($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
-        return $this->addWorkspaceMemberAsyncWithHttpInfo($workspace_id, $workspace_user_create_request, $contentType)
+        return $this->deletePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -342,21 +1087,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation addWorkspaceMemberAsyncWithHttpInfo
+     * Operation deletePromptAsyncWithHttpInfo
      *
-     * Add Workspace Member
+     * Delete Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addWorkspaceMemberAsyncWithHttpInfo($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceMember'][0])
+    public function deletePromptAsyncWithHttpInfo($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->addWorkspaceMemberRequest($workspace_id, $workspace_user_create_request, $contentType);
+        $request = $this->deletePromptRequest($prompt_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -395,745 +1140,56 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'addWorkspaceMember'
+     * Create request for operation 'deletePrompt'
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addWorkspaceMemberRequest($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceMember'][0])
+    public function deletePromptRequest($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
+
+        // verify the required parameter 'prompt_id' is set
+        if ($prompt_id === null || (is_array($prompt_id) && count($prompt_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_id when calling deletePrompt'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling addWorkspaceMember'
-            );
-        }
-
-        // verify the required parameter 'workspace_user_create_request' is set
-        if ($workspace_user_create_request === null || (is_array($workspace_user_create_request) && count($workspace_user_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_user_create_request when calling addWorkspaceMember'
+                'Missing the required parameter $workspace_id when calling deletePrompt'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}/add-member';
+        $resourcePath = '/v2/prompts/{prompt_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($workspace_id !== null) {
+        if ($prompt_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($workspace_user_create_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_user_create_request));
-            } else {
-                $httpBody = $workspace_user_create_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation createWorkspace
-     *
-     * Create Workspace
-     *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function createWorkspace($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        list($response) = $this->createWorkspaceWithHttpInfo($workspace_create_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation createWorkspaceWithHttpInfo
-     *
-     * Create Workspace
-     *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function createWorkspaceWithHttpInfo($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        $request = $this->createWorkspaceRequest($workspace_create_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\WorkspaceResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\WorkspaceResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\WorkspaceResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WorkspaceResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation createWorkspaceAsync
-     *
-     * Create Workspace
-     *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createWorkspaceAsync($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        return $this->createWorkspaceAsyncWithHttpInfo($workspace_create_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createWorkspaceAsyncWithHttpInfo
-     *
-     * Create Workspace
-     *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createWorkspaceAsyncWithHttpInfo($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
-        $request = $this->createWorkspaceRequest($workspace_create_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'createWorkspace'
-     *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createWorkspaceRequest($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-
-        // verify the required parameter 'workspace_create_request' is set
-        if ($workspace_create_request === null || (is_array($workspace_create_request) && count($workspace_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_create_request when calling createWorkspace'
-            );
-        }
-
-
-        $resourcePath = '/v2/workspaces/create';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($workspace_create_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_create_request));
-            } else {
-                $httpBody = $workspace_create_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation deleteWorkspace
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function deleteWorkspace($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        list($response) = $this->deleteWorkspaceWithHttpInfo($workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation deleteWorkspaceWithHttpInfo
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function deleteWorkspaceWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        $request = $this->deleteWorkspaceRequest($workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\OpenAPI\Client\Model\Completed';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation deleteWorkspaceAsync
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteWorkspaceAsync($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        return $this->deleteWorkspaceAsyncWithHttpInfo($workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteWorkspaceAsyncWithHttpInfo
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteWorkspaceAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->deleteWorkspaceRequest($workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'deleteWorkspace'
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteWorkspaceRequest($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteWorkspace'
-            );
-        }
-
-
-        $resourcePath = '/v2/workspaces/{workspace_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($workspace_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
+                '{' . 'prompt_id' . '}',
+                ObjectSerializer::toPathValue($prompt_id),
                 $resourcePath
             );
         }
@@ -1170,6 +1226,11 @@ class WorkspacesApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -1197,40 +1258,40 @@ class WorkspacesApi
     }
 
     /**
-     * Operation deleteWorkspaceMember
+     * Operation deletePromptCategory
      *
-     * Delete Workspace Member
+     * Delete Prompt Category
      *
+     * @param  string $cat_id cat_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $user_id user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function deleteWorkspaceMember($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceMember'][0])
+    public function deletePromptCategory($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
-        list($response) = $this->deleteWorkspaceMemberWithHttpInfo($workspace_id, $user_id, $contentType);
+        list($response) = $this->deletePromptCategoryWithHttpInfo($cat_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deleteWorkspaceMemberWithHttpInfo
+     * Operation deletePromptCategoryWithHttpInfo
      *
-     * Delete Workspace Member
+     * Delete Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteWorkspaceMemberWithHttpInfo($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceMember'][0])
+    public function deletePromptCategoryWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
-        $request = $this->deleteWorkspaceMemberRequest($workspace_id, $user_id, $contentType);
+        $request = $this->deletePromptCategoryRequest($cat_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1376,20 +1437,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation deleteWorkspaceMemberAsync
+     * Operation deletePromptCategoryAsync
      *
-     * Delete Workspace Member
+     * Delete Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteWorkspaceMemberAsync($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceMember'][0])
+    public function deletePromptCategoryAsync($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
-        return $this->deleteWorkspaceMemberAsyncWithHttpInfo($workspace_id, $user_id, $contentType)
+        return $this->deletePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1398,21 +1459,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation deleteWorkspaceMemberAsyncWithHttpInfo
+     * Operation deletePromptCategoryAsyncWithHttpInfo
      *
-     * Delete Workspace Member
+     * Delete Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteWorkspaceMemberAsyncWithHttpInfo($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceMember'][0])
+    public function deletePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->deleteWorkspaceMemberRequest($workspace_id, $user_id, $contentType);
+        $request = $this->deletePromptCategoryRequest($cat_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1451,55 +1512,56 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'deleteWorkspaceMember'
+     * Create request for operation 'deletePromptCategory'
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceMember'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteWorkspaceMemberRequest($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceMember'][0])
+    public function deletePromptCategoryRequest($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
+
+        // verify the required parameter 'cat_id' is set
+        if ($cat_id === null || (is_array($cat_id) && count($cat_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $cat_id when calling deletePromptCategory'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteWorkspaceMember'
-            );
-        }
-
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling deleteWorkspaceMember'
+                'Missing the required parameter $workspace_id when calling deletePromptCategory'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}/{user_id}';
+        $resourcePath = '/v2/prompts/categories/{cat_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($workspace_id !== null) {
+        if ($cat_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($user_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                '{' . 'cat_id' . '}',
+                ObjectSerializer::toPathValue($cat_id),
                 $resourcePath
             );
         }
@@ -1536,6 +1598,11 @@ class WorkspacesApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -1563,40 +1630,40 @@ class WorkspacesApi
     }
 
     /**
-     * Operation getWorkspaceUsers
+     * Operation searchPromptCategories
      *
-     * Get Workspace Users
+     * Search Prompt Categories
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceUsers'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategorySearchRequest $prompt_category_search_request prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\PromptCategoryResponse[]|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function getWorkspaceUsers($workspace_id, $workspace_search_request, string $contentType = self::contentTypes['getWorkspaceUsers'][0])
+    public function searchPromptCategories($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        list($response) = $this->getWorkspaceUsersWithHttpInfo($workspace_id, $workspace_search_request, $contentType);
+        list($response) = $this->searchPromptCategoriesWithHttpInfo($workspace_id, $prompt_category_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getWorkspaceUsersWithHttpInfo
+     * Operation searchPromptCategoriesWithHttpInfo
      *
-     * Get Workspace Users
+     * Search Prompt Categories
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceUsers'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PromptCategoryResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getWorkspaceUsersWithHttpInfo($workspace_id, $workspace_search_request, string $contentType = self::contentTypes['getWorkspaceUsers'][0])
+    public function searchPromptCategoriesWithHttpInfo($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        $request = $this->getWorkspaceUsersRequest($workspace_id, $workspace_search_request, $contentType);
+        $request = $this->searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1635,11 +1702,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\WorkspaceResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\PromptCategoryResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\WorkspaceResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\PromptCategoryResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1657,7 +1724,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\WorkspaceResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PromptCategoryResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1690,7 +1757,7 @@ class WorkspacesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
+            $returnType = '\OpenAPI\Client\Model\PromptCategoryResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1723,7 +1790,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WorkspaceResponse',
+                        '\OpenAPI\Client\Model\PromptCategoryResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1742,20 +1809,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation getWorkspaceUsersAsync
+     * Operation searchPromptCategoriesAsync
      *
-     * Get Workspace Users
+     * Search Prompt Categories
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceUsers'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getWorkspaceUsersAsync($workspace_id, $workspace_search_request, string $contentType = self::contentTypes['getWorkspaceUsers'][0])
+    public function searchPromptCategoriesAsync($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        return $this->getWorkspaceUsersAsyncWithHttpInfo($workspace_id, $workspace_search_request, $contentType)
+        return $this->searchPromptCategoriesAsyncWithHttpInfo($workspace_id, $prompt_category_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1764,21 +1831,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation getWorkspaceUsersAsyncWithHttpInfo
+     * Operation searchPromptCategoriesAsyncWithHttpInfo
      *
-     * Get Workspace Users
+     * Search Prompt Categories
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceUsers'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getWorkspaceUsersAsyncWithHttpInfo($workspace_id, $workspace_search_request, string $contentType = self::contentTypes['getWorkspaceUsers'][0])
+    public function searchPromptCategoriesAsyncWithHttpInfo($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
-        $request = $this->getWorkspaceUsersRequest($workspace_id, $workspace_search_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\PromptCategoryResponse[]';
+        $request = $this->searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1817,50 +1884,51 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'getWorkspaceUsers'
+     * Create request for operation 'searchPromptCategories'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceUsers'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getWorkspaceUsersRequest($workspace_id, $workspace_search_request, string $contentType = self::contentTypes['getWorkspaceUsers'][0])
+    public function searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getWorkspaceUsers'
+                'Missing the required parameter $workspace_id when calling searchPromptCategories'
             );
         }
 
-        // verify the required parameter 'workspace_search_request' is set
-        if ($workspace_search_request === null || (is_array($workspace_search_request) && count($workspace_search_request) === 0)) {
+        // verify the required parameter 'prompt_category_search_request' is set
+        if ($prompt_category_search_request === null || (is_array($prompt_category_search_request) && count($prompt_category_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_search_request when calling getWorkspaceUsers'
+                'Missing the required parameter $prompt_category_search_request when calling searchPromptCategories'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}';
+        $resourcePath = '/v2/prompts/categories/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
-        // path params
-        if ($workspace_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1870,12 +1938,12 @@ class WorkspacesApi
         );
 
         // for model (json/xml)
-        if (isset($workspace_search_request)) {
+        if (isset($prompt_category_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_search_request));
             } else {
-                $httpBody = $workspace_search_request;
+                $httpBody = $prompt_category_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1901,6 +1969,11 @@ class WorkspacesApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -1928,40 +2001,40 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspace
+     * Operation searchPrompts
      *
-     * Update Workspace
+     * Search Prompts
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptSearchRequest $prompt_search_request prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\PromptResponse[]|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function updateWorkspace($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function searchPrompts($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        list($response) = $this->updateWorkspaceWithHttpInfo($workspace_id, $workspace_update_request, $contentType);
+        list($response) = $this->searchPromptsWithHttpInfo($workspace_id, $prompt_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateWorkspaceWithHttpInfo
+     * Operation searchPromptsWithHttpInfo
      *
-     * Update Workspace
+     * Search Prompts
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PromptResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateWorkspaceWithHttpInfo($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function searchPromptsWithHttpInfo($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        $request = $this->updateWorkspaceRequest($workspace_id, $workspace_update_request, $contentType);
+        $request = $this->searchPromptsRequest($workspace_id, $prompt_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2000,11 +2073,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\PromptResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\OpenAPI\Client\Model\PromptResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2022,7 +2095,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PromptResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2055,7 +2128,7 @@ class WorkspacesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\OpenAPI\Client\Model\PromptResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2088,7 +2161,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\OpenAPI\Client\Model\PromptResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2107,20 +2180,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceAsync
+     * Operation searchPromptsAsync
      *
-     * Update Workspace
+     * Search Prompts
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceAsync($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function searchPromptsAsync($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        return $this->updateWorkspaceAsyncWithHttpInfo($workspace_id, $workspace_update_request, $contentType)
+        return $this->searchPromptsAsyncWithHttpInfo($workspace_id, $prompt_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2129,21 +2202,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceAsyncWithHttpInfo
+     * Operation searchPromptsAsyncWithHttpInfo
      *
-     * Update Workspace
+     * Search Prompts
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceAsyncWithHttpInfo($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function searchPromptsAsyncWithHttpInfo($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->updateWorkspaceRequest($workspace_id, $workspace_update_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\PromptResponse[]';
+        $request = $this->searchPromptsRequest($workspace_id, $prompt_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2182,50 +2255,51 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'updateWorkspace'
+     * Create request for operation 'searchPrompts'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateWorkspaceRequest($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function searchPromptsRequest($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateWorkspace'
+                'Missing the required parameter $workspace_id when calling searchPrompts'
             );
         }
 
-        // verify the required parameter 'workspace_update_request' is set
-        if ($workspace_update_request === null || (is_array($workspace_update_request) && count($workspace_update_request) === 0)) {
+        // verify the required parameter 'prompt_search_request' is set
+        if ($prompt_search_request === null || (is_array($prompt_search_request) && count($prompt_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_update_request when calling updateWorkspace'
+                'Missing the required parameter $prompt_search_request when calling searchPrompts'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}';
+        $resourcePath = '/v2/prompts/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
-        // path params
-        if ($workspace_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -2235,12 +2309,12 @@ class WorkspacesApi
         );
 
         // for model (json/xml)
-        if (isset($workspace_update_request)) {
+        if (isset($prompt_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_search_request));
             } else {
-                $httpBody = $workspace_update_request;
+                $httpBody = $prompt_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2266,6 +2340,402 @@ class WorkspacesApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updatePrompt
+     *
+     * Update Prompt
+     *
+     * @param  string $prompt_id prompt_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptUpdateRequest $prompt_update_request prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\PromptResponse|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function updatePrompt($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
+    {
+        list($response) = $this->updatePromptWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updatePromptWithHttpInfo
+     *
+     * Update Prompt
+     *
+     * @param  string $prompt_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\PromptResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updatePromptWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
+    {
+        $request = $this->updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\PromptResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\PromptResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PromptResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\PromptResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\PromptResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updatePromptAsync
+     *
+     * Update Prompt
+     *
+     * @param  string $prompt_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updatePromptAsync($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
+    {
+        return $this->updatePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updatePromptAsyncWithHttpInfo
+     *
+     * Update Prompt
+     *
+     * @param  string $prompt_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updatePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\PromptResponse';
+        $request = $this->updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updatePrompt'
+     *
+     * @param  string $prompt_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
+    {
+
+        // verify the required parameter 'prompt_id' is set
+        if ($prompt_id === null || (is_array($prompt_id) && count($prompt_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_id when calling updatePrompt'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updatePrompt'
+            );
+        }
+
+        // verify the required parameter 'prompt_update_request' is set
+        if ($prompt_update_request === null || (is_array($prompt_update_request) && count($prompt_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_update_request when calling updatePrompt'
+            );
+        }
+
+
+        $resourcePath = '/v2/prompts/{prompt_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($prompt_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'prompt_id' . '}',
+                ObjectSerializer::toPathValue($prompt_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($prompt_update_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_update_request));
+            } else {
+                $httpBody = $prompt_update_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -2293,42 +2763,42 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceMember
+     * Operation updatePromptCategory
      *
-     * Update Workspace Member
+     * Update Prompt Category
      *
+     * @param  string $cat_id cat_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $user_id user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceMember'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategoryUpdateRequest $prompt_category_update_request prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\PromptCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function updateWorkspaceMember($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceMember'][0])
+    public function updatePromptCategory($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        list($response) = $this->updateWorkspaceMemberWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, $contentType);
+        list($response) = $this->updatePromptCategoryWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateWorkspaceMemberWithHttpInfo
+     * Operation updatePromptCategoryWithHttpInfo
      *
-     * Update Workspace Member
+     * Update Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceMember'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PromptCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateWorkspaceMemberWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceMember'][0])
+    public function updatePromptCategoryWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        $request = $this->updateWorkspaceMemberRequest($workspace_id, $user_id, $workspace_user_update_request, $contentType);
+        $request = $this->updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2367,11 +2837,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\PromptCategoryResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\OpenAPI\Client\Model\PromptCategoryResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2389,7 +2859,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PromptCategoryResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2422,7 +2892,7 @@ class WorkspacesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\OpenAPI\Client\Model\PromptCategoryResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2455,7 +2925,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\OpenAPI\Client\Model\PromptCategoryResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2474,21 +2944,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceMemberAsync
+     * Operation updatePromptCategoryAsync
      *
-     * Update Workspace Member
+     * Update Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceMember'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceMemberAsync($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceMember'][0])
+    public function updatePromptCategoryAsync($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        return $this->updateWorkspaceMemberAsyncWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, $contentType)
+        return $this->updatePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2497,22 +2967,22 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceMemberAsyncWithHttpInfo
+     * Operation updatePromptCategoryAsyncWithHttpInfo
      *
-     * Update Workspace Member
+     * Update Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceMember'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceMemberAsyncWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceMember'][0])
+    public function updatePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->updateWorkspaceMemberRequest($workspace_id, $user_id, $workspace_user_update_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\PromptCategoryResponse';
+        $request = $this->updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2551,63 +3021,64 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'updateWorkspaceMember'
+     * Create request for operation 'updatePromptCategory'
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceMember'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateWorkspaceMemberRequest($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceMember'][0])
+    public function updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
+
+        // verify the required parameter 'cat_id' is set
+        if ($cat_id === null || (is_array($cat_id) && count($cat_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $cat_id when calling updatePromptCategory'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateWorkspaceMember'
+                'Missing the required parameter $workspace_id when calling updatePromptCategory'
             );
         }
 
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'prompt_category_update_request' is set
+        if ($prompt_category_update_request === null || (is_array($prompt_category_update_request) && count($prompt_category_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling updateWorkspaceMember'
-            );
-        }
-
-        // verify the required parameter 'workspace_user_update_request' is set
-        if ($workspace_user_update_request === null || (is_array($workspace_user_update_request) && count($workspace_user_update_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_user_update_request when calling updateWorkspaceMember'
+                'Missing the required parameter $prompt_category_update_request when calling updatePromptCategory'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}/{user_id}';
+        $resourcePath = '/v2/prompts/categories/{cat_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($workspace_id !== null) {
+        if ($cat_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($user_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                '{' . 'cat_id' . '}',
+                ObjectSerializer::toPathValue($cat_id),
                 $resourcePath
             );
         }
@@ -2620,12 +3091,12 @@ class WorkspacesApi
         );
 
         // for model (json/xml)
-        if (isset($workspace_user_update_request)) {
+        if (isset($prompt_category_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_user_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_update_request));
             } else {
-                $httpBody = $workspace_user_update_request;
+                $httpBody = $prompt_category_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2651,6 +3122,11 @@ class WorkspacesApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();

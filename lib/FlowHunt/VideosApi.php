@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowMessagesApi
+ * VideosApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Flowhunt;
+namespace OpenAPI\Client\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowMessagesApi Class Doc Comment
+ * VideosApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FlowMessagesApi
+class VideosApi
 {
     /**
      * @var ClientInterface
@@ -71,7 +71,7 @@ class FlowMessagesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'searchFlowMessages' => [
+        'getYoutubeTranscript' => [
             'application/json',
         ],
     ];
@@ -123,40 +123,40 @@ class FlowMessagesApi
     }
 
     /**
-     * Operation searchFlowMessages
+     * Operation getYoutubeTranscript
      *
-     * Search Flow Messages
+     * Get Youtube Transcript
      *
-     * @param  string $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowMessageResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\YoutubeTranscriptResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function searchFlowMessages($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function getYoutubeTranscript($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        list($response) = $this->searchFlowMessagesWithHttpInfo($session_id, $workspace_id, $contentType);
+        list($response) = $this->getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchFlowMessagesWithHttpInfo
+     * Operation getYoutubeTranscriptWithHttpInfo
      *
-     * Search Flow Messages
+     * Get Youtube Transcript
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowMessageResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\YoutubeTranscriptResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchFlowMessagesWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        $request = $this->searchFlowMessagesRequest($session_id, $workspace_id, $contentType);
+        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,11 +195,11 @@ class FlowMessagesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowMessageResponse[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\YoutubeTranscriptResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowMessageResponse[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\YoutubeTranscriptResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -217,7 +217,7 @@ class FlowMessagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowMessageResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\YoutubeTranscriptResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -250,7 +250,7 @@ class FlowMessagesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowMessageResponse[]';
+            $returnType = '\OpenAPI\Client\Model\YoutubeTranscriptResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -283,7 +283,7 @@ class FlowMessagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowMessageResponse[]',
+                        '\OpenAPI\Client\Model\YoutubeTranscriptResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -302,20 +302,20 @@ class FlowMessagesApi
     }
 
     /**
-     * Operation searchFlowMessagesAsync
+     * Operation getYoutubeTranscriptAsync
      *
-     * Search Flow Messages
+     * Get Youtube Transcript
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchFlowMessagesAsync($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function getYoutubeTranscriptAsync($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        return $this->searchFlowMessagesAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
+        return $this->getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -324,21 +324,21 @@ class FlowMessagesApi
     }
 
     /**
-     * Operation searchFlowMessagesAsyncWithHttpInfo
+     * Operation getYoutubeTranscriptAsyncWithHttpInfo
      *
-     * Search Flow Messages
+     * Get Youtube Transcript
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchFlowMessagesAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowMessageResponse[]';
-        $request = $this->searchFlowMessagesRequest($session_id, $workspace_id, $contentType);
+        $returnType = '\OpenAPI\Client\Model\YoutubeTranscriptResponse';
+        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -377,34 +377,34 @@ class FlowMessagesApi
     }
 
     /**
-     * Create request for operation 'searchFlowMessages'
+     * Create request for operation 'getYoutubeTranscript'
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowMessages'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchFlowMessagesRequest($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
+    public function getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling searchFlowMessages'
-            );
-        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchFlowMessages'
+                'Missing the required parameter $workspace_id when calling getYoutubeTranscript'
+            );
+        }
+
+        // verify the required parameter 'youtube_transcript_request' is set
+        if ($youtube_transcript_request === null || (is_array($youtube_transcript_request) && count($youtube_transcript_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $youtube_transcript_request when calling getYoutubeTranscript'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/search/{session_id}';
+        $resourcePath = '/v2/videos/youtube/transcript';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -422,14 +422,6 @@ class FlowMessagesApi
         ) ?? []);
 
 
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -439,7 +431,14 @@ class FlowMessagesApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($youtube_transcript_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($youtube_transcript_request));
+            } else {
+                $httpBody = $youtube_transcript_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
