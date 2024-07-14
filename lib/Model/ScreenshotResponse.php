@@ -63,7 +63,9 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'string',
         'original_size_url' => '\OpenAPI\Client\Model\AppUrlOutput',
         'thumbnail_url' => '\OpenAPI\Client\Model\AppUrlOutput',
-        'timestamp' => 'int'
+        'timestamp' => 'int',
+        'domain_id' => 'string',
+        'url_id' => 'string'
     ];
 
     /**
@@ -80,7 +82,9 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => null,
         'original_size_url' => null,
         'thumbnail_url' => null,
-        'timestamp' => null
+        'timestamp' => null,
+        'domain_id' => null,
+        'url_id' => null
     ];
 
     /**
@@ -95,7 +99,9 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => true,
         'original_size_url' => true,
         'thumbnail_url' => true,
-        'timestamp' => true
+        'timestamp' => true,
+        'domain_id' => true,
+        'url_id' => true
     ];
 
     /**
@@ -190,7 +196,9 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'error_message',
         'original_size_url' => 'original_size_url',
         'thumbnail_url' => 'thumbnail_url',
-        'timestamp' => 'timestamp'
+        'timestamp' => 'timestamp',
+        'domain_id' => 'domain_id',
+        'url_id' => 'url_id'
     ];
 
     /**
@@ -205,7 +213,9 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'setErrorMessage',
         'original_size_url' => 'setOriginalSizeUrl',
         'thumbnail_url' => 'setThumbnailUrl',
-        'timestamp' => 'setTimestamp'
+        'timestamp' => 'setTimestamp',
+        'domain_id' => 'setDomainId',
+        'url_id' => 'setUrlId'
     ];
 
     /**
@@ -220,7 +230,9 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'getErrorMessage',
         'original_size_url' => 'getOriginalSizeUrl',
         'thumbnail_url' => 'getThumbnailUrl',
-        'timestamp' => 'getTimestamp'
+        'timestamp' => 'getTimestamp',
+        'domain_id' => 'getDomainId',
+        'url_id' => 'getUrlId'
     ];
 
     /**
@@ -287,6 +299,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('original_size_url', $data ?? [], null);
         $this->setIfExists('thumbnail_url', $data ?? [], null);
         $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('domain_id', $data ?? [], null);
+        $this->setIfExists('url_id', $data ?? [], null);
     }
 
     /**
@@ -557,6 +571,74 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['timestamp'] = $timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Gets domain_id
+     *
+     * @return string|null
+     */
+    public function getDomainId()
+    {
+        return $this->container['domain_id'];
+    }
+
+    /**
+     * Sets domain_id
+     *
+     * @param string|null $domain_id domain_id
+     *
+     * @return self
+     */
+    public function setDomainId($domain_id)
+    {
+        if (is_null($domain_id)) {
+            array_push($this->openAPINullablesSetToNull, 'domain_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('domain_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['domain_id'] = $domain_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets url_id
+     *
+     * @return string|null
+     */
+    public function getUrlId()
+    {
+        return $this->container['url_id'];
+    }
+
+    /**
+     * Sets url_id
+     *
+     * @param string|null $url_id url_id
+     *
+     * @return self
+     */
+    public function setUrlId($url_id)
+    {
+        if (is_null($url_id)) {
+            array_push($this->openAPINullablesSetToNull, 'url_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('url_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['url_id'] = $url_id;
 
         return $this;
     }

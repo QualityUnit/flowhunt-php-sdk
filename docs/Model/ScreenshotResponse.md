@@ -11,5 +11,7 @@ Name | Type | Description | Notes
 **original_size_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
 **thumbnail_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
 **timestamp** | **int** |  | [optional]
+**domain_id** | **string** |  | [optional]
+**url_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

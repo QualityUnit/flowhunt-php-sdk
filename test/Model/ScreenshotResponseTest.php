@@ -141,4 +141,22 @@ class ScreenshotResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "domain_id"
+     */
+    public function testPropertyDomainId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "url_id"
+     */
+    public function testPropertyUrlId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
