@@ -114,4 +114,13 @@ class ThridPartyLoginRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "plan_id"
+     */
+    public function testPropertyPlanId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

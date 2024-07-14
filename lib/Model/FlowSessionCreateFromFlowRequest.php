@@ -58,7 +58,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPITypes = [
         'flow_id' => 'string',
-        'url' => 'string'
+        'url' => 'string',
+        'lang' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPIFormats = [
         'flow_id' => 'uuid',
-        'url' => null
+        'url' => null,
+        'lang' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
       */
     protected static array $openAPINullables = [
         'flow_id' => false,
-        'url' => true
+        'url' => true,
+        'lang' => true
     ];
 
     /**
@@ -170,7 +173,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
      */
     protected static $attributeMap = [
         'flow_id' => 'flow_id',
-        'url' => 'url'
+        'url' => 'url',
+        'lang' => 'lang'
     ];
 
     /**
@@ -180,7 +184,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
      */
     protected static $setters = [
         'flow_id' => 'setFlowId',
-        'url' => 'setUrl'
+        'url' => 'setUrl',
+        'lang' => 'setLang'
     ];
 
     /**
@@ -190,7 +195,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
      */
     protected static $getters = [
         'flow_id' => 'getFlowId',
-        'url' => 'getUrl'
+        'url' => 'getUrl',
+        'lang' => 'getLang'
     ];
 
     /**
@@ -252,6 +258,7 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
     {
         $this->setIfExists('flow_id', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('lang', $data ?? [], null);
     }
 
     /**
@@ -356,6 +363,40 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
             }
         }
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets lang
+     *
+     * @return string|null
+     */
+    public function getLang()
+    {
+        return $this->container['lang'];
+    }
+
+    /**
+     * Sets lang
+     *
+     * @param string|null $lang lang
+     *
+     * @return self
+     */
+    public function setLang($lang)
+    {
+        if (is_null($lang)) {
+            array_push($this->openAPINullablesSetToNull, 'lang');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('lang', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['lang'] = $lang;
 
         return $this;
     }

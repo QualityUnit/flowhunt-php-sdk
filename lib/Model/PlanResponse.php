@@ -1,6 +1,6 @@
 <?php
 /**
- * RegisterUserRequest
+ * PlanResponse
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RegisterUserRequest Class Doc Comment
+ * PlanResponse Class Doc Comment
  *
  * @category Class
- * @description Register User Request
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RegisterUserRequest';
+    protected static $openAPIModelName = 'PlanResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +57,16 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string',
+        'product_id' => 'string',
+        'price_id' => 'string',
+        'currency' => 'string',
+        'amount' => 'int',
+        'recurring' => 'bool',
         'name' => 'string',
-        'password' => 'string',
-        'plan_id' => 'string'
+        'description' => 'string',
+        'popular' => 'bool',
+        'features' => '\OpenAPI\Client\Model\FeatureResponse[]',
+        'subscription_plan' => '\OpenAPI\Client\Model\SubscriptionPlan'
     ];
 
     /**
@@ -72,10 +77,16 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => 'email',
+        'product_id' => null,
+        'price_id' => null,
+        'currency' => null,
+        'amount' => null,
+        'recurring' => null,
         'name' => null,
-        'password' => null,
-        'plan_id' => null
+        'description' => null,
+        'popular' => null,
+        'features' => null,
+        'subscription_plan' => null
     ];
 
     /**
@@ -84,10 +95,16 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'email' => false,
+        'product_id' => false,
+        'price_id' => false,
+        'currency' => false,
+        'amount' => false,
+        'recurring' => false,
         'name' => false,
-        'password' => false,
-        'plan_id' => true
+        'description' => false,
+        'popular' => false,
+        'features' => false,
+        'subscription_plan' => true
     ];
 
     /**
@@ -176,10 +193,16 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
+        'product_id' => 'product_id',
+        'price_id' => 'price_id',
+        'currency' => 'currency',
+        'amount' => 'amount',
+        'recurring' => 'recurring',
         'name' => 'name',
-        'password' => 'password',
-        'plan_id' => 'plan_id'
+        'description' => 'description',
+        'popular' => 'popular',
+        'features' => 'features',
+        'subscription_plan' => 'subscription_plan'
     ];
 
     /**
@@ -188,10 +211,16 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
+        'product_id' => 'setProductId',
+        'price_id' => 'setPriceId',
+        'currency' => 'setCurrency',
+        'amount' => 'setAmount',
+        'recurring' => 'setRecurring',
         'name' => 'setName',
-        'password' => 'setPassword',
-        'plan_id' => 'setPlanId'
+        'description' => 'setDescription',
+        'popular' => 'setPopular',
+        'features' => 'setFeatures',
+        'subscription_plan' => 'setSubscriptionPlan'
     ];
 
     /**
@@ -200,10 +229,16 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
+        'product_id' => 'getProductId',
+        'price_id' => 'getPriceId',
+        'currency' => 'getCurrency',
+        'amount' => 'getAmount',
+        'recurring' => 'getRecurring',
         'name' => 'getName',
-        'password' => 'getPassword',
-        'plan_id' => 'getPlanId'
+        'description' => 'getDescription',
+        'popular' => 'getPopular',
+        'features' => 'getFeatures',
+        'subscription_plan' => 'getSubscriptionPlan'
     ];
 
     /**
@@ -263,10 +298,16 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('product_id', $data ?? [], null);
+        $this->setIfExists('price_id', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('recurring', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('password', $data ?? [], null);
-        $this->setIfExists('plan_id', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('popular', $data ?? [], null);
+        $this->setIfExists('features', $data ?? [], null);
+        $this->setIfExists('subscription_plan', $data ?? [], null);
     }
 
     /**
@@ -296,23 +337,36 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['email'] === null) {
-            $invalidProperties[] = "'email' can't be null";
+        if ($this->container['product_id'] === null) {
+            $invalidProperties[] = "'product_id' can't be null";
+        }
+        if ($this->container['price_id'] === null) {
+            $invalidProperties[] = "'price_id' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
+        }
+        if ($this->container['recurring'] === null) {
+            $invalidProperties[] = "'recurring' can't be null";
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['password'] === null) {
-            $invalidProperties[] = "'password' can't be null";
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
         }
-        if ((mb_strlen($this->container['password']) > 100)) {
-            $invalidProperties[] = "invalid value for 'password', the character length must be smaller than or equal to 100.";
+        if ($this->container['popular'] === null) {
+            $invalidProperties[] = "'popular' can't be null";
         }
-
-        if ((mb_strlen($this->container['password']) < 8)) {
-            $invalidProperties[] = "invalid value for 'password', the character length must be bigger than or equal to 8.";
+        if ($this->container['features'] === null) {
+            $invalidProperties[] = "'features' can't be null";
         }
-
+        if ($this->container['subscription_plan'] === null) {
+            $invalidProperties[] = "'subscription_plan' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -329,28 +383,136 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets email
+     * Gets product_id
      *
      * @return string
      */
-    public function getEmail()
+    public function getProductId()
     {
-        return $this->container['email'];
+        return $this->container['product_id'];
     }
 
     /**
-     * Sets email
+     * Sets product_id
      *
-     * @param string $email email
+     * @param string $product_id product_id
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setProductId($product_id)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($product_id)) {
+            throw new \InvalidArgumentException('non-nullable product_id cannot be null');
         }
-        $this->container['email'] = $email;
+        $this->container['product_id'] = $product_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets price_id
+     *
+     * @return string
+     */
+    public function getPriceId()
+    {
+        return $this->container['price_id'];
+    }
+
+    /**
+     * Sets price_id
+     *
+     * @param string $price_id price_id
+     *
+     * @return self
+     */
+    public function setPriceId($price_id)
+    {
+        if (is_null($price_id)) {
+            throw new \InvalidArgumentException('non-nullable price_id cannot be null');
+        }
+        $this->container['price_id'] = $price_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string $currency currency
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        }
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets amount
+     *
+     * @return int
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param int $amount amount
+     *
+     * @return self
+     */
+    public function setAmount($amount)
+    {
+        if (is_null($amount)) {
+            throw new \InvalidArgumentException('non-nullable amount cannot be null');
+        }
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurring
+     *
+     * @return bool
+     */
+    public function getRecurring()
+    {
+        return $this->container['recurring'];
+    }
+
+    /**
+     * Sets recurring
+     *
+     * @param bool $recurring recurring
+     *
+     * @return self
+     */
+    public function setRecurring($recurring)
+    {
+        if (is_null($recurring)) {
+            throw new \InvalidArgumentException('non-nullable recurring cannot be null');
+        }
+        $this->container['recurring'] = $recurring;
 
         return $this;
     }
@@ -383,69 +545,116 @@ class RegisterUserRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
-     * Gets password
+     * Gets description
      *
      * @return string
      */
-    public function getPassword()
+    public function getDescription()
     {
-        return $this->container['password'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets password
+     * Sets description
      *
-     * @param string $password password
+     * @param string $description description
      *
      * @return self
      */
-    public function setPassword($password)
+    public function setDescription($description)
     {
-        if (is_null($password)) {
-            throw new \InvalidArgumentException('non-nullable password cannot be null');
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-        if ((mb_strlen($password) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $password when calling RegisterUserRequest., must be smaller than or equal to 100.');
-        }
-        if ((mb_strlen($password) < 8)) {
-            throw new \InvalidArgumentException('invalid length for $password when calling RegisterUserRequest., must be bigger than or equal to 8.');
-        }
-
-        $this->container['password'] = $password;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets plan_id
+     * Gets popular
      *
-     * @return string|null
+     * @return bool
      */
-    public function getPlanId()
+    public function getPopular()
     {
-        return $this->container['plan_id'];
+        return $this->container['popular'];
     }
 
     /**
-     * Sets plan_id
+     * Sets popular
      *
-     * @param string|null $plan_id plan_id
+     * @param bool $popular popular
      *
      * @return self
      */
-    public function setPlanId($plan_id)
+    public function setPopular($popular)
     {
-        if (is_null($plan_id)) {
-            array_push($this->openAPINullablesSetToNull, 'plan_id');
+        if (is_null($popular)) {
+            throw new \InvalidArgumentException('non-nullable popular cannot be null');
+        }
+        $this->container['popular'] = $popular;
+
+        return $this;
+    }
+
+    /**
+     * Gets features
+     *
+     * @return \OpenAPI\Client\Model\FeatureResponse[]
+     */
+    public function getFeatures()
+    {
+        return $this->container['features'];
+    }
+
+    /**
+     * Sets features
+     *
+     * @param \OpenAPI\Client\Model\FeatureResponse[] $features features
+     *
+     * @return self
+     */
+    public function setFeatures($features)
+    {
+        if (is_null($features)) {
+            throw new \InvalidArgumentException('non-nullable features cannot be null');
+        }
+        $this->container['features'] = $features;
+
+        return $this;
+    }
+
+    /**
+     * Gets subscription_plan
+     *
+     * @return \OpenAPI\Client\Model\SubscriptionPlan
+     */
+    public function getSubscriptionPlan()
+    {
+        return $this->container['subscription_plan'];
+    }
+
+    /**
+     * Sets subscription_plan
+     *
+     * @param \OpenAPI\Client\Model\SubscriptionPlan $subscription_plan subscription_plan
+     *
+     * @return self
+     */
+    public function setSubscriptionPlan($subscription_plan)
+    {
+        if (is_null($subscription_plan)) {
+            array_push($this->openAPINullablesSetToNull, 'subscription_plan');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_id', $nullablesSetToNull);
+            $index = array_search('subscription_plan', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['plan_id'] = $plan_id;
+        $this->container['subscription_plan'] = $subscription_plan;
 
         return $this;
     }

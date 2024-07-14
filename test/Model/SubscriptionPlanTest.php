@@ -1,6 +1,6 @@
 <?php
 /**
- * RegisterUserRequestTest
+ * SubscriptionPlanTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * RegisterUserRequestTest Class Doc Comment
+ * SubscriptionPlanTest Class Doc Comment
  *
  * @category    Class
- * @description Register User Request
+ * @description SubscriptionPlan
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class RegisterUserRequestTest extends TestCase
+class SubscriptionPlanTest extends TestCase
 {
 
     /**
@@ -71,45 +71,9 @@ class RegisterUserRequestTest extends TestCase
     }
 
     /**
-     * Test "RegisterUserRequest"
+     * Test "SubscriptionPlan"
      */
-    public function testRegisterUserRequest()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "email"
-     */
-    public function testPropertyEmail()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "password"
-     */
-    public function testPropertyPassword()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "plan_id"
-     */
-    public function testPropertyPlanId()
+    public function testSubscriptionPlan()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

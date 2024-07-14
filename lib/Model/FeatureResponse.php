@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionCreateRequest
+ * FeatureResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowSessionCreateRequest Class Doc Comment
+ * FeatureResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class FeatureResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionCreateRequest';
+    protected static $openAPIModelName = 'FeatureResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'chatbot_id' => 'string',
-        'url' => 'string',
-        'lang' => 'string'
+        'name' => 'string',
+        'available' => 'bool'
     ];
 
     /**
@@ -70,9 +69,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'chatbot_id' => 'uuid',
-        'url' => null,
-        'lang' => null
+        'name' => null,
+        'available' => null
     ];
 
     /**
@@ -81,9 +79,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'chatbot_id' => false,
-        'url' => true,
-        'lang' => true
+        'name' => false,
+        'available' => false
     ];
 
     /**
@@ -172,9 +169,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'chatbot_id' => 'chatbot_id',
-        'url' => 'url',
-        'lang' => 'lang'
+        'name' => 'name',
+        'available' => 'available'
     ];
 
     /**
@@ -183,9 +179,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'chatbot_id' => 'setChatbotId',
-        'url' => 'setUrl',
-        'lang' => 'setLang'
+        'name' => 'setName',
+        'available' => 'setAvailable'
     ];
 
     /**
@@ -194,9 +189,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'chatbot_id' => 'getChatbotId',
-        'url' => 'getUrl',
-        'lang' => 'getLang'
+        'name' => 'getName',
+        'available' => 'getAvailable'
     ];
 
     /**
@@ -256,9 +250,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('chatbot_id', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('lang', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('available', $data ?? [], null);
     }
 
     /**
@@ -288,8 +281,11 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['chatbot_id'] === null) {
-            $invalidProperties[] = "'chatbot_id' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['available'] === null) {
+            $invalidProperties[] = "'available' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,96 +303,55 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets chatbot_id
+     * Gets name
      *
      * @return string
      */
-    public function getChatbotId()
+    public function getName()
     {
-        return $this->container['chatbot_id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets chatbot_id
+     * Sets name
      *
-     * @param string $chatbot_id The chatbot ID
+     * @param string $name name
      *
      * @return self
      */
-    public function setChatbotId($chatbot_id)
+    public function setName($name)
     {
-        if (is_null($chatbot_id)) {
-            throw new \InvalidArgumentException('non-nullable chatbot_id cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['chatbot_id'] = $chatbot_id;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets available
      *
-     * @return string|null
+     * @return bool
      */
-    public function getUrl()
+    public function getAvailable()
     {
-        return $this->container['url'];
+        return $this->container['available'];
     }
 
     /**
-     * Sets url
+     * Sets available
      *
-     * @param string|null $url url
+     * @param bool $available available
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setAvailable($available)
     {
-        if (is_null($url)) {
-            array_push($this->openAPINullablesSetToNull, 'url');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('url', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($available)) {
+            throw new \InvalidArgumentException('non-nullable available cannot be null');
         }
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets lang
-     *
-     * @return string|null
-     */
-    public function getLang()
-    {
-        return $this->container['lang'];
-    }
-
-    /**
-     * Sets lang
-     *
-     * @param string|null $lang lang
-     *
-     * @return self
-     */
-    public function setLang($lang)
-    {
-        if (is_null($lang)) {
-            array_push($this->openAPINullablesSetToNull, 'lang');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lang', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['lang'] = $lang;
+        $this->container['available'] = $available;
 
         return $this;
     }

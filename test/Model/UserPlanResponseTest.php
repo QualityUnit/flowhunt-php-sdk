@@ -1,6 +1,6 @@
 <?php
 /**
- * RegisterUserRequestTest
+ * UserPlanResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * RegisterUserRequestTest Class Doc Comment
+ * UserPlanResponseTest Class Doc Comment
  *
  * @category    Class
- * @description Register User Request
+ * @description UserPlanResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class RegisterUserRequestTest extends TestCase
+class UserPlanResponseTest extends TestCase
 {
 
     /**
@@ -71,45 +71,72 @@ class RegisterUserRequestTest extends TestCase
     }
 
     /**
-     * Test "RegisterUserRequest"
+     * Test "UserPlanResponse"
      */
-    public function testRegisterUserRequest()
+    public function testUserPlanResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "email"
+     * Test attribute "product_id"
      */
-    public function testPropertyEmail()
+    public function testPropertyProductId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "price_amount"
      */
-    public function testPropertyName()
+    public function testPropertyPriceAmount()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "password"
+     * Test attribute "price_currency"
      */
-    public function testPropertyPassword()
+    public function testPropertyPriceCurrency()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "plan_id"
+     * Test attribute "last_renewal_date"
      */
-    public function testPropertyPlanId()
+    public function testPropertyLastRenewalDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "monthly_topup_credits"
+     */
+    public function testPropertyMonthlyTopupCredits()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "trial_end_date"
+     */
+    public function testPropertyTrialEndDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "subscription_plan"
+     */
+    public function testPropertySubscriptionPlan()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

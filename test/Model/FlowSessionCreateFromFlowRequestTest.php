@@ -96,4 +96,13 @@ class FlowSessionCreateFromFlowRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "lang"
+     */
+    public function testPropertyLang()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

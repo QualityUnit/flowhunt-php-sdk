@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionCreateRequest
+ * CheckoutCreateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowSessionCreateRequest Class Doc Comment
+ * CheckoutCreateRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionCreateRequest';
+    protected static $openAPIModelName = 'CheckoutCreateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'chatbot_id' => 'string',
-        'url' => 'string',
-        'lang' => 'string'
+        'plan_id' => 'string',
+        'recurring' => 'bool'
     ];
 
     /**
@@ -70,9 +69,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'chatbot_id' => 'uuid',
-        'url' => null,
-        'lang' => null
+        'plan_id' => null,
+        'recurring' => null
     ];
 
     /**
@@ -81,9 +79,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'chatbot_id' => false,
-        'url' => true,
-        'lang' => true
+        'plan_id' => false,
+        'recurring' => false
     ];
 
     /**
@@ -172,9 +169,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'chatbot_id' => 'chatbot_id',
-        'url' => 'url',
-        'lang' => 'lang'
+        'plan_id' => 'plan_id',
+        'recurring' => 'recurring'
     ];
 
     /**
@@ -183,9 +179,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'chatbot_id' => 'setChatbotId',
-        'url' => 'setUrl',
-        'lang' => 'setLang'
+        'plan_id' => 'setPlanId',
+        'recurring' => 'setRecurring'
     ];
 
     /**
@@ -194,9 +189,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'chatbot_id' => 'getChatbotId',
-        'url' => 'getUrl',
-        'lang' => 'getLang'
+        'plan_id' => 'getPlanId',
+        'recurring' => 'getRecurring'
     ];
 
     /**
@@ -256,9 +250,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('chatbot_id', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('lang', $data ?? [], null);
+        $this->setIfExists('plan_id', $data ?? [], null);
+        $this->setIfExists('recurring', $data ?? [], true);
     }
 
     /**
@@ -288,8 +281,8 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['chatbot_id'] === null) {
-            $invalidProperties[] = "'chatbot_id' can't be null";
+        if ($this->container['plan_id'] === null) {
+            $invalidProperties[] = "'plan_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,96 +300,55 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets chatbot_id
+     * Gets plan_id
      *
      * @return string
      */
-    public function getChatbotId()
+    public function getPlanId()
     {
-        return $this->container['chatbot_id'];
+        return $this->container['plan_id'];
     }
 
     /**
-     * Sets chatbot_id
+     * Sets plan_id
      *
-     * @param string $chatbot_id The chatbot ID
+     * @param string $plan_id plan_id
      *
      * @return self
      */
-    public function setChatbotId($chatbot_id)
+    public function setPlanId($plan_id)
     {
-        if (is_null($chatbot_id)) {
-            throw new \InvalidArgumentException('non-nullable chatbot_id cannot be null');
+        if (is_null($plan_id)) {
+            throw new \InvalidArgumentException('non-nullable plan_id cannot be null');
         }
-        $this->container['chatbot_id'] = $chatbot_id;
+        $this->container['plan_id'] = $plan_id;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets recurring
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getUrl()
+    public function getRecurring()
     {
-        return $this->container['url'];
+        return $this->container['recurring'];
     }
 
     /**
-     * Sets url
+     * Sets recurring
      *
-     * @param string|null $url url
+     * @param bool|null $recurring recurring
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setRecurring($recurring)
     {
-        if (is_null($url)) {
-            array_push($this->openAPINullablesSetToNull, 'url');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('url', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($recurring)) {
+            throw new \InvalidArgumentException('non-nullable recurring cannot be null');
         }
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets lang
-     *
-     * @return string|null
-     */
-    public function getLang()
-    {
-        return $this->container['lang'];
-    }
-
-    /**
-     * Sets lang
-     *
-     * @param string|null $lang lang
-     *
-     * @return self
-     */
-    public function setLang($lang)
-    {
-        if (is_null($lang)) {
-            array_push($this->openAPINullablesSetToNull, 'lang');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lang', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['lang'] = $lang;
+        $this->container['recurring'] = $recurring;
 
         return $this;
     }

@@ -105,13 +105,4 @@ class FlowCreateTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "flow_type"
-     */
-    public function testPropertyFlowType()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
 }

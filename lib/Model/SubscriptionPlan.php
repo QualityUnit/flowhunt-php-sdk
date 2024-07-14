@@ -1,6 +1,6 @@
 <?php
 /**
- * Role
+ * SubscriptionPlan
  *
  * PHP version 7.4
  *
@@ -30,25 +30,27 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Role Class Doc Comment
+ * SubscriptionPlan Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Role
+class SubscriptionPlan
 {
     /**
      * Possible values of this enum
      */
-    public const O = 'O';
+    public const S = 'S';
+
+    public const P = 'P';
 
     public const A = 'A';
 
-    public const M = 'M';
+    public const T = 'T';
 
-    public const G = 'G';
+    public const C = 'C';
 
     /**
      * Gets allowable values of the enum
@@ -57,10 +59,11 @@ class Role
     public static function getAllowableEnumValues()
     {
         return [
-            self::O,
+            self::S,
+            self::P,
             self::A,
-            self::M,
-            self::G
+            self::T,
+            self::C
         ];
     }
 }

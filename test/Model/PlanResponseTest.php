@@ -1,6 +1,6 @@
 <?php
 /**
- * RegisterUserRequestTest
+ * PlanResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * RegisterUserRequestTest Class Doc Comment
+ * PlanResponseTest Class Doc Comment
  *
  * @category    Class
- * @description Register User Request
+ * @description PlanResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class RegisterUserRequestTest extends TestCase
+class PlanResponseTest extends TestCase
 {
 
     /**
@@ -71,18 +71,54 @@ class RegisterUserRequestTest extends TestCase
     }
 
     /**
-     * Test "RegisterUserRequest"
+     * Test "PlanResponse"
      */
-    public function testRegisterUserRequest()
+    public function testPlanResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "email"
+     * Test attribute "product_id"
      */
-    public function testPropertyEmail()
+    public function testPropertyProductId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "price_id"
+     */
+    public function testPropertyPriceId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "amount"
+     */
+    public function testPropertyAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "recurring"
+     */
+    public function testPropertyRecurring()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -98,18 +134,36 @@ class RegisterUserRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "password"
+     * Test attribute "description"
      */
-    public function testPropertyPassword()
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "plan_id"
+     * Test attribute "popular"
      */
-    public function testPropertyPlanId()
+    public function testPropertyPopular()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "features"
+     */
+    public function testPropertyFeatures()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "subscription_plan"
+     */
+    public function testPropertySubscriptionPlan()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

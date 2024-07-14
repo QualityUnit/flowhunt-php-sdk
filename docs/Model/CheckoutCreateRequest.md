@@ -1,12 +1,10 @@
-# # RegisterUserRequest
+# # CheckoutCreateRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **string** |  |
-**name** | **string** |  |
-**password** | **string** |  |
-**plan_id** | **string** |  | [optional]
+**plan_id** | **string** |  |
+**recurring** | **bool** |  | [optional] [default to true]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

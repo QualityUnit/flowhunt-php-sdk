@@ -60,7 +60,8 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'provider_id' => 'string',
         'email' => 'string',
         'avatar_url' => 'string',
-        'name' => 'string'
+        'name' => 'string',
+        'plan_id' => 'string'
     ];
 
     /**
@@ -74,7 +75,8 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'provider_id' => null,
         'email' => null,
         'avatar_url' => null,
-        'name' => null
+        'name' => null,
+        'plan_id' => null
     ];
 
     /**
@@ -86,7 +88,8 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'provider_id' => false,
         'email' => false,
         'avatar_url' => true,
-        'name' => false
+        'name' => false,
+        'plan_id' => true
     ];
 
     /**
@@ -178,7 +181,8 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'provider_id' => 'provider_id',
         'email' => 'email',
         'avatar_url' => 'avatar_url',
-        'name' => 'name'
+        'name' => 'name',
+        'plan_id' => 'plan_id'
     ];
 
     /**
@@ -190,7 +194,8 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'provider_id' => 'setProviderId',
         'email' => 'setEmail',
         'avatar_url' => 'setAvatarUrl',
-        'name' => 'setName'
+        'name' => 'setName',
+        'plan_id' => 'setPlanId'
     ];
 
     /**
@@ -202,7 +207,8 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'provider_id' => 'getProviderId',
         'email' => 'getEmail',
         'avatar_url' => 'getAvatarUrl',
-        'name' => 'getName'
+        'name' => 'getName',
+        'plan_id' => 'getPlanId'
     ];
 
     /**
@@ -266,6 +272,7 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('avatar_url', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('plan_id', $data ?? [], null);
     }
 
     /**
@@ -430,6 +437,40 @@ class ThridPartyLoginRequest implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_id
+     *
+     * @return string|null
+     */
+    public function getPlanId()
+    {
+        return $this->container['plan_id'];
+    }
+
+    /**
+     * Sets plan_id
+     *
+     * @param string|null $plan_id plan_id
+     *
+     * @return self
+     */
+    public function setPlanId($plan_id)
+    {
+        if (is_null($plan_id)) {
+            array_push($this->openAPINullablesSetToNull, 'plan_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('plan_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['plan_id'] = $plan_id;
 
         return $this;
     }

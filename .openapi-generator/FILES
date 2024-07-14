@@ -6,6 +6,7 @@ README.md
 composer.json
 docs/Api/ApiKeysApi.md
 docs/Api/AuthApi.md
+docs/Api/BillingApi.md
 docs/Api/ChatbotsApi.md
 docs/Api/CreditsApi.md
 docs/Api/DocumentsApi.md
@@ -33,6 +34,7 @@ docs/Model/ChatbotSearchRequest.md
 docs/Model/ChatbotStatusInput.md
 docs/Model/ChatbotStatusOutput.md
 docs/Model/ChatbotUpdateRequest.md
+docs/Model/CheckoutCreateRequest.md
 docs/Model/Completed.md
 docs/Model/CreditBalanceResponse.md
 docs/Model/CreditDailyTransactionResponse.md
@@ -59,6 +61,7 @@ docs/Model/FaqSearchRequest.md
 docs/Model/FaqStatus.md
 docs/Model/FaqType.md
 docs/Model/FaqUpdateRequest.md
+docs/Model/FeatureResponse.md
 docs/Model/File.md
 docs/Model/FlowConfig.md
 docs/Model/FlowCreate.md
@@ -89,6 +92,7 @@ docs/Model/Message.md
 docs/Model/MessageAnyOfInner.md
 docs/Model/NewPasswordRequest.md
 docs/Model/OrganicPosition.md
+docs/Model/PlanResponse.md
 docs/Model/PointerType.md
 docs/Model/PromptCategoryCreateRequest.md
 docs/Model/PromptCategoryResponse.md
@@ -125,6 +129,7 @@ docs/Model/SerpVolumeScheduleResponse.md
 docs/Model/SerperResponse.md
 docs/Model/SerperResult.md
 docs/Model/SiteLink.md
+docs/Model/SubscriptionPlan.md
 docs/Model/TagCreateRequest.md
 docs/Model/TagResponse.md
 docs/Model/TagSearchRequest.md
@@ -136,6 +141,7 @@ docs/Model/Token.md
 docs/Model/TransactionType.md
 docs/Model/UrlScreenshotResponse.md
 docs/Model/UserDocumentStatus.md
+docs/Model/UserPlanResponse.md
 docs/Model/UserResponse.md
 docs/Model/UserTokenResponse.md
 docs/Model/ValidationError.md
@@ -159,6 +165,7 @@ lib/ApiException.php
 lib/Configuration.php
 lib/FlowHunt/ApiKeysApi.php
 lib/FlowHunt/AuthApi.php
+lib/FlowHunt/BillingApi.php
 lib/FlowHunt/ChatbotsApi.php
 lib/FlowHunt/CreditsApi.php
 lib/FlowHunt/DocumentsApi.php
@@ -187,6 +194,7 @@ lib/Model/ChatbotSearchRequest.php
 lib/Model/ChatbotStatusInput.php
 lib/Model/ChatbotStatusOutput.php
 lib/Model/ChatbotUpdateRequest.php
+lib/Model/CheckoutCreateRequest.php
 lib/Model/Completed.php
 lib/Model/CreditBalanceResponse.php
 lib/Model/CreditDailyTransactionResponse.php
@@ -213,6 +221,7 @@ lib/Model/FaqSearchRequest.php
 lib/Model/FaqStatus.php
 lib/Model/FaqType.php
 lib/Model/FaqUpdateRequest.php
+lib/Model/FeatureResponse.php
 lib/Model/File.php
 lib/Model/FlowConfig.php
 lib/Model/FlowCreate.php
@@ -244,6 +253,7 @@ lib/Model/MessageAnyOfInner.php
 lib/Model/ModelInterface.php
 lib/Model/NewPasswordRequest.php
 lib/Model/OrganicPosition.php
+lib/Model/PlanResponse.php
 lib/Model/PointerType.php
 lib/Model/PromptCategoryCreateRequest.php
 lib/Model/PromptCategoryResponse.php
@@ -280,6 +290,7 @@ lib/Model/SerpVolumeScheduleResponse.php
 lib/Model/SerperResponse.php
 lib/Model/SerperResult.php
 lib/Model/SiteLink.php
+lib/Model/SubscriptionPlan.php
 lib/Model/TagCreateRequest.php
 lib/Model/TagResponse.php
 lib/Model/TagSearchRequest.php
@@ -291,6 +302,7 @@ lib/Model/Token.php
 lib/Model/TransactionType.php
 lib/Model/UrlScreenshotResponse.php
 lib/Model/UserDocumentStatus.php
+lib/Model/UserPlanResponse.php
 lib/Model/UserResponse.php
 lib/Model/UserTokenResponse.php
 lib/Model/ValidationError.php
@@ -313,6 +325,7 @@ lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/ApiKeysApiTest.php
 test/Api/AuthApiTest.php
+test/Api/BillingApiTest.php
 test/Api/ChatbotsApiTest.php
 test/Api/CreditsApiTest.php
 test/Api/DocumentsApiTest.php
@@ -340,6 +353,7 @@ test/Model/ChatbotSearchRequestTest.php
 test/Model/ChatbotStatusInputTest.php
 test/Model/ChatbotStatusOutputTest.php
 test/Model/ChatbotUpdateRequestTest.php
+test/Model/CheckoutCreateRequestTest.php
 test/Model/CompletedTest.php
 test/Model/CreditBalanceResponseTest.php
 test/Model/CreditDailyTransactionResponseTest.php
@@ -366,6 +380,7 @@ test/Model/FaqSearchRequestTest.php
 test/Model/FaqStatusTest.php
 test/Model/FaqTypeTest.php
 test/Model/FaqUpdateRequestTest.php
+test/Model/FeatureResponseTest.php
 test/Model/FileTest.php
 test/Model/FlowConfigTest.php
 test/Model/FlowCreateTest.php
@@ -396,6 +411,7 @@ test/Model/MessageAnyOfInnerTest.php
 test/Model/MessageTest.php
 test/Model/NewPasswordRequestTest.php
 test/Model/OrganicPositionTest.php
+test/Model/PlanResponseTest.php
 test/Model/PointerTypeTest.php
 test/Model/PromptCategoryCreateRequestTest.php
 test/Model/PromptCategoryResponseTest.php
@@ -432,6 +448,7 @@ test/Model/SerpVolumeScheduleResponseTest.php
 test/Model/SerperResponseTest.php
 test/Model/SerperResultTest.php
 test/Model/SiteLinkTest.php
+test/Model/SubscriptionPlanTest.php
 test/Model/TagCreateRequestTest.php
 test/Model/TagResponseTest.php
 test/Model/TagSearchRequestTest.php
@@ -443,6 +460,7 @@ test/Model/TokenTest.php
 test/Model/TransactionTypeTest.php
 test/Model/UrlScreenshotResponseTest.php
 test/Model/UserDocumentStatusTest.php
+test/Model/UserPlanResponseTest.php
 test/Model/UserResponseTest.php
 test/Model/UserTokenResponseTest.php
 test/Model/ValidationErrorLocInnerTest.php

@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionCreateRequest
+ * UserPlanResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowSessionCreateRequest Class Doc Comment
+ * UserPlanResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionCreateRequest';
+    protected static $openAPIModelName = 'UserPlanResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'chatbot_id' => 'string',
-        'url' => 'string',
-        'lang' => 'string'
+        'product_id' => 'string',
+        'price_amount' => 'int',
+        'price_currency' => 'string',
+        'last_renewal_date' => '\DateTime',
+        'monthly_topup_credits' => 'int',
+        'trial_end_date' => '\DateTime',
+        'subscription_plan' => '\OpenAPI\Client\Model\SubscriptionPlan'
     ];
 
     /**
@@ -70,9 +74,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'chatbot_id' => 'uuid',
-        'url' => null,
-        'lang' => null
+        'product_id' => null,
+        'price_amount' => null,
+        'price_currency' => null,
+        'last_renewal_date' => 'date-time',
+        'monthly_topup_credits' => null,
+        'trial_end_date' => 'date-time',
+        'subscription_plan' => null
     ];
 
     /**
@@ -81,9 +89,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'chatbot_id' => false,
-        'url' => true,
-        'lang' => true
+        'product_id' => true,
+        'price_amount' => false,
+        'price_currency' => false,
+        'last_renewal_date' => true,
+        'monthly_topup_credits' => false,
+        'trial_end_date' => true,
+        'subscription_plan' => false
     ];
 
     /**
@@ -172,9 +184,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'chatbot_id' => 'chatbot_id',
-        'url' => 'url',
-        'lang' => 'lang'
+        'product_id' => 'product_id',
+        'price_amount' => 'price_amount',
+        'price_currency' => 'price_currency',
+        'last_renewal_date' => 'last_renewal_date',
+        'monthly_topup_credits' => 'monthly_topup_credits',
+        'trial_end_date' => 'trial_end_date',
+        'subscription_plan' => 'subscription_plan'
     ];
 
     /**
@@ -183,9 +199,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'chatbot_id' => 'setChatbotId',
-        'url' => 'setUrl',
-        'lang' => 'setLang'
+        'product_id' => 'setProductId',
+        'price_amount' => 'setPriceAmount',
+        'price_currency' => 'setPriceCurrency',
+        'last_renewal_date' => 'setLastRenewalDate',
+        'monthly_topup_credits' => 'setMonthlyTopupCredits',
+        'trial_end_date' => 'setTrialEndDate',
+        'subscription_plan' => 'setSubscriptionPlan'
     ];
 
     /**
@@ -194,9 +214,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'chatbot_id' => 'getChatbotId',
-        'url' => 'getUrl',
-        'lang' => 'getLang'
+        'product_id' => 'getProductId',
+        'price_amount' => 'getPriceAmount',
+        'price_currency' => 'getPriceCurrency',
+        'last_renewal_date' => 'getLastRenewalDate',
+        'monthly_topup_credits' => 'getMonthlyTopupCredits',
+        'trial_end_date' => 'getTrialEndDate',
+        'subscription_plan' => 'getSubscriptionPlan'
     ];
 
     /**
@@ -256,9 +280,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('chatbot_id', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('lang', $data ?? [], null);
+        $this->setIfExists('product_id', $data ?? [], null);
+        $this->setIfExists('price_amount', $data ?? [], null);
+        $this->setIfExists('price_currency', $data ?? [], null);
+        $this->setIfExists('last_renewal_date', $data ?? [], null);
+        $this->setIfExists('monthly_topup_credits', $data ?? [], null);
+        $this->setIfExists('trial_end_date', $data ?? [], null);
+        $this->setIfExists('subscription_plan', $data ?? [], null);
     }
 
     /**
@@ -288,8 +316,20 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['chatbot_id'] === null) {
-            $invalidProperties[] = "'chatbot_id' can't be null";
+        if ($this->container['product_id'] === null) {
+            $invalidProperties[] = "'product_id' can't be null";
+        }
+        if ($this->container['price_amount'] === null) {
+            $invalidProperties[] = "'price_amount' can't be null";
+        }
+        if ($this->container['price_currency'] === null) {
+            $invalidProperties[] = "'price_currency' can't be null";
+        }
+        if ($this->container['monthly_topup_credits'] === null) {
+            $invalidProperties[] = "'monthly_topup_credits' can't be null";
+        }
+        if ($this->container['subscription_plan'] === null) {
+            $invalidProperties[] = "'subscription_plan' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,96 +347,211 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets chatbot_id
+     * Gets product_id
      *
      * @return string
      */
-    public function getChatbotId()
+    public function getProductId()
     {
-        return $this->container['chatbot_id'];
+        return $this->container['product_id'];
     }
 
     /**
-     * Sets chatbot_id
+     * Sets product_id
      *
-     * @param string $chatbot_id The chatbot ID
+     * @param string $product_id product_id
      *
      * @return self
      */
-    public function setChatbotId($chatbot_id)
+    public function setProductId($product_id)
     {
-        if (is_null($chatbot_id)) {
-            throw new \InvalidArgumentException('non-nullable chatbot_id cannot be null');
-        }
-        $this->container['chatbot_id'] = $chatbot_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url url
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        if (is_null($url)) {
-            array_push($this->openAPINullablesSetToNull, 'url');
+        if (is_null($product_id)) {
+            array_push($this->openAPINullablesSetToNull, 'product_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('url', $nullablesSetToNull);
+            $index = array_search('product_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['url'] = $url;
+        $this->container['product_id'] = $product_id;
 
         return $this;
     }
 
     /**
-     * Gets lang
+     * Gets price_amount
      *
-     * @return string|null
+     * @return int
      */
-    public function getLang()
+    public function getPriceAmount()
     {
-        return $this->container['lang'];
+        return $this->container['price_amount'];
     }
 
     /**
-     * Sets lang
+     * Sets price_amount
      *
-     * @param string|null $lang lang
+     * @param int $price_amount price_amount
      *
      * @return self
      */
-    public function setLang($lang)
+    public function setPriceAmount($price_amount)
     {
-        if (is_null($lang)) {
-            array_push($this->openAPINullablesSetToNull, 'lang');
+        if (is_null($price_amount)) {
+            throw new \InvalidArgumentException('non-nullable price_amount cannot be null');
+        }
+        $this->container['price_amount'] = $price_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets price_currency
+     *
+     * @return string
+     */
+    public function getPriceCurrency()
+    {
+        return $this->container['price_currency'];
+    }
+
+    /**
+     * Sets price_currency
+     *
+     * @param string $price_currency price_currency
+     *
+     * @return self
+     */
+    public function setPriceCurrency($price_currency)
+    {
+        if (is_null($price_currency)) {
+            throw new \InvalidArgumentException('non-nullable price_currency cannot be null');
+        }
+        $this->container['price_currency'] = $price_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_renewal_date
+     *
+     * @return \DateTime|null
+     */
+    public function getLastRenewalDate()
+    {
+        return $this->container['last_renewal_date'];
+    }
+
+    /**
+     * Sets last_renewal_date
+     *
+     * @param \DateTime|null $last_renewal_date last_renewal_date
+     *
+     * @return self
+     */
+    public function setLastRenewalDate($last_renewal_date)
+    {
+        if (is_null($last_renewal_date)) {
+            array_push($this->openAPINullablesSetToNull, 'last_renewal_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lang', $nullablesSetToNull);
+            $index = array_search('last_renewal_date', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['lang'] = $lang;
+        $this->container['last_renewal_date'] = $last_renewal_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets monthly_topup_credits
+     *
+     * @return int
+     */
+    public function getMonthlyTopupCredits()
+    {
+        return $this->container['monthly_topup_credits'];
+    }
+
+    /**
+     * Sets monthly_topup_credits
+     *
+     * @param int $monthly_topup_credits monthly_topup_credits
+     *
+     * @return self
+     */
+    public function setMonthlyTopupCredits($monthly_topup_credits)
+    {
+        if (is_null($monthly_topup_credits)) {
+            throw new \InvalidArgumentException('non-nullable monthly_topup_credits cannot be null');
+        }
+        $this->container['monthly_topup_credits'] = $monthly_topup_credits;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial_end_date
+     *
+     * @return \DateTime|null
+     */
+    public function getTrialEndDate()
+    {
+        return $this->container['trial_end_date'];
+    }
+
+    /**
+     * Sets trial_end_date
+     *
+     * @param \DateTime|null $trial_end_date trial_end_date
+     *
+     * @return self
+     */
+    public function setTrialEndDate($trial_end_date)
+    {
+        if (is_null($trial_end_date)) {
+            array_push($this->openAPINullablesSetToNull, 'trial_end_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('trial_end_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['trial_end_date'] = $trial_end_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets subscription_plan
+     *
+     * @return \OpenAPI\Client\Model\SubscriptionPlan
+     */
+    public function getSubscriptionPlan()
+    {
+        return $this->container['subscription_plan'];
+    }
+
+    /**
+     * Sets subscription_plan
+     *
+     * @param \OpenAPI\Client\Model\SubscriptionPlan $subscription_plan subscription_plan
+     *
+     * @return self
+     */
+    public function setSubscriptionPlan($subscription_plan)
+    {
+        if (is_null($subscription_plan)) {
+            throw new \InvalidArgumentException('non-nullable subscription_plan cannot be null');
+        }
+        $this->container['subscription_plan'] = $subscription_plan;
 
         return $this;
     }
