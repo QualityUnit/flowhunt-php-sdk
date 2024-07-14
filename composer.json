@@ -1,6 +1,6 @@
 {
     "name": "flowhunt/flowhunt-php-sdk",
-    "version": "1.0.57",
+    "version": "1.0.58",
     "description": "FlowHunt API",
     "keywords": [
         "openapitools",

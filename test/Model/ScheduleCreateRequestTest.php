@@ -105,4 +105,13 @@ class ScheduleCreateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "with_screenshot"
+     */
+    public function testPropertyWithScreenshot()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * PromptCreateRequest
+ * ScreenshotResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PromptCreateRequest Class Doc Comment
+ * ScreenshotResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PromptCreateRequest';
+    protected static $openAPIModelName = 'ScreenshotResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,12 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'cat_id' => 'string',
-        'name' => 'string',
-        'description' => 'string',
-        'prompt_text' => 'string',
-        'prompt_url' => '\OpenAPI\Client\Model\AppUrlInput'
+        'id' => 'string',
+        'status' => '\OpenAPI\Client\Model\TaskStatuses',
+        'result' => '\OpenAPI\Client\Model\Result',
+        'error_message' => 'string',
+        'original_size_url' => '\OpenAPI\Client\Model\AppUrlOutput',
+        'thumbnail_url' => '\OpenAPI\Client\Model\AppUrlOutput'
     ];
 
     /**
@@ -72,11 +73,12 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'cat_id' => 'uuid',
-        'name' => null,
-        'description' => null,
-        'prompt_text' => null,
-        'prompt_url' => null
+        'id' => null,
+        'status' => null,
+        'result' => null,
+        'error_message' => null,
+        'original_size_url' => null,
+        'thumbnail_url' => null
     ];
 
     /**
@@ -85,11 +87,12 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'cat_id' => false,
-        'name' => false,
-        'description' => true,
-        'prompt_text' => false,
-        'prompt_url' => true
+        'id' => false,
+        'status' => false,
+        'result' => true,
+        'error_message' => true,
+        'original_size_url' => true,
+        'thumbnail_url' => true
     ];
 
     /**
@@ -178,11 +181,12 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'cat_id' => 'cat_id',
-        'name' => 'name',
-        'description' => 'description',
-        'prompt_text' => 'prompt_text',
-        'prompt_url' => 'prompt_url'
+        'id' => 'id',
+        'status' => 'status',
+        'result' => 'result',
+        'error_message' => 'error_message',
+        'original_size_url' => 'original_size_url',
+        'thumbnail_url' => 'thumbnail_url'
     ];
 
     /**
@@ -191,11 +195,12 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'cat_id' => 'setCatId',
-        'name' => 'setName',
-        'description' => 'setDescription',
-        'prompt_text' => 'setPromptText',
-        'prompt_url' => 'setPromptUrl'
+        'id' => 'setId',
+        'status' => 'setStatus',
+        'result' => 'setResult',
+        'error_message' => 'setErrorMessage',
+        'original_size_url' => 'setOriginalSizeUrl',
+        'thumbnail_url' => 'setThumbnailUrl'
     ];
 
     /**
@@ -204,11 +209,12 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'cat_id' => 'getCatId',
-        'name' => 'getName',
-        'description' => 'getDescription',
-        'prompt_text' => 'getPromptText',
-        'prompt_url' => 'getPromptUrl'
+        'id' => 'getId',
+        'status' => 'getStatus',
+        'result' => 'getResult',
+        'error_message' => 'getErrorMessage',
+        'original_size_url' => 'getOriginalSizeUrl',
+        'thumbnail_url' => 'getThumbnailUrl'
     ];
 
     /**
@@ -268,11 +274,12 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('cat_id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('prompt_text', $data ?? [], null);
-        $this->setIfExists('prompt_url', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('error_message', $data ?? [], null);
+        $this->setIfExists('original_size_url', $data ?? [], null);
+        $this->setIfExists('thumbnail_url', $data ?? [], null);
     }
 
     /**
@@ -302,14 +309,11 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['cat_id'] === null) {
-            $invalidProperties[] = "'cat_id' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['prompt_text'] === null) {
-            $invalidProperties[] = "'prompt_text' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -327,150 +331,191 @@ class PromptCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets cat_id
+     * Gets id
      *
      * @return string
      */
-    public function getCatId()
+    public function getId()
     {
-        return $this->container['cat_id'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets cat_id
+     * Sets id
      *
-     * @param string $cat_id Category ID
+     * @param string $id id
      *
      * @return self
      */
-    public function setCatId($cat_id)
+    public function setId($id)
     {
-        if (is_null($cat_id)) {
-            throw new \InvalidArgumentException('non-nullable cat_id cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['cat_id'] = $cat_id;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets status
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\TaskStatuses
      */
-    public function getName()
+    public function getStatus()
     {
-        return $this->container['name'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets name
+     * Sets status
      *
-     * @param string $name Document name
+     * @param \OpenAPI\Client\Model\TaskStatuses $status status
      *
      * @return self
      */
-    public function setName($name)
+    public function setStatus($status)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets result
+     *
+     * @return \OpenAPI\Client\Model\Result|null
+     */
+    public function getResult()
+    {
+        return $this->container['result'];
+    }
+
+    /**
+     * Sets result
+     *
+     * @param \OpenAPI\Client\Model\Result|null $result result
+     *
+     * @return self
+     */
+    public function setResult($result)
+    {
+        if (is_null($result)) {
+            array_push($this->openAPINullablesSetToNull, 'result');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('result', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getErrorMessage()
     {
-        return $this->container['description'];
+        return $this->container['error_message'];
     }
 
     /**
-     * Sets description
+     * Sets error_message
      *
-     * @param string|null $description description
+     * @param string|null $error_message error_message
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setErrorMessage($error_message)
     {
-        if (is_null($description)) {
-            array_push($this->openAPINullablesSetToNull, 'description');
+        if (is_null($error_message)) {
+            array_push($this->openAPINullablesSetToNull, 'error_message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
+            $index = array_search('error_message', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['description'] = $description;
+        $this->container['error_message'] = $error_message;
 
         return $this;
     }
 
     /**
-     * Gets prompt_text
+     * Gets original_size_url
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\AppUrlOutput|null
      */
-    public function getPromptText()
+    public function getOriginalSizeUrl()
     {
-        return $this->container['prompt_text'];
+        return $this->container['original_size_url'];
     }
 
     /**
-     * Sets prompt_text
+     * Sets original_size_url
      *
-     * @param string $prompt_text Prompt text
+     * @param \OpenAPI\Client\Model\AppUrlOutput|null $original_size_url original_size_url
      *
      * @return self
      */
-    public function setPromptText($prompt_text)
+    public function setOriginalSizeUrl($original_size_url)
     {
-        if (is_null($prompt_text)) {
-            throw new \InvalidArgumentException('non-nullable prompt_text cannot be null');
-        }
-        $this->container['prompt_text'] = $prompt_text;
-
-        return $this;
-    }
-
-    /**
-     * Gets prompt_url
-     *
-     * @return \OpenAPI\Client\Model\AppUrlInput|null
-     */
-    public function getPromptUrl()
-    {
-        return $this->container['prompt_url'];
-    }
-
-    /**
-     * Sets prompt_url
-     *
-     * @param \OpenAPI\Client\Model\AppUrlInput|null $prompt_url prompt_url
-     *
-     * @return self
-     */
-    public function setPromptUrl($prompt_url)
-    {
-        if (is_null($prompt_url)) {
-            array_push($this->openAPINullablesSetToNull, 'prompt_url');
+        if (is_null($original_size_url)) {
+            array_push($this->openAPINullablesSetToNull, 'original_size_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('prompt_url', $nullablesSetToNull);
+            $index = array_search('original_size_url', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['prompt_url'] = $prompt_url;
+        $this->container['original_size_url'] = $original_size_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumbnail_url
+     *
+     * @return \OpenAPI\Client\Model\AppUrlOutput|null
+     */
+    public function getThumbnailUrl()
+    {
+        return $this->container['thumbnail_url'];
+    }
+
+    /**
+     * Sets thumbnail_url
+     *
+     * @param \OpenAPI\Client\Model\AppUrlOutput|null $thumbnail_url thumbnail_url
+     *
+     * @return self
+     */
+    public function setThumbnailUrl($thumbnail_url)
+    {
+        if (is_null($thumbnail_url)) {
+            array_push($this->openAPINullablesSetToNull, 'thumbnail_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('thumbnail_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['thumbnail_url'] = $thumbnail_url;
 
         return $this;
     }

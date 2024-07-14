@@ -5,6 +5,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**convertImage()**](ImagesApi.md#convertImage) | **POST** /v2/images/convert | Convert Image |
+| [**getScreenshot()**](ImagesApi.md#getScreenshot) | **POST** /v2/images/screenshot | Get Screenshot |
 | [**optimizeImage()**](ImagesApi.md#optimizeImage) | **POST** /v2/images/optimize | Optimize Image |
 
 
@@ -59,6 +60,71 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\DownloadFileResponse**](../Model/DownloadFileResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getScreenshot()`
+
+```php
+getScreenshot($workspace_id, $screenshot_request): \OpenAPI\Client\Model\ScreenshotResponse
+```
+
+Get Screenshot
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ImagesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$screenshot_request = new \OpenAPI\Client\Model\ScreenshotRequest(); // \OpenAPI\Client\Model\ScreenshotRequest
+
+try {
+    $result = $apiInstance->getScreenshot($workspace_id, $screenshot_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ImagesApi->getScreenshot: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **screenshot_request** | [**\OpenAPI\Client\Model\ScreenshotRequest**](../Model/ScreenshotRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\ScreenshotResponse**](../Model/ScreenshotResponse.md)
 
 ### Authorization
 

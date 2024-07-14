@@ -1,6 +1,6 @@
 <?php
 /**
- * AppUrlTest
+ * AppUrlOutputTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * AppUrlTest Class Doc Comment
+ * AppUrlOutputTest Class Doc Comment
  *
  * @category    Class
- * @description AppUrl
+ * @description AppUrlOutput
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class AppUrlTest extends TestCase
+class AppUrlOutputTest extends TestCase
 {
 
     /**
@@ -71,18 +71,9 @@ class AppUrlTest extends TestCase
     }
 
     /**
-     * Test "AppUrl"
+     * Test "AppUrlOutput"
      */
-    public function testAppUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "parsed_url"
-     */
-    public function testPropertyParsedUrl()
+    public function testAppUrlOutput()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

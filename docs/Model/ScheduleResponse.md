@@ -16,5 +16,6 @@ Name | Type | Description | Notes
 **cnt_scheduled** | **int** |  |
 **cnt_completed** | **int** |  |
 **cnt_failed** | **int** |  |
+**with_screenshot** | [**\OpenAPI\Client\Model\WithScreenshot**](WithScreenshot.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

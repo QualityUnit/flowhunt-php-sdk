@@ -60,7 +60,7 @@ class PromptUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'name' => 'string',
         'description' => 'string',
         'prompt_text' => 'string',
-        'prompt_url' => '\OpenAPI\Client\Model\AppUrl',
+        'prompt_url' => '\OpenAPI\Client\Model\AppUrlInput',
         'cat_id' => 'string'
     ];
 
@@ -422,7 +422,7 @@ class PromptUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets prompt_url
      *
-     * @return \OpenAPI\Client\Model\AppUrl|null
+     * @return \OpenAPI\Client\Model\AppUrlInput|null
      */
     public function getPromptUrl()
     {
@@ -432,7 +432,7 @@ class PromptUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets prompt_url
      *
-     * @param \OpenAPI\Client\Model\AppUrl|null $prompt_url prompt_url
+     * @param \OpenAPI\Client\Model\AppUrlInput|null $prompt_url prompt_url
      *
      * @return self
      */

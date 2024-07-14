@@ -942,7 +942,7 @@ try {
 ## `uploadFromUrlDocument()`
 
 ```php
-uploadFromUrlDocument($cat_id, $workspace_id, $app_url): \OpenAPI\Client\Model\DocumentResponse
+uploadFromUrlDocument($cat_id, $workspace_id, $app_url_input): \OpenAPI\Client\Model\DocumentResponse
 ```
 
 Upload From Url Document
@@ -971,10 +971,10 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
 );
 $cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$app_url = new \OpenAPI\Client\Model\AppUrl(); // \OpenAPI\Client\Model\AppUrl
+$app_url_input = new \OpenAPI\Client\Model\AppUrlInput(); // \OpenAPI\Client\Model\AppUrlInput
 
 try {
-    $result = $apiInstance->uploadFromUrlDocument($cat_id, $workspace_id, $app_url);
+    $result = $apiInstance->uploadFromUrlDocument($cat_id, $workspace_id, $app_url_input);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DocumentsApi->uploadFromUrlDocument: ', $e->getMessage(), PHP_EOL;
@@ -987,7 +987,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **app_url** | [**\OpenAPI\Client\Model\AppUrl**](../Model/AppUrl.md)|  | |
+| **app_url_input** | [**\OpenAPI\Client\Model\AppUrlInput**](../Model/AppUrlInput.md)|  | |
 
 ### Return type
 

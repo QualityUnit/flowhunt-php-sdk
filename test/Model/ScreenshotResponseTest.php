@@ -1,6 +1,6 @@
 <?php
 /**
- * ScheduleResponseTest
+ * ScreenshotResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ScheduleResponseTest Class Doc Comment
+ * ScreenshotResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ScheduleResponse
+ * @description ScreenshotResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ScheduleResponseTest extends TestCase
+class ScreenshotResponseTest extends TestCase
 {
 
     /**
@@ -71,72 +71,18 @@ class ScheduleResponseTest extends TestCase
     }
 
     /**
-     * Test "ScheduleResponse"
+     * Test "ScreenshotResponse"
      */
-    public function testScheduleResponse()
+    public function testScreenshotResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "workspace_id"
+     * Test attribute "id"
      */
-    public function testPropertyWorkspaceId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "schedule_id"
-     */
-    public function testPropertyScheduleId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "url"
-     */
-    public function testPropertyUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "frequency"
-     */
-    public function testPropertyFrequency()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "schedule_type"
-     */
-    public function testPropertyScheduleType()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "start_time"
-     */
-    public function testPropertyStartTime()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "end_time"
-     */
-    public function testPropertyEndTime()
+    public function testPropertyId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -152,45 +98,36 @@ class ScheduleResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "status_message"
+     * Test attribute "result"
      */
-    public function testPropertyStatusMessage()
+    public function testPropertyResult()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "cnt_scheduled"
+     * Test attribute "error_message"
      */
-    public function testPropertyCntScheduled()
+    public function testPropertyErrorMessage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "cnt_completed"
+     * Test attribute "original_size_url"
      */
-    public function testPropertyCntCompleted()
+    public function testPropertyOriginalSizeUrl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "cnt_failed"
+     * Test attribute "thumbnail_url"
      */
-    public function testPropertyCntFailed()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "with_screenshot"
-     */
-    public function testPropertyWithScreenshot()
+    public function testPropertyThumbnailUrl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

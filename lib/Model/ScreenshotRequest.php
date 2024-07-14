@@ -1,6 +1,6 @@
 <?php
 /**
- * AppUrl
+ * ScreenshotRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AppUrl Class Doc Comment
+ * ScreenshotRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
+class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AppUrl';
+    protected static $openAPIModelName = 'ScreenshotRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,9 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'parsed_url' => 'string[]',
-        'url' => 'string'
+        'post_back_url' => 'string',
+        'url' => 'string',
+        'validity' => '\DateTime'
     ];
 
     /**
@@ -69,8 +70,9 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'parsed_url' => null,
-        'url' => null
+        'post_back_url' => null,
+        'url' => null,
+        'validity' => 'date-time'
     ];
 
     /**
@@ -79,8 +81,9 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'parsed_url' => false,
-        'url' => false
+        'post_back_url' => true,
+        'url' => false,
+        'validity' => true
     ];
 
     /**
@@ -169,8 +172,9 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'parsed_url' => 'parsed_url',
-        'url' => 'url'
+        'post_back_url' => 'post_back_url',
+        'url' => 'url',
+        'validity' => 'validity'
     ];
 
     /**
@@ -179,8 +183,9 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'parsed_url' => 'setParsedUrl',
-        'url' => 'setUrl'
+        'post_back_url' => 'setPostBackUrl',
+        'url' => 'setUrl',
+        'validity' => 'setValidity'
     ];
 
     /**
@@ -189,8 +194,9 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'parsed_url' => 'getParsedUrl',
-        'url' => 'getUrl'
+        'post_back_url' => 'getPostBackUrl',
+        'url' => 'getUrl',
+        'validity' => 'getValidity'
     ];
 
     /**
@@ -250,8 +256,9 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('parsed_url', $data ?? [], null);
+        $this->setIfExists('post_back_url', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('validity', $data ?? [], null);
     }
 
     /**
@@ -281,17 +288,17 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['parsed_url']) && (count($this->container['parsed_url']) > 6)) {
-            $invalidProperties[] = "invalid value for 'parsed_url', number of items must be less than or equal to 6.";
-        }
-
-        if (!is_null($this->container['parsed_url']) && (count($this->container['parsed_url']) < 6)) {
-            $invalidProperties[] = "invalid value for 'parsed_url', number of items must be greater than or equal to 6.";
-        }
-
         if ($this->container['url'] === null) {
             $invalidProperties[] = "'url' can't be null";
         }
+        if ((mb_strlen($this->container['url']) > 500)) {
+            $invalidProperties[] = "invalid value for 'url', the character length must be smaller than or equal to 500.";
+        }
+
+        if ((mb_strlen($this->container['url']) < 8)) {
+            $invalidProperties[] = "invalid value for 'url', the character length must be bigger than or equal to 8.";
+        }
+
         return $invalidProperties;
     }
 
@@ -308,35 +315,35 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets parsed_url
+     * Gets post_back_url
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getParsedUrl()
+    public function getPostBackUrl()
     {
-        return $this->container['parsed_url'];
+        return $this->container['post_back_url'];
     }
 
     /**
-     * Sets parsed_url
+     * Sets post_back_url
      *
-     * @param string[]|null $parsed_url The parsed URL.
+     * @param string|null $post_back_url post_back_url
      *
      * @return self
      */
-    public function setParsedUrl($parsed_url)
+    public function setPostBackUrl($post_back_url)
     {
-        if (is_null($parsed_url)) {
-            throw new \InvalidArgumentException('non-nullable parsed_url cannot be null');
+        if (is_null($post_back_url)) {
+            array_push($this->openAPINullablesSetToNull, 'post_back_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('post_back_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-
-        if ((count($parsed_url) > 6)) {
-            throw new \InvalidArgumentException('invalid value for $parsed_url when calling AppUrl., number of items must be less than or equal to 6.');
-        }
-        if ((count($parsed_url) < 6)) {
-            throw new \InvalidArgumentException('invalid length for $parsed_url when calling AppUrl., number of items must be greater than or equal to 6.');
-        }
-        $this->container['parsed_url'] = $parsed_url;
+        $this->container['post_back_url'] = $post_back_url;
 
         return $this;
     }
@@ -354,7 +361,7 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets url
      *
-     * @param string $url The URL.
+     * @param string $url URL to take screenshot
      *
      * @return self
      */
@@ -363,7 +370,48 @@ class AppUrl implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
+        if ((mb_strlen($url) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $url when calling ScreenshotRequest., must be smaller than or equal to 500.');
+        }
+        if ((mb_strlen($url) < 8)) {
+            throw new \InvalidArgumentException('invalid length for $url when calling ScreenshotRequest., must be bigger than or equal to 8.');
+        }
+
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets validity
+     *
+     * @return \DateTime|null
+     */
+    public function getValidity()
+    {
+        return $this->container['validity'];
+    }
+
+    /**
+     * Sets validity
+     *
+     * @param \DateTime|null $validity validity
+     *
+     * @return self
+     */
+    public function setValidity($validity)
+    {
+        if (is_null($validity)) {
+            array_push($this->openAPINullablesSetToNull, 'validity');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('validity', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['validity'] = $validity;
 
         return $this;
     }

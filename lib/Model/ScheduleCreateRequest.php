@@ -57,9 +57,10 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => '\OpenAPI\Client\Model\AppUrl',
+        'url' => '\OpenAPI\Client\Model\AppUrlInput',
         'frequency' => '\OpenAPI\Client\Model\ScheduleFrequency',
-        'schedule_type' => '\OpenAPI\Client\Model\ScheduleType'
+        'schedule_type' => '\OpenAPI\Client\Model\ScheduleType',
+        'with_screenshot' => '\OpenAPI\Client\Model\WithScreenshot'
     ];
 
     /**
@@ -72,7 +73,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPIFormats = [
         'url' => null,
         'frequency' => null,
-        'schedule_type' => null
+        'schedule_type' => null,
+        'with_screenshot' => null
     ];
 
     /**
@@ -83,7 +85,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static array $openAPINullables = [
         'url' => false,
         'frequency' => false,
-        'schedule_type' => false
+        'schedule_type' => false,
+        'with_screenshot' => true
     ];
 
     /**
@@ -174,7 +177,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $attributeMap = [
         'url' => 'url',
         'frequency' => 'frequency',
-        'schedule_type' => 'schedule_type'
+        'schedule_type' => 'schedule_type',
+        'with_screenshot' => 'with_screenshot'
     ];
 
     /**
@@ -185,7 +189,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $setters = [
         'url' => 'setUrl',
         'frequency' => 'setFrequency',
-        'schedule_type' => 'setScheduleType'
+        'schedule_type' => 'setScheduleType',
+        'with_screenshot' => 'setWithScreenshot'
     ];
 
     /**
@@ -196,7 +201,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $getters = [
         'url' => 'getUrl',
         'frequency' => 'getFrequency',
-        'schedule_type' => 'getScheduleType'
+        'schedule_type' => 'getScheduleType',
+        'with_screenshot' => 'getWithScreenshot'
     ];
 
     /**
@@ -259,6 +265,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('frequency', $data ?? [], null);
         $this->setIfExists('schedule_type', $data ?? [], null);
+        $this->setIfExists('with_screenshot', $data ?? [], null);
     }
 
     /**
@@ -315,7 +322,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets url
      *
-     * @return \OpenAPI\Client\Model\AppUrl
+     * @return \OpenAPI\Client\Model\AppUrlInput
      */
     public function getUrl()
     {
@@ -325,7 +332,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets url
      *
-     * @param \OpenAPI\Client\Model\AppUrl $url url
+     * @param \OpenAPI\Client\Model\AppUrlInput $url url
      *
      * @return self
      */
@@ -389,6 +396,40 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable schedule_type cannot be null');
         }
         $this->container['schedule_type'] = $schedule_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_screenshot
+     *
+     * @return \OpenAPI\Client\Model\WithScreenshot|null
+     */
+    public function getWithScreenshot()
+    {
+        return $this->container['with_screenshot'];
+    }
+
+    /**
+     * Sets with_screenshot
+     *
+     * @param \OpenAPI\Client\Model\WithScreenshot|null $with_screenshot with_screenshot
+     *
+     * @return self
+     */
+    public function setWithScreenshot($with_screenshot)
+    {
+        if (is_null($with_screenshot)) {
+            array_push($this->openAPINullablesSetToNull, 'with_screenshot');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_screenshot', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_screenshot'] = $with_screenshot;
 
         return $this;
     }

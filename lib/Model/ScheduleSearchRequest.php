@@ -61,6 +61,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => 'string',
         'status' => '\OpenAPI\Client\Model\ScheduleStatus',
         'schedule_type' => '\OpenAPI\Client\Model\ScheduleType',
+        'with_screenshot' => '\OpenAPI\Client\Model\WithScreenshot',
         'limit' => 'int'
     ];
 
@@ -76,6 +77,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => null,
         'status' => null,
         'schedule_type' => null,
+        'with_screenshot' => null,
         'limit' => null
     ];
 
@@ -89,6 +91,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => true,
         'status' => true,
         'schedule_type' => true,
+        'with_screenshot' => true,
         'limit' => false
     ];
 
@@ -182,6 +185,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => 'url',
         'status' => 'status',
         'schedule_type' => 'schedule_type',
+        'with_screenshot' => 'with_screenshot',
         'limit' => 'limit'
     ];
 
@@ -195,6 +199,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => 'setUrl',
         'status' => 'setStatus',
         'schedule_type' => 'setScheduleType',
+        'with_screenshot' => 'setWithScreenshot',
         'limit' => 'setLimit'
     ];
 
@@ -208,6 +213,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => 'getUrl',
         'status' => 'getStatus',
         'schedule_type' => 'getScheduleType',
+        'with_screenshot' => 'getWithScreenshot',
         'limit' => 'getLimit'
     ];
 
@@ -272,6 +278,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('schedule_type', $data ?? [], null);
+        $this->setIfExists('with_screenshot', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], 100);
     }
 
@@ -449,6 +456,40 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['schedule_type'] = $schedule_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_screenshot
+     *
+     * @return \OpenAPI\Client\Model\WithScreenshot|null
+     */
+    public function getWithScreenshot()
+    {
+        return $this->container['with_screenshot'];
+    }
+
+    /**
+     * Sets with_screenshot
+     *
+     * @param \OpenAPI\Client\Model\WithScreenshot|null $with_screenshot with_screenshot
+     *
+     * @return self
+     */
+    public function setWithScreenshot($with_screenshot)
+    {
+        if (is_null($with_screenshot)) {
+            array_push($this->openAPINullablesSetToNull, 'with_screenshot');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_screenshot', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_screenshot'] = $with_screenshot;
 
         return $this;
     }

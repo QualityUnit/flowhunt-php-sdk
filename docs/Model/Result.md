@@ -1,4 +1,4 @@
-# # ScheduleUpdateStatus
+# # Result
 
 ## Properties
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * ScheduleSearchRequestTest
+ * AppUrlInputTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ScheduleSearchRequestTest Class Doc Comment
+ * AppUrlInputTest Class Doc Comment
  *
  * @category    Class
- * @description ScheduleSearchRequest
+ * @description AppUrlInput
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ScheduleSearchRequestTest extends TestCase
+class AppUrlInputTest extends TestCase
 {
 
     /**
@@ -71,18 +71,18 @@ class ScheduleSearchRequestTest extends TestCase
     }
 
     /**
-     * Test "ScheduleSearchRequest"
+     * Test "AppUrlInput"
      */
-    public function testScheduleSearchRequest()
+    public function testAppUrlInput()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "domain_id"
+     * Test attribute "parsed_url"
      */
-    public function testPropertyDomainId()
+    public function testPropertyParsedUrl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -92,42 +92,6 @@ class ScheduleSearchRequestTest extends TestCase
      * Test attribute "url"
      */
     public function testPropertyUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "schedule_type"
-     */
-    public function testPropertyScheduleType()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "with_screenshot"
-     */
-    public function testPropertyWithScreenshot()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "limit"
-     */
-    public function testPropertyLimit()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

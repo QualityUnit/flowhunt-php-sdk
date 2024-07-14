@@ -58,7 +58,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'frequency' => '\OpenAPI\Client\Model\ScheduleFrequency',
-        'status' => '\OpenAPI\Client\Model\ScheduleUpdateStatus'
+        'status' => '\OpenAPI\Client\Model\ScheduleStatus',
+        'with_screenshot' => '\OpenAPI\Client\Model\WithScreenshot'
     ];
 
     /**
@@ -70,7 +71,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'frequency' => null,
-        'status' => null
+        'status' => null,
+        'with_screenshot' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'frequency' => true,
-        'status' => true
+        'status' => true,
+        'with_screenshot' => true
     ];
 
     /**
@@ -170,7 +173,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'frequency' => 'frequency',
-        'status' => 'status'
+        'status' => 'status',
+        'with_screenshot' => 'with_screenshot'
     ];
 
     /**
@@ -180,7 +184,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'frequency' => 'setFrequency',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'with_screenshot' => 'setWithScreenshot'
     ];
 
     /**
@@ -190,7 +195,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'frequency' => 'getFrequency',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'with_screenshot' => 'getWithScreenshot'
     ];
 
     /**
@@ -252,6 +258,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $this->setIfExists('frequency', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('with_screenshot', $data ?? [], null);
     }
 
     /**
@@ -333,7 +340,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\ScheduleUpdateStatus|null
+     * @return \OpenAPI\Client\Model\ScheduleStatus|null
      */
     public function getStatus()
     {
@@ -343,7 +350,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\ScheduleUpdateStatus|null $status status
+     * @param \OpenAPI\Client\Model\ScheduleStatus|null $status status
      *
      * @return self
      */
@@ -360,6 +367,40 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_screenshot
+     *
+     * @return \OpenAPI\Client\Model\WithScreenshot|null
+     */
+    public function getWithScreenshot()
+    {
+        return $this->container['with_screenshot'];
+    }
+
+    /**
+     * Sets with_screenshot
+     *
+     * @param \OpenAPI\Client\Model\WithScreenshot|null $with_screenshot with_screenshot
+     *
+     * @return self
+     */
+    public function setWithScreenshot($with_screenshot)
+    {
+        if (is_null($with_screenshot)) {
+            array_push($this->openAPINullablesSetToNull, 'with_screenshot');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_screenshot', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_screenshot'] = $with_screenshot;
 
         return $this;
     }

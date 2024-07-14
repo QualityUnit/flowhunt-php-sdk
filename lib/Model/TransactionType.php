@@ -66,6 +66,22 @@ class TransactionType
 
     public const E = 'E';
 
+    public const TOOL_ARXIV = 'TOOL_ARXIV';
+
+    public const TOOL_REDDIT = 'TOOL_REDDIT';
+
+    public const TOOL_WIKIPEDIA = 'TOOL_WIKIPEDIA';
+
+    public const TOOL_DALL_E = 'TOOL_DALL_E';
+
+    public const TOOL_YOUTUBE_SEARCH = 'TOOL_YOUTUBE_SEARCH';
+
+    public const TOOL_IFTTT_WEBHOOK = 'TOOL_IFTTT_WEBHOOK';
+
+    public const TOOL_PUBMED = 'TOOL_PUBMED';
+
+    public const TOOL_STACK_EXCHANGE = 'TOOL_STACK_EXCHANGE';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -84,7 +100,15 @@ class TransactionType
             self::C,
             self::A,
             self::Y,
-            self::E
+            self::E,
+            self::TOOL_ARXIV,
+            self::TOOL_REDDIT,
+            self::TOOL_WIKIPEDIA,
+            self::TOOL_DALL_E,
+            self::TOOL_YOUTUBE_SEARCH,
+            self::TOOL_IFTTT_WEBHOOK,
+            self::TOOL_PUBMED,
+            self::TOOL_STACK_EXCHANGE
         ];
     }
 }

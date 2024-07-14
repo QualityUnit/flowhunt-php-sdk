@@ -5455,16 +5455,16 @@ class DocumentsApi
      *
      * @param  string $cat_id cat_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AppUrl $app_url app_url (required)
+     * @param  \OpenAPI\Client\Model\AppUrlInput $app_url_input app_url_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFromUrlDocument'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\DocumentResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function uploadFromUrlDocument($cat_id, $workspace_id, $app_url, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
+    public function uploadFromUrlDocument($cat_id, $workspace_id, $app_url_input, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
     {
-        list($response) = $this->uploadFromUrlDocumentWithHttpInfo($cat_id, $workspace_id, $app_url, $contentType);
+        list($response) = $this->uploadFromUrlDocumentWithHttpInfo($cat_id, $workspace_id, $app_url_input, $contentType);
         return $response;
     }
 
@@ -5475,16 +5475,16 @@ class DocumentsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AppUrl $app_url (required)
+     * @param  \OpenAPI\Client\Model\AppUrlInput $app_url_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFromUrlDocument'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\DocumentResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function uploadFromUrlDocumentWithHttpInfo($cat_id, $workspace_id, $app_url, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
+    public function uploadFromUrlDocumentWithHttpInfo($cat_id, $workspace_id, $app_url_input, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
     {
-        $request = $this->uploadFromUrlDocumentRequest($cat_id, $workspace_id, $app_url, $contentType);
+        $request = $this->uploadFromUrlDocumentRequest($cat_id, $workspace_id, $app_url_input, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5636,15 +5636,15 @@ class DocumentsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AppUrl $app_url (required)
+     * @param  \OpenAPI\Client\Model\AppUrlInput $app_url_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFromUrlDocument'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadFromUrlDocumentAsync($cat_id, $workspace_id, $app_url, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
+    public function uploadFromUrlDocumentAsync($cat_id, $workspace_id, $app_url_input, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
     {
-        return $this->uploadFromUrlDocumentAsyncWithHttpInfo($cat_id, $workspace_id, $app_url, $contentType)
+        return $this->uploadFromUrlDocumentAsyncWithHttpInfo($cat_id, $workspace_id, $app_url_input, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5659,16 +5659,16 @@ class DocumentsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AppUrl $app_url (required)
+     * @param  \OpenAPI\Client\Model\AppUrlInput $app_url_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFromUrlDocument'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadFromUrlDocumentAsyncWithHttpInfo($cat_id, $workspace_id, $app_url, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
+    public function uploadFromUrlDocumentAsyncWithHttpInfo($cat_id, $workspace_id, $app_url_input, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DocumentResponse';
-        $request = $this->uploadFromUrlDocumentRequest($cat_id, $workspace_id, $app_url, $contentType);
+        $request = $this->uploadFromUrlDocumentRequest($cat_id, $workspace_id, $app_url_input, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5711,13 +5711,13 @@ class DocumentsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AppUrl $app_url (required)
+     * @param  \OpenAPI\Client\Model\AppUrlInput $app_url_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFromUrlDocument'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function uploadFromUrlDocumentRequest($cat_id, $workspace_id, $app_url, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
+    public function uploadFromUrlDocumentRequest($cat_id, $workspace_id, $app_url_input, string $contentType = self::contentTypes['uploadFromUrlDocument'][0])
     {
 
         // verify the required parameter 'cat_id' is set
@@ -5734,10 +5734,10 @@ class DocumentsApi
             );
         }
 
-        // verify the required parameter 'app_url' is set
-        if ($app_url === null || (is_array($app_url) && count($app_url) === 0)) {
+        // verify the required parameter 'app_url_input' is set
+        if ($app_url_input === null || (is_array($app_url_input) && count($app_url_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $app_url when calling uploadFromUrlDocument'
+                'Missing the required parameter $app_url_input when calling uploadFromUrlDocument'
             );
         }
 
@@ -5777,12 +5777,12 @@ class DocumentsApi
         );
 
         // for model (json/xml)
-        if (isset($app_url)) {
+        if (isset($app_url_input)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($app_url));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($app_url_input));
             } else {
-                $httpBody = $app_url;
+                $httpBody = $app_url_input;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

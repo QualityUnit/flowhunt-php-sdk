@@ -1,6 +1,6 @@
 <?php
 /**
- * ScheduleUpdateStatus
+ * WithScreenshot
  *
  * PHP version 7.4
  *
@@ -30,19 +30,21 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ScheduleUpdateStatus Class Doc Comment
+ * WithScreenshot Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ScheduleUpdateStatus
+class WithScreenshot
 {
     /**
      * Possible values of this enum
      */
-    public const C = 'C';
+    public const Y = 'Y';
+
+    public const N = 'N';
 
     /**
      * Gets allowable values of the enum
@@ -51,7 +53,8 @@ class ScheduleUpdateStatus
     public static function getAllowableEnumValues()
     {
         return [
-            self::C
+            self::Y,
+            self::N
         ];
     }
 }

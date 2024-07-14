@@ -68,7 +68,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status_message' => 'string',
         'cnt_scheduled' => 'int',
         'cnt_completed' => 'int',
-        'cnt_failed' => 'int'
+        'cnt_failed' => 'int',
+        'with_screenshot' => '\OpenAPI\Client\Model\WithScreenshot'
     ];
 
     /**
@@ -90,7 +91,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status_message' => null,
         'cnt_scheduled' => null,
         'cnt_completed' => null,
-        'cnt_failed' => null
+        'cnt_failed' => null,
+        'with_screenshot' => null
     ];
 
     /**
@@ -110,7 +112,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status_message' => true,
         'cnt_scheduled' => true,
         'cnt_completed' => true,
-        'cnt_failed' => true
+        'cnt_failed' => true,
+        'with_screenshot' => true
     ];
 
     /**
@@ -210,7 +213,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status_message' => 'status_message',
         'cnt_scheduled' => 'cnt_scheduled',
         'cnt_completed' => 'cnt_completed',
-        'cnt_failed' => 'cnt_failed'
+        'cnt_failed' => 'cnt_failed',
+        'with_screenshot' => 'with_screenshot'
     ];
 
     /**
@@ -230,7 +234,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status_message' => 'setStatusMessage',
         'cnt_scheduled' => 'setCntScheduled',
         'cnt_completed' => 'setCntCompleted',
-        'cnt_failed' => 'setCntFailed'
+        'cnt_failed' => 'setCntFailed',
+        'with_screenshot' => 'setWithScreenshot'
     ];
 
     /**
@@ -250,7 +255,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status_message' => 'getStatusMessage',
         'cnt_scheduled' => 'getCntScheduled',
         'cnt_completed' => 'getCntCompleted',
-        'cnt_failed' => 'getCntFailed'
+        'cnt_failed' => 'getCntFailed',
+        'with_screenshot' => 'getWithScreenshot'
     ];
 
     /**
@@ -322,6 +328,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('cnt_scheduled', $data ?? [], null);
         $this->setIfExists('cnt_completed', $data ?? [], null);
         $this->setIfExists('cnt_failed', $data ?? [], null);
+        $this->setIfExists('with_screenshot', $data ?? [], null);
     }
 
     /**
@@ -377,6 +384,9 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['cnt_failed'] === null) {
             $invalidProperties[] = "'cnt_failed' can't be null";
+        }
+        if ($this->container['with_screenshot'] === null) {
+            $invalidProperties[] = "'with_screenshot' can't be null";
         }
         return $invalidProperties;
     }
@@ -755,6 +765,40 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['cnt_failed'] = $cnt_failed;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_screenshot
+     *
+     * @return \OpenAPI\Client\Model\WithScreenshot
+     */
+    public function getWithScreenshot()
+    {
+        return $this->container['with_screenshot'];
+    }
+
+    /**
+     * Sets with_screenshot
+     *
+     * @param \OpenAPI\Client\Model\WithScreenshot $with_screenshot with_screenshot
+     *
+     * @return self
+     */
+    public function setWithScreenshot($with_screenshot)
+    {
+        if (is_null($with_screenshot)) {
+            array_push($this->openAPINullablesSetToNull, 'with_screenshot');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_screenshot', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_screenshot'] = $with_screenshot;
 
         return $this;
     }

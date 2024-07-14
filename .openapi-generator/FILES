@@ -26,7 +26,8 @@ docs/Model/ApiKeyCreateRequest.md
 docs/Model/ApiKeyResponse.md
 docs/Model/ApiKeySearchRequest.md
 docs/Model/ApiKeyUpdateRequest.md
-docs/Model/AppUrl.md
+docs/Model/AppUrlInput.md
+docs/Model/AppUrlOutput.md
 docs/Model/ChatOutputResponse.md
 docs/Model/ChatbotCreateRequest.md
 docs/Model/ChatbotResponse.md
@@ -108,6 +109,7 @@ docs/Model/RefreshTokenRequest.md
 docs/Model/RegisterUserRequest.md
 docs/Model/RelatedQuestion.md
 docs/Model/RelatedSearch.md
+docs/Model/Result.md
 docs/Model/ResultData.md
 docs/Model/Role.md
 docs/Model/RunOutputs.md
@@ -118,10 +120,11 @@ docs/Model/ScheduleSearchRequest.md
 docs/Model/ScheduleStatus.md
 docs/Model/ScheduleType.md
 docs/Model/ScheduleUpdateRequest.md
-docs/Model/ScheduleUpdateStatus.md
 docs/Model/ScheduleUrlDetailResponse.md
 docs/Model/ScheduleUrlResponse.md
 docs/Model/ScheduleUrlSearchRequest.md
+docs/Model/ScreenshotRequest.md
+docs/Model/ScreenshotResponse.md
 docs/Model/SerpSearchRequest.md
 docs/Model/SerpVolumeRequest.md
 docs/Model/SerpVolumeResponse.md
@@ -149,6 +152,7 @@ docs/Model/ValidationErrorLocInner.md
 docs/Model/VectorDocumentResponse.md
 docs/Model/VectorDocumentType.md
 docs/Model/VectorDocumentsTaskResponse.md
+docs/Model/WithScreenshot.md
 docs/Model/WorkspaceCreateRequest.md
 docs/Model/WorkspaceResponse.md
 docs/Model/WorkspaceRole.md
@@ -186,7 +190,8 @@ lib/Model/ApiKeyCreateRequest.php
 lib/Model/ApiKeyResponse.php
 lib/Model/ApiKeySearchRequest.php
 lib/Model/ApiKeyUpdateRequest.php
-lib/Model/AppUrl.php
+lib/Model/AppUrlInput.php
+lib/Model/AppUrlOutput.php
 lib/Model/ChatOutputResponse.php
 lib/Model/ChatbotCreateRequest.php
 lib/Model/ChatbotResponse.php
@@ -269,6 +274,7 @@ lib/Model/RefreshTokenRequest.php
 lib/Model/RegisterUserRequest.php
 lib/Model/RelatedQuestion.php
 lib/Model/RelatedSearch.php
+lib/Model/Result.php
 lib/Model/ResultData.php
 lib/Model/Role.php
 lib/Model/RunOutputs.php
@@ -279,10 +285,11 @@ lib/Model/ScheduleSearchRequest.php
 lib/Model/ScheduleStatus.php
 lib/Model/ScheduleType.php
 lib/Model/ScheduleUpdateRequest.php
-lib/Model/ScheduleUpdateStatus.php
 lib/Model/ScheduleUrlDetailResponse.php
 lib/Model/ScheduleUrlResponse.php
 lib/Model/ScheduleUrlSearchRequest.php
+lib/Model/ScreenshotRequest.php
+lib/Model/ScreenshotResponse.php
 lib/Model/SerpSearchRequest.php
 lib/Model/SerpVolumeRequest.php
 lib/Model/SerpVolumeResponse.php
@@ -310,6 +317,7 @@ lib/Model/ValidationErrorLocInner.php
 lib/Model/VectorDocumentResponse.php
 lib/Model/VectorDocumentType.php
 lib/Model/VectorDocumentsTaskResponse.php
+lib/Model/WithScreenshot.php
 lib/Model/WorkspaceCreateRequest.php
 lib/Model/WorkspaceResponse.php
 lib/Model/WorkspaceRole.php
@@ -345,7 +353,8 @@ test/Model/ApiKeyCreateRequestTest.php
 test/Model/ApiKeyResponseTest.php
 test/Model/ApiKeySearchRequestTest.php
 test/Model/ApiKeyUpdateRequestTest.php
-test/Model/AppUrlTest.php
+test/Model/AppUrlInputTest.php
+test/Model/AppUrlOutputTest.php
 test/Model/ChatOutputResponseTest.php
 test/Model/ChatbotCreateRequestTest.php
 test/Model/ChatbotResponseTest.php
@@ -428,6 +437,7 @@ test/Model/RegisterUserRequestTest.php
 test/Model/RelatedQuestionTest.php
 test/Model/RelatedSearchTest.php
 test/Model/ResultDataTest.php
+test/Model/ResultTest.php
 test/Model/RoleTest.php
 test/Model/RunOutputsTest.php
 test/Model/ScheduleCreateRequestTest.php
@@ -437,10 +447,11 @@ test/Model/ScheduleSearchRequestTest.php
 test/Model/ScheduleStatusTest.php
 test/Model/ScheduleTypeTest.php
 test/Model/ScheduleUpdateRequestTest.php
-test/Model/ScheduleUpdateStatusTest.php
 test/Model/ScheduleUrlDetailResponseTest.php
 test/Model/ScheduleUrlResponseTest.php
 test/Model/ScheduleUrlSearchRequestTest.php
+test/Model/ScreenshotRequestTest.php
+test/Model/ScreenshotResponseTest.php
 test/Model/SerpSearchRequestTest.php
 test/Model/SerpVolumeRequestTest.php
 test/Model/SerpVolumeResponseTest.php
@@ -468,6 +479,7 @@ test/Model/ValidationErrorTest.php
 test/Model/VectorDocumentResponseTest.php
 test/Model/VectorDocumentTypeTest.php
 test/Model/VectorDocumentsTaskResponseTest.php
+test/Model/WithScreenshotTest.php
 test/Model/WorkspaceCreateRequestTest.php
 test/Model/WorkspaceResponseTest.php
 test/Model/WorkspaceRoleTest.php
