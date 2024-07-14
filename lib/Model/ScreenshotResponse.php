@@ -62,7 +62,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'result' => '\OpenAPI\Client\Model\Result',
         'error_message' => 'string',
         'original_size_url' => '\OpenAPI\Client\Model\AppUrlOutput',
-        'thumbnail_url' => '\OpenAPI\Client\Model\AppUrlOutput'
+        'thumbnail_url' => '\OpenAPI\Client\Model\AppUrlOutput',
+        'timestamp' => 'int'
     ];
 
     /**
@@ -78,7 +79,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'result' => null,
         'error_message' => null,
         'original_size_url' => null,
-        'thumbnail_url' => null
+        'thumbnail_url' => null,
+        'timestamp' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'result' => true,
         'error_message' => true,
         'original_size_url' => true,
-        'thumbnail_url' => true
+        'thumbnail_url' => true,
+        'timestamp' => true
     ];
 
     /**
@@ -186,7 +189,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'result' => 'result',
         'error_message' => 'error_message',
         'original_size_url' => 'original_size_url',
-        'thumbnail_url' => 'thumbnail_url'
+        'thumbnail_url' => 'thumbnail_url',
+        'timestamp' => 'timestamp'
     ];
 
     /**
@@ -200,7 +204,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'result' => 'setResult',
         'error_message' => 'setErrorMessage',
         'original_size_url' => 'setOriginalSizeUrl',
-        'thumbnail_url' => 'setThumbnailUrl'
+        'thumbnail_url' => 'setThumbnailUrl',
+        'timestamp' => 'setTimestamp'
     ];
 
     /**
@@ -214,7 +219,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'result' => 'getResult',
         'error_message' => 'getErrorMessage',
         'original_size_url' => 'getOriginalSizeUrl',
-        'thumbnail_url' => 'getThumbnailUrl'
+        'thumbnail_url' => 'getThumbnailUrl',
+        'timestamp' => 'getTimestamp'
     ];
 
     /**
@@ -280,6 +286,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('error_message', $data ?? [], null);
         $this->setIfExists('original_size_url', $data ?? [], null);
         $this->setIfExists('thumbnail_url', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
     }
 
     /**
@@ -516,6 +523,40 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['thumbnail_url'] = $thumbnail_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets timestamp
+     *
+     * @return int|null
+     */
+    public function getTimestamp()
+    {
+        return $this->container['timestamp'];
+    }
+
+    /**
+     * Sets timestamp
+     *
+     * @param int|null $timestamp timestamp
+     *
+     * @return self
+     */
+    public function setTimestamp($timestamp)
+    {
+        if (is_null($timestamp)) {
+            array_push($this->openAPINullablesSetToNull, 'timestamp');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('timestamp', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['timestamp'] = $timestamp;
 
         return $this;
     }

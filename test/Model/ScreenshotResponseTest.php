@@ -132,4 +132,13 @@ class ScreenshotResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "timestamp"
+     */
+    public function testPropertyTimestamp()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **error_message** | **string** |  | [optional]
 **original_size_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
 **thumbnail_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
+**timestamp** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
