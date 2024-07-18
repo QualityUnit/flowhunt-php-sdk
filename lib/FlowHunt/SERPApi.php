@@ -134,16 +134,16 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request serp_search_request (required)
+     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SerperResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\SerperResponse[]|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function serpSearch($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function serpSearch($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
-        list($response) = $this->serpSearchWithHttpInfo($workspace_id, $serp_search_request, $contentType);
+        list($response) = $this->serpSearchWithHttpInfo($workspace_id, $serp_search_requests, $contentType);
         return $response;
     }
 
@@ -153,16 +153,16 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
+     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SerperResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\SerperResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function serpSearchWithHttpInfo($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function serpSearchWithHttpInfo($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
-        $request = $this->serpSearchRequest($workspace_id, $serp_search_request, $contentType);
+        $request = $this->serpSearchRequest($workspace_id, $serp_search_requests, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -201,11 +201,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SerperResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\SerperResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SerperResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\SerperResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -223,7 +223,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerperResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerperResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -256,7 +256,7 @@ class SERPApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SerperResponse';
+            $returnType = '\OpenAPI\Client\Model\SerperResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -289,7 +289,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SerperResponse',
+                        '\OpenAPI\Client\Model\SerperResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -313,15 +313,15 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
+     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpSearchAsync($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function serpSearchAsync($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
-        return $this->serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_request, $contentType)
+        return $this->serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_requests, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -335,16 +335,16 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
+     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SerperResponse';
-        $request = $this->serpSearchRequest($workspace_id, $serp_search_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\SerperResponse[]';
+        $request = $this->serpSearchRequest($workspace_id, $serp_search_requests, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -386,13 +386,13 @@ class SERPApi
      * Create request for operation 'serpSearch'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequest $serp_search_request (required)
+     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function serpSearchRequest($workspace_id, $serp_search_request, string $contentType = self::contentTypes['serpSearch'][0])
+    public function serpSearchRequest($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
@@ -402,10 +402,10 @@ class SERPApi
             );
         }
 
-        // verify the required parameter 'serp_search_request' is set
-        if ($serp_search_request === null || (is_array($serp_search_request) && count($serp_search_request) === 0)) {
+        // verify the required parameter 'serp_search_requests' is set
+        if ($serp_search_requests === null || (is_array($serp_search_requests) && count($serp_search_requests) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $serp_search_request when calling serpSearch'
+                'Missing the required parameter $serp_search_requests when calling serpSearch'
             );
         }
 
@@ -437,12 +437,12 @@ class SERPApi
         );
 
         // for model (json/xml)
-        if (isset($serp_search_request)) {
+        if (isset($serp_search_requests)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($serp_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($serp_search_requests));
             } else {
-                $httpBody = $serp_search_request;
+                $httpBody = $serp_search_requests;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

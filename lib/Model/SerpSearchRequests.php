@@ -1,6 +1,6 @@
 <?php
 /**
- * TaskFlowInvokeResponse
+ * SerpSearchRequests
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * TaskFlowInvokeResponse Class Doc Comment
+ * SerpSearchRequests Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TaskFlowInvokeResponse';
+    protected static $openAPIModelName = 'SerpSearchRequests';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,8 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatuses',
-        'result' => '\OpenAPI\Client\Model\FlowInvokeResponse',
-        'error_message' => 'string'
+        'post_back_url' => 'string',
+        'requests' => '\OpenAPI\Client\Model\SerpSearchRequest[]'
     ];
 
     /**
@@ -71,10 +69,8 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'status' => null,
-        'result' => null,
-        'error_message' => null
+        'post_back_url' => null,
+        'requests' => null
     ];
 
     /**
@@ -83,10 +79,8 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'status' => false,
-        'result' => true,
-        'error_message' => true
+        'post_back_url' => true,
+        'requests' => false
     ];
 
     /**
@@ -175,10 +169,8 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'result' => 'result',
-        'error_message' => 'error_message'
+        'post_back_url' => 'post_back_url',
+        'requests' => 'requests'
     ];
 
     /**
@@ -187,10 +179,8 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'status' => 'setStatus',
-        'result' => 'setResult',
-        'error_message' => 'setErrorMessage'
+        'post_back_url' => 'setPostBackUrl',
+        'requests' => 'setRequests'
     ];
 
     /**
@@ -199,10 +189,8 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'status' => 'getStatus',
-        'result' => 'getResult',
-        'error_message' => 'getErrorMessage'
+        'post_back_url' => 'getPostBackUrl',
+        'requests' => 'getRequests'
     ];
 
     /**
@@ -262,10 +250,8 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('error_message', $data ?? [], null);
+        $this->setIfExists('post_back_url', $data ?? [], null);
+        $this->setIfExists('requests', $data ?? [], null);
     }
 
     /**
@@ -295,12 +281,6 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -317,123 +297,62 @@ class TaskFlowInvokeResponse implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return \OpenAPI\Client\Model\TaskStatuses
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param \OpenAPI\Client\Model\TaskStatuses $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets result
-     *
-     * @return \OpenAPI\Client\Model\FlowInvokeResponse|null
-     */
-    public function getResult()
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param \OpenAPI\Client\Model\FlowInvokeResponse|null $result result
-     *
-     * @return self
-     */
-    public function setResult($result)
-    {
-        if (is_null($result)) {
-            array_push($this->openAPINullablesSetToNull, 'result');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('result', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-
-    /**
-     * Gets error_message
+     * Gets post_back_url
      *
      * @return string|null
      */
-    public function getErrorMessage()
+    public function getPostBackUrl()
     {
-        return $this->container['error_message'];
+        return $this->container['post_back_url'];
     }
 
     /**
-     * Sets error_message
+     * Sets post_back_url
      *
-     * @param string|null $error_message error_message
+     * @param string|null $post_back_url post_back_url
      *
      * @return self
      */
-    public function setErrorMessage($error_message)
+    public function setPostBackUrl($post_back_url)
     {
-        if (is_null($error_message)) {
-            array_push($this->openAPINullablesSetToNull, 'error_message');
+        if (is_null($post_back_url)) {
+            array_push($this->openAPINullablesSetToNull, 'post_back_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_message', $nullablesSetToNull);
+            $index = array_search('post_back_url', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['error_message'] = $error_message;
+        $this->container['post_back_url'] = $post_back_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets requests
+     *
+     * @return \OpenAPI\Client\Model\SerpSearchRequest[]|null
+     */
+    public function getRequests()
+    {
+        return $this->container['requests'];
+    }
+
+    /**
+     * Sets requests
+     *
+     * @param \OpenAPI\Client\Model\SerpSearchRequest[]|null $requests requests
+     *
+     * @return self
+     */
+    public function setRequests($requests)
+    {
+        if (is_null($requests)) {
+            throw new \InvalidArgumentException('non-nullable requests cannot be null');
+        }
+        $this->container['requests'] = $requests;
 
         return $this;
     }

@@ -98,6 +98,24 @@ class WorkspaceRoleTest extends TestCase
     }
 
     /**
+     * Test attribute "owner_name"
+     */
+    public function testPropertyOwnerName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "owner_email"
+     */
+    public function testPropertyOwnerEmail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "role"
      */
     public function testPropertyRole()

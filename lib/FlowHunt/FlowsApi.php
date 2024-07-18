@@ -2311,7 +2311,7 @@ class FlowsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskFlowInvokeResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function getInvokedFlowResults($flow_id, $task_id, $workspace_id, string $contentType = self::contentTypes['getInvokedFlowResults'][0])
     {
@@ -2331,7 +2331,7 @@ class FlowsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskFlowInvokeResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvokedFlowResultsWithHttpInfo($flow_id, $task_id, $workspace_id, string $contentType = self::contentTypes['getInvokedFlowResults'][0])
     {
@@ -2374,11 +2374,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskFlowInvokeResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskFlowInvokeResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2396,7 +2396,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskFlowInvokeResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2429,7 +2429,7 @@ class FlowsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskFlowInvokeResponse';
+            $returnType = '\OpenAPI\Client\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2462,7 +2462,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskFlowInvokeResponse',
+                        '\OpenAPI\Client\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2518,7 +2518,7 @@ class FlowsApi
      */
     public function getInvokedFlowResultsAsyncWithHttpInfo($flow_id, $task_id, $workspace_id, string $contentType = self::contentTypes['getInvokedFlowResults'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskFlowInvokeResponse';
+        $returnType = '\OpenAPI\Client\Model\TaskResponse';
         $request = $this->getInvokedFlowResultsRequest($flow_id, $task_id, $workspace_id, $contentType);
 
         return $this->client
@@ -3054,7 +3054,7 @@ class FlowsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskFlowInvokeResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function invokeFlow($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlow'][0])
     {
@@ -3074,7 +3074,7 @@ class FlowsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskFlowInvokeResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function invokeFlowWithHttpInfo($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlow'][0])
     {
@@ -3117,11 +3117,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskFlowInvokeResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskFlowInvokeResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3139,7 +3139,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskFlowInvokeResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3172,7 +3172,7 @@ class FlowsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskFlowInvokeResponse';
+            $returnType = '\OpenAPI\Client\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3205,7 +3205,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskFlowInvokeResponse',
+                        '\OpenAPI\Client\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3261,7 +3261,7 @@ class FlowsApi
      */
     public function invokeFlowAsyncWithHttpInfo($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlow'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskFlowInvokeResponse';
+        $returnType = '\OpenAPI\Client\Model\TaskResponse';
         $request = $this->invokeFlowRequest($flow_id, $workspace_id, $flow_invoke_request, $contentType);
 
         return $this->client

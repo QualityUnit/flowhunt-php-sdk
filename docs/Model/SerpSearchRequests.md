@@ -1,11 +1,10 @@
-# # File
+# # SerpSearchRequests
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**path** | **string** |  |
-**name** | **string** |  |
-**type** | **string** |  |
+**post_back_url** | **string** |  | [optional]
+**requests** | [**\OpenAPI\Client\Model\SerpSearchRequest[]**](SerpSearchRequest.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

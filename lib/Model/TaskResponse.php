@@ -1,6 +1,6 @@
 <?php
 /**
- * RunOutputs
+ * TaskResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RunOutputs Class Doc Comment
+ * TaskResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RunOutputs';
+    protected static $openAPIModelName = 'TaskResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,10 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'inputs' => 'object',
-        'outputs' => '\OpenAPI\Client\Model\ResultData[]'
+        'id' => 'string',
+        'status' => '\OpenAPI\Client\Model\TaskStatuses',
+        'result' => '\OpenAPI\Client\Model\Result',
+        'error_message' => 'string'
     ];
 
     /**
@@ -69,8 +71,10 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'inputs' => null,
-        'outputs' => null
+        'id' => null,
+        'status' => null,
+        'result' => null,
+        'error_message' => null
     ];
 
     /**
@@ -79,8 +83,10 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'inputs' => false,
-        'outputs' => false
+        'id' => false,
+        'status' => false,
+        'result' => true,
+        'error_message' => true
     ];
 
     /**
@@ -169,8 +175,10 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'inputs' => 'inputs',
-        'outputs' => 'outputs'
+        'id' => 'id',
+        'status' => 'status',
+        'result' => 'result',
+        'error_message' => 'error_message'
     ];
 
     /**
@@ -179,8 +187,10 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'inputs' => 'setInputs',
-        'outputs' => 'setOutputs'
+        'id' => 'setId',
+        'status' => 'setStatus',
+        'result' => 'setResult',
+        'error_message' => 'setErrorMessage'
     ];
 
     /**
@@ -189,8 +199,10 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'inputs' => 'getInputs',
-        'outputs' => 'getOutputs'
+        'id' => 'getId',
+        'status' => 'getStatus',
+        'result' => 'getResult',
+        'error_message' => 'getErrorMessage'
     ];
 
     /**
@@ -250,8 +262,10 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('inputs', $data ?? [], null);
-        $this->setIfExists('outputs', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('error_message', $data ?? [], null);
     }
 
     /**
@@ -281,6 +295,12 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -297,55 +317,123 @@ class RunOutputs implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets inputs
+     * Gets id
      *
-     * @return object|null
+     * @return string
      */
-    public function getInputs()
+    public function getId()
     {
-        return $this->container['inputs'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets inputs
+     * Sets id
      *
-     * @param object|null $inputs inputs
+     * @param string $id id
      *
      * @return self
      */
-    public function setInputs($inputs)
+    public function setId($id)
     {
-        if (is_null($inputs)) {
-            throw new \InvalidArgumentException('non-nullable inputs cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['inputs'] = $inputs;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets outputs
+     * Gets status
      *
-     * @return \OpenAPI\Client\Model\ResultData[]|null
+     * @return \OpenAPI\Client\Model\TaskStatuses
      */
-    public function getOutputs()
+    public function getStatus()
     {
-        return $this->container['outputs'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets outputs
+     * Sets status
      *
-     * @param \OpenAPI\Client\Model\ResultData[]|null $outputs outputs
+     * @param \OpenAPI\Client\Model\TaskStatuses $status status
      *
      * @return self
      */
-    public function setOutputs($outputs)
+    public function setStatus($status)
     {
-        if (is_null($outputs)) {
-            throw new \InvalidArgumentException('non-nullable outputs cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['outputs'] = $outputs;
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets result
+     *
+     * @return \OpenAPI\Client\Model\Result|null
+     */
+    public function getResult()
+    {
+        return $this->container['result'];
+    }
+
+    /**
+     * Sets result
+     *
+     * @param \OpenAPI\Client\Model\Result|null $result result
+     *
+     * @return self
+     */
+    public function setResult($result)
+    {
+        if (is_null($result)) {
+            array_push($this->openAPINullablesSetToNull, 'result');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('result', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message
+     *
+     * @return string|null
+     */
+    public function getErrorMessage()
+    {
+        return $this->container['error_message'];
+    }
+
+    /**
+     * Sets error_message
+     *
+     * @param string|null $error_message error_message
+     *
+     * @return self
+     */
+    public function setErrorMessage($error_message)
+    {
+        if (is_null($error_message)) {
+            array_push($this->openAPINullablesSetToNull, 'error_message');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('error_message', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['error_message'] = $error_message;
 
         return $this;
     }

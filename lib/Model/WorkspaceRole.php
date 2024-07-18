@@ -59,6 +59,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'workspace_id' => 'string',
         'workspace_name' => 'string',
+        'owner_name' => 'string',
+        'owner_email' => 'string',
         'role' => 'string'
     ];
 
@@ -70,8 +72,10 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'workspace_id' => 'uuid',
+        'workspace_id' => null,
         'workspace_name' => null,
+        'owner_name' => null,
+        'owner_email' => null,
         'role' => null
     ];
 
@@ -83,6 +87,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'workspace_id' => false,
         'workspace_name' => false,
+        'owner_name' => false,
+        'owner_email' => false,
         'role' => false
     ];
 
@@ -174,6 +180,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'workspace_id' => 'workspace_id',
         'workspace_name' => 'workspace_name',
+        'owner_name' => 'owner_name',
+        'owner_email' => 'owner_email',
         'role' => 'role'
     ];
 
@@ -185,6 +193,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'workspace_id' => 'setWorkspaceId',
         'workspace_name' => 'setWorkspaceName',
+        'owner_name' => 'setOwnerName',
+        'owner_email' => 'setOwnerEmail',
         'role' => 'setRole'
     ];
 
@@ -196,6 +206,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'workspace_id' => 'getWorkspaceId',
         'workspace_name' => 'getWorkspaceName',
+        'owner_name' => 'getOwnerName',
+        'owner_email' => 'getOwnerEmail',
         'role' => 'getRole'
     ];
 
@@ -258,6 +270,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('workspace_id', $data ?? [], null);
         $this->setIfExists('workspace_name', $data ?? [], null);
+        $this->setIfExists('owner_name', $data ?? [], null);
+        $this->setIfExists('owner_email', $data ?? [], null);
         $this->setIfExists('role', $data ?? [], null);
     }
 
@@ -293,6 +307,12 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['workspace_name'] === null) {
             $invalidProperties[] = "'workspace_name' can't be null";
+        }
+        if ($this->container['owner_name'] === null) {
+            $invalidProperties[] = "'owner_name' can't be null";
+        }
+        if ($this->container['owner_email'] === null) {
+            $invalidProperties[] = "'owner_email' can't be null";
         }
         if ($this->container['role'] === null) {
             $invalidProperties[] = "'role' can't be null";
@@ -362,6 +382,60 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable workspace_name cannot be null');
         }
         $this->container['workspace_name'] = $workspace_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner_name
+     *
+     * @return string
+     */
+    public function getOwnerName()
+    {
+        return $this->container['owner_name'];
+    }
+
+    /**
+     * Sets owner_name
+     *
+     * @param string $owner_name Name of the owner of the workspace
+     *
+     * @return self
+     */
+    public function setOwnerName($owner_name)
+    {
+        if (is_null($owner_name)) {
+            throw new \InvalidArgumentException('non-nullable owner_name cannot be null');
+        }
+        $this->container['owner_name'] = $owner_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner_email
+     *
+     * @return string
+     */
+    public function getOwnerEmail()
+    {
+        return $this->container['owner_email'];
+    }
+
+    /**
+     * Sets owner_email
+     *
+     * @param string $owner_email Email of the owner of the workspace
+     *
+     * @return self
+     */
+    public function setOwnerEmail($owner_email)
+    {
+        if (is_null($owner_email)) {
+            throw new \InvalidArgumentException('non-nullable owner_email cannot be null');
+        }
+        $this->container['owner_email'] = $owner_email;
 
         return $this;
     }

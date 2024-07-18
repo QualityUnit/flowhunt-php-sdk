@@ -80,15 +80,6 @@ class SerpSearchRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "post_back_url"
-     */
-    public function testPropertyPostBackUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "query"
      */
     public function testPropertyQuery()

@@ -1,6 +1,6 @@
 <?php
 /**
- * ChatOutputResponseTest
+ * TaskResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ChatOutputResponseTest Class Doc Comment
+ * TaskResponseTest Class Doc Comment
  *
  * @category    Class
- * @description Chat output response schema.
+ * @description TaskResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ChatOutputResponseTest extends TestCase
+class TaskResponseTest extends TestCase
 {
 
     /**
@@ -71,81 +71,45 @@ class ChatOutputResponseTest extends TestCase
     }
 
     /**
-     * Test "ChatOutputResponse"
+     * Test "TaskResponse"
      */
-    public function testChatOutputResponse()
+    public function testTaskResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "message"
+     * Test attribute "id"
      */
-    public function testPropertyMessage()
+    public function testPropertyId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "sender"
+     * Test attribute "status"
      */
-    public function testPropertySender()
+    public function testPropertyStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "sender_name"
+     * Test attribute "result"
      */
-    public function testPropertySenderName()
+    public function testPropertyResult()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "session_id"
+     * Test attribute "error_message"
      */
-    public function testPropertySessionId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "stream_url"
-     */
-    public function testPropertyStreamUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "component_id"
-     */
-    public function testPropertyComponentId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "files"
-     */
-    public function testPropertyFiles()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "type"
-     */
-    public function testPropertyType()
+    public function testPropertyErrorMessage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

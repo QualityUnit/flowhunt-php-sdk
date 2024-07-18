@@ -28,7 +28,6 @@ docs/Model/ApiKeySearchRequest.md
 docs/Model/ApiKeyUpdateRequest.md
 docs/Model/AppUrlInput.md
 docs/Model/AppUrlOutput.md
-docs/Model/ChatOutputResponse.md
 docs/Model/ChatbotCreateRequest.md
 docs/Model/ChatbotResponse.md
 docs/Model/ChatbotSearchRequest.md
@@ -63,13 +62,10 @@ docs/Model/FaqStatus.md
 docs/Model/FaqType.md
 docs/Model/FaqUpdateRequest.md
 docs/Model/FeatureResponse.md
-docs/Model/File.md
 docs/Model/FlowConfig.md
 docs/Model/FlowCreate.md
-docs/Model/FlowCreditUsage.md
 docs/Model/FlowDetailResponse.md
 docs/Model/FlowInvokeRequest.md
-docs/Model/FlowInvokeResponse.md
 docs/Model/FlowMessageResponse.md
 docs/Model/FlowMessageRole.md
 docs/Model/FlowRequestChatRole.md
@@ -89,8 +85,6 @@ docs/Model/Health.md
 docs/Model/ImageConvertRequest.md
 docs/Model/ImageOptimizeRequest.md
 docs/Model/LoginUserRequest.md
-docs/Model/Message.md
-docs/Model/MessageAnyOfInner.md
 docs/Model/NewPasswordRequest.md
 docs/Model/OrganicPosition.md
 docs/Model/PlanResponse.md
@@ -110,9 +104,7 @@ docs/Model/RegisterUserRequest.md
 docs/Model/RelatedQuestion.md
 docs/Model/RelatedSearch.md
 docs/Model/Result.md
-docs/Model/ResultData.md
 docs/Model/Role.md
-docs/Model/RunOutputs.md
 docs/Model/ScheduleCreateRequest.md
 docs/Model/ScheduleFrequency.md
 docs/Model/ScheduleResponse.md
@@ -126,6 +118,7 @@ docs/Model/ScheduleUrlSearchRequest.md
 docs/Model/ScreenshotRequest.md
 docs/Model/ScreenshotResponse.md
 docs/Model/SerpSearchRequest.md
+docs/Model/SerpSearchRequests.md
 docs/Model/SerpVolumeRequest.md
 docs/Model/SerpVolumeResponse.md
 docs/Model/SerpVolumeScheduleResponse.md
@@ -137,7 +130,7 @@ docs/Model/TagCreateRequest.md
 docs/Model/TagResponse.md
 docs/Model/TagSearchRequest.md
 docs/Model/TagUpdateRequest.md
-docs/Model/TaskFlowInvokeResponse.md
+docs/Model/TaskResponse.md
 docs/Model/TaskStatuses.md
 docs/Model/ThridPartyLoginRequest.md
 docs/Model/Token.md
@@ -192,7 +185,6 @@ lib/Model/ApiKeySearchRequest.php
 lib/Model/ApiKeyUpdateRequest.php
 lib/Model/AppUrlInput.php
 lib/Model/AppUrlOutput.php
-lib/Model/ChatOutputResponse.php
 lib/Model/ChatbotCreateRequest.php
 lib/Model/ChatbotResponse.php
 lib/Model/ChatbotSearchRequest.php
@@ -227,13 +219,10 @@ lib/Model/FaqStatus.php
 lib/Model/FaqType.php
 lib/Model/FaqUpdateRequest.php
 lib/Model/FeatureResponse.php
-lib/Model/File.php
 lib/Model/FlowConfig.php
 lib/Model/FlowCreate.php
-lib/Model/FlowCreditUsage.php
 lib/Model/FlowDetailResponse.php
 lib/Model/FlowInvokeRequest.php
-lib/Model/FlowInvokeResponse.php
 lib/Model/FlowMessageResponse.php
 lib/Model/FlowMessageRole.php
 lib/Model/FlowRequestChatRole.php
@@ -253,8 +242,6 @@ lib/Model/Health.php
 lib/Model/ImageConvertRequest.php
 lib/Model/ImageOptimizeRequest.php
 lib/Model/LoginUserRequest.php
-lib/Model/Message.php
-lib/Model/MessageAnyOfInner.php
 lib/Model/ModelInterface.php
 lib/Model/NewPasswordRequest.php
 lib/Model/OrganicPosition.php
@@ -275,9 +262,7 @@ lib/Model/RegisterUserRequest.php
 lib/Model/RelatedQuestion.php
 lib/Model/RelatedSearch.php
 lib/Model/Result.php
-lib/Model/ResultData.php
 lib/Model/Role.php
-lib/Model/RunOutputs.php
 lib/Model/ScheduleCreateRequest.php
 lib/Model/ScheduleFrequency.php
 lib/Model/ScheduleResponse.php
@@ -291,6 +276,7 @@ lib/Model/ScheduleUrlSearchRequest.php
 lib/Model/ScreenshotRequest.php
 lib/Model/ScreenshotResponse.php
 lib/Model/SerpSearchRequest.php
+lib/Model/SerpSearchRequests.php
 lib/Model/SerpVolumeRequest.php
 lib/Model/SerpVolumeResponse.php
 lib/Model/SerpVolumeScheduleResponse.php
@@ -302,7 +288,7 @@ lib/Model/TagCreateRequest.php
 lib/Model/TagResponse.php
 lib/Model/TagSearchRequest.php
 lib/Model/TagUpdateRequest.php
-lib/Model/TaskFlowInvokeResponse.php
+lib/Model/TaskResponse.php
 lib/Model/TaskStatuses.php
 lib/Model/ThridPartyLoginRequest.php
 lib/Model/Token.php
@@ -355,7 +341,6 @@ test/Model/ApiKeySearchRequestTest.php
 test/Model/ApiKeyUpdateRequestTest.php
 test/Model/AppUrlInputTest.php
 test/Model/AppUrlOutputTest.php
-test/Model/ChatOutputResponseTest.php
 test/Model/ChatbotCreateRequestTest.php
 test/Model/ChatbotResponseTest.php
 test/Model/ChatbotSearchRequestTest.php
@@ -390,13 +375,10 @@ test/Model/FaqStatusTest.php
 test/Model/FaqTypeTest.php
 test/Model/FaqUpdateRequestTest.php
 test/Model/FeatureResponseTest.php
-test/Model/FileTest.php
 test/Model/FlowConfigTest.php
 test/Model/FlowCreateTest.php
-test/Model/FlowCreditUsageTest.php
 test/Model/FlowDetailResponseTest.php
 test/Model/FlowInvokeRequestTest.php
-test/Model/FlowInvokeResponseTest.php
 test/Model/FlowMessageResponseTest.php
 test/Model/FlowMessageRoleTest.php
 test/Model/FlowRequestChatRoleTest.php
@@ -416,8 +398,6 @@ test/Model/HealthTest.php
 test/Model/ImageConvertRequestTest.php
 test/Model/ImageOptimizeRequestTest.php
 test/Model/LoginUserRequestTest.php
-test/Model/MessageAnyOfInnerTest.php
-test/Model/MessageTest.php
 test/Model/NewPasswordRequestTest.php
 test/Model/OrganicPositionTest.php
 test/Model/PlanResponseTest.php
@@ -436,10 +416,8 @@ test/Model/RefreshTokenRequestTest.php
 test/Model/RegisterUserRequestTest.php
 test/Model/RelatedQuestionTest.php
 test/Model/RelatedSearchTest.php
-test/Model/ResultDataTest.php
 test/Model/ResultTest.php
 test/Model/RoleTest.php
-test/Model/RunOutputsTest.php
 test/Model/ScheduleCreateRequestTest.php
 test/Model/ScheduleFrequencyTest.php
 test/Model/ScheduleResponseTest.php
@@ -453,6 +431,7 @@ test/Model/ScheduleUrlSearchRequestTest.php
 test/Model/ScreenshotRequestTest.php
 test/Model/ScreenshotResponseTest.php
 test/Model/SerpSearchRequestTest.php
+test/Model/SerpSearchRequestsTest.php
 test/Model/SerpVolumeRequestTest.php
 test/Model/SerpVolumeResponseTest.php
 test/Model/SerpVolumeScheduleResponseTest.php
@@ -464,7 +443,7 @@ test/Model/TagCreateRequestTest.php
 test/Model/TagResponseTest.php
 test/Model/TagSearchRequestTest.php
 test/Model/TagUpdateRequestTest.php
-test/Model/TaskFlowInvokeResponseTest.php
+test/Model/TaskResponseTest.php
 test/Model/TaskStatusesTest.php
 test/Model/ThridPartyLoginRequestTest.php
 test/Model/TokenTest.php

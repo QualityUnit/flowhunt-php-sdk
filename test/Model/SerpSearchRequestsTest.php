@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowInvokeResponseTest
+ * SerpSearchRequestsTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowInvokeResponseTest Class Doc Comment
+ * SerpSearchRequestsTest Class Doc Comment
  *
  * @category    Class
- * @description FlowInvokeResponse
+ * @description SerpSearchRequests
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowInvokeResponseTest extends TestCase
+class SerpSearchRequestsTest extends TestCase
 {
 
     /**
@@ -71,27 +71,27 @@ class FlowInvokeResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowInvokeResponse"
+     * Test "SerpSearchRequests"
      */
-    public function testFlowInvokeResponse()
+    public function testSerpSearchRequests()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "outputs"
+     * Test attribute "post_back_url"
      */
-    public function testPropertyOutputs()
+    public function testPropertyPostBackUrl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "credit_usage"
+     * Test attribute "requests"
      */
-    public function testPropertyCreditUsage()
+    public function testPropertyRequests()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -61,7 +61,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'description' => 'string',
         'flow_type' => '\OpenAPI\Client\Model\FlowType',
-        'component_count' => 'int'
+        'component_count' => 'int',
+        'executed_at' => '\DateTime'
     ];
 
     /**
@@ -76,7 +77,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'description' => null,
         'flow_type' => null,
-        'component_count' => null
+        'component_count' => null,
+        'executed_at' => 'date-time'
     ];
 
     /**
@@ -89,7 +91,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => false,
         'description' => false,
         'flow_type' => false,
-        'component_count' => false
+        'component_count' => false,
+        'executed_at' => true
     ];
 
     /**
@@ -182,7 +185,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'description' => 'description',
         'flow_type' => 'flow_type',
-        'component_count' => 'component_count'
+        'component_count' => 'component_count',
+        'executed_at' => 'executed_at'
     ];
 
     /**
@@ -195,7 +199,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'description' => 'setDescription',
         'flow_type' => 'setFlowType',
-        'component_count' => 'setComponentCount'
+        'component_count' => 'setComponentCount',
+        'executed_at' => 'setExecutedAt'
     ];
 
     /**
@@ -208,7 +213,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'description' => 'getDescription',
         'flow_type' => 'getFlowType',
-        'component_count' => 'getComponentCount'
+        'component_count' => 'getComponentCount',
+        'executed_at' => 'getExecutedAt'
     ];
 
     /**
@@ -273,6 +279,7 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('flow_type', $data ?? [], null);
         $this->setIfExists('component_count', $data ?? [], null);
+        $this->setIfExists('executed_at', $data ?? [], null);
     }
 
     /**
@@ -463,6 +470,40 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable component_count cannot be null');
         }
         $this->container['component_count'] = $component_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets executed_at
+     *
+     * @return \DateTime|null
+     */
+    public function getExecutedAt()
+    {
+        return $this->container['executed_at'];
+    }
+
+    /**
+     * Sets executed_at
+     *
+     * @param \DateTime|null $executed_at executed_at
+     *
+     * @return self
+     */
+    public function setExecutedAt($executed_at)
+    {
+        if (is_null($executed_at)) {
+            array_push($this->openAPINullablesSetToNull, 'executed_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('executed_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['executed_at'] = $executed_at;
 
         return $this;
     }

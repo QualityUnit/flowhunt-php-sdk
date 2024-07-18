@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `serpSearch()`
 
 ```php
-serpSearch($workspace_id, $serp_search_request): \OpenAPI\Client\Model\SerperResponse
+serpSearch($workspace_id, $serp_search_requests): \OpenAPI\Client\Model\SerperResponse[]
 ```
 
 Serp Search
@@ -40,10 +40,10 @@ $apiInstance = new OpenAPI\Client\Api\SERPApi(
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$serp_search_request = new \OpenAPI\Client\Model\SerpSearchRequest(); // \OpenAPI\Client\Model\SerpSearchRequest
+$serp_search_requests = new \OpenAPI\Client\Model\SerpSearchRequests(); // \OpenAPI\Client\Model\SerpSearchRequests
 
 try {
-    $result = $apiInstance->serpSearch($workspace_id, $serp_search_request);
+    $result = $apiInstance->serpSearch($workspace_id, $serp_search_requests);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SERPApi->serpSearch: ', $e->getMessage(), PHP_EOL;
@@ -55,11 +55,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **serp_search_request** | [**\OpenAPI\Client\Model\SerpSearchRequest**](../Model/SerpSearchRequest.md)|  | |
+| **serp_search_requests** | [**\OpenAPI\Client\Model\SerpSearchRequests**](../Model/SerpSearchRequests.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SerperResponse**](../Model/SerperResponse.md)
+[**\OpenAPI\Client\Model\SerperResponse[]**](../Model/SerperResponse.md)
 
 ### Authorization
 

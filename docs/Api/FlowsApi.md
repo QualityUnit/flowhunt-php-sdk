@@ -397,7 +397,7 @@ This endpoint does not need any parameter.
 ## `getInvokedFlowResults()`
 
 ```php
-getInvokedFlowResults($flow_id, $task_id, $workspace_id): \OpenAPI\Client\Model\TaskFlowInvokeResponse
+getInvokedFlowResults($flow_id, $task_id, $workspace_id): \OpenAPI\Client\Model\TaskResponse
 ```
 
 Get Invoked Flow Results
@@ -446,7 +446,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskFlowInvokeResponse**](../Model/TaskFlowInvokeResponse.md)
+[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -527,7 +527,7 @@ try {
 ## `invokeFlow()`
 
 ```php
-invokeFlow($flow_id, $workspace_id, $flow_invoke_request): \OpenAPI\Client\Model\TaskFlowInvokeResponse
+invokeFlow($flow_id, $workspace_id, $flow_invoke_request): \OpenAPI\Client\Model\TaskResponse
 ```
 
 Invoke Flow
@@ -576,7 +576,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskFlowInvokeResponse**](../Model/TaskFlowInvokeResponse.md)
+[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
