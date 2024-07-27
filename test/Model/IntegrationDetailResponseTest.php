@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequestTest
+ * IntegrationDetailResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * WorkspaceSearchRequestTest Class Doc Comment
+ * IntegrationDetailResponseTest Class Doc Comment
  *
  * @category    Class
- * @description WorkspaceSearchRequest
+ * @description IntegrationDetailResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class WorkspaceSearchRequestTest extends TestCase
+class IntegrationDetailResponseTest extends TestCase
 {
 
     /**
@@ -71,9 +71,18 @@ class WorkspaceSearchRequestTest extends TestCase
     }
 
     /**
-     * Test "WorkspaceSearchRequest"
+     * Test "IntegrationDetailResponse"
      */
-    public function testWorkspaceSearchRequest()
+    public function testIntegrationDetailResponse()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "slug"
+     */
+    public function testPropertySlug()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -83,6 +92,24 @@ class WorkspaceSearchRequestTest extends TestCase
      * Test attribute "name"
      */
     public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "integration_id"
+     */
+    public function testPropertyIntegrationId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created_at"
+     */
+    public function testPropertyCreatedAt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

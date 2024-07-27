@@ -58,8 +58,7 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'workspace_id' => 'string',
-        'name' => 'string',
-        'members' => '\OpenAPI\Client\Model\WorkspaceUserResponse[]'
+        'name' => 'string'
     ];
 
     /**
@@ -71,8 +70,7 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIFormats = [
         'workspace_id' => null,
-        'name' => null,
-        'members' => null
+        'name' => null
     ];
 
     /**
@@ -82,8 +80,7 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'workspace_id' => false,
-        'name' => false,
-        'members' => false
+        'name' => false
     ];
 
     /**
@@ -173,8 +170,7 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'workspace_id' => 'workspace_id',
-        'name' => 'name',
-        'members' => 'members'
+        'name' => 'name'
     ];
 
     /**
@@ -184,8 +180,7 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'workspace_id' => 'setWorkspaceId',
-        'name' => 'setName',
-        'members' => 'setMembers'
+        'name' => 'setName'
     ];
 
     /**
@@ -195,8 +190,7 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'workspace_id' => 'getWorkspaceId',
-        'name' => 'getName',
-        'members' => 'getMembers'
+        'name' => 'getName'
     ];
 
     /**
@@ -258,7 +252,6 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $this->setIfExists('workspace_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('members', $data ?? [], null);
     }
 
     /**
@@ -293,9 +286,6 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['members'] === null) {
-            $invalidProperties[] = "'members' can't be null";
         }
         return $invalidProperties;
     }
@@ -362,33 +352,6 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets members
-     *
-     * @return \OpenAPI\Client\Model\WorkspaceUserResponse[]
-     */
-    public function getMembers()
-    {
-        return $this->container['members'];
-    }
-
-    /**
-     * Sets members
-     *
-     * @param \OpenAPI\Client\Model\WorkspaceUserResponse[] $members List of workspace members
-     *
-     * @return self
-     */
-    public function setMembers($members)
-    {
-        if (is_null($members)) {
-            throw new \InvalidArgumentException('non-nullable members cannot be null');
-        }
-        $this->container['members'] = $members;
 
         return $this;
     }

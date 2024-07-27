@@ -96,13 +96,4 @@ class WorkspaceResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "members"
-     */
-    public function testPropertyMembers()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
 }

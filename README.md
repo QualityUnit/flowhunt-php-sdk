@@ -139,6 +139,11 @@ Class | Method | HTTP request | Description
 *ImagesApi* | [**convertImage**](docs/Api/ImagesApi.md#convertimage) | **POST** /v2/images/convert | Convert Image
 *ImagesApi* | [**getScreenshot**](docs/Api/ImagesApi.md#getscreenshot) | **POST** /v2/images/screenshot | Get Screenshot
 *ImagesApi* | [**optimizeImage**](docs/Api/ImagesApi.md#optimizeimage) | **POST** /v2/images/optimize | Optimize Image
+*IntegrationsApi* | [**createIntegration**](docs/Api/IntegrationsApi.md#createintegration) | **POST** /v2/integrations/{integration_slug}/create | Create Integration
+*IntegrationsApi* | [**getAllIntegrations**](docs/Api/IntegrationsApi.md#getallintegrations) | **GET** /v2/integrations/all | Get All Integrations
+*IntegrationsApi* | [**getMyIntegrations**](docs/Api/IntegrationsApi.md#getmyintegrations) | **POST** /v2/integrations/ | Get My Integrations
+*IntegrationsApi* | [**removeIntegration**](docs/Api/IntegrationsApi.md#removeintegration) | **DELETE** /v2/integrations/ | Remove Integration
+*IntegrationsApi* | [**updateIntegration**](docs/Api/IntegrationsApi.md#updateintegration) | **PUT** /v2/integrations/{integration_slug}/{integration_id} | Update Integration
 *PromptsApi* | [**createPrompt**](docs/Api/PromptsApi.md#createprompt) | **POST** /v2/prompts/create | Create Prompt
 *PromptsApi* | [**createPromptCategory**](docs/Api/PromptsApi.md#createpromptcategory) | **POST** /v2/prompts/categories/create | Create Prompt Category
 *PromptsApi* | [**deletePrompt**](docs/Api/PromptsApi.md#deleteprompt) | **DELETE** /v2/prompts/{prompt_id} | Delete Prompt
@@ -167,13 +172,15 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**searchTags**](docs/Api/TagsApi.md#searchtags) | **POST** /v2/tags/search | Search Tags
 *TagsApi* | [**updateTag**](docs/Api/TagsApi.md#updatetag) | **PUT** /v2/tags/{tag_id} | Update Tag
 *VideosApi* | [**getYoutubeTranscript**](docs/Api/VideosApi.md#getyoutubetranscript) | **POST** /v2/videos/youtube/transcript | Get Youtube Transcript
-*WorkspacesApi* | [**addWorkspaceMember**](docs/Api/WorkspacesApi.md#addworkspacemember) | **POST** /v2/workspaces/{workspace_id}/add-member | Add Workspace Member
+*WorkspacesApi* | [**addWorkspaceUser**](docs/Api/WorkspacesApi.md#addworkspaceuser) | **POST** /v2/workspaces/{workspace_id}/add-member | Add Workspace User
 *WorkspacesApi* | [**createWorkspace**](docs/Api/WorkspacesApi.md#createworkspace) | **POST** /v2/workspaces/create | Create Workspace
 *WorkspacesApi* | [**deleteWorkspace**](docs/Api/WorkspacesApi.md#deleteworkspace) | **DELETE** /v2/workspaces/{workspace_id} | Delete Workspace
-*WorkspacesApi* | [**deleteWorkspaceMember**](docs/Api/WorkspacesApi.md#deleteworkspacemember) | **DELETE** /v2/workspaces/{workspace_id}/{user_id} | Delete Workspace Member
-*WorkspacesApi* | [**getWorkspaceUsers**](docs/Api/WorkspacesApi.md#getworkspaceusers) | **POST** /v2/workspaces/{workspace_id} | Get Workspace Users
+*WorkspacesApi* | [**deleteWorkspaceUser**](docs/Api/WorkspacesApi.md#deleteworkspaceuser) | **DELETE** /v2/workspaces/{workspace_id}/{user_id} | Delete Workspace User
+*WorkspacesApi* | [**getWorkspace**](docs/Api/WorkspacesApi.md#getworkspace) | **POST** /v2/workspaces/{workspace_id} | Get Workspace
+*WorkspacesApi* | [**searchMyWorkspaces**](docs/Api/WorkspacesApi.md#searchmyworkspaces) | **POST** /v2/workspaces/me/my_workspaces | Search My Workspaces
+*WorkspacesApi* | [**searchWorkspaceUsers**](docs/Api/WorkspacesApi.md#searchworkspaceusers) | **POST** /v2/workspaces/{workspace_id}/users | Search Workspace Users
 *WorkspacesApi* | [**updateWorkspace**](docs/Api/WorkspacesApi.md#updateworkspace) | **PUT** /v2/workspaces/{workspace_id} | Update Workspace
-*WorkspacesApi* | [**updateWorkspaceMember**](docs/Api/WorkspacesApi.md#updateworkspacemember) | **PUT** /v2/workspaces/{workspace_id}/{user_id} | Update Workspace Member
+*WorkspacesApi* | [**updateWorkspaceUser**](docs/Api/WorkspacesApi.md#updateworkspaceuser) | **PUT** /v2/workspaces/{workspace_id}/{user_id} | Update Workspace User
 
 ## Models
 
@@ -239,6 +246,12 @@ Class | Method | HTTP request | Description
 - [Health](docs/Model/Health.md)
 - [ImageConvertRequest](docs/Model/ImageConvertRequest.md)
 - [ImageOptimizeRequest](docs/Model/ImageOptimizeRequest.md)
+- [IntegrationCategory](docs/Model/IntegrationCategory.md)
+- [IntegrationCreateRequest](docs/Model/IntegrationCreateRequest.md)
+- [IntegrationDetailResponse](docs/Model/IntegrationDetailResponse.md)
+- [IntegrationResponse](docs/Model/IntegrationResponse.md)
+- [IntegrationSearchRequest](docs/Model/IntegrationSearchRequest.md)
+- [IntegrationSlug](docs/Model/IntegrationSlug.md)
 - [LoginUserRequest](docs/Model/LoginUserRequest.md)
 - [NewPasswordRequest](docs/Model/NewPasswordRequest.md)
 - [OrganicPosition](docs/Model/OrganicPosition.md)
@@ -309,6 +322,7 @@ Class | Method | HTTP request | Description
 - [WorkspaceUserCreateRequest](docs/Model/WorkspaceUserCreateRequest.md)
 - [WorkspaceUserResponse](docs/Model/WorkspaceUserResponse.md)
 - [WorkspaceUserUpdateRequest](docs/Model/WorkspaceUserUpdateRequest.md)
+- [WorkspaceUsersSearchRequest](docs/Model/WorkspaceUsersSearchRequest.md)
 - [YoutubeContent](docs/Model/YoutubeContent.md)
 - [YoutubeTranscriptRequest](docs/Model/YoutubeTranscriptRequest.md)
 - [YoutubeTranscriptResponse](docs/Model/YoutubeTranscriptResponse.md)
@@ -345,6 +359,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `1.0.76`
+    - Package version: `2.0.100`
     - Generator version: `7.7.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequest
+ * IntegrationCreateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * WorkspaceSearchRequest Class Doc Comment
+ * IntegrationCreateRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'WorkspaceSearchRequest';
+    protected static $openAPIModelName = 'IntegrationCreateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -77,7 +77,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true
+        'name' => false
     ];
 
     /**
@@ -274,6 +274,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -292,7 +295,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets name
      *
-     * @return string|null
+     * @return string
      */
     public function getName()
     {
@@ -302,21 +305,14 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string $name The name of the integration.
      *
      * @return self
      */
     public function setName($name)
     {
         if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 

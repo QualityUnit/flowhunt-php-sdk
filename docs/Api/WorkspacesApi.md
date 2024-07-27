@@ -4,22 +4,24 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addWorkspaceMember()**](WorkspacesApi.md#addWorkspaceMember) | **POST** /v2/workspaces/{workspace_id}/add-member | Add Workspace Member |
+| [**addWorkspaceUser()**](WorkspacesApi.md#addWorkspaceUser) | **POST** /v2/workspaces/{workspace_id}/add-member | Add Workspace User |
 | [**createWorkspace()**](WorkspacesApi.md#createWorkspace) | **POST** /v2/workspaces/create | Create Workspace |
 | [**deleteWorkspace()**](WorkspacesApi.md#deleteWorkspace) | **DELETE** /v2/workspaces/{workspace_id} | Delete Workspace |
-| [**deleteWorkspaceMember()**](WorkspacesApi.md#deleteWorkspaceMember) | **DELETE** /v2/workspaces/{workspace_id}/{user_id} | Delete Workspace Member |
-| [**getWorkspaceUsers()**](WorkspacesApi.md#getWorkspaceUsers) | **POST** /v2/workspaces/{workspace_id} | Get Workspace Users |
+| [**deleteWorkspaceUser()**](WorkspacesApi.md#deleteWorkspaceUser) | **DELETE** /v2/workspaces/{workspace_id}/{user_id} | Delete Workspace User |
+| [**getWorkspace()**](WorkspacesApi.md#getWorkspace) | **POST** /v2/workspaces/{workspace_id} | Get Workspace |
+| [**searchMyWorkspaces()**](WorkspacesApi.md#searchMyWorkspaces) | **POST** /v2/workspaces/me/my_workspaces | Search My Workspaces |
+| [**searchWorkspaceUsers()**](WorkspacesApi.md#searchWorkspaceUsers) | **POST** /v2/workspaces/{workspace_id}/users | Search Workspace Users |
 | [**updateWorkspace()**](WorkspacesApi.md#updateWorkspace) | **PUT** /v2/workspaces/{workspace_id} | Update Workspace |
-| [**updateWorkspaceMember()**](WorkspacesApi.md#updateWorkspaceMember) | **PUT** /v2/workspaces/{workspace_id}/{user_id} | Update Workspace Member |
+| [**updateWorkspaceUser()**](WorkspacesApi.md#updateWorkspaceUser) | **PUT** /v2/workspaces/{workspace_id}/{user_id} | Update Workspace User |
 
 
-## `addWorkspaceMember()`
+## `addWorkspaceUser()`
 
 ```php
-addWorkspaceMember($workspace_id, $workspace_user_create_request): \OpenAPI\Client\Model\Completed
+addWorkspaceUser($workspace_id, $workspace_user_create_request): \OpenAPI\Client\Model\Completed
 ```
 
-Add Workspace Member
+Add Workspace User
 
 ### Example
 
@@ -27,6 +29,11 @@ Add Workspace Member
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -42,10 +49,10 @@ $workspace_id = 'workspace_id_example'; // string
 $workspace_user_create_request = new \OpenAPI\Client\Model\WorkspaceUserCreateRequest(); // \OpenAPI\Client\Model\WorkspaceUserCreateRequest
 
 try {
-    $result = $apiInstance->addWorkspaceMember($workspace_id, $workspace_user_create_request);
+    $result = $apiInstance->addWorkspaceUser($workspace_id, $workspace_user_create_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WorkspacesApi->addWorkspaceMember: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WorkspacesApi->addWorkspaceUser: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -62,7 +69,7 @@ try {
 
 ### Authorization
 
-[HTTPBearer](../../README.md#HTTPBearer)
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -87,6 +94,11 @@ Create Workspace
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -120,7 +132,7 @@ try {
 
 ### Authorization
 
-[HTTPBearer](../../README.md#HTTPBearer)
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -145,6 +157,11 @@ Delete Workspace
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -178,7 +195,7 @@ try {
 
 ### Authorization
 
-[HTTPBearer](../../README.md#HTTPBearer)
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -189,13 +206,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `deleteWorkspaceMember()`
+## `deleteWorkspaceUser()`
 
 ```php
-deleteWorkspaceMember($workspace_id, $user_id): \OpenAPI\Client\Model\Completed
+deleteWorkspaceUser($workspace_id, $user_id): \OpenAPI\Client\Model\Completed
 ```
 
-Delete Workspace Member
+Delete Workspace User
 
 ### Example
 
@@ -203,6 +220,11 @@ Delete Workspace Member
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -218,10 +240,10 @@ $workspace_id = 'workspace_id_example'; // string
 $user_id = 'user_id_example'; // string
 
 try {
-    $result = $apiInstance->deleteWorkspaceMember($workspace_id, $user_id);
+    $result = $apiInstance->deleteWorkspaceUser($workspace_id, $user_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WorkspacesApi->deleteWorkspaceMember: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WorkspacesApi->deleteWorkspaceUser: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -238,7 +260,7 @@ try {
 
 ### Authorization
 
-[HTTPBearer](../../README.md#HTTPBearer)
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -249,13 +271,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getWorkspaceUsers()`
+## `getWorkspace()`
 
 ```php
-getWorkspaceUsers($workspace_id, $workspace_search_request): \OpenAPI\Client\Model\WorkspaceResponse
+getWorkspace($workspace_id): \OpenAPI\Client\Model\WorkspaceResponse
 ```
 
-Get Workspace Users
+Get Workspace
 
 ### Example
 
@@ -263,6 +285,11 @@ Get Workspace Users
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -275,13 +302,12 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$workspace_search_request = new \OpenAPI\Client\Model\WorkspaceSearchRequest(); // \OpenAPI\Client\Model\WorkspaceSearchRequest
 
 try {
-    $result = $apiInstance->getWorkspaceUsers($workspace_id, $workspace_search_request);
+    $result = $apiInstance->getWorkspace($workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WorkspacesApi->getWorkspaceUsers: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WorkspacesApi->getWorkspace: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -290,7 +316,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **workspace_search_request** | [**\OpenAPI\Client\Model\WorkspaceSearchRequest**](../Model/WorkspaceSearchRequest.md)|  | |
 
 ### Return type
 
@@ -298,7 +323,135 @@ try {
 
 ### Authorization
 
-[HTTPBearer](../../README.md#HTTPBearer)
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchMyWorkspaces()`
+
+```php
+searchMyWorkspaces($workspace_search_request): \OpenAPI\Client\Model\WorkspaceRole[]
+```
+
+Search My Workspaces
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_search_request = new \OpenAPI\Client\Model\WorkspaceSearchRequest(); // \OpenAPI\Client\Model\WorkspaceSearchRequest
+
+try {
+    $result = $apiInstance->searchMyWorkspaces($workspace_search_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling WorkspacesApi->searchMyWorkspaces: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_search_request** | [**\OpenAPI\Client\Model\WorkspaceSearchRequest**](../Model/WorkspaceSearchRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\WorkspaceRole[]**](../Model/WorkspaceRole.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchWorkspaceUsers()`
+
+```php
+searchWorkspaceUsers($workspace_id, $workspace_users_search_request): \OpenAPI\Client\Model\WorkspaceUserResponse[]
+```
+
+Search Workspace Users
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$workspace_users_search_request = new \OpenAPI\Client\Model\WorkspaceUsersSearchRequest(); // \OpenAPI\Client\Model\WorkspaceUsersSearchRequest
+
+try {
+    $result = $apiInstance->searchWorkspaceUsers($workspace_id, $workspace_users_search_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling WorkspacesApi->searchWorkspaceUsers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **workspace_users_search_request** | [**\OpenAPI\Client\Model\WorkspaceUsersSearchRequest**](../Model/WorkspaceUsersSearchRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\WorkspaceUserResponse[]**](../Model/WorkspaceUserResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -323,6 +476,11 @@ Update Workspace
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -358,7 +516,7 @@ try {
 
 ### Authorization
 
-[HTTPBearer](../../README.md#HTTPBearer)
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -369,13 +527,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `updateWorkspaceMember()`
+## `updateWorkspaceUser()`
 
 ```php
-updateWorkspaceMember($workspace_id, $user_id, $workspace_user_update_request): \OpenAPI\Client\Model\Completed
+updateWorkspaceUser($workspace_id, $user_id, $workspace_user_update_request): \OpenAPI\Client\Model\Completed
 ```
 
-Update Workspace Member
+Update Workspace User
 
 ### Example
 
@@ -383,6 +541,11 @@ Update Workspace Member
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -399,10 +562,10 @@ $user_id = 'user_id_example'; // string
 $workspace_user_update_request = new \OpenAPI\Client\Model\WorkspaceUserUpdateRequest(); // \OpenAPI\Client\Model\WorkspaceUserUpdateRequest
 
 try {
-    $result = $apiInstance->updateWorkspaceMember($workspace_id, $user_id, $workspace_user_update_request);
+    $result = $apiInstance->updateWorkspaceUser($workspace_id, $user_id, $workspace_user_update_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WorkspacesApi->updateWorkspaceMember: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WorkspacesApi->updateWorkspaceUser: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -420,7 +583,7 @@ try {
 
 ### Authorization
 
-[HTTPBearer](../../README.md#HTTPBearer)
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 

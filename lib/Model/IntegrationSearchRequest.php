@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequest
+ * IntegrationSearchRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * WorkspaceSearchRequest Class Doc Comment
+ * IntegrationSearchRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'WorkspaceSearchRequest';
+    protected static $openAPIModelName = 'IntegrationSearchRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,6 +57,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
+        'slug' => '\OpenAPI\Client\Model\IntegrationSlug',
         'name' => 'string'
     ];
 
@@ -68,6 +69,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'slug' => null,
         'name' => null
     ];
 
@@ -77,6 +79,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'slug' => true,
         'name' => true
     ];
 
@@ -166,6 +169,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'slug' => 'slug',
         'name' => 'name'
     ];
 
@@ -175,6 +179,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'slug' => 'setSlug',
         'name' => 'setName'
     ];
 
@@ -184,6 +189,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'slug' => 'getSlug',
         'name' => 'getName'
     ];
 
@@ -244,6 +250,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('slug', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
     }
 
@@ -288,6 +295,40 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets slug
+     *
+     * @return \OpenAPI\Client\Model\IntegrationSlug|null
+     */
+    public function getSlug()
+    {
+        return $this->container['slug'];
+    }
+
+    /**
+     * Sets slug
+     *
+     * @param \OpenAPI\Client\Model\IntegrationSlug|null $slug slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        if (is_null($slug)) {
+            array_push($this->openAPINullablesSetToNull, 'slug');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('slug', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['slug'] = $slug;
+
+        return $this;
+    }
 
     /**
      * Gets name

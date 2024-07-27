@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequestTest
+ * WorkspaceUsersSearchRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * WorkspaceSearchRequestTest Class Doc Comment
+ * WorkspaceUsersSearchRequestTest Class Doc Comment
  *
  * @category    Class
- * @description WorkspaceSearchRequest
+ * @description WorkspaceUsersSearchRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class WorkspaceSearchRequestTest extends TestCase
+class WorkspaceUsersSearchRequestTest extends TestCase
 {
 
     /**
@@ -71,9 +71,18 @@ class WorkspaceSearchRequestTest extends TestCase
     }
 
     /**
-     * Test "WorkspaceSearchRequest"
+     * Test "WorkspaceUsersSearchRequest"
      */
-    public function testWorkspaceSearchRequest()
+    public function testWorkspaceUsersSearchRequest()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "role"
+     */
+    public function testPropertyRole()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -83,6 +92,15 @@ class WorkspaceSearchRequestTest extends TestCase
      * Test attribute "name"
      */
     public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "email"
+     */
+    public function testPropertyEmail()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

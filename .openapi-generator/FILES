@@ -15,6 +15,7 @@ docs/Api/FlowSessionsApi.md
 docs/Api/FlowsApi.md
 docs/Api/HealthApi.md
 docs/Api/ImagesApi.md
+docs/Api/IntegrationsApi.md
 docs/Api/PromptsApi.md
 docs/Api/SERPApi.md
 docs/Api/SchedulesApi.md
@@ -84,6 +85,12 @@ docs/Model/HTTPValidationError.md
 docs/Model/Health.md
 docs/Model/ImageConvertRequest.md
 docs/Model/ImageOptimizeRequest.md
+docs/Model/IntegrationCategory.md
+docs/Model/IntegrationCreateRequest.md
+docs/Model/IntegrationDetailResponse.md
+docs/Model/IntegrationResponse.md
+docs/Model/IntegrationSearchRequest.md
+docs/Model/IntegrationSlug.md
 docs/Model/LoginUserRequest.md
 docs/Model/NewPasswordRequest.md
 docs/Model/OrganicPosition.md
@@ -154,6 +161,7 @@ docs/Model/WorkspaceUpdateRequest.md
 docs/Model/WorkspaceUserCreateRequest.md
 docs/Model/WorkspaceUserResponse.md
 docs/Model/WorkspaceUserUpdateRequest.md
+docs/Model/WorkspaceUsersSearchRequest.md
 docs/Model/YoutubeContent.md
 docs/Model/YoutubeTranscriptRequest.md
 docs/Model/YoutubeTranscriptResponse.md
@@ -171,6 +179,7 @@ lib/FlowHunt/FlowSessionsApi.php
 lib/FlowHunt/FlowsApi.php
 lib/FlowHunt/HealthApi.php
 lib/FlowHunt/ImagesApi.php
+lib/FlowHunt/IntegrationsApi.php
 lib/FlowHunt/PromptsApi.php
 lib/FlowHunt/SERPApi.php
 lib/FlowHunt/SchedulesApi.php
@@ -241,6 +250,12 @@ lib/Model/HTTPValidationError.php
 lib/Model/Health.php
 lib/Model/ImageConvertRequest.php
 lib/Model/ImageOptimizeRequest.php
+lib/Model/IntegrationCategory.php
+lib/Model/IntegrationCreateRequest.php
+lib/Model/IntegrationDetailResponse.php
+lib/Model/IntegrationResponse.php
+lib/Model/IntegrationSearchRequest.php
+lib/Model/IntegrationSlug.php
 lib/Model/LoginUserRequest.php
 lib/Model/ModelInterface.php
 lib/Model/NewPasswordRequest.php
@@ -312,6 +327,7 @@ lib/Model/WorkspaceUpdateRequest.php
 lib/Model/WorkspaceUserCreateRequest.php
 lib/Model/WorkspaceUserResponse.php
 lib/Model/WorkspaceUserUpdateRequest.php
+lib/Model/WorkspaceUsersSearchRequest.php
 lib/Model/YoutubeContent.php
 lib/Model/YoutubeTranscriptRequest.php
 lib/Model/YoutubeTranscriptResponse.php
@@ -328,6 +344,7 @@ test/Api/FlowSessionsApiTest.php
 test/Api/FlowsApiTest.php
 test/Api/HealthApiTest.php
 test/Api/ImagesApiTest.php
+test/Api/IntegrationsApiTest.php
 test/Api/PromptsApiTest.php
 test/Api/SERPApiTest.php
 test/Api/SchedulesApiTest.php
@@ -397,6 +414,12 @@ test/Model/HTTPValidationErrorTest.php
 test/Model/HealthTest.php
 test/Model/ImageConvertRequestTest.php
 test/Model/ImageOptimizeRequestTest.php
+test/Model/IntegrationCategoryTest.php
+test/Model/IntegrationCreateRequestTest.php
+test/Model/IntegrationDetailResponseTest.php
+test/Model/IntegrationResponseTest.php
+test/Model/IntegrationSearchRequestTest.php
+test/Model/IntegrationSlugTest.php
 test/Model/LoginUserRequestTest.php
 test/Model/NewPasswordRequestTest.php
 test/Model/OrganicPositionTest.php
@@ -467,6 +490,7 @@ test/Model/WorkspaceUpdateRequestTest.php
 test/Model/WorkspaceUserCreateRequestTest.php
 test/Model/WorkspaceUserResponseTest.php
 test/Model/WorkspaceUserUpdateRequestTest.php
+test/Model/WorkspaceUsersSearchRequestTest.php
 test/Model/YoutubeContentTest.php
 test/Model/YoutubeTranscriptRequestTest.php
 test/Model/YoutubeTranscriptResponseTest.php

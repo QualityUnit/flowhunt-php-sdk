@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequestTest
+ * IntegrationResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * WorkspaceSearchRequestTest Class Doc Comment
+ * IntegrationResponseTest Class Doc Comment
  *
  * @category    Class
- * @description WorkspaceSearchRequest
+ * @description IntegrationResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class WorkspaceSearchRequestTest extends TestCase
+class IntegrationResponseTest extends TestCase
 {
 
     /**
@@ -71,9 +71,18 @@ class WorkspaceSearchRequestTest extends TestCase
     }
 
     /**
-     * Test "WorkspaceSearchRequest"
+     * Test "IntegrationResponse"
      */
-    public function testWorkspaceSearchRequest()
+    public function testIntegrationResponse()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "slug"
+     */
+    public function testPropertySlug()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -83,6 +92,42 @@ class WorkspaceSearchRequestTest extends TestCase
      * Test attribute "name"
      */
     public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "integrated_instance_cnt"
+     */
+    public function testPropertyIntegratedInstanceCnt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "categories"
+     */
+    public function testPropertyCategories()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "beta"
+     */
+    public function testPropertyBeta()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequestTest
+ * IntegrationCreateRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * WorkspaceSearchRequestTest Class Doc Comment
+ * IntegrationCreateRequestTest Class Doc Comment
  *
  * @category    Class
- * @description WorkspaceSearchRequest
+ * @description IntegrationCreateRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class WorkspaceSearchRequestTest extends TestCase
+class IntegrationCreateRequestTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class WorkspaceSearchRequestTest extends TestCase
     }
 
     /**
-     * Test "WorkspaceSearchRequest"
+     * Test "IntegrationCreateRequest"
      */
-    public function testWorkspaceSearchRequest()
+    public function testIntegrationCreateRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

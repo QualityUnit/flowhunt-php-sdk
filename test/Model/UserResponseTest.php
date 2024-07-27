@@ -116,18 +116,18 @@ class UserResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "workspaces"
+     * Test attribute "api_key_workspace_id"
      */
-    public function testPropertyWorkspaces()
+    public function testPropertyApiKeyWorkspaceId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "api_key_workspace_id"
+     * Test attribute "subscription_plan"
      */
-    public function testPropertyApiKeyWorkspaceId()
+    public function testPropertySubscriptionPlan()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

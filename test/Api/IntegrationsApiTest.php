@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspacesApiTest
+ * IntegrationsApiTest
  * PHP version 7.4
  *
  * @category Class
@@ -33,14 +33,14 @@ use \OpenAPI\Client\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
- * WorkspacesApiTest Class Doc Comment
+ * IntegrationsApiTest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class WorkspacesApiTest extends TestCase
+class IntegrationsApiTest extends TestCase
 {
 
     /**
@@ -72,108 +72,60 @@ class WorkspacesApiTest extends TestCase
     }
 
     /**
-     * Test case for addWorkspaceUser
+     * Test case for createIntegration
      *
-     * Add Workspace User.
+     * Create Integration.
      *
      */
-    public function testAddWorkspaceUser()
+    public function testCreateIntegration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createWorkspace
+     * Test case for getAllIntegrations
      *
-     * Create Workspace.
+     * Get All Integrations.
      *
      */
-    public function testCreateWorkspace()
+    public function testGetAllIntegrations()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteWorkspace
+     * Test case for getMyIntegrations
      *
-     * Delete Workspace.
+     * Get My Integrations.
      *
      */
-    public function testDeleteWorkspace()
+    public function testGetMyIntegrations()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteWorkspaceUser
+     * Test case for removeIntegration
      *
-     * Delete Workspace User.
+     * Remove Integration.
      *
      */
-    public function testDeleteWorkspaceUser()
+    public function testRemoveIntegration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getWorkspace
+     * Test case for updateIntegration
      *
-     * Get Workspace.
-     *
-     */
-    public function testGetWorkspace()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for searchMyWorkspaces
-     *
-     * Search My Workspaces.
+     * Update Integration.
      *
      */
-    public function testSearchMyWorkspaces()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for searchWorkspaceUsers
-     *
-     * Search Workspace Users.
-     *
-     */
-    public function testSearchWorkspaceUsers()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updateWorkspace
-     *
-     * Update Workspace.
-     *
-     */
-    public function testUpdateWorkspace()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updateWorkspaceUser
-     *
-     * Update Workspace User.
-     *
-     */
-    public function testUpdateWorkspaceUser()
+    public function testUpdateIntegration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

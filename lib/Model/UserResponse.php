@@ -61,8 +61,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'username' => 'string',
         'is_active' => 'bool',
         'avatar_url' => 'string',
-        'workspaces' => '\OpenAPI\Client\Model\WorkspaceRole[]',
-        'api_key_workspace_id' => 'string'
+        'api_key_workspace_id' => 'string',
+        'subscription_plan' => '\OpenAPI\Client\Model\SubscriptionPlan'
     ];
 
     /**
@@ -77,8 +77,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'username' => null,
         'is_active' => null,
         'avatar_url' => null,
-        'workspaces' => null,
-        'api_key_workspace_id' => 'uuid'
+        'api_key_workspace_id' => 'uuid',
+        'subscription_plan' => null
     ];
 
     /**
@@ -91,8 +91,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'username' => false,
         'is_active' => false,
         'avatar_url' => true,
-        'workspaces' => false,
-        'api_key_workspace_id' => true
+        'api_key_workspace_id' => true,
+        'subscription_plan' => true
     ];
 
     /**
@@ -185,8 +185,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'username' => 'username',
         'is_active' => 'is_active',
         'avatar_url' => 'avatar_url',
-        'workspaces' => 'workspaces',
-        'api_key_workspace_id' => 'api_key_workspace_id'
+        'api_key_workspace_id' => 'api_key_workspace_id',
+        'subscription_plan' => 'subscription_plan'
     ];
 
     /**
@@ -199,8 +199,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'username' => 'setUsername',
         'is_active' => 'setIsActive',
         'avatar_url' => 'setAvatarUrl',
-        'workspaces' => 'setWorkspaces',
-        'api_key_workspace_id' => 'setApiKeyWorkspaceId'
+        'api_key_workspace_id' => 'setApiKeyWorkspaceId',
+        'subscription_plan' => 'setSubscriptionPlan'
     ];
 
     /**
@@ -213,8 +213,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'username' => 'getUsername',
         'is_active' => 'getIsActive',
         'avatar_url' => 'getAvatarUrl',
-        'workspaces' => 'getWorkspaces',
-        'api_key_workspace_id' => 'getApiKeyWorkspaceId'
+        'api_key_workspace_id' => 'getApiKeyWorkspaceId',
+        'subscription_plan' => 'getSubscriptionPlan'
     ];
 
     /**
@@ -278,8 +278,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('username', $data ?? [], null);
         $this->setIfExists('is_active', $data ?? [], null);
         $this->setIfExists('avatar_url', $data ?? [], null);
-        $this->setIfExists('workspaces', $data ?? [], null);
         $this->setIfExists('api_key_workspace_id', $data ?? [], null);
+        $this->setIfExists('subscription_plan', $data ?? [], null);
     }
 
     /**
@@ -449,33 +449,6 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets workspaces
-     *
-     * @return \OpenAPI\Client\Model\WorkspaceRole[]|null
-     */
-    public function getWorkspaces()
-    {
-        return $this->container['workspaces'];
-    }
-
-    /**
-     * Sets workspaces
-     *
-     * @param \OpenAPI\Client\Model\WorkspaceRole[]|null $workspaces List of workspaces the user belongs to
-     *
-     * @return self
-     */
-    public function setWorkspaces($workspaces)
-    {
-        if (is_null($workspaces)) {
-            throw new \InvalidArgumentException('non-nullable workspaces cannot be null');
-        }
-        $this->container['workspaces'] = $workspaces;
-
-        return $this;
-    }
-
-    /**
      * Gets api_key_workspace_id
      *
      * @return string|null
@@ -505,6 +478,40 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['api_key_workspace_id'] = $api_key_workspace_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets subscription_plan
+     *
+     * @return \OpenAPI\Client\Model\SubscriptionPlan|null
+     */
+    public function getSubscriptionPlan()
+    {
+        return $this->container['subscription_plan'];
+    }
+
+    /**
+     * Sets subscription_plan
+     *
+     * @param \OpenAPI\Client\Model\SubscriptionPlan|null $subscription_plan subscription_plan
+     *
+     * @return self
+     */
+    public function setSubscriptionPlan($subscription_plan)
+    {
+        if (is_null($subscription_plan)) {
+            array_push($this->openAPINullablesSetToNull, 'subscription_plan');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('subscription_plan', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['subscription_plan'] = $subscription_plan;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequest
+ * IntegrationDetailResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * WorkspaceSearchRequest Class Doc Comment
+ * IntegrationDetailResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'WorkspaceSearchRequest';
+    protected static $openAPIModelName = 'IntegrationDetailResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,10 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string'
+        'slug' => 'string',
+        'name' => 'string',
+        'integration_id' => 'string',
+        'created_at' => '\DateTime'
     ];
 
     /**
@@ -68,7 +71,10 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null
+        'slug' => null,
+        'name' => null,
+        'integration_id' => 'uuid',
+        'created_at' => 'date-time'
     ];
 
     /**
@@ -77,7 +83,10 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true
+        'slug' => false,
+        'name' => false,
+        'integration_id' => false,
+        'created_at' => false
     ];
 
     /**
@@ -166,7 +175,10 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name'
+        'slug' => 'slug',
+        'name' => 'name',
+        'integration_id' => 'integration_id',
+        'created_at' => 'created_at'
     ];
 
     /**
@@ -175,7 +187,10 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName'
+        'slug' => 'setSlug',
+        'name' => 'setName',
+        'integration_id' => 'setIntegrationId',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -184,7 +199,10 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName'
+        'slug' => 'getSlug',
+        'name' => 'getName',
+        'integration_id' => 'getIntegrationId',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -244,7 +262,10 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('slug', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('integration_id', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
 
     /**
@@ -274,6 +295,18 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        if ($this->container['slug'] === null) {
+            $invalidProperties[] = "'slug' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['integration_id'] === null) {
+            $invalidProperties[] = "'integration_id' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -290,9 +323,36 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
+     * Gets slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->container['slug'];
+    }
+
+    /**
+     * Sets slug
+     *
+     * @param string $slug The type of the integration.
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        if (is_null($slug)) {
+            throw new \InvalidArgumentException('non-nullable slug cannot be null');
+        }
+        $this->container['slug'] = $slug;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
-     * @return string|null
+     * @return string
      */
     public function getName()
     {
@@ -302,23 +362,70 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string $name The name of the integration.
      *
      * @return self
      */
     public function setName($name)
     {
         if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets integration_id
+     *
+     * @return string
+     */
+    public function getIntegrationId()
+    {
+        return $this->container['integration_id'];
+    }
+
+    /**
+     * Sets integration_id
+     *
+     * @param string $integration_id The ID of the integration.
+     *
+     * @return self
+     */
+    public function setIntegrationId($integration_id)
+    {
+        if (is_null($integration_id)) {
+            throw new \InvalidArgumentException('non-nullable integration_id cannot be null');
+        }
+        $this->container['integration_id'] = $integration_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param \DateTime $created_at The creation date of the integration.
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequest
+ * IntegrationResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * WorkspaceSearchRequest Class Doc Comment
+ * IntegrationResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'WorkspaceSearchRequest';
+    protected static $openAPIModelName = 'IntegrationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,12 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string'
+        'slug' => 'string',
+        'name' => 'string',
+        'description' => 'string',
+        'integrated_instance_cnt' => 'int',
+        'categories' => '\OpenAPI\Client\Model\IntegrationCategory[]',
+        'beta' => 'bool'
     ];
 
     /**
@@ -68,7 +73,12 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null
+        'slug' => null,
+        'name' => null,
+        'description' => null,
+        'integrated_instance_cnt' => null,
+        'categories' => null,
+        'beta' => null
     ];
 
     /**
@@ -77,7 +87,12 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true
+        'slug' => false,
+        'name' => false,
+        'description' => false,
+        'integrated_instance_cnt' => false,
+        'categories' => false,
+        'beta' => false
     ];
 
     /**
@@ -166,7 +181,12 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name'
+        'slug' => 'slug',
+        'name' => 'name',
+        'description' => 'description',
+        'integrated_instance_cnt' => 'integrated_instance_cnt',
+        'categories' => 'categories',
+        'beta' => 'beta'
     ];
 
     /**
@@ -175,7 +195,12 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName'
+        'slug' => 'setSlug',
+        'name' => 'setName',
+        'description' => 'setDescription',
+        'integrated_instance_cnt' => 'setIntegratedInstanceCnt',
+        'categories' => 'setCategories',
+        'beta' => 'setBeta'
     ];
 
     /**
@@ -184,7 +209,12 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName'
+        'slug' => 'getSlug',
+        'name' => 'getName',
+        'description' => 'getDescription',
+        'integrated_instance_cnt' => 'getIntegratedInstanceCnt',
+        'categories' => 'getCategories',
+        'beta' => 'getBeta'
     ];
 
     /**
@@ -244,7 +274,12 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('slug', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('integrated_instance_cnt', $data ?? [], null);
+        $this->setIfExists('categories', $data ?? [], null);
+        $this->setIfExists('beta', $data ?? [], false);
     }
 
     /**
@@ -274,6 +309,21 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        if ($this->container['slug'] === null) {
+            $invalidProperties[] = "'slug' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ($this->container['integrated_instance_cnt'] === null) {
+            $invalidProperties[] = "'integrated_instance_cnt' can't be null";
+        }
+        if ($this->container['categories'] === null) {
+            $invalidProperties[] = "'categories' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -290,9 +340,36 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
+     * Gets slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->container['slug'];
+    }
+
+    /**
+     * Sets slug
+     *
+     * @param string $slug The slug of the integration.
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        if (is_null($slug)) {
+            throw new \InvalidArgumentException('non-nullable slug cannot be null');
+        }
+        $this->container['slug'] = $slug;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
-     * @return string|null
+     * @return string
      */
     public function getName()
     {
@@ -302,23 +379,124 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string $name The name of the integration.
      *
      * @return self
      */
     public function setName($name)
     {
         if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string $description The description of the integration.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets integrated_instance_cnt
+     *
+     * @return int
+     */
+    public function getIntegratedInstanceCnt()
+    {
+        return $this->container['integrated_instance_cnt'];
+    }
+
+    /**
+     * Sets integrated_instance_cnt
+     *
+     * @param int $integrated_instance_cnt The number of integrated instances.
+     *
+     * @return self
+     */
+    public function setIntegratedInstanceCnt($integrated_instance_cnt)
+    {
+        if (is_null($integrated_instance_cnt)) {
+            throw new \InvalidArgumentException('non-nullable integrated_instance_cnt cannot be null');
+        }
+        $this->container['integrated_instance_cnt'] = $integrated_instance_cnt;
+
+        return $this;
+    }
+
+    /**
+     * Gets categories
+     *
+     * @return \OpenAPI\Client\Model\IntegrationCategory[]
+     */
+    public function getCategories()
+    {
+        return $this->container['categories'];
+    }
+
+    /**
+     * Sets categories
+     *
+     * @param \OpenAPI\Client\Model\IntegrationCategory[] $categories The categories of the integration.
+     *
+     * @return self
+     */
+    public function setCategories($categories)
+    {
+        if (is_null($categories)) {
+            throw new \InvalidArgumentException('non-nullable categories cannot be null');
+        }
+        $this->container['categories'] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Gets beta
+     *
+     * @return bool|null
+     */
+    public function getBeta()
+    {
+        return $this->container['beta'];
+    }
+
+    /**
+     * Sets beta
+     *
+     * @param bool|null $beta Whether the integration is in beta or not.
+     *
+     * @return self
+     */
+    public function setBeta($beta)
+    {
+        if (is_null($beta)) {
+            throw new \InvalidArgumentException('non-nullable beta cannot be null');
+        }
+        $this->container['beta'] = $beta;
 
         return $this;
     }

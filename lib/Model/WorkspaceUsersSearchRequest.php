@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspaceSearchRequest
+ * WorkspaceUsersSearchRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * WorkspaceSearchRequest Class Doc Comment
+ * WorkspaceUsersSearchRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class WorkspaceUsersSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'WorkspaceSearchRequest';
+    protected static $openAPIModelName = 'WorkspaceUsersSearchRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string'
+        'role' => '\OpenAPI\Client\Model\Role',
+        'name' => 'string',
+        'email' => 'string'
     ];
 
     /**
@@ -68,7 +70,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null
+        'role' => null,
+        'name' => null,
+        'email' => null
     ];
 
     /**
@@ -77,7 +81,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true
+        'role' => true,
+        'name' => true,
+        'email' => true
     ];
 
     /**
@@ -166,7 +172,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name'
+        'role' => 'role',
+        'name' => 'name',
+        'email' => 'email'
     ];
 
     /**
@@ -175,7 +183,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName'
+        'role' => 'setRole',
+        'name' => 'setName',
+        'email' => 'setEmail'
     ];
 
     /**
@@ -184,7 +194,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName'
+        'role' => 'getRole',
+        'name' => 'getName',
+        'email' => 'getEmail'
     ];
 
     /**
@@ -244,7 +256,9 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('role', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
     }
 
     /**
@@ -290,6 +304,40 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
+     * Gets role
+     *
+     * @return \OpenAPI\Client\Model\Role|null
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param \OpenAPI\Client\Model\Role|null $role role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            array_push($this->openAPINullablesSetToNull, 'role');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('role', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['role'] = $role;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
      * @return string|null
@@ -319,6 +367,40 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email email
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        if (is_null($email)) {
+            array_push($this->openAPINullablesSetToNull, 'email');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('email', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['email'] = $email;
 
         return $this;
     }
