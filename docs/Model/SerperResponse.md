@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  |
-**status** | [**\OpenAPI\Client\Model\TaskStatuses**](TaskStatuses.md) |  |
+**id** | **string** | Task ID |
+**status** | [**\OpenAPI\Client\Model\TaskStatus**](TaskStatus.md) | Task status |
 **result** | [**\OpenAPI\Client\Model\SerperResult**](SerperResult.md) |  | [optional]
 **error_message** | **string** |  | [optional]
 

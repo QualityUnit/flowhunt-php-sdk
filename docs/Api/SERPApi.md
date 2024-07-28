@@ -77,7 +77,7 @@ try {
 ## `serpVolumes()`
 
 ```php
-serpVolumes($workspace_id, $serp_volume_request): \OpenAPI\Client\Model\SerpVolumeScheduleResponse
+serpVolumes($workspace_id, $serp_volume_request): \OpenAPI\Client\Model\TaskResponse
 ```
 
 Serp Volumes
@@ -124,7 +124,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SerpVolumeScheduleResponse**](../Model/SerpVolumeScheduleResponse.md)
+[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ try {
 ## `serpVolumesPingback()`
 
 ```php
-serpVolumesPingback($id, $tag): \OpenAPI\Client\Model\SerpVolumeResponse
+serpVolumesPingback($id, $tag): \OpenAPI\Client\Model\TaskResponse
 ```
 
 Serp Volumes Pingback
@@ -180,7 +180,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SerpVolumeResponse**](../Model/SerpVolumeResponse.md)
+[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 

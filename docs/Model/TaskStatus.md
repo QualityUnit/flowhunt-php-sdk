@@ -1,4 +1,4 @@
-# # TaskStatuses
+# # TaskStatus
 
 ## Properties
 

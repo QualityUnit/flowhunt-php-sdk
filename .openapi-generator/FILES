@@ -55,7 +55,6 @@ docs/Model/DocumentSimilarityTaskRequest.md
 docs/Model/DocumentStatus.md
 docs/Model/DocumentType.md
 docs/Model/DocumentUpdateRequest.md
-docs/Model/DownloadFileResponse.md
 docs/Model/FaqCreateRequest.md
 docs/Model/FaqResponse.md
 docs/Model/FaqSearchRequest.md
@@ -110,7 +109,6 @@ docs/Model/RefreshTokenRequest.md
 docs/Model/RegisterUserRequest.md
 docs/Model/RelatedQuestion.md
 docs/Model/RelatedSearch.md
-docs/Model/Result.md
 docs/Model/Role.md
 docs/Model/ScheduleCreateRequest.md
 docs/Model/ScheduleFrequency.md
@@ -127,8 +125,6 @@ docs/Model/ScreenshotResponse.md
 docs/Model/SerpSearchRequest.md
 docs/Model/SerpSearchRequests.md
 docs/Model/SerpVolumeRequest.md
-docs/Model/SerpVolumeResponse.md
-docs/Model/SerpVolumeScheduleResponse.md
 docs/Model/SerperResponse.md
 docs/Model/SerperResult.md
 docs/Model/SiteLink.md
@@ -138,7 +134,7 @@ docs/Model/TagResponse.md
 docs/Model/TagSearchRequest.md
 docs/Model/TagUpdateRequest.md
 docs/Model/TaskResponse.md
-docs/Model/TaskStatuses.md
+docs/Model/TaskStatus.md
 docs/Model/ThridPartyLoginRequest.md
 docs/Model/Token.md
 docs/Model/TransactionType.md
@@ -220,7 +216,6 @@ lib/Model/DocumentSimilarityTaskRequest.php
 lib/Model/DocumentStatus.php
 lib/Model/DocumentType.php
 lib/Model/DocumentUpdateRequest.php
-lib/Model/DownloadFileResponse.php
 lib/Model/FaqCreateRequest.php
 lib/Model/FaqResponse.php
 lib/Model/FaqSearchRequest.php
@@ -276,7 +271,6 @@ lib/Model/RefreshTokenRequest.php
 lib/Model/RegisterUserRequest.php
 lib/Model/RelatedQuestion.php
 lib/Model/RelatedSearch.php
-lib/Model/Result.php
 lib/Model/Role.php
 lib/Model/ScheduleCreateRequest.php
 lib/Model/ScheduleFrequency.php
@@ -293,8 +287,6 @@ lib/Model/ScreenshotResponse.php
 lib/Model/SerpSearchRequest.php
 lib/Model/SerpSearchRequests.php
 lib/Model/SerpVolumeRequest.php
-lib/Model/SerpVolumeResponse.php
-lib/Model/SerpVolumeScheduleResponse.php
 lib/Model/SerperResponse.php
 lib/Model/SerperResult.php
 lib/Model/SiteLink.php
@@ -304,7 +296,7 @@ lib/Model/TagResponse.php
 lib/Model/TagSearchRequest.php
 lib/Model/TagUpdateRequest.php
 lib/Model/TaskResponse.php
-lib/Model/TaskStatuses.php
+lib/Model/TaskStatus.php
 lib/Model/ThridPartyLoginRequest.php
 lib/Model/Token.php
 lib/Model/TransactionType.php
@@ -384,7 +376,6 @@ test/Model/DocumentSimilarityTaskRequestTest.php
 test/Model/DocumentStatusTest.php
 test/Model/DocumentTypeTest.php
 test/Model/DocumentUpdateRequestTest.php
-test/Model/DownloadFileResponseTest.php
 test/Model/FaqCreateRequestTest.php
 test/Model/FaqResponseTest.php
 test/Model/FaqSearchRequestTest.php
@@ -439,7 +430,6 @@ test/Model/RefreshTokenRequestTest.php
 test/Model/RegisterUserRequestTest.php
 test/Model/RelatedQuestionTest.php
 test/Model/RelatedSearchTest.php
-test/Model/ResultTest.php
 test/Model/RoleTest.php
 test/Model/ScheduleCreateRequestTest.php
 test/Model/ScheduleFrequencyTest.php
@@ -456,8 +446,6 @@ test/Model/ScreenshotResponseTest.php
 test/Model/SerpSearchRequestTest.php
 test/Model/SerpSearchRequestsTest.php
 test/Model/SerpVolumeRequestTest.php
-test/Model/SerpVolumeResponseTest.php
-test/Model/SerpVolumeScheduleResponseTest.php
 test/Model/SerperResponseTest.php
 test/Model/SerperResultTest.php
 test/Model/SiteLinkTest.php
@@ -467,7 +455,7 @@ test/Model/TagResponseTest.php
 test/Model/TagSearchRequestTest.php
 test/Model/TagUpdateRequestTest.php
 test/Model/TaskResponseTest.php
-test/Model/TaskStatusesTest.php
+test/Model/TaskStatusTest.php
 test/Model/ThridPartyLoginRequestTest.php
 test/Model/TokenTest.php
 test/Model/TransactionTypeTest.php

@@ -510,7 +510,7 @@ class SERPApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SerpVolumeScheduleResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function serpVolumes($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
     {
@@ -529,7 +529,7 @@ class SERPApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SerpVolumeScheduleResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function serpVolumesWithHttpInfo($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
     {
@@ -572,11 +572,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SerpVolumeScheduleResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SerpVolumeScheduleResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -594,7 +594,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerpVolumeScheduleResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -627,7 +627,7 @@ class SERPApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SerpVolumeScheduleResponse';
+            $returnType = '\OpenAPI\Client\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -660,7 +660,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SerpVolumeScheduleResponse',
+                        '\OpenAPI\Client\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -714,7 +714,7 @@ class SERPApi
      */
     public function serpVolumesAsyncWithHttpInfo($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SerpVolumeScheduleResponse';
+        $returnType = '\OpenAPI\Client\Model\TaskResponse';
         $request = $this->serpVolumesRequest($workspace_id, $serp_volume_request, $contentType);
 
         return $this->client
@@ -881,7 +881,7 @@ class SERPApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SerpVolumeResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function serpVolumesPingback($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
     {
@@ -900,7 +900,7 @@ class SERPApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SerpVolumeResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function serpVolumesPingbackWithHttpInfo($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
     {
@@ -943,11 +943,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SerpVolumeResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SerpVolumeResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -965,7 +965,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerpVolumeResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -998,7 +998,7 @@ class SERPApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SerpVolumeResponse';
+            $returnType = '\OpenAPI\Client\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1031,7 +1031,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SerpVolumeResponse',
+                        '\OpenAPI\Client\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1085,7 +1085,7 @@ class SERPApi
      */
     public function serpVolumesPingbackAsyncWithHttpInfo($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SerpVolumeResponse';
+        $returnType = '\OpenAPI\Client\Model\TaskResponse';
         $request = $this->serpVolumesPingbackRequest($id, $tag, $contentType);
 
         return $this->client

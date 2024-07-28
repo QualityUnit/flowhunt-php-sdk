@@ -1,6 +1,6 @@
 <?php
 /**
- * ResultTest
+ * TaskStatusTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ResultTest Class Doc Comment
+ * TaskStatusTest Class Doc Comment
  *
  * @category    Class
- * @description Result
+ * @description TaskStatus
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ResultTest extends TestCase
+class TaskStatusTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class ResultTest extends TestCase
     }
 
     /**
-     * Test "Result"
+     * Test "TaskStatus"
      */
-    public function testResult()
+    public function testTaskStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

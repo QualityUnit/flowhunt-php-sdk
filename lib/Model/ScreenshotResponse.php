@@ -58,8 +58,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatuses',
-        'result' => '\OpenAPI\Client\Model\Result',
+        'status' => '\OpenAPI\Client\Model\TaskStatus',
+        'result' => 'string',
         'error_message' => 'string',
         'original_size_url' => '\OpenAPI\Client\Model\AppUrlOutput',
         'thumbnail_url' => '\OpenAPI\Client\Model\AppUrlOutput',
@@ -364,7 +364,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets id
      *
-     * @param string $id id
+     * @param string $id Task ID
      *
      * @return self
      */
@@ -381,7 +381,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TaskStatuses
+     * @return \OpenAPI\Client\Model\TaskStatus
      */
     public function getStatus()
     {
@@ -391,7 +391,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TaskStatuses $status status
+     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
      *
      * @return self
      */
@@ -408,7 +408,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets result
      *
-     * @return \OpenAPI\Client\Model\Result|null
+     * @return string|null
      */
     public function getResult()
     {
@@ -418,7 +418,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets result
      *
-     * @param \OpenAPI\Client\Model\Result|null $result result
+     * @param string|null $result result
      *
      * @return self
      */

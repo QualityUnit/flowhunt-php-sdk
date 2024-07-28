@@ -139,7 +139,7 @@ class ImagesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function convertImage($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
@@ -158,7 +158,7 @@ class ImagesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function convertImageWithHttpInfo($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
@@ -201,11 +201,11 @@ class ImagesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\DownloadFileResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\DownloadFileResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -223,7 +223,7 @@ class ImagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DownloadFileResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -256,7 +256,7 @@ class ImagesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+            $returnType = '\OpenAPI\Client\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -289,7 +289,7 @@ class ImagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DownloadFileResponse',
+                        '\OpenAPI\Client\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -343,7 +343,7 @@ class ImagesApi
      */
     public function convertImageAsyncWithHttpInfo($workspace_id, $image_convert_request, string $contentType = self::contentTypes['convertImage'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+        $returnType = '\OpenAPI\Client\Model\TaskResponse';
         $request = $this->convertImageRequest($workspace_id, $image_convert_request, $contentType);
 
         return $this->client
@@ -881,7 +881,7 @@ class ImagesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function optimizeImage($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
@@ -900,7 +900,7 @@ class ImagesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DownloadFileResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function optimizeImageWithHttpInfo($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
@@ -943,11 +943,11 @@ class ImagesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\DownloadFileResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\DownloadFileResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -965,7 +965,7 @@ class ImagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DownloadFileResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -998,7 +998,7 @@ class ImagesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+            $returnType = '\OpenAPI\Client\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1031,7 +1031,7 @@ class ImagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DownloadFileResponse',
+                        '\OpenAPI\Client\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1085,7 +1085,7 @@ class ImagesApi
      */
     public function optimizeImageAsyncWithHttpInfo($workspace_id, $image_optimize_request, string $contentType = self::contentTypes['optimizeImage'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DownloadFileResponse';
+        $returnType = '\OpenAPI\Client\Model\TaskResponse';
         $request = $this->optimizeImageRequest($workspace_id, $image_optimize_request, $contentType);
 
         return $this->client

@@ -58,7 +58,7 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatuses',
+        'status' => '\OpenAPI\Client\Model\TaskStatus',
         'result' => '\OpenAPI\Client\Model\SerperResult',
         'error_message' => 'string'
     ];
@@ -329,7 +329,7 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string $id id
+     * @param string $id Task ID
      *
      * @return self
      */
@@ -346,7 +346,7 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TaskStatuses
+     * @return \OpenAPI\Client\Model\TaskStatus
      */
     public function getStatus()
     {
@@ -356,7 +356,7 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TaskStatuses $status status
+     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
      *
      * @return self
      */

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  |
-**status** | [**\OpenAPI\Client\Model\TaskStatuses**](TaskStatuses.md) |  |
-**result** | [**\OpenAPI\Client\Model\Result**](Result.md) |  | [optional]
+**id** | **string** | Task ID |
+**status** | [**\OpenAPI\Client\Model\TaskStatus**](TaskStatus.md) | Task status |
+**result** | **string** |  | [optional]
 **error_message** | **string** |  | [optional]
 **original_size_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
 **thumbnail_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]

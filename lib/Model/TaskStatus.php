@@ -1,6 +1,6 @@
 <?php
 /**
- * TaskStatuses
+ * TaskStatus
  *
  * PHP version 7.4
  *
@@ -30,14 +30,14 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * TaskStatuses Class Doc Comment
+ * TaskStatus Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TaskStatuses
+class TaskStatus
 {
     /**
      * Possible values of this enum

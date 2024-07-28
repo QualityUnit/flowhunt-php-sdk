@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `convertImage()`
 
 ```php
-convertImage($workspace_id, $image_convert_request): \OpenAPI\Client\Model\DownloadFileResponse
+convertImage($workspace_id, $image_convert_request): \OpenAPI\Client\Model\TaskResponse
 ```
 
 Convert Image
@@ -59,7 +59,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DownloadFileResponse**](../Model/DownloadFileResponse.md)
+[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ try {
 ## `optimizeImage()`
 
 ```php
-optimizeImage($workspace_id, $image_optimize_request): \OpenAPI\Client\Model\DownloadFileResponse
+optimizeImage($workspace_id, $image_optimize_request): \OpenAPI\Client\Model\TaskResponse
 ```
 
 Optimize Image
@@ -189,7 +189,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DownloadFileResponse**](../Model/DownloadFileResponse.md)
+[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 

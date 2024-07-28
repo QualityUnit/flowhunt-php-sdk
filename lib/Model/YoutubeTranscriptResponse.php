@@ -58,7 +58,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatuses',
+        'status' => '\OpenAPI\Client\Model\TaskStatus',
         'result' => '\OpenAPI\Client\Model\YoutubeContent',
         'error_message' => 'string'
     ];
@@ -329,7 +329,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets id
      *
-     * @param string $id id
+     * @param string $id Task ID
      *
      * @return self
      */
@@ -346,7 +346,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TaskStatuses
+     * @return \OpenAPI\Client\Model\TaskStatus
      */
     public function getStatus()
     {
@@ -356,7 +356,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TaskStatuses $status status
+     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
      *
      * @return self
      */

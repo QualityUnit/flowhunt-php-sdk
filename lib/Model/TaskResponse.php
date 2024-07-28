@@ -58,8 +58,8 @@ class TaskResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatuses',
-        'result' => '\OpenAPI\Client\Model\Result',
+        'status' => '\OpenAPI\Client\Model\TaskStatus',
+        'result' => 'string',
         'error_message' => 'string'
     ];
 
@@ -329,7 +329,7 @@ class TaskResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string $id id
+     * @param string $id Task ID
      *
      * @return self
      */
@@ -346,7 +346,7 @@ class TaskResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TaskStatuses
+     * @return \OpenAPI\Client\Model\TaskStatus
      */
     public function getStatus()
     {
@@ -356,7 +356,7 @@ class TaskResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TaskStatuses $status status
+     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
      *
      * @return self
      */
@@ -373,7 +373,7 @@ class TaskResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets result
      *
-     * @return \OpenAPI\Client\Model\Result|null
+     * @return string|null
      */
     public function getResult()
     {
@@ -383,7 +383,7 @@ class TaskResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets result
      *
-     * @param \OpenAPI\Client\Model\Result|null $result result
+     * @param string|null $result result
      *
      * @return self
      */
