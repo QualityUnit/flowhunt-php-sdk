@@ -139,7 +139,7 @@ class SERPApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SerperResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\TaskResponse[]|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function serpSearch($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
@@ -158,7 +158,7 @@ class SERPApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SerperResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\TaskResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function serpSearchWithHttpInfo($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
@@ -201,11 +201,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SerperResponse[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\TaskResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SerperResponse[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\TaskResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -223,7 +223,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SerperResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -256,7 +256,7 @@ class SERPApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SerperResponse[]';
+            $returnType = '\OpenAPI\Client\Model\TaskResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -289,7 +289,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SerperResponse[]',
+                        '\OpenAPI\Client\Model\TaskResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -343,7 +343,7 @@ class SERPApi
      */
     public function serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SerperResponse[]';
+        $returnType = '\OpenAPI\Client\Model\TaskResponse[]';
         $request = $this->serpSearchRequest($workspace_id, $serp_search_requests, $contentType);
 
         return $this->client

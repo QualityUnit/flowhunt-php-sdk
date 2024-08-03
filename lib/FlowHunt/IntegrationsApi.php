@@ -71,19 +71,37 @@ class IntegrationsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createIntegration' => [
+        'createApiIntegration' => [
+            'application/json',
+        ],
+        'createApiIntegrationEndpoint' => [
             'application/json',
         ],
         'getAllIntegrations' => [
             'application/json',
         ],
+        'getApiIntegration' => [
+            'application/json',
+        ],
+        'getApiIntegrationEndpoints' => [
+            'application/json',
+        ],
+        'getApiIntegrations' => [
+            'application/json',
+        ],
         'getMyIntegrations' => [
             'application/json',
         ],
-        'removeIntegration' => [
+        'removeApiIntegration' => [
             'application/json',
         ],
-        'updateIntegration' => [
+        'removeApiIntegrationEndpoint' => [
+            'application/json',
+        ],
+        'updateApiIntegration' => [
+            'application/json',
+        ],
+        'updateApiIntegrationEndpoint' => [
             'application/json',
         ],
     ];
@@ -135,42 +153,40 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createIntegration
+     * Operation createApiIntegration
      *
-     * Create Integration
+     * Create Api Integration
      *
-     * @param  IntegrationSlug $integration_slug integration_slug (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request api_integration_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\IntegrationDetailResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function createIntegration($integration_slug, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['createIntegration'][0])
+    public function createApiIntegration($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
-        list($response) = $this->createIntegrationWithHttpInfo($integration_slug, $workspace_id, $integration_create_request, $contentType);
+        list($response) = $this->createApiIntegrationWithHttpInfo($workspace_id, $api_integration_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createIntegrationWithHttpInfo
+     * Operation createApiIntegrationWithHttpInfo
      *
-     * Create Integration
+     * Create Api Integration
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\IntegrationDetailResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createIntegrationWithHttpInfo($integration_slug, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['createIntegration'][0])
+    public function createApiIntegrationWithHttpInfo($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
-        $request = $this->createIntegrationRequest($integration_slug, $workspace_id, $integration_create_request, $contentType);
+        $request = $this->createApiIntegrationRequest($workspace_id, $api_integration_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -209,11 +225,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\IntegrationDetailResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\IntegrationDetailResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -231,7 +247,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\IntegrationDetailResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -264,7 +280,7 @@ class IntegrationsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\IntegrationDetailResponse';
+            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -297,7 +313,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\IntegrationDetailResponse',
+                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -316,21 +332,20 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createIntegrationAsync
+     * Operation createApiIntegrationAsync
      *
-     * Create Integration
+     * Create Api Integration
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createIntegrationAsync($integration_slug, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['createIntegration'][0])
+    public function createApiIntegrationAsync($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
-        return $this->createIntegrationAsyncWithHttpInfo($integration_slug, $workspace_id, $integration_create_request, $contentType)
+        return $this->createApiIntegrationAsyncWithHttpInfo($workspace_id, $api_integration_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -339,22 +354,21 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createIntegrationAsyncWithHttpInfo
+     * Operation createApiIntegrationAsyncWithHttpInfo
      *
-     * Create Integration
+     * Create Api Integration
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createIntegrationAsyncWithHttpInfo($integration_slug, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['createIntegration'][0])
+    public function createApiIntegrationAsyncWithHttpInfo($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\IntegrationDetailResponse';
-        $request = $this->createIntegrationRequest($integration_slug, $workspace_id, $integration_create_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $request = $this->createApiIntegrationRequest($workspace_id, $api_integration_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -393,42 +407,417 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'createIntegration'
+     * Create request for operation 'createApiIntegration'
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createIntegrationRequest($integration_slug, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['createIntegration'][0])
+    public function createApiIntegrationRequest($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
 
-        // verify the required parameter 'integration_slug' is set
-        if ($integration_slug === null || (is_array($integration_slug) && count($integration_slug) === 0)) {
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_slug when calling createIntegration'
+                'Missing the required parameter $workspace_id when calling createApiIntegration'
+            );
+        }
+
+        // verify the required parameter 'api_integration_create_request' is set
+        if ($api_integration_create_request === null || (is_array($api_integration_create_request) && count($api_integration_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_integration_create_request when calling createApiIntegration'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/api_integrations/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($api_integration_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_integration_create_request));
+            } else {
+                $httpBody = $api_integration_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createApiIntegrationEndpoint
+     *
+     * Create Api Integration Endpoint
+     *
+     * @param  string $integration_id integration_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request api_endpoint_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function createApiIntegrationEndpoint($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    {
+        list($response) = $this->createApiIntegrationEndpointWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createApiIntegrationEndpointWithHttpInfo
+     *
+     * Create Api Integration Endpoint
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createApiIntegrationEndpointWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    {
+        $request = $this->createApiIntegrationEndpointRequest($integration_id, $workspace_id, $api_endpoint_create_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ApiEndpointResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiEndpointResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiEndpointResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiEndpointResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createApiIntegrationEndpointAsync
+     *
+     * Create Api Integration Endpoint
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createApiIntegrationEndpointAsync($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    {
+        return $this->createApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createApiIntegrationEndpointAsyncWithHttpInfo
+     *
+     * Create Api Integration Endpoint
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+        $request = $this->createApiIntegrationEndpointRequest($integration_id, $workspace_id, $api_endpoint_create_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createApiIntegrationEndpoint'
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createApiIntegrationEndpointRequest($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    {
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling createApiIntegrationEndpoint'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createIntegration'
+                'Missing the required parameter $workspace_id when calling createApiIntegrationEndpoint'
             );
         }
 
-        // verify the required parameter 'integration_create_request' is set
-        if ($integration_create_request === null || (is_array($integration_create_request) && count($integration_create_request) === 0)) {
+        // verify the required parameter 'api_endpoint_create_request' is set
+        if ($api_endpoint_create_request === null || (is_array($api_endpoint_create_request) && count($api_endpoint_create_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_create_request when calling createIntegration'
+                'Missing the required parameter $api_endpoint_create_request when calling createApiIntegrationEndpoint'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/{integration_slug}/create';
+        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -447,10 +836,10 @@ class IntegrationsApi
 
 
         // path params
-        if ($integration_slug !== null) {
+        if ($integration_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'integration_slug' . '}',
-                ObjectSerializer::toPathValue($integration_slug),
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
                 $resourcePath
             );
         }
@@ -463,12 +852,12 @@ class IntegrationsApi
         );
 
         // for model (json/xml)
-        if (isset($integration_create_request)) {
+        if (isset($api_endpoint_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($integration_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_endpoint_create_request));
             } else {
-                $httpBody = $integration_create_request;
+                $httpBody = $api_endpoint_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -878,6 +1267,1141 @@ class IntegrationsApi
     }
 
     /**
+     * Operation getApiIntegration
+     *
+     * Get Api Integration
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $integration_id integration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function getApiIntegration($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    {
+        list($response) = $this->getApiIntegrationWithHttpInfo($workspace_id, $integration_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getApiIntegrationWithHttpInfo
+     *
+     * Get Api Integration
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $integration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getApiIntegrationWithHttpInfo($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    {
+        $request = $this->getApiIntegrationRequest($workspace_id, $integration_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getApiIntegrationAsync
+     *
+     * Get Api Integration
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $integration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiIntegrationAsync($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    {
+        return $this->getApiIntegrationAsyncWithHttpInfo($workspace_id, $integration_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getApiIntegrationAsyncWithHttpInfo
+     *
+     * Get Api Integration
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $integration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiIntegrationAsyncWithHttpInfo($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $request = $this->getApiIntegrationRequest($workspace_id, $integration_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getApiIntegration'
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $integration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getApiIntegrationRequest($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getApiIntegration'
+            );
+        }
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling getApiIntegration'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/api_integrations/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $integration_id,
+            'integration_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getApiIntegrationEndpoints
+     *
+     * Get Api Integration Endpoints
+     *
+     * @param  string $integration_id integration_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request api_endpoint_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ApiEndpointResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function getApiIntegrationEndpoints($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
+    {
+        list($response) = $this->getApiIntegrationEndpointsWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getApiIntegrationEndpointsWithHttpInfo
+     *
+     * Get Api Integration Endpoints
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ApiEndpointResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getApiIntegrationEndpointsWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
+    {
+        $request = $this->getApiIntegrationEndpointsRequest($integration_id, $workspace_id, $api_endpoint_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ApiEndpointResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiEndpointResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiEndpointResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiEndpointResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getApiIntegrationEndpointsAsync
+     *
+     * Get Api Integration Endpoints
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiIntegrationEndpointsAsync($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
+    {
+        return $this->getApiIntegrationEndpointsAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getApiIntegrationEndpointsAsyncWithHttpInfo
+     *
+     * Get Api Integration Endpoints
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiIntegrationEndpointsAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse[]';
+        $request = $this->getApiIntegrationEndpointsRequest($integration_id, $workspace_id, $api_endpoint_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getApiIntegrationEndpoints'
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getApiIntegrationEndpointsRequest($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
+    {
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling getApiIntegrationEndpoints'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getApiIntegrationEndpoints'
+            );
+        }
+
+        // verify the required parameter 'api_endpoint_search_request' is set
+        if ($api_endpoint_search_request === null || (is_array($api_endpoint_search_request) && count($api_endpoint_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_endpoint_search_request when calling getApiIntegrationEndpoints'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($integration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($api_endpoint_search_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_endpoint_search_request));
+            } else {
+                $httpBody = $api_endpoint_search_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getApiIntegrations
+     *
+     * Get Api Integrations
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request api_integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ApiIntegrationResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function getApiIntegrations($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    {
+        list($response) = $this->getApiIntegrationsWithHttpInfo($workspace_id, $api_integration_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getApiIntegrationsWithHttpInfo
+     *
+     * Get Api Integrations
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getApiIntegrationsWithHttpInfo($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    {
+        $request = $this->getApiIntegrationsRequest($workspace_id, $api_integration_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiIntegrationResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getApiIntegrationsAsync
+     *
+     * Get Api Integrations
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiIntegrationsAsync($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    {
+        return $this->getApiIntegrationsAsyncWithHttpInfo($workspace_id, $api_integration_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getApiIntegrationsAsyncWithHttpInfo
+     *
+     * Get Api Integrations
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiIntegrationsAsyncWithHttpInfo($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse[]';
+        $request = $this->getApiIntegrationsRequest($workspace_id, $api_integration_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getApiIntegrations'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getApiIntegrationsRequest($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getApiIntegrations'
+            );
+        }
+
+        // verify the required parameter 'api_integration_search_request' is set
+        if ($api_integration_search_request === null || (is_array($api_integration_search_request) && count($api_integration_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_integration_search_request when calling getApiIntegrations'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/api_integrations/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($api_integration_search_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_integration_search_request));
+            } else {
+                $httpBody = $api_integration_search_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getMyIntegrations
      *
      * Get My Integrations
@@ -1249,42 +2773,40 @@ class IntegrationsApi
     }
 
     /**
-     * Operation removeIntegration
+     * Operation removeApiIntegration
      *
-     * Remove Integration
+     * Remove Api Integration
      *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  IntegrationSlug $integration_slug integration_slug (required)
      * @param  string $integration_id integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function removeIntegration($workspace_id, $integration_slug, $integration_id, string $contentType = self::contentTypes['removeIntegration'][0])
+    public function removeApiIntegration($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
-        list($response) = $this->removeIntegrationWithHttpInfo($workspace_id, $integration_slug, $integration_id, $contentType);
+        list($response) = $this->removeApiIntegrationWithHttpInfo($integration_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation removeIntegrationWithHttpInfo
+     * Operation removeApiIntegrationWithHttpInfo
      *
-     * Remove Integration
+     * Remove Api Integration
      *
-     * @param  string $workspace_id (required)
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function removeIntegrationWithHttpInfo($workspace_id, $integration_slug, $integration_id, string $contentType = self::contentTypes['removeIntegration'][0])
+    public function removeApiIntegrationWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
-        $request = $this->removeIntegrationRequest($workspace_id, $integration_slug, $integration_id, $contentType);
+        $request = $this->removeApiIntegrationRequest($integration_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1323,11 +2845,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('mixed' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('mixed' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1345,7 +2867,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1378,7 +2900,7 @@ class IntegrationsApi
                     ];
             }
 
-            $returnType = 'mixed';
+            $returnType = '\OpenAPI\Client\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1411,7 +2933,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'mixed',
+                        '\OpenAPI\Client\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1430,21 +2952,20 @@ class IntegrationsApi
     }
 
     /**
-     * Operation removeIntegrationAsync
+     * Operation removeApiIntegrationAsync
      *
-     * Remove Integration
+     * Remove Api Integration
      *
-     * @param  string $workspace_id (required)
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeIntegrationAsync($workspace_id, $integration_slug, $integration_id, string $contentType = self::contentTypes['removeIntegration'][0])
+    public function removeApiIntegrationAsync($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
-        return $this->removeIntegrationAsyncWithHttpInfo($workspace_id, $integration_slug, $integration_id, $contentType)
+        return $this->removeApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1453,22 +2974,21 @@ class IntegrationsApi
     }
 
     /**
-     * Operation removeIntegrationAsyncWithHttpInfo
+     * Operation removeApiIntegrationAsyncWithHttpInfo
      *
-     * Remove Integration
+     * Remove Api Integration
      *
-     * @param  string $workspace_id (required)
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeIntegrationAsyncWithHttpInfo($workspace_id, $integration_slug, $integration_id, string $contentType = self::contentTypes['removeIntegration'][0])
+    public function removeApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
-        $returnType = 'mixed';
-        $request = $this->removeIntegrationRequest($workspace_id, $integration_slug, $integration_id, $contentType);
+        $returnType = '\OpenAPI\Client\Model\Completed';
+        $request = $this->removeApiIntegrationRequest($integration_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1507,42 +3027,34 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'removeIntegration'
+     * Create request for operation 'removeApiIntegration'
      *
-     * @param  string $workspace_id (required)
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function removeIntegrationRequest($workspace_id, $integration_slug, $integration_id, string $contentType = self::contentTypes['removeIntegration'][0])
+    public function removeApiIntegrationRequest($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling removeIntegration'
-            );
-        }
-
-        // verify the required parameter 'integration_slug' is set
-        if ($integration_slug === null || (is_array($integration_slug) && count($integration_slug) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_slug when calling removeIntegration'
-            );
-        }
 
         // verify the required parameter 'integration_id' is set
         if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling removeIntegration'
+                'Missing the required parameter $integration_id when calling removeApiIntegration'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling removeApiIntegration'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/';
+        $resourcePath = '/v2/integrations/api_integrations/{integration_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1558,26 +3070,16 @@ class IntegrationsApi
             true, // explode
             true // required
         ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $integration_slug,
-            'integration_slug', // param base name
-            'IntegrationSlug', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $integration_id,
-            'integration_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
+        // path params
+        if ($integration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1643,44 +3145,42 @@ class IntegrationsApi
     }
 
     /**
-     * Operation updateIntegration
+     * Operation removeApiIntegrationEndpoint
      *
-     * Update Integration
+     * Remove Api Integration Endpoint
      *
-     * @param  IntegrationSlug $integration_slug integration_slug (required)
      * @param  string $integration_id integration_id (required)
+     * @param  string $endpoint_id endpoint_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\IntegrationDetailResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
      */
-    public function updateIntegration($integration_slug, $integration_id, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['updateIntegration'][0])
+    public function removeApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
-        list($response) = $this->updateIntegrationWithHttpInfo($integration_slug, $integration_id, $workspace_id, $integration_create_request, $contentType);
+        list($response) = $this->removeApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateIntegrationWithHttpInfo
+     * Operation removeApiIntegrationEndpointWithHttpInfo
      *
-     * Update Integration
+     * Remove Api Integration Endpoint
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\IntegrationDetailResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateIntegrationWithHttpInfo($integration_slug, $integration_id, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['updateIntegration'][0])
+    public function removeApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
-        $request = $this->updateIntegrationRequest($integration_slug, $integration_id, $workspace_id, $integration_create_request, $contentType);
+        $request = $this->removeApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1719,11 +3219,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\IntegrationDetailResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\IntegrationDetailResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1741,7 +3241,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\IntegrationDetailResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1774,7 +3274,7 @@ class IntegrationsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\IntegrationDetailResponse';
+            $returnType = '\OpenAPI\Client\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1807,7 +3307,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\IntegrationDetailResponse',
+                        '\OpenAPI\Client\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1826,22 +3326,21 @@ class IntegrationsApi
     }
 
     /**
-     * Operation updateIntegrationAsync
+     * Operation removeApiIntegrationEndpointAsync
      *
-     * Update Integration
+     * Remove Api Integration Endpoint
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateIntegrationAsync($integration_slug, $integration_id, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['updateIntegration'][0])
+    public function removeApiIntegrationEndpointAsync($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
-        return $this->updateIntegrationAsyncWithHttpInfo($integration_slug, $integration_id, $workspace_id, $integration_create_request, $contentType)
+        return $this->removeApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1850,23 +3349,22 @@ class IntegrationsApi
     }
 
     /**
-     * Operation updateIntegrationAsyncWithHttpInfo
+     * Operation removeApiIntegrationEndpointAsyncWithHttpInfo
      *
-     * Update Integration
+     * Remove Api Integration Endpoint
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateIntegrationAsyncWithHttpInfo($integration_slug, $integration_id, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['updateIntegration'][0])
+    public function removeApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\IntegrationDetailResponse';
-        $request = $this->updateIntegrationRequest($integration_slug, $integration_id, $workspace_id, $integration_create_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\Completed';
+        $request = $this->removeApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1905,50 +3403,42 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'updateIntegration'
+     * Create request for operation 'removeApiIntegrationEndpoint'
      *
-     * @param  IntegrationSlug $integration_slug (required)
      * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationCreateRequest $integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateIntegrationRequest($integration_slug, $integration_id, $workspace_id, $integration_create_request, string $contentType = self::contentTypes['updateIntegration'][0])
+    public function removeApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
-
-        // verify the required parameter 'integration_slug' is set
-        if ($integration_slug === null || (is_array($integration_slug) && count($integration_slug) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_slug when calling updateIntegration'
-            );
-        }
 
         // verify the required parameter 'integration_id' is set
         if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling updateIntegration'
+                'Missing the required parameter $integration_id when calling removeApiIntegrationEndpoint'
+            );
+        }
+
+        // verify the required parameter 'endpoint_id' is set
+        if ($endpoint_id === null || (is_array($endpoint_id) && count($endpoint_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $endpoint_id when calling removeApiIntegrationEndpoint'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateIntegration'
-            );
-        }
-
-        // verify the required parameter 'integration_create_request' is set
-        if ($integration_create_request === null || (is_array($integration_create_request) && count($integration_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_create_request when calling updateIntegration'
+                'Missing the required parameter $workspace_id when calling removeApiIntegrationEndpoint'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/{integration_slug}/{integration_id}';
+        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1967,13 +3457,397 @@ class IntegrationsApi
 
 
         // path params
-        if ($integration_slug !== null) {
+        if ($integration_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'integration_slug' . '}',
-                ObjectSerializer::toPathValue($integration_slug),
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
                 $resourcePath
             );
         }
+        // path params
+        if ($endpoint_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'endpoint_id' . '}',
+                ObjectSerializer::toPathValue($endpoint_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateApiIntegration
+     *
+     * Update Api Integration
+     *
+     * @param  string $integration_id integration_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request api_integration_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function updateApiIntegration($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
+    {
+        list($response) = $this->updateApiIntegrationWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateApiIntegrationWithHttpInfo
+     *
+     * Update Api Integration
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateApiIntegrationWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
+    {
+        $request = $this->updateApiIntegrationRequest($integration_id, $workspace_id, $api_integration_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateApiIntegrationAsync
+     *
+     * Update Api Integration
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateApiIntegrationAsync($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
+    {
+        return $this->updateApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateApiIntegrationAsyncWithHttpInfo
+     *
+     * Update Api Integration
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $request = $this->updateApiIntegrationRequest($integration_id, $workspace_id, $api_integration_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateApiIntegration'
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateApiIntegrationRequest($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
+    {
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling updateApiIntegration'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updateApiIntegration'
+            );
+        }
+
+        // verify the required parameter 'api_integration_update_request' is set
+        if ($api_integration_update_request === null || (is_array($api_integration_update_request) && count($api_integration_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_integration_update_request when calling updateApiIntegration'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/api_integrations/{integration_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
         // path params
         if ($integration_id !== null) {
             $resourcePath = str_replace(
@@ -1991,12 +3865,423 @@ class IntegrationsApi
         );
 
         // for model (json/xml)
-        if (isset($integration_create_request)) {
+        if (isset($api_integration_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($integration_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_integration_update_request));
             } else {
-                $httpBody = $integration_create_request;
+                $httpBody = $api_integration_update_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateApiIntegrationEndpoint
+     *
+     * Update Api Integration Endpoint
+     *
+     * @param  string $integration_id integration_id (required)
+     * @param  string $endpoint_id endpoint_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request api_endpoint_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError
+     */
+    public function updateApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
+    {
+        list($response) = $this->updateApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateApiIntegrationEndpointWithHttpInfo
+     *
+     * Update Api Integration Endpoint
+     *
+     * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
+    {
+        $request = $this->updateApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ApiEndpointResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiEndpointResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiEndpointResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiEndpointResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateApiIntegrationEndpointAsync
+     *
+     * Update Api Integration Endpoint
+     *
+     * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateApiIntegrationEndpointAsync($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
+    {
+        return $this->updateApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateApiIntegrationEndpointAsyncWithHttpInfo
+     *
+     * Update Api Integration Endpoint
+     *
+     * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+        $request = $this->updateApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateApiIntegrationEndpoint'
+     *
+     * @param  string $integration_id (required)
+     * @param  string $endpoint_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
+    {
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling updateApiIntegrationEndpoint'
+            );
+        }
+
+        // verify the required parameter 'endpoint_id' is set
+        if ($endpoint_id === null || (is_array($endpoint_id) && count($endpoint_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $endpoint_id when calling updateApiIntegrationEndpoint'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updateApiIntegrationEndpoint'
+            );
+        }
+
+        // verify the required parameter 'api_endpoint_update_request' is set
+        if ($api_endpoint_update_request === null || (is_array($api_endpoint_update_request) && count($api_endpoint_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_endpoint_update_request when calling updateApiIntegrationEndpoint'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($integration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($endpoint_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'endpoint_id' . '}',
+                ObjectSerializer::toPathValue($endpoint_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($api_endpoint_update_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_endpoint_update_request));
+            } else {
+                $httpBody = $api_endpoint_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

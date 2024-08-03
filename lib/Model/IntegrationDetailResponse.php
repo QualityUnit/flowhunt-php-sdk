@@ -58,7 +58,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'slug' => 'string',
-        'name' => 'string',
         'integration_id' => 'string',
         'created_at' => '\DateTime'
     ];
@@ -72,7 +71,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'slug' => null,
-        'name' => null,
         'integration_id' => 'uuid',
         'created_at' => 'date-time'
     ];
@@ -84,7 +82,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'slug' => false,
-        'name' => false,
         'integration_id' => false,
         'created_at' => false
     ];
@@ -176,7 +173,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $attributeMap = [
         'slug' => 'slug',
-        'name' => 'name',
         'integration_id' => 'integration_id',
         'created_at' => 'created_at'
     ];
@@ -188,7 +184,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $setters = [
         'slug' => 'setSlug',
-        'name' => 'setName',
         'integration_id' => 'setIntegrationId',
         'created_at' => 'setCreatedAt'
     ];
@@ -200,7 +195,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $getters = [
         'slug' => 'getSlug',
-        'name' => 'getName',
         'integration_id' => 'getIntegrationId',
         'created_at' => 'getCreatedAt'
     ];
@@ -263,7 +257,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     public function __construct(array $data = null)
     {
         $this->setIfExists('slug', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('integration_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
     }
@@ -297,9 +290,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
 
         if ($this->container['slug'] === null) {
             $invalidProperties[] = "'slug' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
         }
         if ($this->container['integration_id'] === null) {
             $invalidProperties[] = "'integration_id' can't be null";
@@ -345,33 +335,6 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable slug cannot be null');
         }
         $this->container['slug'] = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name The name of the integration.
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
 
         return $this;
     }

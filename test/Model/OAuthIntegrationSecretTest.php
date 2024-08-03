@@ -1,6 +1,6 @@
 <?php
 /**
- * OrganicPositionTest
+ * OAuthIntegrationSecretTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * OrganicPositionTest Class Doc Comment
+ * OAuthIntegrationSecretTest Class Doc Comment
  *
  * @category    Class
- * @description OrganicPosition
+ * @description OAuthIntegrationSecret
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class OrganicPositionTest extends TestCase
+class OAuthIntegrationSecretTest extends TestCase
 {
 
     /**
@@ -71,90 +71,36 @@ class OrganicPositionTest extends TestCase
     }
 
     /**
-     * Test "OrganicPosition"
+     * Test "OAuthIntegrationSecret"
      */
-    public function testOrganicPosition()
+    public function testOAuthIntegrationSecret()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "client_id"
      */
-    public function testPropertyTitle()
+    public function testPropertyClientId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "link"
+     * Test attribute "client_secret"
      */
-    public function testPropertyLink()
+    public function testPropertyClientSecret()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "snippet"
+     * Test attribute "scopes"
      */
-    public function testPropertySnippet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "position"
-     */
-    public function testPropertyPosition()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "date"
-     */
-    public function testPropertyDate()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "rating"
-     */
-    public function testPropertyRating()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "rating_count"
-     */
-    public function testPropertyRatingCount()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "price_range"
-     */
-    public function testPropertyPriceRange()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sitelinks"
-     */
-    public function testPropertySitelinks()
+    public function testPropertyScopes()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

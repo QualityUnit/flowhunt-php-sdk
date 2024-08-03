@@ -1,6 +1,6 @@
 <?php
 /**
- * OrganicPosition
+ * ApiEndpointUpdateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * OrganicPosition Class Doc Comment
+ * ApiEndpointUpdateRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrganicPosition';
+    protected static $openAPIModelName = 'ApiEndpointUpdateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,15 +57,12 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'title' => 'string',
-        'link' => 'string',
-        'snippet' => 'string',
-        'position' => 'int',
-        'date' => 'string',
-        'rating' => 'float',
-        'rating_count' => 'int',
-        'price_range' => 'string',
-        'sitelinks' => '\OpenAPI\Client\Model\SiteLink[]'
+        'path' => 'string',
+        'method' => '\OpenAPI\Client\Model\ApiMethod',
+        'parameters' => 'object',
+        'request_body' => 'object',
+        'success_response' => 'object',
+        'description' => 'string'
     ];
 
     /**
@@ -76,15 +73,12 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'title' => null,
-        'link' => null,
-        'snippet' => null,
-        'position' => null,
-        'date' => null,
-        'rating' => null,
-        'rating_count' => null,
-        'price_range' => null,
-        'sitelinks' => null
+        'path' => null,
+        'method' => null,
+        'parameters' => null,
+        'request_body' => null,
+        'success_response' => null,
+        'description' => null
     ];
 
     /**
@@ -93,15 +87,12 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'title' => false,
-        'link' => false,
-        'snippet' => true,
-        'position' => false,
-        'date' => true,
-        'rating' => true,
-        'rating_count' => true,
-        'price_range' => true,
-        'sitelinks' => true
+        'path' => true,
+        'method' => true,
+        'parameters' => true,
+        'request_body' => true,
+        'success_response' => true,
+        'description' => true
     ];
 
     /**
@@ -190,15 +181,12 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'title' => 'title',
-        'link' => 'link',
-        'snippet' => 'snippet',
-        'position' => 'position',
-        'date' => 'date',
-        'rating' => 'rating',
-        'rating_count' => 'ratingCount',
-        'price_range' => 'priceRange',
-        'sitelinks' => 'sitelinks'
+        'path' => 'path',
+        'method' => 'method',
+        'parameters' => 'parameters',
+        'request_body' => 'request_body',
+        'success_response' => 'success_response',
+        'description' => 'description'
     ];
 
     /**
@@ -207,15 +195,12 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'title' => 'setTitle',
-        'link' => 'setLink',
-        'snippet' => 'setSnippet',
-        'position' => 'setPosition',
-        'date' => 'setDate',
-        'rating' => 'setRating',
-        'rating_count' => 'setRatingCount',
-        'price_range' => 'setPriceRange',
-        'sitelinks' => 'setSitelinks'
+        'path' => 'setPath',
+        'method' => 'setMethod',
+        'parameters' => 'setParameters',
+        'request_body' => 'setRequestBody',
+        'success_response' => 'setSuccessResponse',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -224,15 +209,12 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'title' => 'getTitle',
-        'link' => 'getLink',
-        'snippet' => 'getSnippet',
-        'position' => 'getPosition',
-        'date' => 'getDate',
-        'rating' => 'getRating',
-        'rating_count' => 'getRatingCount',
-        'price_range' => 'getPriceRange',
-        'sitelinks' => 'getSitelinks'
+        'path' => 'getPath',
+        'method' => 'getMethod',
+        'parameters' => 'getParameters',
+        'request_body' => 'getRequestBody',
+        'success_response' => 'getSuccessResponse',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -292,15 +274,12 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('title', $data ?? [], '');
-        $this->setIfExists('link', $data ?? [], '');
-        $this->setIfExists('snippet', $data ?? [], null);
-        $this->setIfExists('position', $data ?? [], 0);
-        $this->setIfExists('date', $data ?? [], null);
-        $this->setIfExists('rating', $data ?? [], null);
-        $this->setIfExists('rating_count', $data ?? [], null);
-        $this->setIfExists('price_range', $data ?? [], null);
-        $this->setIfExists('sitelinks', $data ?? [], null);
+        $this->setIfExists('path', $data ?? [], null);
+        $this->setIfExists('method', $data ?? [], null);
+        $this->setIfExists('parameters', $data ?? [], null);
+        $this->setIfExists('request_body', $data ?? [], null);
+        $this->setIfExists('success_response', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
     }
 
     /**
@@ -330,6 +309,27 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['path'] === null) {
+            $invalidProperties[] = "'path' can't be null";
+        }
+        if ((mb_strlen($this->container['path']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'path', the character length must be smaller than or equal to 1024.";
+        }
+
+        if ((mb_strlen($this->container['path']) < 1)) {
+            $invalidProperties[] = "invalid value for 'path', the character length must be bigger than or equal to 1.";
+        }
+
+        if ($this->container['method'] === null) {
+            $invalidProperties[] = "'method' can't be null";
+        }
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ((mb_strlen($this->container['description']) < 1)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -346,286 +346,217 @@ class OrganicPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets title
+     * Gets path
      *
-     * @return string|null
+     * @return string
      */
-    public function getTitle()
+    public function getPath()
     {
-        return $this->container['title'];
+        return $this->container['path'];
     }
 
     /**
-     * Sets title
+     * Sets path
      *
-     * @param string|null $title Title
+     * @param string $path path
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setPath($path)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets link
-     *
-     * @return string|null
-     */
-    public function getLink()
-    {
-        return $this->container['link'];
-    }
-
-    /**
-     * Sets link
-     *
-     * @param string|null $link Link
-     *
-     * @return self
-     */
-    public function setLink($link)
-    {
-        if (is_null($link)) {
-            throw new \InvalidArgumentException('non-nullable link cannot be null');
-        }
-        $this->container['link'] = $link;
-
-        return $this;
-    }
-
-    /**
-     * Gets snippet
-     *
-     * @return string|null
-     */
-    public function getSnippet()
-    {
-        return $this->container['snippet'];
-    }
-
-    /**
-     * Sets snippet
-     *
-     * @param string|null $snippet snippet
-     *
-     * @return self
-     */
-    public function setSnippet($snippet)
-    {
-        if (is_null($snippet)) {
-            array_push($this->openAPINullablesSetToNull, 'snippet');
+        if (is_null($path)) {
+            array_push($this->openAPINullablesSetToNull, 'path');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('snippet', $nullablesSetToNull);
+            $index = array_search('path', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['snippet'] = $snippet;
-
-        return $this;
-    }
-
-    /**
-     * Gets position
-     *
-     * @return int|null
-     */
-    public function getPosition()
-    {
-        return $this->container['position'];
-    }
-
-    /**
-     * Sets position
-     *
-     * @param int|null $position Position
-     *
-     * @return self
-     */
-    public function setPosition($position)
-    {
-        if (is_null($position)) {
-            throw new \InvalidArgumentException('non-nullable position cannot be null');
+        if (!is_null($path) && (mb_strlen($path) > 1024)) {
+            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointUpdateRequest., must be smaller than or equal to 1024.');
         }
-        $this->container['position'] = $position;
+        if (!is_null($path) && (mb_strlen($path) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointUpdateRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['path'] = $path;
 
         return $this;
     }
 
     /**
-     * Gets date
+     * Gets method
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\ApiMethod
      */
-    public function getDate()
+    public function getMethod()
     {
-        return $this->container['date'];
+        return $this->container['method'];
     }
 
     /**
-     * Sets date
+     * Sets method
      *
-     * @param string|null $date date
+     * @param \OpenAPI\Client\Model\ApiMethod $method method
      *
      * @return self
      */
-    public function setDate($date)
+    public function setMethod($method)
     {
-        if (is_null($date)) {
-            array_push($this->openAPINullablesSetToNull, 'date');
+        if (is_null($method)) {
+            array_push($this->openAPINullablesSetToNull, 'method');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('date', $nullablesSetToNull);
+            $index = array_search('method', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['date'] = $date;
+        $this->container['method'] = $method;
 
         return $this;
     }
 
     /**
-     * Gets rating
+     * Gets parameters
      *
-     * @return float|null
+     * @return object|null
      */
-    public function getRating()
+    public function getParameters()
     {
-        return $this->container['rating'];
+        return $this->container['parameters'];
     }
 
     /**
-     * Sets rating
+     * Sets parameters
      *
-     * @param float|null $rating rating
+     * @param object|null $parameters parameters
      *
      * @return self
      */
-    public function setRating($rating)
+    public function setParameters($parameters)
     {
-        if (is_null($rating)) {
-            array_push($this->openAPINullablesSetToNull, 'rating');
+        if (is_null($parameters)) {
+            array_push($this->openAPINullablesSetToNull, 'parameters');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rating', $nullablesSetToNull);
+            $index = array_search('parameters', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['rating'] = $rating;
+        $this->container['parameters'] = $parameters;
 
         return $this;
     }
 
     /**
-     * Gets rating_count
+     * Gets request_body
      *
-     * @return int|null
+     * @return object|null
      */
-    public function getRatingCount()
+    public function getRequestBody()
     {
-        return $this->container['rating_count'];
+        return $this->container['request_body'];
     }
 
     /**
-     * Sets rating_count
+     * Sets request_body
      *
-     * @param int|null $rating_count rating_count
+     * @param object|null $request_body request_body
      *
      * @return self
      */
-    public function setRatingCount($rating_count)
+    public function setRequestBody($request_body)
     {
-        if (is_null($rating_count)) {
-            array_push($this->openAPINullablesSetToNull, 'rating_count');
+        if (is_null($request_body)) {
+            array_push($this->openAPINullablesSetToNull, 'request_body');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rating_count', $nullablesSetToNull);
+            $index = array_search('request_body', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['rating_count'] = $rating_count;
+        $this->container['request_body'] = $request_body;
 
         return $this;
     }
 
     /**
-     * Gets price_range
+     * Gets success_response
      *
-     * @return string|null
+     * @return object|null
      */
-    public function getPriceRange()
+    public function getSuccessResponse()
     {
-        return $this->container['price_range'];
+        return $this->container['success_response'];
     }
 
     /**
-     * Sets price_range
+     * Sets success_response
      *
-     * @param string|null $price_range price_range
+     * @param object|null $success_response success_response
      *
      * @return self
      */
-    public function setPriceRange($price_range)
+    public function setSuccessResponse($success_response)
     {
-        if (is_null($price_range)) {
-            array_push($this->openAPINullablesSetToNull, 'price_range');
+        if (is_null($success_response)) {
+            array_push($this->openAPINullablesSetToNull, 'success_response');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_range', $nullablesSetToNull);
+            $index = array_search('success_response', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['price_range'] = $price_range;
+        $this->container['success_response'] = $success_response;
 
         return $this;
     }
 
     /**
-     * Gets sitelinks
+     * Gets description
      *
-     * @return \OpenAPI\Client\Model\SiteLink[]|null
+     * @return string
      */
-    public function getSitelinks()
+    public function getDescription()
     {
-        return $this->container['sitelinks'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets sitelinks
+     * Sets description
      *
-     * @param \OpenAPI\Client\Model\SiteLink[]|null $sitelinks sitelinks
+     * @param string $description description
      *
      * @return self
      */
-    public function setSitelinks($sitelinks)
+    public function setDescription($description)
     {
-        if (is_null($sitelinks)) {
-            array_push($this->openAPINullablesSetToNull, 'sitelinks');
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('sitelinks', $nullablesSetToNull);
+            $index = array_search('description', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['sitelinks'] = $sitelinks;
+
+        if (!is_null($description) && (mb_strlen($description) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling ApiEndpointUpdateRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['description'] = $description;
 
         return $this;
     }

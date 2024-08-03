@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationCreateRequestTest
+ * ApiMethodTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * IntegrationCreateRequestTest Class Doc Comment
+ * ApiMethodTest Class Doc Comment
  *
  * @category    Class
- * @description IntegrationCreateRequest
+ * @description ApiMethod
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class IntegrationCreateRequestTest extends TestCase
+class ApiMethodTest extends TestCase
 {
 
     /**
@@ -71,18 +71,9 @@ class IntegrationCreateRequestTest extends TestCase
     }
 
     /**
-     * Test "IntegrationCreateRequest"
+     * Test "ApiMethod"
      */
-    public function testIntegrationCreateRequest()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
+    public function testApiMethod()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

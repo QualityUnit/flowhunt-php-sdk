@@ -1,6 +1,6 @@
 <?php
 /**
- * RelatedQuestionTest
+ * ApiEndpointUpdateRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * RelatedQuestionTest Class Doc Comment
+ * ApiEndpointUpdateRequestTest Class Doc Comment
  *
  * @category    Class
- * @description RelatedQuestion
+ * @description ApiEndpointUpdateRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class RelatedQuestionTest extends TestCase
+class ApiEndpointUpdateRequestTest extends TestCase
 {
 
     /**
@@ -71,45 +71,63 @@ class RelatedQuestionTest extends TestCase
     }
 
     /**
-     * Test "RelatedQuestion"
+     * Test "ApiEndpointUpdateRequest"
      */
-    public function testRelatedQuestion()
+    public function testApiEndpointUpdateRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "question"
+     * Test attribute "path"
      */
-    public function testPropertyQuestion()
+    public function testPropertyPath()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "snippet"
+     * Test attribute "method"
      */
-    public function testPropertySnippet()
+    public function testPropertyMethod()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "parameters"
      */
-    public function testPropertyTitle()
+    public function testPropertyParameters()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "link"
+     * Test attribute "request_body"
      */
-    public function testPropertyLink()
+    public function testPropertyRequestBody()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "success_response"
+     */
+    public function testPropertySuccessResponse()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

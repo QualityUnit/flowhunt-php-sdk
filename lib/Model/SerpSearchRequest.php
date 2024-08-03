@@ -57,6 +57,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
+        'post_back_url' => 'string',
         'query' => 'string',
         'country' => 'string',
         'location' => 'string',
@@ -72,6 +73,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'post_back_url' => null,
         'query' => null,
         'country' => null,
         'location' => null,
@@ -85,6 +87,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'post_back_url' => true,
         'query' => false,
         'country' => true,
         'location' => true,
@@ -178,6 +181,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
+        'post_back_url' => 'post_back_url',
         'query' => 'query',
         'country' => 'country',
         'location' => 'location',
@@ -191,6 +195,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
+        'post_back_url' => 'setPostBackUrl',
         'query' => 'setQuery',
         'country' => 'setCountry',
         'location' => 'setLocation',
@@ -204,6 +209,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
+        'post_back_url' => 'getPostBackUrl',
         'query' => 'getQuery',
         'country' => 'getCountry',
         'location' => 'getLocation',
@@ -268,6 +274,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('post_back_url', $data ?? [], null);
         $this->setIfExists('query', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('location', $data ?? [], null);
@@ -302,6 +309,9 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        if ($this->container['query'] === null) {
+            $invalidProperties[] = "'query' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -318,9 +328,43 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets query
+     * Gets post_back_url
      *
      * @return string|null
+     */
+    public function getPostBackUrl()
+    {
+        return $this->container['post_back_url'];
+    }
+
+    /**
+     * Sets post_back_url
+     *
+     * @param string|null $post_back_url post_back_url
+     *
+     * @return self
+     */
+    public function setPostBackUrl($post_back_url)
+    {
+        if (is_null($post_back_url)) {
+            array_push($this->openAPINullablesSetToNull, 'post_back_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('post_back_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['post_back_url'] = $post_back_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets query
+     *
+     * @return string
      */
     public function getQuery()
     {
@@ -330,7 +374,7 @@ class SerpSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets query
      *
-     * @param string|null $query query
+     * @param string $query Query to search
      *
      * @return self
      */

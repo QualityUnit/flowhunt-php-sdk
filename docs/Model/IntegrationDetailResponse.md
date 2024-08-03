@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **slug** | **string** | The type of the integration. |
-**name** | **string** | The name of the integration. |
 **integration_id** | **string** | The ID of the integration. |
 **created_at** | **\DateTime** | The creation date of the integration. |
 

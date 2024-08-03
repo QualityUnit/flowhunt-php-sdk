@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationCreateRequest
+ * ApiEndpointCreateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * IntegrationCreateRequest Class Doc Comment
+ * ApiEndpointCreateRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IntegrationCreateRequest';
+    protected static $openAPIModelName = 'ApiEndpointCreateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,12 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string'
+        'path' => 'string',
+        'method' => '\OpenAPI\Client\Model\ApiMethod',
+        'parameters' => 'object',
+        'request_body' => 'object',
+        'success_response' => 'object',
+        'description' => 'string'
     ];
 
     /**
@@ -68,7 +73,12 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null
+        'path' => null,
+        'method' => null,
+        'parameters' => null,
+        'request_body' => null,
+        'success_response' => null,
+        'description' => null
     ];
 
     /**
@@ -77,7 +87,12 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => false
+        'path' => false,
+        'method' => false,
+        'parameters' => true,
+        'request_body' => true,
+        'success_response' => true,
+        'description' => false
     ];
 
     /**
@@ -166,7 +181,12 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name'
+        'path' => 'path',
+        'method' => 'method',
+        'parameters' => 'parameters',
+        'request_body' => 'request_body',
+        'success_response' => 'success_response',
+        'description' => 'description'
     ];
 
     /**
@@ -175,7 +195,12 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName'
+        'path' => 'setPath',
+        'method' => 'setMethod',
+        'parameters' => 'setParameters',
+        'request_body' => 'setRequestBody',
+        'success_response' => 'setSuccessResponse',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -184,7 +209,12 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName'
+        'path' => 'getPath',
+        'method' => 'getMethod',
+        'parameters' => 'getParameters',
+        'request_body' => 'getRequestBody',
+        'success_response' => 'getSuccessResponse',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -244,7 +274,12 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('path', $data ?? [], null);
+        $this->setIfExists('method', $data ?? [], null);
+        $this->setIfExists('parameters', $data ?? [], null);
+        $this->setIfExists('request_body', $data ?? [], null);
+        $this->setIfExists('success_response', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
     }
 
     /**
@@ -274,9 +309,27 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['path'] === null) {
+            $invalidProperties[] = "'path' can't be null";
         }
+        if ((mb_strlen($this->container['path']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'path', the character length must be smaller than or equal to 1024.";
+        }
+
+        if ((mb_strlen($this->container['path']) < 1)) {
+            $invalidProperties[] = "invalid value for 'path', the character length must be bigger than or equal to 1.";
+        }
+
+        if ($this->container['method'] === null) {
+            $invalidProperties[] = "'method' can't be null";
+        }
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ((mb_strlen($this->container['description']) < 1)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -293,28 +346,196 @@ class IntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets name
+     * Gets path
      *
      * @return string
      */
-    public function getName()
+    public function getPath()
     {
-        return $this->container['name'];
+        return $this->container['path'];
     }
 
     /**
-     * Sets name
+     * Sets path
      *
-     * @param string $name The name of the integration.
+     * @param string $path The path of the API endpoint.
      *
      * @return self
      */
-    public function setName($name)
+    public function setPath($path)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($path)) {
+            throw new \InvalidArgumentException('non-nullable path cannot be null');
         }
-        $this->container['name'] = $name;
+        if ((mb_strlen($path) > 1024)) {
+            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointCreateRequest., must be smaller than or equal to 1024.');
+        }
+        if ((mb_strlen($path) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointCreateRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['path'] = $path;
+
+        return $this;
+    }
+
+    /**
+     * Gets method
+     *
+     * @return \OpenAPI\Client\Model\ApiMethod
+     */
+    public function getMethod()
+    {
+        return $this->container['method'];
+    }
+
+    /**
+     * Sets method
+     *
+     * @param \OpenAPI\Client\Model\ApiMethod $method The method of the API endpoint.
+     *
+     * @return self
+     */
+    public function setMethod($method)
+    {
+        if (is_null($method)) {
+            throw new \InvalidArgumentException('non-nullable method cannot be null');
+        }
+        $this->container['method'] = $method;
+
+        return $this;
+    }
+
+    /**
+     * Gets parameters
+     *
+     * @return object|null
+     */
+    public function getParameters()
+    {
+        return $this->container['parameters'];
+    }
+
+    /**
+     * Sets parameters
+     *
+     * @param object|null $parameters parameters
+     *
+     * @return self
+     */
+    public function setParameters($parameters)
+    {
+        if (is_null($parameters)) {
+            array_push($this->openAPINullablesSetToNull, 'parameters');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('parameters', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['parameters'] = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_body
+     *
+     * @return object|null
+     */
+    public function getRequestBody()
+    {
+        return $this->container['request_body'];
+    }
+
+    /**
+     * Sets request_body
+     *
+     * @param object|null $request_body request_body
+     *
+     * @return self
+     */
+    public function setRequestBody($request_body)
+    {
+        if (is_null($request_body)) {
+            array_push($this->openAPINullablesSetToNull, 'request_body');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('request_body', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['request_body'] = $request_body;
+
+        return $this;
+    }
+
+    /**
+     * Gets success_response
+     *
+     * @return object|null
+     */
+    public function getSuccessResponse()
+    {
+        return $this->container['success_response'];
+    }
+
+    /**
+     * Sets success_response
+     *
+     * @param object|null $success_response success_response
+     *
+     * @return self
+     */
+    public function setSuccessResponse($success_response)
+    {
+        if (is_null($success_response)) {
+            array_push($this->openAPINullablesSetToNull, 'success_response');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('success_response', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['success_response'] = $success_response;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string $description The description of the API endpoint.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+
+        if ((mb_strlen($description) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling ApiEndpointCreateRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['description'] = $description;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * SerperResult
+ * ApiIntegrationCreateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * SerperResult Class Doc Comment
+ * ApiIntegrationCreateRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SerperResult';
+    protected static $openAPIModelName = 'ApiIntegrationCreateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,11 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'search_parameters' => 'object',
-        'organic' => '\OpenAPI\Client\Model\OrganicPosition[]',
-        'people_also_ask' => '\OpenAPI\Client\Model\RelatedQuestion[]',
-        'related_searches' => '\OpenAPI\Client\Model\RelatedSearch[]'
+        'servers' => 'string[]',
+        'name' => 'string',
+        'description' => 'string',
+        'secret' => '\OpenAPI\Client\Model\Secret',
+        'endpoints' => '\OpenAPI\Client\Model\ApiEndpointCreateRequest[]'
     ];
 
     /**
@@ -71,10 +72,11 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'search_parameters' => null,
-        'organic' => null,
-        'people_also_ask' => null,
-        'related_searches' => null
+        'servers' => null,
+        'name' => null,
+        'description' => null,
+        'secret' => null,
+        'endpoints' => null
     ];
 
     /**
@@ -83,10 +85,11 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'search_parameters' => true,
-        'organic' => true,
-        'people_also_ask' => true,
-        'related_searches' => true
+        'servers' => false,
+        'name' => false,
+        'description' => false,
+        'secret' => false,
+        'endpoints' => false
     ];
 
     /**
@@ -175,10 +178,11 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'search_parameters' => 'searchParameters',
-        'organic' => 'organic',
-        'people_also_ask' => 'peopleAlsoAsk',
-        'related_searches' => 'relatedSearches'
+        'servers' => 'servers',
+        'name' => 'name',
+        'description' => 'description',
+        'secret' => 'secret',
+        'endpoints' => 'endpoints'
     ];
 
     /**
@@ -187,10 +191,11 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'search_parameters' => 'setSearchParameters',
-        'organic' => 'setOrganic',
-        'people_also_ask' => 'setPeopleAlsoAsk',
-        'related_searches' => 'setRelatedSearches'
+        'servers' => 'setServers',
+        'name' => 'setName',
+        'description' => 'setDescription',
+        'secret' => 'setSecret',
+        'endpoints' => 'setEndpoints'
     ];
 
     /**
@@ -199,10 +204,11 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'search_parameters' => 'getSearchParameters',
-        'organic' => 'getOrganic',
-        'people_also_ask' => 'getPeopleAlsoAsk',
-        'related_searches' => 'getRelatedSearches'
+        'servers' => 'getServers',
+        'name' => 'getName',
+        'description' => 'getDescription',
+        'secret' => 'getSecret',
+        'endpoints' => 'getEndpoints'
     ];
 
     /**
@@ -262,10 +268,11 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('search_parameters', $data ?? [], null);
-        $this->setIfExists('organic', $data ?? [], null);
-        $this->setIfExists('people_also_ask', $data ?? [], null);
-        $this->setIfExists('related_searches', $data ?? [], null);
+        $this->setIfExists('servers', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('secret', $data ?? [], null);
+        $this->setIfExists('endpoints', $data ?? [], null);
     }
 
     /**
@@ -295,6 +302,29 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['servers'] === null) {
+            $invalidProperties[] = "'servers' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ((mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
+
+        if ((mb_strlen($this->container['name']) < 1)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
+        }
+
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ($this->container['secret'] === null) {
+            $invalidProperties[] = "'secret' can't be null";
+        }
+        if ($this->container['endpoints'] === null) {
+            $invalidProperties[] = "'endpoints' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -311,137 +341,143 @@ class SerperResult implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets search_parameters
+     * Gets servers
      *
-     * @return object|null
+     * @return string[]
      */
-    public function getSearchParameters()
+    public function getServers()
     {
-        return $this->container['search_parameters'];
+        return $this->container['servers'];
     }
 
     /**
-     * Sets search_parameters
+     * Sets servers
      *
-     * @param object|null $search_parameters search_parameters
+     * @param string[] $servers The servers of the API integration.
      *
      * @return self
      */
-    public function setSearchParameters($search_parameters)
+    public function setServers($servers)
     {
-        if (is_null($search_parameters)) {
-            array_push($this->openAPINullablesSetToNull, 'search_parameters');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('search_parameters', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($servers)) {
+            throw new \InvalidArgumentException('non-nullable servers cannot be null');
         }
-        $this->container['search_parameters'] = $search_parameters;
+        $this->container['servers'] = $servers;
 
         return $this;
     }
 
     /**
-     * Gets organic
+     * Gets name
      *
-     * @return \OpenAPI\Client\Model\OrganicPosition[]|null
+     * @return string
      */
-    public function getOrganic()
+    public function getName()
     {
-        return $this->container['organic'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets organic
+     * Sets name
      *
-     * @param \OpenAPI\Client\Model\OrganicPosition[]|null $organic organic
+     * @param string $name The name of the API integration.
      *
      * @return self
      */
-    public function setOrganic($organic)
+    public function setName($name)
     {
-        if (is_null($organic)) {
-            array_push($this->openAPINullablesSetToNull, 'organic');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('organic', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['organic'] = $organic;
+        if ((mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ApiIntegrationCreateRequest., must be smaller than or equal to 255.');
+        }
+        if ((mb_strlen($name) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ApiIntegrationCreateRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets people_also_ask
+     * Gets description
      *
-     * @return \OpenAPI\Client\Model\RelatedQuestion[]|null
+     * @return string
      */
-    public function getPeopleAlsoAsk()
+    public function getDescription()
     {
-        return $this->container['people_also_ask'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets people_also_ask
+     * Sets description
      *
-     * @param \OpenAPI\Client\Model\RelatedQuestion[]|null $people_also_ask people_also_ask
+     * @param string $description The description of the API integration.
      *
      * @return self
      */
-    public function setPeopleAlsoAsk($people_also_ask)
+    public function setDescription($description)
     {
-        if (is_null($people_also_ask)) {
-            array_push($this->openAPINullablesSetToNull, 'people_also_ask');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('people_also_ask', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-        $this->container['people_also_ask'] = $people_also_ask;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets related_searches
+     * Gets secret
      *
-     * @return \OpenAPI\Client\Model\RelatedSearch[]|null
+     * @return \OpenAPI\Client\Model\Secret
      */
-    public function getRelatedSearches()
+    public function getSecret()
     {
-        return $this->container['related_searches'];
+        return $this->container['secret'];
     }
 
     /**
-     * Sets related_searches
+     * Sets secret
      *
-     * @param \OpenAPI\Client\Model\RelatedSearch[]|null $related_searches related_searches
+     * @param \OpenAPI\Client\Model\Secret $secret secret
      *
      * @return self
      */
-    public function setRelatedSearches($related_searches)
+    public function setSecret($secret)
     {
-        if (is_null($related_searches)) {
-            array_push($this->openAPINullablesSetToNull, 'related_searches');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('related_searches', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($secret)) {
+            throw new \InvalidArgumentException('non-nullable secret cannot be null');
         }
-        $this->container['related_searches'] = $related_searches;
+        $this->container['secret'] = $secret;
+
+        return $this;
+    }
+
+    /**
+     * Gets endpoints
+     *
+     * @return \OpenAPI\Client\Model\ApiEndpointCreateRequest[]
+     */
+    public function getEndpoints()
+    {
+        return $this->container['endpoints'];
+    }
+
+    /**
+     * Sets endpoints
+     *
+     * @param \OpenAPI\Client\Model\ApiEndpointCreateRequest[] $endpoints The endpoints of the API integration.
+     *
+     * @return self
+     */
+    public function setEndpoints($endpoints)
+    {
+        if (is_null($endpoints)) {
+            throw new \InvalidArgumentException('non-nullable endpoints cannot be null');
+        }
+        $this->container['endpoints'] = $endpoints;
 
         return $this;
     }

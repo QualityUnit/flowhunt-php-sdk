@@ -1,6 +1,6 @@
 <?php
 /**
- * RelatedSearchTest
+ * ApiIntegrationResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * RelatedSearchTest Class Doc Comment
+ * ApiIntegrationResponseTest Class Doc Comment
  *
  * @category    Class
- * @description RelatedSearch
+ * @description ApiIntegrationResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class RelatedSearchTest extends TestCase
+class ApiIntegrationResponseTest extends TestCase
 {
 
     /**
@@ -71,18 +71,54 @@ class RelatedSearchTest extends TestCase
     }
 
     /**
-     * Test "RelatedSearch"
+     * Test "ApiIntegrationResponse"
      */
-    public function testRelatedSearch()
+    public function testApiIntegrationResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "query"
+     * Test attribute "integration_id"
      */
-    public function testPropertyQuery()
+    public function testPropertyIntegrationId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "servers"
+     */
+    public function testPropertyServers()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "name"
+     */
+    public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "secret"
+     */
+    public function testPropertySecret()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

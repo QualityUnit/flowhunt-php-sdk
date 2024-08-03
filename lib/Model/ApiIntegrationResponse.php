@@ -1,6 +1,6 @@
 <?php
 /**
- * RelatedSearch
+ * ApiIntegrationResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RelatedSearch Class Doc Comment
+ * ApiIntegrationResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiIntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RelatedSearch';
+    protected static $openAPIModelName = 'ApiIntegrationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,11 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'query' => 'string'
+        'integration_id' => 'string',
+        'servers' => 'string[]',
+        'name' => 'string',
+        'description' => 'string',
+        'secret' => '\OpenAPI\Client\Model\Secret1'
     ];
 
     /**
@@ -68,7 +72,11 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'query' => null
+        'integration_id' => 'uuid',
+        'servers' => null,
+        'name' => null,
+        'description' => null,
+        'secret' => null
     ];
 
     /**
@@ -77,7 +85,11 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'query' => false
+        'integration_id' => false,
+        'servers' => false,
+        'name' => false,
+        'description' => false,
+        'secret' => true
     ];
 
     /**
@@ -166,7 +178,11 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'query' => 'query'
+        'integration_id' => 'integration_id',
+        'servers' => 'servers',
+        'name' => 'name',
+        'description' => 'description',
+        'secret' => 'secret'
     ];
 
     /**
@@ -175,7 +191,11 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'query' => 'setQuery'
+        'integration_id' => 'setIntegrationId',
+        'servers' => 'setServers',
+        'name' => 'setName',
+        'description' => 'setDescription',
+        'secret' => 'setSecret'
     ];
 
     /**
@@ -184,7 +204,11 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'query' => 'getQuery'
+        'integration_id' => 'getIntegrationId',
+        'servers' => 'getServers',
+        'name' => 'getName',
+        'description' => 'getDescription',
+        'secret' => 'getSecret'
     ];
 
     /**
@@ -244,7 +268,11 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('query', $data ?? [], '');
+        $this->setIfExists('integration_id', $data ?? [], null);
+        $this->setIfExists('servers', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('secret', $data ?? [], null);
     }
 
     /**
@@ -274,6 +302,21 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['integration_id'] === null) {
+            $invalidProperties[] = "'integration_id' can't be null";
+        }
+        if ($this->container['servers'] === null) {
+            $invalidProperties[] = "'servers' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ($this->container['secret'] === null) {
+            $invalidProperties[] = "'secret' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -290,28 +333,143 @@ class RelatedSearch implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets query
+     * Gets integration_id
      *
-     * @return string|null
+     * @return string
      */
-    public function getQuery()
+    public function getIntegrationId()
     {
-        return $this->container['query'];
+        return $this->container['integration_id'];
     }
 
     /**
-     * Sets query
+     * Sets integration_id
      *
-     * @param string|null $query Related search query
+     * @param string $integration_id The ID of the API integration.
      *
      * @return self
      */
-    public function setQuery($query)
+    public function setIntegrationId($integration_id)
     {
-        if (is_null($query)) {
-            throw new \InvalidArgumentException('non-nullable query cannot be null');
+        if (is_null($integration_id)) {
+            throw new \InvalidArgumentException('non-nullable integration_id cannot be null');
         }
-        $this->container['query'] = $query;
+        $this->container['integration_id'] = $integration_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets servers
+     *
+     * @return string[]
+     */
+    public function getServers()
+    {
+        return $this->container['servers'];
+    }
+
+    /**
+     * Sets servers
+     *
+     * @param string[] $servers The servers of the API integration.
+     *
+     * @return self
+     */
+    public function setServers($servers)
+    {
+        if (is_null($servers)) {
+            throw new \InvalidArgumentException('non-nullable servers cannot be null');
+        }
+        $this->container['servers'] = $servers;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name The name of the API integration.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string $description The description of the API integration.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets secret
+     *
+     * @return \OpenAPI\Client\Model\Secret1
+     */
+    public function getSecret()
+    {
+        return $this->container['secret'];
+    }
+
+    /**
+     * Sets secret
+     *
+     * @param \OpenAPI\Client\Model\Secret1 $secret secret
+     *
+     * @return self
+     */
+    public function setSecret($secret)
+    {
+        if (is_null($secret)) {
+            array_push($this->openAPINullablesSetToNull, 'secret');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('secret', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['secret'] = $secret;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationSearchRequest
+ * ApiEndpointSearchRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * IntegrationSearchRequest Class Doc Comment
+ * ApiEndpointSearchRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IntegrationSearchRequest';
+    protected static $openAPIModelName = 'ApiEndpointSearchRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'slug' => '\OpenAPI\Client\Model\IntegrationSlug'
+        'path' => 'string',
+        'method' => '\OpenAPI\Client\Model\ApiMethod'
     ];
 
     /**
@@ -68,7 +69,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'slug' => null
+        'path' => null,
+        'method' => null
     ];
 
     /**
@@ -77,7 +79,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'slug' => true
+        'path' => true,
+        'method' => true
     ];
 
     /**
@@ -166,7 +169,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'slug' => 'slug'
+        'path' => 'path',
+        'method' => 'method'
     ];
 
     /**
@@ -175,7 +179,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'slug' => 'setSlug'
+        'path' => 'setPath',
+        'method' => 'setMethod'
     ];
 
     /**
@@ -184,7 +189,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'slug' => 'getSlug'
+        'path' => 'getPath',
+        'method' => 'getMethod'
     ];
 
     /**
@@ -244,7 +250,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('slug', $data ?? [], null);
+        $this->setIfExists('path', $data ?? [], null);
+        $this->setIfExists('method', $data ?? [], null);
     }
 
     /**
@@ -274,6 +281,14 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['path']) && (mb_strlen($this->container['path']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'path', the character length must be smaller than or equal to 1024.";
+        }
+
+        if (!is_null($this->container['path']) && (mb_strlen($this->container['path']) < 1)) {
+            $invalidProperties[] = "invalid value for 'path', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -290,35 +305,76 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets slug
+     * Gets path
      *
-     * @return \OpenAPI\Client\Model\IntegrationSlug|null
+     * @return string|null
      */
-    public function getSlug()
+    public function getPath()
     {
-        return $this->container['slug'];
+        return $this->container['path'];
     }
 
     /**
-     * Sets slug
+     * Sets path
      *
-     * @param \OpenAPI\Client\Model\IntegrationSlug|null $slug slug
+     * @param string|null $path path
      *
      * @return self
      */
-    public function setSlug($slug)
+    public function setPath($path)
     {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
+        if (is_null($path)) {
+            array_push($this->openAPINullablesSetToNull, 'path');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
+            $index = array_search('path', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['slug'] = $slug;
+        if (!is_null($path) && (mb_strlen($path) > 1024)) {
+            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointSearchRequest., must be smaller than or equal to 1024.');
+        }
+        if (!is_null($path) && (mb_strlen($path) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointSearchRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['path'] = $path;
+
+        return $this;
+    }
+
+    /**
+     * Gets method
+     *
+     * @return \OpenAPI\Client\Model\ApiMethod|null
+     */
+    public function getMethod()
+    {
+        return $this->container['method'];
+    }
+
+    /**
+     * Sets method
+     *
+     * @param \OpenAPI\Client\Model\ApiMethod|null $method method
+     *
+     * @return self
+     */
+    public function setMethod($method)
+    {
+        if (is_null($method)) {
+            array_push($this->openAPINullablesSetToNull, 'method');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('method', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['method'] = $method;
 
         return $this;
     }

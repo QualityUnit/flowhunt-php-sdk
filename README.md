@@ -139,11 +139,17 @@ Class | Method | HTTP request | Description
 *ImagesApi* | [**convertImage**](docs/Api/ImagesApi.md#convertimage) | **POST** /v2/images/convert | Convert Image
 *ImagesApi* | [**getScreenshot**](docs/Api/ImagesApi.md#getscreenshot) | **POST** /v2/images/screenshot | Get Screenshot
 *ImagesApi* | [**optimizeImage**](docs/Api/ImagesApi.md#optimizeimage) | **POST** /v2/images/optimize | Optimize Image
-*IntegrationsApi* | [**createIntegration**](docs/Api/IntegrationsApi.md#createintegration) | **POST** /v2/integrations/{integration_slug}/create | Create Integration
+*IntegrationsApi* | [**createApiIntegration**](docs/Api/IntegrationsApi.md#createapiintegration) | **POST** /v2/integrations/api_integrations/create | Create Api Integration
+*IntegrationsApi* | [**createApiIntegrationEndpoint**](docs/Api/IntegrationsApi.md#createapiintegrationendpoint) | **POST** /v2/integrations/api_integrations/{integration_id}/endpoints/create | Create Api Integration Endpoint
 *IntegrationsApi* | [**getAllIntegrations**](docs/Api/IntegrationsApi.md#getallintegrations) | **GET** /v2/integrations/all | Get All Integrations
+*IntegrationsApi* | [**getApiIntegration**](docs/Api/IntegrationsApi.md#getapiintegration) | **GET** /v2/integrations/api_integrations/ | Get Api Integration
+*IntegrationsApi* | [**getApiIntegrationEndpoints**](docs/Api/IntegrationsApi.md#getapiintegrationendpoints) | **POST** /v2/integrations/api_integrations/{integration_id}/endpoints | Get Api Integration Endpoints
+*IntegrationsApi* | [**getApiIntegrations**](docs/Api/IntegrationsApi.md#getapiintegrations) | **POST** /v2/integrations/api_integrations/ | Get Api Integrations
 *IntegrationsApi* | [**getMyIntegrations**](docs/Api/IntegrationsApi.md#getmyintegrations) | **POST** /v2/integrations/ | Get My Integrations
-*IntegrationsApi* | [**removeIntegration**](docs/Api/IntegrationsApi.md#removeintegration) | **DELETE** /v2/integrations/ | Remove Integration
-*IntegrationsApi* | [**updateIntegration**](docs/Api/IntegrationsApi.md#updateintegration) | **PUT** /v2/integrations/{integration_slug}/{integration_id} | Update Integration
+*IntegrationsApi* | [**removeApiIntegration**](docs/Api/IntegrationsApi.md#removeapiintegration) | **DELETE** /v2/integrations/api_integrations/{integration_id} | Remove Api Integration
+*IntegrationsApi* | [**removeApiIntegrationEndpoint**](docs/Api/IntegrationsApi.md#removeapiintegrationendpoint) | **DELETE** /v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id} | Remove Api Integration Endpoint
+*IntegrationsApi* | [**updateApiIntegration**](docs/Api/IntegrationsApi.md#updateapiintegration) | **PUT** /v2/integrations/api_integrations/{integration_id} | Update Api Integration
+*IntegrationsApi* | [**updateApiIntegrationEndpoint**](docs/Api/IntegrationsApi.md#updateapiintegrationendpoint) | **PUT** /v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id} | Update Api Integration Endpoint
 *PromptsApi* | [**createPrompt**](docs/Api/PromptsApi.md#createprompt) | **POST** /v2/prompts/create | Create Prompt
 *PromptsApi* | [**createPromptCategory**](docs/Api/PromptsApi.md#createpromptcategory) | **POST** /v2/prompts/categories/create | Create Prompt Category
 *PromptsApi* | [**deletePrompt**](docs/Api/PromptsApi.md#deleteprompt) | **DELETE** /v2/prompts/{prompt_id} | Delete Prompt
@@ -184,10 +190,20 @@ Class | Method | HTTP request | Description
 
 ## Models
 
+- [ApiEndpointCreateRequest](docs/Model/ApiEndpointCreateRequest.md)
+- [ApiEndpointResponse](docs/Model/ApiEndpointResponse.md)
+- [ApiEndpointSearchRequest](docs/Model/ApiEndpointSearchRequest.md)
+- [ApiEndpointUpdateRequest](docs/Model/ApiEndpointUpdateRequest.md)
+- [ApiIntegrationCreateRequest](docs/Model/ApiIntegrationCreateRequest.md)
+- [ApiIntegrationResponse](docs/Model/ApiIntegrationResponse.md)
+- [ApiIntegrationSearchRequest](docs/Model/ApiIntegrationSearchRequest.md)
+- [ApiIntegrationUpdateRequest](docs/Model/ApiIntegrationUpdateRequest.md)
 - [ApiKeyCreateRequest](docs/Model/ApiKeyCreateRequest.md)
+- [ApiKeyIntegrationSecret](docs/Model/ApiKeyIntegrationSecret.md)
 - [ApiKeyResponse](docs/Model/ApiKeyResponse.md)
 - [ApiKeySearchRequest](docs/Model/ApiKeySearchRequest.md)
 - [ApiKeyUpdateRequest](docs/Model/ApiKeyUpdateRequest.md)
+- [ApiMethod](docs/Model/ApiMethod.md)
 - [AppUrlInput](docs/Model/AppUrlInput.md)
 - [AppUrlOutput](docs/Model/AppUrlOutput.md)
 - [ChatbotCreateRequest](docs/Model/ChatbotCreateRequest.md)
@@ -246,14 +262,13 @@ Class | Method | HTTP request | Description
 - [ImageConvertRequest](docs/Model/ImageConvertRequest.md)
 - [ImageOptimizeRequest](docs/Model/ImageOptimizeRequest.md)
 - [IntegrationCategory](docs/Model/IntegrationCategory.md)
-- [IntegrationCreateRequest](docs/Model/IntegrationCreateRequest.md)
 - [IntegrationDetailResponse](docs/Model/IntegrationDetailResponse.md)
 - [IntegrationResponse](docs/Model/IntegrationResponse.md)
 - [IntegrationSearchRequest](docs/Model/IntegrationSearchRequest.md)
 - [IntegrationSlug](docs/Model/IntegrationSlug.md)
 - [LoginUserRequest](docs/Model/LoginUserRequest.md)
 - [NewPasswordRequest](docs/Model/NewPasswordRequest.md)
-- [OrganicPosition](docs/Model/OrganicPosition.md)
+- [OAuthIntegrationSecret](docs/Model/OAuthIntegrationSecret.md)
 - [PlanResponse](docs/Model/PlanResponse.md)
 - [PointerType](docs/Model/PointerType.md)
 - [PromptCategoryCreateRequest](docs/Model/PromptCategoryCreateRequest.md)
@@ -268,8 +283,6 @@ Class | Method | HTTP request | Description
 - [QuerySimilarityTaskRequest](docs/Model/QuerySimilarityTaskRequest.md)
 - [RefreshTokenRequest](docs/Model/RefreshTokenRequest.md)
 - [RegisterUserRequest](docs/Model/RegisterUserRequest.md)
-- [RelatedQuestion](docs/Model/RelatedQuestion.md)
-- [RelatedSearch](docs/Model/RelatedSearch.md)
 - [Role](docs/Model/Role.md)
 - [ScheduleCreateRequest](docs/Model/ScheduleCreateRequest.md)
 - [ScheduleFrequency](docs/Model/ScheduleFrequency.md)
@@ -283,12 +296,11 @@ Class | Method | HTTP request | Description
 - [ScheduleUrlSearchRequest](docs/Model/ScheduleUrlSearchRequest.md)
 - [ScreenshotRequest](docs/Model/ScreenshotRequest.md)
 - [ScreenshotResponse](docs/Model/ScreenshotResponse.md)
+- [Secret](docs/Model/Secret.md)
+- [Secret1](docs/Model/Secret1.md)
 - [SerpSearchRequest](docs/Model/SerpSearchRequest.md)
 - [SerpSearchRequests](docs/Model/SerpSearchRequests.md)
 - [SerpVolumeRequest](docs/Model/SerpVolumeRequest.md)
-- [SerperResponse](docs/Model/SerperResponse.md)
-- [SerperResult](docs/Model/SerperResult.md)
-- [SiteLink](docs/Model/SiteLink.md)
 - [SubscriptionPlan](docs/Model/SubscriptionPlan.md)
 - [TagCreateRequest](docs/Model/TagCreateRequest.md)
 - [TagResponse](docs/Model/TagResponse.md)
@@ -355,6 +367,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `2.0.102`
+    - Package version: `2.0.111`
     - Generator version: `7.7.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

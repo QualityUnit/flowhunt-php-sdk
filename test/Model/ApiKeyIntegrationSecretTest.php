@@ -1,6 +1,6 @@
 <?php
 /**
- * SiteLinkTest
+ * ApiKeyIntegrationSecretTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SiteLinkTest Class Doc Comment
+ * ApiKeyIntegrationSecretTest Class Doc Comment
  *
  * @category    Class
- * @description SiteLink
+ * @description ApiKeyIntegrationSecret
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SiteLinkTest extends TestCase
+class ApiKeyIntegrationSecretTest extends TestCase
 {
 
     /**
@@ -71,27 +71,18 @@ class SiteLinkTest extends TestCase
     }
 
     /**
-     * Test "SiteLink"
+     * Test "ApiKeyIntegrationSecret"
      */
-    public function testSiteLink()
+    public function testApiKeyIntegrationSecret()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "api_key"
      */
-    public function testPropertyTitle()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "link"
-     */
-    public function testPropertyLink()
+    public function testPropertyApiKey()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

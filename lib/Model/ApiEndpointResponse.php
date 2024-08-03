@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationSearchRequest
+ * ApiEndpointResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * IntegrationSearchRequest Class Doc Comment
+ * ApiEndpointResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IntegrationSearchRequest';
+    protected static $openAPIModelName = 'ApiEndpointResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,13 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'slug' => '\OpenAPI\Client\Model\IntegrationSlug'
+        'endpoint_id' => 'string',
+        'path' => 'string',
+        'description' => 'string',
+        'method' => '\OpenAPI\Client\Model\ApiMethod',
+        'parameters' => 'object',
+        'request_body' => 'object',
+        'success_response' => 'object'
     ];
 
     /**
@@ -68,7 +74,13 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'slug' => null
+        'endpoint_id' => 'uuid',
+        'path' => null,
+        'description' => null,
+        'method' => null,
+        'parameters' => null,
+        'request_body' => null,
+        'success_response' => null
     ];
 
     /**
@@ -77,7 +89,13 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'slug' => true
+        'endpoint_id' => false,
+        'path' => false,
+        'description' => false,
+        'method' => false,
+        'parameters' => true,
+        'request_body' => true,
+        'success_response' => true
     ];
 
     /**
@@ -166,7 +184,13 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'slug' => 'slug'
+        'endpoint_id' => 'endpoint_id',
+        'path' => 'path',
+        'description' => 'description',
+        'method' => 'method',
+        'parameters' => 'parameters',
+        'request_body' => 'request_body',
+        'success_response' => 'success_response'
     ];
 
     /**
@@ -175,7 +199,13 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'slug' => 'setSlug'
+        'endpoint_id' => 'setEndpointId',
+        'path' => 'setPath',
+        'description' => 'setDescription',
+        'method' => 'setMethod',
+        'parameters' => 'setParameters',
+        'request_body' => 'setRequestBody',
+        'success_response' => 'setSuccessResponse'
     ];
 
     /**
@@ -184,7 +214,13 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'slug' => 'getSlug'
+        'endpoint_id' => 'getEndpointId',
+        'path' => 'getPath',
+        'description' => 'getDescription',
+        'method' => 'getMethod',
+        'parameters' => 'getParameters',
+        'request_body' => 'getRequestBody',
+        'success_response' => 'getSuccessResponse'
     ];
 
     /**
@@ -244,7 +280,13 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('slug', $data ?? [], null);
+        $this->setIfExists('endpoint_id', $data ?? [], null);
+        $this->setIfExists('path', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('method', $data ?? [], null);
+        $this->setIfExists('parameters', $data ?? [], null);
+        $this->setIfExists('request_body', $data ?? [], null);
+        $this->setIfExists('success_response', $data ?? [], null);
     }
 
     /**
@@ -274,6 +316,18 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['endpoint_id'] === null) {
+            $invalidProperties[] = "'endpoint_id' can't be null";
+        }
+        if ($this->container['path'] === null) {
+            $invalidProperties[] = "'path' can't be null";
+        }
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ($this->container['method'] === null) {
+            $invalidProperties[] = "'method' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -290,35 +344,211 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets slug
+     * Gets endpoint_id
      *
-     * @return \OpenAPI\Client\Model\IntegrationSlug|null
+     * @return string
      */
-    public function getSlug()
+    public function getEndpointId()
     {
-        return $this->container['slug'];
+        return $this->container['endpoint_id'];
     }
 
     /**
-     * Sets slug
+     * Sets endpoint_id
      *
-     * @param \OpenAPI\Client\Model\IntegrationSlug|null $slug slug
+     * @param string $endpoint_id The ID of the API endpoint.
      *
      * @return self
      */
-    public function setSlug($slug)
+    public function setEndpointId($endpoint_id)
     {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
+        if (is_null($endpoint_id)) {
+            throw new \InvalidArgumentException('non-nullable endpoint_id cannot be null');
+        }
+        $this->container['endpoint_id'] = $endpoint_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->container['path'];
+    }
+
+    /**
+     * Sets path
+     *
+     * @param string $path The path of the API endpoint.
+     *
+     * @return self
+     */
+    public function setPath($path)
+    {
+        if (is_null($path)) {
+            throw new \InvalidArgumentException('non-nullable path cannot be null');
+        }
+        $this->container['path'] = $path;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string $description The description of the API endpoint.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets method
+     *
+     * @return \OpenAPI\Client\Model\ApiMethod
+     */
+    public function getMethod()
+    {
+        return $this->container['method'];
+    }
+
+    /**
+     * Sets method
+     *
+     * @param \OpenAPI\Client\Model\ApiMethod $method The method of the API endpoint.
+     *
+     * @return self
+     */
+    public function setMethod($method)
+    {
+        if (is_null($method)) {
+            throw new \InvalidArgumentException('non-nullable method cannot be null');
+        }
+        $this->container['method'] = $method;
+
+        return $this;
+    }
+
+    /**
+     * Gets parameters
+     *
+     * @return object|null
+     */
+    public function getParameters()
+    {
+        return $this->container['parameters'];
+    }
+
+    /**
+     * Sets parameters
+     *
+     * @param object|null $parameters parameters
+     *
+     * @return self
+     */
+    public function setParameters($parameters)
+    {
+        if (is_null($parameters)) {
+            array_push($this->openAPINullablesSetToNull, 'parameters');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
+            $index = array_search('parameters', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['slug'] = $slug;
+        $this->container['parameters'] = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_body
+     *
+     * @return object|null
+     */
+    public function getRequestBody()
+    {
+        return $this->container['request_body'];
+    }
+
+    /**
+     * Sets request_body
+     *
+     * @param object|null $request_body request_body
+     *
+     * @return self
+     */
+    public function setRequestBody($request_body)
+    {
+        if (is_null($request_body)) {
+            array_push($this->openAPINullablesSetToNull, 'request_body');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('request_body', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['request_body'] = $request_body;
+
+        return $this;
+    }
+
+    /**
+     * Gets success_response
+     *
+     * @return object|null
+     */
+    public function getSuccessResponse()
+    {
+        return $this->container['success_response'];
+    }
+
+    /**
+     * Sets success_response
+     *
+     * @param object|null $success_response success_response
+     *
+     * @return self
+     */
+    public function setSuccessResponse($success_response)
+    {
+        if (is_null($success_response)) {
+            array_push($this->openAPINullablesSetToNull, 'success_response');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('success_response', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['success_response'] = $success_response;
 
         return $this;
     }

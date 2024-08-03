@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationDetailResponseTest
+ * ApiIntegrationCreateRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * IntegrationDetailResponseTest Class Doc Comment
+ * ApiIntegrationCreateRequestTest Class Doc Comment
  *
  * @category    Class
- * @description IntegrationDetailResponse
+ * @description ApiIntegrationCreateRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class IntegrationDetailResponseTest extends TestCase
+class ApiIntegrationCreateRequestTest extends TestCase
 {
 
     /**
@@ -71,36 +71,54 @@ class IntegrationDetailResponseTest extends TestCase
     }
 
     /**
-     * Test "IntegrationDetailResponse"
+     * Test "ApiIntegrationCreateRequest"
      */
-    public function testIntegrationDetailResponse()
+    public function testApiIntegrationCreateRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "slug"
+     * Test attribute "servers"
      */
-    public function testPropertySlug()
+    public function testPropertyServers()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "integration_id"
+     * Test attribute "name"
      */
-    public function testPropertyIntegrationId()
+    public function testPropertyName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "description"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "secret"
+     */
+    public function testPropertySecret()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "endpoints"
+     */
+    public function testPropertyEndpoints()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

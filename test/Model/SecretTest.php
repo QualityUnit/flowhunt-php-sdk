@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationDetailResponseTest
+ * SecretTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * IntegrationDetailResponseTest Class Doc Comment
+ * SecretTest Class Doc Comment
  *
  * @category    Class
- * @description IntegrationDetailResponse
+ * @description The secret of the API integration.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class IntegrationDetailResponseTest extends TestCase
+class SecretTest extends TestCase
 {
 
     /**
@@ -71,36 +71,45 @@ class IntegrationDetailResponseTest extends TestCase
     }
 
     /**
-     * Test "IntegrationDetailResponse"
+     * Test "Secret"
      */
-    public function testIntegrationDetailResponse()
+    public function testSecret()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "slug"
+     * Test attribute "client_id"
      */
-    public function testPropertySlug()
+    public function testPropertyClientId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "integration_id"
+     * Test attribute "client_secret"
      */
-    public function testPropertyIntegrationId()
+    public function testPropertyClientSecret()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "scopes"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyScopes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "api_key"
+     */
+    public function testPropertyApiKey()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

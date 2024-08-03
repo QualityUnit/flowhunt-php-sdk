@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationSearchRequest
+ * ApiIntegrationUpdateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * IntegrationSearchRequest Class Doc Comment
+ * ApiIntegrationUpdateRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiIntegrationUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IntegrationSearchRequest';
+    protected static $openAPIModelName = 'ApiIntegrationUpdateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,11 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'slug' => '\OpenAPI\Client\Model\IntegrationSlug'
+        'servers' => 'string[]',
+        'name' => 'string',
+        'description' => 'string',
+        'secret' => '\OpenAPI\Client\Model\Secret1',
+        'endpoints' => '\OpenAPI\Client\Model\ApiEndpointCreateRequest[]'
     ];
 
     /**
@@ -68,7 +72,11 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'slug' => null
+        'servers' => null,
+        'name' => null,
+        'description' => null,
+        'secret' => null,
+        'endpoints' => null
     ];
 
     /**
@@ -77,7 +85,11 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'slug' => true
+        'servers' => true,
+        'name' => true,
+        'description' => true,
+        'secret' => true,
+        'endpoints' => true
     ];
 
     /**
@@ -166,7 +178,11 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'slug' => 'slug'
+        'servers' => 'servers',
+        'name' => 'name',
+        'description' => 'description',
+        'secret' => 'secret',
+        'endpoints' => 'endpoints'
     ];
 
     /**
@@ -175,7 +191,11 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'slug' => 'setSlug'
+        'servers' => 'setServers',
+        'name' => 'setName',
+        'description' => 'setDescription',
+        'secret' => 'setSecret',
+        'endpoints' => 'setEndpoints'
     ];
 
     /**
@@ -184,7 +204,11 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'slug' => 'getSlug'
+        'servers' => 'getServers',
+        'name' => 'getName',
+        'description' => 'getDescription',
+        'secret' => 'getSecret',
+        'endpoints' => 'getEndpoints'
     ];
 
     /**
@@ -244,7 +268,11 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('slug', $data ?? [], null);
+        $this->setIfExists('servers', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('secret', $data ?? [], null);
+        $this->setIfExists('endpoints', $data ?? [], null);
     }
 
     /**
@@ -274,6 +302,14 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 1)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -290,35 +326,178 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets slug
+     * Gets servers
      *
-     * @return \OpenAPI\Client\Model\IntegrationSlug|null
+     * @return string[]|null
      */
-    public function getSlug()
+    public function getServers()
     {
-        return $this->container['slug'];
+        return $this->container['servers'];
     }
 
     /**
-     * Sets slug
+     * Sets servers
      *
-     * @param \OpenAPI\Client\Model\IntegrationSlug|null $slug slug
+     * @param string[]|null $servers servers
      *
      * @return self
      */
-    public function setSlug($slug)
+    public function setServers($servers)
     {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
+        if (is_null($servers)) {
+            array_push($this->openAPINullablesSetToNull, 'servers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
+            $index = array_search('servers', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['slug'] = $slug;
+        $this->container['servers'] = $servers;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            array_push($this->openAPINullablesSetToNull, 'name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($name) && (mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ApiIntegrationUpdateRequest., must be smaller than or equal to 255.');
+        }
+        if (!is_null($name) && (mb_strlen($name) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ApiIntegrationUpdateRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets secret
+     *
+     * @return \OpenAPI\Client\Model\Secret1|null
+     */
+    public function getSecret()
+    {
+        return $this->container['secret'];
+    }
+
+    /**
+     * Sets secret
+     *
+     * @param \OpenAPI\Client\Model\Secret1|null $secret secret
+     *
+     * @return self
+     */
+    public function setSecret($secret)
+    {
+        if (is_null($secret)) {
+            array_push($this->openAPINullablesSetToNull, 'secret');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('secret', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['secret'] = $secret;
+
+        return $this;
+    }
+
+    /**
+     * Gets endpoints
+     *
+     * @return \OpenAPI\Client\Model\ApiEndpointCreateRequest[]|null
+     */
+    public function getEndpoints()
+    {
+        return $this->container['endpoints'];
+    }
+
+    /**
+     * Sets endpoints
+     *
+     * @param \OpenAPI\Client\Model\ApiEndpointCreateRequest[]|null $endpoints endpoints
+     *
+     * @return self
+     */
+    public function setEndpoints($endpoints)
+    {
+        if (is_null($endpoints)) {
+            array_push($this->openAPINullablesSetToNull, 'endpoints');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('endpoints', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['endpoints'] = $endpoints;
 
         return $this;
     }

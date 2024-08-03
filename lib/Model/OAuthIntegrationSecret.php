@@ -1,6 +1,6 @@
 <?php
 /**
- * SerperResponse
+ * OAuthIntegrationSecret
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * SerperResponse Class Doc Comment
+ * OAuthIntegrationSecret Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SerperResponse';
+    protected static $openAPIModelName = 'OAuthIntegrationSecret';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,9 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatus',
-        'result' => '\OpenAPI\Client\Model\SerperResult',
-        'error_message' => 'string'
+        'client_id' => 'string',
+        'client_secret' => 'string',
+        'scopes' => 'string[]'
     ];
 
     /**
@@ -71,10 +70,9 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'status' => null,
-        'result' => null,
-        'error_message' => null
+        'client_id' => null,
+        'client_secret' => null,
+        'scopes' => null
     ];
 
     /**
@@ -83,10 +81,9 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'status' => false,
-        'result' => true,
-        'error_message' => true
+        'client_id' => false,
+        'client_secret' => false,
+        'scopes' => false
     ];
 
     /**
@@ -175,10 +172,9 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'result' => 'result',
-        'error_message' => 'error_message'
+        'client_id' => 'client_id',
+        'client_secret' => 'client_secret',
+        'scopes' => 'scopes'
     ];
 
     /**
@@ -187,10 +183,9 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'status' => 'setStatus',
-        'result' => 'setResult',
-        'error_message' => 'setErrorMessage'
+        'client_id' => 'setClientId',
+        'client_secret' => 'setClientSecret',
+        'scopes' => 'setScopes'
     ];
 
     /**
@@ -199,10 +194,9 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'status' => 'getStatus',
-        'result' => 'getResult',
-        'error_message' => 'getErrorMessage'
+        'client_id' => 'getClientId',
+        'client_secret' => 'getClientSecret',
+        'scopes' => 'getScopes'
     ];
 
     /**
@@ -262,10 +256,9 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('error_message', $data ?? [], null);
+        $this->setIfExists('client_id', $data ?? [], null);
+        $this->setIfExists('client_secret', $data ?? [], null);
+        $this->setIfExists('scopes', $data ?? [], null);
     }
 
     /**
@@ -295,11 +288,14 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['client_id'] === null) {
+            $invalidProperties[] = "'client_id' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+        if ($this->container['client_secret'] === null) {
+            $invalidProperties[] = "'client_secret' can't be null";
+        }
+        if ($this->container['scopes'] === null) {
+            $invalidProperties[] = "'scopes' can't be null";
         }
         return $invalidProperties;
     }
@@ -317,123 +313,82 @@ class SerperResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets client_id
      *
      * @return string
      */
-    public function getId()
+    public function getClientId()
     {
-        return $this->container['id'];
+        return $this->container['client_id'];
     }
 
     /**
-     * Sets id
+     * Sets client_id
      *
-     * @param string $id Task ID
+     * @param string $client_id The client ID of the OAuth integration.
      *
      * @return self
      */
-    public function setId($id)
+    public function setClientId($client_id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($client_id)) {
+            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['client_id'] = $client_id;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets client_secret
      *
-     * @return \OpenAPI\Client\Model\TaskStatus
+     * @return string
      */
-    public function getStatus()
+    public function getClientSecret()
     {
-        return $this->container['status'];
+        return $this->container['client_secret'];
     }
 
     /**
-     * Sets status
+     * Sets client_secret
      *
-     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
+     * @param string $client_secret The client secret of the OAuth integration.
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setClientSecret($client_secret)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($client_secret)) {
+            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['client_secret'] = $client_secret;
 
         return $this;
     }
 
     /**
-     * Gets result
+     * Gets scopes
      *
-     * @return \OpenAPI\Client\Model\SerperResult|null
+     * @return string[]
      */
-    public function getResult()
+    public function getScopes()
     {
-        return $this->container['result'];
+        return $this->container['scopes'];
     }
 
     /**
-     * Sets result
+     * Sets scopes
      *
-     * @param \OpenAPI\Client\Model\SerperResult|null $result result
+     * @param string[] $scopes The scopes of the OAuth integration.
      *
      * @return self
      */
-    public function setResult($result)
+    public function setScopes($scopes)
     {
-        if (is_null($result)) {
-            array_push($this->openAPINullablesSetToNull, 'result');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('result', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($scopes)) {
+            throw new \InvalidArgumentException('non-nullable scopes cannot be null');
         }
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-
-    /**
-     * Gets error_message
-     *
-     * @return string|null
-     */
-    public function getErrorMessage()
-    {
-        return $this->container['error_message'];
-    }
-
-    /**
-     * Sets error_message
-     *
-     * @param string|null $error_message error_message
-     *
-     * @return self
-     */
-    public function setErrorMessage($error_message)
-    {
-        if (is_null($error_message)) {
-            array_push($this->openAPINullablesSetToNull, 'error_message');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_message', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['error_message'] = $error_message;
+        $this->container['scopes'] = $scopes;
 
         return $this;
     }

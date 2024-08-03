@@ -1,6 +1,6 @@
 <?php
 /**
- * SerperResultTest
+ * ApiEndpointResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SerperResultTest Class Doc Comment
+ * ApiEndpointResponseTest Class Doc Comment
  *
  * @category    Class
- * @description SerperResult
+ * @description ApiEndpointResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SerperResultTest extends TestCase
+class ApiEndpointResponseTest extends TestCase
 {
 
     /**
@@ -71,45 +71,72 @@ class SerperResultTest extends TestCase
     }
 
     /**
-     * Test "SerperResult"
+     * Test "ApiEndpointResponse"
      */
-    public function testSerperResult()
+    public function testApiEndpointResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "search_parameters"
+     * Test attribute "endpoint_id"
      */
-    public function testPropertySearchParameters()
+    public function testPropertyEndpointId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "organic"
+     * Test attribute "path"
      */
-    public function testPropertyOrganic()
+    public function testPropertyPath()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "people_also_ask"
+     * Test attribute "description"
      */
-    public function testPropertyPeopleAlsoAsk()
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "related_searches"
+     * Test attribute "method"
      */
-    public function testPropertyRelatedSearches()
+    public function testPropertyMethod()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "parameters"
+     */
+    public function testPropertyParameters()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "request_body"
+     */
+    public function testPropertyRequestBody()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "success_response"
+     */
+    public function testPropertySuccessResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

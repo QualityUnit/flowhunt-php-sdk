@@ -1,6 +1,6 @@
 <?php
 /**
- * SiteLink
+ * Secret1
  *
  * PHP version 7.4
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * SiteLink Class Doc Comment
+ * Secret1 Class Doc Comment
  *
  * @category Class
+ * @description The secret of the API integration.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
+class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SiteLink';
+    protected static $openAPIModelName = 'Secret_1';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +58,10 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'title' => 'string',
-        'link' => 'string'
+        'client_id' => 'string',
+        'client_secret' => 'string',
+        'scopes' => 'string[]',
+        'api_key' => 'string'
     ];
 
     /**
@@ -69,8 +72,10 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'title' => null,
-        'link' => null
+        'client_id' => null,
+        'client_secret' => null,
+        'scopes' => null,
+        'api_key' => null
     ];
 
     /**
@@ -79,8 +84,10 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'title' => false,
-        'link' => false
+        'client_id' => false,
+        'client_secret' => false,
+        'scopes' => false,
+        'api_key' => false
     ];
 
     /**
@@ -169,8 +176,10 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'title' => 'title',
-        'link' => 'link'
+        'client_id' => 'client_id',
+        'client_secret' => 'client_secret',
+        'scopes' => 'scopes',
+        'api_key' => 'api_key'
     ];
 
     /**
@@ -179,8 +188,10 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'title' => 'setTitle',
-        'link' => 'setLink'
+        'client_id' => 'setClientId',
+        'client_secret' => 'setClientSecret',
+        'scopes' => 'setScopes',
+        'api_key' => 'setApiKey'
     ];
 
     /**
@@ -189,8 +200,10 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'title' => 'getTitle',
-        'link' => 'getLink'
+        'client_id' => 'getClientId',
+        'client_secret' => 'getClientSecret',
+        'scopes' => 'getScopes',
+        'api_key' => 'getApiKey'
     ];
 
     /**
@@ -250,8 +263,10 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('title', $data ?? [], '');
-        $this->setIfExists('link', $data ?? [], '');
+        $this->setIfExists('client_id', $data ?? [], null);
+        $this->setIfExists('client_secret', $data ?? [], null);
+        $this->setIfExists('scopes', $data ?? [], null);
+        $this->setIfExists('api_key', $data ?? [], null);
     }
 
     /**
@@ -281,6 +296,18 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['client_id'] === null) {
+            $invalidProperties[] = "'client_id' can't be null";
+        }
+        if ($this->container['client_secret'] === null) {
+            $invalidProperties[] = "'client_secret' can't be null";
+        }
+        if ($this->container['scopes'] === null) {
+            $invalidProperties[] = "'scopes' can't be null";
+        }
+        if ($this->container['api_key'] === null) {
+            $invalidProperties[] = "'api_key' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -297,55 +324,109 @@ class SiteLink implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets title
+     * Gets client_id
      *
-     * @return string|null
+     * @return string
      */
-    public function getTitle()
+    public function getClientId()
     {
-        return $this->container['title'];
+        return $this->container['client_id'];
     }
 
     /**
-     * Sets title
+     * Sets client_id
      *
-     * @param string|null $title Title
+     * @param string $client_id The client ID of the OAuth integration.
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setClientId($client_id)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        if (is_null($client_id)) {
+            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
         }
-        $this->container['title'] = $title;
+        $this->container['client_id'] = $client_id;
 
         return $this;
     }
 
     /**
-     * Gets link
+     * Gets client_secret
      *
-     * @return string|null
+     * @return string
      */
-    public function getLink()
+    public function getClientSecret()
     {
-        return $this->container['link'];
+        return $this->container['client_secret'];
     }
 
     /**
-     * Sets link
+     * Sets client_secret
      *
-     * @param string|null $link Link
+     * @param string $client_secret The client secret of the OAuth integration.
      *
      * @return self
      */
-    public function setLink($link)
+    public function setClientSecret($client_secret)
     {
-        if (is_null($link)) {
-            throw new \InvalidArgumentException('non-nullable link cannot be null');
+        if (is_null($client_secret)) {
+            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
         }
-        $this->container['link'] = $link;
+        $this->container['client_secret'] = $client_secret;
+
+        return $this;
+    }
+
+    /**
+     * Gets scopes
+     *
+     * @return string[]
+     */
+    public function getScopes()
+    {
+        return $this->container['scopes'];
+    }
+
+    /**
+     * Sets scopes
+     *
+     * @param string[] $scopes The scopes of the OAuth integration.
+     *
+     * @return self
+     */
+    public function setScopes($scopes)
+    {
+        if (is_null($scopes)) {
+            throw new \InvalidArgumentException('non-nullable scopes cannot be null');
+        }
+        $this->container['scopes'] = $scopes;
+
+        return $this;
+    }
+
+    /**
+     * Gets api_key
+     *
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->container['api_key'];
+    }
+
+    /**
+     * Sets api_key
+     *
+     * @param string $api_key The API key of the API key integration.
+     *
+     * @return self
+     */
+    public function setApiKey($api_key)
+    {
+        if (is_null($api_key)) {
+            throw new \InvalidArgumentException('non-nullable api_key cannot be null');
+        }
+        $this->container['api_key'] = $api_key;
 
         return $this;
     }

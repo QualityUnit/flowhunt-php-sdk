@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**query** | **string** |  | [optional]
+**post_back_url** | **string** |  | [optional]
+**query** | **string** | Query to search |
 **country** | **string** |  | [optional]
 **location** | **string** |  | [optional]
 **language** | **string** |  | [optional]

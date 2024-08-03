@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `serpSearch()`
 
 ```php
-serpSearch($workspace_id, $serp_search_requests): \OpenAPI\Client\Model\SerperResponse[]
+serpSearch($workspace_id, $serp_search_requests): \OpenAPI\Client\Model\TaskResponse[]
 ```
 
 Serp Search
@@ -59,7 +59,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SerperResponse[]**](../Model/SerperResponse.md)
+[**\OpenAPI\Client\Model\TaskResponse[]**](../Model/TaskResponse.md)
 
 ### Authorization
 

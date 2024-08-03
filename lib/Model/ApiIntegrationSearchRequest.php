@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationSearchRequest
+ * ApiIntegrationSearchRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * IntegrationSearchRequest Class Doc Comment
+ * ApiIntegrationSearchRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiIntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IntegrationSearchRequest';
+    protected static $openAPIModelName = 'ApiIntegrationSearchRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'slug' => '\OpenAPI\Client\Model\IntegrationSlug'
+        'name' => 'string',
+        'description' => 'string'
     ];
 
     /**
@@ -68,7 +69,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'slug' => null
+        'name' => null,
+        'description' => null
     ];
 
     /**
@@ -77,7 +79,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'slug' => true
+        'name' => true,
+        'description' => true
     ];
 
     /**
@@ -166,7 +169,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'slug' => 'slug'
+        'name' => 'name',
+        'description' => 'description'
     ];
 
     /**
@@ -175,7 +179,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'slug' => 'setSlug'
+        'name' => 'setName',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -184,7 +189,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'slug' => 'getSlug'
+        'name' => 'getName',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -244,7 +250,8 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('slug', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
     }
 
     /**
@@ -290,35 +297,69 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets slug
+     * Gets name
      *
-     * @return \OpenAPI\Client\Model\IntegrationSlug|null
+     * @return string|null
      */
-    public function getSlug()
+    public function getName()
     {
-        return $this->container['slug'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets slug
+     * Sets name
      *
-     * @param \OpenAPI\Client\Model\IntegrationSlug|null $slug slug
+     * @param string|null $name name
      *
      * @return self
      */
-    public function setSlug($slug)
+    public function setName($name)
     {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
+        if (is_null($name)) {
+            array_push($this->openAPINullablesSetToNull, 'name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
+            $index = array_search('name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['slug'] = $slug;
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }

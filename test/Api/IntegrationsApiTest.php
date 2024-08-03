@@ -72,12 +72,24 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
-     * Test case for createIntegration
+     * Test case for createApiIntegration
      *
-     * Create Integration.
+     * Create Api Integration.
      *
      */
-    public function testCreateIntegration()
+    public function testCreateApiIntegration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createApiIntegrationEndpoint
+     *
+     * Create Api Integration Endpoint.
+     *
+     */
+    public function testCreateApiIntegrationEndpoint()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -96,6 +108,42 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for getApiIntegration
+     *
+     * Get Api Integration.
+     *
+     */
+    public function testGetApiIntegration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getApiIntegrationEndpoints
+     *
+     * Get Api Integration Endpoints.
+     *
+     */
+    public function testGetApiIntegrationEndpoints()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getApiIntegrations
+     *
+     * Get Api Integrations.
+     *
+     */
+    public function testGetApiIntegrations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getMyIntegrations
      *
      * Get My Integrations.
@@ -108,24 +156,48 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
-     * Test case for removeIntegration
+     * Test case for removeApiIntegration
      *
-     * Remove Integration.
+     * Remove Api Integration.
      *
      */
-    public function testRemoveIntegration()
+    public function testRemoveApiIntegration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateIntegration
+     * Test case for removeApiIntegrationEndpoint
      *
-     * Update Integration.
+     * Remove Api Integration Endpoint.
      *
      */
-    public function testUpdateIntegration()
+    public function testRemoveApiIntegrationEndpoint()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateApiIntegration
+     *
+     * Update Api Integration.
+     *
+     */
+    public function testUpdateApiIntegration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateApiIntegrationEndpoint
+     *
+     * Update Api Integration Endpoint.
+     *
+     */
+    public function testUpdateApiIntegrationEndpoint()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

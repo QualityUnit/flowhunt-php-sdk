@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationSearchRequest
+ * ApiKeyIntegrationSecret
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * IntegrationSearchRequest Class Doc Comment
+ * ApiKeyIntegrationSecret Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IntegrationSearchRequest';
+    protected static $openAPIModelName = 'ApiKeyIntegrationSecret';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'slug' => '\OpenAPI\Client\Model\IntegrationSlug'
+        'api_key' => 'string'
     ];
 
     /**
@@ -68,7 +68,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'slug' => null
+        'api_key' => null
     ];
 
     /**
@@ -77,7 +77,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'slug' => true
+        'api_key' => false
     ];
 
     /**
@@ -166,7 +166,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'slug' => 'slug'
+        'api_key' => 'api_key'
     ];
 
     /**
@@ -175,7 +175,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'slug' => 'setSlug'
+        'api_key' => 'setApiKey'
     ];
 
     /**
@@ -184,7 +184,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'slug' => 'getSlug'
+        'api_key' => 'getApiKey'
     ];
 
     /**
@@ -244,7 +244,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('slug', $data ?? [], null);
+        $this->setIfExists('api_key', $data ?? [], null);
     }
 
     /**
@@ -274,6 +274,9 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['api_key'] === null) {
+            $invalidProperties[] = "'api_key' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -290,35 +293,28 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets slug
+     * Gets api_key
      *
-     * @return \OpenAPI\Client\Model\IntegrationSlug|null
+     * @return string
      */
-    public function getSlug()
+    public function getApiKey()
     {
-        return $this->container['slug'];
+        return $this->container['api_key'];
     }
 
     /**
-     * Sets slug
+     * Sets api_key
      *
-     * @param \OpenAPI\Client\Model\IntegrationSlug|null $slug slug
+     * @param string $api_key The API key of the API key integration.
      *
      * @return self
      */
-    public function setSlug($slug)
+    public function setApiKey($api_key)
     {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($api_key)) {
+            throw new \InvalidArgumentException('non-nullable api_key cannot be null');
         }
-        $this->container['slug'] = $slug;
+        $this->container['api_key'] = $api_key;
 
         return $this;
     }
