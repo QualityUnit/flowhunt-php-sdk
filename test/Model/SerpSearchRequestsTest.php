@@ -87,4 +87,13 @@ class SerpSearchRequestsTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "live_mode"
+     */
+    public function testPropertyLiveMode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

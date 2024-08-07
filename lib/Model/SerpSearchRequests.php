@@ -57,7 +57,8 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requests' => '\OpenAPI\Client\Model\SerpSearchRequest[]'
+        'requests' => '\OpenAPI\Client\Model\SerpSearchRequest[]',
+        'live_mode' => 'bool'
     ];
 
     /**
@@ -68,7 +69,8 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requests' => null
+        'requests' => null,
+        'live_mode' => null
     ];
 
     /**
@@ -77,7 +79,8 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'requests' => false
+        'requests' => false,
+        'live_mode' => true
     ];
 
     /**
@@ -166,7 +169,8 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'requests' => 'requests'
+        'requests' => 'requests',
+        'live_mode' => 'live_mode'
     ];
 
     /**
@@ -175,7 +179,8 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'requests' => 'setRequests'
+        'requests' => 'setRequests',
+        'live_mode' => 'setLiveMode'
     ];
 
     /**
@@ -184,7 +189,8 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'requests' => 'getRequests'
+        'requests' => 'getRequests',
+        'live_mode' => 'getLiveMode'
     ];
 
     /**
@@ -245,6 +251,7 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(array $data = null)
     {
         $this->setIfExists('requests', $data ?? [], null);
+        $this->setIfExists('live_mode', $data ?? [], null);
     }
 
     /**
@@ -312,6 +319,40 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable requests cannot be null');
         }
         $this->container['requests'] = $requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets live_mode
+     *
+     * @return bool|null
+     */
+    public function getLiveMode()
+    {
+        return $this->container['live_mode'];
+    }
+
+    /**
+     * Sets live_mode
+     *
+     * @param bool|null $live_mode live_mode
+     *
+     * @return self
+     */
+    public function setLiveMode($live_mode)
+    {
+        if (is_null($live_mode)) {
+            array_push($this->openAPINullablesSetToNull, 'live_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('live_mode', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['live_mode'] = $live_mode;
 
         return $this;
     }
