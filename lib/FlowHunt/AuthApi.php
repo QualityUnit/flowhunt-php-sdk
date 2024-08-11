@@ -825,6 +825,11 @@ class AuthApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Sudo-Api-Key');
+        if ($apiKey !== null) {
+            $headers['Sudo-Api-Key'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1166,6 +1171,11 @@ class AuthApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Sudo-Api-Key');
+        if ($apiKey !== null) {
+            $headers['Sudo-Api-Key'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

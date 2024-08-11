@@ -85,11 +85,17 @@ Get Third Party Token
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: sudo_api_key_header
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Sudo-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Sudo-Api-Key', 'Bearer');
+
 
 $apiInstance = new OpenAPI\Client\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $provider_name = 'provider_name_example'; // string
 $thrid_party_login_request = new \OpenAPI\Client\Model\ThridPartyLoginRequest(); // \OpenAPI\Client\Model\ThridPartyLoginRequest
@@ -115,7 +121,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[sudo_api_key_header](../../README.md#sudo_api_key_header)
 
 ### HTTP request headers
 
@@ -141,11 +147,17 @@ Get Token
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: sudo_api_key_header
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Sudo-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Sudo-Api-Key', 'Bearer');
+
 
 $apiInstance = new OpenAPI\Client\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $login_user_request = new \OpenAPI\Client\Model\LoginUserRequest(); // \OpenAPI\Client\Model\LoginUserRequest
 
@@ -169,7 +181,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[sudo_api_key_header](../../README.md#sudo_api_key_header)
 
 ### HTTP request headers
 
