@@ -107,6 +107,15 @@ class FlowDetailResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "detailed_description"
+     */
+    public function testPropertyDetailedDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "config"
      */
     public function testPropertyConfig()

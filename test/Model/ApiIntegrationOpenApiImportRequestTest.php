@@ -1,6 +1,6 @@
 <?php
 /**
- * Secret1Test
+ * ApiIntegrationOpenApiImportRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Secret1Test Class Doc Comment
+ * ApiIntegrationOpenApiImportRequestTest Class Doc Comment
  *
  * @category    Class
- * @description The secret of the API integration.
+ * @description ApiIntegrationOpenApiImportRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class Secret1Test extends TestCase
+class ApiIntegrationOpenApiImportRequestTest extends TestCase
 {
 
     /**
@@ -71,45 +71,18 @@ class Secret1Test extends TestCase
     }
 
     /**
-     * Test "Secret1"
+     * Test "ApiIntegrationOpenApiImportRequest"
      */
-    public function testSecret1()
+    public function testApiIntegrationOpenApiImportRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "client_id"
+     * Test attribute "openapi_url"
      */
-    public function testPropertyClientId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "client_secret"
-     */
-    public function testPropertyClientSecret()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "scopes"
-     */
-    public function testPropertyScopes()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "api_key"
-     */
-    public function testPropertyApiKey()
+    public function testPropertyOpenapiUrl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

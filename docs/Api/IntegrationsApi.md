@@ -8,9 +8,12 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**createApiIntegrationEndpoint()**](IntegrationsApi.md#createApiIntegrationEndpoint) | **POST** /v2/integrations/api_integrations/{integration_id}/endpoints/create | Create Api Integration Endpoint |
 | [**getAllIntegrations()**](IntegrationsApi.md#getAllIntegrations) | **GET** /v2/integrations/all | Get All Integrations |
 | [**getApiIntegration()**](IntegrationsApi.md#getApiIntegration) | **GET** /v2/integrations/api_integrations/ | Get Api Integration |
+| [**getApiIntegrationAuthMethods()**](IntegrationsApi.md#getApiIntegrationAuthMethods) | **GET** /v2/integrations/api_integrations/auth_methods | Get Api Integration Auth Methods |
 | [**getApiIntegrationEndpoints()**](IntegrationsApi.md#getApiIntegrationEndpoints) | **POST** /v2/integrations/api_integrations/{integration_id}/endpoints | Get Api Integration Endpoints |
 | [**getApiIntegrations()**](IntegrationsApi.md#getApiIntegrations) | **POST** /v2/integrations/api_integrations/ | Get Api Integrations |
 | [**getMyIntegrations()**](IntegrationsApi.md#getMyIntegrations) | **POST** /v2/integrations/ | Get My Integrations |
+| [**importOpenapiSpec()**](IntegrationsApi.md#importOpenapiSpec) | **POST** /v2/integrations/api_integrations/{integration_id}/import/openapi-file | Import Openapi Spec |
+| [**importOpenapiSpecFromUrl()**](IntegrationsApi.md#importOpenapiSpecFromUrl) | **POST** /v2/integrations/api_integrations/{integration_id}/import/openapi-url | Import Openapi Spec From Url |
 | [**removeApiIntegration()**](IntegrationsApi.md#removeApiIntegration) | **DELETE** /v2/integrations/api_integrations/{integration_id} | Remove Api Integration |
 | [**removeApiIntegrationEndpoint()**](IntegrationsApi.md#removeApiIntegrationEndpoint) | **DELETE** /v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id} | Remove Api Integration Endpoint |
 | [**updateApiIntegration()**](IntegrationsApi.md#updateApiIntegration) | **PUT** /v2/integrations/api_integrations/{integration_id} | Update Api Integration |
@@ -277,6 +280,66 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getApiIntegrationAuthMethods()`
+
+```php
+getApiIntegrationAuthMethods(): \OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]
+```
+
+Get Api Integration Auth Methods
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->getApiIntegrationAuthMethods();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getApiIntegrationAuthMethods: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]**](../Model/ApiIntegrationAuthenticationMethod.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getApiIntegrationEndpoints()`
 
 ```php
@@ -460,6 +523,140 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\IntegrationDetailResponse[]**](../Model/IntegrationDetailResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `importOpenapiSpec()`
+
+```php
+importOpenapiSpec($integration_id, $workspace_id, $file): \OpenAPI\Client\Model\ApiIntegrationResponse
+```
+
+Import Openapi Spec
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$integration_id = 'integration_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$file = "/path/to/file.txt"; // \SplFileObject
+
+try {
+    $result = $apiInstance->importOpenapiSpec($integration_id, $workspace_id, $file);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->importOpenapiSpec: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **integration_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **file** | **\SplFileObject****\SplFileObject**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `multipart/form-data`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `importOpenapiSpecFromUrl()`
+
+```php
+importOpenapiSpecFromUrl($integration_id, $workspace_id, $api_integration_open_api_import_request): \OpenAPI\Client\Model\ApiIntegrationResponse
+```
+
+Import Openapi Spec From Url
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$integration_id = 'integration_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$api_integration_open_api_import_request = new \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest(); // \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest
+
+try {
+    $result = $apiInstance->importOpenapiSpecFromUrl($integration_id, $workspace_id, $api_integration_open_api_import_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->importOpenapiSpecFromUrl: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **integration_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **api_integration_open_api_import_request** | [**\OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest**](../Model/ApiIntegrationOpenApiImportRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
 
 ### Authorization
 

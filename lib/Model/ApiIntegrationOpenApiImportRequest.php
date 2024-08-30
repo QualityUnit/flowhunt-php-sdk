@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiKeyIntegrationSecret
+ * ApiIntegrationOpenApiImportRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ApiKeyIntegrationSecret Class Doc Comment
+ * ApiIntegrationOpenApiImportRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiIntegrationOpenApiImportRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ApiKeyIntegrationSecret';
+    protected static $openAPIModelName = 'ApiIntegrationOpenApiImportRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'api_key' => 'string'
+        'openapi_url' => 'string'
     ];
 
     /**
@@ -68,7 +68,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'api_key' => null
+        'openapi_url' => null
     ];
 
     /**
@@ -77,7 +77,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'api_key' => false
+        'openapi_url' => false
     ];
 
     /**
@@ -166,7 +166,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'api_key' => 'api_key'
+        'openapi_url' => 'openapi_url'
     ];
 
     /**
@@ -175,7 +175,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'api_key' => 'setApiKey'
+        'openapi_url' => 'setOpenapiUrl'
     ];
 
     /**
@@ -184,7 +184,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'api_key' => 'getApiKey'
+        'openapi_url' => 'getOpenapiUrl'
     ];
 
     /**
@@ -244,7 +244,7 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('api_key', $data ?? [], null);
+        $this->setIfExists('openapi_url', $data ?? [], null);
     }
 
     /**
@@ -274,8 +274,8 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if ($this->container['api_key'] === null) {
-            $invalidProperties[] = "'api_key' can't be null";
+        if ($this->container['openapi_url'] === null) {
+            $invalidProperties[] = "'openapi_url' can't be null";
         }
         return $invalidProperties;
     }
@@ -293,28 +293,28 @@ class ApiKeyIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets api_key
+     * Gets openapi_url
      *
      * @return string
      */
-    public function getApiKey()
+    public function getOpenapiUrl()
     {
-        return $this->container['api_key'];
+        return $this->container['openapi_url'];
     }
 
     /**
-     * Sets api_key
+     * Sets openapi_url
      *
-     * @param string $api_key The API key of the API key integration.
+     * @param string $openapi_url The openapi url of the API integration.
      *
      * @return self
      */
-    public function setApiKey($api_key)
+    public function setOpenapiUrl($openapi_url)
     {
-        if (is_null($api_key)) {
-            throw new \InvalidArgumentException('non-nullable api_key cannot be null');
+        if (is_null($openapi_url)) {
+            throw new \InvalidArgumentException('non-nullable openapi_url cannot be null');
         }
-        $this->container['api_key'] = $api_key;
+        $this->container['openapi_url'] = $openapi_url;
 
         return $this;
     }

@@ -320,7 +320,7 @@ class AppUrlInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets parsed_url
      *
-     * @param string[]|null $parsed_url The parsed URL.
+     * @param string[]|null $parsed_url parsed_url
      *
      * @return self
      */

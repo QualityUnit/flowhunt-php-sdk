@@ -62,7 +62,9 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'object',
         'request_body' => 'object',
         'success_response' => 'object',
-        'description' => 'string'
+        'description' => 'string',
+        'name' => 'string',
+        'security_scheme' => 'string[]'
     ];
 
     /**
@@ -78,7 +80,9 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => null,
         'request_body' => null,
         'success_response' => null,
-        'description' => null
+        'description' => null,
+        'name' => null,
+        'security_scheme' => null
     ];
 
     /**
@@ -92,7 +96,9 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => true,
         'request_body' => true,
         'success_response' => true,
-        'description' => false
+        'description' => false,
+        'name' => false,
+        'security_scheme' => false
     ];
 
     /**
@@ -186,7 +192,9 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'parameters',
         'request_body' => 'request_body',
         'success_response' => 'success_response',
-        'description' => 'description'
+        'description' => 'description',
+        'name' => 'name',
+        'security_scheme' => 'security_scheme'
     ];
 
     /**
@@ -200,7 +208,9 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'setParameters',
         'request_body' => 'setRequestBody',
         'success_response' => 'setSuccessResponse',
-        'description' => 'setDescription'
+        'description' => 'setDescription',
+        'name' => 'setName',
+        'security_scheme' => 'setSecurityScheme'
     ];
 
     /**
@@ -214,7 +224,9 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'getParameters',
         'request_body' => 'getRequestBody',
         'success_response' => 'getSuccessResponse',
-        'description' => 'getDescription'
+        'description' => 'getDescription',
+        'name' => 'getName',
+        'security_scheme' => 'getSecurityScheme'
     ];
 
     /**
@@ -280,6 +292,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('request_body', $data ?? [], null);
         $this->setIfExists('success_response', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('security_scheme', $data ?? [], null);
     }
 
     /**
@@ -328,6 +342,17 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         }
         if ((mb_strlen($this->container['description']) < 1)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 1.";
+        }
+
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ((mb_strlen($this->container['name']) > 100)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 100.";
+        }
+
+        if ((mb_strlen($this->container['name']) < 1)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -536,6 +561,67 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         }
 
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name The name of the API endpoint.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ApiEndpointCreateRequest., must be smaller than or equal to 100.');
+        }
+        if ((mb_strlen($name) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ApiEndpointCreateRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets security_scheme
+     *
+     * @return string[]|null
+     */
+    public function getSecurityScheme()
+    {
+        return $this->container['security_scheme'];
+    }
+
+    /**
+     * Sets security_scheme
+     *
+     * @param string[]|null $security_scheme The security scheme of the API endpoint.
+     *
+     * @return self
+     */
+    public function setSecurityScheme($security_scheme)
+    {
+        if (is_null($security_scheme)) {
+            throw new \InvalidArgumentException('non-nullable security_scheme cannot be null');
+        }
+        $this->container['security_scheme'] = $security_scheme;
 
         return $this;
     }

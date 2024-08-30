@@ -61,7 +61,7 @@ class ApiIntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'servers' => 'string[]',
         'name' => 'string',
         'description' => 'string',
-        'secret' => '\OpenAPI\Client\Model\Secret1'
+        'secret' => 'object'
     ];
 
     /**
@@ -443,7 +443,7 @@ class ApiIntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets secret
      *
-     * @return \OpenAPI\Client\Model\Secret1
+     * @return object
      */
     public function getSecret()
     {
@@ -453,7 +453,7 @@ class ApiIntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets secret
      *
-     * @param \OpenAPI\Client\Model\Secret1 $secret secret
+     * @param object $secret secret
      *
      * @return self
      */

@@ -132,4 +132,13 @@ class IntegrationResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "public_flow_id"
+     */
+    public function testPropertyPublicFlowId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

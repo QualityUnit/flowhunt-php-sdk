@@ -105,22 +105,4 @@ class ApiIntegrationCreateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "secret"
-     */
-    public function testPropertySecret()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "endpoints"
-     */
-    public function testPropertyEndpoints()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
 }

@@ -80,15 +80,6 @@ class FlowSessionCreateFromFlowRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "flow_id"
-     */
-    public function testPropertyFlowId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "url"
      */
     public function testPropertyUrl()
@@ -101,6 +92,51 @@ class FlowSessionCreateFromFlowRequestTest extends TestCase
      * Test attribute "lang"
      */
     public function testPropertyLang()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "access_token"
+     */
+    public function testPropertyAccessToken()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "refresh_token"
+     */
+    public function testPropertyRefreshToken()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "username"
+     */
+    public function testPropertyUsername()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "password"
+     */
+    public function testPropertyPassword()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "flow_id"
+     */
+    public function testPropertyFlowId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

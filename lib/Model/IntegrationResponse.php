@@ -62,7 +62,8 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'string',
         'integrated_instance_cnt' => 'int',
         'categories' => '\OpenAPI\Client\Model\IntegrationCategory[]',
-        'beta' => 'bool'
+        'beta' => 'bool',
+        'public_flow_id' => 'string'
     ];
 
     /**
@@ -78,7 +79,8 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => null,
         'integrated_instance_cnt' => null,
         'categories' => null,
-        'beta' => null
+        'beta' => null,
+        'public_flow_id' => 'uuid'
     ];
 
     /**
@@ -92,7 +94,8 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => false,
         'integrated_instance_cnt' => false,
         'categories' => false,
-        'beta' => false
+        'beta' => false,
+        'public_flow_id' => true
     ];
 
     /**
@@ -186,7 +189,8 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'description',
         'integrated_instance_cnt' => 'integrated_instance_cnt',
         'categories' => 'categories',
-        'beta' => 'beta'
+        'beta' => 'beta',
+        'public_flow_id' => 'public_flow_id'
     ];
 
     /**
@@ -200,7 +204,8 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'setDescription',
         'integrated_instance_cnt' => 'setIntegratedInstanceCnt',
         'categories' => 'setCategories',
-        'beta' => 'setBeta'
+        'beta' => 'setBeta',
+        'public_flow_id' => 'setPublicFlowId'
     ];
 
     /**
@@ -214,7 +219,8 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'getDescription',
         'integrated_instance_cnt' => 'getIntegratedInstanceCnt',
         'categories' => 'getCategories',
-        'beta' => 'getBeta'
+        'beta' => 'getBeta',
+        'public_flow_id' => 'getPublicFlowId'
     ];
 
     /**
@@ -280,6 +286,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('integrated_instance_cnt', $data ?? [], null);
         $this->setIfExists('categories', $data ?? [], null);
         $this->setIfExists('beta', $data ?? [], false);
+        $this->setIfExists('public_flow_id', $data ?? [], null);
     }
 
     /**
@@ -497,6 +504,40 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable beta cannot be null');
         }
         $this->container['beta'] = $beta;
+
+        return $this;
+    }
+
+    /**
+     * Gets public_flow_id
+     *
+     * @return string|null
+     */
+    public function getPublicFlowId()
+    {
+        return $this->container['public_flow_id'];
+    }
+
+    /**
+     * Sets public_flow_id
+     *
+     * @param string|null $public_flow_id public_flow_id
+     *
+     * @return self
+     */
+    public function setPublicFlowId($public_flow_id)
+    {
+        if (is_null($public_flow_id)) {
+            array_push($this->openAPINullablesSetToNull, 'public_flow_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('public_flow_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['public_flow_id'] = $public_flow_id;
 
         return $this;
     }

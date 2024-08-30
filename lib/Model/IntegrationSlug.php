@@ -44,7 +44,7 @@ class IntegrationSlug
      */
     public const API_INTEGRATION = 'api_integration';
 
-    public const LIVEAGENT_LIVECHAT_INTEGRATION = 'liveagent_livechat_integration';
+    public const LIVEAGENT_INTEGRATION = 'liveagent_integration';
 
     public const HUBSPOT_INTEGRATION = 'hubspot_integration';
 
@@ -60,7 +60,7 @@ class IntegrationSlug
     {
         return [
             self::API_INTEGRATION,
-            self::LIVEAGENT_LIVECHAT_INTEGRATION,
+            self::LIVEAGENT_INTEGRATION,
             self::HUBSPOT_INTEGRATION,
             self::LIVECHAT_INTEGRATION,
             self::SMARTSUPP_INTEGRATION

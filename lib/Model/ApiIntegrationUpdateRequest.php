@@ -60,7 +60,7 @@ class ApiIntegrationUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'servers' => 'string[]',
         'name' => 'string',
         'description' => 'string',
-        'secret' => '\OpenAPI\Client\Model\Secret1',
+        'secret' => 'object',
         'endpoints' => '\OpenAPI\Client\Model\ApiEndpointCreateRequest[]'
     ];
 
@@ -437,7 +437,7 @@ class ApiIntegrationUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets secret
      *
-     * @return \OpenAPI\Client\Model\Secret1|null
+     * @return object|null
      */
     public function getSecret()
     {
@@ -447,7 +447,7 @@ class ApiIntegrationUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets secret
      *
-     * @param \OpenAPI\Client\Model\Secret1|null $secret secret
+     * @param object|null $secret secret
      *
      * @return self
      */

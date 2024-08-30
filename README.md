@@ -143,13 +143,19 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**createApiIntegrationEndpoint**](docs/Api/IntegrationsApi.md#createapiintegrationendpoint) | **POST** /v2/integrations/api_integrations/{integration_id}/endpoints/create | Create Api Integration Endpoint
 *IntegrationsApi* | [**getAllIntegrations**](docs/Api/IntegrationsApi.md#getallintegrations) | **GET** /v2/integrations/all | Get All Integrations
 *IntegrationsApi* | [**getApiIntegration**](docs/Api/IntegrationsApi.md#getapiintegration) | **GET** /v2/integrations/api_integrations/ | Get Api Integration
+*IntegrationsApi* | [**getApiIntegrationAuthMethods**](docs/Api/IntegrationsApi.md#getapiintegrationauthmethods) | **GET** /v2/integrations/api_integrations/auth_methods | Get Api Integration Auth Methods
 *IntegrationsApi* | [**getApiIntegrationEndpoints**](docs/Api/IntegrationsApi.md#getapiintegrationendpoints) | **POST** /v2/integrations/api_integrations/{integration_id}/endpoints | Get Api Integration Endpoints
 *IntegrationsApi* | [**getApiIntegrations**](docs/Api/IntegrationsApi.md#getapiintegrations) | **POST** /v2/integrations/api_integrations/ | Get Api Integrations
 *IntegrationsApi* | [**getMyIntegrations**](docs/Api/IntegrationsApi.md#getmyintegrations) | **POST** /v2/integrations/ | Get My Integrations
+*IntegrationsApi* | [**importOpenapiSpec**](docs/Api/IntegrationsApi.md#importopenapispec) | **POST** /v2/integrations/api_integrations/{integration_id}/import/openapi-file | Import Openapi Spec
+*IntegrationsApi* | [**importOpenapiSpecFromUrl**](docs/Api/IntegrationsApi.md#importopenapispecfromurl) | **POST** /v2/integrations/api_integrations/{integration_id}/import/openapi-url | Import Openapi Spec From Url
 *IntegrationsApi* | [**removeApiIntegration**](docs/Api/IntegrationsApi.md#removeapiintegration) | **DELETE** /v2/integrations/api_integrations/{integration_id} | Remove Api Integration
 *IntegrationsApi* | [**removeApiIntegrationEndpoint**](docs/Api/IntegrationsApi.md#removeapiintegrationendpoint) | **DELETE** /v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id} | Remove Api Integration Endpoint
 *IntegrationsApi* | [**updateApiIntegration**](docs/Api/IntegrationsApi.md#updateapiintegration) | **PUT** /v2/integrations/api_integrations/{integration_id} | Update Api Integration
 *IntegrationsApi* | [**updateApiIntegrationEndpoint**](docs/Api/IntegrationsApi.md#updateapiintegrationendpoint) | **PUT** /v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id} | Update Api Integration Endpoint
+*MediaApi* | [**getTranscript**](docs/Api/MediaApi.md#gettranscript) | **POST** /v2/media/transcript | Get Transcript
+*MediaApi* | [**getTranscriptResult**](docs/Api/MediaApi.md#gettranscriptresult) | **POST** /v2/media/transcript_status | Get Transcript Result
+*MediaApi* | [**getYoutubeTranscript**](docs/Api/MediaApi.md#getyoutubetranscript) | **POST** /v2/media/youtube/transcript | Get Youtube Transcript
 *PromptsApi* | [**createPrompt**](docs/Api/PromptsApi.md#createprompt) | **POST** /v2/prompts/create | Create Prompt
 *PromptsApi* | [**createPromptCategory**](docs/Api/PromptsApi.md#createpromptcategory) | **POST** /v2/prompts/categories/create | Create Prompt Category
 *PromptsApi* | [**deletePrompt**](docs/Api/PromptsApi.md#deleteprompt) | **DELETE** /v2/prompts/{prompt_id} | Delete Prompt
@@ -177,7 +183,6 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**deleteTag**](docs/Api/TagsApi.md#deletetag) | **DELETE** /v2/tags/{tag_id} | Delete Tag
 *TagsApi* | [**searchTags**](docs/Api/TagsApi.md#searchtags) | **POST** /v2/tags/search | Search Tags
 *TagsApi* | [**updateTag**](docs/Api/TagsApi.md#updatetag) | **PUT** /v2/tags/{tag_id} | Update Tag
-*VideosApi* | [**getYoutubeTranscript**](docs/Api/VideosApi.md#getyoutubetranscript) | **POST** /v2/videos/youtube/transcript | Get Youtube Transcript
 *WorkspacesApi* | [**addWorkspaceUser**](docs/Api/WorkspacesApi.md#addworkspaceuser) | **POST** /v2/workspaces/{workspace_id}/add-member | Add Workspace User
 *WorkspacesApi* | [**createWorkspace**](docs/Api/WorkspacesApi.md#createworkspace) | **POST** /v2/workspaces/create | Create Workspace
 *WorkspacesApi* | [**deleteWorkspace**](docs/Api/WorkspacesApi.md#deleteworkspace) | **DELETE** /v2/workspaces/{workspace_id} | Delete Workspace
@@ -194,12 +199,14 @@ Class | Method | HTTP request | Description
 - [ApiEndpointResponse](docs/Model/ApiEndpointResponse.md)
 - [ApiEndpointSearchRequest](docs/Model/ApiEndpointSearchRequest.md)
 - [ApiEndpointUpdateRequest](docs/Model/ApiEndpointUpdateRequest.md)
+- [ApiIntegrationAuthType](docs/Model/ApiIntegrationAuthType.md)
+- [ApiIntegrationAuthenticationMethod](docs/Model/ApiIntegrationAuthenticationMethod.md)
 - [ApiIntegrationCreateRequest](docs/Model/ApiIntegrationCreateRequest.md)
+- [ApiIntegrationOpenApiImportRequest](docs/Model/ApiIntegrationOpenApiImportRequest.md)
 - [ApiIntegrationResponse](docs/Model/ApiIntegrationResponse.md)
 - [ApiIntegrationSearchRequest](docs/Model/ApiIntegrationSearchRequest.md)
 - [ApiIntegrationUpdateRequest](docs/Model/ApiIntegrationUpdateRequest.md)
 - [ApiKeyCreateRequest](docs/Model/ApiKeyCreateRequest.md)
-- [ApiKeyIntegrationSecret](docs/Model/ApiKeyIntegrationSecret.md)
 - [ApiKeyResponse](docs/Model/ApiKeyResponse.md)
 - [ApiKeySearchRequest](docs/Model/ApiKeySearchRequest.md)
 - [ApiKeyUpdateRequest](docs/Model/ApiKeyUpdateRequest.md)
@@ -225,6 +232,7 @@ Class | Method | HTTP request | Description
 - [DocumentCategorySearchRequest](docs/Model/DocumentCategorySearchRequest.md)
 - [DocumentCategoryUpdateRequest](docs/Model/DocumentCategoryUpdateRequest.md)
 - [DocumentContent](docs/Model/DocumentContent.md)
+- [DocumentContentResponse](docs/Model/DocumentContentResponse.md)
 - [DocumentResponse](docs/Model/DocumentResponse.md)
 - [DocumentSearchRequest](docs/Model/DocumentSearchRequest.md)
 - [DocumentSimilarityRequest](docs/Model/DocumentSimilarityRequest.md)
@@ -268,7 +276,6 @@ Class | Method | HTTP request | Description
 - [IntegrationSlug](docs/Model/IntegrationSlug.md)
 - [LoginUserRequest](docs/Model/LoginUserRequest.md)
 - [NewPasswordRequest](docs/Model/NewPasswordRequest.md)
-- [OAuthIntegrationSecret](docs/Model/OAuthIntegrationSecret.md)
 - [PlanResponse](docs/Model/PlanResponse.md)
 - [PointerType](docs/Model/PointerType.md)
 - [PromptCategoryCreateRequest](docs/Model/PromptCategoryCreateRequest.md)
@@ -296,8 +303,6 @@ Class | Method | HTTP request | Description
 - [ScheduleUrlSearchRequest](docs/Model/ScheduleUrlSearchRequest.md)
 - [ScreenshotRequest](docs/Model/ScreenshotRequest.md)
 - [ScreenshotResponse](docs/Model/ScreenshotResponse.md)
-- [Secret](docs/Model/Secret.md)
-- [Secret1](docs/Model/Secret1.md)
 - [SerpSearchRequest](docs/Model/SerpSearchRequest.md)
 - [SerpSearchRequests](docs/Model/SerpSearchRequests.md)
 - [SerpVolumeRequest](docs/Model/SerpVolumeRequest.md)
@@ -311,6 +316,7 @@ Class | Method | HTTP request | Description
 - [ThridPartyLoginRequest](docs/Model/ThridPartyLoginRequest.md)
 - [Token](docs/Model/Token.md)
 - [TransactionType](docs/Model/TransactionType.md)
+- [TranscriptTaskRequest](docs/Model/TranscriptTaskRequest.md)
 - [UrlScreenshotResponse](docs/Model/UrlScreenshotResponse.md)
 - [UserDocumentStatus](docs/Model/UserDocumentStatus.md)
 - [UserPlanResponse](docs/Model/UserPlanResponse.md)
@@ -374,6 +380,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `2.0.119`
+    - Package version: `2.1.16`
     - Generator version: `7.7.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

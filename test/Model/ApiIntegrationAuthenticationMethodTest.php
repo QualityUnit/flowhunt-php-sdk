@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiKeyIntegrationSecretTest
+ * ApiIntegrationAuthenticationMethodTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ApiKeyIntegrationSecretTest Class Doc Comment
+ * ApiIntegrationAuthenticationMethodTest Class Doc Comment
  *
  * @category    Class
- * @description ApiKeyIntegrationSecret
+ * @description ApiIntegrationAuthenticationMethod
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ApiKeyIntegrationSecretTest extends TestCase
+class ApiIntegrationAuthenticationMethodTest extends TestCase
 {
 
     /**
@@ -71,18 +71,63 @@ class ApiKeyIntegrationSecretTest extends TestCase
     }
 
     /**
-     * Test "ApiKeyIntegrationSecret"
+     * Test "ApiIntegrationAuthenticationMethod"
      */
-    public function testApiKeyIntegrationSecret()
+    public function testApiIntegrationAuthenticationMethod()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "api_key"
+     * Test attribute "auth_type"
      */
-    public function testPropertyApiKey()
+    public function testPropertyAuthType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "beta"
+     */
+    public function testPropertyBeta()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "link"
+     */
+    public function testPropertyLink()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "recommended_for_internal_assistant"
+     */
+    public function testPropertyRecommendedForInternalAssistant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "recommended_for_public_facing_bot"
+     */
+    public function testPropertyRecommendedForPublicFacingBot()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -4,8 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chatbot_id** | **string** | The chatbot ID |
 **url** | **string** |  | [optional]
 **lang** | **string** |  | [optional]
+**access_token** | **string** |  | [optional]
+**refresh_token** | **string** |  | [optional]
+**username** | **string** |  | [optional]
+**password** | **string** |  | [optional]
+**chatbot_id** | **string** | The chatbot ID |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

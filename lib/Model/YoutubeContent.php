@@ -76,7 +76,8 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'channel_title' => 'string',
         'duration' => 'int',
         'keywords' => 'string[]',
-        'doc_type' => '\OpenAPI\Client\Model\DocumentType'
+        'doc_type' => '\OpenAPI\Client\Model\DocumentType',
+        'credits' => 'int'
     ];
 
     /**
@@ -106,7 +107,8 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'channel_title' => null,
         'duration' => null,
         'keywords' => null,
-        'doc_type' => null
+        'doc_type' => null,
+        'credits' => null
     ];
 
     /**
@@ -134,7 +136,8 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'channel_title' => true,
         'duration' => true,
         'keywords' => true,
-        'doc_type' => true
+        'doc_type' => true,
+        'credits' => true
     ];
 
     /**
@@ -242,7 +245,8 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'channel_title' => 'channel_title',
         'duration' => 'duration',
         'keywords' => 'keywords',
-        'doc_type' => 'doc_type'
+        'doc_type' => 'doc_type',
+        'credits' => 'credits'
     ];
 
     /**
@@ -270,7 +274,8 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'channel_title' => 'setChannelTitle',
         'duration' => 'setDuration',
         'keywords' => 'setKeywords',
-        'doc_type' => 'setDocType'
+        'doc_type' => 'setDocType',
+        'credits' => 'setCredits'
     ];
 
     /**
@@ -298,7 +303,8 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'channel_title' => 'getChannelTitle',
         'duration' => 'getDuration',
         'keywords' => 'getKeywords',
-        'doc_type' => 'getDocType'
+        'doc_type' => 'getDocType',
+        'credits' => 'getCredits'
     ];
 
     /**
@@ -378,6 +384,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('duration', $data ?? [], null);
         $this->setIfExists('keywords', $data ?? [], null);
         $this->setIfExists('doc_type', $data ?? [], null);
+        $this->setIfExists('credits', $data ?? [], null);
     }
 
     /**
@@ -1098,6 +1105,40 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['doc_type'] = $doc_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets credits
+     *
+     * @return int|null
+     */
+    public function getCredits()
+    {
+        return $this->container['credits'];
+    }
+
+    /**
+     * Sets credits
+     *
+     * @param int|null $credits credits
+     *
+     * @return self
+     */
+    public function setCredits($credits)
+    {
+        if (is_null($credits)) {
+            array_push($this->openAPINullablesSetToNull, 'credits');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('credits', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['credits'] = $credits;
 
         return $this;
     }

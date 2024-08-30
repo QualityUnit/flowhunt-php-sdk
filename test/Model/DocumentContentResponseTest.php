@@ -1,6 +1,6 @@
 <?php
 /**
- * OAuthIntegrationSecretTest
+ * DocumentContentResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * OAuthIntegrationSecretTest Class Doc Comment
+ * DocumentContentResponseTest Class Doc Comment
  *
  * @category    Class
- * @description OAuthIntegrationSecret
+ * @description DocumentContentResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class OAuthIntegrationSecretTest extends TestCase
+class DocumentContentResponseTest extends TestCase
 {
 
     /**
@@ -71,36 +71,45 @@ class OAuthIntegrationSecretTest extends TestCase
     }
 
     /**
-     * Test "OAuthIntegrationSecret"
+     * Test "DocumentContentResponse"
      */
-    public function testOAuthIntegrationSecret()
+    public function testDocumentContentResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "client_id"
+     * Test attribute "id"
      */
-    public function testPropertyClientId()
+    public function testPropertyId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "client_secret"
+     * Test attribute "status"
      */
-    public function testPropertyClientSecret()
+    public function testPropertyStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "scopes"
+     * Test attribute "result"
      */
-    public function testPropertyScopes()
+    public function testPropertyResult()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "error_message"
+     */
+    public function testPropertyErrorMessage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

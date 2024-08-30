@@ -59,6 +59,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'name' => 'string',
         'description' => 'string',
+        'detailed_description' => 'string',
         'config' => '\OpenAPI\Client\Model\FlowConfig'
     ];
 
@@ -72,6 +73,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'name' => null,
         'description' => null,
+        'detailed_description' => null,
         'config' => null
     ];
 
@@ -83,6 +85,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'name' => false,
         'description' => false,
+        'detailed_description' => true,
         'config' => false
     ];
 
@@ -174,6 +177,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'name' => 'name',
         'description' => 'description',
+        'detailed_description' => 'detailed_description',
         'config' => 'config'
     ];
 
@@ -185,6 +189,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'name' => 'setName',
         'description' => 'setDescription',
+        'detailed_description' => 'setDetailedDescription',
         'config' => 'setConfig'
     ];
 
@@ -196,6 +201,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'name' => 'getName',
         'description' => 'getDescription',
+        'detailed_description' => 'getDetailedDescription',
         'config' => 'getConfig'
     ];
 
@@ -258,6 +264,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('detailed_description', $data ?? [], null);
         $this->setIfExists('config', $data ?? [], null);
     }
 
@@ -362,6 +369,40 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets detailed_description
+     *
+     * @return string|null
+     */
+    public function getDetailedDescription()
+    {
+        return $this->container['detailed_description'];
+    }
+
+    /**
+     * Sets detailed_description
+     *
+     * @param string|null $detailed_description detailed_description
+     *
+     * @return self
+     */
+    public function setDetailedDescription($detailed_description)
+    {
+        if (is_null($detailed_description)) {
+            array_push($this->openAPINullablesSetToNull, 'detailed_description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('detailed_description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['detailed_description'] = $detailed_description;
 
         return $this;
     }

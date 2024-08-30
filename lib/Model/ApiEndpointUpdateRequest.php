@@ -62,7 +62,8 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'object',
         'request_body' => 'object',
         'success_response' => 'object',
-        'description' => 'string'
+        'description' => 'string',
+        'security_scheme' => 'string[]'
     ];
 
     /**
@@ -78,7 +79,8 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => null,
         'request_body' => null,
         'success_response' => null,
-        'description' => null
+        'description' => null,
+        'security_scheme' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => true,
         'request_body' => true,
         'success_response' => true,
-        'description' => true
+        'description' => true,
+        'security_scheme' => true
     ];
 
     /**
@@ -186,7 +189,8 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'parameters',
         'request_body' => 'request_body',
         'success_response' => 'success_response',
-        'description' => 'description'
+        'description' => 'description',
+        'security_scheme' => 'security_scheme'
     ];
 
     /**
@@ -200,7 +204,8 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'setParameters',
         'request_body' => 'setRequestBody',
         'success_response' => 'setSuccessResponse',
-        'description' => 'setDescription'
+        'description' => 'setDescription',
+        'security_scheme' => 'setSecurityScheme'
     ];
 
     /**
@@ -214,7 +219,8 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'parameters' => 'getParameters',
         'request_body' => 'getRequestBody',
         'success_response' => 'getSuccessResponse',
-        'description' => 'getDescription'
+        'description' => 'getDescription',
+        'security_scheme' => 'getSecurityScheme'
     ];
 
     /**
@@ -280,6 +286,7 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('request_body', $data ?? [], null);
         $this->setIfExists('success_response', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('security_scheme', $data ?? [], null);
     }
 
     /**
@@ -557,6 +564,40 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         }
 
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets security_scheme
+     *
+     * @return string[]|null
+     */
+    public function getSecurityScheme()
+    {
+        return $this->container['security_scheme'];
+    }
+
+    /**
+     * Sets security_scheme
+     *
+     * @param string[]|null $security_scheme security_scheme
+     *
+     * @return self
+     */
+    public function setSecurityScheme($security_scheme)
+    {
+        if (is_null($security_scheme)) {
+            array_push($this->openAPINullablesSetToNull, 'security_scheme');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('security_scheme', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['security_scheme'] = $security_scheme;
 
         return $this;
     }

@@ -132,4 +132,13 @@ class ApiEndpointUpdateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "security_scheme"
+     */
+    public function testPropertySecurityScheme()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentStatus
+ * ApiIntegrationAuthType
  *
  * PHP version 7.4
  *
@@ -30,27 +30,29 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * DocumentStatus Class Doc Comment
+ * ApiIntegrationAuthType Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DocumentStatus
+class ApiIntegrationAuthType
 {
     /**
      * Possible values of this enum
      */
-    public const N = 'N';
+    public const FIXED_BASIC = 'fixed_basic';
 
-    public const U = 'U';
+    public const DYNAMIC_BASIC = 'dynamic_basic';
 
-    public const T = 'T';
+    public const FIXED_BEARER = 'fixed_bearer';
 
-    public const I = 'I';
+    public const DYNAMIC_BEARER = 'dynamic_bearer';
 
-    public const F = 'F';
+    public const API_KEY = 'api_key';
+
+    public const OAUTH2_AUTHORIZATION_CODE = 'oauth2_authorization_code';
 
     /**
      * Gets allowable values of the enum
@@ -59,11 +61,12 @@ class DocumentStatus
     public static function getAllowableEnumValues()
     {
         return [
-            self::N,
-            self::U,
-            self::T,
-            self::I,
-            self::F
+            self::FIXED_BASIC,
+            self::DYNAMIC_BASIC,
+            self::FIXED_BEARER,
+            self::DYNAMIC_BEARER,
+            self::API_KEY,
+            self::OAUTH2_AUTHORIZATION_CODE
         ];
     }
 }

@@ -60,6 +60,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'string',
         'name' => 'string',
         'description' => 'string',
+        'detailed_description' => 'string',
         'config' => '\OpenAPI\Client\Model\FlowConfig',
         'flow_type' => '\OpenAPI\Client\Model\FlowType',
         'executed_at' => '\DateTime'
@@ -76,6 +77,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => null,
         'name' => null,
         'description' => null,
+        'detailed_description' => null,
         'config' => null,
         'flow_type' => null,
         'executed_at' => 'date-time'
@@ -90,6 +92,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => false,
         'name' => false,
         'description' => false,
+        'detailed_description' => true,
         'config' => false,
         'flow_type' => false,
         'executed_at' => true
@@ -184,6 +187,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'id',
         'name' => 'name',
         'description' => 'description',
+        'detailed_description' => 'detailed_description',
         'config' => 'config',
         'flow_type' => 'flow_type',
         'executed_at' => 'executed_at'
@@ -198,6 +202,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'setId',
         'name' => 'setName',
         'description' => 'setDescription',
+        'detailed_description' => 'setDetailedDescription',
         'config' => 'setConfig',
         'flow_type' => 'setFlowType',
         'executed_at' => 'setExecutedAt'
@@ -212,6 +217,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'getId',
         'name' => 'getName',
         'description' => 'getDescription',
+        'detailed_description' => 'getDetailedDescription',
         'config' => 'getConfig',
         'flow_type' => 'getFlowType',
         'executed_at' => 'getExecutedAt'
@@ -277,6 +283,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('detailed_description', $data ?? [], null);
         $this->setIfExists('config', $data ?? [], null);
         $this->setIfExists('flow_type', $data ?? [], null);
         $this->setIfExists('executed_at', $data ?? [], null);
@@ -416,6 +423,40 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets detailed_description
+     *
+     * @return string|null
+     */
+    public function getDetailedDescription()
+    {
+        return $this->container['detailed_description'];
+    }
+
+    /**
+     * Sets detailed_description
+     *
+     * @param string|null $detailed_description detailed_description
+     *
+     * @return self
+     */
+    public function setDetailedDescription($detailed_description)
+    {
+        if (is_null($detailed_description)) {
+            array_push($this->openAPINullablesSetToNull, 'detailed_description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('detailed_description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['detailed_description'] = $detailed_description;
 
         return $this;
     }

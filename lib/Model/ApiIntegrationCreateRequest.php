@@ -59,9 +59,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'servers' => 'string[]',
         'name' => 'string',
-        'description' => 'string',
-        'secret' => '\OpenAPI\Client\Model\Secret',
-        'endpoints' => '\OpenAPI\Client\Model\ApiEndpointCreateRequest[]'
+        'description' => 'string'
     ];
 
     /**
@@ -74,9 +72,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'servers' => null,
         'name' => null,
-        'description' => null,
-        'secret' => null,
-        'endpoints' => null
+        'description' => null
     ];
 
     /**
@@ -87,9 +83,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'servers' => false,
         'name' => false,
-        'description' => false,
-        'secret' => false,
-        'endpoints' => false
+        'description' => false
     ];
 
     /**
@@ -180,9 +174,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'servers' => 'servers',
         'name' => 'name',
-        'description' => 'description',
-        'secret' => 'secret',
-        'endpoints' => 'endpoints'
+        'description' => 'description'
     ];
 
     /**
@@ -193,9 +185,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'servers' => 'setServers',
         'name' => 'setName',
-        'description' => 'setDescription',
-        'secret' => 'setSecret',
-        'endpoints' => 'setEndpoints'
+        'description' => 'setDescription'
     ];
 
     /**
@@ -206,9 +196,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'servers' => 'getServers',
         'name' => 'getName',
-        'description' => 'getDescription',
-        'secret' => 'getSecret',
-        'endpoints' => 'getEndpoints'
+        'description' => 'getDescription'
     ];
 
     /**
@@ -271,8 +259,6 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('servers', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('secret', $data ?? [], null);
-        $this->setIfExists('endpoints', $data ?? [], null);
     }
 
     /**
@@ -318,12 +304,6 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
 
         if ($this->container['description'] === null) {
             $invalidProperties[] = "'description' can't be null";
-        }
-        if ($this->container['secret'] === null) {
-            $invalidProperties[] = "'secret' can't be null";
-        }
-        if ($this->container['endpoints'] === null) {
-            $invalidProperties[] = "'endpoints' can't be null";
         }
         return $invalidProperties;
     }
@@ -424,60 +404,6 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets secret
-     *
-     * @return \OpenAPI\Client\Model\Secret
-     */
-    public function getSecret()
-    {
-        return $this->container['secret'];
-    }
-
-    /**
-     * Sets secret
-     *
-     * @param \OpenAPI\Client\Model\Secret $secret secret
-     *
-     * @return self
-     */
-    public function setSecret($secret)
-    {
-        if (is_null($secret)) {
-            throw new \InvalidArgumentException('non-nullable secret cannot be null');
-        }
-        $this->container['secret'] = $secret;
-
-        return $this;
-    }
-
-    /**
-     * Gets endpoints
-     *
-     * @return \OpenAPI\Client\Model\ApiEndpointCreateRequest[]
-     */
-    public function getEndpoints()
-    {
-        return $this->container['endpoints'];
-    }
-
-    /**
-     * Sets endpoints
-     *
-     * @param \OpenAPI\Client\Model\ApiEndpointCreateRequest[] $endpoints The endpoints of the API integration.
-     *
-     * @return self
-     */
-    public function setEndpoints($endpoints)
-    {
-        if (is_null($endpoints)) {
-            throw new \InvalidArgumentException('non-nullable endpoints cannot be null');
-        }
-        $this->container['endpoints'] = $endpoints;
 
         return $this;
     }

@@ -4,8 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flow_id** | **string** | The flow ID |
 **url** | **string** |  | [optional]
 **lang** | **string** |  | [optional]
+**access_token** | **string** |  | [optional]
+**refresh_token** | **string** |  | [optional]
+**username** | **string** |  | [optional]
+**password** | **string** |  | [optional]
+**flow_id** | **string** | The flow ID |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

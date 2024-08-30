@@ -61,9 +61,9 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'path' => 'string',
         'description' => 'string',
         'method' => '\OpenAPI\Client\Model\ApiMethod',
-        'parameters' => 'object',
-        'request_body' => 'object',
-        'success_response' => 'object'
+        'parameters' => 'AnyOf',
+        'request_body' => 'AnyOf',
+        'success_response' => 'AnyOf'
     ];
 
     /**
@@ -454,7 +454,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets parameters
      *
-     * @return object|null
+     * @return AnyOf|null
      */
     public function getParameters()
     {
@@ -464,7 +464,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets parameters
      *
-     * @param object|null $parameters parameters
+     * @param AnyOf|null $parameters The parameters of the API endpoint.
      *
      * @return self
      */
@@ -488,7 +488,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets request_body
      *
-     * @return object|null
+     * @return AnyOf|null
      */
     public function getRequestBody()
     {
@@ -498,7 +498,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets request_body
      *
-     * @param object|null $request_body request_body
+     * @param AnyOf|null $request_body The request body of the API endpoint.
      *
      * @return self
      */
@@ -522,7 +522,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets success_response
      *
-     * @return object|null
+     * @return AnyOf|null
      */
     public function getSuccessResponse()
     {
@@ -532,7 +532,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets success_response
      *
-     * @param object|null $success_response success_response
+     * @param AnyOf|null $success_response The success response of the API endpoint.
      *
      * @return self
      */

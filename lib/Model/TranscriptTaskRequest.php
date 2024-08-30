@@ -1,6 +1,6 @@
 <?php
 /**
- * Secret
+ * TranscriptTaskRequest
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Secret Class Doc Comment
+ * TranscriptTaskRequest Class Doc Comment
  *
  * @category Class
- * @description The secret of the API integration.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
+class TranscriptTaskRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Secret';
+    protected static $openAPIModelName = 'TranscriptTaskRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +57,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'client_id' => 'string',
-        'client_secret' => 'string',
-        'scopes' => 'string[]',
-        'api_key' => 'string'
+        'task_id' => 'string'
     ];
 
     /**
@@ -72,10 +68,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'client_id' => null,
-        'client_secret' => null,
-        'scopes' => null,
-        'api_key' => null
+        'task_id' => null
     ];
 
     /**
@@ -84,10 +77,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'client_id' => false,
-        'client_secret' => false,
-        'scopes' => false,
-        'api_key' => false
+        'task_id' => false
     ];
 
     /**
@@ -176,10 +166,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'client_id' => 'client_id',
-        'client_secret' => 'client_secret',
-        'scopes' => 'scopes',
-        'api_key' => 'api_key'
+        'task_id' => 'task_id'
     ];
 
     /**
@@ -188,10 +175,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'client_id' => 'setClientId',
-        'client_secret' => 'setClientSecret',
-        'scopes' => 'setScopes',
-        'api_key' => 'setApiKey'
+        'task_id' => 'setTaskId'
     ];
 
     /**
@@ -200,10 +184,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'client_id' => 'getClientId',
-        'client_secret' => 'getClientSecret',
-        'scopes' => 'getScopes',
-        'api_key' => 'getApiKey'
+        'task_id' => 'getTaskId'
     ];
 
     /**
@@ -263,10 +244,7 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('client_id', $data ?? [], null);
-        $this->setIfExists('client_secret', $data ?? [], null);
-        $this->setIfExists('scopes', $data ?? [], null);
-        $this->setIfExists('api_key', $data ?? [], null);
+        $this->setIfExists('task_id', $data ?? [], null);
     }
 
     /**
@@ -296,17 +274,8 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['client_id'] === null) {
-            $invalidProperties[] = "'client_id' can't be null";
-        }
-        if ($this->container['client_secret'] === null) {
-            $invalidProperties[] = "'client_secret' can't be null";
-        }
-        if ($this->container['scopes'] === null) {
-            $invalidProperties[] = "'scopes' can't be null";
-        }
-        if ($this->container['api_key'] === null) {
-            $invalidProperties[] = "'api_key' can't be null";
+        if ($this->container['task_id'] === null) {
+            $invalidProperties[] = "'task_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -324,109 +293,28 @@ class Secret implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets client_id
+     * Gets task_id
      *
      * @return string
      */
-    public function getClientId()
+    public function getTaskId()
     {
-        return $this->container['client_id'];
+        return $this->container['task_id'];
     }
 
     /**
-     * Sets client_id
+     * Sets task_id
      *
-     * @param string $client_id The client ID of the OAuth integration.
+     * @param string $task_id The task ID to get the transcript from
      *
      * @return self
      */
-    public function setClientId($client_id)
+    public function setTaskId($task_id)
     {
-        if (is_null($client_id)) {
-            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
+        if (is_null($task_id)) {
+            throw new \InvalidArgumentException('non-nullable task_id cannot be null');
         }
-        $this->container['client_id'] = $client_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets client_secret
-     *
-     * @return string
-     */
-    public function getClientSecret()
-    {
-        return $this->container['client_secret'];
-    }
-
-    /**
-     * Sets client_secret
-     *
-     * @param string $client_secret The client secret of the OAuth integration.
-     *
-     * @return self
-     */
-    public function setClientSecret($client_secret)
-    {
-        if (is_null($client_secret)) {
-            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
-        }
-        $this->container['client_secret'] = $client_secret;
-
-        return $this;
-    }
-
-    /**
-     * Gets scopes
-     *
-     * @return string[]
-     */
-    public function getScopes()
-    {
-        return $this->container['scopes'];
-    }
-
-    /**
-     * Sets scopes
-     *
-     * @param string[] $scopes The scopes of the OAuth integration.
-     *
-     * @return self
-     */
-    public function setScopes($scopes)
-    {
-        if (is_null($scopes)) {
-            throw new \InvalidArgumentException('non-nullable scopes cannot be null');
-        }
-        $this->container['scopes'] = $scopes;
-
-        return $this;
-    }
-
-    /**
-     * Gets api_key
-     *
-     * @return string
-     */
-    public function getApiKey()
-    {
-        return $this->container['api_key'];
-    }
-
-    /**
-     * Sets api_key
-     *
-     * @param string $api_key The API key of the API key integration.
-     *
-     * @return self
-     */
-    public function setApiKey($api_key)
-    {
-        if (is_null($api_key)) {
-            throw new \InvalidArgumentException('non-nullable api_key cannot be null');
-        }
-        $this->container['api_key'] = $api_key;
+        $this->container['task_id'] = $task_id;
 
         return $this;
     }

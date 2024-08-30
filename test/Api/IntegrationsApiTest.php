@@ -120,6 +120,18 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for getApiIntegrationAuthMethods
+     *
+     * Get Api Integration Auth Methods.
+     *
+     */
+    public function testGetApiIntegrationAuthMethods()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getApiIntegrationEndpoints
      *
      * Get Api Integration Endpoints.
@@ -150,6 +162,30 @@ class IntegrationsApiTest extends TestCase
      *
      */
     public function testGetMyIntegrations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for importOpenapiSpec
+     *
+     * Import Openapi Spec.
+     *
+     */
+    public function testImportOpenapiSpec()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for importOpenapiSpecFromUrl
+     *
+     * Import Openapi Spec From Url.
+     *
+     */
+    public function testImportOpenapiSpecFromUrl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Secret1
+ * ApiIntegrationAuthenticationMethod
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Secret1 Class Doc Comment
+ * ApiIntegrationAuthenticationMethod Class Doc Comment
  *
  * @category Class
- * @description The secret of the API integration.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Secret_1';
+    protected static $openAPIModelName = 'ApiIntegrationAuthenticationMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +57,12 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'client_id' => 'string',
-        'client_secret' => 'string',
-        'scopes' => 'string[]',
-        'api_key' => 'string'
+        'auth_type' => '\OpenAPI\Client\Model\ApiIntegrationAuthType',
+        'description' => 'string',
+        'beta' => 'bool',
+        'link' => 'string',
+        'recommended_for_internal_assistant' => 'bool',
+        'recommended_for_public_facing_bot' => 'bool'
     ];
 
     /**
@@ -72,10 +73,12 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'client_id' => null,
-        'client_secret' => null,
-        'scopes' => null,
-        'api_key' => null
+        'auth_type' => null,
+        'description' => null,
+        'beta' => null,
+        'link' => null,
+        'recommended_for_internal_assistant' => null,
+        'recommended_for_public_facing_bot' => null
     ];
 
     /**
@@ -84,10 +87,12 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'client_id' => false,
-        'client_secret' => false,
-        'scopes' => false,
-        'api_key' => false
+        'auth_type' => false,
+        'description' => false,
+        'beta' => false,
+        'link' => false,
+        'recommended_for_internal_assistant' => false,
+        'recommended_for_public_facing_bot' => false
     ];
 
     /**
@@ -176,10 +181,12 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'client_id' => 'client_id',
-        'client_secret' => 'client_secret',
-        'scopes' => 'scopes',
-        'api_key' => 'api_key'
+        'auth_type' => 'auth_type',
+        'description' => 'description',
+        'beta' => 'beta',
+        'link' => 'link',
+        'recommended_for_internal_assistant' => 'recommended_for_internal_assistant',
+        'recommended_for_public_facing_bot' => 'recommended_for_public_facing_bot'
     ];
 
     /**
@@ -188,10 +195,12 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'client_id' => 'setClientId',
-        'client_secret' => 'setClientSecret',
-        'scopes' => 'setScopes',
-        'api_key' => 'setApiKey'
+        'auth_type' => 'setAuthType',
+        'description' => 'setDescription',
+        'beta' => 'setBeta',
+        'link' => 'setLink',
+        'recommended_for_internal_assistant' => 'setRecommendedForInternalAssistant',
+        'recommended_for_public_facing_bot' => 'setRecommendedForPublicFacingBot'
     ];
 
     /**
@@ -200,10 +209,12 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'client_id' => 'getClientId',
-        'client_secret' => 'getClientSecret',
-        'scopes' => 'getScopes',
-        'api_key' => 'getApiKey'
+        'auth_type' => 'getAuthType',
+        'description' => 'getDescription',
+        'beta' => 'getBeta',
+        'link' => 'getLink',
+        'recommended_for_internal_assistant' => 'getRecommendedForInternalAssistant',
+        'recommended_for_public_facing_bot' => 'getRecommendedForPublicFacingBot'
     ];
 
     /**
@@ -263,10 +274,12 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('client_id', $data ?? [], null);
-        $this->setIfExists('client_secret', $data ?? [], null);
-        $this->setIfExists('scopes', $data ?? [], null);
-        $this->setIfExists('api_key', $data ?? [], null);
+        $this->setIfExists('auth_type', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('beta', $data ?? [], false);
+        $this->setIfExists('link', $data ?? [], null);
+        $this->setIfExists('recommended_for_internal_assistant', $data ?? [], false);
+        $this->setIfExists('recommended_for_public_facing_bot', $data ?? [], false);
     }
 
     /**
@@ -296,17 +309,14 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['client_id'] === null) {
-            $invalidProperties[] = "'client_id' can't be null";
+        if ($this->container['auth_type'] === null) {
+            $invalidProperties[] = "'auth_type' can't be null";
         }
-        if ($this->container['client_secret'] === null) {
-            $invalidProperties[] = "'client_secret' can't be null";
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
         }
-        if ($this->container['scopes'] === null) {
-            $invalidProperties[] = "'scopes' can't be null";
-        }
-        if ($this->container['api_key'] === null) {
-            $invalidProperties[] = "'api_key' can't be null";
+        if ($this->container['link'] === null) {
+            $invalidProperties[] = "'link' can't be null";
         }
         return $invalidProperties;
     }
@@ -324,109 +334,163 @@ class Secret1 implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets client_id
+     * Gets auth_type
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\ApiIntegrationAuthType
      */
-    public function getClientId()
+    public function getAuthType()
     {
-        return $this->container['client_id'];
+        return $this->container['auth_type'];
     }
 
     /**
-     * Sets client_id
+     * Sets auth_type
      *
-     * @param string $client_id The client ID of the OAuth integration.
+     * @param \OpenAPI\Client\Model\ApiIntegrationAuthType $auth_type The authentication type of the API integration.
      *
      * @return self
      */
-    public function setClientId($client_id)
+    public function setAuthType($auth_type)
     {
-        if (is_null($client_id)) {
-            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
+        if (is_null($auth_type)) {
+            throw new \InvalidArgumentException('non-nullable auth_type cannot be null');
         }
-        $this->container['client_id'] = $client_id;
+        $this->container['auth_type'] = $auth_type;
 
         return $this;
     }
 
     /**
-     * Gets client_secret
+     * Gets description
      *
      * @return string
      */
-    public function getClientSecret()
+    public function getDescription()
     {
-        return $this->container['client_secret'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets client_secret
+     * Sets description
      *
-     * @param string $client_secret The client secret of the OAuth integration.
+     * @param string $description The description of the authentication type.
      *
      * @return self
      */
-    public function setClientSecret($client_secret)
+    public function setDescription($description)
     {
-        if (is_null($client_secret)) {
-            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-        $this->container['client_secret'] = $client_secret;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets scopes
+     * Gets beta
      *
-     * @return string[]
+     * @return bool|null
      */
-    public function getScopes()
+    public function getBeta()
     {
-        return $this->container['scopes'];
+        return $this->container['beta'];
     }
 
     /**
-     * Sets scopes
+     * Sets beta
      *
-     * @param string[] $scopes The scopes of the OAuth integration.
+     * @param bool|null $beta Whether the authentication type is in beta or not.
      *
      * @return self
      */
-    public function setScopes($scopes)
+    public function setBeta($beta)
     {
-        if (is_null($scopes)) {
-            throw new \InvalidArgumentException('non-nullable scopes cannot be null');
+        if (is_null($beta)) {
+            throw new \InvalidArgumentException('non-nullable beta cannot be null');
         }
-        $this->container['scopes'] = $scopes;
+        $this->container['beta'] = $beta;
 
         return $this;
     }
 
     /**
-     * Gets api_key
+     * Gets link
      *
      * @return string
      */
-    public function getApiKey()
+    public function getLink()
     {
-        return $this->container['api_key'];
+        return $this->container['link'];
     }
 
     /**
-     * Sets api_key
+     * Sets link
      *
-     * @param string $api_key The API key of the API key integration.
+     * @param string $link The link of the authentication type documentation.
      *
      * @return self
      */
-    public function setApiKey($api_key)
+    public function setLink($link)
     {
-        if (is_null($api_key)) {
-            throw new \InvalidArgumentException('non-nullable api_key cannot be null');
+        if (is_null($link)) {
+            throw new \InvalidArgumentException('non-nullable link cannot be null');
         }
-        $this->container['api_key'] = $api_key;
+        $this->container['link'] = $link;
+
+        return $this;
+    }
+
+    /**
+     * Gets recommended_for_internal_assistant
+     *
+     * @return bool|null
+     */
+    public function getRecommendedForInternalAssistant()
+    {
+        return $this->container['recommended_for_internal_assistant'];
+    }
+
+    /**
+     * Sets recommended_for_internal_assistant
+     *
+     * @param bool|null $recommended_for_internal_assistant Whether the authentication type is recommended for
+     *
+     * @return self
+     */
+    public function setRecommendedForInternalAssistant($recommended_for_internal_assistant)
+    {
+        if (is_null($recommended_for_internal_assistant)) {
+            throw new \InvalidArgumentException('non-nullable recommended_for_internal_assistant cannot be null');
+        }
+        $this->container['recommended_for_internal_assistant'] = $recommended_for_internal_assistant;
+
+        return $this;
+    }
+
+    /**
+     * Gets recommended_for_public_facing_bot
+     *
+     * @return bool|null
+     */
+    public function getRecommendedForPublicFacingBot()
+    {
+        return $this->container['recommended_for_public_facing_bot'];
+    }
+
+    /**
+     * Sets recommended_for_public_facing_bot
+     *
+     * @param bool|null $recommended_for_public_facing_bot Whether the authentication type is recommended for
+     *
+     * @return self
+     */
+    public function setRecommendedForPublicFacingBot($recommended_for_public_facing_bot)
+    {
+        if (is_null($recommended_for_public_facing_bot)) {
+            throw new \InvalidArgumentException('non-nullable recommended_for_public_facing_bot cannot be null');
+        }
+        $this->container['recommended_for_public_facing_bot'] = $recommended_for_public_facing_bot;
 
         return $this;
     }

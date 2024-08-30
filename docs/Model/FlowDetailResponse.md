@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **id** | **string** | Flow ID |
 **name** | **string** | Flow name |
 **description** | **string** | Flow description |
+**detailed_description** | **string** |  | [optional]
 **config** | [**\OpenAPI\Client\Model\FlowConfig**](FlowConfig.md) | Flow configuration |
 **flow_type** | [**\OpenAPI\Client\Model\FlowType**](FlowType.md) | Flow type |
 **executed_at** | **\DateTime** |  | [optional]

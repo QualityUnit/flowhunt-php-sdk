@@ -56,6 +56,24 @@ class DocumentType
 
     public const UN = 'UN';
 
+    public const MP3 = 'MP3';
+
+    public const FLAC = 'FLAC';
+
+    public const MP4 = 'MP4';
+
+    public const MPEG = 'MPEG';
+
+    public const MPGA = 'MPGA';
+
+    public const M4_A = 'M4A';
+
+    public const OGG = 'OGG';
+
+    public const WAV = 'WAV';
+
+    public const WEBM = 'WEBM';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -69,7 +87,16 @@ class DocumentType
             self::TXT,
             self::HTML,
             self::YT,
-            self::UN
+            self::UN,
+            self::MP3,
+            self::FLAC,
+            self::MP4,
+            self::MPEG,
+            self::MPGA,
+            self::M4_A,
+            self::OGG,
+            self::WAV,
+            self::WEBM
         ];
     }
 }

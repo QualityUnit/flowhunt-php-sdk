@@ -258,4 +258,13 @@ class YoutubeContentTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "credits"
+     */
+    public function testPropertyCredits()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

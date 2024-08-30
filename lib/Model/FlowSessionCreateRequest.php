@@ -57,9 +57,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'chatbot_id' => 'string',
         'url' => 'string',
-        'lang' => 'string'
+        'lang' => 'string',
+        'access_token' => 'string',
+        'refresh_token' => 'string',
+        'username' => 'string',
+        'password' => 'string',
+        'chatbot_id' => 'string'
     ];
 
     /**
@@ -70,9 +74,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'chatbot_id' => 'uuid',
         'url' => null,
-        'lang' => null
+        'lang' => null,
+        'access_token' => null,
+        'refresh_token' => null,
+        'username' => null,
+        'password' => null,
+        'chatbot_id' => 'uuid'
     ];
 
     /**
@@ -81,9 +89,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'chatbot_id' => false,
         'url' => true,
-        'lang' => true
+        'lang' => true,
+        'access_token' => true,
+        'refresh_token' => true,
+        'username' => true,
+        'password' => true,
+        'chatbot_id' => false
     ];
 
     /**
@@ -172,9 +184,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'chatbot_id' => 'chatbot_id',
         'url' => 'url',
-        'lang' => 'lang'
+        'lang' => 'lang',
+        'access_token' => 'access_token',
+        'refresh_token' => 'refresh_token',
+        'username' => 'username',
+        'password' => 'password',
+        'chatbot_id' => 'chatbot_id'
     ];
 
     /**
@@ -183,9 +199,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'chatbot_id' => 'setChatbotId',
         'url' => 'setUrl',
-        'lang' => 'setLang'
+        'lang' => 'setLang',
+        'access_token' => 'setAccessToken',
+        'refresh_token' => 'setRefreshToken',
+        'username' => 'setUsername',
+        'password' => 'setPassword',
+        'chatbot_id' => 'setChatbotId'
     ];
 
     /**
@@ -194,9 +214,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'chatbot_id' => 'getChatbotId',
         'url' => 'getUrl',
-        'lang' => 'getLang'
+        'lang' => 'getLang',
+        'access_token' => 'getAccessToken',
+        'refresh_token' => 'getRefreshToken',
+        'username' => 'getUsername',
+        'password' => 'getPassword',
+        'chatbot_id' => 'getChatbotId'
     ];
 
     /**
@@ -256,9 +280,13 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('chatbot_id', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('lang', $data ?? [], null);
+        $this->setIfExists('access_token', $data ?? [], null);
+        $this->setIfExists('refresh_token', $data ?? [], null);
+        $this->setIfExists('username', $data ?? [], null);
+        $this->setIfExists('password', $data ?? [], null);
+        $this->setIfExists('chatbot_id', $data ?? [], null);
     }
 
     /**
@@ -305,33 +333,6 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets chatbot_id
-     *
-     * @return string
-     */
-    public function getChatbotId()
-    {
-        return $this->container['chatbot_id'];
-    }
-
-    /**
-     * Sets chatbot_id
-     *
-     * @param string $chatbot_id The chatbot ID
-     *
-     * @return self
-     */
-    public function setChatbotId($chatbot_id)
-    {
-        if (is_null($chatbot_id)) {
-            throw new \InvalidArgumentException('non-nullable chatbot_id cannot be null');
-        }
-        $this->container['chatbot_id'] = $chatbot_id;
-
-        return $this;
-    }
 
     /**
      * Gets url
@@ -397,6 +398,169 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
             }
         }
         $this->container['lang'] = $lang;
+
+        return $this;
+    }
+
+    /**
+     * Gets access_token
+     *
+     * @return string|null
+     */
+    public function getAccessToken()
+    {
+        return $this->container['access_token'];
+    }
+
+    /**
+     * Sets access_token
+     *
+     * @param string|null $access_token access_token
+     *
+     * @return self
+     */
+    public function setAccessToken($access_token)
+    {
+        if (is_null($access_token)) {
+            array_push($this->openAPINullablesSetToNull, 'access_token');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('access_token', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['access_token'] = $access_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets refresh_token
+     *
+     * @return string|null
+     */
+    public function getRefreshToken()
+    {
+        return $this->container['refresh_token'];
+    }
+
+    /**
+     * Sets refresh_token
+     *
+     * @param string|null $refresh_token refresh_token
+     *
+     * @return self
+     */
+    public function setRefreshToken($refresh_token)
+    {
+        if (is_null($refresh_token)) {
+            array_push($this->openAPINullablesSetToNull, 'refresh_token');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('refresh_token', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['refresh_token'] = $refresh_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets username
+     *
+     * @return string|null
+     */
+    public function getUsername()
+    {
+        return $this->container['username'];
+    }
+
+    /**
+     * Sets username
+     *
+     * @param string|null $username username
+     *
+     * @return self
+     */
+    public function setUsername($username)
+    {
+        if (is_null($username)) {
+            array_push($this->openAPINullablesSetToNull, 'username');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('username', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['username'] = $username;
+
+        return $this;
+    }
+
+    /**
+     * Gets password
+     *
+     * @return string|null
+     */
+    public function getPassword()
+    {
+        return $this->container['password'];
+    }
+
+    /**
+     * Sets password
+     *
+     * @param string|null $password password
+     *
+     * @return self
+     */
+    public function setPassword($password)
+    {
+        if (is_null($password)) {
+            array_push($this->openAPINullablesSetToNull, 'password');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('password', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['password'] = $password;
+
+        return $this;
+    }
+
+    /**
+     * Gets chatbot_id
+     *
+     * @return string
+     */
+    public function getChatbotId()
+    {
+        return $this->container['chatbot_id'];
+    }
+
+    /**
+     * Sets chatbot_id
+     *
+     * @param string $chatbot_id The chatbot ID
+     *
+     * @return self
+     */
+    public function setChatbotId($chatbot_id)
+    {
+        if (is_null($chatbot_id)) {
+            throw new \InvalidArgumentException('non-nullable chatbot_id cannot be null');
+        }
+        $this->container['chatbot_id'] = $chatbot_id;
 
         return $this;
     }

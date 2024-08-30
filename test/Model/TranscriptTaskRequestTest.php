@@ -1,6 +1,6 @@
 <?php
 /**
- * SecretTest
+ * TranscriptTaskRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SecretTest Class Doc Comment
+ * TranscriptTaskRequestTest Class Doc Comment
  *
  * @category    Class
- * @description The secret of the API integration.
+ * @description TranscriptTaskRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SecretTest extends TestCase
+class TranscriptTaskRequestTest extends TestCase
 {
 
     /**
@@ -71,45 +71,18 @@ class SecretTest extends TestCase
     }
 
     /**
-     * Test "Secret"
+     * Test "TranscriptTaskRequest"
      */
-    public function testSecret()
+    public function testTranscriptTaskRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "client_id"
+     * Test attribute "task_id"
      */
-    public function testPropertyClientId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "client_secret"
-     */
-    public function testPropertyClientSecret()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "scopes"
-     */
-    public function testPropertyScopes()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "api_key"
-     */
-    public function testPropertyApiKey()
+    public function testPropertyTaskId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

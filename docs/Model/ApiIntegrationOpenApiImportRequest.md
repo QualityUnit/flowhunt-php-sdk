@@ -1,10 +1,9 @@
-# # AppUrlInput
+# # ApiIntegrationOpenApiImportRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**parsed_url** | **string[]** |  | [optional]
-**url** | **string** | The URL. |
+**openapi_url** | **string** | The openapi url of the API integration. |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

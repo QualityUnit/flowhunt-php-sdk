@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **request_body** | **object** |  | [optional]
 **success_response** | **object** |  | [optional]
 **description** | **string** |  |
+**security_scheme** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

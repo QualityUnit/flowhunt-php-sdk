@@ -1,6 +1,6 @@
 <?php
 /**
- * OAuthIntegrationSecret
+ * DocumentContentResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * OAuthIntegrationSecret Class Doc Comment
+ * DocumentContentResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OAuthIntegrationSecret';
+    protected static $openAPIModelName = 'DocumentContentResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,10 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'client_id' => 'string',
-        'client_secret' => 'string',
-        'scopes' => 'string[]'
+        'id' => 'string',
+        'status' => '\OpenAPI\Client\Model\TaskStatus',
+        'result' => '\OpenAPI\Client\Model\DocumentContent',
+        'error_message' => 'string'
     ];
 
     /**
@@ -70,9 +71,10 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'client_id' => null,
-        'client_secret' => null,
-        'scopes' => null
+        'id' => null,
+        'status' => null,
+        'result' => null,
+        'error_message' => null
     ];
 
     /**
@@ -81,9 +83,10 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'client_id' => false,
-        'client_secret' => false,
-        'scopes' => false
+        'id' => false,
+        'status' => false,
+        'result' => true,
+        'error_message' => true
     ];
 
     /**
@@ -172,9 +175,10 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'client_id' => 'client_id',
-        'client_secret' => 'client_secret',
-        'scopes' => 'scopes'
+        'id' => 'id',
+        'status' => 'status',
+        'result' => 'result',
+        'error_message' => 'error_message'
     ];
 
     /**
@@ -183,9 +187,10 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'client_id' => 'setClientId',
-        'client_secret' => 'setClientSecret',
-        'scopes' => 'setScopes'
+        'id' => 'setId',
+        'status' => 'setStatus',
+        'result' => 'setResult',
+        'error_message' => 'setErrorMessage'
     ];
 
     /**
@@ -194,9 +199,10 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'client_id' => 'getClientId',
-        'client_secret' => 'getClientSecret',
-        'scopes' => 'getScopes'
+        'id' => 'getId',
+        'status' => 'getStatus',
+        'result' => 'getResult',
+        'error_message' => 'getErrorMessage'
     ];
 
     /**
@@ -256,9 +262,10 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('client_id', $data ?? [], null);
-        $this->setIfExists('client_secret', $data ?? [], null);
-        $this->setIfExists('scopes', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('error_message', $data ?? [], null);
     }
 
     /**
@@ -288,14 +295,11 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['client_id'] === null) {
-            $invalidProperties[] = "'client_id' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['client_secret'] === null) {
-            $invalidProperties[] = "'client_secret' can't be null";
-        }
-        if ($this->container['scopes'] === null) {
-            $invalidProperties[] = "'scopes' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -313,82 +317,123 @@ class OAuthIntegrationSecret implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets client_id
+     * Gets id
      *
      * @return string
      */
-    public function getClientId()
+    public function getId()
     {
-        return $this->container['client_id'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets client_id
+     * Sets id
      *
-     * @param string $client_id The client ID of the OAuth integration.
+     * @param string $id Task ID
      *
      * @return self
      */
-    public function setClientId($client_id)
+    public function setId($id)
     {
-        if (is_null($client_id)) {
-            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['client_id'] = $client_id;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets client_secret
+     * Gets status
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\TaskStatus
      */
-    public function getClientSecret()
+    public function getStatus()
     {
-        return $this->container['client_secret'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets client_secret
+     * Sets status
      *
-     * @param string $client_secret The client secret of the OAuth integration.
+     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
      *
      * @return self
      */
-    public function setClientSecret($client_secret)
+    public function setStatus($status)
     {
-        if (is_null($client_secret)) {
-            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['client_secret'] = $client_secret;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets scopes
+     * Gets result
      *
-     * @return string[]
+     * @return \OpenAPI\Client\Model\DocumentContent|null
      */
-    public function getScopes()
+    public function getResult()
     {
-        return $this->container['scopes'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets scopes
+     * Sets result
      *
-     * @param string[] $scopes The scopes of the OAuth integration.
+     * @param \OpenAPI\Client\Model\DocumentContent|null $result result
      *
      * @return self
      */
-    public function setScopes($scopes)
+    public function setResult($result)
     {
-        if (is_null($scopes)) {
-            throw new \InvalidArgumentException('non-nullable scopes cannot be null');
+        if (is_null($result)) {
+            array_push($this->openAPINullablesSetToNull, 'result');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('result', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['scopes'] = $scopes;
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message
+     *
+     * @return string|null
+     */
+    public function getErrorMessage()
+    {
+        return $this->container['error_message'];
+    }
+
+    /**
+     * Sets error_message
+     *
+     * @param string|null $error_message error_message
+     *
+     * @return self
+     */
+    public function setErrorMessage($error_message)
+    {
+        if (is_null($error_message)) {
+            array_push($this->openAPINullablesSetToNull, 'error_message');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('error_message', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['error_message'] = $error_message;
 
         return $this;
     }
