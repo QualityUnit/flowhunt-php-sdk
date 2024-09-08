@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiIntegrationCreateRequest
+ * FlowSessionInvokeRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ApiIntegrationCreateRequest Class Doc Comment
+ * FlowSessionInvokeRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionInvokeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ApiIntegrationCreateRequest';
+    protected static $openAPIModelName = 'FlowSessionInvokeRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'servers' => 'string[]',
-        'name' => 'string',
-        'description' => 'string'
+        'message' => 'string',
+        'post_back_url' => 'string'
     ];
 
     /**
@@ -70,9 +69,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'servers' => null,
-        'name' => null,
-        'description' => null
+        'message' => null,
+        'post_back_url' => null
     ];
 
     /**
@@ -81,9 +79,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'servers' => false,
-        'name' => false,
-        'description' => false
+        'message' => false,
+        'post_back_url' => true
     ];
 
     /**
@@ -172,9 +169,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'servers' => 'servers',
-        'name' => 'name',
-        'description' => 'description'
+        'message' => 'message',
+        'post_back_url' => 'post_back_url'
     ];
 
     /**
@@ -183,9 +179,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'servers' => 'setServers',
-        'name' => 'setName',
-        'description' => 'setDescription'
+        'message' => 'setMessage',
+        'post_back_url' => 'setPostBackUrl'
     ];
 
     /**
@@ -194,9 +189,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'servers' => 'getServers',
-        'name' => 'getName',
-        'description' => 'getDescription'
+        'message' => 'getMessage',
+        'post_back_url' => 'getPostBackUrl'
     ];
 
     /**
@@ -256,9 +250,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('servers', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('post_back_url', $data ?? [], null);
     }
 
     /**
@@ -288,18 +281,8 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['servers'] === null) {
-            $invalidProperties[] = "'servers' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ((mb_strlen($this->container['name']) > 255)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
-        }
-
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
         return $invalidProperties;
     }
@@ -317,86 +300,62 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets servers
+     * Gets message
      *
-     * @return string[]
+     * @return string
      */
-    public function getServers()
+    public function getMessage()
     {
-        return $this->container['servers'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets servers
+     * Sets message
      *
-     * @param string[] $servers The servers of the API integration.
+     * @param string $message The message
      *
      * @return self
      */
-    public function setServers($servers)
+    public function setMessage($message)
     {
-        if (is_null($servers)) {
-            throw new \InvalidArgumentException('non-nullable servers cannot be null');
+        if (is_null($message)) {
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
-        $this->container['servers'] = $servers;
+        $this->container['message'] = $message;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets post_back_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getPostBackUrl()
     {
-        return $this->container['name'];
+        return $this->container['post_back_url'];
     }
 
     /**
-     * Sets name
+     * Sets post_back_url
      *
-     * @param string $name The name of the API integration.
+     * @param string|null $post_back_url post_back_url
      *
      * @return self
      */
-    public function setName($name)
+    public function setPostBackUrl($post_back_url)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($post_back_url)) {
+            array_push($this->openAPINullablesSetToNull, 'post_back_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('post_back_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        if ((mb_strlen($name) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling ApiIntegrationCreateRequest., must be smaller than or equal to 255.');
-        }
-
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description The description of the API integration.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
+        $this->container['post_back_url'] = $post_back_url;
 
         return $this;
     }

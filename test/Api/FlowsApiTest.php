@@ -180,6 +180,30 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for invokeFlowResponse
+     *
+     * Invoke Flow Response.
+     *
+     */
+    public function testInvokeFlowResponse()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for pollFlowResponse
+     *
+     * Poll Flow Response.
+     *
+     */
+    public function testPollFlowResponse()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for search
      *
      * Search.

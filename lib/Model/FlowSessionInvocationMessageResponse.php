@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiIntegrationCreateRequest
+ * FlowSessionInvocationMessageResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ApiIntegrationCreateRequest Class Doc Comment
+ * FlowSessionInvocationMessageResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ApiIntegrationCreateRequest';
+    protected static $openAPIModelName = 'FlowSessionInvocationMessageResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'servers' => 'string[]',
-        'name' => 'string',
-        'description' => 'string'
+        'message_id' => 'string',
+        'response_status' => '\OpenAPI\Client\Model\FlowSessionStatus',
+        'loading_indicator' => '\OpenAPI\Client\Model\FlowLoadingIndicator',
+        'intermediate_responses' => '\OpenAPI\Client\Model\FlowMessageResponse[]',
+        'final_response' => 'string[]'
     ];
 
     /**
@@ -70,9 +72,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'servers' => null,
-        'name' => null,
-        'description' => null
+        'message_id' => null,
+        'response_status' => null,
+        'loading_indicator' => null,
+        'intermediate_responses' => null,
+        'final_response' => null
     ];
 
     /**
@@ -81,9 +85,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'servers' => false,
-        'name' => false,
-        'description' => false
+        'message_id' => false,
+        'response_status' => false,
+        'loading_indicator' => true,
+        'intermediate_responses' => false,
+        'final_response' => true
     ];
 
     /**
@@ -172,9 +178,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'servers' => 'servers',
-        'name' => 'name',
-        'description' => 'description'
+        'message_id' => 'message_id',
+        'response_status' => 'response_status',
+        'loading_indicator' => 'loading_indicator',
+        'intermediate_responses' => 'intermediate_responses',
+        'final_response' => 'final_response'
     ];
 
     /**
@@ -183,9 +191,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'servers' => 'setServers',
-        'name' => 'setName',
-        'description' => 'setDescription'
+        'message_id' => 'setMessageId',
+        'response_status' => 'setResponseStatus',
+        'loading_indicator' => 'setLoadingIndicator',
+        'intermediate_responses' => 'setIntermediateResponses',
+        'final_response' => 'setFinalResponse'
     ];
 
     /**
@@ -194,9 +204,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'servers' => 'getServers',
-        'name' => 'getName',
-        'description' => 'getDescription'
+        'message_id' => 'getMessageId',
+        'response_status' => 'getResponseStatus',
+        'loading_indicator' => 'getLoadingIndicator',
+        'intermediate_responses' => 'getIntermediateResponses',
+        'final_response' => 'getFinalResponse'
     ];
 
     /**
@@ -256,9 +268,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('servers', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('message_id', $data ?? [], null);
+        $this->setIfExists('response_status', $data ?? [], null);
+        $this->setIfExists('loading_indicator', $data ?? [], null);
+        $this->setIfExists('intermediate_responses', $data ?? [], null);
+        $this->setIfExists('final_response', $data ?? [], null);
     }
 
     /**
@@ -288,18 +302,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['servers'] === null) {
-            $invalidProperties[] = "'servers' can't be null";
+        if ($this->container['message_id'] === null) {
+            $invalidProperties[] = "'message_id' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ((mb_strlen($this->container['name']) > 255)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
-        }
-
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+        if ($this->container['response_status'] === null) {
+            $invalidProperties[] = "'response_status' can't be null";
         }
         return $invalidProperties;
     }
@@ -317,86 +324,150 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets servers
+     * Gets message_id
      *
-     * @return string[]
+     * @return string
      */
-    public function getServers()
+    public function getMessageId()
     {
-        return $this->container['servers'];
+        return $this->container['message_id'];
     }
 
     /**
-     * Sets servers
+     * Sets message_id
      *
-     * @param string[] $servers The servers of the API integration.
+     * @param string $message_id Message ID
      *
      * @return self
      */
-    public function setServers($servers)
+    public function setMessageId($message_id)
     {
-        if (is_null($servers)) {
-            throw new \InvalidArgumentException('non-nullable servers cannot be null');
+        if (is_null($message_id)) {
+            throw new \InvalidArgumentException('non-nullable message_id cannot be null');
         }
-        $this->container['servers'] = $servers;
+        $this->container['message_id'] = $message_id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets response_status
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\FlowSessionStatus
      */
-    public function getName()
+    public function getResponseStatus()
     {
-        return $this->container['name'];
+        return $this->container['response_status'];
     }
 
     /**
-     * Sets name
+     * Sets response_status
      *
-     * @param string $name The name of the API integration.
+     * @param \OpenAPI\Client\Model\FlowSessionStatus $response_status Response status
      *
      * @return self
      */
-    public function setName($name)
+    public function setResponseStatus($response_status)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($response_status)) {
+            throw new \InvalidArgumentException('non-nullable response_status cannot be null');
         }
-        if ((mb_strlen($name) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling ApiIntegrationCreateRequest., must be smaller than or equal to 255.');
-        }
-
-        $this->container['name'] = $name;
+        $this->container['response_status'] = $response_status;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets loading_indicator
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\FlowLoadingIndicator|null
      */
-    public function getDescription()
+    public function getLoadingIndicator()
     {
-        return $this->container['description'];
+        return $this->container['loading_indicator'];
     }
 
     /**
-     * Sets description
+     * Sets loading_indicator
      *
-     * @param string $description The description of the API integration.
+     * @param \OpenAPI\Client\Model\FlowLoadingIndicator|null $loading_indicator loading_indicator
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setLoadingIndicator($loading_indicator)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($loading_indicator)) {
+            array_push($this->openAPINullablesSetToNull, 'loading_indicator');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('loading_indicator', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['description'] = $description;
+        $this->container['loading_indicator'] = $loading_indicator;
+
+        return $this;
+    }
+
+    /**
+     * Gets intermediate_responses
+     *
+     * @return \OpenAPI\Client\Model\FlowMessageResponse[]|null
+     */
+    public function getIntermediateResponses()
+    {
+        return $this->container['intermediate_responses'];
+    }
+
+    /**
+     * Sets intermediate_responses
+     *
+     * @param \OpenAPI\Client\Model\FlowMessageResponse[]|null $intermediate_responses Intermediate responses
+     *
+     * @return self
+     */
+    public function setIntermediateResponses($intermediate_responses)
+    {
+        if (is_null($intermediate_responses)) {
+            throw new \InvalidArgumentException('non-nullable intermediate_responses cannot be null');
+        }
+        $this->container['intermediate_responses'] = $intermediate_responses;
+
+        return $this;
+    }
+
+    /**
+     * Gets final_response
+     *
+     * @return string[]|null
+     */
+    public function getFinalResponse()
+    {
+        return $this->container['final_response'];
+    }
+
+    /**
+     * Sets final_response
+     *
+     * @param string[]|null $final_response final_response
+     *
+     * @return self
+     */
+    public function setFinalResponse($final_response)
+    {
+        if (is_null($final_response)) {
+            array_push($this->openAPINullablesSetToNull, 'final_response');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('final_response', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['final_response'] = $final_response;
 
         return $this;
     }

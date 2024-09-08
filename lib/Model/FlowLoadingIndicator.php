@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiIntegrationCreateRequest
+ * FlowLoadingIndicator
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ApiIntegrationCreateRequest Class Doc Comment
+ * FlowLoadingIndicator Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ApiIntegrationCreateRequest';
+    protected static $openAPIModelName = 'FlowLoadingIndicator';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,9 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'servers' => 'string[]',
-        'name' => 'string',
-        'description' => 'string'
+        'tool_name' => 'string',
+        'loading_desc' => 'string',
+        'icon' => 'string'
     ];
 
     /**
@@ -70,9 +70,9 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'servers' => null,
-        'name' => null,
-        'description' => null
+        'tool_name' => null,
+        'loading_desc' => null,
+        'icon' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'servers' => false,
-        'name' => false,
-        'description' => false
+        'tool_name' => false,
+        'loading_desc' => false,
+        'icon' => true
     ];
 
     /**
@@ -172,9 +172,9 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'servers' => 'servers',
-        'name' => 'name',
-        'description' => 'description'
+        'tool_name' => 'tool_name',
+        'loading_desc' => 'loading_desc',
+        'icon' => 'icon'
     ];
 
     /**
@@ -183,9 +183,9 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'servers' => 'setServers',
-        'name' => 'setName',
-        'description' => 'setDescription'
+        'tool_name' => 'setToolName',
+        'loading_desc' => 'setLoadingDesc',
+        'icon' => 'setIcon'
     ];
 
     /**
@@ -194,9 +194,9 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'servers' => 'getServers',
-        'name' => 'getName',
-        'description' => 'getDescription'
+        'tool_name' => 'getToolName',
+        'loading_desc' => 'getLoadingDesc',
+        'icon' => 'getIcon'
     ];
 
     /**
@@ -256,9 +256,9 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('servers', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('tool_name', $data ?? [], null);
+        $this->setIfExists('loading_desc', $data ?? [], null);
+        $this->setIfExists('icon', $data ?? [], null);
     }
 
     /**
@@ -288,18 +288,11 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['servers'] === null) {
-            $invalidProperties[] = "'servers' can't be null";
+        if ($this->container['tool_name'] === null) {
+            $invalidProperties[] = "'tool_name' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ((mb_strlen($this->container['name']) > 255)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
-        }
-
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+        if ($this->container['loading_desc'] === null) {
+            $invalidProperties[] = "'loading_desc' can't be null";
         }
         return $invalidProperties;
     }
@@ -317,86 +310,89 @@ class ApiIntegrationCreateRequest implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets servers
+     * Gets tool_name
      *
-     * @return string[]
+     * @return string
      */
-    public function getServers()
+    public function getToolName()
     {
-        return $this->container['servers'];
+        return $this->container['tool_name'];
     }
 
     /**
-     * Sets servers
+     * Sets tool_name
      *
-     * @param string[] $servers The servers of the API integration.
+     * @param string $tool_name Tool name
      *
      * @return self
      */
-    public function setServers($servers)
+    public function setToolName($tool_name)
     {
-        if (is_null($servers)) {
-            throw new \InvalidArgumentException('non-nullable servers cannot be null');
+        if (is_null($tool_name)) {
+            throw new \InvalidArgumentException('non-nullable tool_name cannot be null');
         }
-        $this->container['servers'] = $servers;
+        $this->container['tool_name'] = $tool_name;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets loading_desc
      *
      * @return string
      */
-    public function getName()
+    public function getLoadingDesc()
     {
-        return $this->container['name'];
+        return $this->container['loading_desc'];
     }
 
     /**
-     * Sets name
+     * Sets loading_desc
      *
-     * @param string $name The name of the API integration.
+     * @param string $loading_desc Loading description
      *
      * @return self
      */
-    public function setName($name)
+    public function setLoadingDesc($loading_desc)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($loading_desc)) {
+            throw new \InvalidArgumentException('non-nullable loading_desc cannot be null');
         }
-        if ((mb_strlen($name) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling ApiIntegrationCreateRequest., must be smaller than or equal to 255.');
-        }
-
-        $this->container['name'] = $name;
+        $this->container['loading_desc'] = $loading_desc;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets icon
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription()
+    public function getIcon()
     {
-        return $this->container['description'];
+        return $this->container['icon'];
     }
 
     /**
-     * Sets description
+     * Sets icon
      *
-     * @param string $description The description of the API integration.
+     * @param string|null $icon icon
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setIcon($icon)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($icon)) {
+            array_push($this->openAPINullablesSetToNull, 'icon');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('icon', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['description'] = $description;
+        $this->container['icon'] = $icon;
 
         return $this;
     }

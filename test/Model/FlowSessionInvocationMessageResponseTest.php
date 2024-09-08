@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiEndpointResponseTest
+ * FlowSessionInvocationMessageResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ApiEndpointResponseTest Class Doc Comment
+ * FlowSessionInvocationMessageResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ApiEndpointResponse
+ * @description FlowSessionInvocationMessageResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ApiEndpointResponseTest extends TestCase
+class FlowSessionInvocationMessageResponseTest extends TestCase
 {
 
     /**
@@ -71,81 +71,54 @@ class ApiEndpointResponseTest extends TestCase
     }
 
     /**
-     * Test "ApiEndpointResponse"
+     * Test "FlowSessionInvocationMessageResponse"
      */
-    public function testApiEndpointResponse()
+    public function testFlowSessionInvocationMessageResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "endpoint_id"
+     * Test attribute "message_id"
      */
-    public function testPropertyEndpointId()
+    public function testPropertyMessageId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "path"
+     * Test attribute "response_status"
      */
-    public function testPropertyPath()
+    public function testPropertyResponseStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "loading_indicator"
      */
-    public function testPropertyDescription()
+    public function testPropertyLoadingIndicator()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "method"
+     * Test attribute "intermediate_responses"
      */
-    public function testPropertyMethod()
+    public function testPropertyIntermediateResponses()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "parameters"
+     * Test attribute "final_response"
      */
-    public function testPropertyParameters()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "request_body"
-     */
-    public function testPropertyRequestBody()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "success_response"
-     */
-    public function testPropertySuccessResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "security_scheme"
-     */
-    public function testPropertySecurityScheme()
+    public function testPropertyFinalResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

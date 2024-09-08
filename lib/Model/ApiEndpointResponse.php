@@ -63,7 +63,8 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'method' => '\OpenAPI\Client\Model\ApiMethod',
         'parameters' => 'AnyOf',
         'request_body' => 'AnyOf',
-        'success_response' => 'AnyOf'
+        'success_response' => 'AnyOf',
+        'security_scheme' => 'string[]'
     ];
 
     /**
@@ -80,7 +81,8 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'method' => null,
         'parameters' => null,
         'request_body' => null,
-        'success_response' => null
+        'success_response' => null,
+        'security_scheme' => null
     ];
 
     /**
@@ -95,7 +97,8 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'method' => false,
         'parameters' => true,
         'request_body' => true,
-        'success_response' => true
+        'success_response' => true,
+        'security_scheme' => true
     ];
 
     /**
@@ -190,7 +193,8 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'method' => 'method',
         'parameters' => 'parameters',
         'request_body' => 'request_body',
-        'success_response' => 'success_response'
+        'success_response' => 'success_response',
+        'security_scheme' => 'security_scheme'
     ];
 
     /**
@@ -205,7 +209,8 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'method' => 'setMethod',
         'parameters' => 'setParameters',
         'request_body' => 'setRequestBody',
-        'success_response' => 'setSuccessResponse'
+        'success_response' => 'setSuccessResponse',
+        'security_scheme' => 'setSecurityScheme'
     ];
 
     /**
@@ -220,7 +225,8 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'method' => 'getMethod',
         'parameters' => 'getParameters',
         'request_body' => 'getRequestBody',
-        'success_response' => 'getSuccessResponse'
+        'success_response' => 'getSuccessResponse',
+        'security_scheme' => 'getSecurityScheme'
     ];
 
     /**
@@ -287,6 +293,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('parameters', $data ?? [], null);
         $this->setIfExists('request_body', $data ?? [], null);
         $this->setIfExists('success_response', $data ?? [], null);
+        $this->setIfExists('security_scheme', $data ?? [], null);
     }
 
     /**
@@ -549,6 +556,40 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['success_response'] = $success_response;
+
+        return $this;
+    }
+
+    /**
+     * Gets security_scheme
+     *
+     * @return string[]|null
+     */
+    public function getSecurityScheme()
+    {
+        return $this->container['security_scheme'];
+    }
+
+    /**
+     * Sets security_scheme
+     *
+     * @param string[]|null $security_scheme security_scheme
+     *
+     * @return self
+     */
+    public function setSecurityScheme($security_scheme)
+    {
+        if (is_null($security_scheme)) {
+            array_push($this->openAPINullablesSetToNull, 'security_scheme');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('security_scheme', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['security_scheme'] = $security_scheme;
 
         return $this;
     }

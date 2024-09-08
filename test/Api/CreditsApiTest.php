@@ -84,6 +84,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for getWorkspaceCreditBalance
+     *
+     * Get Workspace Credit Balance.
+     *
+     */
+    public function testGetWorkspaceCreditBalance()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for searchCreditTransactions
      *
      * Search Credit Transactions.

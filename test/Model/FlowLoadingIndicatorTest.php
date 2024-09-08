@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiEndpointResponseTest
+ * FlowLoadingIndicatorTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ApiEndpointResponseTest Class Doc Comment
+ * FlowLoadingIndicatorTest Class Doc Comment
  *
  * @category    Class
- * @description ApiEndpointResponse
+ * @description FlowLoadingIndicator
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ApiEndpointResponseTest extends TestCase
+class FlowLoadingIndicatorTest extends TestCase
 {
 
     /**
@@ -71,81 +71,36 @@ class ApiEndpointResponseTest extends TestCase
     }
 
     /**
-     * Test "ApiEndpointResponse"
+     * Test "FlowLoadingIndicator"
      */
-    public function testApiEndpointResponse()
+    public function testFlowLoadingIndicator()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "endpoint_id"
+     * Test attribute "tool_name"
      */
-    public function testPropertyEndpointId()
+    public function testPropertyToolName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "path"
+     * Test attribute "loading_desc"
      */
-    public function testPropertyPath()
+    public function testPropertyLoadingDesc()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "icon"
      */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "method"
-     */
-    public function testPropertyMethod()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "parameters"
-     */
-    public function testPropertyParameters()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "request_body"
-     */
-    public function testPropertyRequestBody()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "success_response"
-     */
-    public function testPropertySuccessResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "security_scheme"
-     */
-    public function testPropertySecurityScheme()
+    public function testPropertyIcon()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

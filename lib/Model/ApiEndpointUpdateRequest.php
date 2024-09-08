@@ -59,7 +59,7 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'path' => 'string',
         'method' => '\OpenAPI\Client\Model\ApiMethod',
-        'parameters' => 'object',
+        'parameters' => 'object[]',
         'request_body' => 'object',
         'success_response' => 'object',
         'description' => 'string',
@@ -430,7 +430,7 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets parameters
      *
-     * @return object|null
+     * @return object[]|null
      */
     public function getParameters()
     {
@@ -440,7 +440,7 @@ class ApiEndpointUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets parameters
      *
-     * @param object|null $parameters parameters
+     * @param object[]|null $parameters parameters
      *
      * @return self
      */

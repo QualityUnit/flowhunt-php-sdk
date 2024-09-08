@@ -125,6 +125,15 @@ class IntegrationResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "alpha"
+     */
+    public function testPropertyAlpha()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "beta"
      */
     public function testPropertyBeta()

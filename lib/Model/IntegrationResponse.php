@@ -62,6 +62,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'string',
         'integrated_instance_cnt' => 'int',
         'categories' => '\OpenAPI\Client\Model\IntegrationCategory[]',
+        'alpha' => 'bool',
         'beta' => 'bool',
         'public_flow_id' => 'string'
     ];
@@ -79,6 +80,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => null,
         'integrated_instance_cnt' => null,
         'categories' => null,
+        'alpha' => null,
         'beta' => null,
         'public_flow_id' => 'uuid'
     ];
@@ -94,6 +96,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => false,
         'integrated_instance_cnt' => false,
         'categories' => false,
+        'alpha' => false,
         'beta' => false,
         'public_flow_id' => true
     ];
@@ -189,6 +192,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'description',
         'integrated_instance_cnt' => 'integrated_instance_cnt',
         'categories' => 'categories',
+        'alpha' => 'alpha',
         'beta' => 'beta',
         'public_flow_id' => 'public_flow_id'
     ];
@@ -204,6 +208,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'setDescription',
         'integrated_instance_cnt' => 'setIntegratedInstanceCnt',
         'categories' => 'setCategories',
+        'alpha' => 'setAlpha',
         'beta' => 'setBeta',
         'public_flow_id' => 'setPublicFlowId'
     ];
@@ -219,6 +224,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'description' => 'getDescription',
         'integrated_instance_cnt' => 'getIntegratedInstanceCnt',
         'categories' => 'getCategories',
+        'alpha' => 'getAlpha',
         'beta' => 'getBeta',
         'public_flow_id' => 'getPublicFlowId'
     ];
@@ -285,6 +291,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('integrated_instance_cnt', $data ?? [], null);
         $this->setIfExists('categories', $data ?? [], null);
+        $this->setIfExists('alpha', $data ?? [], false);
         $this->setIfExists('beta', $data ?? [], false);
         $this->setIfExists('public_flow_id', $data ?? [], null);
     }
@@ -477,6 +484,33 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable categories cannot be null');
         }
         $this->container['categories'] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Gets alpha
+     *
+     * @return bool|null
+     */
+    public function getAlpha()
+    {
+        return $this->container['alpha'];
+    }
+
+    /**
+     * Sets alpha
+     *
+     * @param bool|null $alpha Whether the integration is in alpha or not.
+     *
+     * @return self
+     */
+    public function setAlpha($alpha)
+    {
+        if (is_null($alpha)) {
+            throw new \InvalidArgumentException('non-nullable alpha cannot be null');
+        }
+        $this->container['alpha'] = $alpha;
 
         return $this;
     }

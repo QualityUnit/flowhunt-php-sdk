@@ -13,6 +13,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getInvokedFlowResults()**](FlowsApi.md#getInvokedFlowResults) | **GET** /v2/flows/{flow_id}/{task_id} | Get Invoked Flow Results |
 | [**getPublicFlow()**](FlowsApi.md#getPublicFlow) | **GET** /v2/flows/public/{flow_id} | Get Public Flow |
 | [**invokeFlow()**](FlowsApi.md#invokeFlow) | **POST** /v2/flows/{flow_id}/invoke | Invoke Flow |
+| [**invokeFlowResponse()**](FlowsApi.md#invokeFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invoke | Invoke Flow Response |
+| [**pollFlowResponse()**](FlowsApi.md#pollFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{message_id} | Poll Flow Response |
 | [**search()**](FlowsApi.md#search) | **POST** /v2/flows/ | Search |
 | [**streamFlowResponse()**](FlowsApi.md#streamFlowResponse) | **POST** /v2/flows/sessions/{session_id}/stream | Stream Flow Response |
 | [**updateFlow()**](FlowsApi.md#updateFlow) | **PUT** /v2/flows/{flow_id} | Update Flow |
@@ -585,6 +587,118 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `invokeFlowResponse()`
+
+```php
+invokeFlowResponse($session_id, $flow_session_invoke_request): \OpenAPI\Client\Model\FlowSessionInvocationResponse
+```
+
+Invoke Flow Response
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+$flow_session_invoke_request = new \OpenAPI\Client\Model\FlowSessionInvokeRequest(); // \OpenAPI\Client\Model\FlowSessionInvokeRequest
+
+try {
+    $result = $apiInstance->invokeFlowResponse($session_id, $flow_session_invoke_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->invokeFlowResponse: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+| **flow_session_invoke_request** | [**\OpenAPI\Client\Model\FlowSessionInvokeRequest**](../Model/FlowSessionInvokeRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `pollFlowResponse()`
+
+```php
+pollFlowResponse($session_id, $message_id): \OpenAPI\Client\Model\FlowSessionInvocationMessageResponse
+```
+
+Poll Flow Response
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+$message_id = 'message_id_example'; // string
+
+try {
+    $result = $apiInstance->pollFlowResponse($session_id, $message_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->pollFlowResponse: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+| **message_id** | **string**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse**](../Model/FlowSessionInvocationMessageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

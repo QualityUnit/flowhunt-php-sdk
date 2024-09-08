@@ -79,6 +79,7 @@ docs/Model/FlowConfig.md
 docs/Model/FlowCreate.md
 docs/Model/FlowDetailResponse.md
 docs/Model/FlowInvokeRequest.md
+docs/Model/FlowLoadingIndicator.md
 docs/Model/FlowMessageResponse.md
 docs/Model/FlowMessageRole.md
 docs/Model/FlowRequestChatRole.md
@@ -86,8 +87,12 @@ docs/Model/FlowResponse.md
 docs/Model/FlowSearchRequest.md
 docs/Model/FlowSessionCreateFromFlowRequest.md
 docs/Model/FlowSessionCreateRequest.md
+docs/Model/FlowSessionInvocationMessageResponse.md
+docs/Model/FlowSessionInvocationResponse.md
+docs/Model/FlowSessionInvokeRequest.md
 docs/Model/FlowSessionMessage.md
 docs/Model/FlowSessionResponse.md
+docs/Model/FlowSessionStatus.md
 docs/Model/FlowSessionStreamRequest.md
 docs/Model/FlowSessionViewResponse.md
 docs/Model/FlowSessionViewSearchRequest.md
@@ -247,6 +252,7 @@ lib/Model/FlowConfig.php
 lib/Model/FlowCreate.php
 lib/Model/FlowDetailResponse.php
 lib/Model/FlowInvokeRequest.php
+lib/Model/FlowLoadingIndicator.php
 lib/Model/FlowMessageResponse.php
 lib/Model/FlowMessageRole.php
 lib/Model/FlowRequestChatRole.php
@@ -254,8 +260,12 @@ lib/Model/FlowResponse.php
 lib/Model/FlowSearchRequest.php
 lib/Model/FlowSessionCreateFromFlowRequest.php
 lib/Model/FlowSessionCreateRequest.php
+lib/Model/FlowSessionInvocationMessageResponse.php
+lib/Model/FlowSessionInvocationResponse.php
+lib/Model/FlowSessionInvokeRequest.php
 lib/Model/FlowSessionMessage.php
 lib/Model/FlowSessionResponse.php
+lib/Model/FlowSessionStatus.php
 lib/Model/FlowSessionStreamRequest.php
 lib/Model/FlowSessionViewResponse.php
 lib/Model/FlowSessionViewSearchRequest.php
@@ -414,6 +424,7 @@ test/Model/FlowConfigTest.php
 test/Model/FlowCreateTest.php
 test/Model/FlowDetailResponseTest.php
 test/Model/FlowInvokeRequestTest.php
+test/Model/FlowLoadingIndicatorTest.php
 test/Model/FlowMessageResponseTest.php
 test/Model/FlowMessageRoleTest.php
 test/Model/FlowRequestChatRoleTest.php
@@ -421,8 +432,12 @@ test/Model/FlowResponseTest.php
 test/Model/FlowSearchRequestTest.php
 test/Model/FlowSessionCreateFromFlowRequestTest.php
 test/Model/FlowSessionCreateRequestTest.php
+test/Model/FlowSessionInvocationMessageResponseTest.php
+test/Model/FlowSessionInvocationResponseTest.php
+test/Model/FlowSessionInvokeRequestTest.php
 test/Model/FlowSessionMessageTest.php
 test/Model/FlowSessionResponseTest.php
+test/Model/FlowSessionStatusTest.php
 test/Model/FlowSessionStreamRequestTest.php
 test/Model/FlowSessionViewResponseTest.php
 test/Model/FlowSessionViewSearchRequestTest.php
