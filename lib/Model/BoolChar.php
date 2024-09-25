@@ -1,6 +1,6 @@
 <?php
 /**
- * WithScreenshot
+ * BoolChar
  *
  * PHP version 7.4
  *
@@ -30,14 +30,14 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * WithScreenshot Class Doc Comment
+ * BoolChar Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class WithScreenshot
+class BoolChar
 {
     /**
      * Possible values of this enum

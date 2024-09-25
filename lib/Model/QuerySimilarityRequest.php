@@ -67,6 +67,8 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'pointer_position_to' => 'int',
         'vector_id_from' => 'int',
         'vector_id_to' => 'int',
+        'filter_url' => 'string',
+        'filter_domains' => 'string[]',
         'query' => 'string'
     ];
 
@@ -88,6 +90,8 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'pointer_position_to' => null,
         'vector_id_from' => null,
         'vector_id_to' => null,
+        'filter_url' => null,
+        'filter_domains' => null,
         'query' => null
     ];
 
@@ -107,6 +111,8 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'pointer_position_to' => true,
         'vector_id_from' => true,
         'vector_id_to' => true,
+        'filter_url' => true,
+        'filter_domains' => true,
         'query' => false
     ];
 
@@ -206,6 +212,8 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'pointer_position_to' => 'pointer_position_to',
         'vector_id_from' => 'vector_id_from',
         'vector_id_to' => 'vector_id_to',
+        'filter_url' => 'filter_url',
+        'filter_domains' => 'filter_domains',
         'query' => 'query'
     ];
 
@@ -225,6 +233,8 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'pointer_position_to' => 'setPointerPositionTo',
         'vector_id_from' => 'setVectorIdFrom',
         'vector_id_to' => 'setVectorIdTo',
+        'filter_url' => 'setFilterUrl',
+        'filter_domains' => 'setFilterDomains',
         'query' => 'setQuery'
     ];
 
@@ -244,6 +254,8 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'pointer_position_to' => 'getPointerPositionTo',
         'vector_id_from' => 'getVectorIdFrom',
         'vector_id_to' => 'getVectorIdTo',
+        'filter_url' => 'getFilterUrl',
+        'filter_domains' => 'getFilterDomains',
         'query' => 'getQuery'
     ];
 
@@ -314,6 +326,8 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('pointer_position_to', $data ?? [], null);
         $this->setIfExists('vector_id_from', $data ?? [], null);
         $this->setIfExists('vector_id_to', $data ?? [], null);
+        $this->setIfExists('filter_url', $data ?? [], null);
+        $this->setIfExists('filter_domains', $data ?? [], null);
         $this->setIfExists('query', $data ?? [], null);
     }
 
@@ -695,6 +709,74 @@ class QuerySimilarityRequest implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['vector_id_to'] = $vector_id_to;
+
+        return $this;
+    }
+
+    /**
+     * Gets filter_url
+     *
+     * @return string|null
+     */
+    public function getFilterUrl()
+    {
+        return $this->container['filter_url'];
+    }
+
+    /**
+     * Sets filter_url
+     *
+     * @param string|null $filter_url filter_url
+     *
+     * @return self
+     */
+    public function setFilterUrl($filter_url)
+    {
+        if (is_null($filter_url)) {
+            array_push($this->openAPINullablesSetToNull, 'filter_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('filter_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['filter_url'] = $filter_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets filter_domains
+     *
+     * @return string[]|null
+     */
+    public function getFilterDomains()
+    {
+        return $this->container['filter_domains'];
+    }
+
+    /**
+     * Sets filter_domains
+     *
+     * @param string[]|null $filter_domains filter_domains
+     *
+     * @return self
+     */
+    public function setFilterDomains($filter_domains)
+    {
+        if (is_null($filter_domains)) {
+            array_push($this->openAPINullablesSetToNull, 'filter_domains');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('filter_domains', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['filter_domains'] = $filter_domains;
 
         return $this;
     }

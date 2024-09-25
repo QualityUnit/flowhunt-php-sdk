@@ -1,6 +1,6 @@
 <?php
 /**
- * WithScreenshotTest
+ * SecretResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * WithScreenshotTest Class Doc Comment
+ * SecretResponseTest Class Doc Comment
  *
  * @category    Class
- * @description WithScreenshot
+ * @description SecretResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class WithScreenshotTest extends TestCase
+class SecretResponseTest extends TestCase
 {
 
     /**
@@ -71,9 +71,45 @@ class WithScreenshotTest extends TestCase
     }
 
     /**
-     * Test "WithScreenshot"
+     * Test "SecretResponse"
      */
-    public function testWithScreenshot()
+    public function testSecretResponse()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "secret_id"
+     */
+    public function testPropertySecretId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "secret_display_name"
+     */
+    public function testPropertySecretDisplayName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "secret_value"
+     */
+    public function testPropertySecretValue()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created_at"
+     */
+    public function testPropertyCreatedAt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

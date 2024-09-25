@@ -69,7 +69,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_scheduled' => 'int',
         'cnt_completed' => 'int',
         'cnt_failed' => 'int',
-        'with_screenshot' => '\OpenAPI\Client\Model\WithScreenshot'
+        'with_screenshot' => '\OpenAPI\Client\Model\BoolChar',
+        'with_proxy_rotation' => '\OpenAPI\Client\Model\BoolChar'
     ];
 
     /**
@@ -92,7 +93,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_scheduled' => null,
         'cnt_completed' => null,
         'cnt_failed' => null,
-        'with_screenshot' => null
+        'with_screenshot' => null,
+        'with_proxy_rotation' => null
     ];
 
     /**
@@ -113,7 +115,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_scheduled' => true,
         'cnt_completed' => true,
         'cnt_failed' => true,
-        'with_screenshot' => true
+        'with_screenshot' => true,
+        'with_proxy_rotation' => true
     ];
 
     /**
@@ -214,7 +217,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_scheduled' => 'cnt_scheduled',
         'cnt_completed' => 'cnt_completed',
         'cnt_failed' => 'cnt_failed',
-        'with_screenshot' => 'with_screenshot'
+        'with_screenshot' => 'with_screenshot',
+        'with_proxy_rotation' => 'with_proxy_rotation'
     ];
 
     /**
@@ -235,7 +239,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_scheduled' => 'setCntScheduled',
         'cnt_completed' => 'setCntCompleted',
         'cnt_failed' => 'setCntFailed',
-        'with_screenshot' => 'setWithScreenshot'
+        'with_screenshot' => 'setWithScreenshot',
+        'with_proxy_rotation' => 'setWithProxyRotation'
     ];
 
     /**
@@ -256,7 +261,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_scheduled' => 'getCntScheduled',
         'cnt_completed' => 'getCntCompleted',
         'cnt_failed' => 'getCntFailed',
-        'with_screenshot' => 'getWithScreenshot'
+        'with_screenshot' => 'getWithScreenshot',
+        'with_proxy_rotation' => 'getWithProxyRotation'
     ];
 
     /**
@@ -329,6 +335,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('cnt_completed', $data ?? [], null);
         $this->setIfExists('cnt_failed', $data ?? [], null);
         $this->setIfExists('with_screenshot', $data ?? [], null);
+        $this->setIfExists('with_proxy_rotation', $data ?? [], null);
     }
 
     /**
@@ -387,6 +394,9 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['with_screenshot'] === null) {
             $invalidProperties[] = "'with_screenshot' can't be null";
+        }
+        if ($this->container['with_proxy_rotation'] === null) {
+            $invalidProperties[] = "'with_proxy_rotation' can't be null";
         }
         return $invalidProperties;
     }
@@ -772,7 +782,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets with_screenshot
      *
-     * @return \OpenAPI\Client\Model\WithScreenshot
+     * @return \OpenAPI\Client\Model\BoolChar
      */
     public function getWithScreenshot()
     {
@@ -782,7 +792,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets with_screenshot
      *
-     * @param \OpenAPI\Client\Model\WithScreenshot $with_screenshot with_screenshot
+     * @param \OpenAPI\Client\Model\BoolChar $with_screenshot with_screenshot
      *
      * @return self
      */
@@ -799,6 +809,40 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['with_screenshot'] = $with_screenshot;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_proxy_rotation
+     *
+     * @return \OpenAPI\Client\Model\BoolChar
+     */
+    public function getWithProxyRotation()
+    {
+        return $this->container['with_proxy_rotation'];
+    }
+
+    /**
+     * Sets with_proxy_rotation
+     *
+     * @param \OpenAPI\Client\Model\BoolChar $with_proxy_rotation with_proxy_rotation
+     *
+     * @return self
+     */
+    public function setWithProxyRotation($with_proxy_rotation)
+    {
+        if (is_null($with_proxy_rotation)) {
+            array_push($this->openAPINullablesSetToNull, 'with_proxy_rotation');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_proxy_rotation', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_proxy_rotation'] = $with_proxy_rotation;
 
         return $this;
     }

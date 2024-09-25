@@ -179,6 +179,24 @@ class DocumentSimilarityTaskRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "filter_url"
+     */
+    public function testPropertyFilterUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "filter_domains"
+     */
+    public function testPropertyFilterDomains()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "document_id"
      */
     public function testPropertyDocumentId()

@@ -60,7 +60,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'string',
         'api_key_id' => 'string',
         'display_name' => 'string',
-        'mask' => 'string'
+        'mask' => 'string',
+        'last_used' => '\DateTime'
     ];
 
     /**
@@ -74,7 +75,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => null,
         'api_key_id' => null,
         'display_name' => null,
-        'mask' => null
+        'mask' => null,
+        'last_used' => 'date-time'
     ];
 
     /**
@@ -86,7 +88,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => false,
         'api_key_id' => false,
         'display_name' => false,
-        'mask' => false
+        'mask' => false,
+        'last_used' => true
     ];
 
     /**
@@ -178,7 +181,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'workspace_id',
         'api_key_id' => 'api_key_id',
         'display_name' => 'display_name',
-        'mask' => 'mask'
+        'mask' => 'mask',
+        'last_used' => 'last_used'
     ];
 
     /**
@@ -190,7 +194,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'setWorkspaceId',
         'api_key_id' => 'setApiKeyId',
         'display_name' => 'setDisplayName',
-        'mask' => 'setMask'
+        'mask' => 'setMask',
+        'last_used' => 'setLastUsed'
     ];
 
     /**
@@ -202,7 +207,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'getWorkspaceId',
         'api_key_id' => 'getApiKeyId',
         'display_name' => 'getDisplayName',
-        'mask' => 'getMask'
+        'mask' => 'getMask',
+        'last_used' => 'getLastUsed'
     ];
 
     /**
@@ -266,6 +272,7 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('api_key_id', $data ?? [], null);
         $this->setIfExists('display_name', $data ?? [], null);
         $this->setIfExists('mask', $data ?? [], null);
+        $this->setIfExists('last_used', $data ?? [], null);
     }
 
     /**
@@ -426,6 +433,40 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable mask cannot be null');
         }
         $this->container['mask'] = $mask;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_used
+     *
+     * @return \DateTime|null
+     */
+    public function getLastUsed()
+    {
+        return $this->container['last_used'];
+    }
+
+    /**
+     * Sets last_used
+     *
+     * @param \DateTime|null $last_used last_used
+     *
+     * @return self
+     */
+    public function setLastUsed($last_used)
+    {
+        if (is_null($last_used)) {
+            array_push($this->openAPINullablesSetToNull, 'last_used');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_used', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_used'] = $last_used;
 
         return $this;
     }

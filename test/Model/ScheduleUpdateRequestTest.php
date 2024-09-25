@@ -105,4 +105,13 @@ class ScheduleUpdateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "with_proxy_rotation"
+     */
+    public function testPropertyWithProxyRotation()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

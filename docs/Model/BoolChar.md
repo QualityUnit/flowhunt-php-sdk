@@ -1,4 +1,4 @@
-# # WithScreenshot
+# # BoolChar
 
 ## Properties
 

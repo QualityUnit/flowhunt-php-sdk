@@ -46,6 +46,8 @@ class Role
 
     public const A = 'A';
 
+    public const E = 'E';
+
     public const M = 'M';
 
     public const G = 'G';
@@ -59,6 +61,7 @@ class Role
         return [
             self::O,
             self::A,
+            self::E,
             self::M,
             self::G
         ];

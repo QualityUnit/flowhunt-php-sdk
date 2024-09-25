@@ -457,7 +457,7 @@ class WorkspaceUserResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets role
      *
-     * @param \OpenAPI\Client\Model\Role $role Role of the user (A - Admin, M - member, G - Guest)
+     * @param \OpenAPI\Client\Model\Role $role Role of the user (A - Admin, E - Editor, M - member, G - Guest)
      *
      * @return self
      */

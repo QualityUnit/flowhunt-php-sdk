@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiKeyResponseTest
+ * SecretCreateRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ApiKeyResponseTest Class Doc Comment
+ * SecretCreateRequestTest Class Doc Comment
  *
  * @category    Class
- * @description ApiKeyResponse
+ * @description SecretCreateRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ApiKeyResponseTest extends TestCase
+class SecretCreateRequestTest extends TestCase
 {
 
     /**
@@ -71,54 +71,27 @@ class ApiKeyResponseTest extends TestCase
     }
 
     /**
-     * Test "ApiKeyResponse"
+     * Test "SecretCreateRequest"
      */
-    public function testApiKeyResponse()
+    public function testSecretCreateRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "workspace_id"
+     * Test attribute "secret_display_name"
      */
-    public function testPropertyWorkspaceId()
+    public function testPropertySecretDisplayName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "api_key_id"
+     * Test attribute "secret_value"
      */
-    public function testPropertyApiKeyId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "display_name"
-     */
-    public function testPropertyDisplayName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "mask"
-     */
-    public function testPropertyMask()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "last_used"
-     */
-    public function testPropertyLastUsed()
+    public function testPropertySecretValue()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

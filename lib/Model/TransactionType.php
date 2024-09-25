@@ -74,6 +74,8 @@ class TransactionType
 
     public const O = 'O';
 
+    public const N = 'N';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -117,6 +119,7 @@ class TransactionType
             self::P,
             self::W,
             self::O,
+            self::N,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,

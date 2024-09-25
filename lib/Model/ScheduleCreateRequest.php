@@ -60,7 +60,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => '\OpenAPI\Client\Model\AppUrlInput',
         'frequency' => '\OpenAPI\Client\Model\ScheduleFrequency',
         'schedule_type' => '\OpenAPI\Client\Model\ScheduleType',
-        'with_screenshot' => '\OpenAPI\Client\Model\WithScreenshot'
+        'with_screenshot' => '\OpenAPI\Client\Model\BoolChar',
+        'with_proxy_rotation' => '\OpenAPI\Client\Model\BoolChar'
     ];
 
     /**
@@ -74,7 +75,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => null,
         'frequency' => null,
         'schedule_type' => null,
-        'with_screenshot' => null
+        'with_screenshot' => null,
+        'with_proxy_rotation' => null
     ];
 
     /**
@@ -86,7 +88,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => false,
         'frequency' => false,
         'schedule_type' => false,
-        'with_screenshot' => true
+        'with_screenshot' => true,
+        'with_proxy_rotation' => true
     ];
 
     /**
@@ -178,7 +181,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => 'url',
         'frequency' => 'frequency',
         'schedule_type' => 'schedule_type',
-        'with_screenshot' => 'with_screenshot'
+        'with_screenshot' => 'with_screenshot',
+        'with_proxy_rotation' => 'with_proxy_rotation'
     ];
 
     /**
@@ -190,7 +194,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => 'setUrl',
         'frequency' => 'setFrequency',
         'schedule_type' => 'setScheduleType',
-        'with_screenshot' => 'setWithScreenshot'
+        'with_screenshot' => 'setWithScreenshot',
+        'with_proxy_rotation' => 'setWithProxyRotation'
     ];
 
     /**
@@ -202,7 +207,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'url' => 'getUrl',
         'frequency' => 'getFrequency',
         'schedule_type' => 'getScheduleType',
-        'with_screenshot' => 'getWithScreenshot'
+        'with_screenshot' => 'getWithScreenshot',
+        'with_proxy_rotation' => 'getWithProxyRotation'
     ];
 
     /**
@@ -266,6 +272,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('frequency', $data ?? [], null);
         $this->setIfExists('schedule_type', $data ?? [], null);
         $this->setIfExists('with_screenshot', $data ?? [], null);
+        $this->setIfExists('with_proxy_rotation', $data ?? [], null);
     }
 
     /**
@@ -403,7 +410,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets with_screenshot
      *
-     * @return \OpenAPI\Client\Model\WithScreenshot|null
+     * @return \OpenAPI\Client\Model\BoolChar|null
      */
     public function getWithScreenshot()
     {
@@ -413,7 +420,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets with_screenshot
      *
-     * @param \OpenAPI\Client\Model\WithScreenshot|null $with_screenshot with_screenshot
+     * @param \OpenAPI\Client\Model\BoolChar|null $with_screenshot with_screenshot
      *
      * @return self
      */
@@ -430,6 +437,40 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['with_screenshot'] = $with_screenshot;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_proxy_rotation
+     *
+     * @return \OpenAPI\Client\Model\BoolChar|null
+     */
+    public function getWithProxyRotation()
+    {
+        return $this->container['with_proxy_rotation'];
+    }
+
+    /**
+     * Sets with_proxy_rotation
+     *
+     * @param \OpenAPI\Client\Model\BoolChar|null $with_proxy_rotation with_proxy_rotation
+     *
+     * @return self
+     */
+    public function setWithProxyRotation($with_proxy_rotation)
+    {
+        if (is_null($with_proxy_rotation)) {
+            array_push($this->openAPINullablesSetToNull, 'with_proxy_rotation');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_proxy_rotation', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_proxy_rotation'] = $with_proxy_rotation;
 
         return $this;
     }

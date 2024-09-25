@@ -1,6 +1,6 @@
 <?php
 /**
- * ScheduleUpdateRequest
+ * SecretResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ScheduleUpdateRequest Class Doc Comment
+ * SecretResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SecretResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ScheduleUpdateRequest';
+    protected static $openAPIModelName = 'SecretResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,10 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'frequency' => '\OpenAPI\Client\Model\ScheduleFrequency',
-        'status' => '\OpenAPI\Client\Model\ScheduleStatus',
-        'with_screenshot' => '\OpenAPI\Client\Model\BoolChar',
-        'with_proxy_rotation' => '\OpenAPI\Client\Model\BoolChar'
+        'secret_id' => 'string',
+        'secret_display_name' => 'string',
+        'secret_value' => 'string',
+        'created_at' => '\DateTime'
     ];
 
     /**
@@ -71,10 +71,10 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'frequency' => null,
-        'status' => null,
-        'with_screenshot' => null,
-        'with_proxy_rotation' => null
+        'secret_id' => 'uuid',
+        'secret_display_name' => null,
+        'secret_value' => null,
+        'created_at' => 'date-time'
     ];
 
     /**
@@ -83,10 +83,10 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'frequency' => true,
-        'status' => true,
-        'with_screenshot' => true,
-        'with_proxy_rotation' => true
+        'secret_id' => false,
+        'secret_display_name' => false,
+        'secret_value' => true,
+        'created_at' => false
     ];
 
     /**
@@ -175,10 +175,10 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'frequency' => 'frequency',
-        'status' => 'status',
-        'with_screenshot' => 'with_screenshot',
-        'with_proxy_rotation' => 'with_proxy_rotation'
+        'secret_id' => 'secret_id',
+        'secret_display_name' => 'secret_display_name',
+        'secret_value' => 'secret_value',
+        'created_at' => 'created_at'
     ];
 
     /**
@@ -187,10 +187,10 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'frequency' => 'setFrequency',
-        'status' => 'setStatus',
-        'with_screenshot' => 'setWithScreenshot',
-        'with_proxy_rotation' => 'setWithProxyRotation'
+        'secret_id' => 'setSecretId',
+        'secret_display_name' => 'setSecretDisplayName',
+        'secret_value' => 'setSecretValue',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -199,10 +199,10 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'frequency' => 'getFrequency',
-        'status' => 'getStatus',
-        'with_screenshot' => 'getWithScreenshot',
-        'with_proxy_rotation' => 'getWithProxyRotation'
+        'secret_id' => 'getSecretId',
+        'secret_display_name' => 'getSecretDisplayName',
+        'secret_value' => 'getSecretValue',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -262,10 +262,10 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('frequency', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('with_screenshot', $data ?? [], null);
-        $this->setIfExists('with_proxy_rotation', $data ?? [], null);
+        $this->setIfExists('secret_id', $data ?? [], null);
+        $this->setIfExists('secret_display_name', $data ?? [], null);
+        $this->setIfExists('secret_value', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
 
     /**
@@ -295,6 +295,15 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
+        if ($this->container['secret_id'] === null) {
+            $invalidProperties[] = "'secret_id' can't be null";
+        }
+        if ($this->container['secret_display_name'] === null) {
+            $invalidProperties[] = "'secret_display_name' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -311,137 +320,116 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets frequency
+     * Gets secret_id
      *
-     * @return \OpenAPI\Client\Model\ScheduleFrequency|null
+     * @return string
      */
-    public function getFrequency()
+    public function getSecretId()
     {
-        return $this->container['frequency'];
+        return $this->container['secret_id'];
     }
 
     /**
-     * Sets frequency
+     * Sets secret_id
      *
-     * @param \OpenAPI\Client\Model\ScheduleFrequency|null $frequency frequency
+     * @param string $secret_id secret_id
      *
      * @return self
      */
-    public function setFrequency($frequency)
+    public function setSecretId($secret_id)
     {
-        if (is_null($frequency)) {
-            array_push($this->openAPINullablesSetToNull, 'frequency');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('frequency', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($secret_id)) {
+            throw new \InvalidArgumentException('non-nullable secret_id cannot be null');
         }
-        $this->container['frequency'] = $frequency;
+        $this->container['secret_id'] = $secret_id;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets secret_display_name
      *
-     * @return \OpenAPI\Client\Model\ScheduleStatus|null
+     * @return string
      */
-    public function getStatus()
+    public function getSecretDisplayName()
     {
-        return $this->container['status'];
+        return $this->container['secret_display_name'];
     }
 
     /**
-     * Sets status
+     * Sets secret_display_name
      *
-     * @param \OpenAPI\Client\Model\ScheduleStatus|null $status status
+     * @param string $secret_display_name secret_display_name
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setSecretDisplayName($secret_display_name)
     {
-        if (is_null($status)) {
-            array_push($this->openAPINullablesSetToNull, 'status');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('status', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($secret_display_name)) {
+            throw new \InvalidArgumentException('non-nullable secret_display_name cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['secret_display_name'] = $secret_display_name;
 
         return $this;
     }
 
     /**
-     * Gets with_screenshot
+     * Gets secret_value
      *
-     * @return \OpenAPI\Client\Model\BoolChar|null
+     * @return string|null
      */
-    public function getWithScreenshot()
+    public function getSecretValue()
     {
-        return $this->container['with_screenshot'];
+        return $this->container['secret_value'];
     }
 
     /**
-     * Sets with_screenshot
+     * Sets secret_value
      *
-     * @param \OpenAPI\Client\Model\BoolChar|null $with_screenshot with_screenshot
+     * @param string|null $secret_value secret_value
      *
      * @return self
      */
-    public function setWithScreenshot($with_screenshot)
+    public function setSecretValue($secret_value)
     {
-        if (is_null($with_screenshot)) {
-            array_push($this->openAPINullablesSetToNull, 'with_screenshot');
+        if (is_null($secret_value)) {
+            array_push($this->openAPINullablesSetToNull, 'secret_value');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('with_screenshot', $nullablesSetToNull);
+            $index = array_search('secret_value', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['with_screenshot'] = $with_screenshot;
+        $this->container['secret_value'] = $secret_value;
 
         return $this;
     }
 
     /**
-     * Gets with_proxy_rotation
+     * Gets created_at
      *
-     * @return \OpenAPI\Client\Model\BoolChar|null
+     * @return \DateTime
      */
-    public function getWithProxyRotation()
+    public function getCreatedAt()
     {
-        return $this->container['with_proxy_rotation'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets with_proxy_rotation
+     * Sets created_at
      *
-     * @param \OpenAPI\Client\Model\BoolChar|null $with_proxy_rotation with_proxy_rotation
+     * @param \DateTime $created_at created_at
      *
      * @return self
      */
-    public function setWithProxyRotation($with_proxy_rotation)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($with_proxy_rotation)) {
-            array_push($this->openAPINullablesSetToNull, 'with_proxy_rotation');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('with_proxy_rotation', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        $this->container['with_proxy_rotation'] = $with_proxy_rotation;
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

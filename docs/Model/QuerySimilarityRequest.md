@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **pointer_position_to** | **int** |  | [optional]
 **vector_id_from** | **int** |  | [optional]
 **vector_id_to** | **int** |  | [optional]
+**filter_url** | **string** |  | [optional]
+**filter_domains** | **string[]** |  | [optional]
 **query** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

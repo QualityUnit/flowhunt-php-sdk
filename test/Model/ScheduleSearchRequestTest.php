@@ -116,15 +116,6 @@ class ScheduleSearchRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "with_screenshot"
-     */
-    public function testPropertyWithScreenshot()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "limit"
      */
     public function testPropertyLimit()

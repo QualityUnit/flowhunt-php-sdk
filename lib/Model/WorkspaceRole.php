@@ -453,7 +453,7 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets role
      *
-     * @param string $role Role of the user in the workspace (A - Admin, M - Member, G - Guest)
+     * @param string $role Role of the user in the workspace (A - Admin, E - Editor, M - Member, G - Guest)
      *
      * @return self
      */

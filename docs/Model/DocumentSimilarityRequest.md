@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **pointer_position_to** | **int** |  | [optional]
 **vector_id_from** | **int** |  | [optional]
 **vector_id_to** | **int** |  | [optional]
+**filter_url** | **string** |  | [optional]
+**filter_domains** | **string[]** |  | [optional]
 **document_id** | **string** |  | [optional]
 **faq_id** | **string** |  | [optional]
 **url_id** | **string** |  | [optional]

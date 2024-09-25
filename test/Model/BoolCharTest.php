@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiKeyResponseTest
+ * BoolCharTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ApiKeyResponseTest Class Doc Comment
+ * BoolCharTest Class Doc Comment
  *
  * @category    Class
- * @description ApiKeyResponse
+ * @description BoolChar
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ApiKeyResponseTest extends TestCase
+class BoolCharTest extends TestCase
 {
 
     /**
@@ -71,54 +71,9 @@ class ApiKeyResponseTest extends TestCase
     }
 
     /**
-     * Test "ApiKeyResponse"
+     * Test "BoolChar"
      */
-    public function testApiKeyResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "workspace_id"
-     */
-    public function testPropertyWorkspaceId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "api_key_id"
-     */
-    public function testPropertyApiKeyId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "display_name"
-     */
-    public function testPropertyDisplayName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "mask"
-     */
-    public function testPropertyMask()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "last_used"
-     */
-    public function testPropertyLastUsed()
+    public function testBoolChar()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

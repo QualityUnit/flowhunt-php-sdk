@@ -20,6 +20,7 @@ docs/Api/MediaApi.md
 docs/Api/PromptsApi.md
 docs/Api/SERPApi.md
 docs/Api/SchedulesApi.md
+docs/Api/SecretsApi.md
 docs/Api/SemanticSearchApi.md
 docs/Api/TagsApi.md
 docs/Api/WorkspacesApi.md
@@ -41,6 +42,7 @@ docs/Model/ApiKeyUpdateRequest.md
 docs/Model/ApiMethod.md
 docs/Model/AppUrlInput.md
 docs/Model/AppUrlOutput.md
+docs/Model/BoolChar.md
 docs/Model/ChatbotCreateRequest.md
 docs/Model/ChatbotResponse.md
 docs/Model/ChatbotSearchRequest.md
@@ -136,6 +138,10 @@ docs/Model/ScheduleUrlResponse.md
 docs/Model/ScheduleUrlSearchRequest.md
 docs/Model/ScreenshotRequest.md
 docs/Model/ScreenshotResponse.md
+docs/Model/SecretCreateRequest.md
+docs/Model/SecretResponse.md
+docs/Model/SecretSearchRequest.md
+docs/Model/SecretUpdateRequest.md
 docs/Model/SerpSearchRequest.md
 docs/Model/SerpSearchRequests.md
 docs/Model/SerpVolumeRequest.md
@@ -160,7 +166,6 @@ docs/Model/ValidationErrorLocInner.md
 docs/Model/VectorDocumentResponse.md
 docs/Model/VectorDocumentType.md
 docs/Model/VectorDocumentsTaskResponse.md
-docs/Model/WithScreenshot.md
 docs/Model/WorkspaceCreateRequest.md
 docs/Model/WorkspaceResponse.md
 docs/Model/WorkspaceRole.md
@@ -192,6 +197,7 @@ lib/FlowHunt/MediaApi.php
 lib/FlowHunt/PromptsApi.php
 lib/FlowHunt/SERPApi.php
 lib/FlowHunt/SchedulesApi.php
+lib/FlowHunt/SecretsApi.php
 lib/FlowHunt/SemanticSearchApi.php
 lib/FlowHunt/TagsApi.php
 lib/FlowHunt/WorkspacesApi.php
@@ -214,6 +220,7 @@ lib/Model/ApiKeyUpdateRequest.php
 lib/Model/ApiMethod.php
 lib/Model/AppUrlInput.php
 lib/Model/AppUrlOutput.php
+lib/Model/BoolChar.php
 lib/Model/ChatbotCreateRequest.php
 lib/Model/ChatbotResponse.php
 lib/Model/ChatbotSearchRequest.php
@@ -310,6 +317,10 @@ lib/Model/ScheduleUrlResponse.php
 lib/Model/ScheduleUrlSearchRequest.php
 lib/Model/ScreenshotRequest.php
 lib/Model/ScreenshotResponse.php
+lib/Model/SecretCreateRequest.php
+lib/Model/SecretResponse.php
+lib/Model/SecretSearchRequest.php
+lib/Model/SecretUpdateRequest.php
 lib/Model/SerpSearchRequest.php
 lib/Model/SerpSearchRequests.php
 lib/Model/SerpVolumeRequest.php
@@ -334,7 +345,6 @@ lib/Model/ValidationErrorLocInner.php
 lib/Model/VectorDocumentResponse.php
 lib/Model/VectorDocumentType.php
 lib/Model/VectorDocumentsTaskResponse.php
-lib/Model/WithScreenshot.php
 lib/Model/WorkspaceCreateRequest.php
 lib/Model/WorkspaceResponse.php
 lib/Model/WorkspaceRole.php
@@ -365,6 +375,7 @@ test/Api/MediaApiTest.php
 test/Api/PromptsApiTest.php
 test/Api/SERPApiTest.php
 test/Api/SchedulesApiTest.php
+test/Api/SecretsApiTest.php
 test/Api/SemanticSearchApiTest.php
 test/Api/TagsApiTest.php
 test/Api/WorkspacesApiTest.php
@@ -386,6 +397,7 @@ test/Model/ApiKeyUpdateRequestTest.php
 test/Model/ApiMethodTest.php
 test/Model/AppUrlInputTest.php
 test/Model/AppUrlOutputTest.php
+test/Model/BoolCharTest.php
 test/Model/ChatbotCreateRequestTest.php
 test/Model/ChatbotResponseTest.php
 test/Model/ChatbotSearchRequestTest.php
@@ -481,6 +493,10 @@ test/Model/ScheduleUrlResponseTest.php
 test/Model/ScheduleUrlSearchRequestTest.php
 test/Model/ScreenshotRequestTest.php
 test/Model/ScreenshotResponseTest.php
+test/Model/SecretCreateRequestTest.php
+test/Model/SecretResponseTest.php
+test/Model/SecretSearchRequestTest.php
+test/Model/SecretUpdateRequestTest.php
 test/Model/SerpSearchRequestTest.php
 test/Model/SerpSearchRequestsTest.php
 test/Model/SerpVolumeRequestTest.php
@@ -505,7 +521,6 @@ test/Model/ValidationErrorTest.php
 test/Model/VectorDocumentResponseTest.php
 test/Model/VectorDocumentTypeTest.php
 test/Model/VectorDocumentsTaskResponseTest.php
-test/Model/WithScreenshotTest.php
 test/Model/WorkspaceCreateRequestTest.php
 test/Model/WorkspaceResponseTest.php
 test/Model/WorkspaceRoleTest.php
