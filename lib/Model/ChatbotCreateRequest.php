@@ -58,6 +58,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'title' => 'string',
+        'description' => 'string',
         'flow_id' => 'string',
         'status' => 'string',
         'url_suffix' => 'string',
@@ -76,6 +77,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'title' => null,
+        'description' => null,
         'flow_id' => 'uuid',
         'status' => null,
         'url_suffix' => null,
@@ -92,6 +94,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'title' => false,
+        'description' => true,
         'flow_id' => false,
         'status' => false,
         'url_suffix' => true,
@@ -188,6 +191,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'title' => 'title',
+        'description' => 'description',
         'flow_id' => 'flow_id',
         'status' => 'status',
         'url_suffix' => 'url_suffix',
@@ -204,6 +208,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'title' => 'setTitle',
+        'description' => 'setDescription',
         'flow_id' => 'setFlowId',
         'status' => 'setStatus',
         'url_suffix' => 'setUrlSuffix',
@@ -220,6 +225,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'title' => 'getTitle',
+        'description' => 'getDescription',
         'flow_id' => 'getFlowId',
         'status' => 'getStatus',
         'url_suffix' => 'getUrlSuffix',
@@ -302,6 +308,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('flow_id', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('url_suffix', $data ?? [], null);
@@ -415,6 +422,40 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         }
 
         $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }

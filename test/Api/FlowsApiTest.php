@@ -96,6 +96,18 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for createFlowCategory
+     *
+     * Create Flow Category.
+     *
+     */
+    public function testCreateFlowCategory()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createFlowSession
      *
      * Create Flow Session.
@@ -114,6 +126,18 @@ class FlowsApiTest extends TestCase
      *
      */
     public function testDeleteFlow()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteFlowCategory
+     *
+     * Delete Flow Category.
+     *
+     */
+    public function testDeleteFlowCategory()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -192,6 +216,18 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for invokeFlowSingleton
+     *
+     * Invoke Flow Singleton.
+     *
+     */
+    public function testInvokeFlowSingleton()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for pollFlowResponse
      *
      * Poll Flow Response.
@@ -216,6 +252,18 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for searchFlowCategories
+     *
+     * Search Flow Categories.
+     *
+     */
+    public function testSearchFlowCategories()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for streamFlowResponse
      *
      * Stream Flow Response.
@@ -234,6 +282,18 @@ class FlowsApiTest extends TestCase
      *
      */
     public function testUpdateFlow()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateFlowCategory
+     *
+     * Update Flow Category.
+     *
+     */
+    public function testUpdateFlowCategory()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

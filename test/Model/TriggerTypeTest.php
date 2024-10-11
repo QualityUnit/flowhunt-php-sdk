@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowCreateTest
+ * TriggerTypeTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowCreateTest Class Doc Comment
+ * TriggerTypeTest Class Doc Comment
  *
  * @category    Class
- * @description FlowCreate
+ * @description TriggerType
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowCreateTest extends TestCase
+class TriggerTypeTest extends TestCase
 {
 
     /**
@@ -71,54 +71,9 @@ class FlowCreateTest extends TestCase
     }
 
     /**
-     * Test "FlowCreate"
+     * Test "TriggerType"
      */
-    public function testFlowCreate()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "description"
-     */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "detailed_description"
-     */
-    public function testPropertyDetailedDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "config"
-     */
-    public function testPropertyConfig()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "category_id"
-     */
-    public function testPropertyCategoryId()
+    public function testTriggerType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

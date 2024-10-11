@@ -89,7 +89,7 @@ try {
 ## `createFaq()`
 
 ```php
-createFaq($workspace_id, $faq_create_request): \OpenAPI\Client\Model\FaqResponse
+createFaq($workspace_id, $faq_create_request): \OpenAPI\Client\Model\FaqResponse[]
 ```
 
 Create Faq
@@ -136,7 +136,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FaqResponse**](../Model/FaqResponse.md)
+[**\OpenAPI\Client\Model\FaqResponse[]**](../Model/FaqResponse.md)
 
 ### Authorization
 
@@ -808,7 +808,7 @@ try {
 ## `updateFaq()`
 
 ```php
-updateFaq($faq_id, $workspace_id, $faq_update_request): \OpenAPI\Client\Model\FaqResponse
+updateFaq($faq_id, $workspace_id, $faq_update_request): \OpenAPI\Client\Model\FaqResponse[]
 ```
 
 Update Faq
@@ -857,7 +857,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FaqResponse**](../Model/FaqResponse.md)
+[**\OpenAPI\Client\Model\FaqResponse[]**](../Model/FaqResponse.md)
 
 ### Authorization
 

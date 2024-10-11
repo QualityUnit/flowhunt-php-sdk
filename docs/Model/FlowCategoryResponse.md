@@ -1,11 +1,11 @@
-# # FlowSearchRequest
+# # FlowCategoryResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flow_type** | [**\OpenAPI\Client\Model\FlowType**](FlowType.md) |  | [optional]
-**name** | **string** |  | [optional]
-**category_id** | **string** |  | [optional]
+**cat_id** | **string** |  |
+**cat_name** | **string** |  |
+**cat_color** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

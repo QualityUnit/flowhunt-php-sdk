@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowCreateTest
+ * FlowCategoryResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowCreateTest Class Doc Comment
+ * FlowCategoryResponseTest Class Doc Comment
  *
  * @category    Class
- * @description FlowCreate
+ * @description Flow category response.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowCreateTest extends TestCase
+class FlowCategoryResponseTest extends TestCase
 {
 
     /**
@@ -71,54 +71,36 @@ class FlowCreateTest extends TestCase
     }
 
     /**
-     * Test "FlowCreate"
+     * Test "FlowCategoryResponse"
      */
-    public function testFlowCreate()
+    public function testFlowCategoryResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "cat_id"
      */
-    public function testPropertyName()
+    public function testPropertyCatId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "cat_name"
      */
-    public function testPropertyDescription()
+    public function testPropertyCatName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "detailed_description"
+     * Test attribute "cat_color"
      */
-    public function testPropertyDetailedDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "config"
-     */
-    public function testPropertyConfig()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "category_id"
-     */
-    public function testPropertyCategoryId()
+    public function testPropertyCatColor()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

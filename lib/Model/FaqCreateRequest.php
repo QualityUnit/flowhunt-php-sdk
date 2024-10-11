@@ -58,9 +58,9 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'cat_id' => 'string',
-        'question' => 'string',
+        'primary_question' => 'string',
         'answer' => 'string',
-        'parent_faq_id' => 'string'
+        'secondary_questions' => 'string[]'
     ];
 
     /**
@@ -72,9 +72,9 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'cat_id' => null,
-        'question' => null,
+        'primary_question' => null,
         'answer' => null,
-        'parent_faq_id' => null
+        'secondary_questions' => null
     ];
 
     /**
@@ -84,9 +84,9 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'cat_id' => false,
-        'question' => false,
+        'primary_question' => false,
         'answer' => true,
-        'parent_faq_id' => true
+        'secondary_questions' => false
     ];
 
     /**
@@ -176,9 +176,9 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'cat_id' => 'cat_id',
-        'question' => 'question',
+        'primary_question' => 'primary_question',
         'answer' => 'answer',
-        'parent_faq_id' => 'parent_faq_id'
+        'secondary_questions' => 'secondary_questions'
     ];
 
     /**
@@ -188,9 +188,9 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'cat_id' => 'setCatId',
-        'question' => 'setQuestion',
+        'primary_question' => 'setPrimaryQuestion',
         'answer' => 'setAnswer',
-        'parent_faq_id' => 'setParentFaqId'
+        'secondary_questions' => 'setSecondaryQuestions'
     ];
 
     /**
@@ -200,9 +200,9 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'cat_id' => 'getCatId',
-        'question' => 'getQuestion',
+        'primary_question' => 'getPrimaryQuestion',
         'answer' => 'getAnswer',
-        'parent_faq_id' => 'getParentFaqId'
+        'secondary_questions' => 'getSecondaryQuestions'
     ];
 
     /**
@@ -263,9 +263,9 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('cat_id', $data ?? [], null);
-        $this->setIfExists('question', $data ?? [], null);
+        $this->setIfExists('primary_question', $data ?? [], null);
         $this->setIfExists('answer', $data ?? [], null);
-        $this->setIfExists('parent_faq_id', $data ?? [], null);
+        $this->setIfExists('secondary_questions', $data ?? [], null);
     }
 
     /**
@@ -298,8 +298,8 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['cat_id'] === null) {
             $invalidProperties[] = "'cat_id' can't be null";
         }
-        if ($this->container['question'] === null) {
-            $invalidProperties[] = "'question' can't be null";
+        if ($this->container['primary_question'] === null) {
+            $invalidProperties[] = "'primary_question' can't be null";
         }
         return $invalidProperties;
     }
@@ -344,28 +344,28 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets question
+     * Gets primary_question
      *
      * @return string
      */
-    public function getQuestion()
+    public function getPrimaryQuestion()
     {
-        return $this->container['question'];
+        return $this->container['primary_question'];
     }
 
     /**
-     * Sets question
+     * Sets primary_question
      *
-     * @param string $question Question
+     * @param string $primary_question Question
      *
      * @return self
      */
-    public function setQuestion($question)
+    public function setPrimaryQuestion($primary_question)
     {
-        if (is_null($question)) {
-            throw new \InvalidArgumentException('non-nullable question cannot be null');
+        if (is_null($primary_question)) {
+            throw new \InvalidArgumentException('non-nullable primary_question cannot be null');
         }
-        $this->container['question'] = $question;
+        $this->container['primary_question'] = $primary_question;
 
         return $this;
     }
@@ -405,35 +405,28 @@ class FaqCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets parent_faq_id
+     * Gets secondary_questions
      *
-     * @return string|null
+     * @return string[]|null
      */
-    public function getParentFaqId()
+    public function getSecondaryQuestions()
     {
-        return $this->container['parent_faq_id'];
+        return $this->container['secondary_questions'];
     }
 
     /**
-     * Sets parent_faq_id
+     * Sets secondary_questions
      *
-     * @param string|null $parent_faq_id parent_faq_id
+     * @param string[]|null $secondary_questions Parent FAQ ID if current question points to other answer
      *
      * @return self
      */
-    public function setParentFaqId($parent_faq_id)
+    public function setSecondaryQuestions($secondary_questions)
     {
-        if (is_null($parent_faq_id)) {
-            array_push($this->openAPINullablesSetToNull, 'parent_faq_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('parent_faq_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($secondary_questions)) {
+            throw new \InvalidArgumentException('non-nullable secondary_questions cannot be null');
         }
-        $this->container['parent_faq_id'] = $parent_faq_id;
+        $this->container['secondary_questions'] = $secondary_questions;
 
         return $this;
     }

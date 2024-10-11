@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **flow_type** | [**\OpenAPI\Client\Model\FlowType**](FlowType.md) | Flow type |
 **component_count** | **int** | Component count |
 **executed_at** | **\DateTime** |  | [optional]
+**category_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

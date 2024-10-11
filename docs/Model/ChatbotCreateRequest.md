@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **title** | **string** |  |
+**description** | **string** |  | [optional]
 **flow_id** | **string** | Chatbot Flow ID | [optional]
 **status** | **string** |  |
 **url_suffix** | **string** |  | [optional]

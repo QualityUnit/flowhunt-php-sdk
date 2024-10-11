@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowCreateTest
+ * FlowCategorySearchRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowCreateTest Class Doc Comment
+ * FlowCategorySearchRequestTest Class Doc Comment
  *
  * @category    Class
- * @description FlowCreate
+ * @description FlowCategorySearchRequest
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowCreateTest extends TestCase
+class FlowCategorySearchRequestTest extends TestCase
 {
 
     /**
@@ -71,54 +71,27 @@ class FlowCreateTest extends TestCase
     }
 
     /**
-     * Test "FlowCreate"
+     * Test "FlowCategorySearchRequest"
      */
-    public function testFlowCreate()
+    public function testFlowCategorySearchRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "cat_name"
      */
-    public function testPropertyName()
+    public function testPropertyCatName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "limit"
      */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "detailed_description"
-     */
-    public function testPropertyDetailedDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "config"
-     */
-    public function testPropertyConfig()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "category_id"
-     */
-    public function testPropertyCategoryId()
+    public function testPropertyLimit()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

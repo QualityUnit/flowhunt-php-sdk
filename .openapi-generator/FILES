@@ -12,6 +12,7 @@ docs/Api/CreditsApi.md
 docs/Api/DocumentsApi.md
 docs/Api/FlowMessagesApi.md
 docs/Api/FlowSessionsApi.md
+docs/Api/FlowWebhooksApi.md
 docs/Api/FlowsApi.md
 docs/Api/HealthApi.md
 docs/Api/ImagesApi.md
@@ -77,6 +78,9 @@ docs/Model/FaqStatus.md
 docs/Model/FaqType.md
 docs/Model/FaqUpdateRequest.md
 docs/Model/FeatureResponse.md
+docs/Model/FlowCategoryCreateRequest.md
+docs/Model/FlowCategoryResponse.md
+docs/Model/FlowCategorySearchRequest.md
 docs/Model/FlowConfig.md
 docs/Model/FlowCreate.md
 docs/Model/FlowDetailResponse.md
@@ -156,6 +160,7 @@ docs/Model/ThridPartyLoginRequest.md
 docs/Model/Token.md
 docs/Model/TransactionType.md
 docs/Model/TranscriptTaskRequest.md
+docs/Model/TriggerType.md
 docs/Model/UrlScreenshotResponse.md
 docs/Model/UserDocumentStatus.md
 docs/Model/UserPlanResponse.md
@@ -189,6 +194,7 @@ lib/FlowHunt/CreditsApi.php
 lib/FlowHunt/DocumentsApi.php
 lib/FlowHunt/FlowMessagesApi.php
 lib/FlowHunt/FlowSessionsApi.php
+lib/FlowHunt/FlowWebhooksApi.php
 lib/FlowHunt/FlowsApi.php
 lib/FlowHunt/HealthApi.php
 lib/FlowHunt/ImagesApi.php
@@ -255,6 +261,9 @@ lib/Model/FaqStatus.php
 lib/Model/FaqType.php
 lib/Model/FaqUpdateRequest.php
 lib/Model/FeatureResponse.php
+lib/Model/FlowCategoryCreateRequest.php
+lib/Model/FlowCategoryResponse.php
+lib/Model/FlowCategorySearchRequest.php
 lib/Model/FlowConfig.php
 lib/Model/FlowCreate.php
 lib/Model/FlowDetailResponse.php
@@ -335,6 +344,7 @@ lib/Model/ThridPartyLoginRequest.php
 lib/Model/Token.php
 lib/Model/TransactionType.php
 lib/Model/TranscriptTaskRequest.php
+lib/Model/TriggerType.php
 lib/Model/UrlScreenshotResponse.php
 lib/Model/UserDocumentStatus.php
 lib/Model/UserPlanResponse.php
@@ -367,6 +377,7 @@ test/Api/CreditsApiTest.php
 test/Api/DocumentsApiTest.php
 test/Api/FlowMessagesApiTest.php
 test/Api/FlowSessionsApiTest.php
+test/Api/FlowWebhooksApiTest.php
 test/Api/FlowsApiTest.php
 test/Api/HealthApiTest.php
 test/Api/ImagesApiTest.php
@@ -432,6 +443,9 @@ test/Model/FaqStatusTest.php
 test/Model/FaqTypeTest.php
 test/Model/FaqUpdateRequestTest.php
 test/Model/FeatureResponseTest.php
+test/Model/FlowCategoryCreateRequestTest.php
+test/Model/FlowCategoryResponseTest.php
+test/Model/FlowCategorySearchRequestTest.php
 test/Model/FlowConfigTest.php
 test/Model/FlowCreateTest.php
 test/Model/FlowDetailResponseTest.php
@@ -511,6 +525,7 @@ test/Model/ThridPartyLoginRequestTest.php
 test/Model/TokenTest.php
 test/Model/TransactionTypeTest.php
 test/Model/TranscriptTaskRequestTest.php
+test/Model/TriggerTypeTest.php
 test/Model/UrlScreenshotResponseTest.php
 test/Model/UserDocumentStatusTest.php
 test/Model/UserPlanResponseTest.php

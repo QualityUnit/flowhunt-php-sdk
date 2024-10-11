@@ -6,18 +6,23 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**createChatbotSession()**](FlowsApi.md#createChatbotSession) | **POST** /v2/flows/sessions/create | Create Chatbot Session |
 | [**createFlow()**](FlowsApi.md#createFlow) | **POST** /v2/flows/create | Create Flow |
+| [**createFlowCategory()**](FlowsApi.md#createFlowCategory) | **POST** /v2/flows/categories/create | Create Flow Category |
 | [**createFlowSession()**](FlowsApi.md#createFlowSession) | **POST** /v2/flows/sessions/from_flow/create | Create Flow Session |
 | [**deleteFlow()**](FlowsApi.md#deleteFlow) | **DELETE** /v2/flows/{flow_id} | Delete Flow |
+| [**deleteFlowCategory()**](FlowsApi.md#deleteFlowCategory) | **DELETE** /v2/flows/categories/{cat_id} | Delete Flow Category |
 | [**get()**](FlowsApi.md#get) | **GET** /v2/flows/{flow_id} | Get |
 | [**getAllComponents()**](FlowsApi.md#getAllComponents) | **GET** /v2/flows/components/all | Get All Components |
 | [**getInvokedFlowResults()**](FlowsApi.md#getInvokedFlowResults) | **GET** /v2/flows/{flow_id}/{task_id} | Get Invoked Flow Results |
 | [**getPublicFlow()**](FlowsApi.md#getPublicFlow) | **GET** /v2/flows/public/{flow_id} | Get Public Flow |
 | [**invokeFlow()**](FlowsApi.md#invokeFlow) | **POST** /v2/flows/{flow_id}/invoke | Invoke Flow |
 | [**invokeFlowResponse()**](FlowsApi.md#invokeFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invoke | Invoke Flow Response |
+| [**invokeFlowSingleton()**](FlowsApi.md#invokeFlowSingleton) | **POST** /v2/flows/{flow_id}/invoke_singleton | Invoke Flow Singleton |
 | [**pollFlowResponse()**](FlowsApi.md#pollFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{message_id} | Poll Flow Response |
 | [**search()**](FlowsApi.md#search) | **POST** /v2/flows/ | Search |
+| [**searchFlowCategories()**](FlowsApi.md#searchFlowCategories) | **POST** /v2/flows/categories/search | Search Flow Categories |
 | [**streamFlowResponse()**](FlowsApi.md#streamFlowResponse) | **POST** /v2/flows/sessions/{session_id}/stream | Stream Flow Response |
 | [**updateFlow()**](FlowsApi.md#updateFlow) | **PUT** /v2/flows/{flow_id} | Update Flow |
+| [**updateFlowCategory()**](FlowsApi.md#updateFlowCategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category |
 
 
 ## `createChatbotSession()`
@@ -127,6 +132,71 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createFlowCategory()`
+
+```php
+createFlowCategory($workspace_id, $flow_category_create_request): \OpenAPI\Client\Model\FlowCategoryResponse
+```
+
+Create Flow Category
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$flow_category_create_request = new \OpenAPI\Client\Model\FlowCategoryCreateRequest(); // \OpenAPI\Client\Model\FlowCategoryCreateRequest
+
+try {
+    $result = $apiInstance->createFlowCategory($workspace_id, $flow_category_create_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->createFlowCategory: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **flow_category_create_request** | [**\OpenAPI\Client\Model\FlowCategoryCreateRequest**](../Model/FlowCategoryCreateRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
 
 ### Authorization
 
@@ -252,6 +322,71 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteFlowCategory()`
+
+```php
+deleteFlowCategory($cat_id, $workspace_id): \OpenAPI\Client\Model\Completed
+```
+
+Delete Flow Category
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$cat_id = 'cat_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->deleteFlowCategory($cat_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->deleteFlowCategory: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -649,6 +784,73 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `invokeFlowSingleton()`
+
+```php
+invokeFlowSingleton($flow_id, $workspace_id, $flow_invoke_request): \OpenAPI\Client\Model\TaskResponse
+```
+
+Invoke Flow Singleton
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$flow_invoke_request = new \OpenAPI\Client\Model\FlowInvokeRequest(); // \OpenAPI\Client\Model\FlowInvokeRequest
+
+try {
+    $result = $apiInstance->invokeFlowSingleton($flow_id, $workspace_id, $flow_invoke_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->invokeFlowSingleton: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **flow_invoke_request** | [**\OpenAPI\Client\Model\FlowInvokeRequest**](../Model/FlowInvokeRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `pollFlowResponse()`
 
 ```php
@@ -756,6 +958,71 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\FlowResponse[]**](../Model/FlowResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchFlowCategories()`
+
+```php
+searchFlowCategories($workspace_id, $flow_category_search_request): \OpenAPI\Client\Model\FlowCategoryResponse[]
+```
+
+Search Flow Categories
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$flow_category_search_request = new \OpenAPI\Client\Model\FlowCategorySearchRequest(); // \OpenAPI\Client\Model\FlowCategorySearchRequest
+
+try {
+    $result = $apiInstance->searchFlowCategories($workspace_id, $flow_category_search_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->searchFlowCategories: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **flow_category_search_request** | [**\OpenAPI\Client\Model\FlowCategorySearchRequest**](../Model/FlowCategorySearchRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowCategoryResponse[]**](../Model/FlowCategoryResponse.md)
 
 ### Authorization
 
@@ -879,6 +1146,73 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateFlowCategory()`
+
+```php
+updateFlowCategory($cat_id, $workspace_id, $flow_category_create_request): \OpenAPI\Client\Model\FlowCategoryResponse
+```
+
+Update Flow Category
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$cat_id = 'cat_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$flow_category_create_request = new \OpenAPI\Client\Model\FlowCategoryCreateRequest(); // \OpenAPI\Client\Model\FlowCategoryCreateRequest
+
+try {
+    $result = $apiInstance->updateFlowCategory($cat_id, $workspace_id, $flow_category_create_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->updateFlowCategory: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **cat_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **flow_category_create_request** | [**\OpenAPI\Client\Model\FlowCategoryCreateRequest**](../Model/FlowCategoryCreateRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
 
 ### Authorization
 

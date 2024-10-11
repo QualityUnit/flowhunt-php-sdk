@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationSlug
+ * TriggerType
  *
  * PHP version 7.4
  *
@@ -30,31 +30,19 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * IntegrationSlug Class Doc Comment
+ * TriggerType Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class IntegrationSlug
+class TriggerType
 {
     /**
      * Possible values of this enum
      */
-    public const API_INTEGRATION = 'api_integration';
-
-    public const LIVEAGENT_INTEGRATION = 'liveagent_integration';
-
-    public const HUBSPOT_INTEGRATION = 'hubspot_integration';
-
-    public const LIVECHAT_INTEGRATION = 'livechat_integration';
-
-    public const SMARTSUPP_INTEGRATION = 'smartsupp_integration';
-
-    public const FRESHCHAT_INTEGRATION = 'freshchat_integration';
-
-    public const TAWK_INTEGRATION = 'tawk_integration';
+    public const ON_CHAT_OPEN = 'on_chat_open';
 
     /**
      * Gets allowable values of the enum
@@ -63,13 +51,7 @@ class IntegrationSlug
     public static function getAllowableEnumValues()
     {
         return [
-            self::API_INTEGRATION,
-            self::LIVEAGENT_INTEGRATION,
-            self::HUBSPOT_INTEGRATION,
-            self::LIVECHAT_INTEGRATION,
-            self::SMARTSUPP_INTEGRATION,
-            self::FRESHCHAT_INTEGRATION,
-            self::TAWK_INTEGRATION
+            self::ON_CHAT_OPEN
         ];
     }
 }

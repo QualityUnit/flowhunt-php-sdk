@@ -107,6 +107,15 @@ class ChatbotResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "flow_id"
      */
     public function testPropertyFlowId()

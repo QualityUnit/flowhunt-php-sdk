@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSearchRequest
+ * FlowCategorySearchRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowSearchRequest Class Doc Comment
+ * FlowCategorySearchRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowCategorySearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSearchRequest';
+    protected static $openAPIModelName = 'FlowCategorySearchRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'flow_type' => '\OpenAPI\Client\Model\FlowType',
-        'name' => 'string',
-        'category_id' => 'string'
+        'cat_name' => 'string',
+        'limit' => 'int'
     ];
 
     /**
@@ -70,9 +69,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'flow_type' => null,
-        'name' => null,
-        'category_id' => 'uuid'
+        'cat_name' => null,
+        'limit' => null
     ];
 
     /**
@@ -81,9 +79,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'flow_type' => true,
-        'name' => true,
-        'category_id' => true
+        'cat_name' => true,
+        'limit' => true
     ];
 
     /**
@@ -172,9 +169,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'flow_type' => 'flow_type',
-        'name' => 'name',
-        'category_id' => 'category_id'
+        'cat_name' => 'cat_name',
+        'limit' => 'limit'
     ];
 
     /**
@@ -183,9 +179,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'flow_type' => 'setFlowType',
-        'name' => 'setName',
-        'category_id' => 'setCategoryId'
+        'cat_name' => 'setCatName',
+        'limit' => 'setLimit'
     ];
 
     /**
@@ -194,9 +189,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'flow_type' => 'getFlowType',
-        'name' => 'getName',
-        'category_id' => 'getCategoryId'
+        'cat_name' => 'getCatName',
+        'limit' => 'getLimit'
     ];
 
     /**
@@ -256,9 +250,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('flow_type', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('category_id', $data ?? [], null);
+        $this->setIfExists('cat_name', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
     }
 
     /**
@@ -304,103 +297,69 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets flow_type
+     * Gets cat_name
      *
-     * @return \OpenAPI\Client\Model\FlowType|null
+     * @return string|null
      */
-    public function getFlowType()
+    public function getCatName()
     {
-        return $this->container['flow_type'];
+        return $this->container['cat_name'];
     }
 
     /**
-     * Sets flow_type
+     * Sets cat_name
      *
-     * @param \OpenAPI\Client\Model\FlowType|null $flow_type flow_type
+     * @param string|null $cat_name cat_name
      *
      * @return self
      */
-    public function setFlowType($flow_type)
+    public function setCatName($cat_name)
     {
-        if (is_null($flow_type)) {
-            array_push($this->openAPINullablesSetToNull, 'flow_type');
+        if (is_null($cat_name)) {
+            array_push($this->openAPINullablesSetToNull, 'cat_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flow_type', $nullablesSetToNull);
+            $index = array_search('cat_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['flow_type'] = $flow_type;
+        $this->container['cat_name'] = $cat_name;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets limit
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getName()
+    public function getLimit()
     {
-        return $this->container['name'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets name
+     * Sets limit
      *
-     * @param string|null $name name
+     * @param int|null $limit limit
      *
      * @return self
      */
-    public function setName($name)
+    public function setLimit($limit)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
+        if (is_null($limit)) {
+            array_push($this->openAPINullablesSetToNull, 'limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
+            $index = array_search('limit', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets category_id
-     *
-     * @return string|null
-     */
-    public function getCategoryId()
-    {
-        return $this->container['category_id'];
-    }
-
-    /**
-     * Sets category_id
-     *
-     * @param string|null $category_id category_id
-     *
-     * @return self
-     */
-    public function setCategoryId($category_id)
-    {
-        if (is_null($category_id)) {
-            array_push($this->openAPINullablesSetToNull, 'category_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('category_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['category_id'] = $category_id;
+        $this->container['limit'] = $limit;
 
         return $this;
     }

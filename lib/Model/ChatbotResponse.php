@@ -60,6 +60,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'string',
         'chatbot_id' => 'string',
         'title' => 'string',
+        'description' => 'string',
         'flow_id' => 'string',
         'status' => '\OpenAPI\Client\Model\ChatbotStatusOutput',
         'url_suffix' => 'string',
@@ -80,6 +81,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => null,
         'chatbot_id' => null,
         'title' => null,
+        'description' => null,
         'flow_id' => null,
         'status' => null,
         'url_suffix' => null,
@@ -98,6 +100,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => false,
         'chatbot_id' => false,
         'title' => false,
+        'description' => true,
         'flow_id' => false,
         'status' => true,
         'url_suffix' => true,
@@ -196,6 +199,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'workspace_id',
         'chatbot_id' => 'chatbot_id',
         'title' => 'title',
+        'description' => 'description',
         'flow_id' => 'flow_id',
         'status' => 'status',
         'url_suffix' => 'url_suffix',
@@ -214,6 +218,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'setWorkspaceId',
         'chatbot_id' => 'setChatbotId',
         'title' => 'setTitle',
+        'description' => 'setDescription',
         'flow_id' => 'setFlowId',
         'status' => 'setStatus',
         'url_suffix' => 'setUrlSuffix',
@@ -232,6 +237,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'getWorkspaceId',
         'chatbot_id' => 'getChatbotId',
         'title' => 'getTitle',
+        'description' => 'getDescription',
         'flow_id' => 'getFlowId',
         'status' => 'getStatus',
         'url_suffix' => 'getUrlSuffix',
@@ -301,6 +307,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('workspace_id', $data ?? [], null);
         $this->setIfExists('chatbot_id', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('flow_id', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('url_suffix', $data ?? [], null);
@@ -444,6 +451,40 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable title cannot be null');
         }
         $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }

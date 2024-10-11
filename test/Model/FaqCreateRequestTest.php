@@ -89,9 +89,9 @@ class FaqCreateRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "question"
+     * Test attribute "primary_question"
      */
-    public function testPropertyQuestion()
+    public function testPropertyPrimaryQuestion()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,9 +107,9 @@ class FaqCreateRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "parent_faq_id"
+     * Test attribute "secondary_questions"
      */
-    public function testPropertyParentFaqId()
+    public function testPropertySecondaryQuestions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

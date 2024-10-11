@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **workspace_id** | **string** | Workspace id |
 **chatbot_id** | **string** | Chatbot id |
 **title** | **string** | Tenant name |
+**description** | **string** |  | [optional]
 **flow_id** | **string** | Flow ID |
 **status** | [**\OpenAPI\Client\Model\ChatbotStatusOutput**](ChatbotStatusOutput.md) |  |
 **url_suffix** | **string** |  | [optional]

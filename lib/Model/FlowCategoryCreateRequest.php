@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSearchRequest
+ * FlowCategoryCreateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowSearchRequest Class Doc Comment
+ * FlowCategoryCreateRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowCategoryCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSearchRequest';
+    protected static $openAPIModelName = 'FlowCategoryCreateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'flow_type' => '\OpenAPI\Client\Model\FlowType',
-        'name' => 'string',
-        'category_id' => 'string'
+        'cat_name' => 'string',
+        'cat_color' => 'string'
     ];
 
     /**
@@ -70,9 +69,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'flow_type' => null,
-        'name' => null,
-        'category_id' => 'uuid'
+        'cat_name' => null,
+        'cat_color' => null
     ];
 
     /**
@@ -81,9 +79,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'flow_type' => true,
-        'name' => true,
-        'category_id' => true
+        'cat_name' => false,
+        'cat_color' => false
     ];
 
     /**
@@ -172,9 +169,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'flow_type' => 'flow_type',
-        'name' => 'name',
-        'category_id' => 'category_id'
+        'cat_name' => 'cat_name',
+        'cat_color' => 'cat_color'
     ];
 
     /**
@@ -183,9 +179,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'flow_type' => 'setFlowType',
-        'name' => 'setName',
-        'category_id' => 'setCategoryId'
+        'cat_name' => 'setCatName',
+        'cat_color' => 'setCatColor'
     ];
 
     /**
@@ -194,9 +189,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'flow_type' => 'getFlowType',
-        'name' => 'getName',
-        'category_id' => 'getCategoryId'
+        'cat_name' => 'getCatName',
+        'cat_color' => 'getCatColor'
     ];
 
     /**
@@ -256,9 +250,8 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('flow_type', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('category_id', $data ?? [], null);
+        $this->setIfExists('cat_name', $data ?? [], null);
+        $this->setIfExists('cat_color', $data ?? [], null);
     }
 
     /**
@@ -288,6 +281,12 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        if ($this->container['cat_name'] === null) {
+            $invalidProperties[] = "'cat_name' can't be null";
+        }
+        if ($this->container['cat_color'] === null) {
+            $invalidProperties[] = "'cat_color' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -304,103 +303,55 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets flow_type
+     * Gets cat_name
      *
-     * @return \OpenAPI\Client\Model\FlowType|null
+     * @return string
      */
-    public function getFlowType()
+    public function getCatName()
     {
-        return $this->container['flow_type'];
+        return $this->container['cat_name'];
     }
 
     /**
-     * Sets flow_type
+     * Sets cat_name
      *
-     * @param \OpenAPI\Client\Model\FlowType|null $flow_type flow_type
+     * @param string $cat_name The flow category name
      *
      * @return self
      */
-    public function setFlowType($flow_type)
+    public function setCatName($cat_name)
     {
-        if (is_null($flow_type)) {
-            array_push($this->openAPINullablesSetToNull, 'flow_type');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flow_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($cat_name)) {
+            throw new \InvalidArgumentException('non-nullable cat_name cannot be null');
         }
-        $this->container['flow_type'] = $flow_type;
+        $this->container['cat_name'] = $cat_name;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets cat_color
      *
-     * @return string|null
+     * @return string
      */
-    public function getName()
+    public function getCatColor()
     {
-        return $this->container['name'];
+        return $this->container['cat_color'];
     }
 
     /**
-     * Sets name
+     * Sets cat_color
      *
-     * @param string|null $name name
+     * @param string $cat_color The flow category color
      *
      * @return self
      */
-    public function setName($name)
+    public function setCatColor($cat_color)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($cat_color)) {
+            throw new \InvalidArgumentException('non-nullable cat_color cannot be null');
         }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets category_id
-     *
-     * @return string|null
-     */
-    public function getCategoryId()
-    {
-        return $this->container['category_id'];
-    }
-
-    /**
-     * Sets category_id
-     *
-     * @param string|null $category_id category_id
-     *
-     * @return self
-     */
-    public function setCategoryId($category_id)
-    {
-        if (is_null($category_id)) {
-            array_push($this->openAPINullablesSetToNull, 'category_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('category_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['category_id'] = $category_id;
+        $this->container['cat_color'] = $cat_color;
 
         return $this;
     }

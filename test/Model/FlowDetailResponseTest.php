@@ -141,4 +141,13 @@ class FlowDetailResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "category_id"
+     */
+    public function testPropertyCategoryId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

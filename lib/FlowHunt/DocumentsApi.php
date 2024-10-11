@@ -546,7 +546,7 @@ class DocumentsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FaqResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\FaqResponse[]|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function createFaq($workspace_id, $faq_create_request, string $contentType = self::contentTypes['createFaq'][0])
     {
@@ -565,7 +565,7 @@ class DocumentsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FaqResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\FaqResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createFaqWithHttpInfo($workspace_id, $faq_create_request, string $contentType = self::contentTypes['createFaq'][0])
     {
@@ -608,11 +608,11 @@ class DocumentsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FaqResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\FaqResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FaqResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\FaqResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -630,7 +630,7 @@ class DocumentsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FaqResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FaqResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -663,7 +663,7 @@ class DocumentsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\FaqResponse';
+            $returnType = '\OpenAPI\Client\Model\FaqResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -696,7 +696,7 @@ class DocumentsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FaqResponse',
+                        '\OpenAPI\Client\Model\FaqResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -750,7 +750,7 @@ class DocumentsApi
      */
     public function createFaqAsyncWithHttpInfo($workspace_id, $faq_create_request, string $contentType = self::contentTypes['createFaq'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FaqResponse';
+        $returnType = '\OpenAPI\Client\Model\FaqResponse[]';
         $request = $this->createFaqRequest($workspace_id, $faq_create_request, $contentType);
 
         return $this->client
@@ -4673,7 +4673,7 @@ class DocumentsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FaqResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \OpenAPI\Client\Model\FaqResponse[]|\OpenAPI\Client\Model\HTTPValidationError
      */
     public function updateFaq($faq_id, $workspace_id, $faq_update_request, string $contentType = self::contentTypes['updateFaq'][0])
     {
@@ -4693,7 +4693,7 @@ class DocumentsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FaqResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\FaqResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFaqWithHttpInfo($faq_id, $workspace_id, $faq_update_request, string $contentType = self::contentTypes['updateFaq'][0])
     {
@@ -4736,11 +4736,11 @@ class DocumentsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FaqResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\FaqResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FaqResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\FaqResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4758,7 +4758,7 @@ class DocumentsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FaqResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FaqResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4791,7 +4791,7 @@ class DocumentsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\FaqResponse';
+            $returnType = '\OpenAPI\Client\Model\FaqResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4824,7 +4824,7 @@ class DocumentsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FaqResponse',
+                        '\OpenAPI\Client\Model\FaqResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4880,7 +4880,7 @@ class DocumentsApi
      */
     public function updateFaqAsyncWithHttpInfo($faq_id, $workspace_id, $faq_update_request, string $contentType = self::contentTypes['updateFaq'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FaqResponse';
+        $returnType = '\OpenAPI\Client\Model\FaqResponse[]';
         $request = $this->updateFaqRequest($faq_id, $workspace_id, $faq_update_request, $contentType);
 
         return $this->client

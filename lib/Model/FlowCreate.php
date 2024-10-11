@@ -60,7 +60,8 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'description' => 'string',
         'detailed_description' => 'string',
-        'config' => '\OpenAPI\Client\Model\FlowConfig'
+        'config' => '\OpenAPI\Client\Model\FlowConfig',
+        'category_id' => 'string'
     ];
 
     /**
@@ -74,7 +75,8 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'description' => null,
         'detailed_description' => null,
-        'config' => null
+        'config' => null,
+        'category_id' => 'uuid'
     ];
 
     /**
@@ -86,7 +88,8 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => false,
         'description' => false,
         'detailed_description' => true,
-        'config' => false
+        'config' => false,
+        'category_id' => true
     ];
 
     /**
@@ -178,7 +181,8 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'description' => 'description',
         'detailed_description' => 'detailed_description',
-        'config' => 'config'
+        'config' => 'config',
+        'category_id' => 'category_id'
     ];
 
     /**
@@ -190,7 +194,8 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'description' => 'setDescription',
         'detailed_description' => 'setDetailedDescription',
-        'config' => 'setConfig'
+        'config' => 'setConfig',
+        'category_id' => 'setCategoryId'
     ];
 
     /**
@@ -202,7 +207,8 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'description' => 'getDescription',
         'detailed_description' => 'getDetailedDescription',
-        'config' => 'getConfig'
+        'config' => 'getConfig',
+        'category_id' => 'getCategoryId'
     ];
 
     /**
@@ -266,6 +272,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('detailed_description', $data ?? [], null);
         $this->setIfExists('config', $data ?? [], null);
+        $this->setIfExists('category_id', $data ?? [], null);
     }
 
     /**
@@ -430,6 +437,40 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable config cannot be null');
         }
         $this->container['config'] = $config;
+
+        return $this;
+    }
+
+    /**
+     * Gets category_id
+     *
+     * @return string|null
+     */
+    public function getCategoryId()
+    {
+        return $this->container['category_id'];
+    }
+
+    /**
+     * Sets category_id
+     *
+     * @param string|null $category_id category_id
+     *
+     * @return self
+     */
+    public function setCategoryId($category_id)
+    {
+        if (is_null($category_id)) {
+            array_push($this->openAPINullablesSetToNull, 'category_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('category_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['category_id'] = $category_id;
 
         return $this;
     }

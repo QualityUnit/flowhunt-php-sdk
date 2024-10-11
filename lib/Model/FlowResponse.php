@@ -62,7 +62,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'flow_type' => '\OpenAPI\Client\Model\FlowType',
         'component_count' => 'int',
-        'executed_at' => '\DateTime'
+        'executed_at' => '\DateTime',
+        'category_id' => 'string'
     ];
 
     /**
@@ -78,7 +79,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'flow_type' => null,
         'component_count' => null,
-        'executed_at' => 'date-time'
+        'executed_at' => 'date-time',
+        'category_id' => 'uuid'
     ];
 
     /**
@@ -92,7 +94,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'flow_type' => false,
         'component_count' => false,
-        'executed_at' => true
+        'executed_at' => true,
+        'category_id' => true
     ];
 
     /**
@@ -186,7 +189,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'flow_type' => 'flow_type',
         'component_count' => 'component_count',
-        'executed_at' => 'executed_at'
+        'executed_at' => 'executed_at',
+        'category_id' => 'category_id'
     ];
 
     /**
@@ -200,7 +204,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'flow_type' => 'setFlowType',
         'component_count' => 'setComponentCount',
-        'executed_at' => 'setExecutedAt'
+        'executed_at' => 'setExecutedAt',
+        'category_id' => 'setCategoryId'
     ];
 
     /**
@@ -214,7 +219,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'flow_type' => 'getFlowType',
         'component_count' => 'getComponentCount',
-        'executed_at' => 'getExecutedAt'
+        'executed_at' => 'getExecutedAt',
+        'category_id' => 'getCategoryId'
     ];
 
     /**
@@ -280,6 +286,7 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('flow_type', $data ?? [], null);
         $this->setIfExists('component_count', $data ?? [], null);
         $this->setIfExists('executed_at', $data ?? [], null);
+        $this->setIfExists('category_id', $data ?? [], null);
     }
 
     /**
@@ -504,6 +511,40 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['executed_at'] = $executed_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets category_id
+     *
+     * @return string|null
+     */
+    public function getCategoryId()
+    {
+        return $this->container['category_id'];
+    }
+
+    /**
+     * Sets category_id
+     *
+     * @param string|null $category_id category_id
+     *
+     * @return self
+     */
+    public function setCategoryId($category_id)
+    {
+        if (is_null($category_id)) {
+            array_push($this->openAPINullablesSetToNull, 'category_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('category_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['category_id'] = $category_id;
 
         return $this;
     }

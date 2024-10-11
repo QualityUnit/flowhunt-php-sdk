@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **title** | **string** |  | [optional]
+**description** | **string** |  | [optional]
 **flow_id** | **string** |  | [optional]
 **status** | **string** |  | [optional]
 **url_suffix** | **string** |  | [optional]
