@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionViewSearchRequest
+ * FlowSessionAttachmentResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * FlowSessionViewSearchRequest Class Doc Comment
+ * FlowSessionAttachmentResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionAttachmentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionViewSearchRequest';
+    protected static $openAPIModelName = 'FlowSessionAttachmentResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'chatbot_id' => 'string',
-        'flow_id' => 'string',
-        'tags' => 'string[]',
-        'limit' => 'int',
-        'created_at_start' => '\DateTime',
-        'created_at_end' => '\DateTime'
+        'file_name' => 'string',
+        'file_type' => 'string',
+        'file_id' => 'string'
     ];
 
     /**
@@ -73,12 +70,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'chatbot_id' => 'uuid',
-        'flow_id' => 'uuid',
-        'tags' => null,
-        'limit' => null,
-        'created_at_start' => 'date-time',
-        'created_at_end' => 'date-time'
+        'file_name' => null,
+        'file_type' => null,
+        'file_id' => null
     ];
 
     /**
@@ -87,12 +81,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'chatbot_id' => true,
-        'flow_id' => true,
-        'tags' => true,
-        'limit' => true,
-        'created_at_start' => true,
-        'created_at_end' => true
+        'file_name' => false,
+        'file_type' => false,
+        'file_id' => false
     ];
 
     /**
@@ -181,12 +172,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'chatbot_id' => 'chatbot_id',
-        'flow_id' => 'flow_id',
-        'tags' => 'tags',
-        'limit' => 'limit',
-        'created_at_start' => 'created_at_start',
-        'created_at_end' => 'created_at_end'
+        'file_name' => 'file_name',
+        'file_type' => 'file_type',
+        'file_id' => 'file_id'
     ];
 
     /**
@@ -195,12 +183,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'chatbot_id' => 'setChatbotId',
-        'flow_id' => 'setFlowId',
-        'tags' => 'setTags',
-        'limit' => 'setLimit',
-        'created_at_start' => 'setCreatedAtStart',
-        'created_at_end' => 'setCreatedAtEnd'
+        'file_name' => 'setFileName',
+        'file_type' => 'setFileType',
+        'file_id' => 'setFileId'
     ];
 
     /**
@@ -209,12 +194,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'chatbot_id' => 'getChatbotId',
-        'flow_id' => 'getFlowId',
-        'tags' => 'getTags',
-        'limit' => 'getLimit',
-        'created_at_start' => 'getCreatedAtStart',
-        'created_at_end' => 'getCreatedAtEnd'
+        'file_name' => 'getFileName',
+        'file_type' => 'getFileType',
+        'file_id' => 'getFileId'
     ];
 
     /**
@@ -274,12 +256,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('chatbot_id', $data ?? [], null);
-        $this->setIfExists('flow_id', $data ?? [], null);
-        $this->setIfExists('tags', $data ?? [], null);
-        $this->setIfExists('limit', $data ?? [], null);
-        $this->setIfExists('created_at_start', $data ?? [], null);
-        $this->setIfExists('created_at_end', $data ?? [], null);
+        $this->setIfExists('file_name', $data ?? [], null);
+        $this->setIfExists('file_type', $data ?? [], null);
+        $this->setIfExists('file_id', $data ?? [], null);
     }
 
     /**
@@ -309,6 +288,15 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
+        if ($this->container['file_name'] === null) {
+            $invalidProperties[] = "'file_name' can't be null";
+        }
+        if ($this->container['file_type'] === null) {
+            $invalidProperties[] = "'file_type' can't be null";
+        }
+        if ($this->container['file_id'] === null) {
+            $invalidProperties[] = "'file_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -325,205 +313,82 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets chatbot_id
+     * Gets file_name
      *
-     * @return string|null
+     * @return string
      */
-    public function getChatbotId()
+    public function getFileName()
     {
-        return $this->container['chatbot_id'];
+        return $this->container['file_name'];
     }
 
     /**
-     * Sets chatbot_id
+     * Sets file_name
      *
-     * @param string|null $chatbot_id chatbot_id
+     * @param string $file_name File name
      *
      * @return self
      */
-    public function setChatbotId($chatbot_id)
+    public function setFileName($file_name)
     {
-        if (is_null($chatbot_id)) {
-            array_push($this->openAPINullablesSetToNull, 'chatbot_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('chatbot_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($file_name)) {
+            throw new \InvalidArgumentException('non-nullable file_name cannot be null');
         }
-        $this->container['chatbot_id'] = $chatbot_id;
+        $this->container['file_name'] = $file_name;
 
         return $this;
     }
 
     /**
-     * Gets flow_id
+     * Gets file_type
      *
-     * @return string|null
+     * @return string
      */
-    public function getFlowId()
+    public function getFileType()
     {
-        return $this->container['flow_id'];
+        return $this->container['file_type'];
     }
 
     /**
-     * Sets flow_id
+     * Sets file_type
      *
-     * @param string|null $flow_id flow_id
+     * @param string $file_type File type
      *
      * @return self
      */
-    public function setFlowId($flow_id)
+    public function setFileType($file_type)
     {
-        if (is_null($flow_id)) {
-            array_push($this->openAPINullablesSetToNull, 'flow_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flow_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($file_type)) {
+            throw new \InvalidArgumentException('non-nullable file_type cannot be null');
         }
-        $this->container['flow_id'] = $flow_id;
+        $this->container['file_type'] = $file_type;
 
         return $this;
     }
 
     /**
-     * Gets tags
+     * Gets file_id
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getTags()
+    public function getFileId()
     {
-        return $this->container['tags'];
+        return $this->container['file_id'];
     }
 
     /**
-     * Sets tags
+     * Sets file_id
      *
-     * @param string[]|null $tags tags
+     * @param string $file_id File ID
      *
      * @return self
      */
-    public function setTags($tags)
+    public function setFileId($file_id)
     {
-        if (is_null($tags)) {
-            array_push($this->openAPINullablesSetToNull, 'tags');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tags', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($file_id)) {
+            throw new \InvalidArgumentException('non-nullable file_id cannot be null');
         }
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Gets limit
-     *
-     * @return int|null
-     */
-    public function getLimit()
-    {
-        return $this->container['limit'];
-    }
-
-    /**
-     * Sets limit
-     *
-     * @param int|null $limit limit
-     *
-     * @return self
-     */
-    public function setLimit($limit)
-    {
-        if (is_null($limit)) {
-            array_push($this->openAPINullablesSetToNull, 'limit');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['limit'] = $limit;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at_start
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAtStart()
-    {
-        return $this->container['created_at_start'];
-    }
-
-    /**
-     * Sets created_at_start
-     *
-     * @param \DateTime|null $created_at_start created_at_start
-     *
-     * @return self
-     */
-    public function setCreatedAtStart($created_at_start)
-    {
-        if (is_null($created_at_start)) {
-            array_push($this->openAPINullablesSetToNull, 'created_at_start');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created_at_start', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['created_at_start'] = $created_at_start;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at_end
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAtEnd()
-    {
-        return $this->container['created_at_end'];
-    }
-
-    /**
-     * Sets created_at_end
-     *
-     * @param \DateTime|null $created_at_end created_at_end
-     *
-     * @return self
-     */
-    public function setCreatedAtEnd($created_at_end)
-    {
-        if (is_null($created_at_end)) {
-            array_push($this->openAPINullablesSetToNull, 'created_at_end');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created_at_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['created_at_end'] = $created_at_end;
+        $this->container['file_id'] = $file_id;
 
         return $this;
     }

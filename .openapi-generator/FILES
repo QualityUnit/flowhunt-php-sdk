@@ -91,6 +91,7 @@ docs/Model/FlowMessageRole.md
 docs/Model/FlowRequestChatRole.md
 docs/Model/FlowResponse.md
 docs/Model/FlowSearchRequest.md
+docs/Model/FlowSessionAttachmentResponse.md
 docs/Model/FlowSessionCreateFromFlowRequest.md
 docs/Model/FlowSessionCreateRequest.md
 docs/Model/FlowSessionInvocationMessageResponse.md
@@ -274,6 +275,7 @@ lib/Model/FlowMessageRole.php
 lib/Model/FlowRequestChatRole.php
 lib/Model/FlowResponse.php
 lib/Model/FlowSearchRequest.php
+lib/Model/FlowSessionAttachmentResponse.php
 lib/Model/FlowSessionCreateFromFlowRequest.php
 lib/Model/FlowSessionCreateRequest.php
 lib/Model/FlowSessionInvocationMessageResponse.php
@@ -456,6 +458,7 @@ test/Model/FlowMessageRoleTest.php
 test/Model/FlowRequestChatRoleTest.php
 test/Model/FlowResponseTest.php
 test/Model/FlowSearchRequestTest.php
+test/Model/FlowSessionAttachmentResponseTest.php
 test/Model/FlowSessionCreateFromFlowRequestTest.php
 test/Model/FlowSessionCreateRequestTest.php
 test/Model/FlowSessionInvocationMessageResponseTest.php

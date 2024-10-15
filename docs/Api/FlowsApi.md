@@ -23,6 +23,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**streamFlowResponse()**](FlowsApi.md#streamFlowResponse) | **POST** /v2/flows/sessions/{session_id}/stream | Stream Flow Response |
 | [**updateFlow()**](FlowsApi.md#updateFlow) | **PUT** /v2/flows/{flow_id} | Update Flow |
 | [**updateFlowCategory()**](FlowsApi.md#updateFlowCategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category |
+| [**uploadAttachments()**](FlowsApi.md#uploadAttachments) | **POST** /v2/flows/sessions/{session_id}/attachments | Upload Attachments |
 
 
 ## `createChatbotSession()`
@@ -1221,6 +1222,62 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `uploadAttachments()`
+
+```php
+uploadAttachments($session_id, $file): \OpenAPI\Client\Model\FlowSessionAttachmentResponse
+```
+
+Upload Attachments
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+$file = "/path/to/file.txt"; // \SplFileObject
+
+try {
+    $result = $apiInstance->uploadAttachments($session_id, $file);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->uploadAttachments: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+| **file** | **\SplFileObject****\SplFileObject**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowSessionAttachmentResponse**](../Model/FlowSessionAttachmentResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

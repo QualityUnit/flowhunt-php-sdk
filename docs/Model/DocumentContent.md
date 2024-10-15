@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **img_url** | **string** |  | [optional]
 **status_code** | **int** |  | [optional]
 **created_at** | **float** |  | [optional]
+**published_at** | **float** |  | [optional]
 **title** | **string** |  | [optional]
 **lang** | **string** |  | [optional]
 **content_type** | **string** |  | [optional]

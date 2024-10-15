@@ -116,6 +116,15 @@ class DocumentContentTest extends TestCase
     }
 
     /**
+     * Test attribute "published_at"
+     */
+    public function testPropertyPublishedAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "title"
      */
     public function testPropertyTitle()

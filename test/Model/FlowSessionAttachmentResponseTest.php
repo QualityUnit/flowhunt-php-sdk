@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionViewSearchRequestTest
+ * FlowSessionAttachmentResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionViewSearchRequestTest Class Doc Comment
+ * FlowSessionAttachmentResponseTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionViewSearchRequest
+ * @description FlowSessionAttachmentResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionViewSearchRequestTest extends TestCase
+class FlowSessionAttachmentResponseTest extends TestCase
 {
 
     /**
@@ -71,63 +71,36 @@ class FlowSessionViewSearchRequestTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionViewSearchRequest"
+     * Test "FlowSessionAttachmentResponse"
      */
-    public function testFlowSessionViewSearchRequest()
+    public function testFlowSessionAttachmentResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "chatbot_id"
+     * Test attribute "file_name"
      */
-    public function testPropertyChatbotId()
+    public function testPropertyFileName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "flow_id"
+     * Test attribute "file_type"
      */
-    public function testPropertyFlowId()
+    public function testPropertyFileType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "tags"
+     * Test attribute "file_id"
      */
-    public function testPropertyTags()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "limit"
-     */
-    public function testPropertyLimit()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created_at_start"
-     */
-    public function testPropertyCreatedAtStart()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created_at_end"
-     */
-    public function testPropertyCreatedAtEnd()
+    public function testPropertyFileId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -61,6 +61,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'img_url' => 'string',
         'status_code' => 'int',
         'created_at' => 'float',
+        'published_at' => 'float',
         'title' => 'string',
         'lang' => 'string',
         'content_type' => 'string',
@@ -92,6 +93,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'img_url' => null,
         'status_code' => null,
         'created_at' => null,
+        'published_at' => null,
         'title' => null,
         'lang' => null,
         'content_type' => null,
@@ -121,6 +123,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'img_url' => true,
         'status_code' => true,
         'created_at' => true,
+        'published_at' => true,
         'title' => true,
         'lang' => true,
         'content_type' => true,
@@ -230,6 +233,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'img_url' => 'img_url',
         'status_code' => 'status_code',
         'created_at' => 'created_at',
+        'published_at' => 'published_at',
         'title' => 'title',
         'lang' => 'lang',
         'content_type' => 'content_type',
@@ -259,6 +263,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'img_url' => 'setImgUrl',
         'status_code' => 'setStatusCode',
         'created_at' => 'setCreatedAt',
+        'published_at' => 'setPublishedAt',
         'title' => 'setTitle',
         'lang' => 'setLang',
         'content_type' => 'setContentType',
@@ -288,6 +293,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'img_url' => 'getImgUrl',
         'status_code' => 'getStatusCode',
         'created_at' => 'getCreatedAt',
+        'published_at' => 'getPublishedAt',
         'title' => 'getTitle',
         'lang' => 'getLang',
         'content_type' => 'getContentType',
@@ -368,6 +374,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('img_url', $data ?? [], null);
         $this->setIfExists('status_code', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('published_at', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('lang', $data ?? [], null);
         $this->setIfExists('content_type', $data ?? [], null);
@@ -561,6 +568,40 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets published_at
+     *
+     * @return float|null
+     */
+    public function getPublishedAt()
+    {
+        return $this->container['published_at'];
+    }
+
+    /**
+     * Sets published_at
+     *
+     * @param float|null $published_at published_at
+     *
+     * @return self
+     */
+    public function setPublishedAt($published_at)
+    {
+        if (is_null($published_at)) {
+            array_push($this->openAPINullablesSetToNull, 'published_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('published_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['published_at'] = $published_at;
 
         return $this;
     }

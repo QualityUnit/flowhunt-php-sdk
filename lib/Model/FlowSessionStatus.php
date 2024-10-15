@@ -50,6 +50,8 @@ class FlowSessionStatus
 
     public const N = 'N';
 
+    public const I = 'I';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -60,7 +62,8 @@ class FlowSessionStatus
             self::S,
             self::F,
             self::P,
-            self::N
+            self::N,
+            self::I
         ];
     }
 }

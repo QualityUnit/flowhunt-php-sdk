@@ -298,4 +298,16 @@ class FlowsApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for uploadAttachments
+     *
+     * Upload Attachments.
+     *
+     */
+    public function testUploadAttachments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
