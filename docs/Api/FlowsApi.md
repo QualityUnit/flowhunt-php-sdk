@@ -8,10 +8,12 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**createFlow()**](FlowsApi.md#createFlow) | **POST** /v2/flows/create | Create Flow |
 | [**createFlowCategory()**](FlowsApi.md#createFlowCategory) | **POST** /v2/flows/categories/create | Create Flow Category |
 | [**createFlowSession()**](FlowsApi.md#createFlowSession) | **POST** /v2/flows/sessions/from_flow/create | Create Flow Session |
+| [**deleteAttachment()**](FlowsApi.md#deleteAttachment) | **DELETE** /v2/flows/sessions/{session_id}/attachments/{file_id} | Delete Attachment |
 | [**deleteFlow()**](FlowsApi.md#deleteFlow) | **DELETE** /v2/flows/{flow_id} | Delete Flow |
 | [**deleteFlowCategory()**](FlowsApi.md#deleteFlowCategory) | **DELETE** /v2/flows/categories/{cat_id} | Delete Flow Category |
 | [**get()**](FlowsApi.md#get) | **GET** /v2/flows/{flow_id} | Get |
 | [**getAllComponents()**](FlowsApi.md#getAllComponents) | **GET** /v2/flows/components/all | Get All Components |
+| [**getAttachments()**](FlowsApi.md#getAttachments) | **GET** /v2/flows/sessions/{session_id}/attachments | Get Attachments |
 | [**getInvokedFlowResults()**](FlowsApi.md#getInvokedFlowResults) | **GET** /v2/flows/{flow_id}/{task_id} | Get Invoked Flow Results |
 | [**getPublicFlow()**](FlowsApi.md#getPublicFlow) | **GET** /v2/flows/public/{flow_id} | Get Public Flow |
 | [**invokeFlow()**](FlowsApi.md#invokeFlow) | **POST** /v2/flows/{flow_id}/invoke | Invoke Flow |
@@ -277,6 +279,62 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteAttachment()`
+
+```php
+deleteAttachment($session_id, $file_id): \OpenAPI\Client\Model\Completed
+```
+
+Delete Attachment
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+$file_id = 'file_id_example'; // string
+
+try {
+    $result = $apiInstance->deleteAttachment($session_id, $file_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->deleteAttachment: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+| **file_id** | **string**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteFlow()`
 
 ```php
@@ -522,6 +580,60 @@ This endpoint does not need any parameter.
 ### Authorization
 
 [APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAttachments()`
+
+```php
+getAttachments($session_id): \OpenAPI\Client\Model\FlowSessionAttachmentResponse[]
+```
+
+Get Attachments
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+
+try {
+    $result = $apiInstance->getAttachments($session_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->getAttachments: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]**](../Model/FlowSessionAttachmentResponse.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

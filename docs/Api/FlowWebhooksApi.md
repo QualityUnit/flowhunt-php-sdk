@@ -32,7 +32,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowWebhooksApi(
 );
 $chatbot_id = 'chatbot_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$trigger_type = new \OpenAPI\Client\Model\TriggerType(); // TriggerType
+$trigger_type = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\TriggerType(); // \OpenAPI\Client\Model\TriggerType
 
 try {
     $result = $apiInstance->executeWebhook($chatbot_id, $workspace_id, $trigger_type);
@@ -48,7 +48,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **chatbot_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **trigger_type** | [**TriggerType**](../Model/.md)|  | |
+| **trigger_type** | [**\OpenAPI\Client\Model\TriggerType**](../Model/.md)|  | |
 
 ### Return type
 
@@ -99,7 +99,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowWebhooksApi(
 );
 $flow_id = 'flow_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$trigger_type = new \OpenAPI\Client\Model\TriggerType(); // TriggerType
+$trigger_type = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\TriggerType(); // \OpenAPI\Client\Model\TriggerType
 
 try {
     $result = $apiInstance->executeWebhookFromFlow($flow_id, $workspace_id, $trigger_type);
@@ -115,7 +115,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **trigger_type** | [**TriggerType**](../Model/.md)|  | |
+| **trigger_type** | [**\OpenAPI\Client\Model\TriggerType**](../Model/.md)|  | |
 
 ### Return type
 

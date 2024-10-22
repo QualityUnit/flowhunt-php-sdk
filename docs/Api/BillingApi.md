@@ -249,7 +249,7 @@ No authorization required
 ## `getUserPlan()`
 
 ```php
-getUserPlan(): \OpenAPI\Client\Model\UserPlanResponse
+getUserPlan($workspace_id): \OpenAPI\Client\Model\UserPlanResponse
 ```
 
 Get User Plan
@@ -267,9 +267,10 @@ $apiInstance = new OpenAPI\Client\Api\BillingApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getUserPlan();
+    $result = $apiInstance->getUserPlan($workspace_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BillingApi->getUserPlan: ', $e->getMessage(), PHP_EOL;
@@ -278,7 +279,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
 
 ### Return type
 
