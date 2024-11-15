@@ -52,6 +52,8 @@ class SubscriptionPlan
 
     public const C = 'C';
 
+    public const E = 'E';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -63,7 +65,8 @@ class SubscriptionPlan
             self::P,
             self::A,
             self::T,
-            self::C
+            self::C,
+            self::E
         ];
     }
 }

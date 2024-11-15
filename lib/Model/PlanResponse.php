@@ -66,7 +66,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'popular' => 'bool',
         'features' => '\OpenAPI\Client\Model\FeatureResponse[]',
-        'subscription_plan' => '\OpenAPI\Client\Model\SubscriptionPlan'
+        'subscription_plan' => '\OpenAPI\Client\Model\SubscriptionPlan',
+        'self_hosted' => 'bool'
     ];
 
     /**
@@ -86,7 +87,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'popular' => null,
         'features' => null,
-        'subscription_plan' => null
+        'subscription_plan' => null,
+        'self_hosted' => null
     ];
 
     /**
@@ -104,7 +106,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'popular' => false,
         'features' => false,
-        'subscription_plan' => true
+        'subscription_plan' => true,
+        'self_hosted' => true
     ];
 
     /**
@@ -202,7 +205,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'popular' => 'popular',
         'features' => 'features',
-        'subscription_plan' => 'subscription_plan'
+        'subscription_plan' => 'subscription_plan',
+        'self_hosted' => 'self_hosted'
     ];
 
     /**
@@ -220,7 +224,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'popular' => 'setPopular',
         'features' => 'setFeatures',
-        'subscription_plan' => 'setSubscriptionPlan'
+        'subscription_plan' => 'setSubscriptionPlan',
+        'self_hosted' => 'setSelfHosted'
     ];
 
     /**
@@ -238,7 +243,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'popular' => 'getPopular',
         'features' => 'getFeatures',
-        'subscription_plan' => 'getSubscriptionPlan'
+        'subscription_plan' => 'getSubscriptionPlan',
+        'self_hosted' => 'getSelfHosted'
     ];
 
     /**
@@ -308,6 +314,7 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('popular', $data ?? [], null);
         $this->setIfExists('features', $data ?? [], null);
         $this->setIfExists('subscription_plan', $data ?? [], null);
+        $this->setIfExists('self_hosted', $data ?? [], null);
     }
 
     /**
@@ -655,6 +662,40 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['subscription_plan'] = $subscription_plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets self_hosted
+     *
+     * @return bool|null
+     */
+    public function getSelfHosted()
+    {
+        return $this->container['self_hosted'];
+    }
+
+    /**
+     * Sets self_hosted
+     *
+     * @param bool|null $self_hosted self_hosted
+     *
+     * @return self
+     */
+    public function setSelfHosted($self_hosted)
+    {
+        if (is_null($self_hosted)) {
+            array_push($this->openAPINullablesSetToNull, 'self_hosted');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('self_hosted', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['self_hosted'] = $self_hosted;
 
         return $this;
     }

@@ -216,6 +216,18 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for getTriggerTypes
+     *
+     * Get Trigger Types.
+     *
+     */
+    public function testGetTriggerTypes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for invokeFlow
      *
      * Invoke Flow.
@@ -270,6 +282,18 @@ class FlowsApiTest extends TestCase
      *
      */
     public function testSearch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for searchAll
+     *
+     * Search All.
+     *
+     */
+    public function testSearchAll()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

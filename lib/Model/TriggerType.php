@@ -44,6 +44,10 @@ class TriggerType
      */
     public const ON_CHAT_OPEN = 'on_chat_open';
 
+    public const CUSTOM_TRIGGER = 'custom_trigger';
+
+    public const CHAT_INPUT = 'chat_input';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -51,7 +55,9 @@ class TriggerType
     public static function getAllowableEnumValues()
     {
         return [
-            self::ON_CHAT_OPEN
+            self::ON_CHAT_OPEN,
+            self::CUSTOM_TRIGGER,
+            self::CHAT_INPUT
         ];
     }
 }

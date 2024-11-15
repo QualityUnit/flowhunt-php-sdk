@@ -105,4 +105,22 @@ class FlowLoadingIndicatorTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "color"
+     */
+    public function testPropertyColor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "detailed_description"
+     */
+    public function testPropertyDetailedDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

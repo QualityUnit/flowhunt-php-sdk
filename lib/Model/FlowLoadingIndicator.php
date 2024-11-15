@@ -59,7 +59,9 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPITypes = [
         'tool_name' => 'string',
         'loading_desc' => 'string',
-        'icon' => 'string'
+        'icon' => 'string',
+        'color' => 'string',
+        'detailed_description' => 'string'
     ];
 
     /**
@@ -72,7 +74,9 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPIFormats = [
         'tool_name' => null,
         'loading_desc' => null,
-        'icon' => null
+        'icon' => null,
+        'color' => null,
+        'detailed_description' => null
     ];
 
     /**
@@ -83,7 +87,9 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $openAPINullables = [
         'tool_name' => false,
         'loading_desc' => false,
-        'icon' => true
+        'icon' => true,
+        'color' => true,
+        'detailed_description' => true
     ];
 
     /**
@@ -174,7 +180,9 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $attributeMap = [
         'tool_name' => 'tool_name',
         'loading_desc' => 'loading_desc',
-        'icon' => 'icon'
+        'icon' => 'icon',
+        'color' => 'color',
+        'detailed_description' => 'detailed_description'
     ];
 
     /**
@@ -185,7 +193,9 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $setters = [
         'tool_name' => 'setToolName',
         'loading_desc' => 'setLoadingDesc',
-        'icon' => 'setIcon'
+        'icon' => 'setIcon',
+        'color' => 'setColor',
+        'detailed_description' => 'setDetailedDescription'
     ];
 
     /**
@@ -196,7 +206,9 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $getters = [
         'tool_name' => 'getToolName',
         'loading_desc' => 'getLoadingDesc',
-        'icon' => 'getIcon'
+        'icon' => 'getIcon',
+        'color' => 'getColor',
+        'detailed_description' => 'getDetailedDescription'
     ];
 
     /**
@@ -259,6 +271,8 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('tool_name', $data ?? [], null);
         $this->setIfExists('loading_desc', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
+        $this->setIfExists('color', $data ?? [], null);
+        $this->setIfExists('detailed_description', $data ?? [], null);
     }
 
     /**
@@ -393,6 +407,74 @@ class FlowLoadingIndicator implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['icon'] = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Gets color
+     *
+     * @return string|null
+     */
+    public function getColor()
+    {
+        return $this->container['color'];
+    }
+
+    /**
+     * Sets color
+     *
+     * @param string|null $color color
+     *
+     * @return self
+     */
+    public function setColor($color)
+    {
+        if (is_null($color)) {
+            array_push($this->openAPINullablesSetToNull, 'color');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('color', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Gets detailed_description
+     *
+     * @return string|null
+     */
+    public function getDetailedDescription()
+    {
+        return $this->container['detailed_description'];
+    }
+
+    /**
+     * Sets detailed_description
+     *
+     * @param string|null $detailed_description detailed_description
+     *
+     * @return self
+     */
+    public function setDetailedDescription($detailed_description)
+    {
+        if (is_null($detailed_description)) {
+            array_push($this->openAPINullablesSetToNull, 'detailed_description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('detailed_description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['detailed_description'] = $detailed_description;
 
         return $this;
     }

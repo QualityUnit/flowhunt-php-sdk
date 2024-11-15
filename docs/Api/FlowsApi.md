@@ -16,11 +16,13 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getAttachments()**](FlowsApi.md#getAttachments) | **GET** /v2/flows/sessions/{session_id}/attachments | Get Attachments |
 | [**getInvokedFlowResults()**](FlowsApi.md#getInvokedFlowResults) | **GET** /v2/flows/{flow_id}/{task_id} | Get Invoked Flow Results |
 | [**getPublicFlow()**](FlowsApi.md#getPublicFlow) | **GET** /v2/flows/public/{flow_id} | Get Public Flow |
+| [**getTriggerTypes()**](FlowsApi.md#getTriggerTypes) | **POST** /v2/flows/{flow_id}/triggers | Get Trigger Types |
 | [**invokeFlow()**](FlowsApi.md#invokeFlow) | **POST** /v2/flows/{flow_id}/invoke | Invoke Flow |
 | [**invokeFlowResponse()**](FlowsApi.md#invokeFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invoke | Invoke Flow Response |
 | [**invokeFlowSingleton()**](FlowsApi.md#invokeFlowSingleton) | **POST** /v2/flows/{flow_id}/invoke_singleton | Invoke Flow Singleton |
 | [**pollFlowResponse()**](FlowsApi.md#pollFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{message_id} | Poll Flow Response |
 | [**search()**](FlowsApi.md#search) | **POST** /v2/flows/ | Search |
+| [**searchAll()**](FlowsApi.md#searchAll) | **POST** /v2/flows/all | Search All |
 | [**searchFlowCategories()**](FlowsApi.md#searchFlowCategories) | **POST** /v2/flows/categories/search | Search Flow Categories |
 | [**streamFlowResponse()**](FlowsApi.md#streamFlowResponse) | **POST** /v2/flows/sessions/{session_id}/stream | Stream Flow Response |
 | [**updateFlow()**](FlowsApi.md#updateFlow) | **PUT** /v2/flows/{flow_id} | Update Flow |
@@ -774,6 +776,71 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getTriggerTypes()`
+
+```php
+getTriggerTypes($flow_id, $workspace_id): \OpenAPI\Client\Model\TriggerResponse
+```
+
+Get Trigger Types
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getTriggerTypes($flow_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->getTriggerTypes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\TriggerResponse**](../Model/TriggerResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `invokeFlow()`
 
 ```php
@@ -1067,6 +1134,71 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
 | **flow_search_request** | [**\OpenAPI\Client\Model\FlowSearchRequest**](../Model/FlowSearchRequest.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\FlowResponse[]**](../Model/FlowResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchAll()`
+
+```php
+searchAll($workspace_id, $all_flows_search_request): \OpenAPI\Client\Model\FlowResponse[]
+```
+
+Search All
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$all_flows_search_request = new \OpenAPI\Client\Model\AllFlowsSearchRequest(); // \OpenAPI\Client\Model\AllFlowsSearchRequest
+
+try {
+    $result = $apiInstance->searchAll($workspace_id, $all_flows_search_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->searchAll: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **all_flows_search_request** | [**\OpenAPI\Client\Model\AllFlowsSearchRequest**](../Model/AllFlowsSearchRequest.md)|  | |
 
 ### Return type
 

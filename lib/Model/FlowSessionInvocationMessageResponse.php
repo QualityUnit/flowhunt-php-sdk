@@ -59,8 +59,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     protected static $openAPITypes = [
         'message_id' => 'string',
         'response_status' => '\OpenAPI\Client\Model\FlowSessionStatus',
-        'loading_indicator' => '\OpenAPI\Client\Model\FlowLoadingIndicator',
-        'intermediate_responses' => '\OpenAPI\Client\Model\FlowMessageResponse[]',
+        'loading_indicator' => 'array<string,\OpenAPI\Client\Model\FlowLoadingIndicator>',
+        'intermediate_results' => 'array<string,\OpenAPI\Client\Model\TaskOutput>',
         'final_response' => 'string[]'
     ];
 
@@ -75,7 +75,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
         'message_id' => null,
         'response_status' => null,
         'loading_indicator' => null,
-        'intermediate_responses' => null,
+        'intermediate_results' => null,
         'final_response' => null
     ];
 
@@ -88,7 +88,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
         'message_id' => false,
         'response_status' => false,
         'loading_indicator' => true,
-        'intermediate_responses' => false,
+        'intermediate_results' => true,
         'final_response' => true
     ];
 
@@ -181,7 +181,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
         'message_id' => 'message_id',
         'response_status' => 'response_status',
         'loading_indicator' => 'loading_indicator',
-        'intermediate_responses' => 'intermediate_responses',
+        'intermediate_results' => 'intermediate_results',
         'final_response' => 'final_response'
     ];
 
@@ -194,7 +194,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
         'message_id' => 'setMessageId',
         'response_status' => 'setResponseStatus',
         'loading_indicator' => 'setLoadingIndicator',
-        'intermediate_responses' => 'setIntermediateResponses',
+        'intermediate_results' => 'setIntermediateResults',
         'final_response' => 'setFinalResponse'
     ];
 
@@ -207,7 +207,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
         'message_id' => 'getMessageId',
         'response_status' => 'getResponseStatus',
         'loading_indicator' => 'getLoadingIndicator',
-        'intermediate_responses' => 'getIntermediateResponses',
+        'intermediate_results' => 'getIntermediateResults',
         'final_response' => 'getFinalResponse'
     ];
 
@@ -271,7 +271,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
         $this->setIfExists('message_id', $data ?? [], null);
         $this->setIfExists('response_status', $data ?? [], null);
         $this->setIfExists('loading_indicator', $data ?? [], null);
-        $this->setIfExists('intermediate_responses', $data ?? [], null);
+        $this->setIfExists('intermediate_results', $data ?? [], null);
         $this->setIfExists('final_response', $data ?? [], null);
     }
 
@@ -380,7 +380,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Gets loading_indicator
      *
-     * @return \OpenAPI\Client\Model\FlowLoadingIndicator|null
+     * @return array<string,\OpenAPI\Client\Model\FlowLoadingIndicator>|null
      */
     public function getLoadingIndicator()
     {
@@ -390,7 +390,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Sets loading_indicator
      *
-     * @param \OpenAPI\Client\Model\FlowLoadingIndicator|null $loading_indicator loading_indicator
+     * @param array<string,\OpenAPI\Client\Model\FlowLoadingIndicator>|null $loading_indicator loading_indicator
      *
      * @return self
      */
@@ -412,28 +412,35 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Gets intermediate_responses
+     * Gets intermediate_results
      *
-     * @return \OpenAPI\Client\Model\FlowMessageResponse[]|null
+     * @return array<string,\OpenAPI\Client\Model\TaskOutput>|null
      */
-    public function getIntermediateResponses()
+    public function getIntermediateResults()
     {
-        return $this->container['intermediate_responses'];
+        return $this->container['intermediate_results'];
     }
 
     /**
-     * Sets intermediate_responses
+     * Sets intermediate_results
      *
-     * @param \OpenAPI\Client\Model\FlowMessageResponse[]|null $intermediate_responses Intermediate responses
+     * @param array<string,\OpenAPI\Client\Model\TaskOutput>|null $intermediate_results intermediate_results
      *
      * @return self
      */
-    public function setIntermediateResponses($intermediate_responses)
+    public function setIntermediateResults($intermediate_results)
     {
-        if (is_null($intermediate_responses)) {
-            throw new \InvalidArgumentException('non-nullable intermediate_responses cannot be null');
+        if (is_null($intermediate_results)) {
+            array_push($this->openAPINullablesSetToNull, 'intermediate_results');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('intermediate_results', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['intermediate_responses'] = $intermediate_responses;
+        $this->container['intermediate_results'] = $intermediate_results;
 
         return $this;
     }

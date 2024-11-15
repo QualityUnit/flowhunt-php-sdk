@@ -14,5 +14,6 @@ Name | Type | Description | Notes
 **popular** | **bool** |  |
 **features** | [**\OpenAPI\Client\Model\FeatureResponse[]**](FeatureResponse.md) |  |
 **subscription_plan** | [**\OpenAPI\Client\Model\SubscriptionPlan**](SubscriptionPlan.md) |  |
+**self_hosted** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

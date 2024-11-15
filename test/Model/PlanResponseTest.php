@@ -168,4 +168,13 @@ class PlanResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "self_hosted"
+     */
+    public function testPropertySelfHosted()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

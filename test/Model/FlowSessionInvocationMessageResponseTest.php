@@ -107,9 +107,9 @@ class FlowSessionInvocationMessageResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "intermediate_responses"
+     * Test attribute "intermediate_results"
      */
-    public function testPropertyIntermediateResponses()
+    public function testPropertyIntermediateResults()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
