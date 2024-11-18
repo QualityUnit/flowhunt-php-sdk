@@ -1,6 +1,6 @@
 <?php
 /**
- * AuthApi
+ * SchedulesApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use FlowHunt\HeaderSelector;
 use FlowHunt\ObjectSerializer;
 
 /**
- * AuthApi Class Doc Comment
+ * SchedulesApi Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class AuthApi
+class SchedulesApi
 {
     /**
      * @var ClientInterface
@@ -71,28 +71,28 @@ class AuthApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'activateUser' => [
+        'createSchedules' => [
             'application/json',
         ],
-        'getThirdPartyToken' => [
+        'deleteSchedule' => [
             'application/json',
         ],
-        'getToken' => [
+        'getSchedule' => [
             'application/json',
         ],
-        'getUser' => [
+        'getScheduleUrlDetails' => [
             'application/json',
         ],
-        'recoverPassword' => [
+        'getSchedules' => [
             'application/json',
         ],
-        'refreshToken' => [
+        'runSchedule' => [
             'application/json',
         ],
-        'registerUser' => [
+        'searchScheduleUrls' => [
             'application/json',
         ],
-        'resetPassword' => [
+        'updateSchedule' => [
             'application/json',
         ],
     ];
@@ -144,38 +144,40 @@ class AuthApi
     }
 
     /**
-     * Operation activateUser
+     * Operation createSchedules
      *
-     * Activate User
+     * Create Schedules
      *
-     * @param  string $token token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateUser'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleCreateRequest[] $schedule_create_request schedule_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSchedules'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ScheduleResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function activateUser($token, string $contentType = self::contentTypes['activateUser'][0])
+    public function createSchedules($workspace_id, $schedule_create_request, string $contentType = self::contentTypes['createSchedules'][0])
     {
-        list($response) = $this->activateUserWithHttpInfo($token, $contentType);
+        list($response) = $this->createSchedulesWithHttpInfo($workspace_id, $schedule_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation activateUserWithHttpInfo
+     * Operation createSchedulesWithHttpInfo
      *
-     * Activate User
+     * Create Schedules
      *
-     * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateUser'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleCreateRequest[] $schedule_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSchedules'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ScheduleResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function activateUserWithHttpInfo($token, string $contentType = self::contentTypes['activateUser'][0])
+    public function createSchedulesWithHttpInfo($workspace_id, $schedule_create_request, string $contentType = self::contentTypes['createSchedules'][0])
     {
-        $request = $this->activateUserRequest($token, $contentType);
+        $request = $this->createSchedulesRequest($workspace_id, $schedule_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -202,11 +204,11 @@ class AuthApi
 
             switch($statusCode) {
                 case 200:
-                    if ('mixed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ScheduleResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('mixed' !== 'string') {
+                        if ('\FlowHunt\Model\ScheduleResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -224,7 +226,7 @@ class AuthApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ScheduleResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -270,7 +272,7 @@ class AuthApi
                 );
             }
 
-            $returnType = 'mixed';
+            $returnType = '\FlowHunt\Model\ScheduleResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -303,7 +305,7 @@ class AuthApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'mixed',
+                        '\FlowHunt\Model\ScheduleResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -322,19 +324,20 @@ class AuthApi
     }
 
     /**
-     * Operation activateUserAsync
+     * Operation createSchedulesAsync
      *
-     * Activate User
+     * Create Schedules
      *
-     * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateUser'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleCreateRequest[] $schedule_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSchedules'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function activateUserAsync($token, string $contentType = self::contentTypes['activateUser'][0])
+    public function createSchedulesAsync($workspace_id, $schedule_create_request, string $contentType = self::contentTypes['createSchedules'][0])
     {
-        return $this->activateUserAsyncWithHttpInfo($token, $contentType)
+        return $this->createSchedulesAsyncWithHttpInfo($workspace_id, $schedule_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -343,20 +346,21 @@ class AuthApi
     }
 
     /**
-     * Operation activateUserAsyncWithHttpInfo
+     * Operation createSchedulesAsyncWithHttpInfo
      *
-     * Activate User
+     * Create Schedules
      *
-     * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateUser'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleCreateRequest[] $schedule_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSchedules'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function activateUserAsyncWithHttpInfo($token, string $contentType = self::contentTypes['activateUser'][0])
+    public function createSchedulesAsyncWithHttpInfo($workspace_id, $schedule_create_request, string $contentType = self::contentTypes['createSchedules'][0])
     {
-        $returnType = 'mixed';
-        $request = $this->activateUserRequest($token, $contentType);
+        $returnType = '\FlowHunt\Model\ScheduleResponse[]';
+        $request = $this->createSchedulesRequest($workspace_id, $schedule_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -395,26 +399,34 @@ class AuthApi
     }
 
     /**
-     * Create request for operation 'activateUser'
+     * Create request for operation 'createSchedules'
      *
-     * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateUser'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleCreateRequest[] $schedule_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSchedules'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function activateUserRequest($token, string $contentType = self::contentTypes['activateUser'][0])
+    public function createSchedulesRequest($workspace_id, $schedule_create_request, string $contentType = self::contentTypes['createSchedules'][0])
     {
 
-        // verify the required parameter 'token' is set
-        if ($token === null || (is_array($token) && count($token) === 0)) {
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $token when calling activateUser'
+                'Missing the required parameter $workspace_id when calling createSchedules'
+            );
+        }
+
+        // verify the required parameter 'schedule_create_request' is set
+        if ($schedule_create_request === null || (is_array($schedule_create_request) && count($schedule_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_create_request when calling createSchedules'
             );
         }
 
 
-        $resourcePath = '/v2/auth/activate';
+        $resourcePath = '/v2/schedules/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -423,8 +435,8 @@ class AuthApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $token,
-            'token', // param base name
+            $workspace_id,
+            'workspace_id', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -432,6 +444,386 @@ class AuthApi
         ) ?? []);
 
 
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($schedule_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($schedule_create_request));
+            } else {
+                $httpBody = $schedule_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteSchedule
+     *
+     * Delete Schedule
+     *
+     * @param  string $schedule_id schedule_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSchedule'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function deleteSchedule($schedule_id, $workspace_id, string $contentType = self::contentTypes['deleteSchedule'][0])
+    {
+        list($response) = $this->deleteScheduleWithHttpInfo($schedule_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteScheduleWithHttpInfo
+     *
+     * Delete Schedule
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSchedule'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteScheduleWithHttpInfo($schedule_id, $workspace_id, string $contentType = self::contentTypes['deleteSchedule'][0])
+    {
+        $request = $this->deleteScheduleRequest($schedule_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\Completed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteScheduleAsync
+     *
+     * Delete Schedule
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSchedule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteScheduleAsync($schedule_id, $workspace_id, string $contentType = self::contentTypes['deleteSchedule'][0])
+    {
+        return $this->deleteScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteScheduleAsyncWithHttpInfo
+     *
+     * Delete Schedule
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSchedule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, string $contentType = self::contentTypes['deleteSchedule'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->deleteScheduleRequest($schedule_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteSchedule'
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSchedule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteScheduleRequest($schedule_id, $workspace_id, string $contentType = self::contentTypes['deleteSchedule'][0])
+    {
+
+        // verify the required parameter 'schedule_id' is set
+        if ($schedule_id === null || (is_array($schedule_id) && count($schedule_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_id when calling deleteSchedule'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling deleteSchedule'
+            );
+        }
+
+
+        $resourcePath = '/v2/schedules/{schedule_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($schedule_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'schedule_id' . '}',
+                ObjectSerializer::toPathValue($schedule_id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -465,6 +857,15 @@ class AuthApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -480,7 +881,7 @@ class AuthApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'GET',
+            'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -488,40 +889,40 @@ class AuthApi
     }
 
     /**
-     * Operation getThirdPartyToken
+     * Operation getSchedule
      *
-     * Get Third Party Token
+     * Get Schedule
      *
-     * @param  string $provider_name provider_name (required)
-     * @param  \FlowHunt\Model\ThridPartyLoginRequest $thrid_party_login_request thrid_party_login_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getThirdPartyToken'] to see the possible values for this operation
+     * @param  string $schedule_id schedule_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedule'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\UserTokenResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ScheduleResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getThirdPartyToken($provider_name, $thrid_party_login_request, string $contentType = self::contentTypes['getThirdPartyToken'][0])
+    public function getSchedule($schedule_id, $workspace_id, string $contentType = self::contentTypes['getSchedule'][0])
     {
-        list($response) = $this->getThirdPartyTokenWithHttpInfo($provider_name, $thrid_party_login_request, $contentType);
+        list($response) = $this->getScheduleWithHttpInfo($schedule_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getThirdPartyTokenWithHttpInfo
+     * Operation getScheduleWithHttpInfo
      *
-     * Get Third Party Token
+     * Get Schedule
      *
-     * @param  string $provider_name (required)
-     * @param  \FlowHunt\Model\ThridPartyLoginRequest $thrid_party_login_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getThirdPartyToken'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedule'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\UserTokenResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ScheduleResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getThirdPartyTokenWithHttpInfo($provider_name, $thrid_party_login_request, string $contentType = self::contentTypes['getThirdPartyToken'][0])
+    public function getScheduleWithHttpInfo($schedule_id, $workspace_id, string $contentType = self::contentTypes['getSchedule'][0])
     {
-        $request = $this->getThirdPartyTokenRequest($provider_name, $thrid_party_login_request, $contentType);
+        $request = $this->getScheduleRequest($schedule_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -548,11 +949,11 @@ class AuthApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\UserTokenResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ScheduleResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\UserTokenResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ScheduleResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -570,7 +971,7 @@ class AuthApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\UserTokenResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ScheduleResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -616,7 +1017,7 @@ class AuthApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\UserTokenResponse';
+            $returnType = '\FlowHunt\Model\ScheduleResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -649,7 +1050,7 @@ class AuthApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\UserTokenResponse',
+                        '\FlowHunt\Model\ScheduleResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -668,20 +1069,20 @@ class AuthApi
     }
 
     /**
-     * Operation getThirdPartyTokenAsync
+     * Operation getScheduleAsync
      *
-     * Get Third Party Token
+     * Get Schedule
      *
-     * @param  string $provider_name (required)
-     * @param  \FlowHunt\Model\ThridPartyLoginRequest $thrid_party_login_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getThirdPartyToken'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getThirdPartyTokenAsync($provider_name, $thrid_party_login_request, string $contentType = self::contentTypes['getThirdPartyToken'][0])
+    public function getScheduleAsync($schedule_id, $workspace_id, string $contentType = self::contentTypes['getSchedule'][0])
     {
-        return $this->getThirdPartyTokenAsyncWithHttpInfo($provider_name, $thrid_party_login_request, $contentType)
+        return $this->getScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -690,21 +1091,21 @@ class AuthApi
     }
 
     /**
-     * Operation getThirdPartyTokenAsyncWithHttpInfo
+     * Operation getScheduleAsyncWithHttpInfo
      *
-     * Get Third Party Token
+     * Get Schedule
      *
-     * @param  string $provider_name (required)
-     * @param  \FlowHunt\Model\ThridPartyLoginRequest $thrid_party_login_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getThirdPartyToken'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getThirdPartyTokenAsyncWithHttpInfo($provider_name, $thrid_party_login_request, string $contentType = self::contentTypes['getThirdPartyToken'][0])
+    public function getScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, string $contentType = self::contentTypes['getSchedule'][0])
     {
-        $returnType = '\FlowHunt\Model\UserTokenResponse';
-        $request = $this->getThirdPartyTokenRequest($provider_name, $thrid_party_login_request, $contentType);
+        $returnType = '\FlowHunt\Model\ScheduleResponse';
+        $request = $this->getScheduleRequest($schedule_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -743,697 +1144,59 @@ class AuthApi
     }
 
     /**
-     * Create request for operation 'getThirdPartyToken'
+     * Create request for operation 'getSchedule'
      *
-     * @param  string $provider_name (required)
-     * @param  \FlowHunt\Model\ThridPartyLoginRequest $thrid_party_login_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getThirdPartyToken'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getThirdPartyTokenRequest($provider_name, $thrid_party_login_request, string $contentType = self::contentTypes['getThirdPartyToken'][0])
+    public function getScheduleRequest($schedule_id, $workspace_id, string $contentType = self::contentTypes['getSchedule'][0])
     {
 
-        // verify the required parameter 'provider_name' is set
-        if ($provider_name === null || (is_array($provider_name) && count($provider_name) === 0)) {
+        // verify the required parameter 'schedule_id' is set
+        if ($schedule_id === null || (is_array($schedule_id) && count($schedule_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $provider_name when calling getThirdPartyToken'
+                'Missing the required parameter $schedule_id when calling getSchedule'
             );
         }
 
-        // verify the required parameter 'thrid_party_login_request' is set
-        if ($thrid_party_login_request === null || (is_array($thrid_party_login_request) && count($thrid_party_login_request) === 0)) {
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $thrid_party_login_request when calling getThirdPartyToken'
+                'Missing the required parameter $workspace_id when calling getSchedule'
             );
         }
 
 
-        $resourcePath = '/v2/auth/token/{provider_name}';
+        $resourcePath = '/v2/schedules/{schedule_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($provider_name !== null) {
+        if ($schedule_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'provider_name' . '}',
-                ObjectSerializer::toPathValue($provider_name),
+                '{' . 'schedule_id' . '}',
+                ObjectSerializer::toPathValue($schedule_id),
                 $resourcePath
             );
         }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($thrid_party_login_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($thrid_party_login_request));
-            } else {
-                $httpBody = $thrid_party_login_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Sudo-Api-Key');
-        if ($apiKey !== null) {
-            $headers['Sudo-Api-Key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getToken
-     *
-     * Get Token
-     *
-     * @param  \FlowHunt\Model\LoginUserRequest $login_user_request login_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getToken'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\UserTokenResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function getToken($login_user_request, string $contentType = self::contentTypes['getToken'][0])
-    {
-        list($response) = $this->getTokenWithHttpInfo($login_user_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getTokenWithHttpInfo
-     *
-     * Get Token
-     *
-     * @param  \FlowHunt\Model\LoginUserRequest $login_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getToken'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\UserTokenResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getTokenWithHttpInfo($login_user_request, string $contentType = self::contentTypes['getToken'][0])
-    {
-        $request = $this->getTokenRequest($login_user_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\UserTokenResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\UserTokenResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\UserTokenResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\UserTokenResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\UserTokenResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getTokenAsync
-     *
-     * Get Token
-     *
-     * @param  \FlowHunt\Model\LoginUserRequest $login_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getToken'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getTokenAsync($login_user_request, string $contentType = self::contentTypes['getToken'][0])
-    {
-        return $this->getTokenAsyncWithHttpInfo($login_user_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getTokenAsyncWithHttpInfo
-     *
-     * Get Token
-     *
-     * @param  \FlowHunt\Model\LoginUserRequest $login_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getToken'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getTokenAsyncWithHttpInfo($login_user_request, string $contentType = self::contentTypes['getToken'][0])
-    {
-        $returnType = '\FlowHunt\Model\UserTokenResponse';
-        $request = $this->getTokenRequest($login_user_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getToken'
-     *
-     * @param  \FlowHunt\Model\LoginUserRequest $login_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getToken'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getTokenRequest($login_user_request, string $contentType = self::contentTypes['getToken'][0])
-    {
-
-        // verify the required parameter 'login_user_request' is set
-        if ($login_user_request === null || (is_array($login_user_request) && count($login_user_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $login_user_request when calling getToken'
-            );
-        }
-
-
-        $resourcePath = '/v2/auth/token';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($login_user_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($login_user_request));
-            } else {
-                $httpBody = $login_user_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Sudo-Api-Key');
-        if ($apiKey !== null) {
-            $headers['Sudo-Api-Key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getUser
-     *
-     * Get User
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\UserResponse
-     */
-    public function getUser(string $contentType = self::contentTypes['getUser'][0])
-    {
-        list($response) = $this->getUserWithHttpInfo($contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getUserWithHttpInfo
-     *
-     * Get User
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\UserResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getUserWithHttpInfo(string $contentType = self::contentTypes['getUser'][0])
-    {
-        $request = $this->getUserRequest($contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\UserResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\UserResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\UserResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\UserResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\UserResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getUserAsync
-     *
-     * Get User
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getUserAsync(string $contentType = self::contentTypes['getUser'][0])
-    {
-        return $this->getUserAsyncWithHttpInfo($contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getUserAsyncWithHttpInfo
-     *
-     * Get User
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getUserAsyncWithHttpInfo(string $contentType = self::contentTypes['getUser'][0])
-    {
-        $returnType = '\FlowHunt\Model\UserResponse';
-        $request = $this->getUserRequest($contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getUser'
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getUserRequest(string $contentType = self::contentTypes['getUser'][0])
-    {
-
-
-        $resourcePath = '/v2/auth/me';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1499,38 +1262,44 @@ class AuthApi
     }
 
     /**
-     * Operation recoverPassword
+     * Operation getScheduleUrlDetails
      *
-     * Recover Password
+     * Get Schedule Url Details
      *
-     * @param  string $email email (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recoverPassword'] to see the possible values for this operation
+     * @param  string $schedule_id schedule_id (required)
+     * @param  string $url_id url_id (required)
+     * @param  string $domain_id domain_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getScheduleUrlDetails'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ScheduleUrlDetailResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function recoverPassword($email, string $contentType = self::contentTypes['recoverPassword'][0])
+    public function getScheduleUrlDetails($schedule_id, $url_id, $domain_id, $workspace_id, string $contentType = self::contentTypes['getScheduleUrlDetails'][0])
     {
-        list($response) = $this->recoverPasswordWithHttpInfo($email, $contentType);
+        list($response) = $this->getScheduleUrlDetailsWithHttpInfo($schedule_id, $url_id, $domain_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation recoverPasswordWithHttpInfo
+     * Operation getScheduleUrlDetailsWithHttpInfo
      *
-     * Recover Password
+     * Get Schedule Url Details
      *
-     * @param  string $email (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recoverPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $url_id (required)
+     * @param  string $domain_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getScheduleUrlDetails'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ScheduleUrlDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function recoverPasswordWithHttpInfo($email, string $contentType = self::contentTypes['recoverPassword'][0])
+    public function getScheduleUrlDetailsWithHttpInfo($schedule_id, $url_id, $domain_id, $workspace_id, string $contentType = self::contentTypes['getScheduleUrlDetails'][0])
     {
-        $request = $this->recoverPasswordRequest($email, $contentType);
+        $request = $this->getScheduleUrlDetailsRequest($schedule_id, $url_id, $domain_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1557,11 +1326,11 @@ class AuthApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ScheduleUrlDetailResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\ScheduleUrlDetailResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1579,7 +1348,7 @@ class AuthApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ScheduleUrlDetailResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1625,7 +1394,7 @@ class AuthApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\Completed';
+            $returnType = '\FlowHunt\Model\ScheduleUrlDetailResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1658,7 +1427,7 @@ class AuthApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
+                        '\FlowHunt\Model\ScheduleUrlDetailResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1677,19 +1446,22 @@ class AuthApi
     }
 
     /**
-     * Operation recoverPasswordAsync
+     * Operation getScheduleUrlDetailsAsync
      *
-     * Recover Password
+     * Get Schedule Url Details
      *
-     * @param  string $email (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recoverPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $url_id (required)
+     * @param  string $domain_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getScheduleUrlDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function recoverPasswordAsync($email, string $contentType = self::contentTypes['recoverPassword'][0])
+    public function getScheduleUrlDetailsAsync($schedule_id, $url_id, $domain_id, $workspace_id, string $contentType = self::contentTypes['getScheduleUrlDetails'][0])
     {
-        return $this->recoverPasswordAsyncWithHttpInfo($email, $contentType)
+        return $this->getScheduleUrlDetailsAsyncWithHttpInfo($schedule_id, $url_id, $domain_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1698,20 +1470,23 @@ class AuthApi
     }
 
     /**
-     * Operation recoverPasswordAsyncWithHttpInfo
+     * Operation getScheduleUrlDetailsAsyncWithHttpInfo
      *
-     * Recover Password
+     * Get Schedule Url Details
      *
-     * @param  string $email (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recoverPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $url_id (required)
+     * @param  string $domain_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getScheduleUrlDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function recoverPasswordAsyncWithHttpInfo($email, string $contentType = self::contentTypes['recoverPassword'][0])
+    public function getScheduleUrlDetailsAsyncWithHttpInfo($schedule_id, $url_id, $domain_id, $workspace_id, string $contentType = self::contentTypes['getScheduleUrlDetails'][0])
     {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->recoverPasswordRequest($email, $contentType);
+        $returnType = '\FlowHunt\Model\ScheduleUrlDetailResponse';
+        $request = $this->getScheduleUrlDetailsRequest($schedule_id, $url_id, $domain_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1750,39 +1525,88 @@ class AuthApi
     }
 
     /**
-     * Create request for operation 'recoverPassword'
+     * Create request for operation 'getScheduleUrlDetails'
      *
-     * @param  string $email (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recoverPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $url_id (required)
+     * @param  string $domain_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getScheduleUrlDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function recoverPasswordRequest($email, string $contentType = self::contentTypes['recoverPassword'][0])
+    public function getScheduleUrlDetailsRequest($schedule_id, $url_id, $domain_id, $workspace_id, string $contentType = self::contentTypes['getScheduleUrlDetails'][0])
     {
 
-        // verify the required parameter 'email' is set
-        if ($email === null || (is_array($email) && count($email) === 0)) {
+        // verify the required parameter 'schedule_id' is set
+        if ($schedule_id === null || (is_array($schedule_id) && count($schedule_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $email when calling recoverPassword'
+                'Missing the required parameter $schedule_id when calling getScheduleUrlDetails'
+            );
+        }
+
+        // verify the required parameter 'url_id' is set
+        if ($url_id === null || (is_array($url_id) && count($url_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $url_id when calling getScheduleUrlDetails'
+            );
+        }
+
+        // verify the required parameter 'domain_id' is set
+        if ($domain_id === null || (is_array($domain_id) && count($domain_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $domain_id when calling getScheduleUrlDetails'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getScheduleUrlDetails'
             );
         }
 
 
-        $resourcePath = '/v2/auth/password-recovery/{email}';
+        $resourcePath = '/v2/schedules/{schedule_id}/urls/{domain_id}/{url_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($email !== null) {
+        if ($schedule_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'email' . '}',
-                ObjectSerializer::toPathValue($email),
+                '{' . 'schedule_id' . '}',
+                ObjectSerializer::toPathValue($schedule_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($url_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'url_id' . '}',
+                ObjectSerializer::toPathValue($url_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($domain_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'domain_id' . '}',
+                ObjectSerializer::toPathValue($domain_id),
                 $resourcePath
             );
         }
@@ -1819,6 +1643,15 @@ class AuthApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1834,7 +1667,7 @@ class AuthApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -1842,38 +1675,40 @@ class AuthApi
     }
 
     /**
-     * Operation refreshToken
+     * Operation getSchedules
      *
-     * Refresh Token
+     * Get Schedules
      *
-     * @param  \FlowHunt\Model\RefreshTokenRequest $refresh_token_request refresh_token_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleSearchRequest $schedule_search_request schedule_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedules'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Token|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ScheduleResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function refreshToken($refresh_token_request, string $contentType = self::contentTypes['refreshToken'][0])
+    public function getSchedules($workspace_id, $schedule_search_request, string $contentType = self::contentTypes['getSchedules'][0])
     {
-        list($response) = $this->refreshTokenWithHttpInfo($refresh_token_request, $contentType);
+        list($response) = $this->getSchedulesWithHttpInfo($workspace_id, $schedule_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation refreshTokenWithHttpInfo
+     * Operation getSchedulesWithHttpInfo
      *
-     * Refresh Token
+     * Get Schedules
      *
-     * @param  \FlowHunt\Model\RefreshTokenRequest $refresh_token_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleSearchRequest $schedule_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedules'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Token|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ScheduleResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function refreshTokenWithHttpInfo($refresh_token_request, string $contentType = self::contentTypes['refreshToken'][0])
+    public function getSchedulesWithHttpInfo($workspace_id, $schedule_search_request, string $contentType = self::contentTypes['getSchedules'][0])
     {
-        $request = $this->refreshTokenRequest($refresh_token_request, $contentType);
+        $request = $this->getSchedulesRequest($workspace_id, $schedule_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1900,11 +1735,11 @@ class AuthApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\Token' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ScheduleResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Token' !== 'string') {
+                        if ('\FlowHunt\Model\ScheduleResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1922,7 +1757,7 @@ class AuthApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Token', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ScheduleResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1968,7 +1803,7 @@ class AuthApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\Token';
+            $returnType = '\FlowHunt\Model\ScheduleResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2001,7 +1836,7 @@ class AuthApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\Token',
+                        '\FlowHunt\Model\ScheduleResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2020,19 +1855,20 @@ class AuthApi
     }
 
     /**
-     * Operation refreshTokenAsync
+     * Operation getSchedulesAsync
      *
-     * Refresh Token
+     * Get Schedules
      *
-     * @param  \FlowHunt\Model\RefreshTokenRequest $refresh_token_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleSearchRequest $schedule_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedules'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function refreshTokenAsync($refresh_token_request, string $contentType = self::contentTypes['refreshToken'][0])
+    public function getSchedulesAsync($workspace_id, $schedule_search_request, string $contentType = self::contentTypes['getSchedules'][0])
     {
-        return $this->refreshTokenAsyncWithHttpInfo($refresh_token_request, $contentType)
+        return $this->getSchedulesAsyncWithHttpInfo($workspace_id, $schedule_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2041,20 +1877,21 @@ class AuthApi
     }
 
     /**
-     * Operation refreshTokenAsyncWithHttpInfo
+     * Operation getSchedulesAsyncWithHttpInfo
      *
-     * Refresh Token
+     * Get Schedules
      *
-     * @param  \FlowHunt\Model\RefreshTokenRequest $refresh_token_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleSearchRequest $schedule_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedules'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function refreshTokenAsyncWithHttpInfo($refresh_token_request, string $contentType = self::contentTypes['refreshToken'][0])
+    public function getSchedulesAsyncWithHttpInfo($workspace_id, $schedule_search_request, string $contentType = self::contentTypes['getSchedules'][0])
     {
-        $returnType = '\FlowHunt\Model\Token';
-        $request = $this->refreshTokenRequest($refresh_token_request, $contentType);
+        $returnType = '\FlowHunt\Model\ScheduleResponse[]';
+        $request = $this->getSchedulesRequest($workspace_id, $schedule_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2093,32 +1930,49 @@ class AuthApi
     }
 
     /**
-     * Create request for operation 'refreshToken'
+     * Create request for operation 'getSchedules'
      *
-     * @param  \FlowHunt\Model\RefreshTokenRequest $refresh_token_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleSearchRequest $schedule_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSchedules'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function refreshTokenRequest($refresh_token_request, string $contentType = self::contentTypes['refreshToken'][0])
+    public function getSchedulesRequest($workspace_id, $schedule_search_request, string $contentType = self::contentTypes['getSchedules'][0])
     {
 
-        // verify the required parameter 'refresh_token_request' is set
-        if ($refresh_token_request === null || (is_array($refresh_token_request) && count($refresh_token_request) === 0)) {
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $refresh_token_request when calling refreshToken'
+                'Missing the required parameter $workspace_id when calling getSchedules'
+            );
+        }
+
+        // verify the required parameter 'schedule_search_request' is set
+        if ($schedule_search_request === null || (is_array($schedule_search_request) && count($schedule_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_search_request when calling getSchedules'
             );
         }
 
 
-        $resourcePath = '/v2/auth/refresh-token';
+        $resourcePath = '/v2/schedules/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
 
@@ -2130,12 +1984,12 @@ class AuthApi
         );
 
         // for model (json/xml)
-        if (isset($refresh_token_request)) {
+        if (isset($schedule_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($refresh_token_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($schedule_search_request));
             } else {
-                $httpBody = $refresh_token_request;
+                $httpBody = $schedule_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2161,6 +2015,15 @@ class AuthApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2184,380 +2047,40 @@ class AuthApi
     }
 
     /**
-     * Operation registerUser
+     * Operation runSchedule
      *
-     * Register User
+     * Run Schedule
      *
-     * @param  \FlowHunt\Model\RegisterUserRequest $register_user_request register_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['registerUser'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
-     */
-    public function registerUser($register_user_request, string $contentType = self::contentTypes['registerUser'][0])
-    {
-        list($response) = $this->registerUserWithHttpInfo($register_user_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation registerUserWithHttpInfo
-     *
-     * Register User
-     *
-     * @param  \FlowHunt\Model\RegisterUserRequest $register_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['registerUser'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function registerUserWithHttpInfo($register_user_request, string $contentType = self::contentTypes['registerUser'][0])
-    {
-        $request = $this->registerUserRequest($register_user_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 201:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\Completed';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation registerUserAsync
-     *
-     * Register User
-     *
-     * @param  \FlowHunt\Model\RegisterUserRequest $register_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['registerUser'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function registerUserAsync($register_user_request, string $contentType = self::contentTypes['registerUser'][0])
-    {
-        return $this->registerUserAsyncWithHttpInfo($register_user_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation registerUserAsyncWithHttpInfo
-     *
-     * Register User
-     *
-     * @param  \FlowHunt\Model\RegisterUserRequest $register_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['registerUser'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function registerUserAsyncWithHttpInfo($register_user_request, string $contentType = self::contentTypes['registerUser'][0])
-    {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->registerUserRequest($register_user_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'registerUser'
-     *
-     * @param  \FlowHunt\Model\RegisterUserRequest $register_user_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['registerUser'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function registerUserRequest($register_user_request, string $contentType = self::contentTypes['registerUser'][0])
-    {
-
-        // verify the required parameter 'register_user_request' is set
-        if ($register_user_request === null || (is_array($register_user_request) && count($register_user_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $register_user_request when calling registerUser'
-            );
-        }
-
-
-        $resourcePath = '/v2/auth/';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($register_user_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($register_user_request));
-            } else {
-                $httpBody = $register_user_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation resetPassword
-     *
-     * Reset Password
-     *
-     * @param  \FlowHunt\Model\NewPasswordRequest $new_password_request new_password_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetPassword'] to see the possible values for this operation
+     * @param  string $schedule_id schedule_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['runSchedule'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function resetPassword($new_password_request, string $contentType = self::contentTypes['resetPassword'][0])
+    public function runSchedule($schedule_id, $workspace_id, string $contentType = self::contentTypes['runSchedule'][0])
     {
-        list($response) = $this->resetPasswordWithHttpInfo($new_password_request, $contentType);
+        list($response) = $this->runScheduleWithHttpInfo($schedule_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation resetPasswordWithHttpInfo
+     * Operation runScheduleWithHttpInfo
      *
-     * Reset Password
+     * Run Schedule
      *
-     * @param  \FlowHunt\Model\NewPasswordRequest $new_password_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['runSchedule'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function resetPasswordWithHttpInfo($new_password_request, string $contentType = self::contentTypes['resetPassword'][0])
+    public function runScheduleWithHttpInfo($schedule_id, $workspace_id, string $contentType = self::contentTypes['runSchedule'][0])
     {
-        $request = $this->resetPasswordRequest($new_password_request, $contentType);
+        $request = $this->runScheduleRequest($schedule_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2704,19 +2227,20 @@ class AuthApi
     }
 
     /**
-     * Operation resetPasswordAsync
+     * Operation runScheduleAsync
      *
-     * Reset Password
+     * Run Schedule
      *
-     * @param  \FlowHunt\Model\NewPasswordRequest $new_password_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['runSchedule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resetPasswordAsync($new_password_request, string $contentType = self::contentTypes['resetPassword'][0])
+    public function runScheduleAsync($schedule_id, $workspace_id, string $contentType = self::contentTypes['runSchedule'][0])
     {
-        return $this->resetPasswordAsyncWithHttpInfo($new_password_request, $contentType)
+        return $this->runScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2725,20 +2249,21 @@ class AuthApi
     }
 
     /**
-     * Operation resetPasswordAsyncWithHttpInfo
+     * Operation runScheduleAsyncWithHttpInfo
      *
-     * Reset Password
+     * Run Schedule
      *
-     * @param  \FlowHunt\Model\NewPasswordRequest $new_password_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['runSchedule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resetPasswordAsyncWithHttpInfo($new_password_request, string $contentType = self::contentTypes['resetPassword'][0])
+    public function runScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, string $contentType = self::contentTypes['runSchedule'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->resetPasswordRequest($new_password_request, $contentType);
+        $request = $this->runScheduleRequest($schedule_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2777,32 +2302,422 @@ class AuthApi
     }
 
     /**
-     * Create request for operation 'resetPassword'
+     * Create request for operation 'runSchedule'
      *
-     * @param  \FlowHunt\Model\NewPasswordRequest $new_password_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetPassword'] to see the possible values for this operation
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['runSchedule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function resetPasswordRequest($new_password_request, string $contentType = self::contentTypes['resetPassword'][0])
+    public function runScheduleRequest($schedule_id, $workspace_id, string $contentType = self::contentTypes['runSchedule'][0])
     {
 
-        // verify the required parameter 'new_password_request' is set
-        if ($new_password_request === null || (is_array($new_password_request) && count($new_password_request) === 0)) {
+        // verify the required parameter 'schedule_id' is set
+        if ($schedule_id === null || (is_array($schedule_id) && count($schedule_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $new_password_request when calling resetPassword'
+                'Missing the required parameter $schedule_id when calling runSchedule'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling runSchedule'
             );
         }
 
 
-        $resourcePath = '/v2/auth/reset-password';
+        $resourcePath = '/v2/schedules/run/{schedule_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($schedule_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'schedule_id' . '}',
+                ObjectSerializer::toPathValue($schedule_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchScheduleUrls
+     *
+     * Search Schedule Urls
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUrlSearchRequest $schedule_url_search_request schedule_url_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchScheduleUrls'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ScheduleUrlResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchScheduleUrls($workspace_id, $schedule_url_search_request, string $contentType = self::contentTypes['searchScheduleUrls'][0])
+    {
+        list($response) = $this->searchScheduleUrlsWithHttpInfo($workspace_id, $schedule_url_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchScheduleUrlsWithHttpInfo
+     *
+     * Search Schedule Urls
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUrlSearchRequest $schedule_url_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchScheduleUrls'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ScheduleUrlResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchScheduleUrlsWithHttpInfo($workspace_id, $schedule_url_search_request, string $contentType = self::contentTypes['searchScheduleUrls'][0])
+    {
+        $request = $this->searchScheduleUrlsRequest($workspace_id, $schedule_url_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\ScheduleUrlResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\ScheduleUrlResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ScheduleUrlResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\ScheduleUrlResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ScheduleUrlResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchScheduleUrlsAsync
+     *
+     * Search Schedule Urls
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUrlSearchRequest $schedule_url_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchScheduleUrls'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchScheduleUrlsAsync($workspace_id, $schedule_url_search_request, string $contentType = self::contentTypes['searchScheduleUrls'][0])
+    {
+        return $this->searchScheduleUrlsAsyncWithHttpInfo($workspace_id, $schedule_url_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchScheduleUrlsAsyncWithHttpInfo
+     *
+     * Search Schedule Urls
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUrlSearchRequest $schedule_url_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchScheduleUrls'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchScheduleUrlsAsyncWithHttpInfo($workspace_id, $schedule_url_search_request, string $contentType = self::contentTypes['searchScheduleUrls'][0])
+    {
+        $returnType = '\FlowHunt\Model\ScheduleUrlResponse[]';
+        $request = $this->searchScheduleUrlsRequest($workspace_id, $schedule_url_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchScheduleUrls'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUrlSearchRequest $schedule_url_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchScheduleUrls'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchScheduleUrlsRequest($workspace_id, $schedule_url_search_request, string $contentType = self::contentTypes['searchScheduleUrls'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling searchScheduleUrls'
+            );
+        }
+
+        // verify the required parameter 'schedule_url_search_request' is set
+        if ($schedule_url_search_request === null || (is_array($schedule_url_search_request) && count($schedule_url_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_url_search_request when calling searchScheduleUrls'
+            );
+        }
+
+
+        $resourcePath = '/v2/schedules/urls/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
 
@@ -2814,12 +2729,12 @@ class AuthApi
         );
 
         // for model (json/xml)
-        if (isset($new_password_request)) {
+        if (isset($schedule_url_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($new_password_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($schedule_url_search_request));
             } else {
-                $httpBody = $new_password_request;
+                $httpBody = $schedule_url_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2845,6 +2760,15 @@ class AuthApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2861,6 +2785,398 @@ class AuthApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateSchedule
+     *
+     * Update Schedule
+     *
+     * @param  string $schedule_id schedule_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUpdateRequest $schedule_update_request schedule_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSchedule'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ScheduleResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function updateSchedule($schedule_id, $workspace_id, $schedule_update_request, string $contentType = self::contentTypes['updateSchedule'][0])
+    {
+        list($response) = $this->updateScheduleWithHttpInfo($schedule_id, $workspace_id, $schedule_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateScheduleWithHttpInfo
+     *
+     * Update Schedule
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUpdateRequest $schedule_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSchedule'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ScheduleResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateScheduleWithHttpInfo($schedule_id, $workspace_id, $schedule_update_request, string $contentType = self::contentTypes['updateSchedule'][0])
+    {
+        $request = $this->updateScheduleRequest($schedule_id, $workspace_id, $schedule_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\ScheduleResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\ScheduleResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ScheduleResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\ScheduleResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ScheduleResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateScheduleAsync
+     *
+     * Update Schedule
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUpdateRequest $schedule_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSchedule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateScheduleAsync($schedule_id, $workspace_id, $schedule_update_request, string $contentType = self::contentTypes['updateSchedule'][0])
+    {
+        return $this->updateScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, $schedule_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateScheduleAsyncWithHttpInfo
+     *
+     * Update Schedule
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUpdateRequest $schedule_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSchedule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateScheduleAsyncWithHttpInfo($schedule_id, $workspace_id, $schedule_update_request, string $contentType = self::contentTypes['updateSchedule'][0])
+    {
+        $returnType = '\FlowHunt\Model\ScheduleResponse';
+        $request = $this->updateScheduleRequest($schedule_id, $workspace_id, $schedule_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateSchedule'
+     *
+     * @param  string $schedule_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleUpdateRequest $schedule_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSchedule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateScheduleRequest($schedule_id, $workspace_id, $schedule_update_request, string $contentType = self::contentTypes['updateSchedule'][0])
+    {
+
+        // verify the required parameter 'schedule_id' is set
+        if ($schedule_id === null || (is_array($schedule_id) && count($schedule_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_id when calling updateSchedule'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updateSchedule'
+            );
+        }
+
+        // verify the required parameter 'schedule_update_request' is set
+        if ($schedule_update_request === null || (is_array($schedule_update_request) && count($schedule_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_update_request when calling updateSchedule'
+            );
+        }
+
+
+        $resourcePath = '/v2/schedules/{schedule_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($schedule_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'schedule_id' . '}',
+                ObjectSerializer::toPathValue($schedule_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($schedule_update_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($schedule_update_request));
+            } else {
+                $httpBody = $schedule_update_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -1,6 +1,6 @@
 <?php
 /**
- * SecretsApi
+ * TagsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use FlowHunt\HeaderSelector;
 use FlowHunt\ObjectSerializer;
 
 /**
- * SecretsApi Class Doc Comment
+ * TagsApi Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SecretsApi
+class TagsApi
 {
     /**
      * @var ClientInterface
@@ -71,19 +71,16 @@ class SecretsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createSecret' => [
+        'createTag' => [
             'application/json',
         ],
-        'deleteSecret' => [
+        'deleteTag' => [
             'application/json',
         ],
-        'getSecret' => [
+        'searchTags' => [
             'application/json',
         ],
-        'searchSecret' => [
-            'application/json',
-        ],
-        'updateSecret' => [
+        'updateTag' => [
             'application/json',
         ],
     ];
@@ -135,40 +132,40 @@ class SecretsApi
     }
 
     /**
-     * Operation createSecret
+     * Operation createTag
      *
-     * Create Secret
+     * Create Tag
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request secret_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function createSecret($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    public function createTag($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        list($response) = $this->createSecretWithHttpInfo($workspace_id, $secret_create_request, $contentType);
+        list($response) = $this->createTagWithHttpInfo($workspace_id, $tag_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createSecretWithHttpInfo
+     * Operation createTagWithHttpInfo
      *
-     * Create Secret
+     * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createSecretWithHttpInfo($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    public function createTagWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        $request = $this->createSecretRequest($workspace_id, $secret_create_request, $contentType);
+        $request = $this->createTagRequest($workspace_id, $tag_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,11 +192,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TagResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -217,7 +214,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -263,7 +260,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\SecretResponse';
+            $returnType = '\FlowHunt\Model\TagResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -296,7 +293,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\SecretResponse',
+                        '\FlowHunt\Model\TagResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -315,20 +312,20 @@ class SecretsApi
     }
 
     /**
-     * Operation createSecretAsync
+     * Operation createTagAsync
      *
-     * Create Secret
+     * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSecretAsync($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    public function createTagAsync($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        return $this->createSecretAsyncWithHttpInfo($workspace_id, $secret_create_request, $contentType)
+        return $this->createTagAsyncWithHttpInfo($workspace_id, $tag_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -337,21 +334,21 @@ class SecretsApi
     }
 
     /**
-     * Operation createSecretAsyncWithHttpInfo
+     * Operation createTagAsyncWithHttpInfo
      *
-     * Create Secret
+     * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSecretAsyncWithHttpInfo($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    public function createTagAsyncWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        $returnType = '\FlowHunt\Model\SecretResponse';
-        $request = $this->createSecretRequest($workspace_id, $secret_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\TagResponse';
+        $request = $this->createTagRequest($workspace_id, $tag_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -390,34 +387,34 @@ class SecretsApi
     }
 
     /**
-     * Create request for operation 'createSecret'
+     * Create request for operation 'createTag'
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createSecretRequest($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    public function createTagRequest($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createSecret'
+                'Missing the required parameter $workspace_id when calling createTag'
             );
         }
 
-        // verify the required parameter 'secret_create_request' is set
-        if ($secret_create_request === null || (is_array($secret_create_request) && count($secret_create_request) === 0)) {
+        // verify the required parameter 'tag_create_request' is set
+        if ($tag_create_request === null || (is_array($tag_create_request) && count($tag_create_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $secret_create_request when calling createSecret'
+                'Missing the required parameter $tag_create_request when calling createTag'
             );
         }
 
 
-        $resourcePath = '/v2/secrets/create';
+        $resourcePath = '/v2/tags/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -444,12 +441,12 @@ class SecretsApi
         );
 
         // for model (json/xml)
-        if (isset($secret_create_request)) {
+        if (isset($tag_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($secret_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_create_request));
             } else {
-                $httpBody = $secret_create_request;
+                $httpBody = $tag_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -475,6 +472,11 @@ class SecretsApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -502,40 +504,40 @@ class SecretsApi
     }
 
     /**
-     * Operation deleteSecret
+     * Operation deleteTag
      *
-     * Delete Secret
+     * Delete Tag
      *
-     * @param  string $secret_id secret_id (required)
+     * @param  string $tag_id tag_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function deleteSecret($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
+    public function deleteTag($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
-        list($response) = $this->deleteSecretWithHttpInfo($secret_id, $workspace_id, $contentType);
+        list($response) = $this->deleteTagWithHttpInfo($tag_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deleteSecretWithHttpInfo
+     * Operation deleteTagWithHttpInfo
      *
-     * Delete Secret
+     * Delete Tag
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteSecretWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
+    public function deleteTagWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
-        $request = $this->deleteSecretRequest($secret_id, $workspace_id, $contentType);
+        $request = $this->deleteTagRequest($tag_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -682,20 +684,20 @@ class SecretsApi
     }
 
     /**
-     * Operation deleteSecretAsync
+     * Operation deleteTagAsync
      *
-     * Delete Secret
+     * Delete Tag
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSecretAsync($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
+    public function deleteTagAsync($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
-        return $this->deleteSecretAsyncWithHttpInfo($secret_id, $workspace_id, $contentType)
+        return $this->deleteTagAsyncWithHttpInfo($tag_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -704,21 +706,21 @@ class SecretsApi
     }
 
     /**
-     * Operation deleteSecretAsyncWithHttpInfo
+     * Operation deleteTagAsyncWithHttpInfo
      *
-     * Delete Secret
+     * Delete Tag
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSecretAsyncWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
+    public function deleteTagAsyncWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->deleteSecretRequest($secret_id, $workspace_id, $contentType);
+        $request = $this->deleteTagRequest($tag_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -757,34 +759,34 @@ class SecretsApi
     }
 
     /**
-     * Create request for operation 'deleteSecret'
+     * Create request for operation 'deleteTag'
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSecretRequest($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
+    public function deleteTagRequest($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
 
-        // verify the required parameter 'secret_id' is set
-        if ($secret_id === null || (is_array($secret_id) && count($secret_id) === 0)) {
+        // verify the required parameter 'tag_id' is set
+        if ($tag_id === null || (is_array($tag_id) && count($tag_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $secret_id when calling deleteSecret'
+                'Missing the required parameter $tag_id when calling deleteTag'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteSecret'
+                'Missing the required parameter $workspace_id when calling deleteTag'
             );
         }
 
 
-        $resourcePath = '/v2/secrets/{secret_id}';
+        $resourcePath = '/v2/tags/{tag_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -803,10 +805,10 @@ class SecretsApi
 
 
         // path params
-        if ($secret_id !== null) {
+        if ($tag_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'secret_id' . '}',
-                ObjectSerializer::toPathValue($secret_id),
+                '{' . 'tag_id' . '}',
+                ObjectSerializer::toPathValue($tag_id),
                 $resourcePath
             );
         }
@@ -843,6 +845,11 @@ class SecretsApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -870,40 +877,40 @@ class SecretsApi
     }
 
     /**
-     * Operation getSecret
+     * Operation searchTags
      *
-     * Get Secret
+     * Search Tags
      *
-     * @param  string $secret_id secret_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TagResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function getSecret($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
+    public function searchTags($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        list($response) = $this->getSecretWithHttpInfo($secret_id, $workspace_id, $contentType);
+        list($response) = $this->searchTagsWithHttpInfo($workspace_id, $tag_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getSecretWithHttpInfo
+     * Operation searchTagsWithHttpInfo
      *
-     * Get Secret
+     * Search Tags
      *
-     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TagResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSecretWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
+    public function searchTagsWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        $request = $this->getSecretRequest($secret_id, $workspace_id, $contentType);
+        $request = $this->searchTagsRequest($workspace_id, $tag_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -930,11 +937,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TagResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TagResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -952,7 +959,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -998,7 +1005,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\SecretResponse';
+            $returnType = '\FlowHunt\Model\TagResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1031,7 +1038,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\SecretResponse',
+                        '\FlowHunt\Model\TagResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1050,20 +1057,20 @@ class SecretsApi
     }
 
     /**
-     * Operation getSecretAsync
+     * Operation searchTagsAsync
      *
-     * Get Secret
+     * Search Tags
      *
-     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecretAsync($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
+    public function searchTagsAsync($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        return $this->getSecretAsyncWithHttpInfo($secret_id, $workspace_id, $contentType)
+        return $this->searchTagsAsyncWithHttpInfo($workspace_id, $tag_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1072,21 +1079,21 @@ class SecretsApi
     }
 
     /**
-     * Operation getSecretAsyncWithHttpInfo
+     * Operation searchTagsAsyncWithHttpInfo
      *
-     * Get Secret
+     * Search Tags
      *
-     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecretAsyncWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
+    public function searchTagsAsyncWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        $returnType = '\FlowHunt\Model\SecretResponse';
-        $request = $this->getSecretRequest($secret_id, $workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\TagResponse[]';
+        $request = $this->searchTagsRequest($workspace_id, $tag_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1125,402 +1132,34 @@ class SecretsApi
     }
 
     /**
-     * Create request for operation 'getSecret'
+     * Create request for operation 'searchTags'
      *
-     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSecretRequest($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
-    {
-
-        // verify the required parameter 'secret_id' is set
-        if ($secret_id === null || (is_array($secret_id) && count($secret_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $secret_id when calling getSecret'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getSecret'
-            );
-        }
-
-
-        $resourcePath = '/v2/secrets/{secret_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($secret_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'secret_id' . '}',
-                ObjectSerializer::toPathValue($secret_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation searchSecret
-     *
-     * Search Secret
-     *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request secret_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\SecretResponse[]|\FlowHunt\Model\HTTPValidationError
-     */
-    public function searchSecret($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
-    {
-        list($response) = $this->searchSecretWithHttpInfo($workspace_id, $secret_search_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation searchSecretWithHttpInfo
-     *
-     * Search Secret
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\SecretResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function searchSecretWithHttpInfo($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
-    {
-        $request = $this->searchSecretRequest($workspace_id, $secret_search_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\SecretResponse[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\SecretResponse[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\SecretResponse[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\SecretResponse[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation searchSecretAsync
-     *
-     * Search Secret
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchSecretAsync($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
-    {
-        return $this->searchSecretAsyncWithHttpInfo($workspace_id, $secret_search_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation searchSecretAsyncWithHttpInfo
-     *
-     * Search Secret
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchSecretAsyncWithHttpInfo($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
-    {
-        $returnType = '\FlowHunt\Model\SecretResponse[]';
-        $request = $this->searchSecretRequest($workspace_id, $secret_search_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'searchSecret'
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function searchSecretRequest($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
+    public function searchTagsRequest($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchSecret'
+                'Missing the required parameter $workspace_id when calling searchTags'
             );
         }
 
-        // verify the required parameter 'secret_search_request' is set
-        if ($secret_search_request === null || (is_array($secret_search_request) && count($secret_search_request) === 0)) {
+        // verify the required parameter 'tag_search_request' is set
+        if ($tag_search_request === null || (is_array($tag_search_request) && count($tag_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $secret_search_request when calling searchSecret'
+                'Missing the required parameter $tag_search_request when calling searchTags'
             );
         }
 
 
-        $resourcePath = '/v2/secrets/search';
+        $resourcePath = '/v2/tags/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1547,12 +1186,12 @@ class SecretsApi
         );
 
         // for model (json/xml)
-        if (isset($secret_search_request)) {
+        if (isset($tag_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($secret_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_search_request));
             } else {
-                $httpBody = $secret_search_request;
+                $httpBody = $tag_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1578,6 +1217,11 @@ class SecretsApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -1605,42 +1249,42 @@ class SecretsApi
     }
 
     /**
-     * Operation updateSecret
+     * Operation updateTag
      *
-     * Update Secret
+     * Update Tag
      *
-     * @param  string $secret_id secret_id (required)
+     * @param  string $tag_id tag_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request secret_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function updateSecret($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
+    public function updateTag($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        list($response) = $this->updateSecretWithHttpInfo($secret_id, $workspace_id, $secret_update_request, $contentType);
+        list($response) = $this->updateTagWithHttpInfo($tag_id, $workspace_id, $tag_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateSecretWithHttpInfo
+     * Operation updateTagWithHttpInfo
      *
-     * Update Secret
+     * Update Tag
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateSecretWithHttpInfo($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
+    public function updateTagWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        $request = $this->updateSecretRequest($secret_id, $workspace_id, $secret_update_request, $contentType);
+        $request = $this->updateTagRequest($tag_id, $workspace_id, $tag_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1667,11 +1311,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TagResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1689,7 +1333,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1735,7 +1379,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\SecretResponse';
+            $returnType = '\FlowHunt\Model\TagResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1768,7 +1412,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\SecretResponse',
+                        '\FlowHunt\Model\TagResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1787,21 +1431,21 @@ class SecretsApi
     }
 
     /**
-     * Operation updateSecretAsync
+     * Operation updateTagAsync
      *
-     * Update Secret
+     * Update Tag
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateSecretAsync($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
+    public function updateTagAsync($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        return $this->updateSecretAsyncWithHttpInfo($secret_id, $workspace_id, $secret_update_request, $contentType)
+        return $this->updateTagAsyncWithHttpInfo($tag_id, $workspace_id, $tag_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1810,22 +1454,22 @@ class SecretsApi
     }
 
     /**
-     * Operation updateSecretAsyncWithHttpInfo
+     * Operation updateTagAsyncWithHttpInfo
      *
-     * Update Secret
+     * Update Tag
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateSecretAsyncWithHttpInfo($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
+    public function updateTagAsyncWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        $returnType = '\FlowHunt\Model\SecretResponse';
-        $request = $this->updateSecretRequest($secret_id, $workspace_id, $secret_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\TagResponse';
+        $request = $this->updateTagRequest($tag_id, $workspace_id, $tag_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1864,42 +1508,42 @@ class SecretsApi
     }
 
     /**
-     * Create request for operation 'updateSecret'
+     * Create request for operation 'updateTag'
      *
-     * @param  string $secret_id (required)
+     * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateSecretRequest($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
+    public function updateTagRequest($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
 
-        // verify the required parameter 'secret_id' is set
-        if ($secret_id === null || (is_array($secret_id) && count($secret_id) === 0)) {
+        // verify the required parameter 'tag_id' is set
+        if ($tag_id === null || (is_array($tag_id) && count($tag_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $secret_id when calling updateSecret'
+                'Missing the required parameter $tag_id when calling updateTag'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateSecret'
+                'Missing the required parameter $workspace_id when calling updateTag'
             );
         }
 
-        // verify the required parameter 'secret_update_request' is set
-        if ($secret_update_request === null || (is_array($secret_update_request) && count($secret_update_request) === 0)) {
+        // verify the required parameter 'tag_update_request' is set
+        if ($tag_update_request === null || (is_array($tag_update_request) && count($tag_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $secret_update_request when calling updateSecret'
+                'Missing the required parameter $tag_update_request when calling updateTag'
             );
         }
 
 
-        $resourcePath = '/v2/secrets/{secret_id}';
+        $resourcePath = '/v2/tags/{tag_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1918,10 +1562,10 @@ class SecretsApi
 
 
         // path params
-        if ($secret_id !== null) {
+        if ($tag_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'secret_id' . '}',
-                ObjectSerializer::toPathValue($secret_id),
+                '{' . 'tag_id' . '}',
+                ObjectSerializer::toPathValue($tag_id),
                 $resourcePath
             );
         }
@@ -1934,12 +1578,12 @@ class SecretsApi
         );
 
         // for model (json/xml)
-        if (isset($secret_update_request)) {
+        if (isset($tag_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($secret_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_update_request));
             } else {
-                $httpBody = $secret_update_request;
+                $httpBody = $tag_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1965,6 +1609,11 @@ class SecretsApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();

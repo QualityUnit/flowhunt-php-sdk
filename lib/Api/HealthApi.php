@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;

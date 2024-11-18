@@ -1,6 +1,6 @@
 <?php
 /**
- * PromptsApi
+ * GridsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use FlowHunt\HeaderSelector;
 use FlowHunt\ObjectSerializer;
 
 /**
- * PromptsApi Class Doc Comment
+ * GridsApi Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PromptsApi
+class GridsApi
 {
     /**
      * @var ClientInterface
@@ -71,28 +71,37 @@ class PromptsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createPrompt' => [
+        'createColumn' => [
             'application/json',
         ],
-        'createPromptCategory' => [
+        'createGrid' => [
             'application/json',
         ],
-        'deletePrompt' => [
+        'createGridRow' => [
             'application/json',
         ],
-        'deletePromptCategory' => [
+        'deleteGrid' => [
             'application/json',
         ],
-        'searchPromptCategories' => [
+        'deleteGridRow' => [
             'application/json',
         ],
-        'searchPrompts' => [
+        'searchColumns' => [
             'application/json',
         ],
-        'updatePrompt' => [
+        'searchGridRows' => [
             'application/json',
         ],
-        'updatePromptCategory' => [
+        'searchGrids' => [
+            'application/json',
+        ],
+        'updateColumn' => [
+            'application/json',
+        ],
+        'updateGrid' => [
+            'application/json',
+        ],
+        'updateGridRow' => [
             'application/json',
         ],
     ];
@@ -144,40 +153,42 @@ class PromptsApi
     }
 
     /**
-     * Operation createPrompt
+     * Operation createColumn
      *
-     * Create Prompt
+     * Create Column
      *
+     * @param  string $grid_id grid_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request prompt_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnCreateRequest $grid_column_create_request grid_column_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createColumn'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GridColumnResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function createPrompt($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    public function createColumn($grid_id, $workspace_id, $grid_column_create_request, string $contentType = self::contentTypes['createColumn'][0])
     {
-        list($response) = $this->createPromptWithHttpInfo($workspace_id, $prompt_create_request, $contentType);
+        list($response) = $this->createColumnWithHttpInfo($grid_id, $workspace_id, $grid_column_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createPromptWithHttpInfo
+     * Operation createColumnWithHttpInfo
      *
-     * Create Prompt
+     * Create Column
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnCreateRequest $grid_column_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createColumn'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GridColumnResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPromptWithHttpInfo($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    public function createColumnWithHttpInfo($grid_id, $workspace_id, $grid_column_create_request, string $contentType = self::contentTypes['createColumn'][0])
     {
-        $request = $this->createPromptRequest($workspace_id, $prompt_create_request, $contentType);
+        $request = $this->createColumnRequest($grid_id, $workspace_id, $grid_column_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -204,11 +215,11 @@ class PromptsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\PromptResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\GridColumnResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\PromptResponse' !== 'string') {
+                        if ('\FlowHunt\Model\GridColumnResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -226,7 +237,7 @@ class PromptsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridColumnResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -272,7 +283,7 @@ class PromptsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\PromptResponse';
+            $returnType = '\FlowHunt\Model\GridColumnResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -305,7 +316,7 @@ class PromptsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\PromptResponse',
+                        '\FlowHunt\Model\GridColumnResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -324,20 +335,21 @@ class PromptsApi
     }
 
     /**
-     * Operation createPromptAsync
+     * Operation createColumnAsync
      *
-     * Create Prompt
+     * Create Column
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnCreateRequest $grid_column_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createColumn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPromptAsync($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    public function createColumnAsync($grid_id, $workspace_id, $grid_column_create_request, string $contentType = self::contentTypes['createColumn'][0])
     {
-        return $this->createPromptAsyncWithHttpInfo($workspace_id, $prompt_create_request, $contentType)
+        return $this->createColumnAsyncWithHttpInfo($grid_id, $workspace_id, $grid_column_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -346,21 +358,22 @@ class PromptsApi
     }
 
     /**
-     * Operation createPromptAsyncWithHttpInfo
+     * Operation createColumnAsyncWithHttpInfo
      *
-     * Create Prompt
+     * Create Column
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnCreateRequest $grid_column_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createColumn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPromptAsyncWithHttpInfo($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    public function createColumnAsyncWithHttpInfo($grid_id, $workspace_id, $grid_column_create_request, string $contentType = self::contentTypes['createColumn'][0])
     {
-        $returnType = '\FlowHunt\Model\PromptResponse';
-        $request = $this->createPromptRequest($workspace_id, $prompt_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\GridColumnResponse';
+        $request = $this->createColumnRequest($grid_id, $workspace_id, $grid_column_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -399,34 +412,42 @@ class PromptsApi
     }
 
     /**
-     * Create request for operation 'createPrompt'
+     * Create request for operation 'createColumn'
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnCreateRequest $grid_column_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createColumn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPromptRequest($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    public function createColumnRequest($grid_id, $workspace_id, $grid_column_create_request, string $contentType = self::contentTypes['createColumn'][0])
     {
+
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_id when calling createColumn'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createPrompt'
+                'Missing the required parameter $workspace_id when calling createColumn'
             );
         }
 
-        // verify the required parameter 'prompt_create_request' is set
-        if ($prompt_create_request === null || (is_array($prompt_create_request) && count($prompt_create_request) === 0)) {
+        // verify the required parameter 'grid_column_create_request' is set
+        if ($grid_column_create_request === null || (is_array($grid_column_create_request) && count($grid_column_create_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_create_request when calling createPrompt'
+                'Missing the required parameter $grid_column_create_request when calling createColumn'
             );
         }
 
 
-        $resourcePath = '/v2/prompts/create';
+        $resourcePath = '/v2/grids/{grid_id}/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -444,6 +465,14 @@ class PromptsApi
         ) ?? []);
 
 
+        // path params
+        if ($grid_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -453,12 +482,12 @@ class PromptsApi
         );
 
         // for model (json/xml)
-        if (isset($prompt_create_request)) {
+        if (isset($grid_column_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_column_create_request));
             } else {
-                $httpBody = $prompt_create_request;
+                $httpBody = $grid_column_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -516,40 +545,40 @@ class PromptsApi
     }
 
     /**
-     * Operation createPromptCategory
+     * Operation createGrid
      *
-     * Create Prompt Category
+     * Create Grid
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request prompt_category_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridCreateRequest $grid_create_request grid_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGrid'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GridResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function createPromptCategory($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    public function createGrid($workspace_id, $grid_create_request, string $contentType = self::contentTypes['createGrid'][0])
     {
-        list($response) = $this->createPromptCategoryWithHttpInfo($workspace_id, $prompt_category_create_request, $contentType);
+        list($response) = $this->createGridWithHttpInfo($workspace_id, $grid_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createPromptCategoryWithHttpInfo
+     * Operation createGridWithHttpInfo
      *
-     * Create Prompt Category
+     * Create Grid
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridCreateRequest $grid_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGrid'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GridResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPromptCategoryWithHttpInfo($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    public function createGridWithHttpInfo($workspace_id, $grid_create_request, string $contentType = self::contentTypes['createGrid'][0])
     {
-        $request = $this->createPromptCategoryRequest($workspace_id, $prompt_category_create_request, $contentType);
+        $request = $this->createGridRequest($workspace_id, $grid_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -576,11 +605,11 @@ class PromptsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\PromptCategoryResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\GridResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\PromptCategoryResponse' !== 'string') {
+                        if ('\FlowHunt\Model\GridResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -598,7 +627,7 @@ class PromptsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptCategoryResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -644,7 +673,7 @@ class PromptsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\PromptCategoryResponse';
+            $returnType = '\FlowHunt\Model\GridResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -677,7 +706,7 @@ class PromptsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\PromptCategoryResponse',
+                        '\FlowHunt\Model\GridResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -696,20 +725,20 @@ class PromptsApi
     }
 
     /**
-     * Operation createPromptCategoryAsync
+     * Operation createGridAsync
      *
-     * Create Prompt Category
+     * Create Grid
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridCreateRequest $grid_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPromptCategoryAsync($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    public function createGridAsync($workspace_id, $grid_create_request, string $contentType = self::contentTypes['createGrid'][0])
     {
-        return $this->createPromptCategoryAsyncWithHttpInfo($workspace_id, $prompt_category_create_request, $contentType)
+        return $this->createGridAsyncWithHttpInfo($workspace_id, $grid_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -718,21 +747,21 @@ class PromptsApi
     }
 
     /**
-     * Operation createPromptCategoryAsyncWithHttpInfo
+     * Operation createGridAsyncWithHttpInfo
      *
-     * Create Prompt Category
+     * Create Grid
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridCreateRequest $grid_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPromptCategoryAsyncWithHttpInfo($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    public function createGridAsyncWithHttpInfo($workspace_id, $grid_create_request, string $contentType = self::contentTypes['createGrid'][0])
     {
-        $returnType = '\FlowHunt\Model\PromptCategoryResponse';
-        $request = $this->createPromptCategoryRequest($workspace_id, $prompt_category_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\GridResponse';
+        $request = $this->createGridRequest($workspace_id, $grid_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -771,34 +800,34 @@ class PromptsApi
     }
 
     /**
-     * Create request for operation 'createPromptCategory'
+     * Create request for operation 'createGrid'
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridCreateRequest $grid_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPromptCategoryRequest($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    public function createGridRequest($workspace_id, $grid_create_request, string $contentType = self::contentTypes['createGrid'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createPromptCategory'
+                'Missing the required parameter $workspace_id when calling createGrid'
             );
         }
 
-        // verify the required parameter 'prompt_category_create_request' is set
-        if ($prompt_category_create_request === null || (is_array($prompt_category_create_request) && count($prompt_category_create_request) === 0)) {
+        // verify the required parameter 'grid_create_request' is set
+        if ($grid_create_request === null || (is_array($grid_create_request) && count($grid_create_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_category_create_request when calling createPromptCategory'
+                'Missing the required parameter $grid_create_request when calling createGrid'
             );
         }
 
 
-        $resourcePath = '/v2/prompts/categories/create';
+        $resourcePath = '/v2/grids/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -825,12 +854,12 @@ class PromptsApi
         );
 
         // for model (json/xml)
-        if (isset($prompt_category_create_request)) {
+        if (isset($grid_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_create_request));
             } else {
-                $httpBody = $prompt_category_create_request;
+                $httpBody = $grid_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -888,40 +917,432 @@ class PromptsApi
     }
 
     /**
-     * Operation deletePrompt
+     * Operation createGridRow
      *
-     * Delete Prompt
+     * Create Grid Row
      *
-     * @param  string $prompt_id prompt_id (required)
+     * @param  string $grid_id grid_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridRowCreateRequest $grid_row_create_request grid_row_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGridRow'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GridRowResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function createGridRow($grid_id, $workspace_id, $grid_row_create_request, string $contentType = self::contentTypes['createGridRow'][0])
+    {
+        list($response) = $this->createGridRowWithHttpInfo($grid_id, $workspace_id, $grid_row_create_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createGridRowWithHttpInfo
+     *
+     * Create Grid Row
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowCreateRequest $grid_row_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGridRow'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GridRowResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createGridRowWithHttpInfo($grid_id, $workspace_id, $grid_row_create_request, string $contentType = self::contentTypes['createGridRow'][0])
+    {
+        $request = $this->createGridRowRequest($grid_id, $workspace_id, $grid_row_create_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\GridRowResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\GridRowResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridRowResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\GridRowResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GridRowResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createGridRowAsync
+     *
+     * Create Grid Row
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowCreateRequest $grid_row_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGridRow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createGridRowAsync($grid_id, $workspace_id, $grid_row_create_request, string $contentType = self::contentTypes['createGridRow'][0])
+    {
+        return $this->createGridRowAsyncWithHttpInfo($grid_id, $workspace_id, $grid_row_create_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createGridRowAsyncWithHttpInfo
+     *
+     * Create Grid Row
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowCreateRequest $grid_row_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGridRow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createGridRowAsyncWithHttpInfo($grid_id, $workspace_id, $grid_row_create_request, string $contentType = self::contentTypes['createGridRow'][0])
+    {
+        $returnType = '\FlowHunt\Model\GridRowResponse';
+        $request = $this->createGridRowRequest($grid_id, $workspace_id, $grid_row_create_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createGridRow'
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowCreateRequest $grid_row_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGridRow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createGridRowRequest($grid_id, $workspace_id, $grid_row_create_request, string $contentType = self::contentTypes['createGridRow'][0])
+    {
+
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_id when calling createGridRow'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createGridRow'
+            );
+        }
+
+        // verify the required parameter 'grid_row_create_request' is set
+        if ($grid_row_create_request === null || (is_array($grid_row_create_request) && count($grid_row_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_row_create_request when calling createGridRow'
+            );
+        }
+
+
+        $resourcePath = '/v2/grids/{grid_id}/create_row';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($grid_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($grid_row_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_row_create_request));
+            } else {
+                $httpBody = $grid_row_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteGrid
+     *
+     * Delete Grid
+     *
+     * @param  string $grid_id grid_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGrid'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function deletePrompt($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
+    public function deleteGrid($grid_id, $workspace_id, string $contentType = self::contentTypes['deleteGrid'][0])
     {
-        list($response) = $this->deletePromptWithHttpInfo($prompt_id, $workspace_id, $contentType);
+        list($response) = $this->deleteGridWithHttpInfo($grid_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deletePromptWithHttpInfo
+     * Operation deleteGridWithHttpInfo
      *
-     * Delete Prompt
+     * Delete Grid
      *
-     * @param  string $prompt_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGrid'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePromptWithHttpInfo($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
+    public function deleteGridWithHttpInfo($grid_id, $workspace_id, string $contentType = self::contentTypes['deleteGrid'][0])
     {
-        $request = $this->deletePromptRequest($prompt_id, $workspace_id, $contentType);
+        $request = $this->deleteGridRequest($grid_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1068,20 +1489,20 @@ class PromptsApi
     }
 
     /**
-     * Operation deletePromptAsync
+     * Operation deleteGridAsync
      *
-     * Delete Prompt
+     * Delete Grid
      *
-     * @param  string $prompt_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePromptAsync($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
+    public function deleteGridAsync($grid_id, $workspace_id, string $contentType = self::contentTypes['deleteGrid'][0])
     {
-        return $this->deletePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $contentType)
+        return $this->deleteGridAsyncWithHttpInfo($grid_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1090,21 +1511,21 @@ class PromptsApi
     }
 
     /**
-     * Operation deletePromptAsyncWithHttpInfo
+     * Operation deleteGridAsyncWithHttpInfo
      *
-     * Delete Prompt
+     * Delete Grid
      *
-     * @param  string $prompt_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePromptAsyncWithHttpInfo($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
+    public function deleteGridAsyncWithHttpInfo($grid_id, $workspace_id, string $contentType = self::contentTypes['deleteGrid'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->deletePromptRequest($prompt_id, $workspace_id, $contentType);
+        $request = $this->deleteGridRequest($grid_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1143,34 +1564,34 @@ class PromptsApi
     }
 
     /**
-     * Create request for operation 'deletePrompt'
+     * Create request for operation 'deleteGrid'
      *
-     * @param  string $prompt_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePromptRequest($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
+    public function deleteGridRequest($grid_id, $workspace_id, string $contentType = self::contentTypes['deleteGrid'][0])
     {
 
-        // verify the required parameter 'prompt_id' is set
-        if ($prompt_id === null || (is_array($prompt_id) && count($prompt_id) === 0)) {
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_id when calling deletePrompt'
+                'Missing the required parameter $grid_id when calling deleteGrid'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deletePrompt'
+                'Missing the required parameter $workspace_id when calling deleteGrid'
             );
         }
 
 
-        $resourcePath = '/v2/prompts/{prompt_id}';
+        $resourcePath = '/v2/grids/{grid_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1189,10 +1610,10 @@ class PromptsApi
 
 
         // path params
-        if ($prompt_id !== null) {
+        if ($grid_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'prompt_id' . '}',
-                ObjectSerializer::toPathValue($prompt_id),
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
                 $resourcePath
             );
         }
@@ -1261,40 +1682,42 @@ class PromptsApi
     }
 
     /**
-     * Operation deletePromptCategory
+     * Operation deleteGridRow
      *
-     * Delete Prompt Category
+     * Delete Grid Row
      *
-     * @param  string $cat_id cat_id (required)
+     * @param  string $grid_id grid_id (required)
+     * @param  string $col_id col_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGridRow'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function deletePromptCategory($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
+    public function deleteGridRow($grid_id, $col_id, $workspace_id, string $contentType = self::contentTypes['deleteGridRow'][0])
     {
-        list($response) = $this->deletePromptCategoryWithHttpInfo($cat_id, $workspace_id, $contentType);
+        list($response) = $this->deleteGridRowWithHttpInfo($grid_id, $col_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deletePromptCategoryWithHttpInfo
+     * Operation deleteGridRowWithHttpInfo
      *
-     * Delete Prompt Category
+     * Delete Grid Row
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGridRow'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePromptCategoryWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
+    public function deleteGridRowWithHttpInfo($grid_id, $col_id, $workspace_id, string $contentType = self::contentTypes['deleteGridRow'][0])
     {
-        $request = $this->deletePromptCategoryRequest($cat_id, $workspace_id, $contentType);
+        $request = $this->deleteGridRowRequest($grid_id, $col_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1441,20 +1864,21 @@ class PromptsApi
     }
 
     /**
-     * Operation deletePromptCategoryAsync
+     * Operation deleteGridRowAsync
      *
-     * Delete Prompt Category
+     * Delete Grid Row
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGridRow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePromptCategoryAsync($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
+    public function deleteGridRowAsync($grid_id, $col_id, $workspace_id, string $contentType = self::contentTypes['deleteGridRow'][0])
     {
-        return $this->deletePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $contentType)
+        return $this->deleteGridRowAsyncWithHttpInfo($grid_id, $col_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1463,21 +1887,22 @@ class PromptsApi
     }
 
     /**
-     * Operation deletePromptCategoryAsyncWithHttpInfo
+     * Operation deleteGridRowAsyncWithHttpInfo
      *
-     * Delete Prompt Category
+     * Delete Grid Row
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGridRow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
+    public function deleteGridRowAsyncWithHttpInfo($grid_id, $col_id, $workspace_id, string $contentType = self::contentTypes['deleteGridRow'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->deletePromptCategoryRequest($cat_id, $workspace_id, $contentType);
+        $request = $this->deleteGridRowRequest($grid_id, $col_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1516,34 +1941,42 @@ class PromptsApi
     }
 
     /**
-     * Create request for operation 'deletePromptCategory'
+     * Create request for operation 'deleteGridRow'
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGridRow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePromptCategoryRequest($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
+    public function deleteGridRowRequest($grid_id, $col_id, $workspace_id, string $contentType = self::contentTypes['deleteGridRow'][0])
     {
 
-        // verify the required parameter 'cat_id' is set
-        if ($cat_id === null || (is_array($cat_id) && count($cat_id) === 0)) {
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $cat_id when calling deletePromptCategory'
+                'Missing the required parameter $grid_id when calling deleteGridRow'
+            );
+        }
+
+        // verify the required parameter 'col_id' is set
+        if ($col_id === null || (is_array($col_id) && count($col_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $col_id when calling deleteGridRow'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deletePromptCategory'
+                'Missing the required parameter $workspace_id when calling deleteGridRow'
             );
         }
 
 
-        $resourcePath = '/v2/prompts/categories/{cat_id}';
+        $resourcePath = '/v2/grids/{grid_id}/{col_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1562,10 +1995,18 @@ class PromptsApi
 
 
         // path params
-        if ($cat_id !== null) {
+        if ($grid_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'cat_id' . '}',
-                ObjectSerializer::toPathValue($cat_id),
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($col_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'col_id' . '}',
+                ObjectSerializer::toPathValue($col_id),
                 $resourcePath
             );
         }
@@ -1634,40 +2075,42 @@ class PromptsApi
     }
 
     /**
-     * Operation searchPromptCategories
+     * Operation searchColumns
      *
-     * Search Prompt Categories
+     * Search Columns
      *
+     * @param  string $grid_id grid_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request prompt_category_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnSearchRequest $grid_column_search_request grid_column_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchColumns'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\PromptCategoryResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GridColumnResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function searchPromptCategories($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
+    public function searchColumns($grid_id, $workspace_id, $grid_column_search_request, string $contentType = self::contentTypes['searchColumns'][0])
     {
-        list($response) = $this->searchPromptCategoriesWithHttpInfo($workspace_id, $prompt_category_search_request, $contentType);
+        list($response) = $this->searchColumnsWithHttpInfo($grid_id, $workspace_id, $grid_column_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchPromptCategoriesWithHttpInfo
+     * Operation searchColumnsWithHttpInfo
      *
-     * Search Prompt Categories
+     * Search Columns
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnSearchRequest $grid_column_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchColumns'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\PromptCategoryResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GridColumnResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchPromptCategoriesWithHttpInfo($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
+    public function searchColumnsWithHttpInfo($grid_id, $workspace_id, $grid_column_search_request, string $contentType = self::contentTypes['searchColumns'][0])
     {
-        $request = $this->searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, $contentType);
+        $request = $this->searchColumnsRequest($grid_id, $workspace_id, $grid_column_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1694,11 +2137,11 @@ class PromptsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\PromptCategoryResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\GridColumnResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\PromptCategoryResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\GridColumnResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1716,7 +2159,7 @@ class PromptsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptCategoryResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridColumnResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1762,7 +2205,7 @@ class PromptsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\PromptCategoryResponse[]';
+            $returnType = '\FlowHunt\Model\GridColumnResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1795,7 +2238,7 @@ class PromptsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\PromptCategoryResponse[]',
+                        '\FlowHunt\Model\GridColumnResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1814,20 +2257,21 @@ class PromptsApi
     }
 
     /**
-     * Operation searchPromptCategoriesAsync
+     * Operation searchColumnsAsync
      *
-     * Search Prompt Categories
+     * Search Columns
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnSearchRequest $grid_column_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchColumns'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchPromptCategoriesAsync($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
+    public function searchColumnsAsync($grid_id, $workspace_id, $grid_column_search_request, string $contentType = self::contentTypes['searchColumns'][0])
     {
-        return $this->searchPromptCategoriesAsyncWithHttpInfo($workspace_id, $prompt_category_search_request, $contentType)
+        return $this->searchColumnsAsyncWithHttpInfo($grid_id, $workspace_id, $grid_column_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1836,21 +2280,22 @@ class PromptsApi
     }
 
     /**
-     * Operation searchPromptCategoriesAsyncWithHttpInfo
+     * Operation searchColumnsAsyncWithHttpInfo
      *
-     * Search Prompt Categories
+     * Search Columns
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnSearchRequest $grid_column_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchColumns'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchPromptCategoriesAsyncWithHttpInfo($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
+    public function searchColumnsAsyncWithHttpInfo($grid_id, $workspace_id, $grid_column_search_request, string $contentType = self::contentTypes['searchColumns'][0])
     {
-        $returnType = '\FlowHunt\Model\PromptCategoryResponse[]';
-        $request = $this->searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, $contentType);
+        $returnType = '\FlowHunt\Model\GridColumnResponse[]';
+        $request = $this->searchColumnsRequest($grid_id, $workspace_id, $grid_column_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1889,790 +2334,42 @@ class PromptsApi
     }
 
     /**
-     * Create request for operation 'searchPromptCategories'
+     * Create request for operation 'searchColumns'
      *
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridColumnSearchRequest $grid_column_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchColumns'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
+    public function searchColumnsRequest($grid_id, $workspace_id, $grid_column_search_request, string $contentType = self::contentTypes['searchColumns'][0])
     {
 
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchPromptCategories'
-            );
-        }
-
-        // verify the required parameter 'prompt_category_search_request' is set
-        if ($prompt_category_search_request === null || (is_array($prompt_category_search_request) && count($prompt_category_search_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_category_search_request when calling searchPromptCategories'
-            );
-        }
-
-
-        $resourcePath = '/v2/prompts/categories/search';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($prompt_category_search_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_search_request));
-            } else {
-                $httpBody = $prompt_category_search_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation searchPrompts
-     *
-     * Search Prompts
-     *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request prompt_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\PromptResponse[]|\FlowHunt\Model\HTTPValidationError
-     */
-    public function searchPrompts($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
-    {
-        list($response) = $this->searchPromptsWithHttpInfo($workspace_id, $prompt_search_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation searchPromptsWithHttpInfo
-     *
-     * Search Prompts
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\PromptResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function searchPromptsWithHttpInfo($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
-    {
-        $request = $this->searchPromptsRequest($workspace_id, $prompt_search_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\PromptResponse[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\PromptResponse[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptResponse[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\PromptResponse[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\PromptResponse[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation searchPromptsAsync
-     *
-     * Search Prompts
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchPromptsAsync($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
-    {
-        return $this->searchPromptsAsyncWithHttpInfo($workspace_id, $prompt_search_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation searchPromptsAsyncWithHttpInfo
-     *
-     * Search Prompts
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchPromptsAsyncWithHttpInfo($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
-    {
-        $returnType = '\FlowHunt\Model\PromptResponse[]';
-        $request = $this->searchPromptsRequest($workspace_id, $prompt_search_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'searchPrompts'
-     *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function searchPromptsRequest($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
-    {
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchPrompts'
-            );
-        }
-
-        // verify the required parameter 'prompt_search_request' is set
-        if ($prompt_search_request === null || (is_array($prompt_search_request) && count($prompt_search_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_search_request when calling searchPrompts'
-            );
-        }
-
-
-        $resourcePath = '/v2/prompts/search';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($prompt_search_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_search_request));
-            } else {
-                $httpBody = $prompt_search_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updatePrompt
-     *
-     * Update Prompt
-     *
-     * @param  string $prompt_id prompt_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request prompt_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function updatePrompt($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
-    {
-        list($response) = $this->updatePromptWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation updatePromptWithHttpInfo
-     *
-     * Update Prompt
-     *
-     * @param  string $prompt_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updatePromptWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
-    {
-        $request = $this->updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\PromptResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\PromptResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\PromptResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\PromptResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updatePromptAsync
-     *
-     * Update Prompt
-     *
-     * @param  string $prompt_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updatePromptAsync($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
-    {
-        return $this->updatePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updatePromptAsyncWithHttpInfo
-     *
-     * Update Prompt
-     *
-     * @param  string $prompt_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updatePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
-    {
-        $returnType = '\FlowHunt\Model\PromptResponse';
-        $request = $this->updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updatePrompt'
-     *
-     * @param  string $prompt_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
-    {
-
-        // verify the required parameter 'prompt_id' is set
-        if ($prompt_id === null || (is_array($prompt_id) && count($prompt_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_id when calling updatePrompt'
+                'Missing the required parameter $grid_id when calling searchColumns'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updatePrompt'
+                'Missing the required parameter $workspace_id when calling searchColumns'
             );
         }
 
-        // verify the required parameter 'prompt_update_request' is set
-        if ($prompt_update_request === null || (is_array($prompt_update_request) && count($prompt_update_request) === 0)) {
+        // verify the required parameter 'grid_column_search_request' is set
+        if ($grid_column_search_request === null || (is_array($grid_column_search_request) && count($grid_column_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_update_request when calling updatePrompt'
+                'Missing the required parameter $grid_column_search_request when calling searchColumns'
             );
         }
 
 
-        $resourcePath = '/v2/prompts/{prompt_id}';
+        $resourcePath = '/v2/grids/{grid_id}/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2691,10 +2388,10 @@ class PromptsApi
 
 
         // path params
-        if ($prompt_id !== null) {
+        if ($grid_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'prompt_id' . '}',
-                ObjectSerializer::toPathValue($prompt_id),
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
                 $resourcePath
             );
         }
@@ -2707,12 +2404,1188 @@ class PromptsApi
         );
 
         // for model (json/xml)
-        if (isset($prompt_update_request)) {
+        if (isset($grid_column_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_column_search_request));
             } else {
-                $httpBody = $prompt_update_request;
+                $httpBody = $grid_column_search_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchGridRows
+     *
+     * Search Grid Rows
+     *
+     * @param  string $grid_id grid_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowSearchRequest $grid_row_search_request grid_row_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGridRows'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GridRowResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchGridRows($grid_id, $workspace_id, $grid_row_search_request, string $contentType = self::contentTypes['searchGridRows'][0])
+    {
+        list($response) = $this->searchGridRowsWithHttpInfo($grid_id, $workspace_id, $grid_row_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchGridRowsWithHttpInfo
+     *
+     * Search Grid Rows
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowSearchRequest $grid_row_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGridRows'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GridRowResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchGridRowsWithHttpInfo($grid_id, $workspace_id, $grid_row_search_request, string $contentType = self::contentTypes['searchGridRows'][0])
+    {
+        $request = $this->searchGridRowsRequest($grid_id, $workspace_id, $grid_row_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\GridRowResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\GridRowResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridRowResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\GridRowResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GridRowResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchGridRowsAsync
+     *
+     * Search Grid Rows
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowSearchRequest $grid_row_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGridRows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchGridRowsAsync($grid_id, $workspace_id, $grid_row_search_request, string $contentType = self::contentTypes['searchGridRows'][0])
+    {
+        return $this->searchGridRowsAsyncWithHttpInfo($grid_id, $workspace_id, $grid_row_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchGridRowsAsyncWithHttpInfo
+     *
+     * Search Grid Rows
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowSearchRequest $grid_row_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGridRows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchGridRowsAsyncWithHttpInfo($grid_id, $workspace_id, $grid_row_search_request, string $contentType = self::contentTypes['searchGridRows'][0])
+    {
+        $returnType = '\FlowHunt\Model\GridRowResponse[]';
+        $request = $this->searchGridRowsRequest($grid_id, $workspace_id, $grid_row_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchGridRows'
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridRowSearchRequest $grid_row_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGridRows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchGridRowsRequest($grid_id, $workspace_id, $grid_row_search_request, string $contentType = self::contentTypes['searchGridRows'][0])
+    {
+
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_id when calling searchGridRows'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling searchGridRows'
+            );
+        }
+
+        // verify the required parameter 'grid_row_search_request' is set
+        if ($grid_row_search_request === null || (is_array($grid_row_search_request) && count($grid_row_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_row_search_request when calling searchGridRows'
+            );
+        }
+
+
+        $resourcePath = '/v2/grids/{grid_id}/search_rows';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($grid_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($grid_row_search_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_row_search_request));
+            } else {
+                $httpBody = $grid_row_search_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchGrids
+     *
+     * Search Grids
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\GridSearchRequest $grid_search_request grid_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGrids'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GridResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchGrids($workspace_id, $grid_search_request, string $contentType = self::contentTypes['searchGrids'][0])
+    {
+        list($response) = $this->searchGridsWithHttpInfo($workspace_id, $grid_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchGridsWithHttpInfo
+     *
+     * Search Grids
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridSearchRequest $grid_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGrids'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GridResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchGridsWithHttpInfo($workspace_id, $grid_search_request, string $contentType = self::contentTypes['searchGrids'][0])
+    {
+        $request = $this->searchGridsRequest($workspace_id, $grid_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\GridResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\GridResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\GridResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GridResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchGridsAsync
+     *
+     * Search Grids
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridSearchRequest $grid_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGrids'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchGridsAsync($workspace_id, $grid_search_request, string $contentType = self::contentTypes['searchGrids'][0])
+    {
+        return $this->searchGridsAsyncWithHttpInfo($workspace_id, $grid_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchGridsAsyncWithHttpInfo
+     *
+     * Search Grids
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridSearchRequest $grid_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGrids'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchGridsAsyncWithHttpInfo($workspace_id, $grid_search_request, string $contentType = self::contentTypes['searchGrids'][0])
+    {
+        $returnType = '\FlowHunt\Model\GridResponse[]';
+        $request = $this->searchGridsRequest($workspace_id, $grid_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchGrids'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridSearchRequest $grid_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchGrids'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchGridsRequest($workspace_id, $grid_search_request, string $contentType = self::contentTypes['searchGrids'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling searchGrids'
+            );
+        }
+
+        // verify the required parameter 'grid_search_request' is set
+        if ($grid_search_request === null || (is_array($grid_search_request) && count($grid_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_search_request when calling searchGrids'
+            );
+        }
+
+
+        $resourcePath = '/v2/grids/search';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($grid_search_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_search_request));
+            } else {
+                $httpBody = $grid_search_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateColumn
+     *
+     * Update Column
+     *
+     * @param  string $grid_id grid_id (required)
+     * @param  string $col_id col_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\GridColumnUpdateRequest $grid_column_update_request grid_column_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateColumn'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GridColumnResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function updateColumn($grid_id, $col_id, $workspace_id, $grid_column_update_request, string $contentType = self::contentTypes['updateColumn'][0])
+    {
+        list($response) = $this->updateColumnWithHttpInfo($grid_id, $col_id, $workspace_id, $grid_column_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateColumnWithHttpInfo
+     *
+     * Update Column
+     *
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridColumnUpdateRequest $grid_column_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateColumn'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GridColumnResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateColumnWithHttpInfo($grid_id, $col_id, $workspace_id, $grid_column_update_request, string $contentType = self::contentTypes['updateColumn'][0])
+    {
+        $request = $this->updateColumnRequest($grid_id, $col_id, $workspace_id, $grid_column_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\GridColumnResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\GridColumnResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridColumnResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\GridColumnResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GridColumnResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateColumnAsync
+     *
+     * Update Column
+     *
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridColumnUpdateRequest $grid_column_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateColumn'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateColumnAsync($grid_id, $col_id, $workspace_id, $grid_column_update_request, string $contentType = self::contentTypes['updateColumn'][0])
+    {
+        return $this->updateColumnAsyncWithHttpInfo($grid_id, $col_id, $workspace_id, $grid_column_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateColumnAsyncWithHttpInfo
+     *
+     * Update Column
+     *
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridColumnUpdateRequest $grid_column_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateColumn'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateColumnAsyncWithHttpInfo($grid_id, $col_id, $workspace_id, $grid_column_update_request, string $contentType = self::contentTypes['updateColumn'][0])
+    {
+        $returnType = '\FlowHunt\Model\GridColumnResponse';
+        $request = $this->updateColumnRequest($grid_id, $col_id, $workspace_id, $grid_column_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateColumn'
+     *
+     * @param  string $grid_id (required)
+     * @param  string $col_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GridColumnUpdateRequest $grid_column_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateColumn'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateColumnRequest($grid_id, $col_id, $workspace_id, $grid_column_update_request, string $contentType = self::contentTypes['updateColumn'][0])
+    {
+
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_id when calling updateColumn'
+            );
+        }
+
+        // verify the required parameter 'col_id' is set
+        if ($col_id === null || (is_array($col_id) && count($col_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $col_id when calling updateColumn'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updateColumn'
+            );
+        }
+
+        // verify the required parameter 'grid_column_update_request' is set
+        if ($grid_column_update_request === null || (is_array($grid_column_update_request) && count($grid_column_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_column_update_request when calling updateColumn'
+            );
+        }
+
+
+        $resourcePath = '/v2/grids/{grid_id}/{col_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($grid_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($col_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'col_id' . '}',
+                ObjectSerializer::toPathValue($col_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($grid_column_update_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_column_update_request));
+            } else {
+                $httpBody = $grid_column_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2770,42 +3643,42 @@ class PromptsApi
     }
 
     /**
-     * Operation updatePromptCategory
+     * Operation updateGrid
      *
-     * Update Prompt Category
+     * Update Grid
      *
-     * @param  string $cat_id cat_id (required)
+     * @param  string $grid_id grid_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request prompt_category_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridUpdateRequest $grid_update_request grid_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGrid'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GridResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function updatePromptCategory($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
+    public function updateGrid($grid_id, $workspace_id, $grid_update_request, string $contentType = self::contentTypes['updateGrid'][0])
     {
-        list($response) = $this->updatePromptCategoryWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
+        list($response) = $this->updateGridWithHttpInfo($grid_id, $workspace_id, $grid_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updatePromptCategoryWithHttpInfo
+     * Operation updateGridWithHttpInfo
      *
-     * Update Prompt Category
+     * Update Grid
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridUpdateRequest $grid_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGrid'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GridResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePromptCategoryWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
+    public function updateGridWithHttpInfo($grid_id, $workspace_id, $grid_update_request, string $contentType = self::contentTypes['updateGrid'][0])
     {
-        $request = $this->updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
+        $request = $this->updateGridRequest($grid_id, $workspace_id, $grid_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2832,11 +3705,11 @@ class PromptsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\PromptCategoryResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\GridResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\PromptCategoryResponse' !== 'string') {
+                        if ('\FlowHunt\Model\GridResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2854,7 +3727,7 @@ class PromptsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptCategoryResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2900,7 +3773,7 @@ class PromptsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\PromptCategoryResponse';
+            $returnType = '\FlowHunt\Model\GridResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2933,7 +3806,7 @@ class PromptsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\PromptCategoryResponse',
+                        '\FlowHunt\Model\GridResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2952,21 +3825,21 @@ class PromptsApi
     }
 
     /**
-     * Operation updatePromptCategoryAsync
+     * Operation updateGridAsync
      *
-     * Update Prompt Category
+     * Update Grid
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridUpdateRequest $grid_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePromptCategoryAsync($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
+    public function updateGridAsync($grid_id, $workspace_id, $grid_update_request, string $contentType = self::contentTypes['updateGrid'][0])
     {
-        return $this->updatePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, $contentType)
+        return $this->updateGridAsyncWithHttpInfo($grid_id, $workspace_id, $grid_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2975,22 +3848,22 @@ class PromptsApi
     }
 
     /**
-     * Operation updatePromptCategoryAsyncWithHttpInfo
+     * Operation updateGridAsyncWithHttpInfo
      *
-     * Update Prompt Category
+     * Update Grid
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridUpdateRequest $grid_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
+    public function updateGridAsyncWithHttpInfo($grid_id, $workspace_id, $grid_update_request, string $contentType = self::contentTypes['updateGrid'][0])
     {
-        $returnType = '\FlowHunt\Model\PromptCategoryResponse';
-        $request = $this->updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\GridResponse';
+        $request = $this->updateGridRequest($grid_id, $workspace_id, $grid_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3029,42 +3902,42 @@ class PromptsApi
     }
 
     /**
-     * Create request for operation 'updatePromptCategory'
+     * Create request for operation 'updateGrid'
      *
-     * @param  string $cat_id (required)
+     * @param  string $grid_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GridUpdateRequest $grid_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGrid'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
+    public function updateGridRequest($grid_id, $workspace_id, $grid_update_request, string $contentType = self::contentTypes['updateGrid'][0])
     {
 
-        // verify the required parameter 'cat_id' is set
-        if ($cat_id === null || (is_array($cat_id) && count($cat_id) === 0)) {
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $cat_id when calling updatePromptCategory'
+                'Missing the required parameter $grid_id when calling updateGrid'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updatePromptCategory'
+                'Missing the required parameter $workspace_id when calling updateGrid'
             );
         }
 
-        // verify the required parameter 'prompt_category_update_request' is set
-        if ($prompt_category_update_request === null || (is_array($prompt_category_update_request) && count($prompt_category_update_request) === 0)) {
+        // verify the required parameter 'grid_update_request' is set
+        if ($grid_update_request === null || (is_array($grid_update_request) && count($grid_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $prompt_category_update_request when calling updatePromptCategory'
+                'Missing the required parameter $grid_update_request when calling updateGrid'
             );
         }
 
 
-        $resourcePath = '/v2/prompts/categories/{cat_id}';
+        $resourcePath = '/v2/grids/{grid_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3083,10 +3956,10 @@ class PromptsApi
 
 
         // path params
-        if ($cat_id !== null) {
+        if ($grid_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'cat_id' . '}',
-                ObjectSerializer::toPathValue($cat_id),
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
                 $resourcePath
             );
         }
@@ -3099,12 +3972,425 @@ class PromptsApi
         );
 
         // for model (json/xml)
-        if (isset($prompt_category_update_request)) {
+        if (isset($grid_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_update_request));
             } else {
-                $httpBody = $prompt_category_update_request;
+                $httpBody = $grid_update_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateGridRow
+     *
+     * Update Grid Row
+     *
+     * @param  string $grid_id grid_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $row_id row_id (required)
+     * @param  \FlowHunt\Model\GridRowUpdateRequest $grid_row_update_request grid_row_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGridRow'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GridRowResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function updateGridRow($grid_id, $workspace_id, $row_id, $grid_row_update_request, string $contentType = self::contentTypes['updateGridRow'][0])
+    {
+        list($response) = $this->updateGridRowWithHttpInfo($grid_id, $workspace_id, $row_id, $grid_row_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateGridRowWithHttpInfo
+     *
+     * Update Grid Row
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $row_id (required)
+     * @param  \FlowHunt\Model\GridRowUpdateRequest $grid_row_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGridRow'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GridRowResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateGridRowWithHttpInfo($grid_id, $workspace_id, $row_id, $grid_row_update_request, string $contentType = self::contentTypes['updateGridRow'][0])
+    {
+        $request = $this->updateGridRowRequest($grid_id, $workspace_id, $row_id, $grid_row_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\GridRowResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\GridRowResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GridRowResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\GridRowResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GridRowResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateGridRowAsync
+     *
+     * Update Grid Row
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $row_id (required)
+     * @param  \FlowHunt\Model\GridRowUpdateRequest $grid_row_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGridRow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateGridRowAsync($grid_id, $workspace_id, $row_id, $grid_row_update_request, string $contentType = self::contentTypes['updateGridRow'][0])
+    {
+        return $this->updateGridRowAsyncWithHttpInfo($grid_id, $workspace_id, $row_id, $grid_row_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateGridRowAsyncWithHttpInfo
+     *
+     * Update Grid Row
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $row_id (required)
+     * @param  \FlowHunt\Model\GridRowUpdateRequest $grid_row_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGridRow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateGridRowAsyncWithHttpInfo($grid_id, $workspace_id, $row_id, $grid_row_update_request, string $contentType = self::contentTypes['updateGridRow'][0])
+    {
+        $returnType = '\FlowHunt\Model\GridRowResponse';
+        $request = $this->updateGridRowRequest($grid_id, $workspace_id, $row_id, $grid_row_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateGridRow'
+     *
+     * @param  string $grid_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $row_id (required)
+     * @param  \FlowHunt\Model\GridRowUpdateRequest $grid_row_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGridRow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateGridRowRequest($grid_id, $workspace_id, $row_id, $grid_row_update_request, string $contentType = self::contentTypes['updateGridRow'][0])
+    {
+
+        // verify the required parameter 'grid_id' is set
+        if ($grid_id === null || (is_array($grid_id) && count($grid_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_id when calling updateGridRow'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updateGridRow'
+            );
+        }
+
+        // verify the required parameter 'row_id' is set
+        if ($row_id === null || (is_array($row_id) && count($row_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $row_id when calling updateGridRow'
+            );
+        }
+
+        // verify the required parameter 'grid_row_update_request' is set
+        if ($grid_row_update_request === null || (is_array($grid_row_update_request) && count($grid_row_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $grid_row_update_request when calling updateGridRow'
+            );
+        }
+
+
+        $resourcePath = '/v2/grids/{grid_id}/row_id';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $row_id,
+            'row_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($grid_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'grid_id' . '}',
+                ObjectSerializer::toPathValue($grid_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($grid_row_update_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($grid_row_update_request));
+            } else {
+                $httpBody = $grid_row_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

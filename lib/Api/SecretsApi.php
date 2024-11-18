@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionsApi
+ * SecretsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use FlowHunt\HeaderSelector;
 use FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionsApi Class Doc Comment
+ * SecretsApi Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FlowSessionsApi
+class SecretsApi
 {
     /**
      * @var ClientInterface
@@ -71,16 +71,19 @@ class FlowSessionsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'deleteChatbotSessionView' => [
+        'createSecret' => [
             'application/json',
         ],
-        'getChatbotSessionView' => [
+        'deleteSecret' => [
             'application/json',
         ],
-        'searchChatbotSessionsView' => [
+        'getSecret' => [
             'application/json',
         ],
-        'updateChatbotSessionView' => [
+        'searchSecret' => [
+            'application/json',
+        ],
+        'updateSecret' => [
             'application/json',
         ],
     ];
@@ -132,40 +135,407 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionView
+     * Operation createSecret
      *
-     * Delete Chatbot Session View
+     * Create Secret
      *
-     * @param  string $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request secret_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function createSecret($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    {
+        list($response) = $this->createSecretWithHttpInfo($workspace_id, $secret_create_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createSecretWithHttpInfo
+     *
+     * Create Secret
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createSecretWithHttpInfo($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    {
+        $request = $this->createSecretRequest($workspace_id, $secret_create_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\SecretResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\SecretResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createSecretAsync
+     *
+     * Create Secret
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createSecretAsync($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    {
+        return $this->createSecretAsyncWithHttpInfo($workspace_id, $secret_create_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createSecretAsyncWithHttpInfo
+     *
+     * Create Secret
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createSecretAsyncWithHttpInfo($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    {
+        $returnType = '\FlowHunt\Model\SecretResponse';
+        $request = $this->createSecretRequest($workspace_id, $secret_create_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createSecret'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createSecretRequest($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createSecret'
+            );
+        }
+
+        // verify the required parameter 'secret_create_request' is set
+        if ($secret_create_request === null || (is_array($secret_create_request) && count($secret_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $secret_create_request when calling createSecret'
+            );
+        }
+
+
+        $resourcePath = '/v2/secrets/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($secret_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($secret_create_request));
+            } else {
+                $httpBody = $secret_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteSecret
+     *
+     * Delete Secret
+     *
+     * @param  string $secret_id secret_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function deleteChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function deleteSecret($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
-        list($response) = $this->deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
+        list($response) = $this->deleteSecretWithHttpInfo($secret_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deleteChatbotSessionViewWithHttpInfo
+     * Operation deleteSecretWithHttpInfo
      *
-     * Delete Chatbot Session View
+     * Delete Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function deleteSecretWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
-        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $request = $this->deleteSecretRequest($secret_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -312,20 +682,20 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionViewAsync
+     * Operation deleteSecretAsync
      *
-     * Delete Chatbot Session View
+     * Delete Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function deleteSecretAsync($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
-        return $this->deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
+        return $this->deleteSecretAsyncWithHttpInfo($secret_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -334,21 +704,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionViewAsyncWithHttpInfo
+     * Operation deleteSecretAsyncWithHttpInfo
      *
-     * Delete Chatbot Session View
+     * Delete Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function deleteSecretAsyncWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $request = $this->deleteSecretRequest($secret_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -387,34 +757,34 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'deleteChatbotSessionView'
+     * Create request for operation 'deleteSecret'
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function deleteSecretRequest($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
 
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
+        // verify the required parameter 'secret_id' is set
+        if ($secret_id === null || (is_array($secret_id) && count($secret_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling deleteChatbotSessionView'
+                'Missing the required parameter $secret_id when calling deleteSecret'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteChatbotSessionView'
+                'Missing the required parameter $workspace_id when calling deleteSecret'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
+        $resourcePath = '/v2/secrets/{secret_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -433,10 +803,10 @@ class FlowSessionsApi
 
 
         // path params
-        if ($session_id !== null) {
+        if ($secret_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
+                '{' . 'secret_id' . '}',
+                ObjectSerializer::toPathValue($secret_id),
                 $resourcePath
             );
         }
@@ -473,11 +843,6 @@ class FlowSessionsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -505,40 +870,40 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation getChatbotSessionView
+     * Operation getSecret
      *
-     * Get Chatbot Session View
+     * Get Secret
      *
-     * @param  string $session_id session_id (required)
+     * @param  string $secret_id secret_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
+    public function getSecret($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
-        list($response) = $this->getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
+        list($response) = $this->getSecretWithHttpInfo($secret_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getChatbotSessionViewWithHttpInfo
+     * Operation getSecretWithHttpInfo
      *
-     * Get Chatbot Session View
+     * Get Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
+    public function getSecretWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
-        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $request = $this->getSecretRequest($secret_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -565,11 +930,11 @@ class FlowSessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\FlowSessionViewResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\FlowSessionViewResponse' !== 'string') {
+                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -587,7 +952,7 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionViewResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -633,7 +998,7 @@ class FlowSessionsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
+            $returnType = '\FlowHunt\Model\SecretResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -666,7 +1031,7 @@ class FlowSessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\FlowSessionViewResponse',
+                        '\FlowHunt\Model\SecretResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -685,20 +1050,20 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation getChatbotSessionViewAsync
+     * Operation getSecretAsync
      *
-     * Get Chatbot Session View
+     * Get Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
+    public function getSecretAsync($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
-        return $this->getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
+        return $this->getSecretAsyncWithHttpInfo($secret_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -707,21 +1072,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation getChatbotSessionViewAsyncWithHttpInfo
+     * Operation getSecretAsyncWithHttpInfo
      *
-     * Get Chatbot Session View
+     * Get Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
+    public function getSecretAsyncWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
-        $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
-        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\SecretResponse';
+        $request = $this->getSecretRequest($secret_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -760,34 +1125,34 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'getChatbotSessionView'
+     * Create request for operation 'getSecret'
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
+    public function getSecretRequest($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
 
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
+        // verify the required parameter 'secret_id' is set
+        if ($secret_id === null || (is_array($secret_id) && count($secret_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling getChatbotSessionView'
+                'Missing the required parameter $secret_id when calling getSecret'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getChatbotSessionView'
+                'Missing the required parameter $workspace_id when calling getSecret'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
+        $resourcePath = '/v2/secrets/{secret_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -806,10 +1171,10 @@ class FlowSessionsApi
 
 
         // path params
-        if ($session_id !== null) {
+        if ($secret_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
+                '{' . 'secret_id' . '}',
+                ObjectSerializer::toPathValue($secret_id),
                 $resourcePath
             );
         }
@@ -846,11 +1211,6 @@ class FlowSessionsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -878,40 +1238,40 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation searchChatbotSessionsView
+     * Operation searchSecret
      *
-     * Search Chatbot Sessions View
+     * Search Secret
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request secret_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\FlowSessionViewResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SecretResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function searchChatbotSessionsView($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchSecret($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
-        list($response) = $this->searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType);
+        list($response) = $this->searchSecretWithHttpInfo($workspace_id, $secret_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchChatbotSessionsViewWithHttpInfo
+     * Operation searchSecretWithHttpInfo
      *
-     * Search Chatbot Sessions View
+     * Search Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\FlowSessionViewResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SecretResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchSecretWithHttpInfo($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
-        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
+        $request = $this->searchSecretRequest($workspace_id, $secret_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -938,11 +1298,11 @@ class FlowSessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\FlowSessionViewResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SecretResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\FlowSessionViewResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\SecretResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -960,7 +1320,7 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionViewResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1006,7 +1366,7 @@ class FlowSessionsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\FlowSessionViewResponse[]';
+            $returnType = '\FlowHunt\Model\SecretResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1039,7 +1399,7 @@ class FlowSessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\FlowSessionViewResponse[]',
+                        '\FlowHunt\Model\SecretResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1058,20 +1418,20 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation searchChatbotSessionsViewAsync
+     * Operation searchSecretAsync
      *
-     * Search Chatbot Sessions View
+     * Search Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchChatbotSessionsViewAsync($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchSecretAsync($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
-        return $this->searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType)
+        return $this->searchSecretAsyncWithHttpInfo($workspace_id, $secret_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1080,21 +1440,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation searchChatbotSessionsViewAsyncWithHttpInfo
+     * Operation searchSecretAsyncWithHttpInfo
      *
-     * Search Chatbot Sessions View
+     * Search Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchSecretAsyncWithHttpInfo($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
-        $returnType = '\FlowHunt\Model\FlowSessionViewResponse[]';
-        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
+        $returnType = '\FlowHunt\Model\SecretResponse[]';
+        $request = $this->searchSecretRequest($workspace_id, $secret_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1133,34 +1493,34 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'searchChatbotSessionsView'
+     * Create request for operation 'searchSecret'
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function searchSecretRequest($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchChatbotSessionsView'
+                'Missing the required parameter $workspace_id when calling searchSecret'
             );
         }
 
-        // verify the required parameter 'flow_session_view_search_request' is set
-        if ($flow_session_view_search_request === null || (is_array($flow_session_view_search_request) && count($flow_session_view_search_request) === 0)) {
+        // verify the required parameter 'secret_search_request' is set
+        if ($secret_search_request === null || (is_array($secret_search_request) && count($secret_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $flow_session_view_search_request when calling searchChatbotSessionsView'
+                'Missing the required parameter $secret_search_request when calling searchSecret'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/search';
+        $resourcePath = '/v2/secrets/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1187,12 +1547,12 @@ class FlowSessionsApi
         );
 
         // for model (json/xml)
-        if (isset($flow_session_view_search_request)) {
+        if (isset($secret_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($secret_search_request));
             } else {
-                $httpBody = $flow_session_view_search_request;
+                $httpBody = $secret_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1218,11 +1578,6 @@ class FlowSessionsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -1250,42 +1605,42 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionView
+     * Operation updateSecret
      *
-     * Update Chatbot Session View
+     * Update Secret
      *
-     * @param  string $session_id session_id (required)
+     * @param  string $secret_id secret_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request secret_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function updateChatbotSessionView($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function updateSecret($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
-        list($response) = $this->updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        list($response) = $this->updateSecretWithHttpInfo($secret_id, $workspace_id, $secret_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateChatbotSessionViewWithHttpInfo
+     * Operation updateSecretWithHttpInfo
      *
-     * Update Chatbot Session View
+     * Update Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function updateSecretWithHttpInfo($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
-        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        $request = $this->updateSecretRequest($secret_id, $workspace_id, $secret_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1312,11 +1667,11 @@ class FlowSessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\FlowSessionViewResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\FlowSessionViewResponse' !== 'string') {
+                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1334,7 +1689,7 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionViewResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1380,7 +1735,7 @@ class FlowSessionsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
+            $returnType = '\FlowHunt\Model\SecretResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1413,7 +1768,7 @@ class FlowSessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\FlowSessionViewResponse',
+                        '\FlowHunt\Model\SecretResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1432,21 +1787,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionViewAsync
+     * Operation updateSecretAsync
      *
-     * Update Chatbot Session View
+     * Update Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotSessionViewAsync($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function updateSecretAsync($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
-        return $this->updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType)
+        return $this->updateSecretAsyncWithHttpInfo($secret_id, $workspace_id, $secret_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1455,22 +1810,22 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionViewAsyncWithHttpInfo
+     * Operation updateSecretAsyncWithHttpInfo
      *
-     * Update Chatbot Session View
+     * Update Secret
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function updateSecretAsyncWithHttpInfo($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
-        $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
-        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\SecretResponse';
+        $request = $this->updateSecretRequest($secret_id, $workspace_id, $secret_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1509,42 +1864,42 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'updateChatbotSessionView'
+     * Create request for operation 'updateSecret'
      *
-     * @param  string $session_id (required)
+     * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function updateSecretRequest($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
 
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
+        // verify the required parameter 'secret_id' is set
+        if ($secret_id === null || (is_array($secret_id) && count($secret_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling updateChatbotSessionView'
+                'Missing the required parameter $secret_id when calling updateSecret'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateChatbotSessionView'
+                'Missing the required parameter $workspace_id when calling updateSecret'
             );
         }
 
-        // verify the required parameter 'flow_session_view_update_request' is set
-        if ($flow_session_view_update_request === null || (is_array($flow_session_view_update_request) && count($flow_session_view_update_request) === 0)) {
+        // verify the required parameter 'secret_update_request' is set
+        if ($secret_update_request === null || (is_array($secret_update_request) && count($secret_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $flow_session_view_update_request when calling updateChatbotSessionView'
+                'Missing the required parameter $secret_update_request when calling updateSecret'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
+        $resourcePath = '/v2/secrets/{secret_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1563,10 +1918,10 @@ class FlowSessionsApi
 
 
         // path params
-        if ($session_id !== null) {
+        if ($secret_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
+                '{' . 'secret_id' . '}',
+                ObjectSerializer::toPathValue($secret_id),
                 $resourcePath
             );
         }
@@ -1579,12 +1934,12 @@ class FlowSessionsApi
         );
 
         // for model (json/xml)
-        if (isset($flow_session_view_update_request)) {
+        if (isset($secret_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($secret_update_request));
             } else {
-                $httpBody = $flow_session_view_update_request;
+                $httpBody = $secret_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1610,11 +1965,6 @@ class FlowSessionsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();

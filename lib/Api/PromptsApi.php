@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkspacesApi
+ * PromptsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use FlowHunt\HeaderSelector;
 use FlowHunt\ObjectSerializer;
 
 /**
- * WorkspacesApi Class Doc Comment
+ * PromptsApi Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class WorkspacesApi
+class PromptsApi
 {
     /**
      * @var ClientInterface
@@ -71,31 +71,28 @@ class WorkspacesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'addWorkspaceUser' => [
+        'createPrompt' => [
             'application/json',
         ],
-        'createWorkspace' => [
+        'createPromptCategory' => [
             'application/json',
         ],
-        'deleteWorkspace' => [
+        'deletePrompt' => [
             'application/json',
         ],
-        'deleteWorkspaceUser' => [
+        'deletePromptCategory' => [
             'application/json',
         ],
-        'getWorkspace' => [
+        'searchPromptCategories' => [
             'application/json',
         ],
-        'searchMyWorkspaces' => [
+        'searchPrompts' => [
             'application/json',
         ],
-        'searchWorkspaceUsers' => [
+        'updatePrompt' => [
             'application/json',
         ],
-        'updateWorkspace' => [
-            'application/json',
-        ],
-        'updateWorkspaceUser' => [
+        'updatePromptCategory' => [
             'application/json',
         ],
     ];
@@ -147,40 +144,784 @@ class WorkspacesApi
     }
 
     /**
-     * Operation addWorkspaceUser
+     * Operation createPrompt
      *
-     * Add Workspace User
+     * Create Prompt
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function createPrompt($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        list($response) = $this->createPromptWithHttpInfo($workspace_id, $prompt_create_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createPromptWithHttpInfo
+     *
+     * Create Prompt
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createPromptWithHttpInfo($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        $request = $this->createPromptRequest($workspace_id, $prompt_create_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\PromptResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\PromptResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\PromptResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\PromptResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createPromptAsync
+     *
+     * Create Prompt
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptAsync($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        return $this->createPromptAsyncWithHttpInfo($workspace_id, $prompt_create_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPromptAsyncWithHttpInfo
+     *
+     * Create Prompt
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptAsyncWithHttpInfo($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+        $returnType = '\FlowHunt\Model\PromptResponse';
+        $request = $this->createPromptRequest($workspace_id, $prompt_create_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createPrompt'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCreateRequest $prompt_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPrompt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createPromptRequest($workspace_id, $prompt_create_request, string $contentType = self::contentTypes['createPrompt'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createPrompt'
+            );
+        }
+
+        // verify the required parameter 'prompt_create_request' is set
+        if ($prompt_create_request === null || (is_array($prompt_create_request) && count($prompt_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_create_request when calling createPrompt'
+            );
+        }
+
+
+        $resourcePath = '/v2/prompts/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($prompt_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_create_request));
+            } else {
+                $httpBody = $prompt_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createPromptCategory
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function createPromptCategory($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        list($response) = $this->createPromptCategoryWithHttpInfo($workspace_id, $prompt_category_create_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createPromptCategoryWithHttpInfo
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createPromptCategoryWithHttpInfo($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        $request = $this->createPromptCategoryRequest($workspace_id, $prompt_category_create_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\PromptCategoryResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\PromptCategoryResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptCategoryResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\PromptCategoryResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\PromptCategoryResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createPromptCategoryAsync
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptCategoryAsync($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        return $this->createPromptCategoryAsyncWithHttpInfo($workspace_id, $prompt_category_create_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPromptCategoryAsyncWithHttpInfo
+     *
+     * Create Prompt Category
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPromptCategoryAsyncWithHttpInfo($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+        $returnType = '\FlowHunt\Model\PromptCategoryResponse';
+        $request = $this->createPromptCategoryRequest($workspace_id, $prompt_category_create_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createPromptCategory'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PromptCategoryCreateRequest $prompt_category_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPromptCategory'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createPromptCategoryRequest($workspace_id, $prompt_category_create_request, string $contentType = self::contentTypes['createPromptCategory'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createPromptCategory'
+            );
+        }
+
+        // verify the required parameter 'prompt_category_create_request' is set
+        if ($prompt_category_create_request === null || (is_array($prompt_category_create_request) && count($prompt_category_create_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_category_create_request when calling createPromptCategory'
+            );
+        }
+
+
+        $resourcePath = '/v2/prompts/categories/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($prompt_category_create_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_create_request));
+            } else {
+                $httpBody = $prompt_category_create_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deletePrompt
+     *
+     * Delete Prompt
+     *
+     * @param  string $prompt_id prompt_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function addWorkspaceUser($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
+    public function deletePrompt($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
-        list($response) = $this->addWorkspaceUserWithHttpInfo($workspace_id, $workspace_user_create_request, $contentType);
+        list($response) = $this->deletePromptWithHttpInfo($prompt_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation addWorkspaceUserWithHttpInfo
+     * Operation deletePromptWithHttpInfo
      *
-     * Add Workspace User
+     * Delete Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addWorkspaceUserWithHttpInfo($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
+    public function deletePromptWithHttpInfo($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
-        $request = $this->addWorkspaceUserRequest($workspace_id, $workspace_user_create_request, $contentType);
+        $request = $this->deletePromptRequest($prompt_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -327,20 +1068,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation addWorkspaceUserAsync
+     * Operation deletePromptAsync
      *
-     * Add Workspace User
+     * Delete Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addWorkspaceUserAsync($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
+    public function deletePromptAsync($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
-        return $this->addWorkspaceUserAsyncWithHttpInfo($workspace_id, $workspace_user_create_request, $contentType)
+        return $this->deletePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -349,21 +1090,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation addWorkspaceUserAsyncWithHttpInfo
+     * Operation deletePromptAsyncWithHttpInfo
      *
-     * Add Workspace User
+     * Delete Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addWorkspaceUserAsyncWithHttpInfo($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
+    public function deletePromptAsyncWithHttpInfo($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->addWorkspaceUserRequest($workspace_id, $workspace_user_create_request, $contentType);
+        $request = $this->deletePromptRequest($prompt_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -402,757 +1143,56 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'addWorkspaceUser'
+     * Create request for operation 'deletePrompt'
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addWorkspaceUserRequest($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
+    public function deletePromptRequest($prompt_id, $workspace_id, string $contentType = self::contentTypes['deletePrompt'][0])
     {
+
+        // verify the required parameter 'prompt_id' is set
+        if ($prompt_id === null || (is_array($prompt_id) && count($prompt_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_id when calling deletePrompt'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling addWorkspaceUser'
-            );
-        }
-
-        // verify the required parameter 'workspace_user_create_request' is set
-        if ($workspace_user_create_request === null || (is_array($workspace_user_create_request) && count($workspace_user_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_user_create_request when calling addWorkspaceUser'
+                'Missing the required parameter $workspace_id when calling deletePrompt'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}/add-member';
+        $resourcePath = '/v2/prompts/{prompt_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($workspace_id !== null) {
+        if ($prompt_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($workspace_user_create_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_user_create_request));
-            } else {
-                $httpBody = $workspace_user_create_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation createWorkspace
-     *
-     * Create Workspace
-     *
-     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function createWorkspace($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        list($response) = $this->createWorkspaceWithHttpInfo($workspace_create_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation createWorkspaceWithHttpInfo
-     *
-     * Create Workspace
-     *
-     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function createWorkspaceWithHttpInfo($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        $request = $this->createWorkspaceRequest($workspace_create_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\WorkspaceResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\WorkspaceResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\WorkspaceResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\WorkspaceResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation createWorkspaceAsync
-     *
-     * Create Workspace
-     *
-     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createWorkspaceAsync($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        return $this->createWorkspaceAsyncWithHttpInfo($workspace_create_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createWorkspaceAsyncWithHttpInfo
-     *
-     * Create Workspace
-     *
-     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createWorkspaceAsyncWithHttpInfo($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-        $returnType = '\FlowHunt\Model\WorkspaceResponse';
-        $request = $this->createWorkspaceRequest($workspace_create_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'createWorkspace'
-     *
-     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createWorkspaceRequest($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
-    {
-
-        // verify the required parameter 'workspace_create_request' is set
-        if ($workspace_create_request === null || (is_array($workspace_create_request) && count($workspace_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_create_request when calling createWorkspace'
-            );
-        }
-
-
-        $resourcePath = '/v2/workspaces/create';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($workspace_create_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_create_request));
-            } else {
-                $httpBody = $workspace_create_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation deleteWorkspace
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
-     */
-    public function deleteWorkspace($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        list($response) = $this->deleteWorkspaceWithHttpInfo($workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation deleteWorkspaceWithHttpInfo
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function deleteWorkspaceWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        $request = $this->deleteWorkspaceRequest($workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\Completed';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation deleteWorkspaceAsync
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteWorkspaceAsync($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        return $this->deleteWorkspaceAsyncWithHttpInfo($workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteWorkspaceAsyncWithHttpInfo
-     *
-     * Delete Workspace
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteWorkspaceAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->deleteWorkspaceRequest($workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'deleteWorkspace'
-     *
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteWorkspaceRequest($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
-    {
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteWorkspace'
-            );
-        }
-
-
-        $resourcePath = '/v2/workspaces/{workspace_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($workspace_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
+                '{' . 'prompt_id' . '}',
+                ObjectSerializer::toPathValue($prompt_id),
                 $resourcePath
             );
         }
@@ -1221,40 +1261,40 @@ class WorkspacesApi
     }
 
     /**
-     * Operation deleteWorkspaceUser
+     * Operation deletePromptCategory
      *
-     * Delete Workspace User
+     * Delete Prompt Category
      *
+     * @param  string $cat_id cat_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $user_id user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function deleteWorkspaceUser($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
+    public function deletePromptCategory($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
-        list($response) = $this->deleteWorkspaceUserWithHttpInfo($workspace_id, $user_id, $contentType);
+        list($response) = $this->deletePromptCategoryWithHttpInfo($cat_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deleteWorkspaceUserWithHttpInfo
+     * Operation deletePromptCategoryWithHttpInfo
      *
-     * Delete Workspace User
+     * Delete Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteWorkspaceUserWithHttpInfo($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
+    public function deletePromptCategoryWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
-        $request = $this->deleteWorkspaceUserRequest($workspace_id, $user_id, $contentType);
+        $request = $this->deletePromptCategoryRequest($cat_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1401,20 +1441,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation deleteWorkspaceUserAsync
+     * Operation deletePromptCategoryAsync
      *
-     * Delete Workspace User
+     * Delete Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteWorkspaceUserAsync($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
+    public function deletePromptCategoryAsync($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
-        return $this->deleteWorkspaceUserAsyncWithHttpInfo($workspace_id, $user_id, $contentType)
+        return $this->deletePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1423,21 +1463,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation deleteWorkspaceUserAsyncWithHttpInfo
+     * Operation deletePromptCategoryAsyncWithHttpInfo
      *
-     * Delete Workspace User
+     * Delete Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteWorkspaceUserAsyncWithHttpInfo($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
+    public function deletePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->deleteWorkspaceUserRequest($workspace_id, $user_id, $contentType);
+        $request = $this->deletePromptCategoryRequest($cat_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1476,55 +1516,56 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'deleteWorkspaceUser'
+     * Create request for operation 'deletePromptCategory'
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteWorkspaceUserRequest($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
+    public function deletePromptCategoryRequest($cat_id, $workspace_id, string $contentType = self::contentTypes['deletePromptCategory'][0])
     {
+
+        // verify the required parameter 'cat_id' is set
+        if ($cat_id === null || (is_array($cat_id) && count($cat_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $cat_id when calling deletePromptCategory'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteWorkspaceUser'
-            );
-        }
-
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling deleteWorkspaceUser'
+                'Missing the required parameter $workspace_id when calling deletePromptCategory'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}/{user_id}';
+        $resourcePath = '/v2/prompts/categories/{cat_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($workspace_id !== null) {
+        if ($cat_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($user_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                '{' . 'cat_id' . '}',
+                ObjectSerializer::toPathValue($cat_id),
                 $resourcePath
             );
         }
@@ -1593,38 +1634,40 @@ class WorkspacesApi
     }
 
     /**
-     * Operation getWorkspace
+     * Operation searchPromptCategories
      *
-     * Get Workspace
+     * Search Prompt Categories
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\PromptCategoryResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function getWorkspace($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
+    public function searchPromptCategories($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        list($response) = $this->getWorkspaceWithHttpInfo($workspace_id, $contentType);
+        list($response) = $this->searchPromptCategoriesWithHttpInfo($workspace_id, $prompt_category_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getWorkspaceWithHttpInfo
+     * Operation searchPromptCategoriesWithHttpInfo
      *
-     * Get Workspace
+     * Search Prompt Categories
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\PromptCategoryResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getWorkspaceWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
+    public function searchPromptCategoriesWithHttpInfo($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        $request = $this->getWorkspaceRequest($workspace_id, $contentType);
+        $request = $this->searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1651,11 +1694,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\WorkspaceResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\PromptCategoryResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\WorkspaceResponse' !== 'string') {
+                        if ('\FlowHunt\Model\PromptCategoryResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1673,7 +1716,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptCategoryResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1719,7 +1762,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\WorkspaceResponse';
+            $returnType = '\FlowHunt\Model\PromptCategoryResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1752,7 +1795,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\WorkspaceResponse',
+                        '\FlowHunt\Model\PromptCategoryResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1771,19 +1814,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation getWorkspaceAsync
+     * Operation searchPromptCategoriesAsync
      *
-     * Get Workspace
+     * Search Prompt Categories
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getWorkspaceAsync($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
+    public function searchPromptCategoriesAsync($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        return $this->getWorkspaceAsyncWithHttpInfo($workspace_id, $contentType)
+        return $this->searchPromptCategoriesAsyncWithHttpInfo($workspace_id, $prompt_category_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1792,20 +1836,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation getWorkspaceAsyncWithHttpInfo
+     * Operation searchPromptCategoriesAsyncWithHttpInfo
      *
-     * Get Workspace
+     * Search Prompt Categories
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getWorkspaceAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
+    public function searchPromptCategoriesAsyncWithHttpInfo($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
-        $returnType = '\FlowHunt\Model\WorkspaceResponse';
-        $request = $this->getWorkspaceRequest($workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\PromptCategoryResponse[]';
+        $request = $this->searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1844,384 +1889,49 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'getWorkspace'
+     * Create request for operation 'searchPromptCategories'
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategorySearchRequest $prompt_category_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPromptCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getWorkspaceRequest($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
+    public function searchPromptCategoriesRequest($workspace_id, $prompt_category_search_request, string $contentType = self::contentTypes['searchPromptCategories'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getWorkspace'
+                'Missing the required parameter $workspace_id when calling searchPromptCategories'
             );
         }
 
-
-        $resourcePath = '/v2/workspaces/{workspace_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($workspace_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation searchMyWorkspaces
-     *
-     * Search My Workspaces
-     *
-     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\WorkspaceRole[]|\FlowHunt\Model\HTTPValidationError
-     */
-    public function searchMyWorkspaces($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
-    {
-        list($response) = $this->searchMyWorkspacesWithHttpInfo($workspace_search_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation searchMyWorkspacesWithHttpInfo
-     *
-     * Search My Workspaces
-     *
-     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\WorkspaceRole[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function searchMyWorkspacesWithHttpInfo($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
-    {
-        $request = $this->searchMyWorkspacesRequest($workspace_search_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\WorkspaceRole[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\WorkspaceRole[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceRole[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\WorkspaceRole[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\WorkspaceRole[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation searchMyWorkspacesAsync
-     *
-     * Search My Workspaces
-     *
-     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchMyWorkspacesAsync($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
-    {
-        return $this->searchMyWorkspacesAsyncWithHttpInfo($workspace_search_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation searchMyWorkspacesAsyncWithHttpInfo
-     *
-     * Search My Workspaces
-     *
-     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchMyWorkspacesAsyncWithHttpInfo($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
-    {
-        $returnType = '\FlowHunt\Model\WorkspaceRole[]';
-        $request = $this->searchMyWorkspacesRequest($workspace_search_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'searchMyWorkspaces'
-     *
-     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function searchMyWorkspacesRequest($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
-    {
-
-        // verify the required parameter 'workspace_search_request' is set
-        if ($workspace_search_request === null || (is_array($workspace_search_request) && count($workspace_search_request) === 0)) {
+        // verify the required parameter 'prompt_category_search_request' is set
+        if ($prompt_category_search_request === null || (is_array($prompt_category_search_request) && count($prompt_category_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_search_request when calling searchMyWorkspaces'
+                'Missing the required parameter $prompt_category_search_request when calling searchPromptCategories'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/me/my_workspaces';
+        $resourcePath = '/v2/prompts/categories/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
 
@@ -2233,12 +1943,12 @@ class WorkspacesApi
         );
 
         // for model (json/xml)
-        if (isset($workspace_search_request)) {
+        if (isset($prompt_category_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_search_request));
             } else {
-                $httpBody = $workspace_search_request;
+                $httpBody = $prompt_category_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2296,40 +2006,40 @@ class WorkspacesApi
     }
 
     /**
-     * Operation searchWorkspaceUsers
+     * Operation searchPrompts
      *
-     * Search Workspace Users
+     * Search Prompts
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request workspace_users_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\WorkspaceUserResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\PromptResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function searchWorkspaceUsers($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
+    public function searchPrompts($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        list($response) = $this->searchWorkspaceUsersWithHttpInfo($workspace_id, $workspace_users_search_request, $contentType);
+        list($response) = $this->searchPromptsWithHttpInfo($workspace_id, $prompt_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchWorkspaceUsersWithHttpInfo
+     * Operation searchPromptsWithHttpInfo
      *
-     * Search Workspace Users
+     * Search Prompts
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\WorkspaceUserResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\PromptResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchWorkspaceUsersWithHttpInfo($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
+    public function searchPromptsWithHttpInfo($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        $request = $this->searchWorkspaceUsersRequest($workspace_id, $workspace_users_search_request, $contentType);
+        $request = $this->searchPromptsRequest($workspace_id, $prompt_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2356,11 +2066,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\WorkspaceUserResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\PromptResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\WorkspaceUserResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\PromptResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2378,7 +2088,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceUserResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2424,7 +2134,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\WorkspaceUserResponse[]';
+            $returnType = '\FlowHunt\Model\PromptResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2457,7 +2167,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\WorkspaceUserResponse[]',
+                        '\FlowHunt\Model\PromptResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2476,20 +2186,20 @@ class WorkspacesApi
     }
 
     /**
-     * Operation searchWorkspaceUsersAsync
+     * Operation searchPromptsAsync
      *
-     * Search Workspace Users
+     * Search Prompts
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchWorkspaceUsersAsync($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
+    public function searchPromptsAsync($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        return $this->searchWorkspaceUsersAsyncWithHttpInfo($workspace_id, $workspace_users_search_request, $contentType)
+        return $this->searchPromptsAsyncWithHttpInfo($workspace_id, $prompt_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2498,21 +2208,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation searchWorkspaceUsersAsyncWithHttpInfo
+     * Operation searchPromptsAsyncWithHttpInfo
      *
-     * Search Workspace Users
+     * Search Prompts
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchWorkspaceUsersAsyncWithHttpInfo($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
+    public function searchPromptsAsyncWithHttpInfo($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
-        $returnType = '\FlowHunt\Model\WorkspaceUserResponse[]';
-        $request = $this->searchWorkspaceUsersRequest($workspace_id, $workspace_users_search_request, $contentType);
+        $returnType = '\FlowHunt\Model\PromptResponse[]';
+        $request = $this->searchPromptsRequest($workspace_id, $prompt_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2551,50 +2261,51 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'searchWorkspaceUsers'
+     * Create request for operation 'searchPrompts'
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptSearchRequest $prompt_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPrompts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchWorkspaceUsersRequest($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
+    public function searchPromptsRequest($workspace_id, $prompt_search_request, string $contentType = self::contentTypes['searchPrompts'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchWorkspaceUsers'
+                'Missing the required parameter $workspace_id when calling searchPrompts'
             );
         }
 
-        // verify the required parameter 'workspace_users_search_request' is set
-        if ($workspace_users_search_request === null || (is_array($workspace_users_search_request) && count($workspace_users_search_request) === 0)) {
+        // verify the required parameter 'prompt_search_request' is set
+        if ($prompt_search_request === null || (is_array($prompt_search_request) && count($prompt_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_users_search_request when calling searchWorkspaceUsers'
+                'Missing the required parameter $prompt_search_request when calling searchPrompts'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}/users';
+        $resourcePath = '/v2/prompts/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
-        // path params
-        if ($workspace_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -2604,12 +2315,12 @@ class WorkspacesApi
         );
 
         // for model (json/xml)
-        if (isset($workspace_users_search_request)) {
+        if (isset($prompt_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_users_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_search_request));
             } else {
-                $httpBody = $workspace_users_search_request;
+                $httpBody = $prompt_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2667,40 +2378,42 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspace
+     * Operation updatePrompt
      *
-     * Update Workspace
+     * Update Prompt
      *
+     * @param  string $prompt_id prompt_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function updateWorkspace($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function updatePrompt($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
     {
-        list($response) = $this->updateWorkspaceWithHttpInfo($workspace_id, $workspace_update_request, $contentType);
+        list($response) = $this->updatePromptWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateWorkspaceWithHttpInfo
+     * Operation updatePromptWithHttpInfo
      *
-     * Update Workspace
+     * Update Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\PromptResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateWorkspaceWithHttpInfo($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function updatePromptWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
     {
-        $request = $this->updateWorkspaceRequest($workspace_id, $workspace_update_request, $contentType);
+        $request = $this->updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2727,11 +2440,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\PromptResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\PromptResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2749,7 +2462,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2795,7 +2508,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\Completed';
+            $returnType = '\FlowHunt\Model\PromptResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2828,7 +2541,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
+                        '\FlowHunt\Model\PromptResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2847,20 +2560,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceAsync
+     * Operation updatePromptAsync
      *
-     * Update Workspace
+     * Update Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceAsync($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function updatePromptAsync($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
     {
-        return $this->updateWorkspaceAsyncWithHttpInfo($workspace_id, $workspace_update_request, $contentType)
+        return $this->updatePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2869,21 +2583,22 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceAsyncWithHttpInfo
+     * Operation updatePromptAsyncWithHttpInfo
      *
-     * Update Workspace
+     * Update Prompt
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceAsyncWithHttpInfo($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function updatePromptAsyncWithHttpInfo($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
     {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->updateWorkspaceRequest($workspace_id, $workspace_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\PromptResponse';
+        $request = $this->updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2922,47 +2637,64 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'updateWorkspace'
+     * Create request for operation 'updatePrompt'
      *
+     * @param  string $prompt_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptUpdateRequest $prompt_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePrompt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateWorkspaceRequest($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
+    public function updatePromptRequest($prompt_id, $workspace_id, $prompt_update_request, string $contentType = self::contentTypes['updatePrompt'][0])
     {
+
+        // verify the required parameter 'prompt_id' is set
+        if ($prompt_id === null || (is_array($prompt_id) && count($prompt_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $prompt_id when calling updatePrompt'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateWorkspace'
+                'Missing the required parameter $workspace_id when calling updatePrompt'
             );
         }
 
-        // verify the required parameter 'workspace_update_request' is set
-        if ($workspace_update_request === null || (is_array($workspace_update_request) && count($workspace_update_request) === 0)) {
+        // verify the required parameter 'prompt_update_request' is set
+        if ($prompt_update_request === null || (is_array($prompt_update_request) && count($prompt_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_update_request when calling updateWorkspace'
+                'Missing the required parameter $prompt_update_request when calling updatePrompt'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}';
+        $resourcePath = '/v2/prompts/{prompt_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($workspace_id !== null) {
+        if ($prompt_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
+                '{' . 'prompt_id' . '}',
+                ObjectSerializer::toPathValue($prompt_id),
                 $resourcePath
             );
         }
@@ -2975,12 +2707,12 @@ class WorkspacesApi
         );
 
         // for model (json/xml)
-        if (isset($workspace_update_request)) {
+        if (isset($prompt_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_update_request));
             } else {
-                $httpBody = $workspace_update_request;
+                $httpBody = $prompt_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -3038,42 +2770,42 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceUser
+     * Operation updatePromptCategory
      *
-     * Update Workspace User
+     * Update Prompt Category
      *
+     * @param  string $cat_id cat_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $user_id user_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function updateWorkspaceUser($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
+    public function updatePromptCategory($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        list($response) = $this->updateWorkspaceUserWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, $contentType);
+        list($response) = $this->updatePromptCategoryWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateWorkspaceUserWithHttpInfo
+     * Operation updatePromptCategoryWithHttpInfo
      *
-     * Update Workspace User
+     * Update Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\PromptCategoryResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateWorkspaceUserWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
+    public function updatePromptCategoryWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        $request = $this->updateWorkspaceUserRequest($workspace_id, $user_id, $workspace_user_update_request, $contentType);
+        $request = $this->updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3100,11 +2832,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\PromptCategoryResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\PromptCategoryResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3122,7 +2854,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PromptCategoryResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3168,7 +2900,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\Completed';
+            $returnType = '\FlowHunt\Model\PromptCategoryResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3201,7 +2933,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
+                        '\FlowHunt\Model\PromptCategoryResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3220,21 +2952,21 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceUserAsync
+     * Operation updatePromptCategoryAsync
      *
-     * Update Workspace User
+     * Update Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceUserAsync($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
+    public function updatePromptCategoryAsync($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        return $this->updateWorkspaceUserAsyncWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, $contentType)
+        return $this->updatePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3243,22 +2975,22 @@ class WorkspacesApi
     }
 
     /**
-     * Operation updateWorkspaceUserAsyncWithHttpInfo
+     * Operation updatePromptCategoryAsyncWithHttpInfo
      *
-     * Update Workspace User
+     * Update Prompt Category
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWorkspaceUserAsyncWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
+    public function updatePromptCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->updateWorkspaceUserRequest($workspace_id, $user_id, $workspace_user_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\PromptCategoryResponse';
+        $request = $this->updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3297,63 +3029,64 @@ class WorkspacesApi
     }
 
     /**
-     * Create request for operation 'updateWorkspaceUser'
+     * Create request for operation 'updatePromptCategory'
      *
+     * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $user_id (required)
-     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\PromptCategoryUpdateRequest $prompt_category_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePromptCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateWorkspaceUserRequest($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
+    public function updatePromptCategoryRequest($cat_id, $workspace_id, $prompt_category_update_request, string $contentType = self::contentTypes['updatePromptCategory'][0])
     {
+
+        // verify the required parameter 'cat_id' is set
+        if ($cat_id === null || (is_array($cat_id) && count($cat_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $cat_id when calling updatePromptCategory'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateWorkspaceUser'
+                'Missing the required parameter $workspace_id when calling updatePromptCategory'
             );
         }
 
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'prompt_category_update_request' is set
+        if ($prompt_category_update_request === null || (is_array($prompt_category_update_request) && count($prompt_category_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling updateWorkspaceUser'
-            );
-        }
-
-        // verify the required parameter 'workspace_user_update_request' is set
-        if ($workspace_user_update_request === null || (is_array($workspace_user_update_request) && count($workspace_user_update_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_user_update_request when calling updateWorkspaceUser'
+                'Missing the required parameter $prompt_category_update_request when calling updatePromptCategory'
             );
         }
 
 
-        $resourcePath = '/v2/workspaces/{workspace_id}/{user_id}';
+        $resourcePath = '/v2/prompts/categories/{cat_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
-        if ($workspace_id !== null) {
+        if ($cat_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'workspace_id' . '}',
-                ObjectSerializer::toPathValue($workspace_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($user_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                '{' . 'cat_id' . '}',
+                ObjectSerializer::toPathValue($cat_id),
                 $resourcePath
             );
         }
@@ -3366,12 +3099,12 @@ class WorkspacesApi
         );
 
         // for model (json/xml)
-        if (isset($workspace_user_update_request)) {
+        if (isset($prompt_category_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($workspace_user_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($prompt_category_update_request));
             } else {
-                $httpBody = $workspace_user_update_request;
+                $httpBody = $prompt_category_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

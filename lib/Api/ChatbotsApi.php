@@ -1,6 +1,6 @@
 <?php
 /**
- * TagsApi
+ * ChatbotsApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use FlowHunt\HeaderSelector;
 use FlowHunt\ObjectSerializer;
 
 /**
- * TagsApi Class Doc Comment
+ * ChatbotsApi Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TagsApi
+class ChatbotsApi
 {
     /**
      * @var ClientInterface
@@ -71,16 +71,19 @@ class TagsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createTag' => [
+        'createChatbot' => [
             'application/json',
         ],
-        'deleteTag' => [
+        'deleteChatbot' => [
             'application/json',
         ],
-        'searchTags' => [
+        'getChatbot' => [
             'application/json',
         ],
-        'updateTag' => [
+        'searchChatbots' => [
+            'application/json',
+        ],
+        'updateChatbot' => [
             'application/json',
         ],
     ];
@@ -132,40 +135,40 @@ class TagsApi
     }
 
     /**
-     * Operation createTag
+     * Operation createChatbot
      *
-     * Create Tag
+     * Create Chatbot
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request tag_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotCreateRequest $chatbot_create_request chatbot_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ChatbotResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function createTag($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
+    public function createChatbot($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
     {
-        list($response) = $this->createTagWithHttpInfo($workspace_id, $tag_create_request, $contentType);
+        list($response) = $this->createChatbotWithHttpInfo($workspace_id, $chatbot_create_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createTagWithHttpInfo
+     * Operation createChatbotWithHttpInfo
      *
-     * Create Tag
+     * Create Chatbot
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotCreateRequest $chatbot_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ChatbotResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createTagWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
+    public function createChatbotWithHttpInfo($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
     {
-        $request = $this->createTagRequest($workspace_id, $tag_create_request, $contentType);
+        $request = $this->createChatbotRequest($workspace_id, $chatbot_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -191,12 +194,12 @@ class TagsApi
 
 
             switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\TagResponse' === '\SplFileObject') {
+                case 201:
+                    if ('\FlowHunt\Model\ChatbotResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\TagResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ChatbotResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -214,7 +217,7 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ChatbotResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -260,7 +263,7 @@ class TagsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\TagResponse';
+            $returnType = '\FlowHunt\Model\ChatbotResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -290,10 +293,10 @@ class TagsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\TagResponse',
+                        '\FlowHunt\Model\ChatbotResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -312,20 +315,20 @@ class TagsApi
     }
 
     /**
-     * Operation createTagAsync
+     * Operation createChatbotAsync
      *
-     * Create Tag
+     * Create Chatbot
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotCreateRequest $chatbot_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createTagAsync($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
+    public function createChatbotAsync($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
     {
-        return $this->createTagAsyncWithHttpInfo($workspace_id, $tag_create_request, $contentType)
+        return $this->createChatbotAsyncWithHttpInfo($workspace_id, $chatbot_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -334,21 +337,21 @@ class TagsApi
     }
 
     /**
-     * Operation createTagAsyncWithHttpInfo
+     * Operation createChatbotAsyncWithHttpInfo
      *
-     * Create Tag
+     * Create Chatbot
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotCreateRequest $chatbot_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createTagAsyncWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
+    public function createChatbotAsyncWithHttpInfo($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
     {
-        $returnType = '\FlowHunt\Model\TagResponse';
-        $request = $this->createTagRequest($workspace_id, $tag_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\ChatbotResponse';
+        $request = $this->createChatbotRequest($workspace_id, $chatbot_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -387,34 +390,34 @@ class TagsApi
     }
 
     /**
-     * Create request for operation 'createTag'
+     * Create request for operation 'createChatbot'
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotCreateRequest $chatbot_create_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createTagRequest($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
+    public function createChatbotRequest($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createTag'
+                'Missing the required parameter $workspace_id when calling createChatbot'
             );
         }
 
-        // verify the required parameter 'tag_create_request' is set
-        if ($tag_create_request === null || (is_array($tag_create_request) && count($tag_create_request) === 0)) {
+        // verify the required parameter 'chatbot_create_request' is set
+        if ($chatbot_create_request === null || (is_array($chatbot_create_request) && count($chatbot_create_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $tag_create_request when calling createTag'
+                'Missing the required parameter $chatbot_create_request when calling createChatbot'
             );
         }
 
 
-        $resourcePath = '/v2/tags/create';
+        $resourcePath = '/v2/chatbots/create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -441,12 +444,12 @@ class TagsApi
         );
 
         // for model (json/xml)
-        if (isset($tag_create_request)) {
+        if (isset($chatbot_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($chatbot_create_request));
             } else {
-                $httpBody = $tag_create_request;
+                $httpBody = $chatbot_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -504,40 +507,40 @@ class TagsApi
     }
 
     /**
-     * Operation deleteTag
+     * Operation deleteChatbot
      *
-     * Delete Tag
+     * Delete Chatbot
      *
-     * @param  string $tag_id tag_id (required)
+     * @param  string $chatbot_id chatbot_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function deleteTag($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
+    public function deleteChatbot($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
     {
-        list($response) = $this->deleteTagWithHttpInfo($tag_id, $workspace_id, $contentType);
+        list($response) = $this->deleteChatbotWithHttpInfo($chatbot_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation deleteTagWithHttpInfo
+     * Operation deleteChatbotWithHttpInfo
      *
-     * Delete Tag
+     * Delete Chatbot
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteTagWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
+    public function deleteChatbotWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
     {
-        $request = $this->deleteTagRequest($tag_id, $workspace_id, $contentType);
+        $request = $this->deleteChatbotRequest($chatbot_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -684,20 +687,20 @@ class TagsApi
     }
 
     /**
-     * Operation deleteTagAsync
+     * Operation deleteChatbotAsync
      *
-     * Delete Tag
+     * Delete Chatbot
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTagAsync($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
+    public function deleteChatbotAsync($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
     {
-        return $this->deleteTagAsyncWithHttpInfo($tag_id, $workspace_id, $contentType)
+        return $this->deleteChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -706,21 +709,21 @@ class TagsApi
     }
 
     /**
-     * Operation deleteTagAsyncWithHttpInfo
+     * Operation deleteChatbotAsyncWithHttpInfo
      *
-     * Delete Tag
+     * Delete Chatbot
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTagAsyncWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
+    public function deleteChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
     {
         $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->deleteTagRequest($tag_id, $workspace_id, $contentType);
+        $request = $this->deleteChatbotRequest($chatbot_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -759,34 +762,34 @@ class TagsApi
     }
 
     /**
-     * Create request for operation 'deleteTag'
+     * Create request for operation 'deleteChatbot'
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteTagRequest($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
+    public function deleteChatbotRequest($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
     {
 
-        // verify the required parameter 'tag_id' is set
-        if ($tag_id === null || (is_array($tag_id) && count($tag_id) === 0)) {
+        // verify the required parameter 'chatbot_id' is set
+        if ($chatbot_id === null || (is_array($chatbot_id) && count($chatbot_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $tag_id when calling deleteTag'
+                'Missing the required parameter $chatbot_id when calling deleteChatbot'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteTag'
+                'Missing the required parameter $workspace_id when calling deleteChatbot'
             );
         }
 
 
-        $resourcePath = '/v2/tags/{tag_id}';
+        $resourcePath = '/v2/chatbots/{chatbot_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -805,10 +808,10 @@ class TagsApi
 
 
         // path params
-        if ($tag_id !== null) {
+        if ($chatbot_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'tag_id' . '}',
-                ObjectSerializer::toPathValue($tag_id),
+                '{' . 'chatbot_id' . '}',
+                ObjectSerializer::toPathValue($chatbot_id),
                 $resourcePath
             );
         }
@@ -877,40 +880,40 @@ class TagsApi
     }
 
     /**
-     * Operation searchTags
+     * Operation getChatbot
      *
-     * Search Tags
+     * Get Chatbot
      *
+     * @param  string $chatbot_id chatbot_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request tag_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\TagResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ChatbotResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function searchTags($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
+    public function getChatbot($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
     {
-        list($response) = $this->searchTagsWithHttpInfo($workspace_id, $tag_search_request, $contentType);
+        list($response) = $this->getChatbotWithHttpInfo($chatbot_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchTagsWithHttpInfo
+     * Operation getChatbotWithHttpInfo
      *
-     * Search Tags
+     * Get Chatbot
      *
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\TagResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ChatbotResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchTagsWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
+    public function getChatbotWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
     {
-        $request = $this->searchTagsRequest($workspace_id, $tag_search_request, $contentType);
+        $request = $this->getChatbotRequest($chatbot_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -937,11 +940,11 @@ class TagsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\TagResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ChatbotResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\TagResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\ChatbotResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -959,7 +962,7 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ChatbotResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1005,7 +1008,7 @@ class TagsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\TagResponse[]';
+            $returnType = '\FlowHunt\Model\ChatbotResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1038,7 +1041,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\TagResponse[]',
+                        '\FlowHunt\Model\ChatbotResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1057,20 +1060,20 @@ class TagsApi
     }
 
     /**
-     * Operation searchTagsAsync
+     * Operation getChatbotAsync
      *
-     * Search Tags
+     * Get Chatbot
      *
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchTagsAsync($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
+    public function getChatbotAsync($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
     {
-        return $this->searchTagsAsyncWithHttpInfo($workspace_id, $tag_search_request, $contentType)
+        return $this->getChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1079,21 +1082,21 @@ class TagsApi
     }
 
     /**
-     * Operation searchTagsAsyncWithHttpInfo
+     * Operation getChatbotAsyncWithHttpInfo
      *
-     * Search Tags
+     * Get Chatbot
      *
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchTagsAsyncWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
+    public function getChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
     {
-        $returnType = '\FlowHunt\Model\TagResponse[]';
-        $request = $this->searchTagsRequest($workspace_id, $tag_search_request, $contentType);
+        $returnType = '\FlowHunt\Model\ChatbotResponse';
+        $request = $this->getChatbotRequest($chatbot_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1132,34 +1135,407 @@ class TagsApi
     }
 
     /**
-     * Create request for operation 'searchTags'
+     * Create request for operation 'getChatbot'
      *
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchTagsRequest($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
+    public function getChatbotRequest($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
+    {
+
+        // verify the required parameter 'chatbot_id' is set
+        if ($chatbot_id === null || (is_array($chatbot_id) && count($chatbot_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $chatbot_id when calling getChatbot'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getChatbot'
+            );
+        }
+
+
+        $resourcePath = '/v2/chatbots/{chatbot_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($chatbot_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'chatbot_id' . '}',
+                ObjectSerializer::toPathValue($chatbot_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchChatbots
+     *
+     * Search Chatbots
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ChatbotSearchRequest $chatbot_search_request chatbot_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ChatbotResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchChatbots($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    {
+        list($response) = $this->searchChatbotsWithHttpInfo($workspace_id, $chatbot_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchChatbotsWithHttpInfo
+     *
+     * Search Chatbots
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ChatbotSearchRequest $chatbot_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ChatbotResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchChatbotsWithHttpInfo($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    {
+        $request = $this->searchChatbotsRequest($workspace_id, $chatbot_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\ChatbotResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\ChatbotResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ChatbotResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\ChatbotResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ChatbotResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchChatbotsAsync
+     *
+     * Search Chatbots
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ChatbotSearchRequest $chatbot_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchChatbotsAsync($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    {
+        return $this->searchChatbotsAsyncWithHttpInfo($workspace_id, $chatbot_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchChatbotsAsyncWithHttpInfo
+     *
+     * Search Chatbots
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ChatbotSearchRequest $chatbot_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchChatbotsAsyncWithHttpInfo($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    {
+        $returnType = '\FlowHunt\Model\ChatbotResponse[]';
+        $request = $this->searchChatbotsRequest($workspace_id, $chatbot_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchChatbots'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ChatbotSearchRequest $chatbot_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchChatbotsRequest($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchTags'
+                'Missing the required parameter $workspace_id when calling searchChatbots'
             );
         }
 
-        // verify the required parameter 'tag_search_request' is set
-        if ($tag_search_request === null || (is_array($tag_search_request) && count($tag_search_request) === 0)) {
+        // verify the required parameter 'chatbot_search_request' is set
+        if ($chatbot_search_request === null || (is_array($chatbot_search_request) && count($chatbot_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $tag_search_request when calling searchTags'
+                'Missing the required parameter $chatbot_search_request when calling searchChatbots'
             );
         }
 
 
-        $resourcePath = '/v2/tags/search';
+        $resourcePath = '/v2/chatbots/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1186,12 +1562,12 @@ class TagsApi
         );
 
         // for model (json/xml)
-        if (isset($tag_search_request)) {
+        if (isset($chatbot_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($chatbot_search_request));
             } else {
-                $httpBody = $tag_search_request;
+                $httpBody = $chatbot_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1249,42 +1625,42 @@ class TagsApi
     }
 
     /**
-     * Operation updateTag
+     * Operation updateChatbot
      *
-     * Update Tag
+     * Update Chatbot
      *
-     * @param  string $tag_id tag_id (required)
+     * @param  string $chatbot_id chatbot_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request tag_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotUpdateRequest $chatbot_update_request chatbot_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ChatbotResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function updateTag($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
+    public function updateChatbot($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
     {
-        list($response) = $this->updateTagWithHttpInfo($tag_id, $workspace_id, $tag_update_request, $contentType);
+        list($response) = $this->updateChatbotWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateTagWithHttpInfo
+     * Operation updateChatbotWithHttpInfo
      *
-     * Update Tag
+     * Update Chatbot
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotUpdateRequest $chatbot_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ChatbotResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateTagWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
+    public function updateChatbotWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
     {
-        $request = $this->updateTagRequest($tag_id, $workspace_id, $tag_update_request, $contentType);
+        $request = $this->updateChatbotRequest($chatbot_id, $workspace_id, $chatbot_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1311,11 +1687,11 @@ class TagsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\TagResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ChatbotResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\TagResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ChatbotResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1333,7 +1709,7 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ChatbotResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1379,7 +1755,7 @@ class TagsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\TagResponse';
+            $returnType = '\FlowHunt\Model\ChatbotResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1412,7 +1788,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\TagResponse',
+                        '\FlowHunt\Model\ChatbotResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1431,21 +1807,21 @@ class TagsApi
     }
 
     /**
-     * Operation updateTagAsync
+     * Operation updateChatbotAsync
      *
-     * Update Tag
+     * Update Chatbot
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotUpdateRequest $chatbot_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateTagAsync($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
+    public function updateChatbotAsync($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
     {
-        return $this->updateTagAsyncWithHttpInfo($tag_id, $workspace_id, $tag_update_request, $contentType)
+        return $this->updateChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1454,22 +1830,22 @@ class TagsApi
     }
 
     /**
-     * Operation updateTagAsyncWithHttpInfo
+     * Operation updateChatbotAsyncWithHttpInfo
      *
-     * Update Tag
+     * Update Chatbot
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotUpdateRequest $chatbot_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateTagAsyncWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
+    public function updateChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
     {
-        $returnType = '\FlowHunt\Model\TagResponse';
-        $request = $this->updateTagRequest($tag_id, $workspace_id, $tag_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\ChatbotResponse';
+        $request = $this->updateChatbotRequest($chatbot_id, $workspace_id, $chatbot_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1508,42 +1884,42 @@ class TagsApi
     }
 
     /**
-     * Create request for operation 'updateTag'
+     * Create request for operation 'updateChatbot'
      *
-     * @param  string $tag_id (required)
+     * @param  string $chatbot_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\ChatbotUpdateRequest $chatbot_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateTagRequest($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
+    public function updateChatbotRequest($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
     {
 
-        // verify the required parameter 'tag_id' is set
-        if ($tag_id === null || (is_array($tag_id) && count($tag_id) === 0)) {
+        // verify the required parameter 'chatbot_id' is set
+        if ($chatbot_id === null || (is_array($chatbot_id) && count($chatbot_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $tag_id when calling updateTag'
+                'Missing the required parameter $chatbot_id when calling updateChatbot'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateTag'
+                'Missing the required parameter $workspace_id when calling updateChatbot'
             );
         }
 
-        // verify the required parameter 'tag_update_request' is set
-        if ($tag_update_request === null || (is_array($tag_update_request) && count($tag_update_request) === 0)) {
+        // verify the required parameter 'chatbot_update_request' is set
+        if ($chatbot_update_request === null || (is_array($chatbot_update_request) && count($chatbot_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $tag_update_request when calling updateTag'
+                'Missing the required parameter $chatbot_update_request when calling updateChatbot'
             );
         }
 
 
-        $resourcePath = '/v2/tags/{tag_id}';
+        $resourcePath = '/v2/chatbots/{chatbot_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1562,10 +1938,10 @@ class TagsApi
 
 
         // path params
-        if ($tag_id !== null) {
+        if ($chatbot_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'tag_id' . '}',
-                ObjectSerializer::toPathValue($tag_id),
+                '{' . 'chatbot_id' . '}',
+                ObjectSerializer::toPathValue($chatbot_id),
                 $resourcePath
             );
         }
@@ -1578,12 +1954,12 @@ class TagsApi
         );
 
         // for model (json/xml)
-        if (isset($tag_update_request)) {
+        if (isset($chatbot_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tag_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($chatbot_update_request));
             } else {
-                $httpBody = $tag_update_request;
+                $httpBody = $chatbot_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

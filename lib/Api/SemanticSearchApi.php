@@ -1,6 +1,6 @@
 <?php
 /**
- * BillingApi
+ * SemanticSearchApi
  * PHP version 7.4
  *
  * @category Class
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace FlowHunt\FlowHunt;
+namespace FlowHunt\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -40,14 +40,14 @@ use FlowHunt\HeaderSelector;
 use FlowHunt\ObjectSerializer;
 
 /**
- * BillingApi Class Doc Comment
+ * SemanticSearchApi Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class BillingApi
+class SemanticSearchApi
 {
     /**
      * @var ClientInterface
@@ -71,22 +71,16 @@ class BillingApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createChangePlanPortal' => [
+        'getSimilarDocsByDocId' => [
             'application/json',
         ],
-        'createCheckout' => [
+        'getSimilarDocsByQuery' => [
             'application/json',
         ],
-        'createUpdateInfoPortal' => [
+        'scheduleSimilarDocsByDocId' => [
             'application/json',
         ],
-        'getPricingPlans' => [
-            'application/json',
-        ],
-        'getUserPlan' => [
-            'application/json',
-        ],
-        'stripeWebhook' => [
+        'scheduleSimilarDocsByQuery' => [
             'application/json',
         ],
     ];
@@ -138,36 +132,40 @@ class BillingApi
     }
 
     /**
-     * Operation createChangePlanPortal
+     * Operation getSimilarDocsByDocId
      *
-     * Create Change Plan Portal
+     * Get Similar Docs By Doc Id
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChangePlanPortal'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function createChangePlanPortal(string $contentType = self::contentTypes['createChangePlanPortal'][0])
+    public function getSimilarDocsByDocId($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        list($response) = $this->createChangePlanPortalWithHttpInfo($contentType);
+        list($response) = $this->getSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createChangePlanPortalWithHttpInfo
+     * Operation getSimilarDocsByDocIdWithHttpInfo
      *
-     * Create Change Plan Portal
+     * Get Similar Docs By Doc Id
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChangePlanPortal'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createChangePlanPortalWithHttpInfo(string $contentType = self::contentTypes['createChangePlanPortal'][0])
+    public function getSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        $request = $this->createChangePlanPortalRequest($contentType);
+        $request = $this->getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -194,11 +192,11 @@ class BillingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('mixed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\VectorDocumentResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('mixed' !== 'string') {
+                        if ('\FlowHunt\Model\VectorDocumentResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -216,306 +214,7 @@ class BillingApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'mixed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = 'mixed';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'mixed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation createChangePlanPortalAsync
-     *
-     * Create Change Plan Portal
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChangePlanPortal'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createChangePlanPortalAsync(string $contentType = self::contentTypes['createChangePlanPortal'][0])
-    {
-        return $this->createChangePlanPortalAsyncWithHttpInfo($contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createChangePlanPortalAsyncWithHttpInfo
-     *
-     * Create Change Plan Portal
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChangePlanPortal'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createChangePlanPortalAsyncWithHttpInfo(string $contentType = self::contentTypes['createChangePlanPortal'][0])
-    {
-        $returnType = 'mixed';
-        $request = $this->createChangePlanPortalRequest($contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'createChangePlanPortal'
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChangePlanPortal'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createChangePlanPortalRequest(string $contentType = self::contentTypes['createChangePlanPortal'][0])
-    {
-
-
-        $resourcePath = '/v2/billing/portal/change-plan/create';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation createCheckout
-     *
-     * Create Checkout
-     *
-     * @param  \FlowHunt\Model\CheckoutCreateRequest $checkout_create_request checkout_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCheckout'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return string|\FlowHunt\Model\HTTPValidationError
-     */
-    public function createCheckout($checkout_create_request, string $contentType = self::contentTypes['createCheckout'][0])
-    {
-        list($response) = $this->createCheckoutWithHttpInfo($checkout_create_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation createCheckoutWithHttpInfo
-     *
-     * Create Checkout
-     *
-     * @param  \FlowHunt\Model\CheckoutCreateRequest $checkout_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCheckout'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of string|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function createCheckoutWithHttpInfo($checkout_create_request, string $contentType = self::contentTypes['createCheckout'][0])
-    {
-        $request = $this->createCheckoutRequest($checkout_create_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('string' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, 'string', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -561,7 +260,7 @@ class BillingApi
                 );
             }
 
-            $returnType = 'string';
+            $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -594,7 +293,7 @@ class BillingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'string',
+                        '\FlowHunt\Model\VectorDocumentResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -613,19 +312,20 @@ class BillingApi
     }
 
     /**
-     * Operation createCheckoutAsync
+     * Operation getSimilarDocsByDocIdAsync
      *
-     * Create Checkout
+     * Get Similar Docs By Doc Id
      *
-     * @param  \FlowHunt\Model\CheckoutCreateRequest $checkout_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCheckout'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCheckoutAsync($checkout_create_request, string $contentType = self::contentTypes['createCheckout'][0])
+    public function getSimilarDocsByDocIdAsync($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        return $this->createCheckoutAsyncWithHttpInfo($checkout_create_request, $contentType)
+        return $this->getSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -634,20 +334,21 @@ class BillingApi
     }
 
     /**
-     * Operation createCheckoutAsyncWithHttpInfo
+     * Operation getSimilarDocsByDocIdAsyncWithHttpInfo
      *
-     * Create Checkout
+     * Get Similar Docs By Doc Id
      *
-     * @param  \FlowHunt\Model\CheckoutCreateRequest $checkout_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCheckout'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCheckoutAsyncWithHttpInfo($checkout_create_request, string $contentType = self::contentTypes['createCheckout'][0])
+    public function getSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        $returnType = 'string';
-        $request = $this->createCheckoutRequest($checkout_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
+        $request = $this->getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -686,32 +387,49 @@ class BillingApi
     }
 
     /**
-     * Create request for operation 'createCheckout'
+     * Create request for operation 'getSimilarDocsByDocId'
      *
-     * @param  \FlowHunt\Model\CheckoutCreateRequest $checkout_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCheckout'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCheckoutRequest($checkout_create_request, string $contentType = self::contentTypes['createCheckout'][0])
+    public function getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
 
-        // verify the required parameter 'checkout_create_request' is set
-        if ($checkout_create_request === null || (is_array($checkout_create_request) && count($checkout_create_request) === 0)) {
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $checkout_create_request when calling createCheckout'
+                'Missing the required parameter $workspace_id when calling getSimilarDocsByDocId'
+            );
+        }
+
+        // verify the required parameter 'document_similarity_request' is set
+        if ($document_similarity_request === null || (is_array($document_similarity_request) && count($document_similarity_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $document_similarity_request when calling getSimilarDocsByDocId'
             );
         }
 
 
-        $resourcePath = '/v2/billing/checkout/create';
+        $resourcePath = '/v2/similarities/document/live';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
 
@@ -723,12 +441,12 @@ class BillingApi
         );
 
         // for model (json/xml)
-        if (isset($checkout_create_request)) {
+        if (isset($document_similarity_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($checkout_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_similarity_request));
             } else {
-                $httpBody = $checkout_create_request;
+                $httpBody = $document_similarity_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -786,36 +504,40 @@ class BillingApi
     }
 
     /**
-     * Operation createUpdateInfoPortal
+     * Operation getSimilarDocsByQuery
      *
-     * Create Update Info Portal
+     * Get Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUpdateInfoPortal'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return string
+     * @return \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function createUpdateInfoPortal(string $contentType = self::contentTypes['createUpdateInfoPortal'][0])
+    public function getSimilarDocsByQuery($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        list($response) = $this->createUpdateInfoPortalWithHttpInfo($contentType);
+        list($response) = $this->getSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation createUpdateInfoPortalWithHttpInfo
+     * Operation getSimilarDocsByQueryWithHttpInfo
      *
-     * Create Update Info Portal
+     * Get Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUpdateInfoPortal'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of string, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createUpdateInfoPortalWithHttpInfo(string $contentType = self::contentTypes['createUpdateInfoPortal'][0])
+    public function getSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        $request = $this->createUpdateInfoPortalRequest($contentType);
+        $request = $this->getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -842,11 +564,11 @@ class BillingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('string' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\VectorDocumentResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
+                        if ('\FlowHunt\Model\VectorDocumentResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -864,7 +586,34 @@ class BillingApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'string', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -883,7 +632,7 @@ class BillingApi
                 );
             }
 
-            $returnType = 'string';
+            $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -916,7 +665,15 @@ class BillingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'string',
+                        '\FlowHunt\Model\VectorDocumentResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -927,18 +684,20 @@ class BillingApi
     }
 
     /**
-     * Operation createUpdateInfoPortalAsync
+     * Operation getSimilarDocsByQueryAsync
      *
-     * Create Update Info Portal
+     * Get Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUpdateInfoPortal'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUpdateInfoPortalAsync(string $contentType = self::contentTypes['createUpdateInfoPortal'][0])
+    public function getSimilarDocsByQueryAsync($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        return $this->createUpdateInfoPortalAsyncWithHttpInfo($contentType)
+        return $this->getSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -947,19 +706,21 @@ class BillingApi
     }
 
     /**
-     * Operation createUpdateInfoPortalAsyncWithHttpInfo
+     * Operation getSimilarDocsByQueryAsyncWithHttpInfo
      *
-     * Create Update Info Portal
+     * Get Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUpdateInfoPortal'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUpdateInfoPortalAsyncWithHttpInfo(string $contentType = self::contentTypes['createUpdateInfoPortal'][0])
+    public function getSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        $returnType = 'string';
-        $request = $this->createUpdateInfoPortalRequest($contentType);
+        $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
+        $request = $this->getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -998,24 +759,49 @@ class BillingApi
     }
 
     /**
-     * Create request for operation 'createUpdateInfoPortal'
+     * Create request for operation 'getSimilarDocsByQuery'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUpdateInfoPortal'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createUpdateInfoPortalRequest(string $contentType = self::contentTypes['createUpdateInfoPortal'][0])
+    public function getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
 
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getSimilarDocsByQuery'
+            );
+        }
 
-        $resourcePath = '/v2/billing/portal/update-info/create';
+        // verify the required parameter 'query_similarity_request' is set
+        if ($query_similarity_request === null || (is_array($query_similarity_request) && count($query_similarity_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $query_similarity_request when calling getSimilarDocsByQuery'
+            );
+        }
+
+
+        $resourcePath = '/v2/similarities/query/live';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
 
@@ -1027,7 +813,14 @@ class BillingApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($query_similarity_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($query_similarity_request));
+            } else {
+                $httpBody = $query_similarity_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1083,326 +876,40 @@ class BillingApi
     }
 
     /**
-     * Operation getPricingPlans
+     * Operation scheduleSimilarDocsByDocId
      *
-     * Get Pricing Plans
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPricingPlans'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\PlanResponse[]
-     */
-    public function getPricingPlans(string $contentType = self::contentTypes['getPricingPlans'][0])
-    {
-        list($response) = $this->getPricingPlansWithHttpInfo($contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getPricingPlansWithHttpInfo
-     *
-     * Get Pricing Plans
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPricingPlans'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\PlanResponse[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getPricingPlansWithHttpInfo(string $contentType = self::contentTypes['getPricingPlans'][0])
-    {
-        $request = $this->getPricingPlansRequest($contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\PlanResponse[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\PlanResponse[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\PlanResponse[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\PlanResponse[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\PlanResponse[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getPricingPlansAsync
-     *
-     * Get Pricing Plans
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPricingPlans'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getPricingPlansAsync(string $contentType = self::contentTypes['getPricingPlans'][0])
-    {
-        return $this->getPricingPlansAsyncWithHttpInfo($contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getPricingPlansAsyncWithHttpInfo
-     *
-     * Get Pricing Plans
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPricingPlans'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getPricingPlansAsyncWithHttpInfo(string $contentType = self::contentTypes['getPricingPlans'][0])
-    {
-        $returnType = '\FlowHunt\Model\PlanResponse[]';
-        $request = $this->getPricingPlansRequest($contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getPricingPlans'
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPricingPlans'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getPricingPlansRequest(string $contentType = self::contentTypes['getPricingPlans'][0])
-    {
-
-
-        $resourcePath = '/v2/billing/plans';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getUserPlan
-     *
-     * Get User Plan
+     * Schedule Similar Docs By Doc Id
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPlan'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\UserPlanResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getUserPlan($workspace_id, string $contentType = self::contentTypes['getUserPlan'][0])
+    public function scheduleSimilarDocsByDocId($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
     {
-        list($response) = $this->getUserPlanWithHttpInfo($workspace_id, $contentType);
+        list($response) = $this->scheduleSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_task_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getUserPlanWithHttpInfo
+     * Operation scheduleSimilarDocsByDocIdWithHttpInfo
      *
-     * Get User Plan
+     * Schedule Similar Docs By Doc Id
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPlan'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\UserPlanResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserPlanWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getUserPlan'][0])
+    public function scheduleSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
     {
-        $request = $this->getUserPlanRequest($workspace_id, $contentType);
+        $request = $this->scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1429,11 +936,11 @@ class BillingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\UserPlanResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\VectorDocumentsTaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\UserPlanResponse' !== 'string') {
+                        if ('\FlowHunt\Model\VectorDocumentsTaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1451,7 +958,7 @@ class BillingApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\UserPlanResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentsTaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1497,7 +1004,7 @@ class BillingApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\UserPlanResponse';
+            $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1530,7 +1037,7 @@ class BillingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\UserPlanResponse',
+                        '\FlowHunt\Model\VectorDocumentsTaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1549,19 +1056,20 @@ class BillingApi
     }
 
     /**
-     * Operation getUserPlanAsync
+     * Operation scheduleSimilarDocsByDocIdAsync
      *
-     * Get User Plan
+     * Schedule Similar Docs By Doc Id
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPlan'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserPlanAsync($workspace_id, string $contentType = self::contentTypes['getUserPlan'][0])
+    public function scheduleSimilarDocsByDocIdAsync($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
     {
-        return $this->getUserPlanAsyncWithHttpInfo($workspace_id, $contentType)
+        return $this->scheduleSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_task_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1570,20 +1078,21 @@ class BillingApi
     }
 
     /**
-     * Operation getUserPlanAsyncWithHttpInfo
+     * Operation scheduleSimilarDocsByDocIdAsyncWithHttpInfo
      *
-     * Get User Plan
+     * Schedule Similar Docs By Doc Id
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPlan'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserPlanAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getUserPlan'][0])
+    public function scheduleSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
     {
-        $returnType = '\FlowHunt\Model\UserPlanResponse';
-        $request = $this->getUserPlanRequest($workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
+        $request = $this->scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1622,26 +1131,34 @@ class BillingApi
     }
 
     /**
-     * Create request for operation 'getUserPlan'
+     * Create request for operation 'scheduleSimilarDocsByDocId'
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserPlan'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getUserPlanRequest($workspace_id, string $contentType = self::contentTypes['getUserPlan'][0])
+    public function scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getUserPlan'
+                'Missing the required parameter $workspace_id when calling scheduleSimilarDocsByDocId'
+            );
+        }
+
+        // verify the required parameter 'document_similarity_task_request' is set
+        if ($document_similarity_task_request === null || (is_array($document_similarity_task_request) && count($document_similarity_task_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $document_similarity_task_request when calling scheduleSimilarDocsByDocId'
             );
         }
 
 
-        $resourcePath = '/v2/billing/plans/me';
+        $resourcePath = '/v2/similarities/document';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1668,7 +1185,14 @@ class BillingApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($document_similarity_task_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_similarity_task_request));
+            } else {
+                $httpBody = $document_similarity_task_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1692,6 +1216,15 @@ class BillingApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1707,7 +1240,7 @@ class BillingApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'GET',
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -1715,36 +1248,40 @@ class BillingApi
     }
 
     /**
-     * Operation stripeWebhook
+     * Operation scheduleSimilarDocsByQuery
      *
-     * Stripe Webhook
+     * Schedule Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['stripeWebhook'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed
+     * @return \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function stripeWebhook(string $contentType = self::contentTypes['stripeWebhook'][0])
+    public function scheduleSimilarDocsByQuery($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
     {
-        list($response) = $this->stripeWebhookWithHttpInfo($contentType);
+        list($response) = $this->scheduleSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_task_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation stripeWebhookWithHttpInfo
+     * Operation scheduleSimilarDocsByQueryWithHttpInfo
      *
-     * Stripe Webhook
+     * Schedule Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['stripeWebhook'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function stripeWebhookWithHttpInfo(string $contentType = self::contentTypes['stripeWebhook'][0])
+    public function scheduleSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
     {
-        $request = $this->stripeWebhookRequest($contentType);
+        $request = $this->scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1771,11 +1308,11 @@ class BillingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\VectorDocumentsTaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\VectorDocumentsTaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1793,7 +1330,34 @@ class BillingApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentsTaskResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1812,7 +1376,7 @@ class BillingApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\Completed';
+            $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1845,7 +1409,15 @@ class BillingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
+                        '\FlowHunt\Model\VectorDocumentsTaskResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1856,18 +1428,20 @@ class BillingApi
     }
 
     /**
-     * Operation stripeWebhookAsync
+     * Operation scheduleSimilarDocsByQueryAsync
      *
-     * Stripe Webhook
+     * Schedule Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['stripeWebhook'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function stripeWebhookAsync(string $contentType = self::contentTypes['stripeWebhook'][0])
+    public function scheduleSimilarDocsByQueryAsync($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
     {
-        return $this->stripeWebhookAsyncWithHttpInfo($contentType)
+        return $this->scheduleSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_task_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1876,19 +1450,21 @@ class BillingApi
     }
 
     /**
-     * Operation stripeWebhookAsyncWithHttpInfo
+     * Operation scheduleSimilarDocsByQueryAsyncWithHttpInfo
      *
-     * Stripe Webhook
+     * Schedule Similar Docs By Query
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['stripeWebhook'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function stripeWebhookAsyncWithHttpInfo(string $contentType = self::contentTypes['stripeWebhook'][0])
+    public function scheduleSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
     {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->stripeWebhookRequest($contentType);
+        $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
+        $request = $this->scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1927,24 +1503,49 @@ class BillingApi
     }
 
     /**
-     * Create request for operation 'stripeWebhook'
+     * Create request for operation 'scheduleSimilarDocsByQuery'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['stripeWebhook'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function stripeWebhookRequest(string $contentType = self::contentTypes['stripeWebhook'][0])
+    public function scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
     {
 
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling scheduleSimilarDocsByQuery'
+            );
+        }
 
-        $resourcePath = '/v2/billing/webhook';
+        // verify the required parameter 'query_similarity_task_request' is set
+        if ($query_similarity_task_request === null || (is_array($query_similarity_task_request) && count($query_similarity_task_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $query_similarity_task_request when calling scheduleSimilarDocsByQuery'
+            );
+        }
+
+
+        $resourcePath = '/v2/similarities/query';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
 
@@ -1956,7 +1557,14 @@ class BillingApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($query_similarity_task_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($query_similarity_task_request));
+            } else {
+                $httpBody = $query_similarity_task_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1980,6 +1588,15 @@ class BillingApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
