@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **error_message** | **string** |  | [optional]
 **original_size_url** | [**\FlowHunt\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
 **thumbnail_url** | [**\FlowHunt\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
+**original_size_url_full_page** | [**\FlowHunt\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
+**thumbnail_url_full_page** | [**\FlowHunt\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
 **timestamp** | **int** |  | [optional]
 **domain_id** | **string** |  | [optional]
 **url_id** | **string** |  | [optional]

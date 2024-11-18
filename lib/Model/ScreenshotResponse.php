@@ -63,6 +63,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'string',
         'original_size_url' => '\FlowHunt\Model\AppUrlOutput',
         'thumbnail_url' => '\FlowHunt\Model\AppUrlOutput',
+        'original_size_url_full_page' => '\FlowHunt\Model\AppUrlOutput',
+        'thumbnail_url_full_page' => '\FlowHunt\Model\AppUrlOutput',
         'timestamp' => 'int',
         'domain_id' => 'string',
         'url_id' => 'string'
@@ -82,6 +84,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => null,
         'original_size_url' => null,
         'thumbnail_url' => null,
+        'original_size_url_full_page' => null,
+        'thumbnail_url_full_page' => null,
         'timestamp' => null,
         'domain_id' => null,
         'url_id' => null
@@ -99,6 +103,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => true,
         'original_size_url' => true,
         'thumbnail_url' => true,
+        'original_size_url_full_page' => true,
+        'thumbnail_url_full_page' => true,
         'timestamp' => true,
         'domain_id' => true,
         'url_id' => true
@@ -196,6 +202,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'error_message',
         'original_size_url' => 'original_size_url',
         'thumbnail_url' => 'thumbnail_url',
+        'original_size_url_full_page' => 'original_size_url_full_page',
+        'thumbnail_url_full_page' => 'thumbnail_url_full_page',
         'timestamp' => 'timestamp',
         'domain_id' => 'domain_id',
         'url_id' => 'url_id'
@@ -213,6 +221,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'setErrorMessage',
         'original_size_url' => 'setOriginalSizeUrl',
         'thumbnail_url' => 'setThumbnailUrl',
+        'original_size_url_full_page' => 'setOriginalSizeUrlFullPage',
+        'thumbnail_url_full_page' => 'setThumbnailUrlFullPage',
         'timestamp' => 'setTimestamp',
         'domain_id' => 'setDomainId',
         'url_id' => 'setUrlId'
@@ -230,6 +240,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'error_message' => 'getErrorMessage',
         'original_size_url' => 'getOriginalSizeUrl',
         'thumbnail_url' => 'getThumbnailUrl',
+        'original_size_url_full_page' => 'getOriginalSizeUrlFullPage',
+        'thumbnail_url_full_page' => 'getThumbnailUrlFullPage',
         'timestamp' => 'getTimestamp',
         'domain_id' => 'getDomainId',
         'url_id' => 'getUrlId'
@@ -298,6 +310,8 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('error_message', $data ?? [], null);
         $this->setIfExists('original_size_url', $data ?? [], null);
         $this->setIfExists('thumbnail_url', $data ?? [], null);
+        $this->setIfExists('original_size_url_full_page', $data ?? [], null);
+        $this->setIfExists('thumbnail_url_full_page', $data ?? [], null);
         $this->setIfExists('timestamp', $data ?? [], null);
         $this->setIfExists('domain_id', $data ?? [], null);
         $this->setIfExists('url_id', $data ?? [], null);
@@ -537,6 +551,74 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['thumbnail_url'] = $thumbnail_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets original_size_url_full_page
+     *
+     * @return \FlowHunt\Model\AppUrlOutput|null
+     */
+    public function getOriginalSizeUrlFullPage()
+    {
+        return $this->container['original_size_url_full_page'];
+    }
+
+    /**
+     * Sets original_size_url_full_page
+     *
+     * @param \FlowHunt\Model\AppUrlOutput|null $original_size_url_full_page original_size_url_full_page
+     *
+     * @return self
+     */
+    public function setOriginalSizeUrlFullPage($original_size_url_full_page)
+    {
+        if (is_null($original_size_url_full_page)) {
+            array_push($this->openAPINullablesSetToNull, 'original_size_url_full_page');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('original_size_url_full_page', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['original_size_url_full_page'] = $original_size_url_full_page;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumbnail_url_full_page
+     *
+     * @return \FlowHunt\Model\AppUrlOutput|null
+     */
+    public function getThumbnailUrlFullPage()
+    {
+        return $this->container['thumbnail_url_full_page'];
+    }
+
+    /**
+     * Sets thumbnail_url_full_page
+     *
+     * @param \FlowHunt\Model\AppUrlOutput|null $thumbnail_url_full_page thumbnail_url_full_page
+     *
+     * @return self
+     */
+    public function setThumbnailUrlFullPage($thumbnail_url_full_page)
+    {
+        if (is_null($thumbnail_url_full_page)) {
+            array_push($this->openAPINullablesSetToNull, 'thumbnail_url_full_page');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('thumbnail_url_full_page', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['thumbnail_url_full_page'] = $thumbnail_url_full_page;
 
         return $this;
     }

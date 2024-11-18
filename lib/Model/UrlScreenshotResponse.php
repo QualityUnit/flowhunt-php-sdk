@@ -58,7 +58,9 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'original_image' => 'string',
-        'thumbnail_image' => 'string'
+        'thumbnail_image' => 'string',
+        'original_image_full_page' => 'string',
+        'thumbnail_image_full_page' => 'string'
     ];
 
     /**
@@ -70,7 +72,9 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'original_image' => null,
-        'thumbnail_image' => null
+        'thumbnail_image' => null,
+        'original_image_full_page' => null,
+        'thumbnail_image_full_page' => null
     ];
 
     /**
@@ -80,7 +84,9 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'original_image' => false,
-        'thumbnail_image' => false
+        'thumbnail_image' => false,
+        'original_image_full_page' => false,
+        'thumbnail_image_full_page' => false
     ];
 
     /**
@@ -170,7 +176,9 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'original_image' => 'original_image',
-        'thumbnail_image' => 'thumbnail_image'
+        'thumbnail_image' => 'thumbnail_image',
+        'original_image_full_page' => 'original_image_full_page',
+        'thumbnail_image_full_page' => 'thumbnail_image_full_page'
     ];
 
     /**
@@ -180,7 +188,9 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'original_image' => 'setOriginalImage',
-        'thumbnail_image' => 'setThumbnailImage'
+        'thumbnail_image' => 'setThumbnailImage',
+        'original_image_full_page' => 'setOriginalImageFullPage',
+        'thumbnail_image_full_page' => 'setThumbnailImageFullPage'
     ];
 
     /**
@@ -190,7 +200,9 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'original_image' => 'getOriginalImage',
-        'thumbnail_image' => 'getThumbnailImage'
+        'thumbnail_image' => 'getThumbnailImage',
+        'original_image_full_page' => 'getOriginalImageFullPage',
+        'thumbnail_image_full_page' => 'getThumbnailImageFullPage'
     ];
 
     /**
@@ -252,6 +264,8 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $this->setIfExists('original_image', $data ?? [], null);
         $this->setIfExists('thumbnail_image', $data ?? [], null);
+        $this->setIfExists('original_image_full_page', $data ?? [], null);
+        $this->setIfExists('thumbnail_image_full_page', $data ?? [], null);
     }
 
     /**
@@ -286,6 +300,12 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if ($this->container['thumbnail_image'] === null) {
             $invalidProperties[] = "'thumbnail_image' can't be null";
+        }
+        if ($this->container['original_image_full_page'] === null) {
+            $invalidProperties[] = "'original_image_full_page' can't be null";
+        }
+        if ($this->container['thumbnail_image_full_page'] === null) {
+            $invalidProperties[] = "'thumbnail_image_full_page' can't be null";
         }
         return $invalidProperties;
     }
@@ -352,6 +372,60 @@ class UrlScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable thumbnail_image cannot be null');
         }
         $this->container['thumbnail_image'] = $thumbnail_image;
+
+        return $this;
+    }
+
+    /**
+     * Gets original_image_full_page
+     *
+     * @return string
+     */
+    public function getOriginalImageFullPage()
+    {
+        return $this->container['original_image_full_page'];
+    }
+
+    /**
+     * Sets original_image_full_page
+     *
+     * @param string $original_image_full_page original_image_full_page
+     *
+     * @return self
+     */
+    public function setOriginalImageFullPage($original_image_full_page)
+    {
+        if (is_null($original_image_full_page)) {
+            throw new \InvalidArgumentException('non-nullable original_image_full_page cannot be null');
+        }
+        $this->container['original_image_full_page'] = $original_image_full_page;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumbnail_image_full_page
+     *
+     * @return string
+     */
+    public function getThumbnailImageFullPage()
+    {
+        return $this->container['thumbnail_image_full_page'];
+    }
+
+    /**
+     * Sets thumbnail_image_full_page
+     *
+     * @param string $thumbnail_image_full_page thumbnail_image_full_page
+     *
+     * @return self
+     */
+    public function setThumbnailImageFullPage($thumbnail_image_full_page)
+    {
+        if (is_null($thumbnail_image_full_page)) {
+            throw new \InvalidArgumentException('non-nullable thumbnail_image_full_page cannot be null');
+        }
+        $this->container['thumbnail_image_full_page'] = $thumbnail_image_full_page;
 
         return $this;
     }

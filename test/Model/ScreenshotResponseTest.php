@@ -134,6 +134,24 @@ class ScreenshotResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "original_size_url_full_page"
+     */
+    public function testPropertyOriginalSizeUrlFullPage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "thumbnail_url_full_page"
+     */
+    public function testPropertyThumbnailUrlFullPage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "timestamp"
      */
     public function testPropertyTimestamp()

@@ -96,4 +96,22 @@ class UrlScreenshotResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "original_image_full_page"
+     */
+    public function testPropertyOriginalImageFullPage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "thumbnail_image_full_page"
+     */
+    public function testPropertyThumbnailImageFullPage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
