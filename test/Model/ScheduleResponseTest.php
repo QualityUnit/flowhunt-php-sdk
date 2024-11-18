@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace FlowHunt\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description ScheduleResponse
- * @package     OpenAPI\Client
+ * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -191,6 +191,24 @@ class ScheduleResponseTest extends TestCase
      * Test attribute "with_screenshot"
      */
     public function testPropertyWithScreenshot()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "with_browser"
+     */
+    public function testPropertyWithBrowser()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "follow_links"
+     */
+    public function testPropertyFollowLinks()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

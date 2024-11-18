@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * WorkspaceUserResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class WorkspaceUserResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'email' => 'string',
         'name' => 'string',
         'avatar_url' => 'string',
-        'role' => '\OpenAPI\Client\Model\Role'
+        'role' => '\FlowHunt\Model\Role'
     ];
 
     /**
@@ -447,7 +447,7 @@ class WorkspaceUserResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets role
      *
-     * @return \OpenAPI\Client\Model\Role
+     * @return \FlowHunt\Model\Role
      */
     public function getRole()
     {
@@ -457,7 +457,7 @@ class WorkspaceUserResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets role
      *
-     * @param \OpenAPI\Client\Model\Role $role Role of the user (A - Admin, E - Editor, M - member, G - Guest)
+     * @param \FlowHunt\Model\Role $role Role of the user (A - Admin, E - Editor, M - member, G - Guest)
      *
      * @return self
      */

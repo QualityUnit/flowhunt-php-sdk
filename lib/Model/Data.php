@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * Data Class Doc Comment
  *
  * @category Class
  * @description Document linked to vector
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -63,7 +63,7 @@ class Data implements ModelInterface, ArrayAccess, \JsonSerializable
         'url_id' => 'string',
         'url' => 'string',
         'last_text_timestamp' => '\DateTime',
-        'page_screenshot' => '\OpenAPI\Client\Model\UrlScreenshotResponse',
+        'page_screenshot' => '\FlowHunt\Model\UrlScreenshotResponse',
         'url_title' => 'string',
         'url_meta_description' => 'string',
         'url_og_image' => 'string',
@@ -672,7 +672,7 @@ class Data implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets page_screenshot
      *
-     * @return \OpenAPI\Client\Model\UrlScreenshotResponse
+     * @return \FlowHunt\Model\UrlScreenshotResponse
      */
     public function getPageScreenshot()
     {
@@ -682,7 +682,7 @@ class Data implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets page_screenshot
      *
-     * @param \OpenAPI\Client\Model\UrlScreenshotResponse $page_screenshot page_screenshot
+     * @param \FlowHunt\Model\UrlScreenshotResponse $page_screenshot page_screenshot
      *
      * @return self
      */

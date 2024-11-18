@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * GridRowResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class GridRowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'grid_id' => 'string',
         'row_id' => 'string',
         'created' => 'float',
-        'cells' => '\OpenAPI\Client\Model\GrigCell[]'
+        'cells' => '\FlowHunt\Model\GrigCell[]'
     ];
 
     /**
@@ -440,7 +440,7 @@ class GridRowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cells
      *
-     * @return \OpenAPI\Client\Model\GrigCell[]|null
+     * @return \FlowHunt\Model\GrigCell[]|null
      */
     public function getCells()
     {
@@ -450,7 +450,7 @@ class GridRowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cells
      *
-     * @param \OpenAPI\Client\Model\GrigCell[]|null $cells cells
+     * @param \FlowHunt\Model\GrigCell[]|null $cells cells
      *
      * @return self
      */

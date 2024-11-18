@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**auth_type** | [**\OpenAPI\Client\Model\ApiIntegrationAuthType**](ApiIntegrationAuthType.md) | The authentication type of the API integration. |
+**auth_type** | [**\FlowHunt\Model\ApiIntegrationAuthType**](ApiIntegrationAuthType.md) | The authentication type of the API integration. |
 **description** | **string** | The description of the authentication type. |
 **beta** | **bool** | Whether the authentication type is in beta or not. | [optional] [default to false]
 **link** | **string** | The link of the authentication type documentation. |

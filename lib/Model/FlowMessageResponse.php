@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowMessageResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPITypes = [
         'message_id' => 'string',
         'session_id' => 'string',
-        'role' => '\OpenAPI\Client\Model\FlowMessageRole',
+        'role' => '\FlowHunt\Model\FlowMessageRole',
         'created_at' => '\DateTime',
         'message' => 'string',
         'credits' => 'int'
@@ -399,7 +399,7 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets role
      *
-     * @return \OpenAPI\Client\Model\FlowMessageRole
+     * @return \FlowHunt\Model\FlowMessageRole
      */
     public function getRole()
     {
@@ -409,7 +409,7 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets role
      *
-     * @param \OpenAPI\Client\Model\FlowMessageRole $role Chat role
+     * @param \FlowHunt\Model\FlowMessageRole $role Chat role
      *
      * @return self
      */

@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
  * TagsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -137,12 +137,12 @@ class TagsApi
      * Create Tag
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request tag_create_request (required)
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request tag_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createTag($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
@@ -156,12 +156,12 @@ class TagsApi
      * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createTagWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
@@ -192,11 +192,11 @@ class TagsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TagResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TagResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TagResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -214,16 +214,16 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TagResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -241,7 +241,7 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -260,7 +260,7 @@ class TagsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TagResponse';
+            $returnType = '\FlowHunt\Model\TagResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -293,7 +293,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TagResponse',
+                        '\FlowHunt\Model\TagResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -301,7 +301,7 @@ class TagsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -317,7 +317,7 @@ class TagsApi
      * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -339,7 +339,7 @@ class TagsApi
      * Create Tag
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -347,7 +347,7 @@ class TagsApi
      */
     public function createTagAsyncWithHttpInfo($workspace_id, $tag_create_request, string $contentType = self::contentTypes['createTag'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TagResponse';
+        $returnType = '\FlowHunt\Model\TagResponse';
         $request = $this->createTagRequest($workspace_id, $tag_create_request, $contentType);
 
         return $this->client
@@ -390,7 +390,7 @@ class TagsApi
      * Create request for operation 'createTag'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagCreateRequest $tag_create_request (required)
+     * @param  \FlowHunt\Model\TagCreateRequest $tag_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -512,9 +512,9 @@ class TagsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function deleteTag($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
@@ -531,9 +531,9 @@ class TagsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteTagWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
@@ -564,11 +564,11 @@ class TagsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -586,16 +586,16 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -613,7 +613,7 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -632,7 +632,7 @@ class TagsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -665,7 +665,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -673,7 +673,7 @@ class TagsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -719,7 +719,7 @@ class TagsApi
      */
     public function deleteTagAsyncWithHttpInfo($tag_id, $workspace_id, string $contentType = self::contentTypes['deleteTag'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->deleteTagRequest($tag_id, $workspace_id, $contentType);
 
         return $this->client
@@ -882,12 +882,12 @@ class TagsApi
      * Search Tags
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request tag_search_request (required)
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request tag_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TagResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TagResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function searchTags($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
@@ -901,12 +901,12 @@ class TagsApi
      * Search Tags
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TagResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TagResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchTagsWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
@@ -937,11 +937,11 @@ class TagsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TagResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TagResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TagResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\TagResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -959,16 +959,16 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TagResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -986,7 +986,7 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1005,7 +1005,7 @@ class TagsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TagResponse[]';
+            $returnType = '\FlowHunt\Model\TagResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1038,7 +1038,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TagResponse[]',
+                        '\FlowHunt\Model\TagResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1046,7 +1046,7 @@ class TagsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1062,7 +1062,7 @@ class TagsApi
      * Search Tags
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1084,7 +1084,7 @@ class TagsApi
      * Search Tags
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1092,7 +1092,7 @@ class TagsApi
      */
     public function searchTagsAsyncWithHttpInfo($workspace_id, $tag_search_request, string $contentType = self::contentTypes['searchTags'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TagResponse[]';
+        $returnType = '\FlowHunt\Model\TagResponse[]';
         $request = $this->searchTagsRequest($workspace_id, $tag_search_request, $contentType);
 
         return $this->client
@@ -1135,7 +1135,7 @@ class TagsApi
      * Create request for operation 'searchTags'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagSearchRequest $tag_search_request (required)
+     * @param  \FlowHunt\Model\TagSearchRequest $tag_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1255,12 +1255,12 @@ class TagsApi
      *
      * @param  string $tag_id tag_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request tag_update_request (required)
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request tag_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function updateTag($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
@@ -1275,12 +1275,12 @@ class TagsApi
      *
      * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TagResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TagResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateTagWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
@@ -1311,11 +1311,11 @@ class TagsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TagResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TagResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TagResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1333,16 +1333,16 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TagResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TagResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1360,7 +1360,7 @@ class TagsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1379,7 +1379,7 @@ class TagsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TagResponse';
+            $returnType = '\FlowHunt\Model\TagResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1412,7 +1412,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TagResponse',
+                        '\FlowHunt\Model\TagResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1420,7 +1420,7 @@ class TagsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1437,7 +1437,7 @@ class TagsApi
      *
      * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1460,7 +1460,7 @@ class TagsApi
      *
      * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1468,7 +1468,7 @@ class TagsApi
      */
     public function updateTagAsyncWithHttpInfo($tag_id, $workspace_id, $tag_update_request, string $contentType = self::contentTypes['updateTag'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TagResponse';
+        $returnType = '\FlowHunt\Model\TagResponse';
         $request = $this->updateTagRequest($tag_id, $workspace_id, $tag_update_request, $contentType);
 
         return $this->client
@@ -1512,7 +1512,7 @@ class TagsApi
      *
      * @param  string $tag_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TagUpdateRequest $tag_update_request (required)
+     * @param  \FlowHunt\Model\TagUpdateRequest $tag_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **name** | **string** | Flow name |
 **description** | **string** | Flow description |
 **detailed_description** | **string** |  | [optional]
-**config** | [**\OpenAPI\Client\Model\FlowConfig**](FlowConfig.md) | Flow configuration |
-**flow_type** | [**\OpenAPI\Client\Model\FlowType**](FlowType.md) | Flow type |
+**config** | [**\FlowHunt\Model\FlowConfig**](FlowConfig.md) | Flow configuration |
+**flow_type** | [**\FlowHunt\Model\FlowType**](FlowType.md) | Flow type |
 **executed_at** | **\DateTime** |  | [optional]
 **category_id** | **string** |  | [optional]
 

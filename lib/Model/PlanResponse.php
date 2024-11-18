@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * PlanResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -65,8 +65,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'description' => 'string',
         'popular' => 'bool',
-        'features' => '\OpenAPI\Client\Model\FeatureResponse[]',
-        'subscription_plan' => '\OpenAPI\Client\Model\SubscriptionPlan',
+        'features' => '\FlowHunt\Model\FeatureResponse[]',
+        'subscription_plan' => '\FlowHunt\Model\SubscriptionPlan',
         'self_hosted' => 'bool'
     ];
 
@@ -608,7 +608,7 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets features
      *
-     * @return \OpenAPI\Client\Model\FeatureResponse[]
+     * @return \FlowHunt\Model\FeatureResponse[]
      */
     public function getFeatures()
     {
@@ -618,7 +618,7 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets features
      *
-     * @param \OpenAPI\Client\Model\FeatureResponse[] $features features
+     * @param \FlowHunt\Model\FeatureResponse[] $features features
      *
      * @return self
      */
@@ -635,7 +635,7 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets subscription_plan
      *
-     * @return \OpenAPI\Client\Model\SubscriptionPlan
+     * @return \FlowHunt\Model\SubscriptionPlan
      */
     public function getSubscriptionPlan()
     {
@@ -645,7 +645,7 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscription_plan
      *
-     * @param \OpenAPI\Client\Model\SubscriptionPlan $subscription_plan subscription_plan
+     * @param \FlowHunt\Model\SubscriptionPlan $subscription_plan subscription_plan
      *
      * @return self
      */

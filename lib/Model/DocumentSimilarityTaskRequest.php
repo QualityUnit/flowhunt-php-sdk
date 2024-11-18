@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * DocumentSimilarityTaskRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class DocumentSimilarityTaskRequest implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'post_back_url' => 'string',
-        'document_type' => '\OpenAPI\Client\Model\VectorDocumentType',
-        'pointer_type' => '\OpenAPI\Client\Model\PointerType',
+        'document_type' => '\FlowHunt\Model\VectorDocumentType',
+        'pointer_type' => '\FlowHunt\Model\PointerType',
         'schema_type' => 'string',
         'limit' => 'int',
         'score_trheshold' => 'float',
@@ -438,7 +438,7 @@ class DocumentSimilarityTaskRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets document_type
      *
-     * @return \OpenAPI\Client\Model\VectorDocumentType|null
+     * @return \FlowHunt\Model\VectorDocumentType|null
      */
     public function getDocumentType()
     {
@@ -448,7 +448,7 @@ class DocumentSimilarityTaskRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets document_type
      *
-     * @param \OpenAPI\Client\Model\VectorDocumentType|null $document_type document_type
+     * @param \FlowHunt\Model\VectorDocumentType|null $document_type document_type
      *
      * @return self
      */
@@ -472,7 +472,7 @@ class DocumentSimilarityTaskRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets pointer_type
      *
-     * @return \OpenAPI\Client\Model\PointerType|null
+     * @return \FlowHunt\Model\PointerType|null
      */
     public function getPointerType()
     {
@@ -482,7 +482,7 @@ class DocumentSimilarityTaskRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets pointer_type
      *
-     * @param \OpenAPI\Client\Model\PointerType|null $pointer_type pointer_type
+     * @param \FlowHunt\Model\PointerType|null $pointer_type pointer_type
      *
      * @return self
      */

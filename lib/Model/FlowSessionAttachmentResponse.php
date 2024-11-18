@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowSessionAttachmentResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class FlowSessionAttachmentResponse implements ModelInterface, ArrayAccess, \Jso
         'file_name' => 'string',
         'file_type' => 'string',
         'file_id' => 'string',
-        'type' => '\OpenAPI\Client\Model\DocumentType'
+        'type' => '\FlowHunt\Model\DocumentType'
     ];
 
     /**
@@ -406,7 +406,7 @@ class FlowSessionAttachmentResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets type
      *
-     * @return \OpenAPI\Client\Model\DocumentType
+     * @return \FlowHunt\Model\DocumentType
      */
     public function getType()
     {
@@ -416,7 +416,7 @@ class FlowSessionAttachmentResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets type
      *
-     * @param \OpenAPI\Client\Model\DocumentType $type Document type
+     * @param \FlowHunt\Model\DocumentType $type Document type
      *
      * @return self
      */

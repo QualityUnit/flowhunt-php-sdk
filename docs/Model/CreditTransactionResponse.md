@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **workspace_id** | **string** | Workspace ID |
 **user_id** | **string** | User ID or user to whom is transaction assigned |
 **created_at** | **\DateTime** | Transaction creation date |
-**transaction_type** | [**\OpenAPI\Client\Model\TransactionType**](TransactionType.md) | Transaction type |
+**transaction_type** | [**\FlowHunt\Model\TransactionType**](TransactionType.md) | Transaction type |
 **context_id** | **string** | Context ID - identification of transaction context - eg chatbot id |
 **context_desc** | **string** | Context description - description of transaction context | [optional]
 **amount** | **int** | Amount of credits |

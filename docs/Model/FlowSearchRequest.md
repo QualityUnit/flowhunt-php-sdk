@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flow_type** | [**\OpenAPI\Client\Model\FlowType**](FlowType.md) |  | [optional]
+**flow_type** | [**\FlowHunt\Model\FlowType**](FlowType.md) |  | [optional]
 **name** | **string** |  | [optional]
 **category_id** | **string** |  | [optional]
 

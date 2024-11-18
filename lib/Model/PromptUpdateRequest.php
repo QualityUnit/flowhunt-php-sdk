@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * PromptUpdateRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class PromptUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'name' => 'string',
         'description' => 'string',
         'prompt_text' => 'string',
-        'prompt_url' => '\OpenAPI\Client\Model\AppUrlInput',
+        'prompt_url' => '\FlowHunt\Model\AppUrlInput',
         'cat_id' => 'string'
     ];
 
@@ -422,7 +422,7 @@ class PromptUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets prompt_url
      *
-     * @return \OpenAPI\Client\Model\AppUrlInput|null
+     * @return \FlowHunt\Model\AppUrlInput|null
      */
     public function getPromptUrl()
     {
@@ -432,7 +432,7 @@ class PromptUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets prompt_url
      *
-     * @param \OpenAPI\Client\Model\AppUrlInput|null $prompt_url prompt_url
+     * @param \FlowHunt\Model\AppUrlInput|null $prompt_url prompt_url
      *
      * @return self
      */

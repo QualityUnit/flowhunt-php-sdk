@@ -1,4 +1,4 @@
-# OpenAPI\Client\CreditsApi
+# FlowHunt\CreditsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -13,7 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `getCreditBalance()`
 
 ```php
-getCreditBalance(): \OpenAPI\Client\Model\CreditBalanceResponse
+getCreditBalance(): \FlowHunt\Model\CreditBalanceResponse
 ```
 
 Get Credit Balance
@@ -26,15 +26,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CreditsApi(
+$apiInstance = new FlowHunt\Api\CreditsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -55,7 +55,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreditBalanceResponse**](../Model/CreditBalanceResponse.md)
+[**\FlowHunt\Model\CreditBalanceResponse**](../Model/CreditBalanceResponse.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ This endpoint does not need any parameter.
 ## `getWorkspaceCreditBalance()`
 
 ```php
-getWorkspaceCreditBalance($workspace_id): \OpenAPI\Client\Model\CreditBalanceResponse
+getWorkspaceCreditBalance($workspace_id): \FlowHunt\Model\CreditBalanceResponse
 ```
 
 Get Workspace Credit Balance
@@ -86,15 +86,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CreditsApi(
+$apiInstance = new FlowHunt\Api\CreditsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -118,7 +118,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreditBalanceResponse**](../Model/CreditBalanceResponse.md)
+[**\FlowHunt\Model\CreditBalanceResponse**](../Model/CreditBalanceResponse.md)
 
 ### Authorization
 
@@ -136,7 +136,7 @@ try {
 ## `searchCreditTransactions()`
 
 ```php
-searchCreditTransactions($workspace_id, $credit_transaction_search_request): \OpenAPI\Client\Model\CreditTransactionResponse[]
+searchCreditTransactions($workspace_id, $credit_transaction_search_request): \FlowHunt\Model\CreditTransactionResponse[]
 ```
 
 Search Credit Transactions
@@ -149,22 +149,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CreditsApi(
+$apiInstance = new FlowHunt\Api\CreditsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$credit_transaction_search_request = new \OpenAPI\Client\Model\CreditTransactionSearchRequest(); // \OpenAPI\Client\Model\CreditTransactionSearchRequest
+$credit_transaction_search_request = new \FlowHunt\Model\CreditTransactionSearchRequest(); // \FlowHunt\Model\CreditTransactionSearchRequest
 
 try {
     $result = $apiInstance->searchCreditTransactions($workspace_id, $credit_transaction_search_request);
@@ -179,11 +179,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **credit_transaction_search_request** | [**\OpenAPI\Client\Model\CreditTransactionSearchRequest**](../Model/CreditTransactionSearchRequest.md)|  | |
+| **credit_transaction_search_request** | [**\FlowHunt\Model\CreditTransactionSearchRequest**](../Model/CreditTransactionSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreditTransactionResponse[]**](../Model/CreditTransactionResponse.md)
+[**\FlowHunt\Model\CreditTransactionResponse[]**](../Model/CreditTransactionResponse.md)
 
 ### Authorization
 
@@ -201,7 +201,7 @@ try {
 ## `searchDailyCreditTransactions()`
 
 ```php
-searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request): \OpenAPI\Client\Model\CreditDailyTransactionResponse[]
+searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request): \FlowHunt\Model\CreditDailyTransactionResponse[]
 ```
 
 Search Daily Credit Transactions
@@ -214,22 +214,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CreditsApi(
+$apiInstance = new FlowHunt\Api\CreditsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$credit_daily_transaction_search_request = new \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest(); // \OpenAPI\Client\Model\CreditDailyTransactionSearchRequest
+$credit_daily_transaction_search_request = new \FlowHunt\Model\CreditDailyTransactionSearchRequest(); // \FlowHunt\Model\CreditDailyTransactionSearchRequest
 
 try {
     $result = $apiInstance->searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request);
@@ -244,11 +244,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **credit_daily_transaction_search_request** | [**\OpenAPI\Client\Model\CreditDailyTransactionSearchRequest**](../Model/CreditDailyTransactionSearchRequest.md)|  | |
+| **credit_daily_transaction_search_request** | [**\FlowHunt\Model\CreditDailyTransactionSearchRequest**](../Model/CreditDailyTransactionSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreditDailyTransactionResponse[]**](../Model/CreditDailyTransactionResponse.md)
+[**\FlowHunt\Model\CreditDailyTransactionResponse[]**](../Model/CreditDailyTransactionResponse.md)
 
 ### Authorization
 

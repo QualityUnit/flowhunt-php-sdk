@@ -1,4 +1,4 @@
-# OpenAPI\Client\AuthApi
+# FlowHunt\AuthApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -32,7 +32,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -73,7 +73,7 @@ No authorization required
 ## `getThirdPartyToken()`
 
 ```php
-getThirdPartyToken($provider_name, $thrid_party_login_request): \OpenAPI\Client\Model\UserTokenResponse
+getThirdPartyToken($provider_name, $thrid_party_login_request): \FlowHunt\Model\UserTokenResponse
 ```
 
 Get Third Party Token
@@ -86,19 +86,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: sudo_api_key_header
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Sudo-Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Sudo-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Sudo-Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Sudo-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $provider_name = 'provider_name_example'; // string
-$thrid_party_login_request = new \OpenAPI\Client\Model\ThridPartyLoginRequest(); // \OpenAPI\Client\Model\ThridPartyLoginRequest
+$thrid_party_login_request = new \FlowHunt\Model\ThridPartyLoginRequest(); // \FlowHunt\Model\ThridPartyLoginRequest
 
 try {
     $result = $apiInstance->getThirdPartyToken($provider_name, $thrid_party_login_request);
@@ -113,11 +113,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **provider_name** | **string**|  | |
-| **thrid_party_login_request** | [**\OpenAPI\Client\Model\ThridPartyLoginRequest**](../Model/ThridPartyLoginRequest.md)|  | |
+| **thrid_party_login_request** | [**\FlowHunt\Model\ThridPartyLoginRequest**](../Model/ThridPartyLoginRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserTokenResponse**](../Model/UserTokenResponse.md)
+[**\FlowHunt\Model\UserTokenResponse**](../Model/UserTokenResponse.md)
 
 ### Authorization
 
@@ -135,7 +135,7 @@ try {
 ## `getToken()`
 
 ```php
-getToken($login_user_request): \OpenAPI\Client\Model\UserTokenResponse
+getToken($login_user_request): \FlowHunt\Model\UserTokenResponse
 ```
 
 Get Token
@@ -148,18 +148,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: sudo_api_key_header
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Sudo-Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Sudo-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Sudo-Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Sudo-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$login_user_request = new \OpenAPI\Client\Model\LoginUserRequest(); // \OpenAPI\Client\Model\LoginUserRequest
+$login_user_request = new \FlowHunt\Model\LoginUserRequest(); // \FlowHunt\Model\LoginUserRequest
 
 try {
     $result = $apiInstance->getToken($login_user_request);
@@ -173,11 +173,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **login_user_request** | [**\OpenAPI\Client\Model\LoginUserRequest**](../Model/LoginUserRequest.md)|  | |
+| **login_user_request** | [**\FlowHunt\Model\LoginUserRequest**](../Model/LoginUserRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserTokenResponse**](../Model/UserTokenResponse.md)
+[**\FlowHunt\Model\UserTokenResponse**](../Model/UserTokenResponse.md)
 
 ### Authorization
 
@@ -195,7 +195,7 @@ try {
 ## `getUser()`
 
 ```php
-getUser(): \OpenAPI\Client\Model\UserResponse
+getUser(): \FlowHunt\Model\UserResponse
 ```
 
 Get User
@@ -208,15 +208,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -237,7 +237,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserResponse**](../Model/UserResponse.md)
+[**\FlowHunt\Model\UserResponse**](../Model/UserResponse.md)
 
 ### Authorization
 
@@ -255,7 +255,7 @@ This endpoint does not need any parameter.
 ## `recoverPassword()`
 
 ```php
-recoverPassword($email): \OpenAPI\Client\Model\Completed
+recoverPassword($email): \FlowHunt\Model\Completed
 ```
 
 Recover Password
@@ -270,7 +270,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -293,7 +293,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -311,7 +311,7 @@ No authorization required
 ## `refreshToken()`
 
 ```php
-refreshToken($refresh_token_request): \OpenAPI\Client\Model\Token
+refreshToken($refresh_token_request): \FlowHunt\Model\Token
 ```
 
 Refresh Token
@@ -324,12 +324,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$refresh_token_request = new \OpenAPI\Client\Model\RefreshTokenRequest(); // \OpenAPI\Client\Model\RefreshTokenRequest
+$refresh_token_request = new \FlowHunt\Model\RefreshTokenRequest(); // \FlowHunt\Model\RefreshTokenRequest
 
 try {
     $result = $apiInstance->refreshToken($refresh_token_request);
@@ -343,11 +343,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **refresh_token_request** | [**\OpenAPI\Client\Model\RefreshTokenRequest**](../Model/RefreshTokenRequest.md)|  | |
+| **refresh_token_request** | [**\FlowHunt\Model\RefreshTokenRequest**](../Model/RefreshTokenRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Token**](../Model/Token.md)
+[**\FlowHunt\Model\Token**](../Model/Token.md)
 
 ### Authorization
 
@@ -365,7 +365,7 @@ No authorization required
 ## `registerUser()`
 
 ```php
-registerUser($register_user_request): \OpenAPI\Client\Model\Completed
+registerUser($register_user_request): \FlowHunt\Model\Completed
 ```
 
 Register User
@@ -378,12 +378,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$register_user_request = new \OpenAPI\Client\Model\RegisterUserRequest(); // \OpenAPI\Client\Model\RegisterUserRequest
+$register_user_request = new \FlowHunt\Model\RegisterUserRequest(); // \FlowHunt\Model\RegisterUserRequest
 
 try {
     $result = $apiInstance->registerUser($register_user_request);
@@ -397,11 +397,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **register_user_request** | [**\OpenAPI\Client\Model\RegisterUserRequest**](../Model/RegisterUserRequest.md)|  | |
+| **register_user_request** | [**\FlowHunt\Model\RegisterUserRequest**](../Model/RegisterUserRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -419,7 +419,7 @@ No authorization required
 ## `resetPassword()`
 
 ```php
-resetPassword($new_password_request): \OpenAPI\Client\Model\Completed
+resetPassword($new_password_request): \FlowHunt\Model\Completed
 ```
 
 Reset Password
@@ -434,12 +434,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\AuthApi(
+$apiInstance = new FlowHunt\Api\AuthApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$new_password_request = new \OpenAPI\Client\Model\NewPasswordRequest(); // \OpenAPI\Client\Model\NewPasswordRequest
+$new_password_request = new \FlowHunt\Model\NewPasswordRequest(); // \FlowHunt\Model\NewPasswordRequest
 
 try {
     $result = $apiInstance->resetPassword($new_password_request);
@@ -453,11 +453,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **new_password_request** | [**\OpenAPI\Client\Model\NewPasswordRequest**](../Model/NewPasswordRequest.md)|  | |
+| **new_password_request** | [**\FlowHunt\Model\NewPasswordRequest**](../Model/NewPasswordRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 

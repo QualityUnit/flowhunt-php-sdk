@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * YoutubeContent Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -77,7 +77,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'channel_title' => 'string',
         'duration' => 'int',
         'keywords' => 'string[]',
-        'doc_type' => '\OpenAPI\Client\Model\DocumentType',
+        'doc_type' => '\FlowHunt\Model\DocumentType',
         'credits' => 'int'
     ];
 
@@ -1119,7 +1119,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets doc_type
      *
-     * @return \OpenAPI\Client\Model\DocumentType|null
+     * @return \FlowHunt\Model\DocumentType|null
      */
     public function getDocType()
     {
@@ -1129,7 +1129,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets doc_type
      *
-     * @param \OpenAPI\Client\Model\DocumentType|null $doc_type doc_type
+     * @param \FlowHunt\Model\DocumentType|null $doc_type doc_type
      *
      * @return self
      */

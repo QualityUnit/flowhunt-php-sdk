@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **post_back_url** | **string** |  | [optional]
-**document_type** | [**\OpenAPI\Client\Model\VectorDocumentType**](VectorDocumentType.md) |  | [optional]
-**pointer_type** | [**\OpenAPI\Client\Model\PointerType**](PointerType.md) |  | [optional]
+**document_type** | [**\FlowHunt\Model\VectorDocumentType**](VectorDocumentType.md) |  | [optional]
+**pointer_type** | [**\FlowHunt\Model\PointerType**](PointerType.md) |  | [optional]
 **schema_type** | **string** |  | [optional]
 **limit** | **int** |  | [optional]
 **score_trheshold** | **float** |  | [optional]

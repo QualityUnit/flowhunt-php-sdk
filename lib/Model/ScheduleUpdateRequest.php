@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ScheduleUpdateRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,10 +57,12 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'frequency' => '\OpenAPI\Client\Model\ScheduleFrequency',
-        'status' => '\OpenAPI\Client\Model\ScheduleStatus',
-        'with_screenshot' => '\OpenAPI\Client\Model\BoolChar',
-        'with_proxy_rotation' => '\OpenAPI\Client\Model\BoolChar',
+        'frequency' => '\FlowHunt\Model\ScheduleFrequency',
+        'status' => '\FlowHunt\Model\ScheduleStatus',
+        'with_screenshot' => '\FlowHunt\Model\BoolChar',
+        'with_browser' => '\FlowHunt\Model\BoolChar',
+        'follow_links' => '\FlowHunt\Model\BoolChar',
+        'with_proxy_rotation' => '\FlowHunt\Model\BoolChar',
         'disallow_urls' => 'string'
     ];
 
@@ -75,6 +77,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'frequency' => null,
         'status' => null,
         'with_screenshot' => null,
+        'with_browser' => null,
+        'follow_links' => null,
         'with_proxy_rotation' => null,
         'disallow_urls' => null
     ];
@@ -88,6 +92,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'frequency' => true,
         'status' => true,
         'with_screenshot' => true,
+        'with_browser' => true,
+        'follow_links' => true,
         'with_proxy_rotation' => true,
         'disallow_urls' => true
     ];
@@ -181,6 +187,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'frequency' => 'frequency',
         'status' => 'status',
         'with_screenshot' => 'with_screenshot',
+        'with_browser' => 'with_browser',
+        'follow_links' => 'follow_links',
         'with_proxy_rotation' => 'with_proxy_rotation',
         'disallow_urls' => 'disallow_urls'
     ];
@@ -194,6 +202,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'frequency' => 'setFrequency',
         'status' => 'setStatus',
         'with_screenshot' => 'setWithScreenshot',
+        'with_browser' => 'setWithBrowser',
+        'follow_links' => 'setFollowLinks',
         'with_proxy_rotation' => 'setWithProxyRotation',
         'disallow_urls' => 'setDisallowUrls'
     ];
@@ -207,6 +217,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'frequency' => 'getFrequency',
         'status' => 'getStatus',
         'with_screenshot' => 'getWithScreenshot',
+        'with_browser' => 'getWithBrowser',
+        'follow_links' => 'getFollowLinks',
         'with_proxy_rotation' => 'getWithProxyRotation',
         'disallow_urls' => 'getDisallowUrls'
     ];
@@ -271,6 +283,8 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('frequency', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('with_screenshot', $data ?? [], null);
+        $this->setIfExists('with_browser', $data ?? [], null);
+        $this->setIfExists('follow_links', $data ?? [], null);
         $this->setIfExists('with_proxy_rotation', $data ?? [], null);
         $this->setIfExists('disallow_urls', $data ?? [], null);
     }
@@ -320,7 +334,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets frequency
      *
-     * @return \OpenAPI\Client\Model\ScheduleFrequency|null
+     * @return \FlowHunt\Model\ScheduleFrequency|null
      */
     public function getFrequency()
     {
@@ -330,7 +344,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets frequency
      *
-     * @param \OpenAPI\Client\Model\ScheduleFrequency|null $frequency frequency
+     * @param \FlowHunt\Model\ScheduleFrequency|null $frequency frequency
      *
      * @return self
      */
@@ -354,7 +368,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\ScheduleStatus|null
+     * @return \FlowHunt\Model\ScheduleStatus|null
      */
     public function getStatus()
     {
@@ -364,7 +378,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\ScheduleStatus|null $status status
+     * @param \FlowHunt\Model\ScheduleStatus|null $status status
      *
      * @return self
      */
@@ -388,7 +402,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets with_screenshot
      *
-     * @return \OpenAPI\Client\Model\BoolChar|null
+     * @return \FlowHunt\Model\BoolChar|null
      */
     public function getWithScreenshot()
     {
@@ -398,7 +412,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets with_screenshot
      *
-     * @param \OpenAPI\Client\Model\BoolChar|null $with_screenshot with_screenshot
+     * @param \FlowHunt\Model\BoolChar|null $with_screenshot with_screenshot
      *
      * @return self
      */
@@ -420,9 +434,77 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets with_browser
+     *
+     * @return \FlowHunt\Model\BoolChar|null
+     */
+    public function getWithBrowser()
+    {
+        return $this->container['with_browser'];
+    }
+
+    /**
+     * Sets with_browser
+     *
+     * @param \FlowHunt\Model\BoolChar|null $with_browser with_browser
+     *
+     * @return self
+     */
+    public function setWithBrowser($with_browser)
+    {
+        if (is_null($with_browser)) {
+            array_push($this->openAPINullablesSetToNull, 'with_browser');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_browser', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_browser'] = $with_browser;
+
+        return $this;
+    }
+
+    /**
+     * Gets follow_links
+     *
+     * @return \FlowHunt\Model\BoolChar|null
+     */
+    public function getFollowLinks()
+    {
+        return $this->container['follow_links'];
+    }
+
+    /**
+     * Sets follow_links
+     *
+     * @param \FlowHunt\Model\BoolChar|null $follow_links follow_links
+     *
+     * @return self
+     */
+    public function setFollowLinks($follow_links)
+    {
+        if (is_null($follow_links)) {
+            array_push($this->openAPINullablesSetToNull, 'follow_links');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('follow_links', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['follow_links'] = $follow_links;
+
+        return $this;
+    }
+
+    /**
      * Gets with_proxy_rotation
      *
-     * @return \OpenAPI\Client\Model\BoolChar|null
+     * @return \FlowHunt\Model\BoolChar|null
      */
     public function getWithProxyRotation()
     {
@@ -432,7 +514,7 @@ class ScheduleUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets with_proxy_rotation
      *
-     * @param \OpenAPI\Client\Model\BoolChar|null $with_proxy_rotation with_proxy_rotation
+     * @param \FlowHunt\Model\BoolChar|null $with_proxy_rotation with_proxy_rotation
      *
      * @return self
      */

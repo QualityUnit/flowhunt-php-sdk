@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
  * SecretsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -140,12 +140,12 @@ class SecretsApi
      * Create Secret
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretCreateRequest $secret_create_request secret_create_request (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request secret_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SecretResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createSecret($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
     {
@@ -159,12 +159,12 @@ class SecretsApi
      * Create Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SecretResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSecretWithHttpInfo($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
     {
@@ -195,11 +195,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SecretResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SecretResponse' !== 'string') {
+                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -217,16 +217,16 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SecretResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -244,7 +244,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -263,7 +263,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\SecretResponse';
+            $returnType = '\FlowHunt\Model\SecretResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -296,7 +296,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SecretResponse',
+                        '\FlowHunt\Model\SecretResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -304,7 +304,7 @@ class SecretsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -320,7 +320,7 @@ class SecretsApi
      * Create Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -342,7 +342,7 @@ class SecretsApi
      * Create Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -350,7 +350,7 @@ class SecretsApi
      */
     public function createSecretAsyncWithHttpInfo($workspace_id, $secret_create_request, string $contentType = self::contentTypes['createSecret'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SecretResponse';
+        $returnType = '\FlowHunt\Model\SecretResponse';
         $request = $this->createSecretRequest($workspace_id, $secret_create_request, $contentType);
 
         return $this->client
@@ -393,7 +393,7 @@ class SecretsApi
      * Create request for operation 'createSecret'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretCreateRequest $secret_create_request (required)
+     * @param  \FlowHunt\Model\SecretCreateRequest $secret_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -510,9 +510,9 @@ class SecretsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function deleteSecret($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
@@ -529,9 +529,9 @@ class SecretsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteSecretWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
@@ -562,11 +562,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -584,16 +584,16 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -611,7 +611,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -630,7 +630,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -663,7 +663,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -671,7 +671,7 @@ class SecretsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -717,7 +717,7 @@ class SecretsApi
      */
     public function deleteSecretAsyncWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['deleteSecret'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->deleteSecretRequest($secret_id, $workspace_id, $contentType);
 
         return $this->client
@@ -878,9 +878,9 @@ class SecretsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SecretResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function getSecret($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
@@ -897,9 +897,9 @@ class SecretsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SecretResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSecretWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
@@ -930,11 +930,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SecretResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SecretResponse' !== 'string') {
+                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -952,16 +952,16 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SecretResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -979,7 +979,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -998,7 +998,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\SecretResponse';
+            $returnType = '\FlowHunt\Model\SecretResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1031,7 +1031,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SecretResponse',
+                        '\FlowHunt\Model\SecretResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1039,7 +1039,7 @@ class SecretsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1085,7 +1085,7 @@ class SecretsApi
      */
     public function getSecretAsyncWithHttpInfo($secret_id, $workspace_id, string $contentType = self::contentTypes['getSecret'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SecretResponse';
+        $returnType = '\FlowHunt\Model\SecretResponse';
         $request = $this->getSecretRequest($secret_id, $workspace_id, $contentType);
 
         return $this->client
@@ -1243,12 +1243,12 @@ class SecretsApi
      * Search Secret
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretSearchRequest $secret_search_request secret_search_request (required)
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request secret_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SecretResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SecretResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function searchSecret($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
@@ -1262,12 +1262,12 @@ class SecretsApi
      * Search Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SecretResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SecretResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchSecretWithHttpInfo($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
@@ -1298,11 +1298,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SecretResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SecretResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SecretResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\SecretResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1320,16 +1320,16 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SecretResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1347,7 +1347,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1366,7 +1366,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\SecretResponse[]';
+            $returnType = '\FlowHunt\Model\SecretResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1399,7 +1399,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SecretResponse[]',
+                        '\FlowHunt\Model\SecretResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1407,7 +1407,7 @@ class SecretsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1423,7 +1423,7 @@ class SecretsApi
      * Search Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1445,7 +1445,7 @@ class SecretsApi
      * Search Secret
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1453,7 +1453,7 @@ class SecretsApi
      */
     public function searchSecretAsyncWithHttpInfo($workspace_id, $secret_search_request, string $contentType = self::contentTypes['searchSecret'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SecretResponse[]';
+        $returnType = '\FlowHunt\Model\SecretResponse[]';
         $request = $this->searchSecretRequest($workspace_id, $secret_search_request, $contentType);
 
         return $this->client
@@ -1496,7 +1496,7 @@ class SecretsApi
      * Create request for operation 'searchSecret'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretSearchRequest $secret_search_request (required)
+     * @param  \FlowHunt\Model\SecretSearchRequest $secret_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1611,12 +1611,12 @@ class SecretsApi
      *
      * @param  string $secret_id secret_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretUpdateRequest $secret_update_request secret_update_request (required)
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request secret_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SecretResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function updateSecret($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
@@ -1631,12 +1631,12 @@ class SecretsApi
      *
      * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SecretResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SecretResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateSecretWithHttpInfo($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
@@ -1667,11 +1667,11 @@ class SecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SecretResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SecretResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SecretResponse' !== 'string') {
+                        if ('\FlowHunt\Model\SecretResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1689,16 +1689,16 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SecretResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SecretResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1716,7 +1716,7 @@ class SecretsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1735,7 +1735,7 @@ class SecretsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\SecretResponse';
+            $returnType = '\FlowHunt\Model\SecretResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1768,7 +1768,7 @@ class SecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SecretResponse',
+                        '\FlowHunt\Model\SecretResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1776,7 +1776,7 @@ class SecretsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1793,7 +1793,7 @@ class SecretsApi
      *
      * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1816,7 +1816,7 @@ class SecretsApi
      *
      * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1824,7 +1824,7 @@ class SecretsApi
      */
     public function updateSecretAsyncWithHttpInfo($secret_id, $workspace_id, $secret_update_request, string $contentType = self::contentTypes['updateSecret'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SecretResponse';
+        $returnType = '\FlowHunt\Model\SecretResponse';
         $request = $this->updateSecretRequest($secret_id, $workspace_id, $secret_update_request, $contentType);
 
         return $this->client
@@ -1868,7 +1868,7 @@ class SecretsApi
      *
      * @param  string $secret_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SecretUpdateRequest $secret_update_request (required)
+     * @param  \FlowHunt\Model\SecretUpdateRequest $secret_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -1,4 +1,4 @@
-# OpenAPI\Client\SERPApi
+# FlowHunt\SERPApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `serpSearch()`
 
 ```php
-serpSearch($workspace_id, $serp_search_requests): \OpenAPI\Client\Model\TaskResponse[]
+serpSearch($workspace_id, $serp_search_requests): \FlowHunt\Model\TaskResponse[]
 ```
 
 Serp Search
@@ -25,22 +25,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SERPApi(
+$apiInstance = new FlowHunt\Api\SERPApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$serp_search_requests = new \OpenAPI\Client\Model\SerpSearchRequests(); // \OpenAPI\Client\Model\SerpSearchRequests
+$serp_search_requests = new \FlowHunt\Model\SerpSearchRequests(); // \FlowHunt\Model\SerpSearchRequests
 
 try {
     $result = $apiInstance->serpSearch($workspace_id, $serp_search_requests);
@@ -55,11 +55,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **serp_search_requests** | [**\OpenAPI\Client\Model\SerpSearchRequests**](../Model/SerpSearchRequests.md)|  | |
+| **serp_search_requests** | [**\FlowHunt\Model\SerpSearchRequests**](../Model/SerpSearchRequests.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse[]**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse[]**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ try {
 ## `serpVolumes()`
 
 ```php
-serpVolumes($workspace_id, $serp_volume_request): \OpenAPI\Client\Model\TaskResponse
+serpVolumes($workspace_id, $serp_volume_request): \FlowHunt\Model\TaskResponse
 ```
 
 Serp Volumes
@@ -90,22 +90,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SERPApi(
+$apiInstance = new FlowHunt\Api\SERPApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$serp_volume_request = new \OpenAPI\Client\Model\SerpVolumeRequest(); // \OpenAPI\Client\Model\SerpVolumeRequest
+$serp_volume_request = new \FlowHunt\Model\SerpVolumeRequest(); // \FlowHunt\Model\SerpVolumeRequest
 
 try {
     $result = $apiInstance->serpVolumes($workspace_id, $serp_volume_request);
@@ -120,11 +120,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **serp_volume_request** | [**\OpenAPI\Client\Model\SerpVolumeRequest**](../Model/SerpVolumeRequest.md)|  | |
+| **serp_volume_request** | [**\FlowHunt\Model\SerpVolumeRequest**](../Model/SerpVolumeRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ try {
 ## `serpVolumesPingback()`
 
 ```php
-serpVolumesPingback($id, $tag): \OpenAPI\Client\Model\TaskResponse
+serpVolumesPingback($id, $tag): \FlowHunt\Model\TaskResponse
 ```
 
 Serp Volumes Pingback
@@ -155,7 +155,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\SERPApi(
+$apiInstance = new FlowHunt\Api\SERPApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -180,7 +180,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 

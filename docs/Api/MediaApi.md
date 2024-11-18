@@ -1,4 +1,4 @@
-# OpenAPI\Client\MediaApi
+# FlowHunt\MediaApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `getTranscript()`
 
 ```php
-getTranscript($workspace_id, $file, $postback_url): \OpenAPI\Client\Model\DocumentContentResponse
+getTranscript($workspace_id, $file, $postback_url): \FlowHunt\Model\DocumentContentResponse
 ```
 
 Get Transcript
@@ -25,15 +25,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\MediaApi(
+$apiInstance = new FlowHunt\Api\MediaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -61,7 +61,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentContentResponse**](../Model/DocumentContentResponse.md)
+[**\FlowHunt\Model\DocumentContentResponse**](../Model/DocumentContentResponse.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ try {
 ## `getTranscriptResult()`
 
 ```php
-getTranscriptResult($workspace_id, $transcript_task_request): \OpenAPI\Client\Model\DocumentContentResponse
+getTranscriptResult($workspace_id, $transcript_task_request): \FlowHunt\Model\DocumentContentResponse
 ```
 
 Get Transcript Result
@@ -92,22 +92,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\MediaApi(
+$apiInstance = new FlowHunt\Api\MediaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$transcript_task_request = new \OpenAPI\Client\Model\TranscriptTaskRequest(); // \OpenAPI\Client\Model\TranscriptTaskRequest
+$transcript_task_request = new \FlowHunt\Model\TranscriptTaskRequest(); // \FlowHunt\Model\TranscriptTaskRequest
 
 try {
     $result = $apiInstance->getTranscriptResult($workspace_id, $transcript_task_request);
@@ -122,11 +122,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **transcript_task_request** | [**\OpenAPI\Client\Model\TranscriptTaskRequest**](../Model/TranscriptTaskRequest.md)|  | |
+| **transcript_task_request** | [**\FlowHunt\Model\TranscriptTaskRequest**](../Model/TranscriptTaskRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentContentResponse**](../Model/DocumentContentResponse.md)
+[**\FlowHunt\Model\DocumentContentResponse**](../Model/DocumentContentResponse.md)
 
 ### Authorization
 
@@ -144,7 +144,7 @@ try {
 ## `getYoutubeTranscript()`
 
 ```php
-getYoutubeTranscript($workspace_id, $youtube_transcript_request): \OpenAPI\Client\Model\YoutubeTranscriptResponse
+getYoutubeTranscript($workspace_id, $youtube_transcript_request): \FlowHunt\Model\YoutubeTranscriptResponse
 ```
 
 Get Youtube Transcript
@@ -157,22 +157,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\MediaApi(
+$apiInstance = new FlowHunt\Api\MediaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$youtube_transcript_request = new \OpenAPI\Client\Model\YoutubeTranscriptRequest(); // \OpenAPI\Client\Model\YoutubeTranscriptRequest
+$youtube_transcript_request = new \FlowHunt\Model\YoutubeTranscriptRequest(); // \FlowHunt\Model\YoutubeTranscriptRequest
 
 try {
     $result = $apiInstance->getYoutubeTranscript($workspace_id, $youtube_transcript_request);
@@ -187,11 +187,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **youtube_transcript_request** | [**\OpenAPI\Client\Model\YoutubeTranscriptRequest**](../Model/YoutubeTranscriptRequest.md)|  | |
+| **youtube_transcript_request** | [**\FlowHunt\Model\YoutubeTranscriptRequest**](../Model/YoutubeTranscriptRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\YoutubeTranscriptResponse**](../Model/YoutubeTranscriptResponse.md)
+[**\FlowHunt\Model\YoutubeTranscriptResponse**](../Model/YoutubeTranscriptResponse.md)
 
 ### Authorization
 

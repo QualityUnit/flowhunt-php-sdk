@@ -1,4 +1,4 @@
-# OpenAPI\Client\FlowMessagesApi
+# FlowHunt\FlowMessagesApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -10,7 +10,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `searchFlowMessages()`
 
 ```php
-searchFlowMessages($session_id, $workspace_id): \OpenAPI\Client\Model\FlowMessageResponse[]
+searchFlowMessages($session_id, $workspace_id): \FlowHunt\Model\FlowMessageResponse[]
 ```
 
 Search Flow Messages
@@ -23,15 +23,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowMessagesApi(
+$apiInstance = new FlowHunt\Api\FlowMessagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -57,7 +57,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowMessageResponse[]**](../Model/FlowMessageResponse.md)
+[**\FlowHunt\Model\FlowMessageResponse[]**](../Model/FlowMessageResponse.md)
 
 ### Authorization
 

@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
  * SERPApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -134,12 +134,12 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests serp_search_requests (required)
+     * @param  \FlowHunt\Model\SerpSearchRequests $serp_search_requests serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TaskResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function serpSearch($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
@@ -153,12 +153,12 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
+     * @param  \FlowHunt\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TaskResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function serpSearchWithHttpInfo($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
@@ -189,11 +189,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TaskResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\TaskResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -211,16 +211,16 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TaskResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -238,7 +238,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -257,7 +257,7 @@ class SERPApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskResponse[]';
+            $returnType = '\FlowHunt\Model\TaskResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -290,7 +290,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskResponse[]',
+                        '\FlowHunt\Model\TaskResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -298,7 +298,7 @@ class SERPApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -314,7 +314,7 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
+     * @param  \FlowHunt\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -336,7 +336,7 @@ class SERPApi
      * Serp Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
+     * @param  \FlowHunt\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -344,7 +344,7 @@ class SERPApi
      */
     public function serpSearchAsyncWithHttpInfo($workspace_id, $serp_search_requests, string $contentType = self::contentTypes['serpSearch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskResponse[]';
+        $returnType = '\FlowHunt\Model\TaskResponse[]';
         $request = $this->serpSearchRequest($workspace_id, $serp_search_requests, $contentType);
 
         return $this->client
@@ -387,7 +387,7 @@ class SERPApi
      * Create request for operation 'serpSearch'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpSearchRequests $serp_search_requests (required)
+     * @param  \FlowHunt\Model\SerpSearchRequests $serp_search_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -506,12 +506,12 @@ class SERPApi
      * Serp Volumes
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request serp_volume_request (required)
+     * @param  \FlowHunt\Model\SerpVolumeRequest $serp_volume_request serp_volume_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function serpVolumes($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
     {
@@ -525,12 +525,12 @@ class SERPApi
      * Serp Volumes
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
+     * @param  \FlowHunt\Model\SerpVolumeRequest $serp_volume_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function serpVolumesWithHttpInfo($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
     {
@@ -561,11 +561,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -583,16 +583,16 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -610,7 +610,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -629,7 +629,7 @@ class SERPApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskResponse';
+            $returnType = '\FlowHunt\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -662,7 +662,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskResponse',
+                        '\FlowHunt\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -670,7 +670,7 @@ class SERPApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -686,7 +686,7 @@ class SERPApi
      * Serp Volumes
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
+     * @param  \FlowHunt\Model\SerpVolumeRequest $serp_volume_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -708,7 +708,7 @@ class SERPApi
      * Serp Volumes
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
+     * @param  \FlowHunt\Model\SerpVolumeRequest $serp_volume_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -716,7 +716,7 @@ class SERPApi
      */
     public function serpVolumesAsyncWithHttpInfo($workspace_id, $serp_volume_request, string $contentType = self::contentTypes['serpVolumes'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskResponse';
+        $returnType = '\FlowHunt\Model\TaskResponse';
         $request = $this->serpVolumesRequest($workspace_id, $serp_volume_request, $contentType);
 
         return $this->client
@@ -759,7 +759,7 @@ class SERPApi
      * Create request for operation 'serpVolumes'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\SerpVolumeRequest $serp_volume_request (required)
+     * @param  \FlowHunt\Model\SerpVolumeRequest $serp_volume_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -881,9 +881,9 @@ class SERPApi
      * @param  string $tag tag (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumesPingback'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function serpVolumesPingback($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
     {
@@ -900,9 +900,9 @@ class SERPApi
      * @param  string $tag (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpVolumesPingback'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function serpVolumesPingbackWithHttpInfo($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
     {
@@ -933,11 +933,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -955,16 +955,16 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -982,7 +982,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1001,7 +1001,7 @@ class SERPApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskResponse';
+            $returnType = '\FlowHunt\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1034,7 +1034,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskResponse',
+                        '\FlowHunt\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1042,7 +1042,7 @@ class SERPApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1088,7 +1088,7 @@ class SERPApi
      */
     public function serpVolumesPingbackAsyncWithHttpInfo($id, $tag, string $contentType = self::contentTypes['serpVolumesPingback'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskResponse';
+        $returnType = '\FlowHunt\Model\TaskResponse';
         $request = $this->serpVolumesPingbackRequest($id, $tag, $contentType);
 
         return $this->client

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ScreenshotResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,11 +58,11 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatus',
+        'status' => '\FlowHunt\Model\TaskStatus',
         'result' => 'string',
         'error_message' => 'string',
-        'original_size_url' => '\OpenAPI\Client\Model\AppUrlOutput',
-        'thumbnail_url' => '\OpenAPI\Client\Model\AppUrlOutput',
+        'original_size_url' => '\FlowHunt\Model\AppUrlOutput',
+        'thumbnail_url' => '\FlowHunt\Model\AppUrlOutput',
         'timestamp' => 'int',
         'domain_id' => 'string',
         'url_id' => 'string'
@@ -381,7 +381,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TaskStatus
+     * @return \FlowHunt\Model\TaskStatus
      */
     public function getStatus()
     {
@@ -391,7 +391,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
+     * @param \FlowHunt\Model\TaskStatus $status Task status
      *
      * @return self
      */
@@ -476,7 +476,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets original_size_url
      *
-     * @return \OpenAPI\Client\Model\AppUrlOutput|null
+     * @return \FlowHunt\Model\AppUrlOutput|null
      */
     public function getOriginalSizeUrl()
     {
@@ -486,7 +486,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets original_size_url
      *
-     * @param \OpenAPI\Client\Model\AppUrlOutput|null $original_size_url original_size_url
+     * @param \FlowHunt\Model\AppUrlOutput|null $original_size_url original_size_url
      *
      * @return self
      */
@@ -510,7 +510,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets thumbnail_url
      *
-     * @return \OpenAPI\Client\Model\AppUrlOutput|null
+     * @return \FlowHunt\Model\AppUrlOutput|null
      */
     public function getThumbnailUrl()
     {
@@ -520,7 +520,7 @@ class ScreenshotResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets thumbnail_url
      *
-     * @param \OpenAPI\Client\Model\AppUrlOutput|null $thumbnail_url thumbnail_url
+     * @param \FlowHunt\Model\AppUrlOutput|null $thumbnail_url thumbnail_url
      *
      * @return self
      */

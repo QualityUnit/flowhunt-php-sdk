@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * UserPlanResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -63,7 +63,7 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_renewal_date' => '\DateTime',
         'monthly_topup_credits' => 'int',
         'trial_end_date' => '\DateTime',
-        'subscription_plan' => '\OpenAPI\Client\Model\SubscriptionPlan'
+        'subscription_plan' => '\FlowHunt\Model\SubscriptionPlan'
     ];
 
     /**
@@ -532,7 +532,7 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets subscription_plan
      *
-     * @return \OpenAPI\Client\Model\SubscriptionPlan
+     * @return \FlowHunt\Model\SubscriptionPlan
      */
     public function getSubscriptionPlan()
     {
@@ -542,7 +542,7 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscription_plan
      *
-     * @param \OpenAPI\Client\Model\SubscriptionPlan $subscription_plan subscription_plan
+     * @param \FlowHunt\Model\SubscriptionPlan $subscription_plan subscription_plan
      *
      * @return self
      */

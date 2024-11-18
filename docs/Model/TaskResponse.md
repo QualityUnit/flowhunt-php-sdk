@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | Task ID |
-**status** | [**\OpenAPI\Client\Model\TaskStatus**](TaskStatus.md) | Task status |
+**status** | [**\FlowHunt\Model\TaskStatus**](TaskStatus.md) | Task status |
 **result** | **string** |  | [optional]
 **error_message** | **string** |  | [optional]
 

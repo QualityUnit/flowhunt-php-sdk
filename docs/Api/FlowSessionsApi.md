@@ -1,4 +1,4 @@
-# OpenAPI\Client\FlowSessionsApi
+# FlowHunt\FlowSessionsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -13,7 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `deleteChatbotSessionView()`
 
 ```php
-deleteChatbotSessionView($session_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteChatbotSessionView($session_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Chatbot Session View
@@ -26,15 +26,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
+$apiInstance = new FlowHunt\Api\FlowSessionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -60,7 +60,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ try {
 ## `getChatbotSessionView()`
 
 ```php
-getChatbotSessionView($session_id, $workspace_id): \OpenAPI\Client\Model\FlowSessionViewResponse
+getChatbotSessionView($session_id, $workspace_id): \FlowHunt\Model\FlowSessionViewResponse
 ```
 
 Get Chatbot Session View
@@ -91,15 +91,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
+$apiInstance = new FlowHunt\Api\FlowSessionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -125,7 +125,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionViewResponse**](../Model/FlowSessionViewResponse.md)
+[**\FlowHunt\Model\FlowSessionViewResponse**](../Model/FlowSessionViewResponse.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ try {
 ## `searchChatbotSessionsView()`
 
 ```php
-searchChatbotSessionsView($workspace_id, $flow_session_view_search_request): \OpenAPI\Client\Model\FlowSessionViewResponse[]
+searchChatbotSessionsView($workspace_id, $flow_session_view_search_request): \FlowHunt\Model\FlowSessionViewResponse[]
 ```
 
 Search Chatbot Sessions View
@@ -156,22 +156,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
+$apiInstance = new FlowHunt\Api\FlowSessionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$flow_session_view_search_request = new \OpenAPI\Client\Model\FlowSessionViewSearchRequest(); // \OpenAPI\Client\Model\FlowSessionViewSearchRequest
+$flow_session_view_search_request = new \FlowHunt\Model\FlowSessionViewSearchRequest(); // \FlowHunt\Model\FlowSessionViewSearchRequest
 
 try {
     $result = $apiInstance->searchChatbotSessionsView($workspace_id, $flow_session_view_search_request);
@@ -186,11 +186,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **flow_session_view_search_request** | [**\OpenAPI\Client\Model\FlowSessionViewSearchRequest**](../Model/FlowSessionViewSearchRequest.md)|  | |
+| **flow_session_view_search_request** | [**\FlowHunt\Model\FlowSessionViewSearchRequest**](../Model/FlowSessionViewSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionViewResponse[]**](../Model/FlowSessionViewResponse.md)
+[**\FlowHunt\Model\FlowSessionViewResponse[]**](../Model/FlowSessionViewResponse.md)
 
 ### Authorization
 
@@ -208,7 +208,7 @@ try {
 ## `updateChatbotSessionView()`
 
 ```php
-updateChatbotSessionView($session_id, $workspace_id, $flow_session_view_update_request): \OpenAPI\Client\Model\FlowSessionViewResponse
+updateChatbotSessionView($session_id, $workspace_id, $flow_session_view_update_request): \FlowHunt\Model\FlowSessionViewResponse
 ```
 
 Update Chatbot Session View
@@ -221,15 +221,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
+$apiInstance = new FlowHunt\Api\FlowSessionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -237,7 +237,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowSessionsApi(
 );
 $session_id = 'session_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$flow_session_view_update_request = new \OpenAPI\Client\Model\FlowSessionViewUpdateRequest(); // \OpenAPI\Client\Model\FlowSessionViewUpdateRequest
+$flow_session_view_update_request = new \FlowHunt\Model\FlowSessionViewUpdateRequest(); // \FlowHunt\Model\FlowSessionViewUpdateRequest
 
 try {
     $result = $apiInstance->updateChatbotSessionView($session_id, $workspace_id, $flow_session_view_update_request);
@@ -253,11 +253,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **session_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **flow_session_view_update_request** | [**\OpenAPI\Client\Model\FlowSessionViewUpdateRequest**](../Model/FlowSessionViewUpdateRequest.md)|  | |
+| **flow_session_view_update_request** | [**\FlowHunt\Model\FlowSessionViewUpdateRequest**](../Model/FlowSessionViewUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionViewResponse**](../Model/FlowSessionViewResponse.md)
+[**\FlowHunt\Model\FlowSessionViewResponse**](../Model/FlowSessionViewResponse.md)
 
 ### Authorization
 

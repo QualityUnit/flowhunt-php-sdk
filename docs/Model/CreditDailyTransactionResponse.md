@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **\DateTime** | Transactions from date |
 **workspace_id** | **string** | Workspace ID |
-**transaction_type** | [**\OpenAPI\Client\Model\TransactionType**](TransactionType.md) | Transaction type |
+**transaction_type** | [**\FlowHunt\Model\TransactionType**](TransactionType.md) | Transaction type |
 **amount** | **int** | Amount of credits |
 **cnt** | **int** | Number of transactions |
 

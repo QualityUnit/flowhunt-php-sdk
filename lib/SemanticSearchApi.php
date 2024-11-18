@@ -1,10 +1,10 @@
 <?php
 /**
- * FlowSessionsApi
+ * SemanticSearchApi
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,20 +34,20 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionsApi Class Doc Comment
+ * SemanticSearchApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FlowSessionsApi
+class SemanticSearchApi
 {
     /**
      * @var ClientInterface
@@ -71,16 +71,16 @@ class FlowSessionsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'deleteChatbotSessionView' => [
+        'getSimilarDocsByDocId' => [
             'application/json',
         ],
-        'getChatbotSessionView' => [
+        'getSimilarDocsByQuery' => [
             'application/json',
         ],
-        'searchChatbotSessionsView' => [
+        'scheduleSimilarDocsByDocId' => [
             'application/json',
         ],
-        'updateChatbotSessionView' => [
+        'scheduleSimilarDocsByQuery' => [
             'application/json',
         ],
     ];
@@ -132,40 +132,40 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionView
+     * Operation getSimilarDocsByDocId
      *
-     * Delete Chatbot Session View
+     * Get Similar Docs By Doc Id
      *
-     * @param  string $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function deleteChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getSimilarDocsByDocId($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        list($response) = $this->deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
+        list($response) = $this->getSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation deleteChatbotSessionViewWithHttpInfo
+     * Operation getSimilarDocsByDocIdWithHttpInfo
      *
-     * Delete Chatbot Session View
+     * Get Similar Docs By Doc Id
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $request = $this->getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -192,11 +192,11 @@ class FlowSessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\VectorDocumentResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\VectorDocumentResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -214,16 +214,16 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -241,7 +241,7 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -260,7 +260,7 @@ class FlowSessionsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -293,7 +293,7 @@ class FlowSessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\VectorDocumentResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -301,7 +301,7 @@ class FlowSessionsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -312,20 +312,20 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionViewAsync
+     * Operation getSimilarDocsByDocIdAsync
      *
-     * Delete Chatbot Session View
+     * Get Similar Docs By Doc Id
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getSimilarDocsByDocIdAsync($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        return $this->deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
+        return $this->getSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -334,21 +334,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation deleteChatbotSessionViewAsyncWithHttpInfo
+     * Operation getSimilarDocsByDocIdAsyncWithHttpInfo
      *
-     * Delete Chatbot Session View
+     * Get Similar Docs By Doc Id
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
+    public function getSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
+        $request = $this->getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -387,780 +387,34 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'deleteChatbotSessionView'
+     * Create request for operation 'getSimilarDocsByDocId'
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\DocumentSimilarityRequest $document_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
-    {
-
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling deleteChatbotSessionView'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteChatbotSessionView'
-            );
-        }
-
-
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getChatbotSessionView
-     *
-     * Get Chatbot Session View
-     *
-     * @param  string $session_id session_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function getChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        list($response) = $this->getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getChatbotSessionViewWithHttpInfo
-     *
-     * Get Chatbot Session View
-     *
-     * @param  string $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionViewResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionViewResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionViewResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionViewResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getChatbotSessionViewAsync
-     *
-     * Get Chatbot Session View
-     *
-     * @param  string $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        return $this->getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getChatbotSessionViewAsyncWithHttpInfo
-     *
-     * Get Chatbot Session View
-     *
-     * @param  string $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
-        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getChatbotSessionView'
-     *
-     * @param  string $session_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
-    {
-
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling getChatbotSessionView'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getChatbotSessionView'
-            );
-        }
-
-
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation searchChatbotSessionsView
-     *
-     * Search Chatbot Sessions View
-     *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionViewResponse[]|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function searchChatbotSessionsView($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
-    {
-        list($response) = $this->searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation searchChatbotSessionsViewWithHttpInfo
-     *
-     * Search Chatbot Sessions View
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionViewResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
-    {
-        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionViewResponse[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionViewResponse[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionViewResponse[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionViewResponse[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation searchChatbotSessionsViewAsync
-     *
-     * Search Chatbot Sessions View
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchChatbotSessionsViewAsync($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
-    {
-        return $this->searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation searchChatbotSessionsViewAsyncWithHttpInfo
-     *
-     * Search Chatbot Sessions View
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse[]';
-        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'searchChatbotSessionsView'
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
+    public function getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchChatbotSessionsView'
+                'Missing the required parameter $workspace_id when calling getSimilarDocsByDocId'
             );
         }
 
-        // verify the required parameter 'flow_session_view_search_request' is set
-        if ($flow_session_view_search_request === null || (is_array($flow_session_view_search_request) && count($flow_session_view_search_request) === 0)) {
+        // verify the required parameter 'document_similarity_request' is set
+        if ($document_similarity_request === null || (is_array($document_similarity_request) && count($document_similarity_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $flow_session_view_search_request when calling searchChatbotSessionsView'
+                'Missing the required parameter $document_similarity_request when calling getSimilarDocsByDocId'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/search';
+        $resourcePath = '/v2/similarities/document/live';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1187,12 +441,12 @@ class FlowSessionsApi
         );
 
         // for model (json/xml)
-        if (isset($flow_session_view_search_request)) {
+        if (isset($document_similarity_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_similarity_request));
             } else {
-                $httpBody = $flow_session_view_search_request;
+                $httpBody = $document_similarity_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1250,42 +504,40 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionView
+     * Operation getSimilarDocsByQuery
      *
-     * Update Chatbot Session View
+     * Get Similar Docs By Query
      *
-     * @param  string $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function updateChatbotSessionView($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function getSimilarDocsByQuery($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        list($response) = $this->updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        list($response) = $this->getSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateChatbotSessionViewWithHttpInfo
+     * Operation getSimilarDocsByQueryWithHttpInfo
      *
-     * Update Chatbot Session View
+     * Get Similar Docs By Query
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionViewResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\VectorDocumentResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function getSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        $request = $this->getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1312,11 +564,11 @@ class FlowSessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionViewResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\VectorDocumentResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionViewResponse' !== 'string') {
+                        if ('\FlowHunt\Model\VectorDocumentResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1334,16 +586,16 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionViewResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1361,7 +613,7 @@ class FlowSessionsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1380,7 +632,7 @@ class FlowSessionsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
+            $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1413,7 +665,7 @@ class FlowSessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionViewResponse',
+                        '\FlowHunt\Model\VectorDocumentResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1421,7 +673,7 @@ class FlowSessionsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1432,21 +684,20 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionViewAsync
+     * Operation getSimilarDocsByQueryAsync
      *
-     * Update Chatbot Session View
+     * Get Similar Docs By Query
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotSessionViewAsync($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function getSimilarDocsByQueryAsync($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        return $this->updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType)
+        return $this->getSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1455,22 +706,21 @@ class FlowSessionsApi
     }
 
     /**
-     * Operation updateChatbotSessionViewAsyncWithHttpInfo
+     * Operation getSimilarDocsByQueryAsyncWithHttpInfo
      *
-     * Update Chatbot Session View
+     * Get Similar Docs By Query
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function getSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionViewResponse';
-        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\VectorDocumentResponse[]';
+        $request = $this->getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1509,42 +759,34 @@ class FlowSessionsApi
     }
 
     /**
-     * Create request for operation 'updateChatbotSessionView'
+     * Create request for operation 'getSimilarDocsByQuery'
      *
-     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\QuerySimilarityRequest $query_similarity_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
+    public function getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
     {
-
-        // verify the required parameter 'session_id' is set
-        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $session_id when calling updateChatbotSessionView'
-            );
-        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateChatbotSessionView'
+                'Missing the required parameter $workspace_id when calling getSimilarDocsByQuery'
             );
         }
 
-        // verify the required parameter 'flow_session_view_update_request' is set
-        if ($flow_session_view_update_request === null || (is_array($flow_session_view_update_request) && count($flow_session_view_update_request) === 0)) {
+        // verify the required parameter 'query_similarity_request' is set
+        if ($query_similarity_request === null || (is_array($query_similarity_request) && count($query_similarity_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $flow_session_view_update_request when calling updateChatbotSessionView'
+                'Missing the required parameter $query_similarity_request when calling getSimilarDocsByQuery'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/sessions/{session_id}';
+        $resourcePath = '/v2/similarities/query/live';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1562,14 +804,6 @@ class FlowSessionsApi
         ) ?? []);
 
 
-        // path params
-        if ($session_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'session_id' . '}',
-                ObjectSerializer::toPathValue($session_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1579,12 +813,12 @@ class FlowSessionsApi
         );
 
         // for model (json/xml)
-        if (isset($flow_session_view_update_request)) {
+        if (isset($query_similarity_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($query_similarity_request));
             } else {
-                $httpBody = $flow_session_view_update_request;
+                $httpBody = $query_similarity_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1634,7 +868,751 @@ class FlowSessionsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'PUT',
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByDocId
+     *
+     * Schedule Similar Docs By Doc Id
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function scheduleSimilarDocsByDocId($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
+    {
+        list($response) = $this->scheduleSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_task_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByDocIdWithHttpInfo
+     *
+     * Schedule Similar Docs By Doc Id
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function scheduleSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
+    {
+        $request = $this->scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\VectorDocumentsTaskResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\VectorDocumentsTaskResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentsTaskResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\VectorDocumentsTaskResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByDocIdAsync
+     *
+     * Schedule Similar Docs By Doc Id
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scheduleSimilarDocsByDocIdAsync($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
+    {
+        return $this->scheduleSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_task_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByDocIdAsyncWithHttpInfo
+     *
+     * Schedule Similar Docs By Doc Id
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scheduleSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
+    {
+        $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
+        $request = $this->scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'scheduleSimilarDocsByDocId'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling scheduleSimilarDocsByDocId'
+            );
+        }
+
+        // verify the required parameter 'document_similarity_task_request' is set
+        if ($document_similarity_task_request === null || (is_array($document_similarity_task_request) && count($document_similarity_task_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $document_similarity_task_request when calling scheduleSimilarDocsByDocId'
+            );
+        }
+
+
+        $resourcePath = '/v2/similarities/document';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($document_similarity_task_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_similarity_task_request));
+            } else {
+                $httpBody = $document_similarity_task_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByQuery
+     *
+     * Schedule Similar Docs By Query
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function scheduleSimilarDocsByQuery($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
+    {
+        list($response) = $this->scheduleSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_task_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByQueryWithHttpInfo
+     *
+     * Schedule Similar Docs By Query
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\VectorDocumentsTaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function scheduleSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
+    {
+        $request = $this->scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\VectorDocumentsTaskResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\VectorDocumentsTaskResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\VectorDocumentsTaskResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\VectorDocumentsTaskResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByQueryAsync
+     *
+     * Schedule Similar Docs By Query
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scheduleSimilarDocsByQueryAsync($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
+    {
+        return $this->scheduleSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_task_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation scheduleSimilarDocsByQueryAsyncWithHttpInfo
+     *
+     * Schedule Similar Docs By Query
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scheduleSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
+    {
+        $returnType = '\FlowHunt\Model\VectorDocumentsTaskResponse';
+        $request = $this->scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'scheduleSimilarDocsByQuery'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling scheduleSimilarDocsByQuery'
+            );
+        }
+
+        // verify the required parameter 'query_similarity_task_request' is set
+        if ($query_similarity_task_request === null || (is_array($query_similarity_task_request) && count($query_similarity_task_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $query_similarity_task_request when calling scheduleSimilarDocsByQuery'
+            );
+        }
+
+
+        $resourcePath = '/v2/similarities/query';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($query_similarity_task_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($query_similarity_task_request));
+            } else {
+                $httpBody = $query_similarity_task_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

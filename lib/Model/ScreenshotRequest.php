@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ScreenshotRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,8 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPITypes = [
         'post_back_url' => 'string',
         'url' => 'string',
-        'validity' => '\DateTime'
+        'validity' => '\DateTime',
+        'use_proxy' => 'bool'
     ];
 
     /**
@@ -72,7 +73,8 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPIFormats = [
         'post_back_url' => null,
         'url' => null,
-        'validity' => 'date-time'
+        'validity' => 'date-time',
+        'use_proxy' => null
     ];
 
     /**
@@ -83,7 +85,8 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static array $openAPINullables = [
         'post_back_url' => true,
         'url' => false,
-        'validity' => true
+        'validity' => true,
+        'use_proxy' => true
     ];
 
     /**
@@ -174,7 +177,8 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $attributeMap = [
         'post_back_url' => 'post_back_url',
         'url' => 'url',
-        'validity' => 'validity'
+        'validity' => 'validity',
+        'use_proxy' => 'use_proxy'
     ];
 
     /**
@@ -185,7 +189,8 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $setters = [
         'post_back_url' => 'setPostBackUrl',
         'url' => 'setUrl',
-        'validity' => 'setValidity'
+        'validity' => 'setValidity',
+        'use_proxy' => 'setUseProxy'
     ];
 
     /**
@@ -196,7 +201,8 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $getters = [
         'post_back_url' => 'getPostBackUrl',
         'url' => 'getUrl',
-        'validity' => 'getValidity'
+        'validity' => 'getValidity',
+        'use_proxy' => 'getUseProxy'
     ];
 
     /**
@@ -259,6 +265,7 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('post_back_url', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('validity', $data ?? [], null);
+        $this->setIfExists('use_proxy', $data ?? [], null);
     }
 
     /**
@@ -412,6 +419,40 @@ class ScreenshotRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['validity'] = $validity;
+
+        return $this;
+    }
+
+    /**
+     * Gets use_proxy
+     *
+     * @return bool|null
+     */
+    public function getUseProxy()
+    {
+        return $this->container['use_proxy'];
+    }
+
+    /**
+     * Sets use_proxy
+     *
+     * @param bool|null $use_proxy use_proxy
+     *
+     * @return self
+     */
+    public function setUseProxy($use_proxy)
+    {
+        if (is_null($use_proxy)) {
+            array_push($this->openAPINullablesSetToNull, 'use_proxy');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('use_proxy', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['use_proxy'] = $use_proxy;
 
         return $this;
     }

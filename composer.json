@@ -1,6 +1,6 @@
 {
     "name": "flowhunt/flowhunt-php-sdk",
-    "version": "client/2.3.0",
+    "version": "client/3.0.0",
     "description": "FlowHunt API",
     "keywords": [
         "openapitools",
@@ -32,9 +32,9 @@
         "friendsofphp/php-cs-fixer": "^3.5"
     },
     "autoload": {
-        "psr-4": { "OpenAPI\\Client\\" : "lib/" }
+        "psr-4": { "FlowHunt\\" : "lib/" }
     },
     "autoload-dev": {
-        "psr-4": { "OpenAPI\\Client\\Test\\" : "test/" }
+        "psr-4": { "FlowHunt\\Test\\" : "test/" }
     }
 }

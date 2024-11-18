@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ApiEndpointSearchRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'path' => 'string',
-        'method' => '\OpenAPI\Client\Model\ApiMethod'
+        'method' => '\FlowHunt\Model\ApiMethod'
     ];
 
     /**
@@ -348,7 +348,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets method
      *
-     * @return \OpenAPI\Client\Model\ApiMethod|null
+     * @return \FlowHunt\Model\ApiMethod|null
      */
     public function getMethod()
     {
@@ -358,7 +358,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets method
      *
-     * @param \OpenAPI\Client\Model\ApiMethod|null $method method
+     * @param \FlowHunt\Model\ApiMethod|null $method method
      *
      * @return self
      */

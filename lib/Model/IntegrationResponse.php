@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * IntegrationResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'name' => 'string',
         'description' => 'string',
         'integrated_instance_cnt' => 'int',
-        'categories' => '\OpenAPI\Client\Model\IntegrationCategory[]',
+        'categories' => '\FlowHunt\Model\IntegrationCategory[]',
         'alpha' => 'bool',
         'beta' => 'bool',
         'public_flow_id' => 'string'
@@ -464,7 +464,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets categories
      *
-     * @return \OpenAPI\Client\Model\IntegrationCategory[]
+     * @return \FlowHunt\Model\IntegrationCategory[]
      */
     public function getCategories()
     {
@@ -474,7 +474,7 @@ class IntegrationResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets categories
      *
-     * @param \OpenAPI\Client\Model\IntegrationCategory[] $categories The categories of the integration.
+     * @param \FlowHunt\Model\IntegrationCategory[] $categories The categories of the integration.
      *
      * @return self
      */

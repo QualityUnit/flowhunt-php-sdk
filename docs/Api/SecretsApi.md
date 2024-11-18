@@ -1,4 +1,4 @@
-# OpenAPI\Client\SecretsApi
+# FlowHunt\SecretsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createSecret()`
 
 ```php
-createSecret($workspace_id, $secret_create_request): \OpenAPI\Client\Model\SecretResponse
+createSecret($workspace_id, $secret_create_request): \FlowHunt\Model\SecretResponse
 ```
 
 Create Secret
@@ -27,17 +27,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SecretsApi(
+$apiInstance = new FlowHunt\Api\SecretsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$secret_create_request = new \OpenAPI\Client\Model\SecretCreateRequest(); // \OpenAPI\Client\Model\SecretCreateRequest
+$secret_create_request = new \FlowHunt\Model\SecretCreateRequest(); // \FlowHunt\Model\SecretCreateRequest
 
 try {
     $result = $apiInstance->createSecret($workspace_id, $secret_create_request);
@@ -52,11 +52,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **secret_create_request** | [**\OpenAPI\Client\Model\SecretCreateRequest**](../Model/SecretCreateRequest.md)|  | |
+| **secret_create_request** | [**\FlowHunt\Model\SecretCreateRequest**](../Model/SecretCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SecretResponse**](../Model/SecretResponse.md)
+[**\FlowHunt\Model\SecretResponse**](../Model/SecretResponse.md)
 
 ### Authorization
 
@@ -74,7 +74,7 @@ try {
 ## `deleteSecret()`
 
 ```php
-deleteSecret($secret_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteSecret($secret_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Secret
@@ -87,10 +87,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SecretsApi(
+$apiInstance = new FlowHunt\Api\SecretsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -116,7 +116,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -134,7 +134,7 @@ try {
 ## `getSecret()`
 
 ```php
-getSecret($secret_id, $workspace_id): \OpenAPI\Client\Model\SecretResponse
+getSecret($secret_id, $workspace_id): \FlowHunt\Model\SecretResponse
 ```
 
 Get Secret
@@ -147,10 +147,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SecretsApi(
+$apiInstance = new FlowHunt\Api\SecretsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -176,7 +176,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SecretResponse**](../Model/SecretResponse.md)
+[**\FlowHunt\Model\SecretResponse**](../Model/SecretResponse.md)
 
 ### Authorization
 
@@ -194,7 +194,7 @@ try {
 ## `searchSecret()`
 
 ```php
-searchSecret($workspace_id, $secret_search_request): \OpenAPI\Client\Model\SecretResponse[]
+searchSecret($workspace_id, $secret_search_request): \FlowHunt\Model\SecretResponse[]
 ```
 
 Search Secret
@@ -207,17 +207,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SecretsApi(
+$apiInstance = new FlowHunt\Api\SecretsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$secret_search_request = new \OpenAPI\Client\Model\SecretSearchRequest(); // \OpenAPI\Client\Model\SecretSearchRequest
+$secret_search_request = new \FlowHunt\Model\SecretSearchRequest(); // \FlowHunt\Model\SecretSearchRequest
 
 try {
     $result = $apiInstance->searchSecret($workspace_id, $secret_search_request);
@@ -232,11 +232,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **secret_search_request** | [**\OpenAPI\Client\Model\SecretSearchRequest**](../Model/SecretSearchRequest.md)|  | |
+| **secret_search_request** | [**\FlowHunt\Model\SecretSearchRequest**](../Model/SecretSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SecretResponse[]**](../Model/SecretResponse.md)
+[**\FlowHunt\Model\SecretResponse[]**](../Model/SecretResponse.md)
 
 ### Authorization
 
@@ -254,7 +254,7 @@ try {
 ## `updateSecret()`
 
 ```php
-updateSecret($secret_id, $workspace_id, $secret_update_request): \OpenAPI\Client\Model\SecretResponse
+updateSecret($secret_id, $workspace_id, $secret_update_request): \FlowHunt\Model\SecretResponse
 ```
 
 Update Secret
@@ -267,10 +267,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SecretsApi(
+$apiInstance = new FlowHunt\Api\SecretsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -278,7 +278,7 @@ $apiInstance = new OpenAPI\Client\Api\SecretsApi(
 );
 $secret_id = 'secret_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$secret_update_request = new \OpenAPI\Client\Model\SecretUpdateRequest(); // \OpenAPI\Client\Model\SecretUpdateRequest
+$secret_update_request = new \FlowHunt\Model\SecretUpdateRequest(); // \FlowHunt\Model\SecretUpdateRequest
 
 try {
     $result = $apiInstance->updateSecret($secret_id, $workspace_id, $secret_update_request);
@@ -294,11 +294,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **secret_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **secret_update_request** | [**\OpenAPI\Client\Model\SecretUpdateRequest**](../Model/SecretUpdateRequest.md)|  | |
+| **secret_update_request** | [**\FlowHunt\Model\SecretUpdateRequest**](../Model/SecretUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SecretResponse**](../Model/SecretResponse.md)
+[**\FlowHunt\Model\SecretResponse**](../Model/SecretResponse.md)
 
 ### Authorization
 

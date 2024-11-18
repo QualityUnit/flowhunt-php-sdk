@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ScheduleResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,17 +60,19 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'string',
         'schedule_id' => 'string',
         'url' => 'string',
-        'frequency' => '\OpenAPI\Client\Model\ScheduleFrequency',
-        'schedule_type' => '\OpenAPI\Client\Model\ScheduleType',
+        'frequency' => '\FlowHunt\Model\ScheduleFrequency',
+        'schedule_type' => '\FlowHunt\Model\ScheduleType',
         'start_time' => '\DateTime',
         'end_time' => '\DateTime',
-        'status' => '\OpenAPI\Client\Model\ScheduleStatus',
+        'status' => '\FlowHunt\Model\ScheduleStatus',
         'status_message' => 'string',
         'cnt_scheduled' => 'int',
         'cnt_completed' => 'int',
         'cnt_failed' => 'int',
-        'with_screenshot' => '\OpenAPI\Client\Model\BoolChar',
-        'with_proxy_rotation' => '\OpenAPI\Client\Model\BoolChar',
+        'with_screenshot' => '\FlowHunt\Model\BoolChar',
+        'with_browser' => '\FlowHunt\Model\BoolChar',
+        'follow_links' => '\FlowHunt\Model\BoolChar',
+        'with_proxy_rotation' => '\FlowHunt\Model\BoolChar',
         'disallow_urls' => 'string'
     ];
 
@@ -95,6 +97,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_completed' => null,
         'cnt_failed' => null,
         'with_screenshot' => null,
+        'with_browser' => null,
+        'follow_links' => null,
         'with_proxy_rotation' => null,
         'disallow_urls' => null
     ];
@@ -118,6 +122,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_completed' => true,
         'cnt_failed' => true,
         'with_screenshot' => true,
+        'with_browser' => true,
+        'follow_links' => true,
         'with_proxy_rotation' => true,
         'disallow_urls' => true
     ];
@@ -221,6 +227,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_completed' => 'cnt_completed',
         'cnt_failed' => 'cnt_failed',
         'with_screenshot' => 'with_screenshot',
+        'with_browser' => 'with_browser',
+        'follow_links' => 'follow_links',
         'with_proxy_rotation' => 'with_proxy_rotation',
         'disallow_urls' => 'disallow_urls'
     ];
@@ -244,6 +252,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_completed' => 'setCntCompleted',
         'cnt_failed' => 'setCntFailed',
         'with_screenshot' => 'setWithScreenshot',
+        'with_browser' => 'setWithBrowser',
+        'follow_links' => 'setFollowLinks',
         'with_proxy_rotation' => 'setWithProxyRotation',
         'disallow_urls' => 'setDisallowUrls'
     ];
@@ -267,6 +277,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'cnt_completed' => 'getCntCompleted',
         'cnt_failed' => 'getCntFailed',
         'with_screenshot' => 'getWithScreenshot',
+        'with_browser' => 'getWithBrowser',
+        'follow_links' => 'getFollowLinks',
         'with_proxy_rotation' => 'getWithProxyRotation',
         'disallow_urls' => 'getDisallowUrls'
     ];
@@ -341,6 +353,8 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('cnt_completed', $data ?? [], null);
         $this->setIfExists('cnt_failed', $data ?? [], null);
         $this->setIfExists('with_screenshot', $data ?? [], null);
+        $this->setIfExists('with_browser', $data ?? [], null);
+        $this->setIfExists('follow_links', $data ?? [], null);
         $this->setIfExists('with_proxy_rotation', $data ?? [], null);
         $this->setIfExists('disallow_urls', $data ?? [], null);
     }
@@ -401,6 +415,12 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['with_screenshot'] === null) {
             $invalidProperties[] = "'with_screenshot' can't be null";
+        }
+        if ($this->container['with_browser'] === null) {
+            $invalidProperties[] = "'with_browser' can't be null";
+        }
+        if ($this->container['follow_links'] === null) {
+            $invalidProperties[] = "'follow_links' can't be null";
         }
         if ($this->container['with_proxy_rotation'] === null) {
             $invalidProperties[] = "'with_proxy_rotation' can't be null";
@@ -504,7 +524,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets frequency
      *
-     * @return \OpenAPI\Client\Model\ScheduleFrequency
+     * @return \FlowHunt\Model\ScheduleFrequency
      */
     public function getFrequency()
     {
@@ -514,7 +534,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets frequency
      *
-     * @param \OpenAPI\Client\Model\ScheduleFrequency $frequency Frequency of the schedule D - Daily, W - Weekly, M - Monthly, Y - Yearly
+     * @param \FlowHunt\Model\ScheduleFrequency $frequency Frequency of the schedule D - Daily, W - Weekly, M - Monthly, Y - Yearly
      *
      * @return self
      */
@@ -531,7 +551,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets schedule_type
      *
-     * @return \OpenAPI\Client\Model\ScheduleType
+     * @return \FlowHunt\Model\ScheduleType
      */
     public function getScheduleType()
     {
@@ -541,7 +561,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets schedule_type
      *
-     * @param \OpenAPI\Client\Model\ScheduleType $schedule_type Type of the schedule (U - URL, D - Domain, S - Sitemap)
+     * @param \FlowHunt\Model\ScheduleType $schedule_type Type of the schedule (U - URL, D - Domain, S - Sitemap)
      *
      * @return self
      */
@@ -626,7 +646,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\ScheduleStatus
+     * @return \FlowHunt\Model\ScheduleStatus
      */
     public function getStatus()
     {
@@ -636,7 +656,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\ScheduleStatus $status Status of the schedule (N - New, F - Finished, P - Pending, E - Error, C - Cancelled
+     * @param \FlowHunt\Model\ScheduleStatus $status Status of the schedule (N - New, F - Finished, P - Pending, E - Error, C - Cancelled
      *
      * @return self
      */
@@ -789,7 +809,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets with_screenshot
      *
-     * @return \OpenAPI\Client\Model\BoolChar
+     * @return \FlowHunt\Model\BoolChar
      */
     public function getWithScreenshot()
     {
@@ -799,7 +819,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets with_screenshot
      *
-     * @param \OpenAPI\Client\Model\BoolChar $with_screenshot with_screenshot
+     * @param \FlowHunt\Model\BoolChar $with_screenshot with_screenshot
      *
      * @return self
      */
@@ -821,9 +841,77 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets with_browser
+     *
+     * @return \FlowHunt\Model\BoolChar
+     */
+    public function getWithBrowser()
+    {
+        return $this->container['with_browser'];
+    }
+
+    /**
+     * Sets with_browser
+     *
+     * @param \FlowHunt\Model\BoolChar $with_browser with_browser
+     *
+     * @return self
+     */
+    public function setWithBrowser($with_browser)
+    {
+        if (is_null($with_browser)) {
+            array_push($this->openAPINullablesSetToNull, 'with_browser');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_browser', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_browser'] = $with_browser;
+
+        return $this;
+    }
+
+    /**
+     * Gets follow_links
+     *
+     * @return \FlowHunt\Model\BoolChar
+     */
+    public function getFollowLinks()
+    {
+        return $this->container['follow_links'];
+    }
+
+    /**
+     * Sets follow_links
+     *
+     * @param \FlowHunt\Model\BoolChar $follow_links follow_links
+     *
+     * @return self
+     */
+    public function setFollowLinks($follow_links)
+    {
+        if (is_null($follow_links)) {
+            array_push($this->openAPINullablesSetToNull, 'follow_links');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('follow_links', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['follow_links'] = $follow_links;
+
+        return $this;
+    }
+
+    /**
      * Gets with_proxy_rotation
      *
-     * @return \OpenAPI\Client\Model\BoolChar
+     * @return \FlowHunt\Model\BoolChar
      */
     public function getWithProxyRotation()
     {
@@ -833,7 +921,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets with_proxy_rotation
      *
-     * @param \OpenAPI\Client\Model\BoolChar $with_proxy_rotation with_proxy_rotation
+     * @param \FlowHunt\Model\BoolChar $with_proxy_rotation with_proxy_rotation
      *
      * @return self
      */

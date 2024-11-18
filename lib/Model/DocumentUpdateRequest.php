@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * DocumentUpdateRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'doc_name' => 'string',
-        'user_status' => '\OpenAPI\Client\Model\UserDocumentStatus',
+        'user_status' => '\FlowHunt\Model\UserDocumentStatus',
         'cat_id' => 'string'
     ];
 
@@ -340,7 +340,7 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets user_status
      *
-     * @return \OpenAPI\Client\Model\UserDocumentStatus|null
+     * @return \FlowHunt\Model\UserDocumentStatus|null
      */
     public function getUserStatus()
     {
@@ -350,7 +350,7 @@ class DocumentUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets user_status
      *
-     * @param \OpenAPI\Client\Model\UserDocumentStatus|null $user_status user_status
+     * @param \FlowHunt\Model\UserDocumentStatus|null $user_status user_status
      *
      * @return self
      */

@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
  * HealthApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -129,9 +129,9 @@ class HealthApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Health
+     * @return \FlowHunt\Model\Health
      */
     public function health(string $contentType = self::contentTypes['health'][0])
     {
@@ -146,9 +146,9 @@ class HealthApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Health, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Health, HTTP status code, HTTP response headers (array of strings)
      */
     public function healthWithHttpInfo(string $contentType = self::contentTypes['health'][0])
     {
@@ -179,11 +179,11 @@ class HealthApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Health' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Health' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Health' !== 'string') {
+                        if ('\FlowHunt\Model\Health' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -201,7 +201,7 @@ class HealthApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Health', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Health', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -220,7 +220,7 @@ class HealthApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Health';
+            $returnType = '\FlowHunt\Model\Health';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -253,7 +253,7 @@ class HealthApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Health',
+                        '\FlowHunt\Model\Health',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -295,7 +295,7 @@ class HealthApi
      */
     public function healthAsyncWithHttpInfo(string $contentType = self::contentTypes['health'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Health';
+        $returnType = '\FlowHunt\Model\Health';
         $request = $this->healthRequest($contentType);
 
         return $this->client

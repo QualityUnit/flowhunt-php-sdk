@@ -4,11 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | [**\OpenAPI\Client\Model\AppUrlInput**](AppUrlInput.md) |  |
-**frequency** | [**\OpenAPI\Client\Model\ScheduleFrequency**](ScheduleFrequency.md) |  |
-**schedule_type** | [**\OpenAPI\Client\Model\ScheduleType**](ScheduleType.md) |  |
-**with_screenshot** | [**\OpenAPI\Client\Model\BoolChar**](BoolChar.md) |  | [optional]
-**with_proxy_rotation** | [**\OpenAPI\Client\Model\BoolChar**](BoolChar.md) |  | [optional]
+**url** | [**\FlowHunt\Model\AppUrlInput**](AppUrlInput.md) |  |
+**frequency** | [**\FlowHunt\Model\ScheduleFrequency**](ScheduleFrequency.md) |  |
+**schedule_type** | [**\FlowHunt\Model\ScheduleType**](ScheduleType.md) |  |
+**with_screenshot** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  | [optional]
+**with_browser** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  | [optional]
+**follow_links** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  | [optional]
+**with_proxy_rotation** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  | [optional]
 **disallow_urls** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

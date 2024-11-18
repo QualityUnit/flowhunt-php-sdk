@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **name** | **string** | Document name |
 **description** | **string** |  | [optional]
 **prompt_text** | **string** | Prompt text |
-**prompt_url** | [**\OpenAPI\Client\Model\AppUrlInput**](AppUrlInput.md) |  | [optional]
+**prompt_url** | [**\FlowHunt\Model\AppUrlInput**](AppUrlInput.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

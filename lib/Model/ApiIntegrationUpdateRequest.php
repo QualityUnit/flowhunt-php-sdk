@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ApiIntegrationUpdateRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class ApiIntegrationUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'name' => 'string',
         'description' => 'string',
         'secret' => 'object',
-        'endpoints' => '\OpenAPI\Client\Model\ApiEndpointCreateRequest[]'
+        'endpoints' => '\FlowHunt\Model\ApiEndpointCreateRequest[]'
     ];
 
     /**
@@ -471,7 +471,7 @@ class ApiIntegrationUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets endpoints
      *
-     * @return \OpenAPI\Client\Model\ApiEndpointCreateRequest[]|null
+     * @return \FlowHunt\Model\ApiEndpointCreateRequest[]|null
      */
     public function getEndpoints()
     {
@@ -481,7 +481,7 @@ class ApiIntegrationUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets endpoints
      *
-     * @param \OpenAPI\Client\Model\ApiEndpointCreateRequest[]|null $endpoints endpoints
+     * @param \FlowHunt\Model\ApiEndpointCreateRequest[]|null $endpoints endpoints
      *
      * @return self
      */

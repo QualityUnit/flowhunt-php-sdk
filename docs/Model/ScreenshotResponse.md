@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | Task ID |
-**status** | [**\OpenAPI\Client\Model\TaskStatus**](TaskStatus.md) | Task status |
+**status** | [**\FlowHunt\Model\TaskStatus**](TaskStatus.md) | Task status |
 **result** | **string** |  | [optional]
 **error_message** | **string** |  | [optional]
-**original_size_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
-**thumbnail_url** | [**\OpenAPI\Client\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
+**original_size_url** | [**\FlowHunt\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
+**thumbnail_url** | [**\FlowHunt\Model\AppUrlOutput**](AppUrlOutput.md) |  | [optional]
 **timestamp** | **int** |  | [optional]
 **domain_id** | **string** |  | [optional]
 **url_id** | **string** |  | [optional]

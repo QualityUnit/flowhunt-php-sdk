@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * UserTokenResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class UserTokenResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'user' => '\OpenAPI\Client\Model\UserResponse',
-        'token' => '\OpenAPI\Client\Model\Token'
+        'user' => '\FlowHunt\Model\UserResponse',
+        'token' => '\FlowHunt\Model\Token'
     ];
 
     /**
@@ -305,7 +305,7 @@ class UserTokenResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets user
      *
-     * @return \OpenAPI\Client\Model\UserResponse
+     * @return \FlowHunt\Model\UserResponse
      */
     public function getUser()
     {
@@ -315,7 +315,7 @@ class UserTokenResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets user
      *
-     * @param \OpenAPI\Client\Model\UserResponse $user User details
+     * @param \FlowHunt\Model\UserResponse $user User details
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class UserTokenResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets token
      *
-     * @return \OpenAPI\Client\Model\Token
+     * @return \FlowHunt\Model\Token
      */
     public function getToken()
     {
@@ -342,7 +342,7 @@ class UserTokenResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets token
      *
-     * @param \OpenAPI\Client\Model\Token $token JWT Token
+     * @param \FlowHunt\Model\Token $token JWT Token
      *
      * @return self
      */

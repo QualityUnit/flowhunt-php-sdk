@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * GridResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class GridResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_id' => 'string',
         'grid_id' => 'string',
         'title' => 'string',
-        'status' => '\OpenAPI\Client\Model\GridStatus',
+        'status' => '\FlowHunt\Model\GridStatus',
         'modified' => '\DateTime'
     ];
 
@@ -416,7 +416,7 @@ class GridResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\GridStatus
+     * @return \FlowHunt\Model\GridStatus
      */
     public function getStatus()
     {
@@ -426,7 +426,7 @@ class GridResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\GridStatus $status Status of the grid (F - Finished, R - Running, E - Error, P - Paused)
+     * @param \FlowHunt\Model\GridStatus $status Status of the grid (F - Finished, R - Running, E - Error, P - Paused)
      *
      * @return self
      */

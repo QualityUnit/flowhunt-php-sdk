@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **string** | Flow ID |
 **name** | **string** | Flow name |
 **description** | **string** | Flow description |
-**flow_type** | [**\OpenAPI\Client\Model\FlowType**](FlowType.md) | Flow type |
+**flow_type** | [**\FlowHunt\Model\FlowType**](FlowType.md) | Flow type |
 **component_count** | **int** | Component count |
 **executed_at** | **\DateTime** |  | [optional]
 **category_id** | **string** |  | [optional]

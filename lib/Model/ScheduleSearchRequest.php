@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ScheduleSearchRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,8 +59,8 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'domain_id' => 'string',
         'url' => 'string',
-        'status' => '\OpenAPI\Client\Model\ScheduleStatus',
-        'schedule_type' => '\OpenAPI\Client\Model\ScheduleType',
+        'status' => '\FlowHunt\Model\ScheduleStatus',
+        'schedule_type' => '\FlowHunt\Model\ScheduleType',
         'limit' => 'int'
     ];
 
@@ -388,7 +388,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\ScheduleStatus|null
+     * @return \FlowHunt\Model\ScheduleStatus|null
      */
     public function getStatus()
     {
@@ -398,7 +398,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\ScheduleStatus|null $status status
+     * @param \FlowHunt\Model\ScheduleStatus|null $status status
      *
      * @return self
      */
@@ -422,7 +422,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets schedule_type
      *
-     * @return \OpenAPI\Client\Model\ScheduleType|null
+     * @return \FlowHunt\Model\ScheduleType|null
      */
     public function getScheduleType()
     {
@@ -432,7 +432,7 @@ class ScheduleSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets schedule_type
      *
-     * @param \OpenAPI\Client\Model\ScheduleType|null $schedule_type schedule_type
+     * @param \FlowHunt\Model\ScheduleType|null $schedule_type schedule_type
      *
      * @return self
      */

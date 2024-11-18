@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * DocumentSearchRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,9 +60,9 @@ class DocumentSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'doc_id' => 'string',
         'cat_id' => 'string',
         'doc_name' => 'string',
-        'doc_type' => '\OpenAPI\Client\Model\DocumentType',
-        'status' => '\OpenAPI\Client\Model\DocumentStatus',
-        'user_status' => '\OpenAPI\Client\Model\UserDocumentStatus',
+        'doc_type' => '\FlowHunt\Model\DocumentType',
+        'status' => '\FlowHunt\Model\DocumentStatus',
+        'user_status' => '\FlowHunt\Model\UserDocumentStatus',
         'updated_at_from' => '\DateTime',
         'updated_at_to' => '\DateTime',
         'limit' => 'int'
@@ -450,7 +450,7 @@ class DocumentSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets doc_type
      *
-     * @return \OpenAPI\Client\Model\DocumentType|null
+     * @return \FlowHunt\Model\DocumentType|null
      */
     public function getDocType()
     {
@@ -460,7 +460,7 @@ class DocumentSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets doc_type
      *
-     * @param \OpenAPI\Client\Model\DocumentType|null $doc_type doc_type
+     * @param \FlowHunt\Model\DocumentType|null $doc_type doc_type
      *
      * @return self
      */
@@ -484,7 +484,7 @@ class DocumentSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\DocumentStatus|null
+     * @return \FlowHunt\Model\DocumentStatus|null
      */
     public function getStatus()
     {
@@ -494,7 +494,7 @@ class DocumentSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\DocumentStatus|null $status status
+     * @param \FlowHunt\Model\DocumentStatus|null $status status
      *
      * @return self
      */
@@ -518,7 +518,7 @@ class DocumentSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets user_status
      *
-     * @return \OpenAPI\Client\Model\UserDocumentStatus|null
+     * @return \FlowHunt\Model\UserDocumentStatus|null
      */
     public function getUserStatus()
     {
@@ -528,7 +528,7 @@ class DocumentSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets user_status
      *
-     * @param \OpenAPI\Client\Model\UserDocumentStatus|null $user_status user_status
+     * @param \FlowHunt\Model\UserDocumentStatus|null $user_status user_status
      *
      * @return self
      */

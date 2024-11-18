@@ -1,4 +1,4 @@
-# OpenAPI\Client\GridsApi
+# FlowHunt\GridsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -20,7 +20,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createColumn()`
 
 ```php
-createColumn($grid_id, $workspace_id, $grid_column_create_request): \OpenAPI\Client\Model\GridColumnResponse
+createColumn($grid_id, $workspace_id, $grid_column_create_request): \FlowHunt\Model\GridColumnResponse
 ```
 
 Create Column
@@ -33,15 +33,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -49,7 +49,7 @@ $apiInstance = new OpenAPI\Client\Api\GridsApi(
 );
 $grid_id = 'grid_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$grid_column_create_request = new \OpenAPI\Client\Model\GridColumnCreateRequest(); // \OpenAPI\Client\Model\GridColumnCreateRequest
+$grid_column_create_request = new \FlowHunt\Model\GridColumnCreateRequest(); // \FlowHunt\Model\GridColumnCreateRequest
 
 try {
     $result = $apiInstance->createColumn($grid_id, $workspace_id, $grid_column_create_request);
@@ -65,11 +65,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **grid_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **grid_column_create_request** | [**\OpenAPI\Client\Model\GridColumnCreateRequest**](../Model/GridColumnCreateRequest.md)|  | |
+| **grid_column_create_request** | [**\FlowHunt\Model\GridColumnCreateRequest**](../Model/GridColumnCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridColumnResponse**](../Model/GridColumnResponse.md)
+[**\FlowHunt\Model\GridColumnResponse**](../Model/GridColumnResponse.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ try {
 ## `createGrid()`
 
 ```php
-createGrid($workspace_id, $grid_create_request): \OpenAPI\Client\Model\GridResponse
+createGrid($workspace_id, $grid_create_request): \FlowHunt\Model\GridResponse
 ```
 
 Create Grid
@@ -100,22 +100,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$grid_create_request = new \OpenAPI\Client\Model\GridCreateRequest(); // \OpenAPI\Client\Model\GridCreateRequest
+$grid_create_request = new \FlowHunt\Model\GridCreateRequest(); // \FlowHunt\Model\GridCreateRequest
 
 try {
     $result = $apiInstance->createGrid($workspace_id, $grid_create_request);
@@ -130,11 +130,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **grid_create_request** | [**\OpenAPI\Client\Model\GridCreateRequest**](../Model/GridCreateRequest.md)|  | |
+| **grid_create_request** | [**\FlowHunt\Model\GridCreateRequest**](../Model/GridCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridResponse**](../Model/GridResponse.md)
+[**\FlowHunt\Model\GridResponse**](../Model/GridResponse.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ try {
 ## `createGridRow()`
 
 ```php
-createGridRow($grid_id, $workspace_id, $grid_row_create_request): \OpenAPI\Client\Model\GridRowResponse
+createGridRow($grid_id, $workspace_id, $grid_row_create_request): \FlowHunt\Model\GridRowResponse
 ```
 
 Create Grid Row
@@ -165,15 +165,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -181,7 +181,7 @@ $apiInstance = new OpenAPI\Client\Api\GridsApi(
 );
 $grid_id = 'grid_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$grid_row_create_request = new \OpenAPI\Client\Model\GridRowCreateRequest(); // \OpenAPI\Client\Model\GridRowCreateRequest
+$grid_row_create_request = new \FlowHunt\Model\GridRowCreateRequest(); // \FlowHunt\Model\GridRowCreateRequest
 
 try {
     $result = $apiInstance->createGridRow($grid_id, $workspace_id, $grid_row_create_request);
@@ -197,11 +197,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **grid_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **grid_row_create_request** | [**\OpenAPI\Client\Model\GridRowCreateRequest**](../Model/GridRowCreateRequest.md)|  | |
+| **grid_row_create_request** | [**\FlowHunt\Model\GridRowCreateRequest**](../Model/GridRowCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridRowResponse**](../Model/GridRowResponse.md)
+[**\FlowHunt\Model\GridRowResponse**](../Model/GridRowResponse.md)
 
 ### Authorization
 
@@ -219,7 +219,7 @@ try {
 ## `deleteGrid()`
 
 ```php
-deleteGrid($grid_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteGrid($grid_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Grid
@@ -232,15 +232,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -266,7 +266,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -284,7 +284,7 @@ try {
 ## `deleteGridRow()`
 
 ```php
-deleteGridRow($grid_id, $col_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteGridRow($grid_id, $col_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Grid Row
@@ -297,15 +297,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -333,7 +333,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -351,7 +351,7 @@ try {
 ## `searchColumns()`
 
 ```php
-searchColumns($grid_id, $workspace_id, $grid_column_search_request): \OpenAPI\Client\Model\GridColumnResponse[]
+searchColumns($grid_id, $workspace_id, $grid_column_search_request): \FlowHunt\Model\GridColumnResponse[]
 ```
 
 Search Columns
@@ -364,15 +364,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -380,7 +380,7 @@ $apiInstance = new OpenAPI\Client\Api\GridsApi(
 );
 $grid_id = 'grid_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$grid_column_search_request = new \OpenAPI\Client\Model\GridColumnSearchRequest(); // \OpenAPI\Client\Model\GridColumnSearchRequest
+$grid_column_search_request = new \FlowHunt\Model\GridColumnSearchRequest(); // \FlowHunt\Model\GridColumnSearchRequest
 
 try {
     $result = $apiInstance->searchColumns($grid_id, $workspace_id, $grid_column_search_request);
@@ -396,11 +396,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **grid_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **grid_column_search_request** | [**\OpenAPI\Client\Model\GridColumnSearchRequest**](../Model/GridColumnSearchRequest.md)|  | |
+| **grid_column_search_request** | [**\FlowHunt\Model\GridColumnSearchRequest**](../Model/GridColumnSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridColumnResponse[]**](../Model/GridColumnResponse.md)
+[**\FlowHunt\Model\GridColumnResponse[]**](../Model/GridColumnResponse.md)
 
 ### Authorization
 
@@ -418,7 +418,7 @@ try {
 ## `searchGridRows()`
 
 ```php
-searchGridRows($grid_id, $workspace_id, $grid_row_search_request): \OpenAPI\Client\Model\GridRowResponse[]
+searchGridRows($grid_id, $workspace_id, $grid_row_search_request): \FlowHunt\Model\GridRowResponse[]
 ```
 
 Search Grid Rows
@@ -431,15 +431,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -447,7 +447,7 @@ $apiInstance = new OpenAPI\Client\Api\GridsApi(
 );
 $grid_id = 'grid_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$grid_row_search_request = new \OpenAPI\Client\Model\GridRowSearchRequest(); // \OpenAPI\Client\Model\GridRowSearchRequest
+$grid_row_search_request = new \FlowHunt\Model\GridRowSearchRequest(); // \FlowHunt\Model\GridRowSearchRequest
 
 try {
     $result = $apiInstance->searchGridRows($grid_id, $workspace_id, $grid_row_search_request);
@@ -463,11 +463,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **grid_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **grid_row_search_request** | [**\OpenAPI\Client\Model\GridRowSearchRequest**](../Model/GridRowSearchRequest.md)|  | |
+| **grid_row_search_request** | [**\FlowHunt\Model\GridRowSearchRequest**](../Model/GridRowSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridRowResponse[]**](../Model/GridRowResponse.md)
+[**\FlowHunt\Model\GridRowResponse[]**](../Model/GridRowResponse.md)
 
 ### Authorization
 
@@ -485,7 +485,7 @@ try {
 ## `searchGrids()`
 
 ```php
-searchGrids($workspace_id, $grid_search_request): \OpenAPI\Client\Model\GridResponse[]
+searchGrids($workspace_id, $grid_search_request): \FlowHunt\Model\GridResponse[]
 ```
 
 Search Grids
@@ -498,22 +498,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$grid_search_request = new \OpenAPI\Client\Model\GridSearchRequest(); // \OpenAPI\Client\Model\GridSearchRequest
+$grid_search_request = new \FlowHunt\Model\GridSearchRequest(); // \FlowHunt\Model\GridSearchRequest
 
 try {
     $result = $apiInstance->searchGrids($workspace_id, $grid_search_request);
@@ -528,11 +528,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **grid_search_request** | [**\OpenAPI\Client\Model\GridSearchRequest**](../Model/GridSearchRequest.md)|  | |
+| **grid_search_request** | [**\FlowHunt\Model\GridSearchRequest**](../Model/GridSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridResponse[]**](../Model/GridResponse.md)
+[**\FlowHunt\Model\GridResponse[]**](../Model/GridResponse.md)
 
 ### Authorization
 
@@ -550,7 +550,7 @@ try {
 ## `updateColumn()`
 
 ```php
-updateColumn($grid_id, $col_id, $workspace_id, $grid_column_update_request): \OpenAPI\Client\Model\GridColumnResponse
+updateColumn($grid_id, $col_id, $workspace_id, $grid_column_update_request): \FlowHunt\Model\GridColumnResponse
 ```
 
 Update Column
@@ -563,15 +563,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -580,7 +580,7 @@ $apiInstance = new OpenAPI\Client\Api\GridsApi(
 $grid_id = 'grid_id_example'; // string
 $col_id = 'col_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$grid_column_update_request = new \OpenAPI\Client\Model\GridColumnUpdateRequest(); // \OpenAPI\Client\Model\GridColumnUpdateRequest
+$grid_column_update_request = new \FlowHunt\Model\GridColumnUpdateRequest(); // \FlowHunt\Model\GridColumnUpdateRequest
 
 try {
     $result = $apiInstance->updateColumn($grid_id, $col_id, $workspace_id, $grid_column_update_request);
@@ -597,11 +597,11 @@ try {
 | **grid_id** | **string**|  | |
 | **col_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **grid_column_update_request** | [**\OpenAPI\Client\Model\GridColumnUpdateRequest**](../Model/GridColumnUpdateRequest.md)|  | |
+| **grid_column_update_request** | [**\FlowHunt\Model\GridColumnUpdateRequest**](../Model/GridColumnUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridColumnResponse**](../Model/GridColumnResponse.md)
+[**\FlowHunt\Model\GridColumnResponse**](../Model/GridColumnResponse.md)
 
 ### Authorization
 
@@ -619,7 +619,7 @@ try {
 ## `updateGrid()`
 
 ```php
-updateGrid($grid_id, $workspace_id, $grid_update_request): \OpenAPI\Client\Model\GridResponse
+updateGrid($grid_id, $workspace_id, $grid_update_request): \FlowHunt\Model\GridResponse
 ```
 
 Update Grid
@@ -632,15 +632,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -648,7 +648,7 @@ $apiInstance = new OpenAPI\Client\Api\GridsApi(
 );
 $grid_id = 'grid_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$grid_update_request = new \OpenAPI\Client\Model\GridUpdateRequest(); // \OpenAPI\Client\Model\GridUpdateRequest
+$grid_update_request = new \FlowHunt\Model\GridUpdateRequest(); // \FlowHunt\Model\GridUpdateRequest
 
 try {
     $result = $apiInstance->updateGrid($grid_id, $workspace_id, $grid_update_request);
@@ -664,11 +664,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **grid_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **grid_update_request** | [**\OpenAPI\Client\Model\GridUpdateRequest**](../Model/GridUpdateRequest.md)|  | |
+| **grid_update_request** | [**\FlowHunt\Model\GridUpdateRequest**](../Model/GridUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridResponse**](../Model/GridResponse.md)
+[**\FlowHunt\Model\GridResponse**](../Model/GridResponse.md)
 
 ### Authorization
 
@@ -686,7 +686,7 @@ try {
 ## `updateGridRow()`
 
 ```php
-updateGridRow($grid_id, $workspace_id, $row_id, $grid_row_update_request): \OpenAPI\Client\Model\GridRowResponse
+updateGridRow($grid_id, $workspace_id, $row_id, $grid_row_update_request): \FlowHunt\Model\GridRowResponse
 ```
 
 Update Grid Row
@@ -699,15 +699,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GridsApi(
+$apiInstance = new FlowHunt\Api\GridsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -716,7 +716,7 @@ $apiInstance = new OpenAPI\Client\Api\GridsApi(
 $grid_id = 'grid_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $row_id = 'row_id_example'; // string
-$grid_row_update_request = new \OpenAPI\Client\Model\GridRowUpdateRequest(); // \OpenAPI\Client\Model\GridRowUpdateRequest
+$grid_row_update_request = new \FlowHunt\Model\GridRowUpdateRequest(); // \FlowHunt\Model\GridRowUpdateRequest
 
 try {
     $result = $apiInstance->updateGridRow($grid_id, $workspace_id, $row_id, $grid_row_update_request);
@@ -733,11 +733,11 @@ try {
 | **grid_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **row_id** | **string**|  | |
-| **grid_row_update_request** | [**\OpenAPI\Client\Model\GridRowUpdateRequest**](../Model/GridRowUpdateRequest.md)|  | |
+| **grid_row_update_request** | [**\FlowHunt\Model\GridRowUpdateRequest**](../Model/GridRowUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GridRowResponse**](../Model/GridRowResponse.md)
+[**\FlowHunt\Model\GridRowResponse**](../Model/GridRowResponse.md)
 
 ### Authorization
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **grid_id** | **string** |  | [optional]
 **title** | **string** |  | [optional]
-**status** | [**\OpenAPI\Client\Model\GridStatus**](GridStatus.md) |  | [optional]
+**status** | [**\FlowHunt\Model\GridStatus**](GridStatus.md) |  | [optional]
 **modified** | **string** |  | [optional]
 **limit** | **int** | Limit of the search | [optional] [default to 100]
 

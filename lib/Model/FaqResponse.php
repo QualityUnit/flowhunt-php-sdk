@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FaqResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -63,7 +63,7 @@ class FaqResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'question' => 'string',
         'answer' => 'string',
         'parent_faq_id' => 'string',
-        'status' => '\OpenAPI\Client\Model\FaqStatus',
+        'status' => '\FlowHunt\Model\FaqStatus',
         'updated_at' => '\DateTime',
         'indexed_at' => '\DateTime'
     ];
@@ -542,7 +542,7 @@ class FaqResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\FaqStatus
+     * @return \FlowHunt\Model\FaqStatus
      */
     public function getStatus()
     {
@@ -552,7 +552,7 @@ class FaqResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\FaqStatus $status FAQ status
+     * @param \FlowHunt\Model\FaqStatus $status FAQ status
      *
      * @return self
      */

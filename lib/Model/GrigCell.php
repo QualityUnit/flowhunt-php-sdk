@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * GrigCell Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class GrigCell implements ModelInterface, ArrayAccess, \JsonSerializable
         'value_text' => 'string',
         'value_number' => 'float',
         'value_date' => 'float',
-        'status' => '\OpenAPI\Client\Model\GridCellStatus',
+        'status' => '\FlowHunt\Model\GridCellStatus',
         'status_updated' => 'float'
     ];
 
@@ -459,7 +459,7 @@ class GrigCell implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\GridCellStatus|null
+     * @return \FlowHunt\Model\GridCellStatus|null
      */
     public function getStatus()
     {
@@ -469,7 +469,7 @@ class GrigCell implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\GridCellStatus|null $status Status
+     * @param \FlowHunt\Model\GridCellStatus|null $status Status
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ApiIntegrationAuthenticationMethod Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'auth_type' => '\OpenAPI\Client\Model\ApiIntegrationAuthType',
+        'auth_type' => '\FlowHunt\Model\ApiIntegrationAuthType',
         'description' => 'string',
         'beta' => 'bool',
         'link' => 'string',
@@ -336,7 +336,7 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
     /**
      * Gets auth_type
      *
-     * @return \OpenAPI\Client\Model\ApiIntegrationAuthType
+     * @return \FlowHunt\Model\ApiIntegrationAuthType
      */
     public function getAuthType()
     {
@@ -346,7 +346,7 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
     /**
      * Sets auth_type
      *
-     * @param \OpenAPI\Client\Model\ApiIntegrationAuthType $auth_type The authentication type of the API integration.
+     * @param \FlowHunt\Model\ApiIntegrationAuthType $auth_type The authentication type of the API integration.
      *
      * @return self
      */

@@ -1,4 +1,4 @@
-# OpenAPI\Client\WorkspacesApi
+# FlowHunt\WorkspacesApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -18,7 +18,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `addWorkspaceUser()`
 
 ```php
-addWorkspaceUser($workspace_id, $workspace_user_create_request): \OpenAPI\Client\Model\Completed
+addWorkspaceUser($workspace_id, $workspace_user_create_request): \FlowHunt\Model\Completed
 ```
 
 Add Workspace User
@@ -31,22 +31,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$workspace_user_create_request = new \OpenAPI\Client\Model\WorkspaceUserCreateRequest(); // \OpenAPI\Client\Model\WorkspaceUserCreateRequest
+$workspace_user_create_request = new \FlowHunt\Model\WorkspaceUserCreateRequest(); // \FlowHunt\Model\WorkspaceUserCreateRequest
 
 try {
     $result = $apiInstance->addWorkspaceUser($workspace_id, $workspace_user_create_request);
@@ -61,11 +61,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **workspace_user_create_request** | [**\OpenAPI\Client\Model\WorkspaceUserCreateRequest**](../Model/WorkspaceUserCreateRequest.md)|  | |
+| **workspace_user_create_request** | [**\FlowHunt\Model\WorkspaceUserCreateRequest**](../Model/WorkspaceUserCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ try {
 ## `createWorkspace()`
 
 ```php
-createWorkspace($workspace_create_request): \OpenAPI\Client\Model\WorkspaceResponse
+createWorkspace($workspace_create_request): \FlowHunt\Model\WorkspaceResponse
 ```
 
 Create Workspace
@@ -96,21 +96,21 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_create_request = new \OpenAPI\Client\Model\WorkspaceCreateRequest(); // \OpenAPI\Client\Model\WorkspaceCreateRequest
+$workspace_create_request = new \FlowHunt\Model\WorkspaceCreateRequest(); // \FlowHunt\Model\WorkspaceCreateRequest
 
 try {
     $result = $apiInstance->createWorkspace($workspace_create_request);
@@ -124,11 +124,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_create_request** | [**\OpenAPI\Client\Model\WorkspaceCreateRequest**](../Model/WorkspaceCreateRequest.md)|  | |
+| **workspace_create_request** | [**\FlowHunt\Model\WorkspaceCreateRequest**](../Model/WorkspaceCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\WorkspaceResponse**](../Model/WorkspaceResponse.md)
+[**\FlowHunt\Model\WorkspaceResponse**](../Model/WorkspaceResponse.md)
 
 ### Authorization
 
@@ -146,7 +146,7 @@ try {
 ## `deleteWorkspace()`
 
 ```php
-deleteWorkspace($workspace_id): \OpenAPI\Client\Model\Completed
+deleteWorkspace($workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Workspace
@@ -159,15 +159,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -191,7 +191,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -209,7 +209,7 @@ try {
 ## `deleteWorkspaceUser()`
 
 ```php
-deleteWorkspaceUser($workspace_id, $user_id): \OpenAPI\Client\Model\Completed
+deleteWorkspaceUser($workspace_id, $user_id): \FlowHunt\Model\Completed
 ```
 
 Delete Workspace User
@@ -222,15 +222,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -256,7 +256,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -274,7 +274,7 @@ try {
 ## `getWorkspace()`
 
 ```php
-getWorkspace($workspace_id): \OpenAPI\Client\Model\WorkspaceResponse
+getWorkspace($workspace_id): \FlowHunt\Model\WorkspaceResponse
 ```
 
 Get Workspace
@@ -287,15 +287,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -319,7 +319,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\WorkspaceResponse**](../Model/WorkspaceResponse.md)
+[**\FlowHunt\Model\WorkspaceResponse**](../Model/WorkspaceResponse.md)
 
 ### Authorization
 
@@ -337,7 +337,7 @@ try {
 ## `searchMyWorkspaces()`
 
 ```php
-searchMyWorkspaces($workspace_search_request): \OpenAPI\Client\Model\WorkspaceRole[]
+searchMyWorkspaces($workspace_search_request): \FlowHunt\Model\WorkspaceRole[]
 ```
 
 Search My Workspaces
@@ -350,21 +350,21 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$workspace_search_request = new \OpenAPI\Client\Model\WorkspaceSearchRequest(); // \OpenAPI\Client\Model\WorkspaceSearchRequest
+$workspace_search_request = new \FlowHunt\Model\WorkspaceSearchRequest(); // \FlowHunt\Model\WorkspaceSearchRequest
 
 try {
     $result = $apiInstance->searchMyWorkspaces($workspace_search_request);
@@ -378,11 +378,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **workspace_search_request** | [**\OpenAPI\Client\Model\WorkspaceSearchRequest**](../Model/WorkspaceSearchRequest.md)|  | |
+| **workspace_search_request** | [**\FlowHunt\Model\WorkspaceSearchRequest**](../Model/WorkspaceSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\WorkspaceRole[]**](../Model/WorkspaceRole.md)
+[**\FlowHunt\Model\WorkspaceRole[]**](../Model/WorkspaceRole.md)
 
 ### Authorization
 
@@ -400,7 +400,7 @@ try {
 ## `searchWorkspaceUsers()`
 
 ```php
-searchWorkspaceUsers($workspace_id, $workspace_users_search_request): \OpenAPI\Client\Model\WorkspaceUserResponse[]
+searchWorkspaceUsers($workspace_id, $workspace_users_search_request): \FlowHunt\Model\WorkspaceUserResponse[]
 ```
 
 Search Workspace Users
@@ -413,22 +413,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$workspace_users_search_request = new \OpenAPI\Client\Model\WorkspaceUsersSearchRequest(); // \OpenAPI\Client\Model\WorkspaceUsersSearchRequest
+$workspace_users_search_request = new \FlowHunt\Model\WorkspaceUsersSearchRequest(); // \FlowHunt\Model\WorkspaceUsersSearchRequest
 
 try {
     $result = $apiInstance->searchWorkspaceUsers($workspace_id, $workspace_users_search_request);
@@ -443,11 +443,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **workspace_users_search_request** | [**\OpenAPI\Client\Model\WorkspaceUsersSearchRequest**](../Model/WorkspaceUsersSearchRequest.md)|  | |
+| **workspace_users_search_request** | [**\FlowHunt\Model\WorkspaceUsersSearchRequest**](../Model/WorkspaceUsersSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\WorkspaceUserResponse[]**](../Model/WorkspaceUserResponse.md)
+[**\FlowHunt\Model\WorkspaceUserResponse[]**](../Model/WorkspaceUserResponse.md)
 
 ### Authorization
 
@@ -465,7 +465,7 @@ try {
 ## `updateWorkspace()`
 
 ```php
-updateWorkspace($workspace_id, $workspace_update_request): \OpenAPI\Client\Model\Completed
+updateWorkspace($workspace_id, $workspace_update_request): \FlowHunt\Model\Completed
 ```
 
 Update Workspace
@@ -478,22 +478,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$workspace_update_request = new \OpenAPI\Client\Model\WorkspaceUpdateRequest(); // \OpenAPI\Client\Model\WorkspaceUpdateRequest
+$workspace_update_request = new \FlowHunt\Model\WorkspaceUpdateRequest(); // \FlowHunt\Model\WorkspaceUpdateRequest
 
 try {
     $result = $apiInstance->updateWorkspace($workspace_id, $workspace_update_request);
@@ -508,11 +508,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **workspace_update_request** | [**\OpenAPI\Client\Model\WorkspaceUpdateRequest**](../Model/WorkspaceUpdateRequest.md)|  | |
+| **workspace_update_request** | [**\FlowHunt\Model\WorkspaceUpdateRequest**](../Model/WorkspaceUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -530,7 +530,7 @@ try {
 ## `updateWorkspaceUser()`
 
 ```php
-updateWorkspaceUser($workspace_id, $user_id, $workspace_user_update_request): \OpenAPI\Client\Model\Completed
+updateWorkspaceUser($workspace_id, $user_id, $workspace_user_update_request): \FlowHunt\Model\Completed
 ```
 
 Update Workspace User
@@ -543,15 +543,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -559,7 +559,7 @@ $apiInstance = new OpenAPI\Client\Api\WorkspacesApi(
 );
 $workspace_id = 'workspace_id_example'; // string
 $user_id = 'user_id_example'; // string
-$workspace_user_update_request = new \OpenAPI\Client\Model\WorkspaceUserUpdateRequest(); // \OpenAPI\Client\Model\WorkspaceUserUpdateRequest
+$workspace_user_update_request = new \FlowHunt\Model\WorkspaceUserUpdateRequest(); // \FlowHunt\Model\WorkspaceUserUpdateRequest
 
 try {
     $result = $apiInstance->updateWorkspaceUser($workspace_id, $user_id, $workspace_user_update_request);
@@ -575,11 +575,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
 | **user_id** | **string**|  | |
-| **workspace_user_update_request** | [**\OpenAPI\Client\Model\WorkspaceUserUpdateRequest**](../Model/WorkspaceUserUpdateRequest.md)|  | |
+| **workspace_user_update_request** | [**\FlowHunt\Model\WorkspaceUserUpdateRequest**](../Model/WorkspaceUserUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 

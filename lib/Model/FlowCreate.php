@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowCreate Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'description' => 'string',
         'detailed_description' => 'string',
-        'config' => '\OpenAPI\Client\Model\FlowConfig',
+        'config' => '\FlowHunt\Model\FlowConfig',
         'category_id' => 'string'
     ];
 
@@ -417,7 +417,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets config
      *
-     * @return \OpenAPI\Client\Model\FlowConfig
+     * @return \FlowHunt\Model\FlowConfig
      */
     public function getConfig()
     {
@@ -427,7 +427,7 @@ class FlowCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets config
      *
-     * @param \OpenAPI\Client\Model\FlowConfig $config The flow configuration
+     * @param \FlowHunt\Model\FlowConfig $config The flow configuration
      *
      * @return self
      */

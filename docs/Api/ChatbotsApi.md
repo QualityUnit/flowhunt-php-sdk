@@ -1,4 +1,4 @@
-# OpenAPI\Client\ChatbotsApi
+# FlowHunt\ChatbotsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createChatbot()`
 
 ```php
-createChatbot($workspace_id, $chatbot_create_request): \OpenAPI\Client\Model\ChatbotResponse
+createChatbot($workspace_id, $chatbot_create_request): \FlowHunt\Model\ChatbotResponse
 ```
 
 Create Chatbot
@@ -27,22 +27,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
+$apiInstance = new FlowHunt\Api\ChatbotsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$chatbot_create_request = new \OpenAPI\Client\Model\ChatbotCreateRequest(); // \OpenAPI\Client\Model\ChatbotCreateRequest
+$chatbot_create_request = new \FlowHunt\Model\ChatbotCreateRequest(); // \FlowHunt\Model\ChatbotCreateRequest
 
 try {
     $result = $apiInstance->createChatbot($workspace_id, $chatbot_create_request);
@@ -57,11 +57,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **chatbot_create_request** | [**\OpenAPI\Client\Model\ChatbotCreateRequest**](../Model/ChatbotCreateRequest.md)|  | |
+| **chatbot_create_request** | [**\FlowHunt\Model\ChatbotCreateRequest**](../Model/ChatbotCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ChatbotResponse**](../Model/ChatbotResponse.md)
+[**\FlowHunt\Model\ChatbotResponse**](../Model/ChatbotResponse.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ try {
 ## `deleteChatbot()`
 
 ```php
-deleteChatbot($chatbot_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteChatbot($chatbot_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Chatbot
@@ -92,15 +92,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
+$apiInstance = new FlowHunt\Api\ChatbotsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -126,7 +126,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -144,7 +144,7 @@ try {
 ## `getChatbot()`
 
 ```php
-getChatbot($chatbot_id, $workspace_id): \OpenAPI\Client\Model\ChatbotResponse
+getChatbot($chatbot_id, $workspace_id): \FlowHunt\Model\ChatbotResponse
 ```
 
 Get Chatbot
@@ -157,15 +157,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
+$apiInstance = new FlowHunt\Api\ChatbotsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -191,7 +191,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ChatbotResponse**](../Model/ChatbotResponse.md)
+[**\FlowHunt\Model\ChatbotResponse**](../Model/ChatbotResponse.md)
 
 ### Authorization
 
@@ -209,7 +209,7 @@ try {
 ## `searchChatbots()`
 
 ```php
-searchChatbots($workspace_id, $chatbot_search_request): \OpenAPI\Client\Model\ChatbotResponse[]
+searchChatbots($workspace_id, $chatbot_search_request): \FlowHunt\Model\ChatbotResponse[]
 ```
 
 Search Chatbots
@@ -222,22 +222,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
+$apiInstance = new FlowHunt\Api\ChatbotsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$chatbot_search_request = new \OpenAPI\Client\Model\ChatbotSearchRequest(); // \OpenAPI\Client\Model\ChatbotSearchRequest
+$chatbot_search_request = new \FlowHunt\Model\ChatbotSearchRequest(); // \FlowHunt\Model\ChatbotSearchRequest
 
 try {
     $result = $apiInstance->searchChatbots($workspace_id, $chatbot_search_request);
@@ -252,11 +252,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **chatbot_search_request** | [**\OpenAPI\Client\Model\ChatbotSearchRequest**](../Model/ChatbotSearchRequest.md)|  | |
+| **chatbot_search_request** | [**\FlowHunt\Model\ChatbotSearchRequest**](../Model/ChatbotSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ChatbotResponse[]**](../Model/ChatbotResponse.md)
+[**\FlowHunt\Model\ChatbotResponse[]**](../Model/ChatbotResponse.md)
 
 ### Authorization
 
@@ -274,7 +274,7 @@ try {
 ## `updateChatbot()`
 
 ```php
-updateChatbot($chatbot_id, $workspace_id, $chatbot_update_request): \OpenAPI\Client\Model\ChatbotResponse
+updateChatbot($chatbot_id, $workspace_id, $chatbot_update_request): \FlowHunt\Model\ChatbotResponse
 ```
 
 Update Chatbot
@@ -287,15 +287,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
+$apiInstance = new FlowHunt\Api\ChatbotsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -303,7 +303,7 @@ $apiInstance = new OpenAPI\Client\Api\ChatbotsApi(
 );
 $chatbot_id = 'chatbot_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$chatbot_update_request = new \OpenAPI\Client\Model\ChatbotUpdateRequest(); // \OpenAPI\Client\Model\ChatbotUpdateRequest
+$chatbot_update_request = new \FlowHunt\Model\ChatbotUpdateRequest(); // \FlowHunt\Model\ChatbotUpdateRequest
 
 try {
     $result = $apiInstance->updateChatbot($chatbot_id, $workspace_id, $chatbot_update_request);
@@ -319,11 +319,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **chatbot_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **chatbot_update_request** | [**\OpenAPI\Client\Model\ChatbotUpdateRequest**](../Model/ChatbotUpdateRequest.md)|  | |
+| **chatbot_update_request** | [**\FlowHunt\Model\ChatbotUpdateRequest**](../Model/ChatbotUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ChatbotResponse**](../Model/ChatbotResponse.md)
+[**\FlowHunt\Model\ChatbotResponse**](../Model/ChatbotResponse.md)
 
 ### Authorization
 

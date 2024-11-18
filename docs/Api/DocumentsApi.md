@@ -1,4 +1,4 @@
-# OpenAPI\Client\DocumentsApi
+# FlowHunt\DocumentsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -24,7 +24,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createDocumentCategory()`
 
 ```php
-createDocumentCategory($workspace_id, $document_category_create_request): \OpenAPI\Client\Model\DocumentCategoryResponse
+createDocumentCategory($workspace_id, $document_category_create_request): \FlowHunt\Model\DocumentCategoryResponse
 ```
 
 Create Document Category
@@ -37,22 +37,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$document_category_create_request = new \OpenAPI\Client\Model\DocumentCategoryCreateRequest(); // \OpenAPI\Client\Model\DocumentCategoryCreateRequest
+$document_category_create_request = new \FlowHunt\Model\DocumentCategoryCreateRequest(); // \FlowHunt\Model\DocumentCategoryCreateRequest
 
 try {
     $result = $apiInstance->createDocumentCategory($workspace_id, $document_category_create_request);
@@ -67,11 +67,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **document_category_create_request** | [**\OpenAPI\Client\Model\DocumentCategoryCreateRequest**](../Model/DocumentCategoryCreateRequest.md)|  | |
+| **document_category_create_request** | [**\FlowHunt\Model\DocumentCategoryCreateRequest**](../Model/DocumentCategoryCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentCategoryResponse**](../Model/DocumentCategoryResponse.md)
+[**\FlowHunt\Model\DocumentCategoryResponse**](../Model/DocumentCategoryResponse.md)
 
 ### Authorization
 
@@ -89,7 +89,7 @@ try {
 ## `createFaq()`
 
 ```php
-createFaq($workspace_id, $faq_create_request): \OpenAPI\Client\Model\FaqResponse[]
+createFaq($workspace_id, $faq_create_request): \FlowHunt\Model\FaqResponse[]
 ```
 
 Create Faq
@@ -102,22 +102,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$faq_create_request = new \OpenAPI\Client\Model\FaqCreateRequest(); // \OpenAPI\Client\Model\FaqCreateRequest
+$faq_create_request = new \FlowHunt\Model\FaqCreateRequest(); // \FlowHunt\Model\FaqCreateRequest
 
 try {
     $result = $apiInstance->createFaq($workspace_id, $faq_create_request);
@@ -132,11 +132,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **faq_create_request** | [**\OpenAPI\Client\Model\FaqCreateRequest**](../Model/FaqCreateRequest.md)|  | |
+| **faq_create_request** | [**\FlowHunt\Model\FaqCreateRequest**](../Model/FaqCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FaqResponse[]**](../Model/FaqResponse.md)
+[**\FlowHunt\Model\FaqResponse[]**](../Model/FaqResponse.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ try {
 ## `deleteDocument()`
 
 ```php
-deleteDocument($doc_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteDocument($doc_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Document
@@ -167,15 +167,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -201,7 +201,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -219,7 +219,7 @@ try {
 ## `deleteDocumentCategory()`
 
 ```php
-deleteDocumentCategory($cat_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteDocumentCategory($cat_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Document Category
@@ -232,15 +232,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -266,7 +266,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -284,7 +284,7 @@ try {
 ## `deleteFaq()`
 
 ```php
-deleteFaq($faq_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteFaq($faq_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Faq
@@ -297,15 +297,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -331,7 +331,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -362,15 +362,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -414,7 +414,7 @@ try {
 ## `downloadTextDocument()`
 
 ```php
-downloadTextDocument($doc_id, $workspace_id): \OpenAPI\Client\Model\DocumentContent
+downloadTextDocument($doc_id, $workspace_id): \FlowHunt\Model\DocumentContent
 ```
 
 Download Text Document
@@ -427,15 +427,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -461,7 +461,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentContent**](../Model/DocumentContent.md)
+[**\FlowHunt\Model\DocumentContent**](../Model/DocumentContent.md)
 
 ### Authorization
 
@@ -479,7 +479,7 @@ try {
 ## `searchDocumentCategories()`
 
 ```php
-searchDocumentCategories($workspace_id, $document_category_search_request): \OpenAPI\Client\Model\DocumentCategoryResponse[]
+searchDocumentCategories($workspace_id, $document_category_search_request): \FlowHunt\Model\DocumentCategoryResponse[]
 ```
 
 Search Document Categories
@@ -492,22 +492,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$document_category_search_request = new \OpenAPI\Client\Model\DocumentCategorySearchRequest(); // \OpenAPI\Client\Model\DocumentCategorySearchRequest
+$document_category_search_request = new \FlowHunt\Model\DocumentCategorySearchRequest(); // \FlowHunt\Model\DocumentCategorySearchRequest
 
 try {
     $result = $apiInstance->searchDocumentCategories($workspace_id, $document_category_search_request);
@@ -522,11 +522,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **document_category_search_request** | [**\OpenAPI\Client\Model\DocumentCategorySearchRequest**](../Model/DocumentCategorySearchRequest.md)|  | |
+| **document_category_search_request** | [**\FlowHunt\Model\DocumentCategorySearchRequest**](../Model/DocumentCategorySearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentCategoryResponse[]**](../Model/DocumentCategoryResponse.md)
+[**\FlowHunt\Model\DocumentCategoryResponse[]**](../Model/DocumentCategoryResponse.md)
 
 ### Authorization
 
@@ -544,7 +544,7 @@ try {
 ## `searchDocuments()`
 
 ```php
-searchDocuments($workspace_id, $document_search_request): \OpenAPI\Client\Model\DocumentResponse[]
+searchDocuments($workspace_id, $document_search_request): \FlowHunt\Model\DocumentResponse[]
 ```
 
 Search Documents
@@ -557,22 +557,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$document_search_request = new \OpenAPI\Client\Model\DocumentSearchRequest(); // \OpenAPI\Client\Model\DocumentSearchRequest
+$document_search_request = new \FlowHunt\Model\DocumentSearchRequest(); // \FlowHunt\Model\DocumentSearchRequest
 
 try {
     $result = $apiInstance->searchDocuments($workspace_id, $document_search_request);
@@ -587,11 +587,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **document_search_request** | [**\OpenAPI\Client\Model\DocumentSearchRequest**](../Model/DocumentSearchRequest.md)|  | |
+| **document_search_request** | [**\FlowHunt\Model\DocumentSearchRequest**](../Model/DocumentSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentResponse[]**](../Model/DocumentResponse.md)
+[**\FlowHunt\Model\DocumentResponse[]**](../Model/DocumentResponse.md)
 
 ### Authorization
 
@@ -609,7 +609,7 @@ try {
 ## `searchFaqs()`
 
 ```php
-searchFaqs($workspace_id, $faq_search_request): \OpenAPI\Client\Model\FaqResponse[]
+searchFaqs($workspace_id, $faq_search_request): \FlowHunt\Model\FaqResponse[]
 ```
 
 Search Faqs
@@ -622,22 +622,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$faq_search_request = new \OpenAPI\Client\Model\FaqSearchRequest(); // \OpenAPI\Client\Model\FaqSearchRequest
+$faq_search_request = new \FlowHunt\Model\FaqSearchRequest(); // \FlowHunt\Model\FaqSearchRequest
 
 try {
     $result = $apiInstance->searchFaqs($workspace_id, $faq_search_request);
@@ -652,11 +652,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **faq_search_request** | [**\OpenAPI\Client\Model\FaqSearchRequest**](../Model/FaqSearchRequest.md)|  | |
+| **faq_search_request** | [**\FlowHunt\Model\FaqSearchRequest**](../Model/FaqSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FaqResponse[]**](../Model/FaqResponse.md)
+[**\FlowHunt\Model\FaqResponse[]**](../Model/FaqResponse.md)
 
 ### Authorization
 
@@ -674,7 +674,7 @@ try {
 ## `updateDocument()`
 
 ```php
-updateDocument($doc_id, $workspace_id, $document_update_request): \OpenAPI\Client\Model\DocumentResponse
+updateDocument($doc_id, $workspace_id, $document_update_request): \FlowHunt\Model\DocumentResponse
 ```
 
 Update Document
@@ -687,15 +687,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -703,7 +703,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
 );
 $doc_id = 'doc_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$document_update_request = new \OpenAPI\Client\Model\DocumentUpdateRequest(); // \OpenAPI\Client\Model\DocumentUpdateRequest
+$document_update_request = new \FlowHunt\Model\DocumentUpdateRequest(); // \FlowHunt\Model\DocumentUpdateRequest
 
 try {
     $result = $apiInstance->updateDocument($doc_id, $workspace_id, $document_update_request);
@@ -719,11 +719,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **doc_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **document_update_request** | [**\OpenAPI\Client\Model\DocumentUpdateRequest**](../Model/DocumentUpdateRequest.md)|  | |
+| **document_update_request** | [**\FlowHunt\Model\DocumentUpdateRequest**](../Model/DocumentUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentResponse**](../Model/DocumentResponse.md)
+[**\FlowHunt\Model\DocumentResponse**](../Model/DocumentResponse.md)
 
 ### Authorization
 
@@ -741,7 +741,7 @@ try {
 ## `updateDocumentCategory()`
 
 ```php
-updateDocumentCategory($cat_id, $workspace_id, $document_category_update_request): \OpenAPI\Client\Model\DocumentCategoryResponse
+updateDocumentCategory($cat_id, $workspace_id, $document_category_update_request): \FlowHunt\Model\DocumentCategoryResponse
 ```
 
 Update Document Category
@@ -754,15 +754,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -770,7 +770,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
 );
 $cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$document_category_update_request = new \OpenAPI\Client\Model\DocumentCategoryUpdateRequest(); // \OpenAPI\Client\Model\DocumentCategoryUpdateRequest
+$document_category_update_request = new \FlowHunt\Model\DocumentCategoryUpdateRequest(); // \FlowHunt\Model\DocumentCategoryUpdateRequest
 
 try {
     $result = $apiInstance->updateDocumentCategory($cat_id, $workspace_id, $document_category_update_request);
@@ -786,11 +786,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **document_category_update_request** | [**\OpenAPI\Client\Model\DocumentCategoryUpdateRequest**](../Model/DocumentCategoryUpdateRequest.md)|  | |
+| **document_category_update_request** | [**\FlowHunt\Model\DocumentCategoryUpdateRequest**](../Model/DocumentCategoryUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentCategoryResponse**](../Model/DocumentCategoryResponse.md)
+[**\FlowHunt\Model\DocumentCategoryResponse**](../Model/DocumentCategoryResponse.md)
 
 ### Authorization
 
@@ -808,7 +808,7 @@ try {
 ## `updateFaq()`
 
 ```php
-updateFaq($faq_id, $workspace_id, $faq_update_request): \OpenAPI\Client\Model\FaqResponse[]
+updateFaq($faq_id, $workspace_id, $faq_update_request): \FlowHunt\Model\FaqResponse[]
 ```
 
 Update Faq
@@ -821,15 +821,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -837,7 +837,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
 );
 $faq_id = 'faq_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$faq_update_request = new \OpenAPI\Client\Model\FaqUpdateRequest(); // \OpenAPI\Client\Model\FaqUpdateRequest
+$faq_update_request = new \FlowHunt\Model\FaqUpdateRequest(); // \FlowHunt\Model\FaqUpdateRequest
 
 try {
     $result = $apiInstance->updateFaq($faq_id, $workspace_id, $faq_update_request);
@@ -853,11 +853,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **faq_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **faq_update_request** | [**\OpenAPI\Client\Model\FaqUpdateRequest**](../Model/FaqUpdateRequest.md)|  | |
+| **faq_update_request** | [**\FlowHunt\Model\FaqUpdateRequest**](../Model/FaqUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FaqResponse[]**](../Model/FaqResponse.md)
+[**\FlowHunt\Model\FaqResponse[]**](../Model/FaqResponse.md)
 
 ### Authorization
 
@@ -875,7 +875,7 @@ try {
 ## `uploadDocument()`
 
 ```php
-uploadDocument($cat_id, $workspace_id, $file): \OpenAPI\Client\Model\DocumentResponse
+uploadDocument($cat_id, $workspace_id, $file): \FlowHunt\Model\DocumentResponse
 ```
 
 Upload Document
@@ -888,15 +888,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -924,7 +924,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentResponse**](../Model/DocumentResponse.md)
+[**\FlowHunt\Model\DocumentResponse**](../Model/DocumentResponse.md)
 
 ### Authorization
 
@@ -942,7 +942,7 @@ try {
 ## `uploadFromUrlDocument()`
 
 ```php
-uploadFromUrlDocument($cat_id, $workspace_id, $app_url_input): \OpenAPI\Client\Model\DocumentResponse
+uploadFromUrlDocument($cat_id, $workspace_id, $app_url_input): \FlowHunt\Model\DocumentResponse
 ```
 
 Upload From Url Document
@@ -955,15 +955,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\DocumentsApi(
+$apiInstance = new FlowHunt\Api\DocumentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -971,7 +971,7 @@ $apiInstance = new OpenAPI\Client\Api\DocumentsApi(
 );
 $cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$app_url_input = new \OpenAPI\Client\Model\AppUrlInput(); // \OpenAPI\Client\Model\AppUrlInput
+$app_url_input = new \FlowHunt\Model\AppUrlInput(); // \FlowHunt\Model\AppUrlInput
 
 try {
     $result = $apiInstance->uploadFromUrlDocument($cat_id, $workspace_id, $app_url_input);
@@ -987,11 +987,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **app_url_input** | [**\OpenAPI\Client\Model\AppUrlInput**](../Model/AppUrlInput.md)|  | |
+| **app_url_input** | [**\FlowHunt\Model\AppUrlInput**](../Model/AppUrlInput.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DocumentResponse**](../Model/DocumentResponse.md)
+[**\FlowHunt\Model\DocumentResponse**](../Model/DocumentResponse.md)
 
 ### Authorization
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **question** | **string** | Question |
 **answer** | **string** |  | [optional]
 **parent_faq_id** | **string** |  | [optional]
-**status** | [**\OpenAPI\Client\Model\FaqStatus**](FaqStatus.md) | FAQ status |
+**status** | [**\FlowHunt\Model\FaqStatus**](FaqStatus.md) | FAQ status |
 **updated_at** | **\DateTime** | FAQ updated at |
 **indexed_at** | **\DateTime** |  | [optional]
 

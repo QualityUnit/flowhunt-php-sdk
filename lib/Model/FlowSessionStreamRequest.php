@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowSessionStreamRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class FlowSessionStreamRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'messages' => '\OpenAPI\Client\Model\FlowSessionMessage[]'
+        'messages' => '\FlowHunt\Model\FlowSessionMessage[]'
     ];
 
     /**
@@ -295,7 +295,7 @@ class FlowSessionStreamRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets messages
      *
-     * @return \OpenAPI\Client\Model\FlowSessionMessage[]
+     * @return \FlowHunt\Model\FlowSessionMessage[]
      */
     public function getMessages()
     {
@@ -305,7 +305,7 @@ class FlowSessionStreamRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets messages
      *
-     * @param \OpenAPI\Client\Model\FlowSessionMessage[] $messages The flow messages
+     * @param \FlowHunt\Model\FlowSessionMessage[] $messages The flow messages
      *
      * @return self
      */

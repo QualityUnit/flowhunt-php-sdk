@@ -1,4 +1,4 @@
-# OpenAPI\Client\PromptsApi
+# FlowHunt\PromptsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -17,7 +17,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createPrompt()`
 
 ```php
-createPrompt($workspace_id, $prompt_create_request): \OpenAPI\Client\Model\PromptResponse
+createPrompt($workspace_id, $prompt_create_request): \FlowHunt\Model\PromptResponse
 ```
 
 Create Prompt
@@ -30,22 +30,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$prompt_create_request = new \OpenAPI\Client\Model\PromptCreateRequest(); // \OpenAPI\Client\Model\PromptCreateRequest
+$prompt_create_request = new \FlowHunt\Model\PromptCreateRequest(); // \FlowHunt\Model\PromptCreateRequest
 
 try {
     $result = $apiInstance->createPrompt($workspace_id, $prompt_create_request);
@@ -60,11 +60,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **prompt_create_request** | [**\OpenAPI\Client\Model\PromptCreateRequest**](../Model/PromptCreateRequest.md)|  | |
+| **prompt_create_request** | [**\FlowHunt\Model\PromptCreateRequest**](../Model/PromptCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PromptResponse**](../Model/PromptResponse.md)
+[**\FlowHunt\Model\PromptResponse**](../Model/PromptResponse.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ try {
 ## `createPromptCategory()`
 
 ```php
-createPromptCategory($workspace_id, $prompt_category_create_request): \OpenAPI\Client\Model\PromptCategoryResponse
+createPromptCategory($workspace_id, $prompt_category_create_request): \FlowHunt\Model\PromptCategoryResponse
 ```
 
 Create Prompt Category
@@ -95,22 +95,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$prompt_category_create_request = new \OpenAPI\Client\Model\PromptCategoryCreateRequest(); // \OpenAPI\Client\Model\PromptCategoryCreateRequest
+$prompt_category_create_request = new \FlowHunt\Model\PromptCategoryCreateRequest(); // \FlowHunt\Model\PromptCategoryCreateRequest
 
 try {
     $result = $apiInstance->createPromptCategory($workspace_id, $prompt_category_create_request);
@@ -125,11 +125,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **prompt_category_create_request** | [**\OpenAPI\Client\Model\PromptCategoryCreateRequest**](../Model/PromptCategoryCreateRequest.md)|  | |
+| **prompt_category_create_request** | [**\FlowHunt\Model\PromptCategoryCreateRequest**](../Model/PromptCategoryCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PromptCategoryResponse**](../Model/PromptCategoryResponse.md)
+[**\FlowHunt\Model\PromptCategoryResponse**](../Model/PromptCategoryResponse.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ try {
 ## `deletePrompt()`
 
 ```php
-deletePrompt($prompt_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deletePrompt($prompt_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Prompt
@@ -160,15 +160,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -194,7 +194,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -212,7 +212,7 @@ try {
 ## `deletePromptCategory()`
 
 ```php
-deletePromptCategory($cat_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deletePromptCategory($cat_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Prompt Category
@@ -225,15 +225,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -259,7 +259,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -277,7 +277,7 @@ try {
 ## `searchPromptCategories()`
 
 ```php
-searchPromptCategories($workspace_id, $prompt_category_search_request): \OpenAPI\Client\Model\PromptCategoryResponse[]
+searchPromptCategories($workspace_id, $prompt_category_search_request): \FlowHunt\Model\PromptCategoryResponse[]
 ```
 
 Search Prompt Categories
@@ -290,22 +290,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$prompt_category_search_request = new \OpenAPI\Client\Model\PromptCategorySearchRequest(); // \OpenAPI\Client\Model\PromptCategorySearchRequest
+$prompt_category_search_request = new \FlowHunt\Model\PromptCategorySearchRequest(); // \FlowHunt\Model\PromptCategorySearchRequest
 
 try {
     $result = $apiInstance->searchPromptCategories($workspace_id, $prompt_category_search_request);
@@ -320,11 +320,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **prompt_category_search_request** | [**\OpenAPI\Client\Model\PromptCategorySearchRequest**](../Model/PromptCategorySearchRequest.md)|  | |
+| **prompt_category_search_request** | [**\FlowHunt\Model\PromptCategorySearchRequest**](../Model/PromptCategorySearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PromptCategoryResponse[]**](../Model/PromptCategoryResponse.md)
+[**\FlowHunt\Model\PromptCategoryResponse[]**](../Model/PromptCategoryResponse.md)
 
 ### Authorization
 
@@ -342,7 +342,7 @@ try {
 ## `searchPrompts()`
 
 ```php
-searchPrompts($workspace_id, $prompt_search_request): \OpenAPI\Client\Model\PromptResponse[]
+searchPrompts($workspace_id, $prompt_search_request): \FlowHunt\Model\PromptResponse[]
 ```
 
 Search Prompts
@@ -355,22 +355,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$prompt_search_request = new \OpenAPI\Client\Model\PromptSearchRequest(); // \OpenAPI\Client\Model\PromptSearchRequest
+$prompt_search_request = new \FlowHunt\Model\PromptSearchRequest(); // \FlowHunt\Model\PromptSearchRequest
 
 try {
     $result = $apiInstance->searchPrompts($workspace_id, $prompt_search_request);
@@ -385,11 +385,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **prompt_search_request** | [**\OpenAPI\Client\Model\PromptSearchRequest**](../Model/PromptSearchRequest.md)|  | |
+| **prompt_search_request** | [**\FlowHunt\Model\PromptSearchRequest**](../Model/PromptSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PromptResponse[]**](../Model/PromptResponse.md)
+[**\FlowHunt\Model\PromptResponse[]**](../Model/PromptResponse.md)
 
 ### Authorization
 
@@ -407,7 +407,7 @@ try {
 ## `updatePrompt()`
 
 ```php
-updatePrompt($prompt_id, $workspace_id, $prompt_update_request): \OpenAPI\Client\Model\PromptResponse
+updatePrompt($prompt_id, $workspace_id, $prompt_update_request): \FlowHunt\Model\PromptResponse
 ```
 
 Update Prompt
@@ -420,15 +420,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -436,7 +436,7 @@ $apiInstance = new OpenAPI\Client\Api\PromptsApi(
 );
 $prompt_id = 'prompt_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$prompt_update_request = new \OpenAPI\Client\Model\PromptUpdateRequest(); // \OpenAPI\Client\Model\PromptUpdateRequest
+$prompt_update_request = new \FlowHunt\Model\PromptUpdateRequest(); // \FlowHunt\Model\PromptUpdateRequest
 
 try {
     $result = $apiInstance->updatePrompt($prompt_id, $workspace_id, $prompt_update_request);
@@ -452,11 +452,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **prompt_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **prompt_update_request** | [**\OpenAPI\Client\Model\PromptUpdateRequest**](../Model/PromptUpdateRequest.md)|  | |
+| **prompt_update_request** | [**\FlowHunt\Model\PromptUpdateRequest**](../Model/PromptUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PromptResponse**](../Model/PromptResponse.md)
+[**\FlowHunt\Model\PromptResponse**](../Model/PromptResponse.md)
 
 ### Authorization
 
@@ -474,7 +474,7 @@ try {
 ## `updatePromptCategory()`
 
 ```php
-updatePromptCategory($cat_id, $workspace_id, $prompt_category_update_request): \OpenAPI\Client\Model\PromptCategoryResponse
+updatePromptCategory($cat_id, $workspace_id, $prompt_category_update_request): \FlowHunt\Model\PromptCategoryResponse
 ```
 
 Update Prompt Category
@@ -487,15 +487,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PromptsApi(
+$apiInstance = new FlowHunt\Api\PromptsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -503,7 +503,7 @@ $apiInstance = new OpenAPI\Client\Api\PromptsApi(
 );
 $cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$prompt_category_update_request = new \OpenAPI\Client\Model\PromptCategoryUpdateRequest(); // \OpenAPI\Client\Model\PromptCategoryUpdateRequest
+$prompt_category_update_request = new \FlowHunt\Model\PromptCategoryUpdateRequest(); // \FlowHunt\Model\PromptCategoryUpdateRequest
 
 try {
     $result = $apiInstance->updatePromptCategory($cat_id, $workspace_id, $prompt_category_update_request);
@@ -519,11 +519,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **prompt_category_update_request** | [**\OpenAPI\Client\Model\PromptCategoryUpdateRequest**](../Model/PromptCategoryUpdateRequest.md)|  | |
+| **prompt_category_update_request** | [**\FlowHunt\Model\PromptCategoryUpdateRequest**](../Model/PromptCategoryUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PromptCategoryResponse**](../Model/PromptCategoryResponse.md)
+[**\FlowHunt\Model\PromptCategoryResponse**](../Model/PromptCategoryResponse.md)
 
 ### Authorization
 

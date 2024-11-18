@@ -1,10 +1,10 @@
 <?php
 /**
- * SemanticSearchApi
+ * MediaApi
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,20 +34,20 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
- * SemanticSearchApi Class Doc Comment
+ * MediaApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SemanticSearchApi
+class MediaApi
 {
     /**
      * @var ClientInterface
@@ -71,16 +71,13 @@ class SemanticSearchApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getSimilarDocsByDocId' => [
+        'getTranscript' => [
+            'multipart/form-data',
+        ],
+        'getTranscriptResult' => [
             'application/json',
         ],
-        'getSimilarDocsByQuery' => [
-            'application/json',
-        ],
-        'scheduleSimilarDocsByDocId' => [
-            'application/json',
-        ],
-        'scheduleSimilarDocsByQuery' => [
+        'getYoutubeTranscript' => [
             'application/json',
         ],
     ];
@@ -132,40 +129,42 @@ class SemanticSearchApi
     }
 
     /**
-     * Operation getSimilarDocsByDocId
+     * Operation getTranscript
      *
-     * Get Similar Docs By Doc Id
+     * Get Transcript
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityRequest $document_similarity_request document_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
+     * @param  \SplFileObject $file file (required)
+     * @param  string $postback_url The post back URL where to send the response in body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VectorDocumentResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\DocumentContentResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getSimilarDocsByDocId($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
+    public function getTranscript($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
     {
-        list($response) = $this->getSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_request, $contentType);
+        list($response) = $this->getTranscriptWithHttpInfo($workspace_id, $file, $postback_url, $contentType);
         return $response;
     }
 
     /**
-     * Operation getSimilarDocsByDocIdWithHttpInfo
+     * Operation getTranscriptWithHttpInfo
      *
-     * Get Similar Docs By Doc Id
+     * Get Transcript
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityRequest $document_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
+     * @param  \SplFileObject $file (required)
+     * @param  string $postback_url The post back URL where to send the response in body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\VectorDocumentResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\DocumentContentResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
+    public function getTranscriptWithHttpInfo($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
     {
-        $request = $this->getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, $contentType);
+        $request = $this->getTranscriptRequest($workspace_id, $file, $postback_url, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -192,11 +191,11 @@ class SemanticSearchApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\VectorDocumentResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\DocumentContentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\VectorDocumentResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\DocumentContentResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -214,16 +213,16 @@ class SemanticSearchApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\VectorDocumentResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\DocumentContentResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -241,7 +240,7 @@ class SemanticSearchApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -260,7 +259,7 @@ class SemanticSearchApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\VectorDocumentResponse[]';
+            $returnType = '\FlowHunt\Model\DocumentContentResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -293,7 +292,7 @@ class SemanticSearchApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VectorDocumentResponse[]',
+                        '\FlowHunt\Model\DocumentContentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -301,7 +300,7 @@ class SemanticSearchApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -312,20 +311,21 @@ class SemanticSearchApi
     }
 
     /**
-     * Operation getSimilarDocsByDocIdAsync
+     * Operation getTranscriptAsync
      *
-     * Get Similar Docs By Doc Id
+     * Get Transcript
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityRequest $document_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
+     * @param  \SplFileObject $file (required)
+     * @param  string $postback_url The post back URL where to send the response in body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSimilarDocsByDocIdAsync($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
+    public function getTranscriptAsync($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
     {
-        return $this->getSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_request, $contentType)
+        return $this->getTranscriptAsyncWithHttpInfo($workspace_id, $file, $postback_url, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -334,21 +334,22 @@ class SemanticSearchApi
     }
 
     /**
-     * Operation getSimilarDocsByDocIdAsyncWithHttpInfo
+     * Operation getTranscriptAsyncWithHttpInfo
      *
-     * Get Similar Docs By Doc Id
+     * Get Transcript
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityRequest $document_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
+     * @param  \SplFileObject $file (required)
+     * @param  string $postback_url The post back URL where to send the response in body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
+    public function getTranscriptAsyncWithHttpInfo($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\VectorDocumentResponse[]';
-        $request = $this->getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, $contentType);
+        $returnType = '\FlowHunt\Model\DocumentContentResponse';
+        $request = $this->getTranscriptRequest($workspace_id, $file, $postback_url, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -387,34 +388,417 @@ class SemanticSearchApi
     }
 
     /**
-     * Create request for operation 'getSimilarDocsByDocId'
+     * Create request for operation 'getTranscript'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityRequest $document_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByDocId'] to see the possible values for this operation
+     * @param  \SplFileObject $file (required)
+     * @param  string $postback_url The post back URL where to send the response in body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSimilarDocsByDocIdRequest($workspace_id, $document_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByDocId'][0])
+    public function getTranscriptRequest($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getSimilarDocsByDocId'
+                'Missing the required parameter $workspace_id when calling getTranscript'
             );
         }
 
-        // verify the required parameter 'document_similarity_request' is set
-        if ($document_similarity_request === null || (is_array($document_similarity_request) && count($document_similarity_request) === 0)) {
+        // verify the required parameter 'file' is set
+        if ($file === null || (is_array($file) && count($file) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $document_similarity_request when calling getSimilarDocsByDocId'
+                'Missing the required parameter $file when calling getTranscript'
             );
         }
 
 
-        $resourcePath = '/v2/similarities/document/live';
+
+        $resourcePath = '/v2/media/transcript';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+        // form params
+        if ($file !== null) {
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
+        }
+        // form params
+        if ($postback_url !== null) {
+            $formParams['postback_url'] = ObjectSerializer::toFormValue($postback_url);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getTranscriptResult
+     *
+     * Get Transcript Result
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\TranscriptTaskRequest $transcript_task_request transcript_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\DocumentContentResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getTranscriptResult($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    {
+        list($response) = $this->getTranscriptResultWithHttpInfo($workspace_id, $transcript_task_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getTranscriptResultWithHttpInfo
+     *
+     * Get Transcript Result
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\TranscriptTaskRequest $transcript_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\DocumentContentResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getTranscriptResultWithHttpInfo($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    {
+        $request = $this->getTranscriptResultRequest($workspace_id, $transcript_task_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\DocumentContentResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\DocumentContentResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\DocumentContentResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\DocumentContentResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\DocumentContentResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getTranscriptResultAsync
+     *
+     * Get Transcript Result
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\TranscriptTaskRequest $transcript_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTranscriptResultAsync($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    {
+        return $this->getTranscriptResultAsyncWithHttpInfo($workspace_id, $transcript_task_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getTranscriptResultAsyncWithHttpInfo
+     *
+     * Get Transcript Result
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\TranscriptTaskRequest $transcript_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTranscriptResultAsyncWithHttpInfo($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    {
+        $returnType = '\FlowHunt\Model\DocumentContentResponse';
+        $request = $this->getTranscriptResultRequest($workspace_id, $transcript_task_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getTranscriptResult'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\TranscriptTaskRequest $transcript_task_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getTranscriptResultRequest($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getTranscriptResult'
+            );
+        }
+
+        // verify the required parameter 'transcript_task_request' is set
+        if ($transcript_task_request === null || (is_array($transcript_task_request) && count($transcript_task_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $transcript_task_request when calling getTranscriptResult'
+            );
+        }
+
+
+        $resourcePath = '/v2/media/transcript_status';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -441,12 +825,12 @@ class SemanticSearchApi
         );
 
         // for model (json/xml)
-        if (isset($document_similarity_request)) {
+        if (isset($transcript_task_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_similarity_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($transcript_task_request));
             } else {
-                $httpBody = $document_similarity_request;
+                $httpBody = $transcript_task_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -504,40 +888,40 @@ class SemanticSearchApi
     }
 
     /**
-     * Operation getSimilarDocsByQuery
+     * Operation getYoutubeTranscript
      *
-     * Get Similar Docs By Query
+     * Get Youtube Transcript
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityRequest $query_similarity_request query_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\YoutubeTranscriptRequest $youtube_transcript_request youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VectorDocumentResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\YoutubeTranscriptResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getSimilarDocsByQuery($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
+    public function getYoutubeTranscript($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        list($response) = $this->getSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_request, $contentType);
+        list($response) = $this->getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getSimilarDocsByQueryWithHttpInfo
+     * Operation getYoutubeTranscriptWithHttpInfo
      *
-     * Get Similar Docs By Query
+     * Get Youtube Transcript
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityRequest $query_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\VectorDocumentResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\YoutubeTranscriptResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
+    public function getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        $request = $this->getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, $contentType);
+        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -564,11 +948,11 @@ class SemanticSearchApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\VectorDocumentResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\YoutubeTranscriptResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\VectorDocumentResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\YoutubeTranscriptResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -586,16 +970,16 @@ class SemanticSearchApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\VectorDocumentResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\YoutubeTranscriptResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -613,7 +997,7 @@ class SemanticSearchApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -632,7 +1016,7 @@ class SemanticSearchApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\VectorDocumentResponse[]';
+            $returnType = '\FlowHunt\Model\YoutubeTranscriptResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -665,7 +1049,7 @@ class SemanticSearchApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VectorDocumentResponse[]',
+                        '\FlowHunt\Model\YoutubeTranscriptResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -673,7 +1057,7 @@ class SemanticSearchApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -684,20 +1068,20 @@ class SemanticSearchApi
     }
 
     /**
-     * Operation getSimilarDocsByQueryAsync
+     * Operation getYoutubeTranscriptAsync
      *
-     * Get Similar Docs By Query
+     * Get Youtube Transcript
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityRequest $query_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSimilarDocsByQueryAsync($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
+    public function getYoutubeTranscriptAsync($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        return $this->getSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_request, $contentType)
+        return $this->getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -706,21 +1090,21 @@ class SemanticSearchApi
     }
 
     /**
-     * Operation getSimilarDocsByQueryAsyncWithHttpInfo
+     * Operation getYoutubeTranscriptAsyncWithHttpInfo
      *
-     * Get Similar Docs By Query
+     * Get Youtube Transcript
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityRequest $query_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
+    public function getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\VectorDocumentResponse[]';
-        $request = $this->getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, $contentType);
+        $returnType = '\FlowHunt\Model\YoutubeTranscriptResponse';
+        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -759,34 +1143,34 @@ class SemanticSearchApi
     }
 
     /**
-     * Create request for operation 'getSimilarDocsByQuery'
+     * Create request for operation 'getYoutubeTranscript'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityRequest $query_similarity_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSimilarDocsByQuery'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSimilarDocsByQueryRequest($workspace_id, $query_similarity_request, string $contentType = self::contentTypes['getSimilarDocsByQuery'][0])
+    public function getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getSimilarDocsByQuery'
+                'Missing the required parameter $workspace_id when calling getYoutubeTranscript'
             );
         }
 
-        // verify the required parameter 'query_similarity_request' is set
-        if ($query_similarity_request === null || (is_array($query_similarity_request) && count($query_similarity_request) === 0)) {
+        // verify the required parameter 'youtube_transcript_request' is set
+        if ($youtube_transcript_request === null || (is_array($youtube_transcript_request) && count($youtube_transcript_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $query_similarity_request when calling getSimilarDocsByQuery'
+                'Missing the required parameter $youtube_transcript_request when calling getYoutubeTranscript'
             );
         }
 
 
-        $resourcePath = '/v2/similarities/query/live';
+        $resourcePath = '/v2/media/youtube/transcript';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -813,756 +1197,12 @@ class SemanticSearchApi
         );
 
         // for model (json/xml)
-        if (isset($query_similarity_request)) {
+        if (isset($youtube_transcript_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($query_similarity_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($youtube_transcript_request));
             } else {
-                $httpBody = $query_similarity_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByDocId
-     *
-     * Schedule Similar Docs By Doc Id
-     *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityTaskRequest $document_similarity_task_request document_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VectorDocumentsTaskResponse|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function scheduleSimilarDocsByDocId($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
-    {
-        list($response) = $this->scheduleSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_task_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByDocIdWithHttpInfo
-     *
-     * Schedule Similar Docs By Doc Id
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\VectorDocumentsTaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function scheduleSimilarDocsByDocIdWithHttpInfo($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
-    {
-        $request = $this->scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\VectorDocumentsTaskResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\VectorDocumentsTaskResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\VectorDocumentsTaskResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\OpenAPI\Client\Model\VectorDocumentsTaskResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VectorDocumentsTaskResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByDocIdAsync
-     *
-     * Schedule Similar Docs By Doc Id
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function scheduleSimilarDocsByDocIdAsync($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
-    {
-        return $this->scheduleSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_task_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByDocIdAsyncWithHttpInfo
-     *
-     * Schedule Similar Docs By Doc Id
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function scheduleSimilarDocsByDocIdAsyncWithHttpInfo($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\VectorDocumentsTaskResponse';
-        $request = $this->scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'scheduleSimilarDocsByDocId'
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\DocumentSimilarityTaskRequest $document_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByDocId'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function scheduleSimilarDocsByDocIdRequest($workspace_id, $document_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByDocId'][0])
-    {
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling scheduleSimilarDocsByDocId'
-            );
-        }
-
-        // verify the required parameter 'document_similarity_task_request' is set
-        if ($document_similarity_task_request === null || (is_array($document_similarity_task_request) && count($document_similarity_task_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $document_similarity_task_request when calling scheduleSimilarDocsByDocId'
-            );
-        }
-
-
-        $resourcePath = '/v2/similarities/document';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($document_similarity_task_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_similarity_task_request));
-            } else {
-                $httpBody = $document_similarity_task_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByQuery
-     *
-     * Schedule Similar Docs By Query
-     *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityTaskRequest $query_similarity_task_request query_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VectorDocumentsTaskResponse|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function scheduleSimilarDocsByQuery($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
-    {
-        list($response) = $this->scheduleSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_task_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByQueryWithHttpInfo
-     *
-     * Schedule Similar Docs By Query
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\VectorDocumentsTaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function scheduleSimilarDocsByQueryWithHttpInfo($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
-    {
-        $request = $this->scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\VectorDocumentsTaskResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\VectorDocumentsTaskResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\VectorDocumentsTaskResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\OpenAPI\Client\Model\VectorDocumentsTaskResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VectorDocumentsTaskResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByQueryAsync
-     *
-     * Schedule Similar Docs By Query
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function scheduleSimilarDocsByQueryAsync($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
-    {
-        return $this->scheduleSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_task_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation scheduleSimilarDocsByQueryAsyncWithHttpInfo
-     *
-     * Schedule Similar Docs By Query
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function scheduleSimilarDocsByQueryAsyncWithHttpInfo($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\VectorDocumentsTaskResponse';
-        $request = $this->scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'scheduleSimilarDocsByQuery'
-     *
-     * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\QuerySimilarityTaskRequest $query_similarity_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['scheduleSimilarDocsByQuery'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function scheduleSimilarDocsByQueryRequest($workspace_id, $query_similarity_task_request, string $contentType = self::contentTypes['scheduleSimilarDocsByQuery'][0])
-    {
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling scheduleSimilarDocsByQuery'
-            );
-        }
-
-        // verify the required parameter 'query_similarity_task_request' is set
-        if ($query_similarity_task_request === null || (is_array($query_similarity_task_request) && count($query_similarity_task_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $query_similarity_task_request when calling scheduleSimilarDocsByQuery'
-            );
-        }
-
-
-        $resourcePath = '/v2/similarities/query';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($query_similarity_task_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($query_similarity_task_request));
-            } else {
-                $httpBody = $query_similarity_task_request;
+                $httpBody = $youtube_transcript_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

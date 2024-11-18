@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
  * WorkspacesApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -152,12 +152,12 @@ class WorkspacesApi
      * Add Workspace User
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request workspace_user_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request workspace_user_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function addWorkspaceUser($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
     {
@@ -171,12 +171,12 @@ class WorkspacesApi
      * Add Workspace User
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function addWorkspaceUserWithHttpInfo($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
     {
@@ -207,11 +207,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -229,16 +229,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -256,7 +256,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -275,7 +275,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -308,7 +308,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -316,7 +316,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -332,7 +332,7 @@ class WorkspacesApi
      * Add Workspace User
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -354,7 +354,7 @@ class WorkspacesApi
      * Add Workspace User
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -362,7 +362,7 @@ class WorkspacesApi
      */
     public function addWorkspaceUserAsyncWithHttpInfo($workspace_id, $workspace_user_create_request, string $contentType = self::contentTypes['addWorkspaceUser'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->addWorkspaceUserRequest($workspace_id, $workspace_user_create_request, $contentType);
 
         return $this->client
@@ -405,7 +405,7 @@ class WorkspacesApi
      * Create request for operation 'addWorkspaceUser'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserCreateRequest $workspace_user_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addWorkspaceUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -522,12 +522,12 @@ class WorkspacesApi
      *
      * Create Workspace
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request workspace_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request workspace_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createWorkspace($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
     {
@@ -540,12 +540,12 @@ class WorkspacesApi
      *
      * Create Workspace
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createWorkspaceWithHttpInfo($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
     {
@@ -576,11 +576,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\WorkspaceResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\WorkspaceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\WorkspaceResponse' !== 'string') {
+                        if ('\FlowHunt\Model\WorkspaceResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -598,16 +598,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\WorkspaceResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -625,7 +625,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -644,7 +644,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
+            $returnType = '\FlowHunt\Model\WorkspaceResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -677,7 +677,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WorkspaceResponse',
+                        '\FlowHunt\Model\WorkspaceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -685,7 +685,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -700,7 +700,7 @@ class WorkspacesApi
      *
      * Create Workspace
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -721,7 +721,7 @@ class WorkspacesApi
      *
      * Create Workspace
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -729,7 +729,7 @@ class WorkspacesApi
      */
     public function createWorkspaceAsyncWithHttpInfo($workspace_create_request, string $contentType = self::contentTypes['createWorkspace'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
+        $returnType = '\FlowHunt\Model\WorkspaceResponse';
         $request = $this->createWorkspaceRequest($workspace_create_request, $contentType);
 
         return $this->client
@@ -771,7 +771,7 @@ class WorkspacesApi
     /**
      * Create request for operation 'createWorkspace'
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceCreateRequest $workspace_create_request (required)
+     * @param  \FlowHunt\Model\WorkspaceCreateRequest $workspace_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWorkspace'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -876,9 +876,9 @@ class WorkspacesApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function deleteWorkspace($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
     {
@@ -894,9 +894,9 @@ class WorkspacesApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteWorkspaceWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
     {
@@ -927,11 +927,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -949,16 +949,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -976,7 +976,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -995,7 +995,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1028,7 +1028,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1036,7 +1036,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1080,7 +1080,7 @@ class WorkspacesApi
      */
     public function deleteWorkspaceAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteWorkspace'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->deleteWorkspaceRequest($workspace_id, $contentType);
 
         return $this->client
@@ -1229,9 +1229,9 @@ class WorkspacesApi
      * @param  string $user_id user_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceUser'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function deleteWorkspaceUser($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
     {
@@ -1248,9 +1248,9 @@ class WorkspacesApi
      * @param  string $user_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWorkspaceUser'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteWorkspaceUserWithHttpInfo($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
     {
@@ -1281,11 +1281,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1303,16 +1303,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1330,7 +1330,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1349,7 +1349,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1382,7 +1382,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1390,7 +1390,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1436,7 +1436,7 @@ class WorkspacesApi
      */
     public function deleteWorkspaceUserAsyncWithHttpInfo($workspace_id, $user_id, string $contentType = self::contentTypes['deleteWorkspaceUser'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->deleteWorkspaceUserRequest($workspace_id, $user_id, $contentType);
 
         return $this->client
@@ -1600,9 +1600,9 @@ class WorkspacesApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function getWorkspace($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
     {
@@ -1618,9 +1618,9 @@ class WorkspacesApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WorkspaceResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\WorkspaceResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getWorkspaceWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
     {
@@ -1651,11 +1651,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\WorkspaceResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\WorkspaceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\WorkspaceResponse' !== 'string') {
+                        if ('\FlowHunt\Model\WorkspaceResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1673,16 +1673,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\WorkspaceResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1700,7 +1700,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1719,7 +1719,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
+            $returnType = '\FlowHunt\Model\WorkspaceResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1752,7 +1752,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WorkspaceResponse',
+                        '\FlowHunt\Model\WorkspaceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1760,7 +1760,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1804,7 +1804,7 @@ class WorkspacesApi
      */
     public function getWorkspaceAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getWorkspace'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\WorkspaceResponse';
+        $returnType = '\FlowHunt\Model\WorkspaceResponse';
         $request = $this->getWorkspaceRequest($workspace_id, $contentType);
 
         return $this->client
@@ -1949,12 +1949,12 @@ class WorkspacesApi
      *
      * Search My Workspaces
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request workspace_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request workspace_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WorkspaceRole[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\WorkspaceRole[]|\FlowHunt\Model\HTTPValidationError
      */
     public function searchMyWorkspaces($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
     {
@@ -1967,12 +1967,12 @@ class WorkspacesApi
      *
      * Search My Workspaces
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WorkspaceRole[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\WorkspaceRole[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchMyWorkspacesWithHttpInfo($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
     {
@@ -2003,11 +2003,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\WorkspaceRole[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\WorkspaceRole[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\WorkspaceRole[]' !== 'string') {
+                        if ('\FlowHunt\Model\WorkspaceRole[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2025,16 +2025,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\WorkspaceRole[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceRole[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2052,7 +2052,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2071,7 +2071,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\WorkspaceRole[]';
+            $returnType = '\FlowHunt\Model\WorkspaceRole[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2104,7 +2104,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WorkspaceRole[]',
+                        '\FlowHunt\Model\WorkspaceRole[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2112,7 +2112,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2127,7 +2127,7 @@ class WorkspacesApi
      *
      * Search My Workspaces
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2148,7 +2148,7 @@ class WorkspacesApi
      *
      * Search My Workspaces
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2156,7 +2156,7 @@ class WorkspacesApi
      */
     public function searchMyWorkspacesAsyncWithHttpInfo($workspace_search_request, string $contentType = self::contentTypes['searchMyWorkspaces'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\WorkspaceRole[]';
+        $returnType = '\FlowHunt\Model\WorkspaceRole[]';
         $request = $this->searchMyWorkspacesRequest($workspace_search_request, $contentType);
 
         return $this->client
@@ -2198,7 +2198,7 @@ class WorkspacesApi
     /**
      * Create request for operation 'searchMyWorkspaces'
      *
-     * @param  \OpenAPI\Client\Model\WorkspaceSearchRequest $workspace_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceSearchRequest $workspace_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchMyWorkspaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2301,12 +2301,12 @@ class WorkspacesApi
      * Search Workspace Users
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUsersSearchRequest $workspace_users_search_request workspace_users_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request workspace_users_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WorkspaceUserResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\WorkspaceUserResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function searchWorkspaceUsers($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
     {
@@ -2320,12 +2320,12 @@ class WorkspacesApi
      * Search Workspace Users
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WorkspaceUserResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\WorkspaceUserResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchWorkspaceUsersWithHttpInfo($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
     {
@@ -2356,11 +2356,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\WorkspaceUserResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\WorkspaceUserResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\WorkspaceUserResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\WorkspaceUserResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2378,16 +2378,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\WorkspaceUserResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\WorkspaceUserResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2405,7 +2405,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2424,7 +2424,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\WorkspaceUserResponse[]';
+            $returnType = '\FlowHunt\Model\WorkspaceUserResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2457,7 +2457,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WorkspaceUserResponse[]',
+                        '\FlowHunt\Model\WorkspaceUserResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2465,7 +2465,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2481,7 +2481,7 @@ class WorkspacesApi
      * Search Workspace Users
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2503,7 +2503,7 @@ class WorkspacesApi
      * Search Workspace Users
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2511,7 +2511,7 @@ class WorkspacesApi
      */
     public function searchWorkspaceUsersAsyncWithHttpInfo($workspace_id, $workspace_users_search_request, string $contentType = self::contentTypes['searchWorkspaceUsers'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\WorkspaceUserResponse[]';
+        $returnType = '\FlowHunt\Model\WorkspaceUserResponse[]';
         $request = $this->searchWorkspaceUsersRequest($workspace_id, $workspace_users_search_request, $contentType);
 
         return $this->client
@@ -2554,7 +2554,7 @@ class WorkspacesApi
      * Create request for operation 'searchWorkspaceUsers'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUsersSearchRequest $workspace_users_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchWorkspaceUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2672,12 +2672,12 @@ class WorkspacesApi
      * Update Workspace
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request workspace_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request workspace_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function updateWorkspace($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
     {
@@ -2691,12 +2691,12 @@ class WorkspacesApi
      * Update Workspace
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateWorkspaceWithHttpInfo($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
     {
@@ -2727,11 +2727,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2749,16 +2749,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2776,7 +2776,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2795,7 +2795,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2828,7 +2828,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2836,7 +2836,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2852,7 +2852,7 @@ class WorkspacesApi
      * Update Workspace
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2874,7 +2874,7 @@ class WorkspacesApi
      * Update Workspace
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2882,7 +2882,7 @@ class WorkspacesApi
      */
     public function updateWorkspaceAsyncWithHttpInfo($workspace_id, $workspace_update_request, string $contentType = self::contentTypes['updateWorkspace'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->updateWorkspaceRequest($workspace_id, $workspace_update_request, $contentType);
 
         return $this->client
@@ -2925,7 +2925,7 @@ class WorkspacesApi
      * Create request for operation 'updateWorkspace'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUpdateRequest $workspace_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUpdateRequest $workspace_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspace'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3044,12 +3044,12 @@ class WorkspacesApi
      *
      * @param  string $workspace_id workspace_id (required)
      * @param  string $user_id user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request workspace_user_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request workspace_user_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function updateWorkspaceUser($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
     {
@@ -3064,12 +3064,12 @@ class WorkspacesApi
      *
      * @param  string $workspace_id (required)
      * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateWorkspaceUserWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
     {
@@ -3100,11 +3100,11 @@ class WorkspacesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3122,16 +3122,16 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3149,7 +3149,7 @@ class WorkspacesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3168,7 +3168,7 @@ class WorkspacesApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3201,7 +3201,7 @@ class WorkspacesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3209,7 +3209,7 @@ class WorkspacesApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3226,7 +3226,7 @@ class WorkspacesApi
      *
      * @param  string $workspace_id (required)
      * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3249,7 +3249,7 @@ class WorkspacesApi
      *
      * @param  string $workspace_id (required)
      * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3257,7 +3257,7 @@ class WorkspacesApi
      */
     public function updateWorkspaceUserAsyncWithHttpInfo($workspace_id, $user_id, $workspace_user_update_request, string $contentType = self::contentTypes['updateWorkspaceUser'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->updateWorkspaceUserRequest($workspace_id, $user_id, $workspace_user_update_request, $contentType);
 
         return $this->client
@@ -3301,7 +3301,7 @@ class WorkspacesApi
      *
      * @param  string $workspace_id (required)
      * @param  string $user_id (required)
-     * @param  \OpenAPI\Client\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
+     * @param  \FlowHunt\Model\WorkspaceUserUpdateRequest $workspace_user_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWorkspaceUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

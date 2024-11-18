@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * CreditTransactionSearchRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class CreditTransactionSearchRequest implements ModelInterface, ArrayAccess, \Js
         'transaction_id' => 'string',
         'created_at_from' => '\DateTime',
         'created_at_to' => '\DateTime',
-        'transaction_type' => '\OpenAPI\Client\Model\TransactionType',
+        'transaction_type' => '\FlowHunt\Model\TransactionType',
         'context_id' => 'string',
         'context_desc' => 'string',
         'limit' => 'int'
@@ -436,7 +436,7 @@ class CreditTransactionSearchRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets transaction_type
      *
-     * @return \OpenAPI\Client\Model\TransactionType|null
+     * @return \FlowHunt\Model\TransactionType|null
      */
     public function getTransactionType()
     {
@@ -446,7 +446,7 @@ class CreditTransactionSearchRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets transaction_type
      *
-     * @param \OpenAPI\Client\Model\TransactionType|null $transaction_type transaction_type
+     * @param \FlowHunt\Model\TransactionType|null $transaction_type transaction_type
      *
      * @return self
      */

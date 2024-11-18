@@ -1,4 +1,4 @@
-# OpenAPI\Client\FlowWebhooksApi
+# FlowHunt\FlowWebhooksApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `executeWebhook()`
 
 ```php
-executeWebhook($chatbot_id, $workspace_id, $trigger_type): \OpenAPI\Client\Model\FlowSessionInvocationResponse
+executeWebhook($chatbot_id, $workspace_id, $trigger_type): \FlowHunt\Model\FlowSessionInvocationResponse
 ```
 
 Execute Webhook
@@ -25,14 +25,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowWebhooksApi(
+$apiInstance = new FlowHunt\Api\FlowWebhooksApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $chatbot_id = 'chatbot_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$trigger_type = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\TriggerType(); // \OpenAPI\Client\Model\TriggerType
+$trigger_type = new \FlowHunt\Model\\FlowHunt\Model\TriggerType(); // \FlowHunt\Model\TriggerType
 
 try {
     $result = $apiInstance->executeWebhook($chatbot_id, $workspace_id, $trigger_type);
@@ -48,11 +48,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **chatbot_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **trigger_type** | [**\OpenAPI\Client\Model\TriggerType**](../Model/.md)|  | |
+| **trigger_type** | [**\FlowHunt\Model\TriggerType**](../Model/.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
+[**\FlowHunt\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
 
 ### Authorization
 
@@ -70,7 +70,7 @@ No authorization required
 ## `executeWebhookFromFlow()`
 
 ```php
-executeWebhookFromFlow($flow_id, $workspace_id, $trigger_type): \OpenAPI\Client\Model\FlowSessionInvocationResponse
+executeWebhookFromFlow($flow_id, $workspace_id, $trigger_type): \FlowHunt\Model\FlowSessionInvocationResponse
 ```
 
 Execute Webhook From Flow
@@ -83,15 +83,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowWebhooksApi(
+$apiInstance = new FlowHunt\Api\FlowWebhooksApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -99,7 +99,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowWebhooksApi(
 );
 $flow_id = 'flow_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$trigger_type = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\TriggerType(); // \OpenAPI\Client\Model\TriggerType
+$trigger_type = new \FlowHunt\Model\\FlowHunt\Model\TriggerType(); // \FlowHunt\Model\TriggerType
 
 try {
     $result = $apiInstance->executeWebhookFromFlow($flow_id, $workspace_id, $trigger_type);
@@ -115,11 +115,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **trigger_type** | [**\OpenAPI\Client\Model\TriggerType**](../Model/.md)|  | |
+| **trigger_type** | [**\FlowHunt\Model\TriggerType**](../Model/.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
+[**\FlowHunt\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
 
 ### Authorization
 
@@ -137,7 +137,7 @@ try {
 ## `pollWebhookResponse()`
 
 ```php
-pollWebhookResponse($message_id): \OpenAPI\Client\Model\FlowSessionInvocationMessageResponse
+pollWebhookResponse($message_id): \FlowHunt\Model\FlowSessionInvocationMessageResponse
 ```
 
 Poll Webhook Response
@@ -150,7 +150,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowWebhooksApi(
+$apiInstance = new FlowHunt\Api\FlowWebhooksApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -173,7 +173,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse**](../Model/FlowSessionInvocationMessageResponse.md)
+[**\FlowHunt\Model\FlowSessionInvocationMessageResponse**](../Model/FlowSessionInvocationMessageResponse.md)
 
 ### Authorization
 

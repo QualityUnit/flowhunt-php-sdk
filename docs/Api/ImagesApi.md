@@ -1,4 +1,4 @@
-# OpenAPI\Client\ImagesApi
+# FlowHunt\ImagesApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `convertImage()`
 
 ```php
-convertImage($workspace_id, $image_convert_request): \OpenAPI\Client\Model\TaskResponse
+convertImage($workspace_id, $image_convert_request): \FlowHunt\Model\TaskResponse
 ```
 
 Convert Image
@@ -25,22 +25,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ImagesApi(
+$apiInstance = new FlowHunt\Api\ImagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$image_convert_request = new \OpenAPI\Client\Model\ImageConvertRequest(); // \OpenAPI\Client\Model\ImageConvertRequest
+$image_convert_request = new \FlowHunt\Model\ImageConvertRequest(); // \FlowHunt\Model\ImageConvertRequest
 
 try {
     $result = $apiInstance->convertImage($workspace_id, $image_convert_request);
@@ -55,11 +55,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **image_convert_request** | [**\OpenAPI\Client\Model\ImageConvertRequest**](../Model/ImageConvertRequest.md)|  | |
+| **image_convert_request** | [**\FlowHunt\Model\ImageConvertRequest**](../Model/ImageConvertRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ try {
 ## `getScreenshot()`
 
 ```php
-getScreenshot($workspace_id, $screenshot_request): \OpenAPI\Client\Model\ScreenshotResponse
+getScreenshot($workspace_id, $screenshot_request): \FlowHunt\Model\ScreenshotResponse
 ```
 
 Get Screenshot
@@ -90,22 +90,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ImagesApi(
+$apiInstance = new FlowHunt\Api\ImagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$screenshot_request = new \OpenAPI\Client\Model\ScreenshotRequest(); // \OpenAPI\Client\Model\ScreenshotRequest
+$screenshot_request = new \FlowHunt\Model\ScreenshotRequest(); // \FlowHunt\Model\ScreenshotRequest
 
 try {
     $result = $apiInstance->getScreenshot($workspace_id, $screenshot_request);
@@ -120,11 +120,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **screenshot_request** | [**\OpenAPI\Client\Model\ScreenshotRequest**](../Model/ScreenshotRequest.md)|  | |
+| **screenshot_request** | [**\FlowHunt\Model\ScreenshotRequest**](../Model/ScreenshotRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScreenshotResponse**](../Model/ScreenshotResponse.md)
+[**\FlowHunt\Model\ScreenshotResponse**](../Model/ScreenshotResponse.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ try {
 ## `optimizeImage()`
 
 ```php
-optimizeImage($workspace_id, $image_optimize_request): \OpenAPI\Client\Model\TaskResponse
+optimizeImage($workspace_id, $image_optimize_request): \FlowHunt\Model\TaskResponse
 ```
 
 Optimize Image
@@ -155,22 +155,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ImagesApi(
+$apiInstance = new FlowHunt\Api\ImagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$image_optimize_request = new \OpenAPI\Client\Model\ImageOptimizeRequest(); // \OpenAPI\Client\Model\ImageOptimizeRequest
+$image_optimize_request = new \FlowHunt\Model\ImageOptimizeRequest(); // \FlowHunt\Model\ImageOptimizeRequest
 
 try {
     $result = $apiInstance->optimizeImage($workspace_id, $image_optimize_request);
@@ -185,11 +185,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **image_optimize_request** | [**\OpenAPI\Client\Model\ImageOptimizeRequest**](../Model/ImageOptimizeRequest.md)|  | |
+| **image_optimize_request** | [**\FlowHunt\Model\ImageOptimizeRequest**](../Model/ImageOptimizeRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 

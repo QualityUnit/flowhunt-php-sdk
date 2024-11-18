@@ -12,6 +12,6 @@ Name | Type | Description | Notes
 **pydantic** | **object** |  | [optional]
 **json_dict** | **object** |  | [optional]
 **agent** | **string** | Agent that executed the task |
-**output_format** | [**\OpenAPI\Client\Model\OutputFormat**](OutputFormat.md) | Output format of the task | [optional]
+**output_format** | [**\FlowHunt\Model\OutputFormat**](OutputFormat.md) | Output format of the task | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

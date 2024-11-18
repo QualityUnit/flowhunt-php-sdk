@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | Task ID |
-**status** | [**\OpenAPI\Client\Model\TaskStatus**](TaskStatus.md) | Task status |
-**result** | [**\OpenAPI\Client\Model\DocumentContent**](DocumentContent.md) |  | [optional]
+**status** | [**\FlowHunt\Model\TaskStatus**](TaskStatus.md) | Task status |
+**result** | [**\FlowHunt\Model\DocumentContent**](DocumentContent.md) |  | [optional]
 **error_message** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

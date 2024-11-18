@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**loc** | [**\OpenAPI\Client\Model\ValidationErrorLocInner[]**](ValidationErrorLocInner.md) |  |
+**loc** | [**\FlowHunt\Model\ValidationErrorLocInner[]**](ValidationErrorLocInner.md) |  |
 **msg** | **string** |  |
 **type** | **string** |  |
 

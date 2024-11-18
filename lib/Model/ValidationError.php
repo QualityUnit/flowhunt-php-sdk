@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ValidationError Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'loc' => '\OpenAPI\Client\Model\ValidationErrorLocInner[]',
+        'loc' => '\FlowHunt\Model\ValidationErrorLocInner[]',
         'msg' => 'string',
         'type' => 'string'
     ];
@@ -315,7 +315,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets loc
      *
-     * @return \OpenAPI\Client\Model\ValidationErrorLocInner[]
+     * @return \FlowHunt\Model\ValidationErrorLocInner[]
      */
     public function getLoc()
     {
@@ -325,7 +325,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets loc
      *
-     * @param \OpenAPI\Client\Model\ValidationErrorLocInner[] $loc loc
+     * @param \FlowHunt\Model\ValidationErrorLocInner[] $loc loc
      *
      * @return self
      */

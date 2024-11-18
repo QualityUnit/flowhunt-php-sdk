@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowDetailResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,8 +61,8 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'name' => 'string',
         'description' => 'string',
         'detailed_description' => 'string',
-        'config' => '\OpenAPI\Client\Model\FlowConfig',
-        'flow_type' => '\OpenAPI\Client\Model\FlowType',
+        'config' => '\FlowHunt\Model\FlowConfig',
+        'flow_type' => '\FlowHunt\Model\FlowType',
         'executed_at' => '\DateTime',
         'category_id' => 'string'
     ];
@@ -471,7 +471,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets config
      *
-     * @return \OpenAPI\Client\Model\FlowConfig
+     * @return \FlowHunt\Model\FlowConfig
      */
     public function getConfig()
     {
@@ -481,7 +481,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets config
      *
-     * @param \OpenAPI\Client\Model\FlowConfig $config Flow configuration
+     * @param \FlowHunt\Model\FlowConfig $config Flow configuration
      *
      * @return self
      */
@@ -498,7 +498,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets flow_type
      *
-     * @return \OpenAPI\Client\Model\FlowType
+     * @return \FlowHunt\Model\FlowType
      */
     public function getFlowType()
     {
@@ -508,7 +508,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets flow_type
      *
-     * @param \OpenAPI\Client\Model\FlowType $flow_type Flow type
+     * @param \FlowHunt\Model\FlowType $flow_type Flow type
      *
      * @return self
      */

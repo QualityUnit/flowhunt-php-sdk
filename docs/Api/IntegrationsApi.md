@@ -1,4 +1,4 @@
-# OpenAPI\Client\IntegrationsApi
+# FlowHunt\IntegrationsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -23,7 +23,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createApiIntegration()`
 
 ```php
-createApiIntegration($workspace_id, $api_integration_create_request): \OpenAPI\Client\Model\ApiIntegrationResponse
+createApiIntegration($workspace_id, $api_integration_create_request): \FlowHunt\Model\ApiIntegrationResponse
 ```
 
 Create Api Integration
@@ -36,22 +36,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$api_integration_create_request = new \OpenAPI\Client\Model\ApiIntegrationCreateRequest(); // \OpenAPI\Client\Model\ApiIntegrationCreateRequest
+$api_integration_create_request = new \FlowHunt\Model\ApiIntegrationCreateRequest(); // \FlowHunt\Model\ApiIntegrationCreateRequest
 
 try {
     $result = $apiInstance->createApiIntegration($workspace_id, $api_integration_create_request);
@@ -66,11 +66,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **api_integration_create_request** | [**\OpenAPI\Client\Model\ApiIntegrationCreateRequest**](../Model/ApiIntegrationCreateRequest.md)|  | |
+| **api_integration_create_request** | [**\FlowHunt\Model\ApiIntegrationCreateRequest**](../Model/ApiIntegrationCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
+[**\FlowHunt\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ try {
 ## `createApiIntegrationEndpoint()`
 
 ```php
-createApiIntegrationEndpoint($integration_id, $workspace_id, $api_endpoint_create_request): \OpenAPI\Client\Model\ApiEndpointResponse
+createApiIntegrationEndpoint($integration_id, $workspace_id, $api_endpoint_create_request): \FlowHunt\Model\ApiEndpointResponse
 ```
 
 Create Api Integration Endpoint
@@ -101,15 +101,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -117,7 +117,7 @@ $apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
 );
 $integration_id = 'integration_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$api_endpoint_create_request = new \OpenAPI\Client\Model\ApiEndpointCreateRequest(); // \OpenAPI\Client\Model\ApiEndpointCreateRequest
+$api_endpoint_create_request = new \FlowHunt\Model\ApiEndpointCreateRequest(); // \FlowHunt\Model\ApiEndpointCreateRequest
 
 try {
     $result = $apiInstance->createApiIntegrationEndpoint($integration_id, $workspace_id, $api_endpoint_create_request);
@@ -133,11 +133,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **integration_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **api_endpoint_create_request** | [**\OpenAPI\Client\Model\ApiEndpointCreateRequest**](../Model/ApiEndpointCreateRequest.md)|  | |
+| **api_endpoint_create_request** | [**\FlowHunt\Model\ApiEndpointCreateRequest**](../Model/ApiEndpointCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiEndpointResponse**](../Model/ApiEndpointResponse.md)
+[**\FlowHunt\Model\ApiEndpointResponse**](../Model/ApiEndpointResponse.md)
 
 ### Authorization
 
@@ -155,7 +155,7 @@ try {
 ## `getAllIntegrations()`
 
 ```php
-getAllIntegrations($workspace_id): \OpenAPI\Client\Model\IntegrationResponse[]
+getAllIntegrations($workspace_id): \FlowHunt\Model\IntegrationResponse[]
 ```
 
 Get All Integrations
@@ -168,15 +168,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -200,7 +200,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\IntegrationResponse[]**](../Model/IntegrationResponse.md)
+[**\FlowHunt\Model\IntegrationResponse[]**](../Model/IntegrationResponse.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ try {
 ## `getApiIntegration()`
 
 ```php
-getApiIntegration($workspace_id, $integration_id): \OpenAPI\Client\Model\ApiIntegrationResponse
+getApiIntegration($workspace_id, $integration_id): \FlowHunt\Model\ApiIntegrationResponse
 ```
 
 Get Api Integration
@@ -231,15 +231,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -265,7 +265,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
+[**\FlowHunt\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
 
 ### Authorization
 
@@ -283,7 +283,7 @@ try {
 ## `getApiIntegrationAuthMethods()`
 
 ```php
-getApiIntegrationAuthMethods(): \OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]
+getApiIntegrationAuthMethods(): \FlowHunt\Model\ApiIntegrationAuthenticationMethod[]
 ```
 
 Get Api Integration Auth Methods
@@ -296,15 +296,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -325,7 +325,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]**](../Model/ApiIntegrationAuthenticationMethod.md)
+[**\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]**](../Model/ApiIntegrationAuthenticationMethod.md)
 
 ### Authorization
 
@@ -343,7 +343,7 @@ This endpoint does not need any parameter.
 ## `getApiIntegrationEndpoints()`
 
 ```php
-getApiIntegrationEndpoints($integration_id, $workspace_id, $api_endpoint_search_request): \OpenAPI\Client\Model\ApiEndpointResponse[]
+getApiIntegrationEndpoints($integration_id, $workspace_id, $api_endpoint_search_request): \FlowHunt\Model\ApiEndpointResponse[]
 ```
 
 Get Api Integration Endpoints
@@ -356,15 +356,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -372,7 +372,7 @@ $apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
 );
 $integration_id = 'integration_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$api_endpoint_search_request = new \OpenAPI\Client\Model\ApiEndpointSearchRequest(); // \OpenAPI\Client\Model\ApiEndpointSearchRequest
+$api_endpoint_search_request = new \FlowHunt\Model\ApiEndpointSearchRequest(); // \FlowHunt\Model\ApiEndpointSearchRequest
 
 try {
     $result = $apiInstance->getApiIntegrationEndpoints($integration_id, $workspace_id, $api_endpoint_search_request);
@@ -388,11 +388,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **integration_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **api_endpoint_search_request** | [**\OpenAPI\Client\Model\ApiEndpointSearchRequest**](../Model/ApiEndpointSearchRequest.md)|  | |
+| **api_endpoint_search_request** | [**\FlowHunt\Model\ApiEndpointSearchRequest**](../Model/ApiEndpointSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiEndpointResponse[]**](../Model/ApiEndpointResponse.md)
+[**\FlowHunt\Model\ApiEndpointResponse[]**](../Model/ApiEndpointResponse.md)
 
 ### Authorization
 
@@ -410,7 +410,7 @@ try {
 ## `getApiIntegrations()`
 
 ```php
-getApiIntegrations($workspace_id, $api_integration_search_request): \OpenAPI\Client\Model\ApiIntegrationResponse[]
+getApiIntegrations($workspace_id, $api_integration_search_request): \FlowHunt\Model\ApiIntegrationResponse[]
 ```
 
 Get Api Integrations
@@ -423,22 +423,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$api_integration_search_request = new \OpenAPI\Client\Model\ApiIntegrationSearchRequest(); // \OpenAPI\Client\Model\ApiIntegrationSearchRequest
+$api_integration_search_request = new \FlowHunt\Model\ApiIntegrationSearchRequest(); // \FlowHunt\Model\ApiIntegrationSearchRequest
 
 try {
     $result = $apiInstance->getApiIntegrations($workspace_id, $api_integration_search_request);
@@ -453,11 +453,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **api_integration_search_request** | [**\OpenAPI\Client\Model\ApiIntegrationSearchRequest**](../Model/ApiIntegrationSearchRequest.md)|  | |
+| **api_integration_search_request** | [**\FlowHunt\Model\ApiIntegrationSearchRequest**](../Model/ApiIntegrationSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiIntegrationResponse[]**](../Model/ApiIntegrationResponse.md)
+[**\FlowHunt\Model\ApiIntegrationResponse[]**](../Model/ApiIntegrationResponse.md)
 
 ### Authorization
 
@@ -475,7 +475,7 @@ try {
 ## `getMyIntegrations()`
 
 ```php
-getMyIntegrations($workspace_id, $integration_search_request): \OpenAPI\Client\Model\IntegrationDetailResponse[]
+getMyIntegrations($workspace_id, $integration_search_request): \FlowHunt\Model\IntegrationDetailResponse[]
 ```
 
 Get My Integrations
@@ -488,22 +488,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$integration_search_request = new \OpenAPI\Client\Model\IntegrationSearchRequest(); // \OpenAPI\Client\Model\IntegrationSearchRequest
+$integration_search_request = new \FlowHunt\Model\IntegrationSearchRequest(); // \FlowHunt\Model\IntegrationSearchRequest
 
 try {
     $result = $apiInstance->getMyIntegrations($workspace_id, $integration_search_request);
@@ -518,11 +518,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **integration_search_request** | [**\OpenAPI\Client\Model\IntegrationSearchRequest**](../Model/IntegrationSearchRequest.md)|  | |
+| **integration_search_request** | [**\FlowHunt\Model\IntegrationSearchRequest**](../Model/IntegrationSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\IntegrationDetailResponse[]**](../Model/IntegrationDetailResponse.md)
+[**\FlowHunt\Model\IntegrationDetailResponse[]**](../Model/IntegrationDetailResponse.md)
 
 ### Authorization
 
@@ -540,7 +540,7 @@ try {
 ## `importOpenapiSpec()`
 
 ```php
-importOpenapiSpec($integration_id, $workspace_id, $file): \OpenAPI\Client\Model\ApiIntegrationResponse
+importOpenapiSpec($integration_id, $workspace_id, $file): \FlowHunt\Model\ApiIntegrationResponse
 ```
 
 Import Openapi Spec
@@ -553,15 +553,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -589,7 +589,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
+[**\FlowHunt\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
 
 ### Authorization
 
@@ -607,7 +607,7 @@ try {
 ## `importOpenapiSpecFromUrl()`
 
 ```php
-importOpenapiSpecFromUrl($integration_id, $workspace_id, $api_integration_open_api_import_request): \OpenAPI\Client\Model\ApiIntegrationResponse
+importOpenapiSpecFromUrl($integration_id, $workspace_id, $api_integration_open_api_import_request): \FlowHunt\Model\ApiIntegrationResponse
 ```
 
 Import Openapi Spec From Url
@@ -620,15 +620,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -636,7 +636,7 @@ $apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
 );
 $integration_id = 'integration_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$api_integration_open_api_import_request = new \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest(); // \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest
+$api_integration_open_api_import_request = new \FlowHunt\Model\ApiIntegrationOpenApiImportRequest(); // \FlowHunt\Model\ApiIntegrationOpenApiImportRequest
 
 try {
     $result = $apiInstance->importOpenapiSpecFromUrl($integration_id, $workspace_id, $api_integration_open_api_import_request);
@@ -652,11 +652,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **integration_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **api_integration_open_api_import_request** | [**\OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest**](../Model/ApiIntegrationOpenApiImportRequest.md)|  | |
+| **api_integration_open_api_import_request** | [**\FlowHunt\Model\ApiIntegrationOpenApiImportRequest**](../Model/ApiIntegrationOpenApiImportRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
+[**\FlowHunt\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
 
 ### Authorization
 
@@ -674,7 +674,7 @@ try {
 ## `removeApiIntegration()`
 
 ```php
-removeApiIntegration($integration_id, $workspace_id): \OpenAPI\Client\Model\Completed
+removeApiIntegration($integration_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Remove Api Integration
@@ -687,15 +687,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -721,7 +721,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -739,7 +739,7 @@ try {
 ## `removeApiIntegrationEndpoint()`
 
 ```php
-removeApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id): \OpenAPI\Client\Model\Completed
+removeApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Remove Api Integration Endpoint
@@ -752,15 +752,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -788,7 +788,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -806,7 +806,7 @@ try {
 ## `updateApiIntegration()`
 
 ```php
-updateApiIntegration($integration_id, $workspace_id, $api_integration_update_request): \OpenAPI\Client\Model\ApiIntegrationResponse
+updateApiIntegration($integration_id, $workspace_id, $api_integration_update_request): \FlowHunt\Model\ApiIntegrationResponse
 ```
 
 Update Api Integration
@@ -819,15 +819,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -835,7 +835,7 @@ $apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
 );
 $integration_id = 'integration_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$api_integration_update_request = new \OpenAPI\Client\Model\ApiIntegrationUpdateRequest(); // \OpenAPI\Client\Model\ApiIntegrationUpdateRequest
+$api_integration_update_request = new \FlowHunt\Model\ApiIntegrationUpdateRequest(); // \FlowHunt\Model\ApiIntegrationUpdateRequest
 
 try {
     $result = $apiInstance->updateApiIntegration($integration_id, $workspace_id, $api_integration_update_request);
@@ -851,11 +851,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **integration_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **api_integration_update_request** | [**\OpenAPI\Client\Model\ApiIntegrationUpdateRequest**](../Model/ApiIntegrationUpdateRequest.md)|  | |
+| **api_integration_update_request** | [**\FlowHunt\Model\ApiIntegrationUpdateRequest**](../Model/ApiIntegrationUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
+[**\FlowHunt\Model\ApiIntegrationResponse**](../Model/ApiIntegrationResponse.md)
 
 ### Authorization
 
@@ -873,7 +873,7 @@ try {
 ## `updateApiIntegrationEndpoint()`
 
 ```php
-updateApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request): \OpenAPI\Client\Model\ApiEndpointResponse
+updateApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request): \FlowHunt\Model\ApiEndpointResponse
 ```
 
 Update Api Integration Endpoint
@@ -886,15 +886,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -903,7 +903,7 @@ $apiInstance = new OpenAPI\Client\Api\IntegrationsApi(
 $integration_id = 'integration_id_example'; // string
 $endpoint_id = 'endpoint_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$api_endpoint_update_request = new \OpenAPI\Client\Model\ApiEndpointUpdateRequest(); // \OpenAPI\Client\Model\ApiEndpointUpdateRequest
+$api_endpoint_update_request = new \FlowHunt\Model\ApiEndpointUpdateRequest(); // \FlowHunt\Model\ApiEndpointUpdateRequest
 
 try {
     $result = $apiInstance->updateApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request);
@@ -920,11 +920,11 @@ try {
 | **integration_id** | **string**|  | |
 | **endpoint_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **api_endpoint_update_request** | [**\OpenAPI\Client\Model\ApiEndpointUpdateRequest**](../Model/ApiEndpointUpdateRequest.md)|  | |
+| **api_endpoint_update_request** | [**\FlowHunt\Model\ApiEndpointUpdateRequest**](../Model/ApiEndpointUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ApiEndpointResponse**](../Model/ApiEndpointResponse.md)
+[**\FlowHunt\Model\ApiEndpointResponse**](../Model/ApiEndpointResponse.md)
 
 ### Authorization
 

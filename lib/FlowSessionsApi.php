@@ -1,10 +1,10 @@
 <?php
 /**
- * ChatbotsApi
+ * FlowSessionsApi
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,20 +34,20 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
- * ChatbotsApi Class Doc Comment
+ * FlowSessionsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ChatbotsApi
+class FlowSessionsApi
 {
     /**
      * @var ClientInterface
@@ -71,19 +71,16 @@ class ChatbotsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createChatbot' => [
+        'deleteChatbotSessionView' => [
             'application/json',
         ],
-        'deleteChatbot' => [
+        'getChatbotSessionView' => [
             'application/json',
         ],
-        'getChatbot' => [
+        'searchChatbotSessionsView' => [
             'application/json',
         ],
-        'searchChatbots' => [
-            'application/json',
-        ],
-        'updateChatbot' => [
+        'updateChatbotSessionView' => [
             'application/json',
         ],
     ];
@@ -135,40 +132,40 @@ class ChatbotsApi
     }
 
     /**
-     * Operation createChatbot
+     * Operation deleteChatbotSessionView
      *
-     * Create Chatbot
+     * Delete Chatbot Session View
      *
+     * @param  string $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotCreateRequest $chatbot_create_request chatbot_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ChatbotResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function createChatbot($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
+    public function deleteChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
     {
-        list($response) = $this->createChatbotWithHttpInfo($workspace_id, $chatbot_create_request, $contentType);
+        list($response) = $this->deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation createChatbotWithHttpInfo
+     * Operation deleteChatbotSessionViewWithHttpInfo
      *
-     * Create Chatbot
+     * Delete Chatbot Session View
      *
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotCreateRequest $chatbot_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ChatbotResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createChatbotWithHttpInfo($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
+    public function deleteChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
     {
-        $request = $this->createChatbotRequest($workspace_id, $chatbot_create_request, $contentType);
+        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -194,12 +191,12 @@ class ChatbotsApi
 
 
             switch($statusCode) {
-                case 201:
-                    if ('\OpenAPI\Client\Model\ChatbotResponse' === '\SplFileObject') {
+                case 200:
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ChatbotResponse' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -217,16 +214,16 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ChatbotResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -244,7 +241,7 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -263,7 +260,7 @@ class ChatbotsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ChatbotResponse';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -293,10 +290,10 @@ class ChatbotsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 201:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ChatbotResponse',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -304,7 +301,7 @@ class ChatbotsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -315,20 +312,20 @@ class ChatbotsApi
     }
 
     /**
-     * Operation createChatbotAsync
+     * Operation deleteChatbotSessionViewAsync
      *
-     * Create Chatbot
+     * Delete Chatbot Session View
      *
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotCreateRequest $chatbot_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createChatbotAsync($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
+    public function deleteChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
     {
-        return $this->createChatbotAsyncWithHttpInfo($workspace_id, $chatbot_create_request, $contentType)
+        return $this->deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -337,21 +334,21 @@ class ChatbotsApi
     }
 
     /**
-     * Operation createChatbotAsyncWithHttpInfo
+     * Operation deleteChatbotSessionViewAsyncWithHttpInfo
      *
-     * Create Chatbot
+     * Delete Chatbot Session View
      *
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotCreateRequest $chatbot_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createChatbotAsyncWithHttpInfo($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
+    public function deleteChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ChatbotResponse';
-        $request = $this->createChatbotRequest($workspace_id, $chatbot_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->deleteChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -390,406 +387,34 @@ class ChatbotsApi
     }
 
     /**
-     * Create request for operation 'createChatbot'
+     * Create request for operation 'deleteChatbotSessionView'
      *
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotCreateRequest $chatbot_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createChatbotRequest($workspace_id, $chatbot_create_request, string $contentType = self::contentTypes['createChatbot'][0])
+    public function deleteChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbotSessionView'][0])
     {
 
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+        // verify the required parameter 'session_id' is set
+        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createChatbot'
-            );
-        }
-
-        // verify the required parameter 'chatbot_create_request' is set
-        if ($chatbot_create_request === null || (is_array($chatbot_create_request) && count($chatbot_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $chatbot_create_request when calling createChatbot'
-            );
-        }
-
-
-        $resourcePath = '/v2/chatbots/create';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($chatbot_create_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($chatbot_create_request));
-            } else {
-                $httpBody = $chatbot_create_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation deleteChatbot
-     *
-     * Delete Chatbot
-     *
-     * @param  string $chatbot_id chatbot_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
-     */
-    public function deleteChatbot($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
-    {
-        list($response) = $this->deleteChatbotWithHttpInfo($chatbot_id, $workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation deleteChatbotWithHttpInfo
-     *
-     * Delete Chatbot
-     *
-     * @param  string $chatbot_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function deleteChatbotWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
-    {
-        $request = $this->deleteChatbotRequest($chatbot_id, $workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\OpenAPI\Client\Model\Completed';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation deleteChatbotAsync
-     *
-     * Delete Chatbot
-     *
-     * @param  string $chatbot_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteChatbotAsync($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
-    {
-        return $this->deleteChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteChatbotAsyncWithHttpInfo
-     *
-     * Delete Chatbot
-     *
-     * @param  string $chatbot_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
-    {
-        $returnType = '\OpenAPI\Client\Model\Completed';
-        $request = $this->deleteChatbotRequest($chatbot_id, $workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'deleteChatbot'
-     *
-     * @param  string $chatbot_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteChatbot'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteChatbotRequest($chatbot_id, $workspace_id, string $contentType = self::contentTypes['deleteChatbot'][0])
-    {
-
-        // verify the required parameter 'chatbot_id' is set
-        if ($chatbot_id === null || (is_array($chatbot_id) && count($chatbot_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $chatbot_id when calling deleteChatbot'
+                'Missing the required parameter $session_id when calling deleteChatbotSessionView'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling deleteChatbot'
+                'Missing the required parameter $workspace_id when calling deleteChatbotSessionView'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/{chatbot_id}';
+        $resourcePath = '/v2/chatbots/sessions/{session_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -808,10 +433,10 @@ class ChatbotsApi
 
 
         // path params
-        if ($chatbot_id !== null) {
+        if ($session_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'chatbot_id' . '}',
-                ObjectSerializer::toPathValue($chatbot_id),
+                '{' . 'session_id' . '}',
+                ObjectSerializer::toPathValue($session_id),
                 $resourcePath
             );
         }
@@ -880,40 +505,40 @@ class ChatbotsApi
     }
 
     /**
-     * Operation getChatbot
+     * Operation getChatbotSessionView
      *
-     * Get Chatbot
+     * Get Chatbot Session View
      *
-     * @param  string $chatbot_id chatbot_id (required)
+     * @param  string $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ChatbotResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getChatbot($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
+    public function getChatbotSessionView($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
     {
-        list($response) = $this->getChatbotWithHttpInfo($chatbot_id, $workspace_id, $contentType);
+        list($response) = $this->getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getChatbotWithHttpInfo
+     * Operation getChatbotSessionViewWithHttpInfo
      *
-     * Get Chatbot
+     * Get Chatbot Session View
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ChatbotResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getChatbotWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
+    public function getChatbotSessionViewWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
     {
-        $request = $this->getChatbotRequest($chatbot_id, $workspace_id, $contentType);
+        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -940,11 +565,11 @@ class ChatbotsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ChatbotResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionViewResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ChatbotResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionViewResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -962,16 +587,16 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ChatbotResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionViewResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -989,7 +614,7 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1008,7 +633,7 @@ class ChatbotsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ChatbotResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1041,7 +666,7 @@ class ChatbotsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ChatbotResponse',
+                        '\FlowHunt\Model\FlowSessionViewResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1049,7 +674,7 @@ class ChatbotsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1060,20 +685,20 @@ class ChatbotsApi
     }
 
     /**
-     * Operation getChatbotAsync
+     * Operation getChatbotSessionViewAsync
      *
-     * Get Chatbot
+     * Get Chatbot Session View
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getChatbotAsync($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
+    public function getChatbotSessionViewAsync($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
     {
-        return $this->getChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $contentType)
+        return $this->getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1082,21 +707,21 @@ class ChatbotsApi
     }
 
     /**
-     * Operation getChatbotAsyncWithHttpInfo
+     * Operation getChatbotSessionViewAsyncWithHttpInfo
      *
-     * Get Chatbot
+     * Get Chatbot Session View
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
+    public function getChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ChatbotResponse';
-        $request = $this->getChatbotRequest($chatbot_id, $workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
+        $request = $this->getChatbotSessionViewRequest($session_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1135,34 +760,34 @@ class ChatbotsApi
     }
 
     /**
-     * Create request for operation 'getChatbot'
+     * Create request for operation 'getChatbotSessionView'
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbot'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getChatbotRequest($chatbot_id, $workspace_id, string $contentType = self::contentTypes['getChatbot'][0])
+    public function getChatbotSessionViewRequest($session_id, $workspace_id, string $contentType = self::contentTypes['getChatbotSessionView'][0])
     {
 
-        // verify the required parameter 'chatbot_id' is set
-        if ($chatbot_id === null || (is_array($chatbot_id) && count($chatbot_id) === 0)) {
+        // verify the required parameter 'session_id' is set
+        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $chatbot_id when calling getChatbot'
+                'Missing the required parameter $session_id when calling getChatbotSessionView'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getChatbot'
+                'Missing the required parameter $workspace_id when calling getChatbotSessionView'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/{chatbot_id}';
+        $resourcePath = '/v2/chatbots/sessions/{session_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1181,10 +806,10 @@ class ChatbotsApi
 
 
         // path params
-        if ($chatbot_id !== null) {
+        if ($session_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'chatbot_id' . '}',
-                ObjectSerializer::toPathValue($chatbot_id),
+                '{' . 'session_id' . '}',
+                ObjectSerializer::toPathValue($session_id),
                 $resourcePath
             );
         }
@@ -1253,40 +878,40 @@ class ChatbotsApi
     }
 
     /**
-     * Operation searchChatbots
+     * Operation searchChatbotSessionsView
      *
-     * Search Chatbots
+     * Search Chatbot Sessions View
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotSearchRequest $chatbot_search_request chatbot_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request flow_session_view_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ChatbotResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionViewResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function searchChatbots($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    public function searchChatbotSessionsView($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
     {
-        list($response) = $this->searchChatbotsWithHttpInfo($workspace_id, $chatbot_search_request, $contentType);
+        list($response) = $this->searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchChatbotsWithHttpInfo
+     * Operation searchChatbotSessionsViewWithHttpInfo
      *
-     * Search Chatbots
+     * Search Chatbot Sessions View
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotSearchRequest $chatbot_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ChatbotResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionViewResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchChatbotsWithHttpInfo($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    public function searchChatbotSessionsViewWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
     {
-        $request = $this->searchChatbotsRequest($workspace_id, $chatbot_search_request, $contentType);
+        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1313,11 +938,11 @@ class ChatbotsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ChatbotResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionViewResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ChatbotResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionViewResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1335,16 +960,16 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ChatbotResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionViewResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1362,7 +987,7 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1381,7 +1006,7 @@ class ChatbotsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ChatbotResponse[]';
+            $returnType = '\FlowHunt\Model\FlowSessionViewResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1414,7 +1039,7 @@ class ChatbotsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ChatbotResponse[]',
+                        '\FlowHunt\Model\FlowSessionViewResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1422,7 +1047,7 @@ class ChatbotsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1433,20 +1058,20 @@ class ChatbotsApi
     }
 
     /**
-     * Operation searchChatbotsAsync
+     * Operation searchChatbotSessionsViewAsync
      *
-     * Search Chatbots
+     * Search Chatbot Sessions View
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotSearchRequest $chatbot_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchChatbotsAsync($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    public function searchChatbotSessionsViewAsync($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
     {
-        return $this->searchChatbotsAsyncWithHttpInfo($workspace_id, $chatbot_search_request, $contentType)
+        return $this->searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1455,21 +1080,21 @@ class ChatbotsApi
     }
 
     /**
-     * Operation searchChatbotsAsyncWithHttpInfo
+     * Operation searchChatbotSessionsViewAsyncWithHttpInfo
      *
-     * Search Chatbots
+     * Search Chatbot Sessions View
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotSearchRequest $chatbot_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchChatbotsAsyncWithHttpInfo($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    public function searchChatbotSessionsViewAsyncWithHttpInfo($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ChatbotResponse[]';
-        $request = $this->searchChatbotsRequest($workspace_id, $chatbot_search_request, $contentType);
+        $returnType = '\FlowHunt\Model\FlowSessionViewResponse[]';
+        $request = $this->searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1508,34 +1133,34 @@ class ChatbotsApi
     }
 
     /**
-     * Create request for operation 'searchChatbots'
+     * Create request for operation 'searchChatbotSessionsView'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotSearchRequest $chatbot_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbots'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewSearchRequest $flow_session_view_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchChatbotSessionsView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchChatbotsRequest($workspace_id, $chatbot_search_request, string $contentType = self::contentTypes['searchChatbots'][0])
+    public function searchChatbotSessionsViewRequest($workspace_id, $flow_session_view_search_request, string $contentType = self::contentTypes['searchChatbotSessionsView'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling searchChatbots'
+                'Missing the required parameter $workspace_id when calling searchChatbotSessionsView'
             );
         }
 
-        // verify the required parameter 'chatbot_search_request' is set
-        if ($chatbot_search_request === null || (is_array($chatbot_search_request) && count($chatbot_search_request) === 0)) {
+        // verify the required parameter 'flow_session_view_search_request' is set
+        if ($flow_session_view_search_request === null || (is_array($flow_session_view_search_request) && count($flow_session_view_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $chatbot_search_request when calling searchChatbots'
+                'Missing the required parameter $flow_session_view_search_request when calling searchChatbotSessionsView'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/';
+        $resourcePath = '/v2/chatbots/sessions/search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1562,12 +1187,12 @@ class ChatbotsApi
         );
 
         // for model (json/xml)
-        if (isset($chatbot_search_request)) {
+        if (isset($flow_session_view_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($chatbot_search_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_search_request));
             } else {
-                $httpBody = $chatbot_search_request;
+                $httpBody = $flow_session_view_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1625,42 +1250,42 @@ class ChatbotsApi
     }
 
     /**
-     * Operation updateChatbot
+     * Operation updateChatbotSessionView
      *
-     * Update Chatbot
+     * Update Chatbot Session View
      *
-     * @param  string $chatbot_id chatbot_id (required)
+     * @param  string $session_id session_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotUpdateRequest $chatbot_update_request chatbot_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request flow_session_view_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ChatbotResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function updateChatbot($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
+    public function updateChatbotSessionView($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
     {
-        list($response) = $this->updateChatbotWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, $contentType);
+        list($response) = $this->updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateChatbotWithHttpInfo
+     * Operation updateChatbotSessionViewWithHttpInfo
      *
-     * Update Chatbot
+     * Update Chatbot Session View
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotUpdateRequest $chatbot_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ChatbotResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionViewResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateChatbotWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
+    public function updateChatbotSessionViewWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
     {
-        $request = $this->updateChatbotRequest($chatbot_id, $workspace_id, $chatbot_update_request, $contentType);
+        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1687,11 +1312,11 @@ class ChatbotsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ChatbotResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionViewResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ChatbotResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionViewResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1709,16 +1334,16 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ChatbotResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionViewResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1736,7 +1361,7 @@ class ChatbotsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1755,7 +1380,7 @@ class ChatbotsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ChatbotResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1788,7 +1413,7 @@ class ChatbotsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ChatbotResponse',
+                        '\FlowHunt\Model\FlowSessionViewResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1796,7 +1421,7 @@ class ChatbotsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1807,21 +1432,21 @@ class ChatbotsApi
     }
 
     /**
-     * Operation updateChatbotAsync
+     * Operation updateChatbotSessionViewAsync
      *
-     * Update Chatbot
+     * Update Chatbot Session View
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotUpdateRequest $chatbot_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotAsync($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
+    public function updateChatbotSessionViewAsync($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
     {
-        return $this->updateChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, $contentType)
+        return $this->updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1830,22 +1455,22 @@ class ChatbotsApi
     }
 
     /**
-     * Operation updateChatbotAsyncWithHttpInfo
+     * Operation updateChatbotSessionViewAsyncWithHttpInfo
      *
-     * Update Chatbot
+     * Update Chatbot Session View
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotUpdateRequest $chatbot_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateChatbotAsyncWithHttpInfo($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
+    public function updateChatbotSessionViewAsyncWithHttpInfo($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ChatbotResponse';
-        $request = $this->updateChatbotRequest($chatbot_id, $workspace_id, $chatbot_update_request, $contentType);
+        $returnType = '\FlowHunt\Model\FlowSessionViewResponse';
+        $request = $this->updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1884,42 +1509,42 @@ class ChatbotsApi
     }
 
     /**
-     * Create request for operation 'updateChatbot'
+     * Create request for operation 'updateChatbotSessionView'
      *
-     * @param  string $chatbot_id (required)
+     * @param  string $session_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ChatbotUpdateRequest $chatbot_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbot'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\FlowSessionViewUpdateRequest $flow_session_view_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateChatbotSessionView'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateChatbotRequest($chatbot_id, $workspace_id, $chatbot_update_request, string $contentType = self::contentTypes['updateChatbot'][0])
+    public function updateChatbotSessionViewRequest($session_id, $workspace_id, $flow_session_view_update_request, string $contentType = self::contentTypes['updateChatbotSessionView'][0])
     {
 
-        // verify the required parameter 'chatbot_id' is set
-        if ($chatbot_id === null || (is_array($chatbot_id) && count($chatbot_id) === 0)) {
+        // verify the required parameter 'session_id' is set
+        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $chatbot_id when calling updateChatbot'
+                'Missing the required parameter $session_id when calling updateChatbotSessionView'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateChatbot'
+                'Missing the required parameter $workspace_id when calling updateChatbotSessionView'
             );
         }
 
-        // verify the required parameter 'chatbot_update_request' is set
-        if ($chatbot_update_request === null || (is_array($chatbot_update_request) && count($chatbot_update_request) === 0)) {
+        // verify the required parameter 'flow_session_view_update_request' is set
+        if ($flow_session_view_update_request === null || (is_array($flow_session_view_update_request) && count($flow_session_view_update_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $chatbot_update_request when calling updateChatbot'
+                'Missing the required parameter $flow_session_view_update_request when calling updateChatbotSessionView'
             );
         }
 
 
-        $resourcePath = '/v2/chatbots/{chatbot_id}';
+        $resourcePath = '/v2/chatbots/sessions/{session_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1938,10 +1563,10 @@ class ChatbotsApi
 
 
         // path params
-        if ($chatbot_id !== null) {
+        if ($session_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'chatbot_id' . '}',
-                ObjectSerializer::toPathValue($chatbot_id),
+                '{' . 'session_id' . '}',
+                ObjectSerializer::toPathValue($session_id),
                 $resourcePath
             );
         }
@@ -1954,12 +1579,12 @@ class ChatbotsApi
         );
 
         // for model (json/xml)
-        if (isset($chatbot_update_request)) {
+        if (isset($flow_session_view_update_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($chatbot_update_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_view_update_request));
             } else {
-                $httpBody = $chatbot_update_request;
+                $httpBody = $flow_session_view_update_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

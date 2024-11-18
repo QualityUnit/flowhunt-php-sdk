@@ -1,4 +1,4 @@
-# OpenAPI\Client\SemanticSearchApi
+# FlowHunt\SemanticSearchApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -13,7 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `getSimilarDocsByDocId()`
 
 ```php
-getSimilarDocsByDocId($workspace_id, $document_similarity_request): \OpenAPI\Client\Model\VectorDocumentResponse[]
+getSimilarDocsByDocId($workspace_id, $document_similarity_request): \FlowHunt\Model\VectorDocumentResponse[]
 ```
 
 Get Similar Docs By Doc Id
@@ -26,22 +26,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SemanticSearchApi(
+$apiInstance = new FlowHunt\Api\SemanticSearchApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$document_similarity_request = new \OpenAPI\Client\Model\DocumentSimilarityRequest(); // \OpenAPI\Client\Model\DocumentSimilarityRequest
+$document_similarity_request = new \FlowHunt\Model\DocumentSimilarityRequest(); // \FlowHunt\Model\DocumentSimilarityRequest
 
 try {
     $result = $apiInstance->getSimilarDocsByDocId($workspace_id, $document_similarity_request);
@@ -56,11 +56,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **document_similarity_request** | [**\OpenAPI\Client\Model\DocumentSimilarityRequest**](../Model/DocumentSimilarityRequest.md)|  | |
+| **document_similarity_request** | [**\FlowHunt\Model\DocumentSimilarityRequest**](../Model/DocumentSimilarityRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VectorDocumentResponse[]**](../Model/VectorDocumentResponse.md)
+[**\FlowHunt\Model\VectorDocumentResponse[]**](../Model/VectorDocumentResponse.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ try {
 ## `getSimilarDocsByQuery()`
 
 ```php
-getSimilarDocsByQuery($workspace_id, $query_similarity_request): \OpenAPI\Client\Model\VectorDocumentResponse[]
+getSimilarDocsByQuery($workspace_id, $query_similarity_request): \FlowHunt\Model\VectorDocumentResponse[]
 ```
 
 Get Similar Docs By Query
@@ -91,22 +91,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SemanticSearchApi(
+$apiInstance = new FlowHunt\Api\SemanticSearchApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$query_similarity_request = new \OpenAPI\Client\Model\QuerySimilarityRequest(); // \OpenAPI\Client\Model\QuerySimilarityRequest
+$query_similarity_request = new \FlowHunt\Model\QuerySimilarityRequest(); // \FlowHunt\Model\QuerySimilarityRequest
 
 try {
     $result = $apiInstance->getSimilarDocsByQuery($workspace_id, $query_similarity_request);
@@ -121,11 +121,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **query_similarity_request** | [**\OpenAPI\Client\Model\QuerySimilarityRequest**](../Model/QuerySimilarityRequest.md)|  | |
+| **query_similarity_request** | [**\FlowHunt\Model\QuerySimilarityRequest**](../Model/QuerySimilarityRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VectorDocumentResponse[]**](../Model/VectorDocumentResponse.md)
+[**\FlowHunt\Model\VectorDocumentResponse[]**](../Model/VectorDocumentResponse.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ try {
 ## `scheduleSimilarDocsByDocId()`
 
 ```php
-scheduleSimilarDocsByDocId($workspace_id, $document_similarity_task_request): \OpenAPI\Client\Model\VectorDocumentsTaskResponse
+scheduleSimilarDocsByDocId($workspace_id, $document_similarity_task_request): \FlowHunt\Model\VectorDocumentsTaskResponse
 ```
 
 Schedule Similar Docs By Doc Id
@@ -156,22 +156,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SemanticSearchApi(
+$apiInstance = new FlowHunt\Api\SemanticSearchApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$document_similarity_task_request = new \OpenAPI\Client\Model\DocumentSimilarityTaskRequest(); // \OpenAPI\Client\Model\DocumentSimilarityTaskRequest
+$document_similarity_task_request = new \FlowHunt\Model\DocumentSimilarityTaskRequest(); // \FlowHunt\Model\DocumentSimilarityTaskRequest
 
 try {
     $result = $apiInstance->scheduleSimilarDocsByDocId($workspace_id, $document_similarity_task_request);
@@ -186,11 +186,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **document_similarity_task_request** | [**\OpenAPI\Client\Model\DocumentSimilarityTaskRequest**](../Model/DocumentSimilarityTaskRequest.md)|  | |
+| **document_similarity_task_request** | [**\FlowHunt\Model\DocumentSimilarityTaskRequest**](../Model/DocumentSimilarityTaskRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VectorDocumentsTaskResponse**](../Model/VectorDocumentsTaskResponse.md)
+[**\FlowHunt\Model\VectorDocumentsTaskResponse**](../Model/VectorDocumentsTaskResponse.md)
 
 ### Authorization
 
@@ -208,7 +208,7 @@ try {
 ## `scheduleSimilarDocsByQuery()`
 
 ```php
-scheduleSimilarDocsByQuery($workspace_id, $query_similarity_task_request): \OpenAPI\Client\Model\VectorDocumentsTaskResponse
+scheduleSimilarDocsByQuery($workspace_id, $query_similarity_task_request): \FlowHunt\Model\VectorDocumentsTaskResponse
 ```
 
 Schedule Similar Docs By Query
@@ -221,22 +221,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SemanticSearchApi(
+$apiInstance = new FlowHunt\Api\SemanticSearchApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$query_similarity_task_request = new \OpenAPI\Client\Model\QuerySimilarityTaskRequest(); // \OpenAPI\Client\Model\QuerySimilarityTaskRequest
+$query_similarity_task_request = new \FlowHunt\Model\QuerySimilarityTaskRequest(); // \FlowHunt\Model\QuerySimilarityTaskRequest
 
 try {
     $result = $apiInstance->scheduleSimilarDocsByQuery($workspace_id, $query_similarity_task_request);
@@ -251,11 +251,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **query_similarity_task_request** | [**\OpenAPI\Client\Model\QuerySimilarityTaskRequest**](../Model/QuerySimilarityTaskRequest.md)|  | |
+| **query_similarity_task_request** | [**\FlowHunt\Model\QuerySimilarityTaskRequest**](../Model/QuerySimilarityTaskRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VectorDocumentsTaskResponse**](../Model/VectorDocumentsTaskResponse.md)
+[**\FlowHunt\Model\VectorDocumentsTaskResponse**](../Model/VectorDocumentsTaskResponse.md)
 
 ### Authorization
 

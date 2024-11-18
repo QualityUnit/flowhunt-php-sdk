@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'name' => 'string',
         'description' => 'string',
-        'flow_type' => '\OpenAPI\Client\Model\FlowType',
+        'flow_type' => '\FlowHunt\Model\FlowType',
         'component_count' => 'int',
         'executed_at' => '\DateTime',
         'category_id' => 'string'
@@ -430,7 +430,7 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets flow_type
      *
-     * @return \OpenAPI\Client\Model\FlowType
+     * @return \FlowHunt\Model\FlowType
      */
     public function getFlowType()
     {
@@ -440,7 +440,7 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets flow_type
      *
-     * @param \OpenAPI\Client\Model\FlowType $flow_type Flow type
+     * @param \FlowHunt\Model\FlowType $flow_type Flow type
      *
      * @return self
      */

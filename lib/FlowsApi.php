@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
  * FlowsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -197,12 +197,12 @@ class FlowsApi
      * Create Chatbot Session
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateRequest $flow_session_create_request flow_session_create_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateRequest $flow_session_create_request flow_session_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbotSession'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createChatbotSession($workspace_id, $flow_session_create_request, string $contentType = self::contentTypes['createChatbotSession'][0])
     {
@@ -216,12 +216,12 @@ class FlowsApi
      * Create Chatbot Session
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateRequest $flow_session_create_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateRequest $flow_session_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbotSession'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createChatbotSessionWithHttpInfo($workspace_id, $flow_session_create_request, string $contentType = self::contentTypes['createChatbotSession'][0])
     {
@@ -252,11 +252,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\OpenAPI\Client\Model\FlowSessionResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -274,16 +274,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -301,7 +301,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -320,7 +320,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -353,7 +353,7 @@ class FlowsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionResponse',
+                        '\FlowHunt\Model\FlowSessionResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -361,7 +361,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -377,7 +377,7 @@ class FlowsApi
      * Create Chatbot Session
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateRequest $flow_session_create_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateRequest $flow_session_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbotSession'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -399,7 +399,7 @@ class FlowsApi
      * Create Chatbot Session
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateRequest $flow_session_create_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateRequest $flow_session_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbotSession'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -407,7 +407,7 @@ class FlowsApi
      */
     public function createChatbotSessionAsyncWithHttpInfo($workspace_id, $flow_session_create_request, string $contentType = self::contentTypes['createChatbotSession'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionResponse';
+        $returnType = '\FlowHunt\Model\FlowSessionResponse';
         $request = $this->createChatbotSessionRequest($workspace_id, $flow_session_create_request, $contentType);
 
         return $this->client
@@ -450,7 +450,7 @@ class FlowsApi
      * Create request for operation 'createChatbotSession'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateRequest $flow_session_create_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateRequest $flow_session_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createChatbotSession'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -560,12 +560,12 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createFlow($workspace_id, $flow_create, string $contentType = self::contentTypes['createFlow'][0])
     {
@@ -579,12 +579,12 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createFlowWithHttpInfo($workspace_id, $flow_create, string $contentType = self::contentTypes['createFlow'][0])
     {
@@ -615,11 +615,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\OpenAPI\Client\Model\FlowDetailResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowDetailResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowDetailResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowDetailResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -637,16 +637,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowDetailResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowDetailResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -664,7 +664,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -683,7 +683,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+            $returnType = '\FlowHunt\Model\FlowDetailResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -716,7 +716,7 @@ class FlowsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowDetailResponse',
+                        '\FlowHunt\Model\FlowDetailResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -724,7 +724,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -740,7 +740,7 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -762,7 +762,7 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -770,7 +770,7 @@ class FlowsApi
      */
     public function createFlowAsyncWithHttpInfo($workspace_id, $flow_create, string $contentType = self::contentTypes['createFlow'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+        $returnType = '\FlowHunt\Model\FlowDetailResponse';
         $request = $this->createFlowRequest($workspace_id, $flow_create, $contentType);
 
         return $this->client
@@ -813,7 +813,7 @@ class FlowsApi
      * Create request for operation 'createFlow'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -932,12 +932,12 @@ class FlowsApi
      * Create Flow Category
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowCategory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowCategoryResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createFlowCategory($workspace_id, $flow_category_create_request, string $contentType = self::contentTypes['createFlowCategory'][0])
     {
@@ -951,12 +951,12 @@ class FlowsApi
      * Create Flow Category
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowCategory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowCategoryResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createFlowCategoryWithHttpInfo($workspace_id, $flow_category_create_request, string $contentType = self::contentTypes['createFlowCategory'][0])
     {
@@ -987,11 +987,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowCategoryResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowCategoryResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowCategoryResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowCategoryResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1009,16 +1009,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowCategoryResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowCategoryResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1036,7 +1036,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1055,7 +1055,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowCategoryResponse';
+            $returnType = '\FlowHunt\Model\FlowCategoryResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1088,7 +1088,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowCategoryResponse',
+                        '\FlowHunt\Model\FlowCategoryResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1096,7 +1096,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1112,7 +1112,7 @@ class FlowsApi
      * Create Flow Category
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1134,7 +1134,7 @@ class FlowsApi
      * Create Flow Category
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1142,7 +1142,7 @@ class FlowsApi
      */
     public function createFlowCategoryAsyncWithHttpInfo($workspace_id, $flow_category_create_request, string $contentType = self::contentTypes['createFlowCategory'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowCategoryResponse';
+        $returnType = '\FlowHunt\Model\FlowCategoryResponse';
         $request = $this->createFlowCategoryRequest($workspace_id, $flow_category_create_request, $contentType);
 
         return $this->client
@@ -1185,7 +1185,7 @@ class FlowsApi
      * Create request for operation 'createFlowCategory'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1304,12 +1304,12 @@ class FlowsApi
      * Create Flow Session
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request flow_session_create_from_flow_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request flow_session_create_from_flow_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowSession'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createFlowSession($workspace_id, $flow_session_create_from_flow_request, string $contentType = self::contentTypes['createFlowSession'][0])
     {
@@ -1323,12 +1323,12 @@ class FlowsApi
      * Create Flow Session
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowSession'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createFlowSessionWithHttpInfo($workspace_id, $flow_session_create_from_flow_request, string $contentType = self::contentTypes['createFlowSession'][0])
     {
@@ -1359,11 +1359,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\OpenAPI\Client\Model\FlowSessionResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1381,16 +1381,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1408,7 +1408,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1427,7 +1427,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1460,7 +1460,7 @@ class FlowsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionResponse',
+                        '\FlowHunt\Model\FlowSessionResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1468,7 +1468,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1484,7 +1484,7 @@ class FlowsApi
      * Create Flow Session
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowSession'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1506,7 +1506,7 @@ class FlowsApi
      * Create Flow Session
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowSession'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1514,7 +1514,7 @@ class FlowsApi
      */
     public function createFlowSessionAsyncWithHttpInfo($workspace_id, $flow_session_create_from_flow_request, string $contentType = self::contentTypes['createFlowSession'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionResponse';
+        $returnType = '\FlowHunt\Model\FlowSessionResponse';
         $request = $this->createFlowSessionRequest($workspace_id, $flow_session_create_from_flow_request, $contentType);
 
         return $this->client
@@ -1557,7 +1557,7 @@ class FlowsApi
      * Create request for operation 'createFlowSession'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
+     * @param  \FlowHunt\Model\FlowSessionCreateFromFlowRequest $flow_session_create_from_flow_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowSession'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1679,9 +1679,9 @@ class FlowsApi
      * @param  string $file_id file_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAttachment'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function deleteAttachment($session_id, $file_id, string $contentType = self::contentTypes['deleteAttachment'][0])
     {
@@ -1698,9 +1698,9 @@ class FlowsApi
      * @param  string $file_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAttachment'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteAttachmentWithHttpInfo($session_id, $file_id, string $contentType = self::contentTypes['deleteAttachment'][0])
     {
@@ -1731,11 +1731,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1753,16 +1753,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1780,7 +1780,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1799,7 +1799,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1832,7 +1832,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1840,7 +1840,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1886,7 +1886,7 @@ class FlowsApi
      */
     public function deleteAttachmentAsyncWithHttpInfo($session_id, $file_id, string $contentType = self::contentTypes['deleteAttachment'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->deleteAttachmentRequest($session_id, $file_id, $contentType);
 
         return $this->client
@@ -2042,9 +2042,9 @@ class FlowsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function deleteFlow($flow_id, $workspace_id, string $contentType = self::contentTypes['deleteFlow'][0])
     {
@@ -2061,9 +2061,9 @@ class FlowsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteFlowWithHttpInfo($flow_id, $workspace_id, string $contentType = self::contentTypes['deleteFlow'][0])
     {
@@ -2094,11 +2094,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2116,16 +2116,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2143,7 +2143,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2162,7 +2162,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2195,7 +2195,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2203,7 +2203,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2249,7 +2249,7 @@ class FlowsApi
      */
     public function deleteFlowAsyncWithHttpInfo($flow_id, $workspace_id, string $contentType = self::contentTypes['deleteFlow'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->deleteFlowRequest($flow_id, $workspace_id, $contentType);
 
         return $this->client
@@ -2415,9 +2415,9 @@ class FlowsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlowCategory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function deleteFlowCategory($cat_id, $workspace_id, string $contentType = self::contentTypes['deleteFlowCategory'][0])
     {
@@ -2434,9 +2434,9 @@ class FlowsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlowCategory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteFlowCategoryWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deleteFlowCategory'][0])
     {
@@ -2467,11 +2467,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2489,16 +2489,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2516,7 +2516,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2535,7 +2535,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2568,7 +2568,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2576,7 +2576,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2622,7 +2622,7 @@ class FlowsApi
      */
     public function deleteFlowCategoryAsyncWithHttpInfo($cat_id, $workspace_id, string $contentType = self::contentTypes['deleteFlowCategory'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->deleteFlowCategoryRequest($cat_id, $workspace_id, $contentType);
 
         return $this->client
@@ -2788,9 +2788,9 @@ class FlowsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['get'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function get($flow_id, $workspace_id, string $contentType = self::contentTypes['get'][0])
     {
@@ -2807,9 +2807,9 @@ class FlowsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['get'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getWithHttpInfo($flow_id, $workspace_id, string $contentType = self::contentTypes['get'][0])
     {
@@ -2840,11 +2840,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowDetailResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowDetailResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowDetailResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowDetailResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2862,16 +2862,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowDetailResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowDetailResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2889,7 +2889,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2908,7 +2908,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+            $returnType = '\FlowHunt\Model\FlowDetailResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2941,7 +2941,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowDetailResponse',
+                        '\FlowHunt\Model\FlowDetailResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2949,7 +2949,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2995,7 +2995,7 @@ class FlowsApi
      */
     public function getAsyncWithHttpInfo($flow_id, $workspace_id, string $contentType = self::contentTypes['get'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+        $returnType = '\FlowHunt\Model\FlowDetailResponse';
         $request = $this->getRequest($flow_id, $workspace_id, $contentType);
 
         return $this->client
@@ -3159,7 +3159,7 @@ class FlowsApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllComponents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed
      */
@@ -3176,7 +3176,7 @@ class FlowsApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllComponents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
      */
@@ -3457,9 +3457,9 @@ class FlowsApi
      * @param  string $session_id session_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachments'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionAttachmentResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionAttachmentResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getAttachments($session_id, string $contentType = self::contentTypes['getAttachments'][0])
     {
@@ -3475,9 +3475,9 @@ class FlowsApi
      * @param  string $session_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachments'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionAttachmentResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionAttachmentResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAttachmentsWithHttpInfo($session_id, string $contentType = self::contentTypes['getAttachments'][0])
     {
@@ -3508,11 +3508,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionAttachmentResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionAttachmentResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3530,16 +3530,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionAttachmentResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3557,7 +3557,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3576,7 +3576,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]';
+            $returnType = '\FlowHunt\Model\FlowSessionAttachmentResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3609,7 +3609,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]',
+                        '\FlowHunt\Model\FlowSessionAttachmentResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3617,7 +3617,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3661,7 +3661,7 @@ class FlowsApi
      */
     public function getAttachmentsAsyncWithHttpInfo($session_id, string $contentType = self::contentTypes['getAttachments'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]';
+        $returnType = '\FlowHunt\Model\FlowSessionAttachmentResponse[]';
         $request = $this->getAttachmentsRequest($session_id, $contentType);
 
         return $this->client
@@ -3802,9 +3802,9 @@ class FlowsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInvokedFlowResults'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function getInvokedFlowResults($flow_id, $task_id, $workspace_id, string $contentType = self::contentTypes['getInvokedFlowResults'][0])
     {
@@ -3822,9 +3822,9 @@ class FlowsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInvokedFlowResults'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvokedFlowResultsWithHttpInfo($flow_id, $task_id, $workspace_id, string $contentType = self::contentTypes['getInvokedFlowResults'][0])
     {
@@ -3855,11 +3855,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3877,16 +3877,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3904,7 +3904,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3923,7 +3923,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskResponse';
+            $returnType = '\FlowHunt\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3956,7 +3956,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskResponse',
+                        '\FlowHunt\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3964,7 +3964,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4012,7 +4012,7 @@ class FlowsApi
      */
     public function getInvokedFlowResultsAsyncWithHttpInfo($flow_id, $task_id, $workspace_id, string $contentType = self::contentTypes['getInvokedFlowResults'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskResponse';
+        $returnType = '\FlowHunt\Model\TaskResponse';
         $request = $this->getInvokedFlowResultsRequest($flow_id, $task_id, $workspace_id, $contentType);
 
         return $this->client
@@ -4193,9 +4193,9 @@ class FlowsApi
      * @param  string $flow_id flow_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function getPublicFlow($flow_id, string $contentType = self::contentTypes['getPublicFlow'][0])
     {
@@ -4211,9 +4211,9 @@ class FlowsApi
      * @param  string $flow_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPublicFlowWithHttpInfo($flow_id, string $contentType = self::contentTypes['getPublicFlow'][0])
     {
@@ -4244,11 +4244,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowDetailResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowDetailResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowDetailResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowDetailResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4266,16 +4266,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowDetailResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowDetailResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4293,7 +4293,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4312,7 +4312,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+            $returnType = '\FlowHunt\Model\FlowDetailResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4345,7 +4345,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowDetailResponse',
+                        '\FlowHunt\Model\FlowDetailResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4353,7 +4353,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4397,7 +4397,7 @@ class FlowsApi
      */
     public function getPublicFlowAsyncWithHttpInfo($flow_id, string $contentType = self::contentTypes['getPublicFlow'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+        $returnType = '\FlowHunt\Model\FlowDetailResponse';
         $request = $this->getPublicFlowRequest($flow_id, $contentType);
 
         return $this->client
@@ -4546,9 +4546,9 @@ class FlowsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTriggerTypes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TriggerResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TriggerResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function getTriggerTypes($flow_id, $workspace_id, string $contentType = self::contentTypes['getTriggerTypes'][0])
     {
@@ -4565,9 +4565,9 @@ class FlowsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTriggerTypes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TriggerResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TriggerResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTriggerTypesWithHttpInfo($flow_id, $workspace_id, string $contentType = self::contentTypes['getTriggerTypes'][0])
     {
@@ -4598,11 +4598,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TriggerResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TriggerResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TriggerResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TriggerResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4620,16 +4620,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TriggerResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TriggerResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4647,7 +4647,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4666,7 +4666,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TriggerResponse';
+            $returnType = '\FlowHunt\Model\TriggerResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4699,7 +4699,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TriggerResponse',
+                        '\FlowHunt\Model\TriggerResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4707,7 +4707,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4753,7 +4753,7 @@ class FlowsApi
      */
     public function getTriggerTypesAsyncWithHttpInfo($flow_id, $workspace_id, string $contentType = self::contentTypes['getTriggerTypes'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TriggerResponse';
+        $returnType = '\FlowHunt\Model\TriggerResponse';
         $request = $this->getTriggerTypesRequest($flow_id, $workspace_id, $contentType);
 
         return $this->client
@@ -4917,12 +4917,12 @@ class FlowsApi
      *
      * @param  string $flow_id flow_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function invokeFlow($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlow'][0])
     {
@@ -4937,12 +4937,12 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function invokeFlowWithHttpInfo($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlow'][0])
     {
@@ -4973,11 +4973,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4995,16 +4995,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5022,7 +5022,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5041,7 +5041,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskResponse';
+            $returnType = '\FlowHunt\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -5074,7 +5074,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskResponse',
+                        '\FlowHunt\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5082,7 +5082,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5099,7 +5099,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5122,7 +5122,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5130,7 +5130,7 @@ class FlowsApi
      */
     public function invokeFlowAsyncWithHttpInfo($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlow'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskResponse';
+        $returnType = '\FlowHunt\Model\TaskResponse';
         $request = $this->invokeFlowRequest($flow_id, $workspace_id, $flow_invoke_request, $contentType);
 
         return $this->client
@@ -5174,7 +5174,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5308,12 +5308,12 @@ class FlowsApi
      * Invoke Flow Response
      *
      * @param  string $session_id session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionInvokeRequest $flow_session_invoke_request flow_session_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowSessionInvokeRequest $flow_session_invoke_request flow_session_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowResponse'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionInvocationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionInvocationResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function invokeFlowResponse($session_id, $flow_session_invoke_request, string $contentType = self::contentTypes['invokeFlowResponse'][0])
     {
@@ -5327,12 +5327,12 @@ class FlowsApi
      * Invoke Flow Response
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowResponse'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionInvocationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionInvocationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function invokeFlowResponseWithHttpInfo($session_id, $flow_session_invoke_request, string $contentType = self::contentTypes['invokeFlowResponse'][0])
     {
@@ -5363,11 +5363,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionInvocationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionInvocationResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionInvocationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionInvocationResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5385,16 +5385,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionInvocationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionInvocationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5412,7 +5412,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5431,7 +5431,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionInvocationResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionInvocationResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -5464,7 +5464,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionInvocationResponse',
+                        '\FlowHunt\Model\FlowSessionInvocationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5472,7 +5472,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5488,7 +5488,7 @@ class FlowsApi
      * Invoke Flow Response
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5510,7 +5510,7 @@ class FlowsApi
      * Invoke Flow Response
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5518,7 +5518,7 @@ class FlowsApi
      */
     public function invokeFlowResponseAsyncWithHttpInfo($session_id, $flow_session_invoke_request, string $contentType = self::contentTypes['invokeFlowResponse'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionInvocationResponse';
+        $returnType = '\FlowHunt\Model\FlowSessionInvocationResponse';
         $request = $this->invokeFlowResponseRequest($session_id, $flow_session_invoke_request, $contentType);
 
         return $this->client
@@ -5561,7 +5561,7 @@ class FlowsApi
      * Create request for operation 'invokeFlowResponse'
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowSessionInvokeRequest $flow_session_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5671,12 +5671,12 @@ class FlowsApi
      *
      * @param  string $flow_id flow_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowSingleton'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function invokeFlowSingleton($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlowSingleton'][0])
     {
@@ -5691,12 +5691,12 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowSingleton'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TaskResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\TaskResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function invokeFlowSingletonWithHttpInfo($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlowSingleton'][0])
     {
@@ -5727,11 +5727,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\TaskResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\TaskResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\TaskResponse' !== 'string') {
+                        if ('\FlowHunt\Model\TaskResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5749,16 +5749,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\TaskResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\TaskResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5776,7 +5776,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5795,7 +5795,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\TaskResponse';
+            $returnType = '\FlowHunt\Model\TaskResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -5828,7 +5828,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TaskResponse',
+                        '\FlowHunt\Model\TaskResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5836,7 +5836,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5853,7 +5853,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowSingleton'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5876,7 +5876,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowSingleton'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5884,7 +5884,7 @@ class FlowsApi
      */
     public function invokeFlowSingletonAsyncWithHttpInfo($flow_id, $workspace_id, $flow_invoke_request, string $contentType = self::contentTypes['invokeFlowSingleton'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\TaskResponse';
+        $returnType = '\FlowHunt\Model\TaskResponse';
         $request = $this->invokeFlowSingletonRequest($flow_id, $workspace_id, $flow_invoke_request, $contentType);
 
         return $this->client
@@ -5928,7 +5928,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowInvokeRequest $flow_invoke_request (required)
+     * @param  \FlowHunt\Model\FlowInvokeRequest $flow_invoke_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['invokeFlowSingleton'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6065,9 +6065,9 @@ class FlowsApi
      * @param  string $message_id message_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pollFlowResponse'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionInvocationMessageResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionInvocationMessageResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function pollFlowResponse($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
@@ -6084,9 +6084,9 @@ class FlowsApi
      * @param  string $message_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pollFlowResponse'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionInvocationMessageResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionInvocationMessageResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function pollFlowResponseWithHttpInfo($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
@@ -6117,11 +6117,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionInvocationMessageResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionInvocationMessageResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6139,16 +6139,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionInvocationMessageResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6166,7 +6166,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6185,7 +6185,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionInvocationMessageResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -6218,7 +6218,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse',
+                        '\FlowHunt\Model\FlowSessionInvocationMessageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6226,7 +6226,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6272,7 +6272,7 @@ class FlowsApi
      */
     public function pollFlowResponseAsyncWithHttpInfo($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse';
+        $returnType = '\FlowHunt\Model\FlowSessionInvocationMessageResponse';
         $request = $this->pollFlowResponseRequest($session_id, $message_id, $contentType);
 
         return $this->client
@@ -6425,12 +6425,12 @@ class FlowsApi
      * Search
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSearchRequest $flow_search_request flow_search_request (required)
+     * @param  \FlowHunt\Model\FlowSearchRequest $flow_search_request flow_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['search'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function search($workspace_id, $flow_search_request, string $contentType = self::contentTypes['search'][0])
     {
@@ -6444,12 +6444,12 @@ class FlowsApi
      * Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSearchRequest $flow_search_request (required)
+     * @param  \FlowHunt\Model\FlowSearchRequest $flow_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['search'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchWithHttpInfo($workspace_id, $flow_search_request, string $contentType = self::contentTypes['search'][0])
     {
@@ -6480,11 +6480,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\FlowResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6502,16 +6502,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6529,7 +6529,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6548,7 +6548,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowResponse[]';
+            $returnType = '\FlowHunt\Model\FlowResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -6581,7 +6581,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowResponse[]',
+                        '\FlowHunt\Model\FlowResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6589,7 +6589,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6605,7 +6605,7 @@ class FlowsApi
      * Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSearchRequest $flow_search_request (required)
+     * @param  \FlowHunt\Model\FlowSearchRequest $flow_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['search'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6627,7 +6627,7 @@ class FlowsApi
      * Search
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSearchRequest $flow_search_request (required)
+     * @param  \FlowHunt\Model\FlowSearchRequest $flow_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['search'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6635,7 +6635,7 @@ class FlowsApi
      */
     public function searchAsyncWithHttpInfo($workspace_id, $flow_search_request, string $contentType = self::contentTypes['search'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowResponse[]';
+        $returnType = '\FlowHunt\Model\FlowResponse[]';
         $request = $this->searchRequest($workspace_id, $flow_search_request, $contentType);
 
         return $this->client
@@ -6678,7 +6678,7 @@ class FlowsApi
      * Create request for operation 'search'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSearchRequest $flow_search_request (required)
+     * @param  \FlowHunt\Model\FlowSearchRequest $flow_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['search'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6797,12 +6797,12 @@ class FlowsApi
      * Search All
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AllFlowsSearchRequest $all_flows_search_request all_flows_search_request (required)
+     * @param  \FlowHunt\Model\AllFlowsSearchRequest $all_flows_search_request all_flows_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchAll'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function searchAll($workspace_id, $all_flows_search_request, string $contentType = self::contentTypes['searchAll'][0])
     {
@@ -6816,12 +6816,12 @@ class FlowsApi
      * Search All
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AllFlowsSearchRequest $all_flows_search_request (required)
+     * @param  \FlowHunt\Model\AllFlowsSearchRequest $all_flows_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchAll'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchAllWithHttpInfo($workspace_id, $all_flows_search_request, string $contentType = self::contentTypes['searchAll'][0])
     {
@@ -6852,11 +6852,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\FlowResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6874,16 +6874,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6901,7 +6901,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6920,7 +6920,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowResponse[]';
+            $returnType = '\FlowHunt\Model\FlowResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -6953,7 +6953,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowResponse[]',
+                        '\FlowHunt\Model\FlowResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6961,7 +6961,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6977,7 +6977,7 @@ class FlowsApi
      * Search All
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AllFlowsSearchRequest $all_flows_search_request (required)
+     * @param  \FlowHunt\Model\AllFlowsSearchRequest $all_flows_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6999,7 +6999,7 @@ class FlowsApi
      * Search All
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AllFlowsSearchRequest $all_flows_search_request (required)
+     * @param  \FlowHunt\Model\AllFlowsSearchRequest $all_flows_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7007,7 +7007,7 @@ class FlowsApi
      */
     public function searchAllAsyncWithHttpInfo($workspace_id, $all_flows_search_request, string $contentType = self::contentTypes['searchAll'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowResponse[]';
+        $returnType = '\FlowHunt\Model\FlowResponse[]';
         $request = $this->searchAllRequest($workspace_id, $all_flows_search_request, $contentType);
 
         return $this->client
@@ -7050,7 +7050,7 @@ class FlowsApi
      * Create request for operation 'searchAll'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\AllFlowsSearchRequest $all_flows_search_request (required)
+     * @param  \FlowHunt\Model\AllFlowsSearchRequest $all_flows_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7169,12 +7169,12 @@ class FlowsApi
      * Search Flow Categories
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategorySearchRequest $flow_category_search_request flow_category_search_request (required)
+     * @param  \FlowHunt\Model\FlowCategorySearchRequest $flow_category_search_request flow_category_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowCategories'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowCategoryResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowCategoryResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function searchFlowCategories($workspace_id, $flow_category_search_request, string $contentType = self::contentTypes['searchFlowCategories'][0])
     {
@@ -7188,12 +7188,12 @@ class FlowsApi
      * Search Flow Categories
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategorySearchRequest $flow_category_search_request (required)
+     * @param  \FlowHunt\Model\FlowCategorySearchRequest $flow_category_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowCategories'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowCategoryResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowCategoryResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchFlowCategoriesWithHttpInfo($workspace_id, $flow_category_search_request, string $contentType = self::contentTypes['searchFlowCategories'][0])
     {
@@ -7224,11 +7224,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowCategoryResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowCategoryResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowCategoryResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\FlowCategoryResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7246,16 +7246,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowCategoryResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowCategoryResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7273,7 +7273,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7292,7 +7292,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowCategoryResponse[]';
+            $returnType = '\FlowHunt\Model\FlowCategoryResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -7325,7 +7325,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowCategoryResponse[]',
+                        '\FlowHunt\Model\FlowCategoryResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7333,7 +7333,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7349,7 +7349,7 @@ class FlowsApi
      * Search Flow Categories
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategorySearchRequest $flow_category_search_request (required)
+     * @param  \FlowHunt\Model\FlowCategorySearchRequest $flow_category_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7371,7 +7371,7 @@ class FlowsApi
      * Search Flow Categories
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategorySearchRequest $flow_category_search_request (required)
+     * @param  \FlowHunt\Model\FlowCategorySearchRequest $flow_category_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7379,7 +7379,7 @@ class FlowsApi
      */
     public function searchFlowCategoriesAsyncWithHttpInfo($workspace_id, $flow_category_search_request, string $contentType = self::contentTypes['searchFlowCategories'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowCategoryResponse[]';
+        $returnType = '\FlowHunt\Model\FlowCategoryResponse[]';
         $request = $this->searchFlowCategoriesRequest($workspace_id, $flow_category_search_request, $contentType);
 
         return $this->client
@@ -7422,7 +7422,7 @@ class FlowsApi
      * Create request for operation 'searchFlowCategories'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategorySearchRequest $flow_category_search_request (required)
+     * @param  \FlowHunt\Model\FlowCategorySearchRequest $flow_category_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchFlowCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7541,12 +7541,12 @@ class FlowsApi
      * Stream Flow Response
      *
      * @param  string $session_id session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionStreamRequest $flow_session_stream_request flow_session_stream_request (required)
+     * @param  \FlowHunt\Model\FlowSessionStreamRequest $flow_session_stream_request flow_session_stream_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['streamFlowResponse'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return mixed|\FlowHunt\Model\HTTPValidationError
      */
     public function streamFlowResponse($session_id, $flow_session_stream_request, string $contentType = self::contentTypes['streamFlowResponse'][0])
     {
@@ -7560,12 +7560,12 @@ class FlowsApi
      * Stream Flow Response
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
+     * @param  \FlowHunt\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['streamFlowResponse'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function streamFlowResponseWithHttpInfo($session_id, $flow_session_stream_request, string $contentType = self::contentTypes['streamFlowResponse'][0])
     {
@@ -7623,11 +7623,11 @@ class FlowsApi
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7645,7 +7645,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7705,7 +7705,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7721,7 +7721,7 @@ class FlowsApi
      * Stream Flow Response
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
+     * @param  \FlowHunt\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['streamFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7743,7 +7743,7 @@ class FlowsApi
      * Stream Flow Response
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
+     * @param  \FlowHunt\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['streamFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7794,7 +7794,7 @@ class FlowsApi
      * Create request for operation 'streamFlowResponse'
      *
      * @param  string $session_id (required)
-     * @param  \OpenAPI\Client\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
+     * @param  \FlowHunt\Model\FlowSessionStreamRequest $flow_session_stream_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['streamFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7904,12 +7904,12 @@ class FlowsApi
      *
      * @param  string $flow_id flow_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function updateFlow($flow_id, $workspace_id, $flow_create, string $contentType = self::contentTypes['updateFlow'][0])
     {
@@ -7924,12 +7924,12 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlow'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowDetailResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFlowWithHttpInfo($flow_id, $workspace_id, $flow_create, string $contentType = self::contentTypes['updateFlow'][0])
     {
@@ -7960,11 +7960,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowDetailResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowDetailResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowDetailResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowDetailResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7982,16 +7982,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowDetailResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowDetailResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -8009,7 +8009,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -8028,7 +8028,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+            $returnType = '\FlowHunt\Model\FlowDetailResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -8061,7 +8061,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowDetailResponse',
+                        '\FlowHunt\Model\FlowDetailResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8069,7 +8069,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8086,7 +8086,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8109,7 +8109,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8117,7 +8117,7 @@ class FlowsApi
      */
     public function updateFlowAsyncWithHttpInfo($flow_id, $workspace_id, $flow_create, string $contentType = self::contentTypes['updateFlow'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowDetailResponse';
+        $returnType = '\FlowHunt\Model\FlowDetailResponse';
         $request = $this->updateFlowRequest($flow_id, $workspace_id, $flow_create, $contentType);
 
         return $this->client
@@ -8161,7 +8161,7 @@ class FlowsApi
      *
      * @param  string $flow_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCreate $flow_create (required)
+     * @param  \FlowHunt\Model\FlowCreate $flow_create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8296,12 +8296,12 @@ class FlowsApi
      *
      * @param  string $cat_id cat_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlowCategory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowCategoryResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function updateFlowCategory($cat_id, $workspace_id, $flow_category_create_request, string $contentType = self::contentTypes['updateFlowCategory'][0])
     {
@@ -8316,12 +8316,12 @@ class FlowsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlowCategory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowCategoryResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowCategoryResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFlowCategoryWithHttpInfo($cat_id, $workspace_id, $flow_category_create_request, string $contentType = self::contentTypes['updateFlowCategory'][0])
     {
@@ -8352,11 +8352,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowCategoryResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowCategoryResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowCategoryResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowCategoryResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -8374,16 +8374,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowCategoryResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowCategoryResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -8401,7 +8401,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -8420,7 +8420,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowCategoryResponse';
+            $returnType = '\FlowHunt\Model\FlowCategoryResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -8453,7 +8453,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowCategoryResponse',
+                        '\FlowHunt\Model\FlowCategoryResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8461,7 +8461,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8478,7 +8478,7 @@ class FlowsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlowCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8501,7 +8501,7 @@ class FlowsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlowCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8509,7 +8509,7 @@ class FlowsApi
      */
     public function updateFlowCategoryAsyncWithHttpInfo($cat_id, $workspace_id, $flow_category_create_request, string $contentType = self::contentTypes['updateFlowCategory'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowCategoryResponse';
+        $returnType = '\FlowHunt\Model\FlowCategoryResponse';
         $request = $this->updateFlowCategoryRequest($cat_id, $workspace_id, $flow_category_create_request, $contentType);
 
         return $this->client
@@ -8553,7 +8553,7 @@ class FlowsApi
      *
      * @param  string $cat_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
+     * @param  \FlowHunt\Model\FlowCategoryCreateRequest $flow_category_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlowCategory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8690,9 +8690,9 @@ class FlowsApi
      * @param  \SplFileObject $file file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadAttachments'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FlowSessionAttachmentResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionAttachmentResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function uploadAttachments($session_id, $file, string $contentType = self::contentTypes['uploadAttachments'][0])
     {
@@ -8709,9 +8709,9 @@ class FlowsApi
      * @param  \SplFileObject $file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadAttachments'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FlowSessionAttachmentResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionAttachmentResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function uploadAttachmentsWithHttpInfo($session_id, $file, string $contentType = self::contentTypes['uploadAttachments'][0])
     {
@@ -8742,11 +8742,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FlowSessionAttachmentResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionAttachmentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\FlowSessionAttachmentResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionAttachmentResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -8764,16 +8764,16 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FlowSessionAttachmentResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionAttachmentResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -8791,7 +8791,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -8810,7 +8810,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\FlowSessionAttachmentResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionAttachmentResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -8843,7 +8843,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FlowSessionAttachmentResponse',
+                        '\FlowHunt\Model\FlowSessionAttachmentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8851,7 +8851,7 @@ class FlowsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8897,7 +8897,7 @@ class FlowsApi
      */
     public function uploadAttachmentsAsyncWithHttpInfo($session_id, $file, string $contentType = self::contentTypes['uploadAttachments'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\FlowSessionAttachmentResponse';
+        $returnType = '\FlowHunt\Model\FlowSessionAttachmentResponse';
         $request = $this->uploadAttachmentsRequest($session_id, $file, $contentType);
 
         return $this->client

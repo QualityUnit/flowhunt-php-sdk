@@ -1,4 +1,4 @@
-# OpenAPI\Client\BillingApi
+# FlowHunt\BillingApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -28,15 +28,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\BillingApi(
+$apiInstance = new FlowHunt\Api\BillingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -88,21 +88,21 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\BillingApi(
+$apiInstance = new FlowHunt\Api\BillingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$checkout_create_request = new \OpenAPI\Client\Model\CheckoutCreateRequest(); // \OpenAPI\Client\Model\CheckoutCreateRequest
+$checkout_create_request = new \FlowHunt\Model\CheckoutCreateRequest(); // \FlowHunt\Model\CheckoutCreateRequest
 
 try {
     $result = $apiInstance->createCheckout($checkout_create_request);
@@ -116,7 +116,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **checkout_create_request** | [**\OpenAPI\Client\Model\CheckoutCreateRequest**](../Model/CheckoutCreateRequest.md)|  | |
+| **checkout_create_request** | [**\FlowHunt\Model\CheckoutCreateRequest**](../Model/CheckoutCreateRequest.md)|  | |
 
 ### Return type
 
@@ -151,15 +151,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\BillingApi(
+$apiInstance = new FlowHunt\Api\BillingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -198,7 +198,7 @@ This endpoint does not need any parameter.
 ## `getPricingPlans()`
 
 ```php
-getPricingPlans(): \OpenAPI\Client\Model\PlanResponse[]
+getPricingPlans(): \FlowHunt\Model\PlanResponse[]
 ```
 
 Get Pricing Plans
@@ -211,7 +211,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\BillingApi(
+$apiInstance = new FlowHunt\Api\BillingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -231,7 +231,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PlanResponse[]**](../Model/PlanResponse.md)
+[**\FlowHunt\Model\PlanResponse[]**](../Model/PlanResponse.md)
 
 ### Authorization
 
@@ -249,7 +249,7 @@ No authorization required
 ## `getUserPlan()`
 
 ```php
-getUserPlan($workspace_id): \OpenAPI\Client\Model\UserPlanResponse
+getUserPlan($workspace_id): \FlowHunt\Model\UserPlanResponse
 ```
 
 Get User Plan
@@ -262,7 +262,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\BillingApi(
+$apiInstance = new FlowHunt\Api\BillingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -285,7 +285,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserPlanResponse**](../Model/UserPlanResponse.md)
+[**\FlowHunt\Model\UserPlanResponse**](../Model/UserPlanResponse.md)
 
 ### Authorization
 
@@ -303,7 +303,7 @@ No authorization required
 ## `stripeWebhook()`
 
 ```php
-stripeWebhook(): \OpenAPI\Client\Model\Completed
+stripeWebhook(): \FlowHunt\Model\Completed
 ```
 
 Stripe Webhook
@@ -316,7 +316,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\BillingApi(
+$apiInstance = new FlowHunt\Api\BillingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -336,7 +336,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 

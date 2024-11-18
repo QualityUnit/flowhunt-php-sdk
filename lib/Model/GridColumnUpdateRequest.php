@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * GridColumnUpdateRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,10 +59,10 @@ class GridColumnUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'name' => 'string',
         'position' => 'int',
-        'data_type' => '\OpenAPI\Client\Model\ColumnDataType',
+        'data_type' => '\FlowHunt\Model\ColumnDataType',
         'data_type_options' => 'string',
         'input_columns' => 'string[]',
-        'executor_type' => '\OpenAPI\Client\Model\ColumnExecutorType',
+        'executor_type' => '\FlowHunt\Model\ColumnExecutorType',
         'executor_flow_id' => 'string',
         'executor_input_template' => 'string'
     ];
@@ -409,7 +409,7 @@ class GridColumnUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets data_type
      *
-     * @return \OpenAPI\Client\Model\ColumnDataType|null
+     * @return \FlowHunt\Model\ColumnDataType|null
      */
     public function getDataType()
     {
@@ -419,7 +419,7 @@ class GridColumnUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets data_type
      *
-     * @param \OpenAPI\Client\Model\ColumnDataType|null $data_type data_type
+     * @param \FlowHunt\Model\ColumnDataType|null $data_type data_type
      *
      * @return self
      */
@@ -511,7 +511,7 @@ class GridColumnUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets executor_type
      *
-     * @return \OpenAPI\Client\Model\ColumnExecutorType|null
+     * @return \FlowHunt\Model\ColumnExecutorType|null
      */
     public function getExecutorType()
     {
@@ -521,7 +521,7 @@ class GridColumnUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets executor_type
      *
-     * @param \OpenAPI\Client\Model\ColumnExecutorType|null $executor_type executor_type
+     * @param \FlowHunt\Model\ColumnExecutorType|null $executor_type executor_type
      *
      * @return self
      */

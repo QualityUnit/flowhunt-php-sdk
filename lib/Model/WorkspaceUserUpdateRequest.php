@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * WorkspaceUserUpdateRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class WorkspaceUserUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
-        'role' => '\OpenAPI\Client\Model\Role'
+        'role' => '\FlowHunt\Model\Role'
     ];
 
     /**
@@ -292,7 +292,7 @@ class WorkspaceUserUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets role
      *
-     * @return \OpenAPI\Client\Model\Role|null
+     * @return \FlowHunt\Model\Role|null
      */
     public function getRole()
     {
@@ -302,7 +302,7 @@ class WorkspaceUserUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets role
      *
-     * @param \OpenAPI\Client\Model\Role|null $role Role of the user in the workspace
+     * @param \FlowHunt\Model\Role|null $role Role of the user in the workspace
      *
      * @return self
      */

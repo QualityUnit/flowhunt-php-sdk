@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * SerpSearchRequests Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requests' => '\OpenAPI\Client\Model\SerpSearchRequest[]',
+        'requests' => '\FlowHunt\Model\SerpSearchRequest[]',
         'live_mode' => 'bool'
     ];
 
@@ -299,7 +299,7 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets requests
      *
-     * @return \OpenAPI\Client\Model\SerpSearchRequest[]|null
+     * @return \FlowHunt\Model\SerpSearchRequest[]|null
      */
     public function getRequests()
     {
@@ -309,7 +309,7 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets requests
      *
-     * @param \OpenAPI\Client\Model\SerpSearchRequest[]|null $requests requests
+     * @param \FlowHunt\Model\SerpSearchRequest[]|null $requests requests
      *
      * @return self
      */

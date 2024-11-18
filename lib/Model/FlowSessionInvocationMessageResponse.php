@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowSessionInvocationMessageResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,9 +58,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       */
     protected static $openAPITypes = [
         'message_id' => 'string',
-        'response_status' => '\OpenAPI\Client\Model\FlowSessionStatus',
-        'loading_indicator' => 'array<string,\OpenAPI\Client\Model\FlowLoadingIndicator>',
-        'intermediate_results' => 'array<string,\OpenAPI\Client\Model\TaskOutput>',
+        'response_status' => '\FlowHunt\Model\FlowSessionStatus',
+        'loading_indicator' => 'array<string,\FlowHunt\Model\FlowLoadingIndicator>',
+        'intermediate_results' => 'array<string,\FlowHunt\Model\TaskOutput>',
         'final_response' => 'string[]'
     ];
 
@@ -353,7 +353,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Gets response_status
      *
-     * @return \OpenAPI\Client\Model\FlowSessionStatus
+     * @return \FlowHunt\Model\FlowSessionStatus
      */
     public function getResponseStatus()
     {
@@ -363,7 +363,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Sets response_status
      *
-     * @param \OpenAPI\Client\Model\FlowSessionStatus $response_status Response status
+     * @param \FlowHunt\Model\FlowSessionStatus $response_status Response status
      *
      * @return self
      */
@@ -380,7 +380,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Gets loading_indicator
      *
-     * @return array<string,\OpenAPI\Client\Model\FlowLoadingIndicator>|null
+     * @return array<string,\FlowHunt\Model\FlowLoadingIndicator>|null
      */
     public function getLoadingIndicator()
     {
@@ -390,7 +390,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Sets loading_indicator
      *
-     * @param array<string,\OpenAPI\Client\Model\FlowLoadingIndicator>|null $loading_indicator loading_indicator
+     * @param array<string,\FlowHunt\Model\FlowLoadingIndicator>|null $loading_indicator loading_indicator
      *
      * @return self
      */
@@ -414,7 +414,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Gets intermediate_results
      *
-     * @return array<string,\OpenAPI\Client\Model\TaskOutput>|null
+     * @return array<string,\FlowHunt\Model\TaskOutput>|null
      */
     public function getIntermediateResults()
     {
@@ -424,7 +424,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     /**
      * Sets intermediate_results
      *
-     * @param array<string,\OpenAPI\Client\Model\TaskOutput>|null $intermediate_results intermediate_results
+     * @param array<string,\FlowHunt\Model\TaskOutput>|null $intermediate_results intermediate_results
      *
      * @return self
      */

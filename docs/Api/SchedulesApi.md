@@ -1,4 +1,4 @@
-# OpenAPI\Client\SchedulesApi
+# FlowHunt\SchedulesApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -17,7 +17,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createSchedules()`
 
 ```php
-createSchedules($workspace_id, $schedule_create_request): \OpenAPI\Client\Model\ScheduleResponse[]
+createSchedules($workspace_id, $schedule_create_request): \FlowHunt\Model\ScheduleResponse[]
 ```
 
 Create Schedules
@@ -30,22 +30,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$schedule_create_request = array(new \OpenAPI\Client\Model\ScheduleCreateRequest()); // \OpenAPI\Client\Model\ScheduleCreateRequest[]
+$schedule_create_request = array(new \FlowHunt\Model\ScheduleCreateRequest()); // \FlowHunt\Model\ScheduleCreateRequest[]
 
 try {
     $result = $apiInstance->createSchedules($workspace_id, $schedule_create_request);
@@ -60,11 +60,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **schedule_create_request** | [**\OpenAPI\Client\Model\ScheduleCreateRequest[]**](../Model/ScheduleCreateRequest.md)|  | |
+| **schedule_create_request** | [**\FlowHunt\Model\ScheduleCreateRequest[]**](../Model/ScheduleCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScheduleResponse[]**](../Model/ScheduleResponse.md)
+[**\FlowHunt\Model\ScheduleResponse[]**](../Model/ScheduleResponse.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ try {
 ## `deleteSchedule()`
 
 ```php
-deleteSchedule($schedule_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteSchedule($schedule_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Schedule
@@ -95,15 +95,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -129,7 +129,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ try {
 ## `getSchedule()`
 
 ```php
-getSchedule($schedule_id, $workspace_id): \OpenAPI\Client\Model\ScheduleResponse
+getSchedule($schedule_id, $workspace_id): \FlowHunt\Model\ScheduleResponse
 ```
 
 Get Schedule
@@ -160,15 +160,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -194,7 +194,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScheduleResponse**](../Model/ScheduleResponse.md)
+[**\FlowHunt\Model\ScheduleResponse**](../Model/ScheduleResponse.md)
 
 ### Authorization
 
@@ -212,7 +212,7 @@ try {
 ## `getScheduleUrlDetails()`
 
 ```php
-getScheduleUrlDetails($schedule_id, $url_id, $domain_id, $workspace_id): \OpenAPI\Client\Model\ScheduleUrlDetailResponse
+getScheduleUrlDetails($schedule_id, $url_id, $domain_id, $workspace_id): \FlowHunt\Model\ScheduleUrlDetailResponse
 ```
 
 Get Schedule Url Details
@@ -225,15 +225,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -263,7 +263,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScheduleUrlDetailResponse**](../Model/ScheduleUrlDetailResponse.md)
+[**\FlowHunt\Model\ScheduleUrlDetailResponse**](../Model/ScheduleUrlDetailResponse.md)
 
 ### Authorization
 
@@ -281,7 +281,7 @@ try {
 ## `getSchedules()`
 
 ```php
-getSchedules($workspace_id, $schedule_search_request): \OpenAPI\Client\Model\ScheduleResponse[]
+getSchedules($workspace_id, $schedule_search_request): \FlowHunt\Model\ScheduleResponse[]
 ```
 
 Get Schedules
@@ -294,22 +294,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$schedule_search_request = new \OpenAPI\Client\Model\ScheduleSearchRequest(); // \OpenAPI\Client\Model\ScheduleSearchRequest
+$schedule_search_request = new \FlowHunt\Model\ScheduleSearchRequest(); // \FlowHunt\Model\ScheduleSearchRequest
 
 try {
     $result = $apiInstance->getSchedules($workspace_id, $schedule_search_request);
@@ -324,11 +324,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **schedule_search_request** | [**\OpenAPI\Client\Model\ScheduleSearchRequest**](../Model/ScheduleSearchRequest.md)|  | |
+| **schedule_search_request** | [**\FlowHunt\Model\ScheduleSearchRequest**](../Model/ScheduleSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScheduleResponse[]**](../Model/ScheduleResponse.md)
+[**\FlowHunt\Model\ScheduleResponse[]**](../Model/ScheduleResponse.md)
 
 ### Authorization
 
@@ -346,7 +346,7 @@ try {
 ## `runSchedule()`
 
 ```php
-runSchedule($schedule_id, $workspace_id): \OpenAPI\Client\Model\Completed
+runSchedule($schedule_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Run Schedule
@@ -359,15 +359,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -393,7 +393,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -411,7 +411,7 @@ try {
 ## `searchScheduleUrls()`
 
 ```php
-searchScheduleUrls($workspace_id, $schedule_url_search_request): \OpenAPI\Client\Model\ScheduleUrlResponse[]
+searchScheduleUrls($workspace_id, $schedule_url_search_request): \FlowHunt\Model\ScheduleUrlResponse[]
 ```
 
 Search Schedule Urls
@@ -424,22 +424,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$schedule_url_search_request = new \OpenAPI\Client\Model\ScheduleUrlSearchRequest(); // \OpenAPI\Client\Model\ScheduleUrlSearchRequest
+$schedule_url_search_request = new \FlowHunt\Model\ScheduleUrlSearchRequest(); // \FlowHunt\Model\ScheduleUrlSearchRequest
 
 try {
     $result = $apiInstance->searchScheduleUrls($workspace_id, $schedule_url_search_request);
@@ -454,11 +454,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **schedule_url_search_request** | [**\OpenAPI\Client\Model\ScheduleUrlSearchRequest**](../Model/ScheduleUrlSearchRequest.md)|  | |
+| **schedule_url_search_request** | [**\FlowHunt\Model\ScheduleUrlSearchRequest**](../Model/ScheduleUrlSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScheduleUrlResponse[]**](../Model/ScheduleUrlResponse.md)
+[**\FlowHunt\Model\ScheduleUrlResponse[]**](../Model/ScheduleUrlResponse.md)
 
 ### Authorization
 
@@ -476,7 +476,7 @@ try {
 ## `updateSchedule()`
 
 ```php
-updateSchedule($schedule_id, $workspace_id, $schedule_update_request): \OpenAPI\Client\Model\ScheduleResponse
+updateSchedule($schedule_id, $workspace_id, $schedule_update_request): \FlowHunt\Model\ScheduleResponse
 ```
 
 Update Schedule
@@ -489,15 +489,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\SchedulesApi(
+$apiInstance = new FlowHunt\Api\SchedulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -505,7 +505,7 @@ $apiInstance = new OpenAPI\Client\Api\SchedulesApi(
 );
 $schedule_id = 'schedule_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$schedule_update_request = new \OpenAPI\Client\Model\ScheduleUpdateRequest(); // \OpenAPI\Client\Model\ScheduleUpdateRequest
+$schedule_update_request = new \FlowHunt\Model\ScheduleUpdateRequest(); // \FlowHunt\Model\ScheduleUpdateRequest
 
 try {
     $result = $apiInstance->updateSchedule($schedule_id, $workspace_id, $schedule_update_request);
@@ -521,11 +521,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **schedule_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **schedule_update_request** | [**\OpenAPI\Client\Model\ScheduleUpdateRequest**](../Model/ScheduleUpdateRequest.md)|  | |
+| **schedule_update_request** | [**\FlowHunt\Model\ScheduleUpdateRequest**](../Model/ScheduleUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScheduleResponse**](../Model/ScheduleResponse.md)
+[**\FlowHunt\Model\ScheduleResponse**](../Model/ScheduleResponse.md)
 
 ### Authorization
 

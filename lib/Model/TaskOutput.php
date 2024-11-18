@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * TaskOutput Class Doc Comment
  *
  * @category Class
  * @description Class that represents the result of a task.
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -66,7 +66,7 @@ class TaskOutput implements ModelInterface, ArrayAccess, \JsonSerializable
         'pydantic' => 'object',
         'json_dict' => 'object',
         'agent' => 'string',
-        'output_format' => '\OpenAPI\Client\Model\OutputFormat'
+        'output_format' => '\FlowHunt\Model\OutputFormat'
     ];
 
     /**
@@ -599,7 +599,7 @@ class TaskOutput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets output_format
      *
-     * @return \OpenAPI\Client\Model\OutputFormat|null
+     * @return \FlowHunt\Model\OutputFormat|null
      */
     public function getOutputFormat()
     {
@@ -609,7 +609,7 @@ class TaskOutput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets output_format
      *
-     * @param \OpenAPI\Client\Model\OutputFormat|null $output_format Output format of the task
+     * @param \FlowHunt\Model\OutputFormat|null $output_format Output format of the task
      *
      * @return self
      */

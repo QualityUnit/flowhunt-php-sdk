@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
  * IntegrationsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -167,12 +167,12 @@ class IntegrationsApi
      * Create Api Integration
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request api_integration_create_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request api_integration_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createApiIntegration($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
@@ -186,12 +186,12 @@ class IntegrationsApi
      * Create Api Integration
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createApiIntegrationWithHttpInfo($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
@@ -222,11 +222,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -244,16 +244,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -271,7 +271,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -290,7 +290,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -323,7 +323,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
+                        '\FlowHunt\Model\ApiIntegrationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -331,7 +331,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -347,7 +347,7 @@ class IntegrationsApi
      * Create Api Integration
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -369,7 +369,7 @@ class IntegrationsApi
      * Create Api Integration
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -377,7 +377,7 @@ class IntegrationsApi
      */
     public function createApiIntegrationAsyncWithHttpInfo($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
         $request = $this->createApiIntegrationRequest($workspace_id, $api_integration_create_request, $contentType);
 
         return $this->client
@@ -420,7 +420,7 @@ class IntegrationsApi
      * Create request for operation 'createApiIntegration'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -540,12 +540,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id integration_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request api_endpoint_create_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request api_endpoint_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function createApiIntegrationEndpoint($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
     {
@@ -560,12 +560,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createApiIntegrationEndpointWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
     {
@@ -596,11 +596,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiEndpointResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiEndpointResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiEndpointResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ApiEndpointResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -618,16 +618,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiEndpointResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiEndpointResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -645,7 +645,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -664,7 +664,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+            $returnType = '\FlowHunt\Model\ApiEndpointResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -697,7 +697,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiEndpointResponse',
+                        '\FlowHunt\Model\ApiEndpointResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -705,7 +705,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -722,7 +722,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -745,7 +745,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -753,7 +753,7 @@ class IntegrationsApi
      */
     public function createApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+        $returnType = '\FlowHunt\Model\ApiEndpointResponse';
         $request = $this->createApiIntegrationEndpointRequest($integration_id, $workspace_id, $api_endpoint_create_request, $contentType);
 
         return $this->client
@@ -797,7 +797,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -933,9 +933,9 @@ class IntegrationsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllIntegrations'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\IntegrationResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\IntegrationResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getAllIntegrations($workspace_id, string $contentType = self::contentTypes['getAllIntegrations'][0])
     {
@@ -951,9 +951,9 @@ class IntegrationsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllIntegrations'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\IntegrationResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\IntegrationResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllIntegrationsWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getAllIntegrations'][0])
     {
@@ -984,11 +984,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\IntegrationResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\IntegrationResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\IntegrationResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\IntegrationResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1006,16 +1006,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\IntegrationResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\IntegrationResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1033,7 +1033,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1052,7 +1052,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\IntegrationResponse[]';
+            $returnType = '\FlowHunt\Model\IntegrationResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1085,7 +1085,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\IntegrationResponse[]',
+                        '\FlowHunt\Model\IntegrationResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1093,7 +1093,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1137,7 +1137,7 @@ class IntegrationsApi
      */
     public function getAllIntegrationsAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getAllIntegrations'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\IntegrationResponse[]';
+        $returnType = '\FlowHunt\Model\IntegrationResponse[]';
         $request = $this->getAllIntegrationsRequest($workspace_id, $contentType);
 
         return $this->client
@@ -1287,9 +1287,9 @@ class IntegrationsApi
      * @param  string $integration_id integration_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function getApiIntegration($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
     {
@@ -1306,9 +1306,9 @@ class IntegrationsApi
      * @param  string $integration_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getApiIntegrationWithHttpInfo($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
     {
@@ -1339,11 +1339,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1361,16 +1361,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1388,7 +1388,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1407,7 +1407,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1440,7 +1440,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
+                        '\FlowHunt\Model\ApiIntegrationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1448,7 +1448,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1494,7 +1494,7 @@ class IntegrationsApi
      */
     public function getApiIntegrationAsyncWithHttpInfo($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
         $request = $this->getApiIntegrationRequest($workspace_id, $integration_id, $contentType);
 
         return $this->client
@@ -1659,9 +1659,9 @@ class IntegrationsApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationAuthMethods'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]
+     * @return \FlowHunt\Model\ApiIntegrationAuthenticationMethod[]
      */
     public function getApiIntegrationAuthMethods(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
     {
@@ -1676,9 +1676,9 @@ class IntegrationsApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationAuthMethods'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiIntegrationAuthenticationMethod[], HTTP status code, HTTP response headers (array of strings)
      */
     public function getApiIntegrationAuthMethodsWithHttpInfo(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
     {
@@ -1709,11 +1709,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]' !== 'string') {
+                        if ('\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1731,7 +1731,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1750,7 +1750,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]';
+            $returnType = '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1783,7 +1783,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]',
+                        '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1825,7 +1825,7 @@ class IntegrationsApi
      */
     public function getApiIntegrationAuthMethodsAsyncWithHttpInfo(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiIntegrationAuthenticationMethod[]';
+        $returnType = '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]';
         $request = $this->getApiIntegrationAuthMethodsRequest($contentType);
 
         return $this->client
@@ -1956,12 +1956,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id integration_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request api_endpoint_search_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request api_endpoint_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiEndpointResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiEndpointResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getApiIntegrationEndpoints($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
     {
@@ -1976,12 +1976,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiEndpointResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiEndpointResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getApiIntegrationEndpointsWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
     {
@@ -2012,11 +2012,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiEndpointResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiEndpointResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiEndpointResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\ApiEndpointResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2034,16 +2034,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiEndpointResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiEndpointResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2061,7 +2061,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2080,7 +2080,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse[]';
+            $returnType = '\FlowHunt\Model\ApiEndpointResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2113,7 +2113,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiEndpointResponse[]',
+                        '\FlowHunt\Model\ApiEndpointResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2121,7 +2121,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2138,7 +2138,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2161,7 +2161,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2169,7 +2169,7 @@ class IntegrationsApi
      */
     public function getApiIntegrationEndpointsAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse[]';
+        $returnType = '\FlowHunt\Model\ApiEndpointResponse[]';
         $request = $this->getApiIntegrationEndpointsRequest($integration_id, $workspace_id, $api_endpoint_search_request, $contentType);
 
         return $this->client
@@ -2213,7 +2213,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2347,12 +2347,12 @@ class IntegrationsApi
      * Get Api Integrations
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request api_integration_search_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request api_integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiIntegrationResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiIntegrationResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getApiIntegrations($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
     {
@@ -2366,12 +2366,12 @@ class IntegrationsApi
      * Get Api Integrations
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiIntegrationResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getApiIntegrationsWithHttpInfo($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
     {
@@ -2402,11 +2402,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiIntegrationResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\ApiIntegrationResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2424,16 +2424,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2451,7 +2451,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2470,7 +2470,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse[]';
+            $returnType = '\FlowHunt\Model\ApiIntegrationResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2503,7 +2503,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiIntegrationResponse[]',
+                        '\FlowHunt\Model\ApiIntegrationResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2511,7 +2511,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2527,7 +2527,7 @@ class IntegrationsApi
      * Get Api Integrations
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2549,7 +2549,7 @@ class IntegrationsApi
      * Get Api Integrations
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2557,7 +2557,7 @@ class IntegrationsApi
      */
     public function getApiIntegrationsAsyncWithHttpInfo($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse[]';
+        $returnType = '\FlowHunt\Model\ApiIntegrationResponse[]';
         $request = $this->getApiIntegrationsRequest($workspace_id, $api_integration_search_request, $contentType);
 
         return $this->client
@@ -2600,7 +2600,7 @@ class IntegrationsApi
      * Create request for operation 'getApiIntegrations'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2719,12 +2719,12 @@ class IntegrationsApi
      * Get My Integrations
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationSearchRequest $integration_search_request integration_search_request (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\IntegrationDetailResponse[]|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\IntegrationDetailResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getMyIntegrations($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
     {
@@ -2738,12 +2738,12 @@ class IntegrationsApi
      * Get My Integrations
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\IntegrationDetailResponse[]|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\IntegrationDetailResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMyIntegrationsWithHttpInfo($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
     {
@@ -2774,11 +2774,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\IntegrationDetailResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\IntegrationDetailResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\IntegrationDetailResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\IntegrationDetailResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2796,16 +2796,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\IntegrationDetailResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\IntegrationDetailResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2823,7 +2823,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2842,7 +2842,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\IntegrationDetailResponse[]';
+            $returnType = '\FlowHunt\Model\IntegrationDetailResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2875,7 +2875,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\IntegrationDetailResponse[]',
+                        '\FlowHunt\Model\IntegrationDetailResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2883,7 +2883,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2899,7 +2899,7 @@ class IntegrationsApi
      * Get My Integrations
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2921,7 +2921,7 @@ class IntegrationsApi
      * Get My Integrations
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2929,7 +2929,7 @@ class IntegrationsApi
      */
     public function getMyIntegrationsAsyncWithHttpInfo($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\IntegrationDetailResponse[]';
+        $returnType = '\FlowHunt\Model\IntegrationDetailResponse[]';
         $request = $this->getMyIntegrationsRequest($workspace_id, $integration_search_request, $contentType);
 
         return $this->client
@@ -2972,7 +2972,7 @@ class IntegrationsApi
      * Create request for operation 'getMyIntegrations'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3095,9 +3095,9 @@ class IntegrationsApi
      * @param  \SplFileObject $file file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpec'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function importOpenapiSpec($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
     {
@@ -3115,9 +3115,9 @@ class IntegrationsApi
      * @param  \SplFileObject $file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpec'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function importOpenapiSpecWithHttpInfo($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
     {
@@ -3148,11 +3148,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3170,16 +3170,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3197,7 +3197,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3216,7 +3216,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3249,7 +3249,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
+                        '\FlowHunt\Model\ApiIntegrationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3257,7 +3257,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3305,7 +3305,7 @@ class IntegrationsApi
      */
     public function importOpenapiSpecAsyncWithHttpInfo($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
         $request = $this->importOpenapiSpecRequest($integration_id, $workspace_id, $file, $contentType);
 
         return $this->client
@@ -3489,12 +3489,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id integration_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request api_integration_open_api_import_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request api_integration_open_api_import_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function importOpenapiSpecFromUrl($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
     {
@@ -3509,12 +3509,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function importOpenapiSpecFromUrlWithHttpInfo($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
     {
@@ -3545,11 +3545,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3567,16 +3567,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3594,7 +3594,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3613,7 +3613,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3646,7 +3646,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
+                        '\FlowHunt\Model\ApiIntegrationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3654,7 +3654,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3671,7 +3671,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3694,7 +3694,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3702,7 +3702,7 @@ class IntegrationsApi
      */
     public function importOpenapiSpecFromUrlAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
         $request = $this->importOpenapiSpecFromUrlRequest($integration_id, $workspace_id, $api_integration_open_api_import_request, $contentType);
 
         return $this->client
@@ -3746,7 +3746,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3883,9 +3883,9 @@ class IntegrationsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function removeApiIntegration($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
@@ -3902,9 +3902,9 @@ class IntegrationsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function removeApiIntegrationWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
@@ -3935,11 +3935,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3957,16 +3957,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3984,7 +3984,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4003,7 +4003,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4036,7 +4036,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4044,7 +4044,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4090,7 +4090,7 @@ class IntegrationsApi
      */
     public function removeApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->removeApiIntegrationRequest($integration_id, $workspace_id, $contentType);
 
         return $this->client
@@ -4257,9 +4257,9 @@ class IntegrationsApi
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
     public function removeApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
@@ -4277,9 +4277,9 @@ class IntegrationsApi
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Completed|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function removeApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
@@ -4310,11 +4310,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Completed' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Completed' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4332,16 +4332,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Completed', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4359,7 +4359,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4378,7 +4378,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\Completed';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4411,7 +4411,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Completed',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4419,7 +4419,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4467,7 +4467,7 @@ class IntegrationsApi
      */
     public function removeApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Completed';
+        $returnType = '\FlowHunt\Model\Completed';
         $request = $this->removeApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $contentType);
 
         return $this->client
@@ -4647,12 +4647,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id integration_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request api_integration_update_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request api_integration_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function updateApiIntegration($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
     {
@@ -4667,12 +4667,12 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiIntegrationResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateApiIntegrationWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
     {
@@ -4703,11 +4703,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiIntegrationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4725,16 +4725,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiIntegrationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4752,7 +4752,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4771,7 +4771,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4804,7 +4804,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiIntegrationResponse',
+                        '\FlowHunt\Model\ApiIntegrationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4812,7 +4812,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4829,7 +4829,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4852,7 +4852,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4860,7 +4860,7 @@ class IntegrationsApi
      */
     public function updateApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiIntegrationResponse';
+        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
         $request = $this->updateApiIntegrationRequest($integration_id, $workspace_id, $api_integration_update_request, $contentType);
 
         return $this->client
@@ -4904,7 +4904,7 @@ class IntegrationsApi
      *
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
+     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5040,12 +5040,12 @@ class IntegrationsApi
      * @param  string $integration_id integration_id (required)
      * @param  string $endpoint_id endpoint_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request api_endpoint_update_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request api_endpoint_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError
      */
     public function updateApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
     {
@@ -5061,12 +5061,12 @@ class IntegrationsApi
      * @param  string $integration_id (required)
      * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ApiEndpointResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
     {
@@ -5097,11 +5097,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ApiEndpointResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ApiEndpointResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiEndpointResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ApiEndpointResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5119,16 +5119,16 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiEndpointResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiEndpointResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5146,7 +5146,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5165,7 +5165,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+            $returnType = '\FlowHunt\Model\ApiEndpointResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -5198,7 +5198,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiEndpointResponse',
+                        '\FlowHunt\Model\ApiEndpointResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5206,7 +5206,7 @@ class IntegrationsApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5224,7 +5224,7 @@ class IntegrationsApi
      * @param  string $integration_id (required)
      * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5248,7 +5248,7 @@ class IntegrationsApi
      * @param  string $integration_id (required)
      * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5256,7 +5256,7 @@ class IntegrationsApi
      */
     public function updateApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ApiEndpointResponse';
+        $returnType = '\FlowHunt\Model\ApiEndpointResponse';
         $request = $this->updateApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType);
 
         return $this->client
@@ -5301,7 +5301,7 @@ class IntegrationsApi
      * @param  string $integration_id (required)
      * @param  string $endpoint_id (required)
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
+     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

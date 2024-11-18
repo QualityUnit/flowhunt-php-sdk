@@ -1,4 +1,4 @@
-# OpenAPI\Client\TagsApi
+# FlowHunt\TagsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -13,7 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createTag()`
 
 ```php
-createTag($workspace_id, $tag_create_request): \OpenAPI\Client\Model\TagResponse
+createTag($workspace_id, $tag_create_request): \FlowHunt\Model\TagResponse
 ```
 
 Create Tag
@@ -26,22 +26,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TagsApi(
+$apiInstance = new FlowHunt\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$tag_create_request = new \OpenAPI\Client\Model\TagCreateRequest(); // \OpenAPI\Client\Model\TagCreateRequest
+$tag_create_request = new \FlowHunt\Model\TagCreateRequest(); // \FlowHunt\Model\TagCreateRequest
 
 try {
     $result = $apiInstance->createTag($workspace_id, $tag_create_request);
@@ -56,11 +56,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **tag_create_request** | [**\OpenAPI\Client\Model\TagCreateRequest**](../Model/TagCreateRequest.md)|  | |
+| **tag_create_request** | [**\FlowHunt\Model\TagCreateRequest**](../Model/TagCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TagResponse**](../Model/TagResponse.md)
+[**\FlowHunt\Model\TagResponse**](../Model/TagResponse.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ try {
 ## `deleteTag()`
 
 ```php
-deleteTag($tag_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteTag($tag_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Tag
@@ -91,15 +91,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TagsApi(
+$apiInstance = new FlowHunt\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -125,7 +125,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ try {
 ## `searchTags()`
 
 ```php
-searchTags($workspace_id, $tag_search_request): \OpenAPI\Client\Model\TagResponse[]
+searchTags($workspace_id, $tag_search_request): \FlowHunt\Model\TagResponse[]
 ```
 
 Search Tags
@@ -156,22 +156,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TagsApi(
+$apiInstance = new FlowHunt\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$tag_search_request = new \OpenAPI\Client\Model\TagSearchRequest(); // \OpenAPI\Client\Model\TagSearchRequest
+$tag_search_request = new \FlowHunt\Model\TagSearchRequest(); // \FlowHunt\Model\TagSearchRequest
 
 try {
     $result = $apiInstance->searchTags($workspace_id, $tag_search_request);
@@ -186,11 +186,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **tag_search_request** | [**\OpenAPI\Client\Model\TagSearchRequest**](../Model/TagSearchRequest.md)|  | |
+| **tag_search_request** | [**\FlowHunt\Model\TagSearchRequest**](../Model/TagSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TagResponse[]**](../Model/TagResponse.md)
+[**\FlowHunt\Model\TagResponse[]**](../Model/TagResponse.md)
 
 ### Authorization
 
@@ -208,7 +208,7 @@ try {
 ## `updateTag()`
 
 ```php
-updateTag($tag_id, $workspace_id, $tag_update_request): \OpenAPI\Client\Model\TagResponse
+updateTag($tag_id, $workspace_id, $tag_update_request): \FlowHunt\Model\TagResponse
 ```
 
 Update Tag
@@ -221,15 +221,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TagsApi(
+$apiInstance = new FlowHunt\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -237,7 +237,7 @@ $apiInstance = new OpenAPI\Client\Api\TagsApi(
 );
 $tag_id = 'tag_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$tag_update_request = new \OpenAPI\Client\Model\TagUpdateRequest(); // \OpenAPI\Client\Model\TagUpdateRequest
+$tag_update_request = new \FlowHunt\Model\TagUpdateRequest(); // \FlowHunt\Model\TagUpdateRequest
 
 try {
     $result = $apiInstance->updateTag($tag_id, $workspace_id, $tag_update_request);
@@ -253,11 +253,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **tag_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **tag_update_request** | [**\OpenAPI\Client\Model\TagUpdateRequest**](../Model/TagUpdateRequest.md)|  | |
+| **tag_update_request** | [**\FlowHunt\Model\TagUpdateRequest**](../Model/TagUpdateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TagResponse**](../Model/TagResponse.md)
+[**\FlowHunt\Model\TagResponse**](../Model/TagResponse.md)
 
 ### Authorization
 

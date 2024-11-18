@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **url_id** | **string** |  |
 **url** | **string** |  |
 **last_text_timestamp** | **\DateTime** |  |
-**page_screenshot** | [**\OpenAPI\Client\Model\UrlScreenshotResponse**](UrlScreenshotResponse.md) |  |
+**page_screenshot** | [**\FlowHunt\Model\UrlScreenshotResponse**](UrlScreenshotResponse.md) |  |
 **url_title** | **string** |  |
 **url_meta_description** | **string** |  |
 **url_og_image** | **string** |  |

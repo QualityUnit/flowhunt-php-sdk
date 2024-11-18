@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **channel_title** | **string** |  | [optional]
 **duration** | **int** |  | [optional]
 **keywords** | **string[]** |  | [optional]
-**doc_type** | [**\OpenAPI\Client\Model\DocumentType**](DocumentType.md) |  | [optional]
+**doc_type** | [**\FlowHunt\Model\DocumentType**](DocumentType.md) |  | [optional]
 **credits** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FlowSearchRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'flow_type' => '\OpenAPI\Client\Model\FlowType',
+        'flow_type' => '\FlowHunt\Model\FlowType',
         'name' => 'string',
         'category_id' => 'string'
     ];
@@ -306,7 +306,7 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets flow_type
      *
-     * @return \OpenAPI\Client\Model\FlowType|null
+     * @return \FlowHunt\Model\FlowType|null
      */
     public function getFlowType()
     {
@@ -316,7 +316,7 @@ class FlowSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets flow_type
      *
-     * @param \OpenAPI\Client\Model\FlowType|null $flow_type flow_type
+     * @param \FlowHunt\Model\FlowType|null $flow_type flow_type
      *
      * @return self
      */

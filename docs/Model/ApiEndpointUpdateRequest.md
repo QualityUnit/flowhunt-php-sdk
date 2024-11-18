@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **path** | **string** |  |
-**method** | [**\OpenAPI\Client\Model\ApiMethod**](ApiMethod.md) |  |
+**method** | [**\FlowHunt\Model\ApiMethod**](ApiMethod.md) |  |
 **parameters** | **object[]** |  | [optional]
 **request_body** | **object** |  | [optional]
 **success_response** | **object** |  | [optional]

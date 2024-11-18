@@ -1,4 +1,4 @@
-# OpenAPI\Client\FlowsApi
+# FlowHunt\FlowsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -33,7 +33,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createChatbotSession()`
 
 ```php
-createChatbotSession($workspace_id, $flow_session_create_request): \OpenAPI\Client\Model\FlowSessionResponse
+createChatbotSession($workspace_id, $flow_session_create_request): \FlowHunt\Model\FlowSessionResponse
 ```
 
 Create Chatbot Session
@@ -46,13 +46,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $workspace_id = 'workspace_id_example'; // string
-$flow_session_create_request = new \OpenAPI\Client\Model\FlowSessionCreateRequest(); // \OpenAPI\Client\Model\FlowSessionCreateRequest
+$flow_session_create_request = new \FlowHunt\Model\FlowSessionCreateRequest(); // \FlowHunt\Model\FlowSessionCreateRequest
 
 try {
     $result = $apiInstance->createChatbotSession($workspace_id, $flow_session_create_request);
@@ -67,11 +67,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **flow_session_create_request** | [**\OpenAPI\Client\Model\FlowSessionCreateRequest**](../Model/FlowSessionCreateRequest.md)|  | |
+| **flow_session_create_request** | [**\FlowHunt\Model\FlowSessionCreateRequest**](../Model/FlowSessionCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionResponse**](../Model/FlowSessionResponse.md)
+[**\FlowHunt\Model\FlowSessionResponse**](../Model/FlowSessionResponse.md)
 
 ### Authorization
 
@@ -89,7 +89,7 @@ No authorization required
 ## `createFlow()`
 
 ```php
-createFlow($workspace_id, $flow_create): \OpenAPI\Client\Model\FlowDetailResponse
+createFlow($workspace_id, $flow_create): \FlowHunt\Model\FlowDetailResponse
 ```
 
 Create Flow
@@ -102,22 +102,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$flow_create = new \OpenAPI\Client\Model\FlowCreate(); // \OpenAPI\Client\Model\FlowCreate
+$flow_create = new \FlowHunt\Model\FlowCreate(); // \FlowHunt\Model\FlowCreate
 
 try {
     $result = $apiInstance->createFlow($workspace_id, $flow_create);
@@ -132,11 +132,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **flow_create** | [**\OpenAPI\Client\Model\FlowCreate**](../Model/FlowCreate.md)|  | |
+| **flow_create** | [**\FlowHunt\Model\FlowCreate**](../Model/FlowCreate.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
+[**\FlowHunt\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ try {
 ## `createFlowCategory()`
 
 ```php
-createFlowCategory($workspace_id, $flow_category_create_request): \OpenAPI\Client\Model\FlowCategoryResponse
+createFlowCategory($workspace_id, $flow_category_create_request): \FlowHunt\Model\FlowCategoryResponse
 ```
 
 Create Flow Category
@@ -167,22 +167,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$flow_category_create_request = new \OpenAPI\Client\Model\FlowCategoryCreateRequest(); // \OpenAPI\Client\Model\FlowCategoryCreateRequest
+$flow_category_create_request = new \FlowHunt\Model\FlowCategoryCreateRequest(); // \FlowHunt\Model\FlowCategoryCreateRequest
 
 try {
     $result = $apiInstance->createFlowCategory($workspace_id, $flow_category_create_request);
@@ -197,11 +197,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **flow_category_create_request** | [**\OpenAPI\Client\Model\FlowCategoryCreateRequest**](../Model/FlowCategoryCreateRequest.md)|  | |
+| **flow_category_create_request** | [**\FlowHunt\Model\FlowCategoryCreateRequest**](../Model/FlowCategoryCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
+[**\FlowHunt\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
 
 ### Authorization
 
@@ -219,7 +219,7 @@ try {
 ## `createFlowSession()`
 
 ```php
-createFlowSession($workspace_id, $flow_session_create_from_flow_request): \OpenAPI\Client\Model\FlowSessionResponse
+createFlowSession($workspace_id, $flow_session_create_from_flow_request): \FlowHunt\Model\FlowSessionResponse
 ```
 
 Create Flow Session
@@ -232,22 +232,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$flow_session_create_from_flow_request = new \OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest(); // \OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest
+$flow_session_create_from_flow_request = new \FlowHunt\Model\FlowSessionCreateFromFlowRequest(); // \FlowHunt\Model\FlowSessionCreateFromFlowRequest
 
 try {
     $result = $apiInstance->createFlowSession($workspace_id, $flow_session_create_from_flow_request);
@@ -262,11 +262,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **flow_session_create_from_flow_request** | [**\OpenAPI\Client\Model\FlowSessionCreateFromFlowRequest**](../Model/FlowSessionCreateFromFlowRequest.md)|  | |
+| **flow_session_create_from_flow_request** | [**\FlowHunt\Model\FlowSessionCreateFromFlowRequest**](../Model/FlowSessionCreateFromFlowRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionResponse**](../Model/FlowSessionResponse.md)
+[**\FlowHunt\Model\FlowSessionResponse**](../Model/FlowSessionResponse.md)
 
 ### Authorization
 
@@ -284,7 +284,7 @@ try {
 ## `deleteAttachment()`
 
 ```php
-deleteAttachment($session_id, $file_id): \OpenAPI\Client\Model\Completed
+deleteAttachment($session_id, $file_id): \FlowHunt\Model\Completed
 ```
 
 Delete Attachment
@@ -297,7 +297,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -322,7 +322,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -340,7 +340,7 @@ No authorization required
 ## `deleteFlow()`
 
 ```php
-deleteFlow($flow_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteFlow($flow_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Flow
@@ -353,15 +353,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -387,7 +387,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -405,7 +405,7 @@ try {
 ## `deleteFlowCategory()`
 
 ```php
-deleteFlowCategory($cat_id, $workspace_id): \OpenAPI\Client\Model\Completed
+deleteFlowCategory($cat_id, $workspace_id): \FlowHunt\Model\Completed
 ```
 
 Delete Flow Category
@@ -418,15 +418,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -452,7 +452,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Completed**](../Model/Completed.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -470,7 +470,7 @@ try {
 ## `get()`
 
 ```php
-get($flow_id, $workspace_id): \OpenAPI\Client\Model\FlowDetailResponse
+get($flow_id, $workspace_id): \FlowHunt\Model\FlowDetailResponse
 ```
 
 Get
@@ -483,15 +483,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -517,7 +517,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
+[**\FlowHunt\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
 
 ### Authorization
 
@@ -548,15 +548,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -595,7 +595,7 @@ This endpoint does not need any parameter.
 ## `getAttachments()`
 
 ```php
-getAttachments($session_id): \OpenAPI\Client\Model\FlowSessionAttachmentResponse[]
+getAttachments($session_id): \FlowHunt\Model\FlowSessionAttachmentResponse[]
 ```
 
 Get Attachments
@@ -608,7 +608,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -631,7 +631,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionAttachmentResponse[]**](../Model/FlowSessionAttachmentResponse.md)
+[**\FlowHunt\Model\FlowSessionAttachmentResponse[]**](../Model/FlowSessionAttachmentResponse.md)
 
 ### Authorization
 
@@ -649,7 +649,7 @@ No authorization required
 ## `getInvokedFlowResults()`
 
 ```php
-getInvokedFlowResults($flow_id, $task_id, $workspace_id): \OpenAPI\Client\Model\TaskResponse
+getInvokedFlowResults($flow_id, $task_id, $workspace_id): \FlowHunt\Model\TaskResponse
 ```
 
 Get Invoked Flow Results
@@ -662,15 +662,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -698,7 +698,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -716,7 +716,7 @@ try {
 ## `getPublicFlow()`
 
 ```php
-getPublicFlow($flow_id): \OpenAPI\Client\Model\FlowDetailResponse
+getPublicFlow($flow_id): \FlowHunt\Model\FlowDetailResponse
 ```
 
 Get Public Flow
@@ -729,15 +729,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -761,7 +761,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
+[**\FlowHunt\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
 
 ### Authorization
 
@@ -779,7 +779,7 @@ try {
 ## `getTriggerTypes()`
 
 ```php
-getTriggerTypes($flow_id, $workspace_id): \OpenAPI\Client\Model\TriggerResponse
+getTriggerTypes($flow_id, $workspace_id): \FlowHunt\Model\TriggerResponse
 ```
 
 Get Trigger Types
@@ -792,15 +792,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -826,7 +826,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TriggerResponse**](../Model/TriggerResponse.md)
+[**\FlowHunt\Model\TriggerResponse**](../Model/TriggerResponse.md)
 
 ### Authorization
 
@@ -844,7 +844,7 @@ try {
 ## `invokeFlow()`
 
 ```php
-invokeFlow($flow_id, $workspace_id, $flow_invoke_request): \OpenAPI\Client\Model\TaskResponse
+invokeFlow($flow_id, $workspace_id, $flow_invoke_request): \FlowHunt\Model\TaskResponse
 ```
 
 Invoke Flow
@@ -857,15 +857,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -873,7 +873,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowsApi(
 );
 $flow_id = 'flow_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$flow_invoke_request = new \OpenAPI\Client\Model\FlowInvokeRequest(); // \OpenAPI\Client\Model\FlowInvokeRequest
+$flow_invoke_request = new \FlowHunt\Model\FlowInvokeRequest(); // \FlowHunt\Model\FlowInvokeRequest
 
 try {
     $result = $apiInstance->invokeFlow($flow_id, $workspace_id, $flow_invoke_request);
@@ -889,11 +889,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **flow_invoke_request** | [**\OpenAPI\Client\Model\FlowInvokeRequest**](../Model/FlowInvokeRequest.md)|  | |
+| **flow_invoke_request** | [**\FlowHunt\Model\FlowInvokeRequest**](../Model/FlowInvokeRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -911,7 +911,7 @@ try {
 ## `invokeFlowResponse()`
 
 ```php
-invokeFlowResponse($session_id, $flow_session_invoke_request): \OpenAPI\Client\Model\FlowSessionInvocationResponse
+invokeFlowResponse($session_id, $flow_session_invoke_request): \FlowHunt\Model\FlowSessionInvocationResponse
 ```
 
 Invoke Flow Response
@@ -924,13 +924,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $session_id = 'session_id_example'; // string
-$flow_session_invoke_request = new \OpenAPI\Client\Model\FlowSessionInvokeRequest(); // \OpenAPI\Client\Model\FlowSessionInvokeRequest
+$flow_session_invoke_request = new \FlowHunt\Model\FlowSessionInvokeRequest(); // \FlowHunt\Model\FlowSessionInvokeRequest
 
 try {
     $result = $apiInstance->invokeFlowResponse($session_id, $flow_session_invoke_request);
@@ -945,11 +945,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **session_id** | **string**|  | |
-| **flow_session_invoke_request** | [**\OpenAPI\Client\Model\FlowSessionInvokeRequest**](../Model/FlowSessionInvokeRequest.md)|  | |
+| **flow_session_invoke_request** | [**\FlowHunt\Model\FlowSessionInvokeRequest**](../Model/FlowSessionInvokeRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
+[**\FlowHunt\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
 
 ### Authorization
 
@@ -967,7 +967,7 @@ No authorization required
 ## `invokeFlowSingleton()`
 
 ```php
-invokeFlowSingleton($flow_id, $workspace_id, $flow_invoke_request): \OpenAPI\Client\Model\TaskResponse
+invokeFlowSingleton($flow_id, $workspace_id, $flow_invoke_request): \FlowHunt\Model\TaskResponse
 ```
 
 Invoke Flow Singleton
@@ -980,15 +980,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -996,7 +996,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowsApi(
 );
 $flow_id = 'flow_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$flow_invoke_request = new \OpenAPI\Client\Model\FlowInvokeRequest(); // \OpenAPI\Client\Model\FlowInvokeRequest
+$flow_invoke_request = new \FlowHunt\Model\FlowInvokeRequest(); // \FlowHunt\Model\FlowInvokeRequest
 
 try {
     $result = $apiInstance->invokeFlowSingleton($flow_id, $workspace_id, $flow_invoke_request);
@@ -1012,11 +1012,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **flow_invoke_request** | [**\OpenAPI\Client\Model\FlowInvokeRequest**](../Model/FlowInvokeRequest.md)|  | |
+| **flow_invoke_request** | [**\FlowHunt\Model\FlowInvokeRequest**](../Model/FlowInvokeRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskResponse**](../Model/TaskResponse.md)
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -1034,7 +1034,7 @@ try {
 ## `pollFlowResponse()`
 
 ```php
-pollFlowResponse($session_id, $message_id): \OpenAPI\Client\Model\FlowSessionInvocationMessageResponse
+pollFlowResponse($session_id, $message_id): \FlowHunt\Model\FlowSessionInvocationMessageResponse
 ```
 
 Poll Flow Response
@@ -1047,7 +1047,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1072,7 +1072,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionInvocationMessageResponse**](../Model/FlowSessionInvocationMessageResponse.md)
+[**\FlowHunt\Model\FlowSessionInvocationMessageResponse**](../Model/FlowSessionInvocationMessageResponse.md)
 
 ### Authorization
 
@@ -1090,7 +1090,7 @@ No authorization required
 ## `search()`
 
 ```php
-search($workspace_id, $flow_search_request): \OpenAPI\Client\Model\FlowResponse[]
+search($workspace_id, $flow_search_request): \FlowHunt\Model\FlowResponse[]
 ```
 
 Search
@@ -1103,22 +1103,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$flow_search_request = new \OpenAPI\Client\Model\FlowSearchRequest(); // \OpenAPI\Client\Model\FlowSearchRequest
+$flow_search_request = new \FlowHunt\Model\FlowSearchRequest(); // \FlowHunt\Model\FlowSearchRequest
 
 try {
     $result = $apiInstance->search($workspace_id, $flow_search_request);
@@ -1133,11 +1133,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **flow_search_request** | [**\OpenAPI\Client\Model\FlowSearchRequest**](../Model/FlowSearchRequest.md)|  | |
+| **flow_search_request** | [**\FlowHunt\Model\FlowSearchRequest**](../Model/FlowSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowResponse[]**](../Model/FlowResponse.md)
+[**\FlowHunt\Model\FlowResponse[]**](../Model/FlowResponse.md)
 
 ### Authorization
 
@@ -1155,7 +1155,7 @@ try {
 ## `searchAll()`
 
 ```php
-searchAll($workspace_id, $all_flows_search_request): \OpenAPI\Client\Model\FlowResponse[]
+searchAll($workspace_id, $all_flows_search_request): \FlowHunt\Model\FlowResponse[]
 ```
 
 Search All
@@ -1168,22 +1168,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$all_flows_search_request = new \OpenAPI\Client\Model\AllFlowsSearchRequest(); // \OpenAPI\Client\Model\AllFlowsSearchRequest
+$all_flows_search_request = new \FlowHunt\Model\AllFlowsSearchRequest(); // \FlowHunt\Model\AllFlowsSearchRequest
 
 try {
     $result = $apiInstance->searchAll($workspace_id, $all_flows_search_request);
@@ -1198,11 +1198,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **all_flows_search_request** | [**\OpenAPI\Client\Model\AllFlowsSearchRequest**](../Model/AllFlowsSearchRequest.md)|  | |
+| **all_flows_search_request** | [**\FlowHunt\Model\AllFlowsSearchRequest**](../Model/AllFlowsSearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowResponse[]**](../Model/FlowResponse.md)
+[**\FlowHunt\Model\FlowResponse[]**](../Model/FlowResponse.md)
 
 ### Authorization
 
@@ -1220,7 +1220,7 @@ try {
 ## `searchFlowCategories()`
 
 ```php
-searchFlowCategories($workspace_id, $flow_category_search_request): \OpenAPI\Client\Model\FlowCategoryResponse[]
+searchFlowCategories($workspace_id, $flow_category_search_request): \FlowHunt\Model\FlowCategoryResponse[]
 ```
 
 Search Flow Categories
@@ -1233,22 +1233,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$flow_category_search_request = new \OpenAPI\Client\Model\FlowCategorySearchRequest(); // \OpenAPI\Client\Model\FlowCategorySearchRequest
+$flow_category_search_request = new \FlowHunt\Model\FlowCategorySearchRequest(); // \FlowHunt\Model\FlowCategorySearchRequest
 
 try {
     $result = $apiInstance->searchFlowCategories($workspace_id, $flow_category_search_request);
@@ -1263,11 +1263,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
-| **flow_category_search_request** | [**\OpenAPI\Client\Model\FlowCategorySearchRequest**](../Model/FlowCategorySearchRequest.md)|  | |
+| **flow_category_search_request** | [**\FlowHunt\Model\FlowCategorySearchRequest**](../Model/FlowCategorySearchRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowCategoryResponse[]**](../Model/FlowCategoryResponse.md)
+[**\FlowHunt\Model\FlowCategoryResponse[]**](../Model/FlowCategoryResponse.md)
 
 ### Authorization
 
@@ -1298,13 +1298,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $session_id = 'session_id_example'; // string
-$flow_session_stream_request = new \OpenAPI\Client\Model\FlowSessionStreamRequest(); // \OpenAPI\Client\Model\FlowSessionStreamRequest
+$flow_session_stream_request = new \FlowHunt\Model\FlowSessionStreamRequest(); // \FlowHunt\Model\FlowSessionStreamRequest
 
 try {
     $result = $apiInstance->streamFlowResponse($session_id, $flow_session_stream_request);
@@ -1319,7 +1319,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **session_id** | **string**|  | |
-| **flow_session_stream_request** | [**\OpenAPI\Client\Model\FlowSessionStreamRequest**](../Model/FlowSessionStreamRequest.md)|  | |
+| **flow_session_stream_request** | [**\FlowHunt\Model\FlowSessionStreamRequest**](../Model/FlowSessionStreamRequest.md)|  | |
 
 ### Return type
 
@@ -1341,7 +1341,7 @@ No authorization required
 ## `updateFlow()`
 
 ```php
-updateFlow($flow_id, $workspace_id, $flow_create): \OpenAPI\Client\Model\FlowDetailResponse
+updateFlow($flow_id, $workspace_id, $flow_create): \FlowHunt\Model\FlowDetailResponse
 ```
 
 Update Flow
@@ -1354,15 +1354,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1370,7 +1370,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowsApi(
 );
 $flow_id = 'flow_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$flow_create = new \OpenAPI\Client\Model\FlowCreate(); // \OpenAPI\Client\Model\FlowCreate
+$flow_create = new \FlowHunt\Model\FlowCreate(); // \FlowHunt\Model\FlowCreate
 
 try {
     $result = $apiInstance->updateFlow($flow_id, $workspace_id, $flow_create);
@@ -1386,11 +1386,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **flow_create** | [**\OpenAPI\Client\Model\FlowCreate**](../Model/FlowCreate.md)|  | |
+| **flow_create** | [**\FlowHunt\Model\FlowCreate**](../Model/FlowCreate.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
+[**\FlowHunt\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
 
 ### Authorization
 
@@ -1408,7 +1408,7 @@ try {
 ## `updateFlowCategory()`
 
 ```php
-updateFlowCategory($cat_id, $workspace_id, $flow_category_create_request): \OpenAPI\Client\Model\FlowCategoryResponse
+updateFlowCategory($cat_id, $workspace_id, $flow_category_create_request): \FlowHunt\Model\FlowCategoryResponse
 ```
 
 Update Flow Category
@@ -1421,15 +1421,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: APIKeyHeader
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1437,7 +1437,7 @@ $apiInstance = new OpenAPI\Client\Api\FlowsApi(
 );
 $cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$flow_category_create_request = new \OpenAPI\Client\Model\FlowCategoryCreateRequest(); // \OpenAPI\Client\Model\FlowCategoryCreateRequest
+$flow_category_create_request = new \FlowHunt\Model\FlowCategoryCreateRequest(); // \FlowHunt\Model\FlowCategoryCreateRequest
 
 try {
     $result = $apiInstance->updateFlowCategory($cat_id, $workspace_id, $flow_category_create_request);
@@ -1453,11 +1453,11 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **cat_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **flow_category_create_request** | [**\OpenAPI\Client\Model\FlowCategoryCreateRequest**](../Model/FlowCategoryCreateRequest.md)|  | |
+| **flow_category_create_request** | [**\FlowHunt\Model\FlowCategoryCreateRequest**](../Model/FlowCategoryCreateRequest.md)|  | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
+[**\FlowHunt\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
 
 ### Authorization
 
@@ -1475,7 +1475,7 @@ try {
 ## `uploadAttachments()`
 
 ```php
-uploadAttachments($session_id, $file): \OpenAPI\Client\Model\FlowSessionAttachmentResponse
+uploadAttachments($session_id, $file): \FlowHunt\Model\FlowSessionAttachmentResponse
 ```
 
 Upload Attachments
@@ -1488,7 +1488,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\FlowsApi(
+$apiInstance = new FlowHunt\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1513,7 +1513,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\FlowSessionAttachmentResponse**](../Model/FlowSessionAttachmentResponse.md)
+[**\FlowHunt\Model\FlowSessionAttachmentResponse**](../Model/FlowSessionAttachmentResponse.md)
 
 ### Authorization
 

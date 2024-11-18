@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * YoutubeTranscriptResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'status' => '\OpenAPI\Client\Model\TaskStatus',
-        'result' => '\OpenAPI\Client\Model\YoutubeContent',
+        'status' => '\FlowHunt\Model\TaskStatus',
+        'result' => '\FlowHunt\Model\YoutubeContent',
         'error_message' => 'string'
     ];
 
@@ -346,7 +346,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TaskStatus
+     * @return \FlowHunt\Model\TaskStatus
      */
     public function getStatus()
     {
@@ -356,7 +356,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TaskStatus $status Task status
+     * @param \FlowHunt\Model\TaskStatus $status Task status
      *
      * @return self
      */
@@ -373,7 +373,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets result
      *
-     * @return \OpenAPI\Client\Model\YoutubeContent|null
+     * @return \FlowHunt\Model\YoutubeContent|null
      */
     public function getResult()
     {
@@ -383,7 +383,7 @@ class YoutubeTranscriptResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets result
      *
-     * @param \OpenAPI\Client\Model\YoutubeContent|null $result result
+     * @param \FlowHunt\Model\YoutubeContent|null $result result
      *
      * @return self
      */

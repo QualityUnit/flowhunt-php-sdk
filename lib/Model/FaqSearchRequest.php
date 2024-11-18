@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * FaqSearchRequest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,12 +58,12 @@ class FaqSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'faq_id' => 'string',
-        'status' => '\OpenAPI\Client\Model\FaqStatus',
+        'status' => '\FlowHunt\Model\FaqStatus',
         'cat_id' => 'string',
         'question' => 'string',
         'answer' => 'string',
         'parent_faq_id' => 'string',
-        'faq_type' => '\OpenAPI\Client\Model\FaqType',
+        'faq_type' => '\FlowHunt\Model\FaqType',
         'limit' => 'int'
     ];
 
@@ -375,7 +375,7 @@ class FaqSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\FaqStatus|null
+     * @return \FlowHunt\Model\FaqStatus|null
      */
     public function getStatus()
     {
@@ -385,7 +385,7 @@ class FaqSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\FaqStatus|null $status status
+     * @param \FlowHunt\Model\FaqStatus|null $status status
      *
      * @return self
      */
@@ -545,7 +545,7 @@ class FaqSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets faq_type
      *
-     * @return \OpenAPI\Client\Model\FaqType|null
+     * @return \FlowHunt\Model\FaqType|null
      */
     public function getFaqType()
     {
@@ -555,7 +555,7 @@ class FaqSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets faq_type
      *
-     * @param \OpenAPI\Client\Model\FaqType|null $faq_type faq_type
+     * @param \FlowHunt\Model\FaqType|null $faq_type faq_type
      *
      * @return self
      */

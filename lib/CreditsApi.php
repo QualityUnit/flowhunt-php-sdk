@@ -1,10 +1,10 @@
 <?php
 /**
- * MediaApi
+ * CreditsApi
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\FlowHunt;
+namespace FlowHunt\FlowHunt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,20 +34,20 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use FlowHunt\ApiException;
+use FlowHunt\Configuration;
+use FlowHunt\HeaderSelector;
+use FlowHunt\ObjectSerializer;
 
 /**
- * MediaApi Class Doc Comment
+ * CreditsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class MediaApi
+class CreditsApi
 {
     /**
      * @var ClientInterface
@@ -71,13 +71,16 @@ class MediaApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getTranscript' => [
-            'multipart/form-data',
-        ],
-        'getTranscriptResult' => [
+        'getCreditBalance' => [
             'application/json',
         ],
-        'getYoutubeTranscript' => [
+        'getWorkspaceCreditBalance' => [
+            'application/json',
+        ],
+        'searchCreditTransactions' => [
+            'application/json',
+        ],
+        'searchDailyCreditTransactions' => [
             'application/json',
         ],
     ];
@@ -129,42 +132,36 @@ class MediaApi
     }
 
     /**
-     * Operation getTranscript
+     * Operation getCreditBalance
      *
-     * Get Transcript
+     * Get Credit Balance
      *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \SplFileObject $file file (required)
-     * @param  string $postback_url The post back URL where to send the response in body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DocumentContentResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\CreditBalanceResponse
      */
-    public function getTranscript($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
+    public function getCreditBalance(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        list($response) = $this->getTranscriptWithHttpInfo($workspace_id, $file, $postback_url, $contentType);
+        list($response) = $this->getCreditBalanceWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation getTranscriptWithHttpInfo
+     * Operation getCreditBalanceWithHttpInfo
      *
-     * Get Transcript
+     * Get Credit Balance
      *
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $postback_url The post back URL where to send the response in body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DocumentContentResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\CreditBalanceResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTranscriptWithHttpInfo($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
+    public function getCreditBalanceWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        $request = $this->getTranscriptRequest($workspace_id, $file, $postback_url, $contentType);
+        $request = $this->getCreditBalanceRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -191,11 +188,11 @@ class MediaApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\DocumentContentResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\CreditBalanceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\DocumentContentResponse' !== 'string') {
+                        if ('\FlowHunt\Model\CreditBalanceResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -213,34 +210,7 @@ class MediaApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DocumentContentResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\CreditBalanceResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -259,7 +229,7 @@ class MediaApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\DocumentContentResponse';
+            $returnType = '\FlowHunt\Model\CreditBalanceResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -292,15 +262,7 @@ class MediaApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DocumentContentResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\CreditBalanceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -311,21 +273,18 @@ class MediaApi
     }
 
     /**
-     * Operation getTranscriptAsync
+     * Operation getCreditBalanceAsync
      *
-     * Get Transcript
+     * Get Credit Balance
      *
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $postback_url The post back URL where to send the response in body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTranscriptAsync($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
+    public function getCreditBalanceAsync(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        return $this->getTranscriptAsyncWithHttpInfo($workspace_id, $file, $postback_url, $contentType)
+        return $this->getCreditBalanceAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -334,22 +293,19 @@ class MediaApi
     }
 
     /**
-     * Operation getTranscriptAsyncWithHttpInfo
+     * Operation getCreditBalanceAsyncWithHttpInfo
      *
-     * Get Transcript
+     * Get Credit Balance
      *
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $postback_url The post back URL where to send the response in body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTranscriptAsyncWithHttpInfo($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
+    public function getCreditBalanceAsyncWithHttpInfo(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DocumentContentResponse';
-        $request = $this->getTranscriptRequest($workspace_id, $file, $postback_url, $contentType);
+        $returnType = '\FlowHunt\Model\CreditBalanceResponse';
+        $request = $this->getCreditBalanceRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -388,70 +344,27 @@ class MediaApi
     }
 
     /**
-     * Create request for operation 'getTranscript'
+     * Create request for operation 'getCreditBalance'
      *
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $postback_url The post back URL where to send the response in body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscript'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTranscriptRequest($workspace_id, $file, $postback_url = null, string $contentType = self::contentTypes['getTranscript'][0])
+    public function getCreditBalanceRequest(string $contentType = self::contentTypes['getCreditBalance'][0])
     {
 
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getTranscript'
-            );
-        }
 
-        // verify the required parameter 'file' is set
-        if ($file === null || (is_array($file) && count($file) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling getTranscript'
-            );
-        }
-
-
-
-        $resourcePath = '/v2/media/transcript';
+        $resourcePath = '/v2/credits/balance';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
 
-        // form params
-        if ($file !== null) {
-            $multipart = true;
-            $formParams['file'] = [];
-            $paramFiles = is_array($file) ? $file : [$file];
-            foreach ($paramFiles as $paramFile) {
-                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
-                    ObjectSerializer::toFormValue($paramFile),
-                    'rb'
-                );
-            }
-        }
-        // form params
-        if ($postback_url !== null) {
-            $formParams['postback_url'] = ObjectSerializer::toFormValue($postback_url);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -508,7 +421,7 @@ class MediaApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -516,40 +429,38 @@ class MediaApi
     }
 
     /**
-     * Operation getTranscriptResult
+     * Operation getWorkspaceCreditBalance
      *
-     * Get Transcript Result
+     * Get Workspace Credit Balance
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TranscriptTaskRequest $transcript_task_request transcript_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceCreditBalance'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DocumentContentResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\CreditBalanceResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getTranscriptResult($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    public function getWorkspaceCreditBalance($workspace_id, string $contentType = self::contentTypes['getWorkspaceCreditBalance'][0])
     {
-        list($response) = $this->getTranscriptResultWithHttpInfo($workspace_id, $transcript_task_request, $contentType);
+        list($response) = $this->getWorkspaceCreditBalanceWithHttpInfo($workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getTranscriptResultWithHttpInfo
+     * Operation getWorkspaceCreditBalanceWithHttpInfo
      *
-     * Get Transcript Result
+     * Get Workspace Credit Balance
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TranscriptTaskRequest $transcript_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceCreditBalance'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DocumentContentResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\CreditBalanceResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTranscriptResultWithHttpInfo($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    public function getWorkspaceCreditBalanceWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getWorkspaceCreditBalance'][0])
     {
-        $request = $this->getTranscriptResultRequest($workspace_id, $transcript_task_request, $contentType);
+        $request = $this->getWorkspaceCreditBalanceRequest($workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -576,11 +487,11 @@ class MediaApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\DocumentContentResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\CreditBalanceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\DocumentContentResponse' !== 'string') {
+                        if ('\FlowHunt\Model\CreditBalanceResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -598,16 +509,16 @@ class MediaApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DocumentContentResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\CreditBalanceResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -625,7 +536,7 @@ class MediaApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -644,7 +555,7 @@ class MediaApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\DocumentContentResponse';
+            $returnType = '\FlowHunt\Model\CreditBalanceResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -677,7 +588,7 @@ class MediaApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DocumentContentResponse',
+                        '\FlowHunt\Model\CreditBalanceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -685,7 +596,7 @@ class MediaApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -696,20 +607,19 @@ class MediaApi
     }
 
     /**
-     * Operation getTranscriptResultAsync
+     * Operation getWorkspaceCreditBalanceAsync
      *
-     * Get Transcript Result
+     * Get Workspace Credit Balance
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TranscriptTaskRequest $transcript_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTranscriptResultAsync($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    public function getWorkspaceCreditBalanceAsync($workspace_id, string $contentType = self::contentTypes['getWorkspaceCreditBalance'][0])
     {
-        return $this->getTranscriptResultAsyncWithHttpInfo($workspace_id, $transcript_task_request, $contentType)
+        return $this->getWorkspaceCreditBalanceAsyncWithHttpInfo($workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -718,21 +628,20 @@ class MediaApi
     }
 
     /**
-     * Operation getTranscriptResultAsyncWithHttpInfo
+     * Operation getWorkspaceCreditBalanceAsyncWithHttpInfo
      *
-     * Get Transcript Result
+     * Get Workspace Credit Balance
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TranscriptTaskRequest $transcript_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTranscriptResultAsyncWithHttpInfo($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    public function getWorkspaceCreditBalanceAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getWorkspaceCreditBalance'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DocumentContentResponse';
-        $request = $this->getTranscriptResultRequest($workspace_id, $transcript_task_request, $contentType);
+        $returnType = '\FlowHunt\Model\CreditBalanceResponse';
+        $request = $this->getWorkspaceCreditBalanceRequest($workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -771,34 +680,26 @@ class MediaApi
     }
 
     /**
-     * Create request for operation 'getTranscriptResult'
+     * Create request for operation 'getWorkspaceCreditBalance'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\TranscriptTaskRequest $transcript_task_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTranscriptResult'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWorkspaceCreditBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTranscriptResultRequest($workspace_id, $transcript_task_request, string $contentType = self::contentTypes['getTranscriptResult'][0])
+    public function getWorkspaceCreditBalanceRequest($workspace_id, string $contentType = self::contentTypes['getWorkspaceCreditBalance'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getTranscriptResult'
-            );
-        }
-
-        // verify the required parameter 'transcript_task_request' is set
-        if ($transcript_task_request === null || (is_array($transcript_task_request) && count($transcript_task_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $transcript_task_request when calling getTranscriptResult'
+                'Missing the required parameter $workspace_id when calling getWorkspaceCreditBalance'
             );
         }
 
 
-        $resourcePath = '/v2/media/transcript_status';
+        $resourcePath = '/v2/credits/workspace_balance';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -825,12 +726,377 @@ class MediaApi
         );
 
         // for model (json/xml)
-        if (isset($transcript_task_request)) {
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchCreditTransactions
+     *
+     * Search Credit Transactions
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\CreditTransactionSearchRequest $credit_transaction_search_request credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\CreditTransactionResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchCreditTransactions($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    {
+        list($response) = $this->searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchCreditTransactionsWithHttpInfo
+     *
+     * Search Credit Transactions
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\CreditTransactionResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchCreditTransactionsWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    {
+        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\CreditTransactionResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\CreditTransactionResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\CreditTransactionResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\CreditTransactionResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\CreditTransactionResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchCreditTransactionsAsync
+     *
+     * Search Credit Transactions
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchCreditTransactionsAsync($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    {
+        return $this->searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchCreditTransactionsAsyncWithHttpInfo
+     *
+     * Search Credit Transactions
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    {
+        $returnType = '\FlowHunt\Model\CreditTransactionResponse[]';
+        $request = $this->searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchCreditTransactions'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\CreditTransactionSearchRequest $credit_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchCreditTransactions'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchCreditTransactionsRequest($workspace_id, $credit_transaction_search_request, string $contentType = self::contentTypes['searchCreditTransactions'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling searchCreditTransactions'
+            );
+        }
+
+        // verify the required parameter 'credit_transaction_search_request' is set
+        if ($credit_transaction_search_request === null || (is_array($credit_transaction_search_request) && count($credit_transaction_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $credit_transaction_search_request when calling searchCreditTransactions'
+            );
+        }
+
+
+        $resourcePath = '/v2/credits/search';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($credit_transaction_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($transcript_task_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_transaction_search_request));
             } else {
-                $httpBody = $transcript_task_request;
+                $httpBody = $credit_transaction_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -888,40 +1154,40 @@ class MediaApi
     }
 
     /**
-     * Operation getYoutubeTranscript
+     * Operation searchDailyCreditTransactions
      *
-     * Get Youtube Transcript
+     * Search Daily Credit Transactions
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\YoutubeTranscriptResponse|\OpenAPI\Client\Model\HTTPValidationError
+     * @return \FlowHunt\Model\CreditDailyTransactionResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function getYoutubeTranscript($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        list($response) = $this->getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType);
+        list($response) = $this->searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getYoutubeTranscriptWithHttpInfo
+     * Operation searchDailyCreditTransactionsWithHttpInfo
      *
-     * Get Youtube Transcript
+     * Search Daily Credit Transactions
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\YoutubeTranscriptResponse|\OpenAPI\Client\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\CreditDailyTransactionResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getYoutubeTranscriptWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function searchDailyCreditTransactionsWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
+        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -948,11 +1214,11 @@ class MediaApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\YoutubeTranscriptResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\CreditDailyTransactionResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\YoutubeTranscriptResponse' !== 'string') {
+                        if ('\FlowHunt\Model\CreditDailyTransactionResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -970,16 +1236,16 @@ class MediaApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\YoutubeTranscriptResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\CreditDailyTransactionResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 422:
-                    if ('\OpenAPI\Client\Model\HTTPValidationError' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\HTTPValidationError' !== 'string') {
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -997,7 +1263,7 @@ class MediaApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\HTTPValidationError', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1016,7 +1282,7 @@ class MediaApi
                 );
             }
 
-            $returnType = '\OpenAPI\Client\Model\YoutubeTranscriptResponse';
+            $returnType = '\FlowHunt\Model\CreditDailyTransactionResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1049,7 +1315,7 @@ class MediaApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\YoutubeTranscriptResponse',
+                        '\FlowHunt\Model\CreditDailyTransactionResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1057,7 +1323,7 @@ class MediaApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\HTTPValidationError',
+                        '\FlowHunt\Model\HTTPValidationError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1068,20 +1334,20 @@ class MediaApi
     }
 
     /**
-     * Operation getYoutubeTranscriptAsync
+     * Operation searchDailyCreditTransactionsAsync
      *
-     * Get Youtube Transcript
+     * Search Daily Credit Transactions
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getYoutubeTranscriptAsync($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function searchDailyCreditTransactionsAsync($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        return $this->getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, $contentType)
+        return $this->searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1090,21 +1356,21 @@ class MediaApi
     }
 
     /**
-     * Operation getYoutubeTranscriptAsyncWithHttpInfo
+     * Operation searchDailyCreditTransactionsAsyncWithHttpInfo
      *
-     * Get Youtube Transcript
+     * Search Daily Credit Transactions
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getYoutubeTranscriptAsyncWithHttpInfo($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function searchDailyCreditTransactionsAsyncWithHttpInfo($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\YoutubeTranscriptResponse';
-        $request = $this->getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, $contentType);
+        $returnType = '\FlowHunt\Model\CreditDailyTransactionResponse[]';
+        $request = $this->searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1143,34 +1409,34 @@ class MediaApi
     }
 
     /**
-     * Create request for operation 'getYoutubeTranscript'
+     * Create request for operation 'searchDailyCreditTransactions'
      *
      * @param  string $workspace_id (required)
-     * @param  \OpenAPI\Client\Model\YoutubeTranscriptRequest $youtube_transcript_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getYoutubeTranscript'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\CreditDailyTransactionSearchRequest $credit_daily_transaction_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchDailyCreditTransactions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getYoutubeTranscriptRequest($workspace_id, $youtube_transcript_request, string $contentType = self::contentTypes['getYoutubeTranscript'][0])
+    public function searchDailyCreditTransactionsRequest($workspace_id, $credit_daily_transaction_search_request, string $contentType = self::contentTypes['searchDailyCreditTransactions'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getYoutubeTranscript'
+                'Missing the required parameter $workspace_id when calling searchDailyCreditTransactions'
             );
         }
 
-        // verify the required parameter 'youtube_transcript_request' is set
-        if ($youtube_transcript_request === null || (is_array($youtube_transcript_request) && count($youtube_transcript_request) === 0)) {
+        // verify the required parameter 'credit_daily_transaction_search_request' is set
+        if ($credit_daily_transaction_search_request === null || (is_array($credit_daily_transaction_search_request) && count($credit_daily_transaction_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $youtube_transcript_request when calling getYoutubeTranscript'
+                'Missing the required parameter $credit_daily_transaction_search_request when calling searchDailyCreditTransactions'
             );
         }
 
 
-        $resourcePath = '/v2/media/youtube/transcript';
+        $resourcePath = '/v2/credits/search_daily';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1197,12 +1463,12 @@ class MediaApi
         );
 
         // for model (json/xml)
-        if (isset($youtube_transcript_request)) {
+        if (isset($credit_daily_transaction_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($youtube_transcript_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($credit_daily_transaction_search_request));
             } else {
-                $httpBody = $youtube_transcript_request;
+                $httpBody = $credit_daily_transaction_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

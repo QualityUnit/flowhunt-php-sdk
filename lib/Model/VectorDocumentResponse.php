@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * VectorDocumentResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,15 +59,15 @@ class VectorDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $openAPITypes = [
         'document_id' => 'string',
         'workspace_id' => 'string',
-        'document_type' => '\OpenAPI\Client\Model\VectorDocumentType',
+        'document_type' => '\FlowHunt\Model\VectorDocumentType',
         'point_id' => 'string',
         'pointer_position' => 'int',
-        'pointer_type' => '\OpenAPI\Client\Model\PointerType',
+        'pointer_type' => '\FlowHunt\Model\PointerType',
         'schema_type' => 'string',
         'kb_key' => 'string',
         'vector' => 'float[]',
         'vector_id' => 'int',
-        'data' => '\OpenAPI\Client\Model\Data'
+        'data' => '\FlowHunt\Model\Data'
     ];
 
     /**
@@ -443,7 +443,7 @@ class VectorDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets document_type
      *
-     * @return \OpenAPI\Client\Model\VectorDocumentType
+     * @return \FlowHunt\Model\VectorDocumentType
      */
     public function getDocumentType()
     {
@@ -453,7 +453,7 @@ class VectorDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets document_type
      *
-     * @param \OpenAPI\Client\Model\VectorDocumentType $document_type Document type
+     * @param \FlowHunt\Model\VectorDocumentType $document_type Document type
      *
      * @return self
      */
@@ -524,7 +524,7 @@ class VectorDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets pointer_type
      *
-     * @return \OpenAPI\Client\Model\PointerType
+     * @return \FlowHunt\Model\PointerType
      */
     public function getPointerType()
     {
@@ -534,7 +534,7 @@ class VectorDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets pointer_type
      *
-     * @param \OpenAPI\Client\Model\PointerType $pointer_type Pointer type
+     * @param \FlowHunt\Model\PointerType $pointer_type Pointer type
      *
      * @return self
      */
@@ -673,7 +673,7 @@ class VectorDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\Data|null
+     * @return \FlowHunt\Model\Data|null
      */
     public function getData()
     {
@@ -683,7 +683,7 @@ class VectorDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\Data|null $data data
+     * @param \FlowHunt\Model\Data|null $data data
      *
      * @return self
      */

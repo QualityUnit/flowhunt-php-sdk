@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace FlowHunt\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \FlowHunt\ObjectSerializer;
 
 /**
  * ApiEndpointResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'endpoint_id' => 'string',
         'path' => 'string',
         'description' => 'string',
-        'method' => '\OpenAPI\Client\Model\ApiMethod',
+        'method' => '\FlowHunt\Model\ApiMethod',
         'parameters' => 'AnyOf',
         'request_body' => 'AnyOf',
         'success_response' => 'AnyOf',
@@ -434,7 +434,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets method
      *
-     * @return \OpenAPI\Client\Model\ApiMethod
+     * @return \FlowHunt\Model\ApiMethod
      */
     public function getMethod()
     {
@@ -444,7 +444,7 @@ class ApiEndpointResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets method
      *
-     * @param \OpenAPI\Client\Model\ApiMethod $method The method of the API endpoint.
+     * @param \FlowHunt\Model\ApiMethod $method The method of the API endpoint.
      *
      * @return self
      */

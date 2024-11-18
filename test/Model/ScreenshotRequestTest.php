@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace FlowHunt\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description ScreenshotRequest
- * @package     OpenAPI\Client
+ * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -101,6 +101,15 @@ class ScreenshotRequestTest extends TestCase
      * Test attribute "validity"
      */
     public function testPropertyValidity()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "use_proxy"
+     */
+    public function testPropertyUseProxy()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
