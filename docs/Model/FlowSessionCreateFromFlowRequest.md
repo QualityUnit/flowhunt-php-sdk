@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **refresh_token** | **string** |  | [optional]
 **username** | **string** |  | [optional]
 **password** | **string** |  | [optional]
+**variables** | **array<string,string>** |  | [optional]
 **flow_id** | **string** | The flow ID |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

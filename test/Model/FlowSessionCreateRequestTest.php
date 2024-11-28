@@ -134,6 +134,15 @@ class FlowSessionCreateRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "variables"
+     */
+    public function testPropertyVariables()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "chatbot_id"
      */
     public function testPropertyChatbotId()

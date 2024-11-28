@@ -281,6 +281,9 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['requests'] === null) {
+            $invalidProperties[] = "'requests' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -299,7 +302,7 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets requests
      *
-     * @return \FlowHunt\Model\SerpSearchRequest[]|null
+     * @return \FlowHunt\Model\SerpSearchRequest[]
      */
     public function getRequests()
     {
@@ -309,7 +312,7 @@ class SerpSearchRequests implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets requests
      *
-     * @param \FlowHunt\Model\SerpSearchRequest[]|null $requests requests
+     * @param \FlowHunt\Model\SerpSearchRequest[] $requests List of serp requests
      *
      * @return self
      */

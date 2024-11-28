@@ -72,6 +72,90 @@ class SERPApiTest extends TestCase
     }
 
     /**
+     * Test case for searchClusterGroup
+     *
+     * Search Cluster Group.
+     *
+     */
+    public function testSearchClusterGroup()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for searchClusterQuery
+     *
+     * Search Cluster Query.
+     *
+     */
+    public function testSearchClusterQuery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serpClusterAddGroup
+     *
+     * Serp Cluster Add Group.
+     *
+     */
+    public function testSerpClusterAddGroup()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serpClusterAddQueries
+     *
+     * Serp Cluster Add Queries.
+     *
+     */
+    public function testSerpClusterAddQueries()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serpClusterDeleteGroup
+     *
+     * Serp Cluster Delete Group.
+     *
+     */
+    public function testSerpClusterDeleteGroup()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serpClusterDeleteQuery
+     *
+     * Serp Cluster Delete Query.
+     *
+     */
+    public function testSerpClusterDeleteQuery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serpClusterGetQueryIntersections
+     *
+     * Serp Cluster Get Query Intersections.
+     *
+     */
+    public function testSerpClusterGetQueryIntersections()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for serpSearch
      *
      * Serp Search.

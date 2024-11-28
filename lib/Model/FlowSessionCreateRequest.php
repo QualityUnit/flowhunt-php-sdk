@@ -63,6 +63,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'refresh_token' => 'string',
         'username' => 'string',
         'password' => 'string',
+        'variables' => 'array<string,string>',
         'chatbot_id' => 'string'
     ];
 
@@ -80,6 +81,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'refresh_token' => null,
         'username' => null,
         'password' => null,
+        'variables' => null,
         'chatbot_id' => 'uuid'
     ];
 
@@ -95,6 +97,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'refresh_token' => true,
         'username' => true,
         'password' => true,
+        'variables' => true,
         'chatbot_id' => false
     ];
 
@@ -190,6 +193,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'refresh_token' => 'refresh_token',
         'username' => 'username',
         'password' => 'password',
+        'variables' => 'variables',
         'chatbot_id' => 'chatbot_id'
     ];
 
@@ -205,6 +209,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'refresh_token' => 'setRefreshToken',
         'username' => 'setUsername',
         'password' => 'setPassword',
+        'variables' => 'setVariables',
         'chatbot_id' => 'setChatbotId'
     ];
 
@@ -220,6 +225,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'refresh_token' => 'getRefreshToken',
         'username' => 'getUsername',
         'password' => 'getPassword',
+        'variables' => 'getVariables',
         'chatbot_id' => 'getChatbotId'
     ];
 
@@ -286,6 +292,7 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('refresh_token', $data ?? [], null);
         $this->setIfExists('username', $data ?? [], null);
         $this->setIfExists('password', $data ?? [], null);
+        $this->setIfExists('variables', $data ?? [], null);
         $this->setIfExists('chatbot_id', $data ?? [], null);
     }
 
@@ -534,6 +541,40 @@ class FlowSessionCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
             }
         }
         $this->container['password'] = $password;
+
+        return $this;
+    }
+
+    /**
+     * Gets variables
+     *
+     * @return array<string,string>|null
+     */
+    public function getVariables()
+    {
+        return $this->container['variables'];
+    }
+
+    /**
+     * Sets variables
+     *
+     * @param array<string,string>|null $variables variables
+     *
+     * @return self
+     */
+    public function setVariables($variables)
+    {
+        if (is_null($variables)) {
+            array_push($this->openAPINullablesSetToNull, 'variables');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('variables', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['variables'] = $variables;
 
         return $this;
     }

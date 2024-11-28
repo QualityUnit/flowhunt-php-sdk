@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpVolumeRequest
+ * SerpClusterGroupSearchRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * SerpVolumeRequest Class Doc Comment
+ * SerpClusterGroupSearchRequest Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SerpVolumeRequest';
+    protected static $openAPIModelName = 'SerpClusterGroupSearchRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,13 +57,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'post_back_url' => 'string',
-        'keywords' => 'string[]',
-        'language_code' => 'string',
-        'location_name' => 'string',
-        'include_adult_keywords' => 'bool',
-        'date_from' => '\DateTime',
-        'date_to' => '\DateTime'
+        'search' => 'string'
     ];
 
     /**
@@ -74,13 +68,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'post_back_url' => null,
-        'keywords' => null,
-        'language_code' => null,
-        'location_name' => null,
-        'include_adult_keywords' => null,
-        'date_from' => 'date',
-        'date_to' => 'date'
+        'search' => null
     ];
 
     /**
@@ -89,13 +77,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'post_back_url' => true,
-        'keywords' => false,
-        'language_code' => true,
-        'location_name' => true,
-        'include_adult_keywords' => true,
-        'date_from' => true,
-        'date_to' => true
+        'search' => true
     ];
 
     /**
@@ -184,13 +166,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'post_back_url' => 'post_back_url',
-        'keywords' => 'keywords',
-        'language_code' => 'language_code',
-        'location_name' => 'location_name',
-        'include_adult_keywords' => 'include_adult_keywords',
-        'date_from' => 'date_from',
-        'date_to' => 'date_to'
+        'search' => 'search'
     ];
 
     /**
@@ -199,13 +175,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'post_back_url' => 'setPostBackUrl',
-        'keywords' => 'setKeywords',
-        'language_code' => 'setLanguageCode',
-        'location_name' => 'setLocationName',
-        'include_adult_keywords' => 'setIncludeAdultKeywords',
-        'date_from' => 'setDateFrom',
-        'date_to' => 'setDateTo'
+        'search' => 'setSearch'
     ];
 
     /**
@@ -214,13 +184,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'post_back_url' => 'getPostBackUrl',
-        'keywords' => 'getKeywords',
-        'language_code' => 'getLanguageCode',
-        'location_name' => 'getLocationName',
-        'include_adult_keywords' => 'getIncludeAdultKeywords',
-        'date_from' => 'getDateFrom',
-        'date_to' => 'getDateTo'
+        'search' => 'getSearch'
     ];
 
     /**
@@ -280,13 +244,7 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('post_back_url', $data ?? [], null);
-        $this->setIfExists('keywords', $data ?? [], null);
-        $this->setIfExists('language_code', $data ?? [], null);
-        $this->setIfExists('location_name', $data ?? [], null);
-        $this->setIfExists('include_adult_keywords', $data ?? [], null);
-        $this->setIfExists('date_from', $data ?? [], null);
-        $this->setIfExists('date_to', $data ?? [], null);
+        $this->setIfExists('search', $data ?? [], null);
     }
 
     /**
@@ -316,9 +274,6 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['keywords'] === null) {
-            $invalidProperties[] = "'keywords' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -335,232 +290,35 @@ class SerpVolumeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets post_back_url
+     * Gets search
      *
      * @return string|null
      */
-    public function getPostBackUrl()
+    public function getSearch()
     {
-        return $this->container['post_back_url'];
+        return $this->container['search'];
     }
 
     /**
-     * Sets post_back_url
+     * Sets search
      *
-     * @param string|null $post_back_url post_back_url
+     * @param string|null $search search
      *
      * @return self
      */
-    public function setPostBackUrl($post_back_url)
+    public function setSearch($search)
     {
-        if (is_null($post_back_url)) {
-            array_push($this->openAPINullablesSetToNull, 'post_back_url');
+        if (is_null($search)) {
+            array_push($this->openAPINullablesSetToNull, 'search');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('post_back_url', $nullablesSetToNull);
+            $index = array_search('search', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['post_back_url'] = $post_back_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets keywords
-     *
-     * @return string[]
-     */
-    public function getKeywords()
-    {
-        return $this->container['keywords'];
-    }
-
-    /**
-     * Sets keywords
-     *
-     * @param string[] $keywords List of queries
-     *
-     * @return self
-     */
-    public function setKeywords($keywords)
-    {
-        if (is_null($keywords)) {
-            throw new \InvalidArgumentException('non-nullable keywords cannot be null');
-        }
-        $this->container['keywords'] = $keywords;
-
-        return $this;
-    }
-
-    /**
-     * Gets language_code
-     *
-     * @return string|null
-     */
-    public function getLanguageCode()
-    {
-        return $this->container['language_code'];
-    }
-
-    /**
-     * Sets language_code
-     *
-     * @param string|null $language_code language_code
-     *
-     * @return self
-     */
-    public function setLanguageCode($language_code)
-    {
-        if (is_null($language_code)) {
-            array_push($this->openAPINullablesSetToNull, 'language_code');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('language_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['language_code'] = $language_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets location_name
-     *
-     * @return string|null
-     */
-    public function getLocationName()
-    {
-        return $this->container['location_name'];
-    }
-
-    /**
-     * Sets location_name
-     *
-     * @param string|null $location_name location_name
-     *
-     * @return self
-     */
-    public function setLocationName($location_name)
-    {
-        if (is_null($location_name)) {
-            array_push($this->openAPINullablesSetToNull, 'location_name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('location_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['location_name'] = $location_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets include_adult_keywords
-     *
-     * @return bool|null
-     */
-    public function getIncludeAdultKeywords()
-    {
-        return $this->container['include_adult_keywords'];
-    }
-
-    /**
-     * Sets include_adult_keywords
-     *
-     * @param bool|null $include_adult_keywords include_adult_keywords
-     *
-     * @return self
-     */
-    public function setIncludeAdultKeywords($include_adult_keywords)
-    {
-        if (is_null($include_adult_keywords)) {
-            array_push($this->openAPINullablesSetToNull, 'include_adult_keywords');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('include_adult_keywords', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['include_adult_keywords'] = $include_adult_keywords;
-
-        return $this;
-    }
-
-    /**
-     * Gets date_from
-     *
-     * @return \DateTime|null
-     */
-    public function getDateFrom()
-    {
-        return $this->container['date_from'];
-    }
-
-    /**
-     * Sets date_from
-     *
-     * @param \DateTime|null $date_from date_from
-     *
-     * @return self
-     */
-    public function setDateFrom($date_from)
-    {
-        if (is_null($date_from)) {
-            array_push($this->openAPINullablesSetToNull, 'date_from');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('date_from', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['date_from'] = $date_from;
-
-        return $this;
-    }
-
-    /**
-     * Gets date_to
-     *
-     * @return \DateTime|null
-     */
-    public function getDateTo()
-    {
-        return $this->container['date_to'];
-    }
-
-    /**
-     * Sets date_to
-     *
-     * @param \DateTime|null $date_to date_to
-     *
-     * @return self
-     */
-    public function setDateTo($date_to)
-    {
-        if (is_null($date_to)) {
-            array_push($this->openAPINullablesSetToNull, 'date_to');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('date_to', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['date_to'] = $date_to;
+        $this->container['search'] = $search;
 
         return $this;
     }

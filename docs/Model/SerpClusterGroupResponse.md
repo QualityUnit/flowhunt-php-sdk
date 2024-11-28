@@ -1,10 +1,10 @@
-# # SerpSearchRequests
+# # SerpClusterGroupResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**requests** | [**\FlowHunt\Model\SerpSearchRequest[]**](SerpSearchRequest.md) | List of serp requests |
-**live_mode** | **bool** |  | [optional]
+**group_id** | **string** | Group ID | [optional] [default to '']
+**group_name** | **string** | Group name | [optional] [default to '']
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

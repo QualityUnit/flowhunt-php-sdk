@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionCreateFromFlowRequestTest
+ * SerpClusterQueryResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionCreateFromFlowRequestTest Class Doc Comment
+ * SerpClusterQueryResponseTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionCreateFromFlowRequest
+ * @description SerpClusterQueryResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionCreateFromFlowRequestTest extends TestCase
+class SerpClusterQueryResponseTest extends TestCase
 {
 
     /**
@@ -71,81 +71,54 @@ class FlowSessionCreateFromFlowRequestTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionCreateFromFlowRequest"
+     * Test "SerpClusterQueryResponse"
      */
-    public function testFlowSessionCreateFromFlowRequest()
+    public function testSerpClusterQueryResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "url"
+     * Test attribute "query_id"
      */
-    public function testPropertyUrl()
+    public function testPropertyQueryId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "lang"
+     * Test attribute "query"
      */
-    public function testPropertyLang()
+    public function testPropertyQuery()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "access_token"
+     * Test attribute "country"
      */
-    public function testPropertyAccessToken()
+    public function testPropertyCountry()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "refresh_token"
+     * Test attribute "language"
      */
-    public function testPropertyRefreshToken()
+    public function testPropertyLanguage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "username"
+     * Test attribute "location"
      */
-    public function testPropertyUsername()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "password"
-     */
-    public function testPropertyPassword()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "variables"
-     */
-    public function testPropertyVariables()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "flow_id"
-     */
-    public function testPropertyFlowId()
+    public function testPropertyLocation()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
