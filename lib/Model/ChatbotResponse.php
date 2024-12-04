@@ -62,7 +62,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'string',
         'description' => 'string',
         'flow_id' => 'string',
-        'status' => '\FlowHunt\Model\ChatbotStatusOutput',
+        'status' => '\FlowHunt\Model\ChatbotStatus',
         'url_suffix' => 'string',
         'theme' => 'string',
         'max_window_size' => 'string',
@@ -519,7 +519,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \FlowHunt\Model\ChatbotStatusOutput
+     * @return \FlowHunt\Model\ChatbotStatus
      */
     public function getStatus()
     {
@@ -529,7 +529,7 @@ class ChatbotResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \FlowHunt\Model\ChatbotStatusOutput $status status
+     * @param \FlowHunt\Model\ChatbotStatus $status status
      *
      * @return self
      */

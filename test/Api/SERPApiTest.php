@@ -120,6 +120,18 @@ class SERPApiTest extends TestCase
     }
 
     /**
+     * Test case for serpClusterDeleteAll
+     *
+     * Serp Cluster Delete All.
+     *
+     */
+    public function testSerpClusterDeleteAll()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for serpClusterDeleteGroup
      *
      * Serp Cluster Delete Group.
@@ -138,6 +150,18 @@ class SERPApiTest extends TestCase
      *
      */
     public function testSerpClusterDeleteQuery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serpClusterGetBulkQueryIntersections
+     *
+     * Serp Cluster Get Bulk Query Intersections.
+     *
+     */
+    public function testSerpClusterGetBulkQueryIntersections()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

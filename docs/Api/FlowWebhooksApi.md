@@ -4,10 +4,65 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**executeThirdPartyWebhook()**](FlowWebhooksApi.md#executeThirdPartyWebhook) | **POST** /v2/flows/webhooks/third_party_integrations/{trigger_type} | Execute Third Party Webhook |
 | [**executeWebhook()**](FlowWebhooksApi.md#executeWebhook) | **POST** /v2/flows/webhooks/{chatbot_id} | Execute Webhook |
 | [**executeWebhookFromFlow()**](FlowWebhooksApi.md#executeWebhookFromFlow) | **POST** /v2/flows/webhooks/from_flow/{flow_id} | Execute Webhook From Flow |
 | [**pollWebhookResponse()**](FlowWebhooksApi.md#pollWebhookResponse) | **POST** /v2/flows/webhooks/invocation_response/{message_id} | Poll Webhook Response |
 
+
+## `executeThirdPartyWebhook()`
+
+```php
+executeThirdPartyWebhook($trigger_type): mixed
+```
+
+Execute Third Party Webhook
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\FlowWebhooksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$trigger_type = new \FlowHunt\Model\\FlowHunt\Model\TriggerType(); // \FlowHunt\Model\TriggerType
+
+try {
+    $result = $apiInstance->executeThirdPartyWebhook($trigger_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowWebhooksApi->executeThirdPartyWebhook: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **trigger_type** | [**\FlowHunt\Model\TriggerType**](../Model/.md)|  | |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `executeWebhook()`
 

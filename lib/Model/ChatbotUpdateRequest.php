@@ -60,7 +60,7 @@ class ChatbotUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'title' => 'string',
         'description' => 'string',
         'flow_id' => 'string',
-        'status' => 'string',
+        'status' => '\FlowHunt\Model\ChatbotStatus',
         'url_suffix' => 'string',
         'theme' => 'string',
         'max_window_size' => 'string',
@@ -276,21 +276,6 @@ class ChatbotUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-    public const STATUS_A = 'A';
-    public const STATUS_I = 'I';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_A,
-            self::STATUS_I,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -347,19 +332,6 @@ class ChatbotUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
 
         if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 100)) {
             $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 100.";
-        }
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if (!is_null($this->container['status']) && (mb_strlen($this->container['status']) > 1)) {
-            $invalidProperties[] = "invalid value for 'status', the character length must be smaller than or equal to 1.";
         }
 
         if (!is_null($this->container['url_suffix']) && (mb_strlen($this->container['url_suffix']) > 100)) {
@@ -498,7 +470,7 @@ class ChatbotUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets status
      *
-     * @return string|null
+     * @return \FlowHunt\Model\ChatbotStatus|null
      */
     public function getStatus()
     {
@@ -508,7 +480,7 @@ class ChatbotUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets status
      *
-     * @param string|null $status status
+     * @param \FlowHunt\Model\ChatbotStatus|null $status status
      *
      * @return self
      */
@@ -524,20 +496,6 @@ class ChatbotUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        if (!is_null($status) && (mb_strlen($status) > 1)) {
-            throw new \InvalidArgumentException('invalid length for $status when calling ChatbotUpdateRequest., must be smaller than or equal to 1.');
-        }
-
         $this->container['status'] = $status;
 
         return $this;

@@ -59,7 +59,9 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'slug' => 'string',
         'integration_id' => 'string',
-        'created_at' => '\DateTime'
+        'integration_name' => 'string',
+        'created_at' => '\DateTime',
+        'metadata' => 'AnyOf'
     ];
 
     /**
@@ -72,7 +74,9 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'slug' => null,
         'integration_id' => 'uuid',
-        'created_at' => 'date-time'
+        'integration_name' => null,
+        'created_at' => 'date-time',
+        'metadata' => null
     ];
 
     /**
@@ -83,7 +87,9 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     protected static array $openAPINullables = [
         'slug' => false,
         'integration_id' => false,
-        'created_at' => false
+        'integration_name' => false,
+        'created_at' => false,
+        'metadata' => true
     ];
 
     /**
@@ -174,7 +180,9 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'slug' => 'slug',
         'integration_id' => 'integration_id',
-        'created_at' => 'created_at'
+        'integration_name' => 'integration_name',
+        'created_at' => 'created_at',
+        'metadata' => 'metadata'
     ];
 
     /**
@@ -185,7 +193,9 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'slug' => 'setSlug',
         'integration_id' => 'setIntegrationId',
-        'created_at' => 'setCreatedAt'
+        'integration_name' => 'setIntegrationName',
+        'created_at' => 'setCreatedAt',
+        'metadata' => 'setMetadata'
     ];
 
     /**
@@ -196,7 +206,9 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'slug' => 'getSlug',
         'integration_id' => 'getIntegrationId',
-        'created_at' => 'getCreatedAt'
+        'integration_name' => 'getIntegrationName',
+        'created_at' => 'getCreatedAt',
+        'metadata' => 'getMetadata'
     ];
 
     /**
@@ -258,7 +270,9 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->setIfExists('slug', $data ?? [], null);
         $this->setIfExists('integration_id', $data ?? [], null);
+        $this->setIfExists('integration_name', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('metadata', $data ?? [], null);
     }
 
     /**
@@ -291,8 +305,8 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['slug'] === null) {
             $invalidProperties[] = "'slug' can't be null";
         }
-        if ($this->container['integration_id'] === null) {
-            $invalidProperties[] = "'integration_id' can't be null";
+        if ($this->container['integration_name'] === null) {
+            $invalidProperties[] = "'integration_name' can't be null";
         }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
@@ -342,7 +356,7 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets integration_id
      *
-     * @return string
+     * @return string|null
      */
     public function getIntegrationId()
     {
@@ -352,7 +366,7 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets integration_id
      *
-     * @param string $integration_id The ID of the integration.
+     * @param string|null $integration_id integration_id
      *
      * @return self
      */
@@ -362,6 +376,33 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable integration_id cannot be null');
         }
         $this->container['integration_id'] = $integration_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets integration_name
+     *
+     * @return string
+     */
+    public function getIntegrationName()
+    {
+        return $this->container['integration_name'];
+    }
+
+    /**
+     * Sets integration_name
+     *
+     * @param string $integration_name The name of the integration.
+     *
+     * @return self
+     */
+    public function setIntegrationName($integration_name)
+    {
+        if (is_null($integration_name)) {
+            throw new \InvalidArgumentException('non-nullable integration_name cannot be null');
+        }
+        $this->container['integration_name'] = $integration_name;
 
         return $this;
     }
@@ -389,6 +430,40 @@ class IntegrationDetailResponse implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets metadata
+     *
+     * @return AnyOf|null
+     */
+    public function getMetadata()
+    {
+        return $this->container['metadata'];
+    }
+
+    /**
+     * Sets metadata
+     *
+     * @param AnyOf|null $metadata The metadata of the integration.
+     *
+     * @return self
+     */
+    public function setMetadata($metadata)
+    {
+        if (is_null($metadata)) {
+            array_push($this->openAPINullablesSetToNull, 'metadata');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metadata', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['metadata'] = $metadata;
 
         return $this;
     }

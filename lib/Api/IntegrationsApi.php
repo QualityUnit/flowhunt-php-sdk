@@ -71,46 +71,28 @@ class IntegrationsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createApiIntegration' => [
+        'createIntegration' => [
             'application/json',
         ],
-        'createApiIntegrationEndpoint' => [
+        'deleteIntegration' => [
             'application/json',
         ],
         'getAllIntegrations' => [
             'application/json',
         ],
-        'getApiIntegration' => [
+        'getIntegration' => [
             'application/json',
         ],
-        'getApiIntegrationAuthMethods' => [
+        'getSlackChannels' => [
             'application/json',
         ],
-        'getApiIntegrationEndpoints' => [
+        'getSlackWorkspaces' => [
             'application/json',
         ],
-        'getApiIntegrations' => [
+        'integrationCallback' => [
             'application/json',
         ],
-        'getMyIntegrations' => [
-            'application/json',
-        ],
-        'importOpenapiSpec' => [
-            'multipart/form-data',
-        ],
-        'importOpenapiSpecFromUrl' => [
-            'application/json',
-        ],
-        'removeApiIntegration' => [
-            'application/json',
-        ],
-        'removeApiIntegrationEndpoint' => [
-            'application/json',
-        ],
-        'updateApiIntegration' => [
-            'application/json',
-        ],
-        'updateApiIntegrationEndpoint' => [
+        'searchIntegrations' => [
             'application/json',
         ],
     ];
@@ -162,40 +144,40 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createApiIntegration
+     * Operation createIntegration
      *
-     * Create Api Integration
+     * Create Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug slug (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request api_integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\IntegrationFlowResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function createApiIntegration($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
+    public function createIntegration($slug, $workspace_id, string $contentType = self::contentTypes['createIntegration'][0])
     {
-        list($response) = $this->createApiIntegrationWithHttpInfo($workspace_id, $api_integration_create_request, $contentType);
+        list($response) = $this->createIntegrationWithHttpInfo($slug, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation createApiIntegrationWithHttpInfo
+     * Operation createIntegrationWithHttpInfo
      *
-     * Create Api Integration
+     * Create Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\IntegrationFlowResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createApiIntegrationWithHttpInfo($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
+    public function createIntegrationWithHttpInfo($slug, $workspace_id, string $contentType = self::contentTypes['createIntegration'][0])
     {
-        $request = $this->createApiIntegrationRequest($workspace_id, $api_integration_create_request, $contentType);
+        $request = $this->createIntegrationRequest($slug, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -222,11 +204,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\IntegrationFlowResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\IntegrationFlowResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -244,7 +226,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\IntegrationFlowResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -290,7 +272,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
+            $returnType = '\FlowHunt\Model\IntegrationFlowResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -323,7 +305,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiIntegrationResponse',
+                        '\FlowHunt\Model\IntegrationFlowResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -342,20 +324,20 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createApiIntegrationAsync
+     * Operation createIntegrationAsync
      *
-     * Create Api Integration
+     * Create Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiIntegrationAsync($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
+    public function createIntegrationAsync($slug, $workspace_id, string $contentType = self::contentTypes['createIntegration'][0])
     {
-        return $this->createApiIntegrationAsyncWithHttpInfo($workspace_id, $api_integration_create_request, $contentType)
+        return $this->createIntegrationAsyncWithHttpInfo($slug, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -364,21 +346,21 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createApiIntegrationAsyncWithHttpInfo
+     * Operation createIntegrationAsyncWithHttpInfo
      *
-     * Create Api Integration
+     * Create Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiIntegrationAsyncWithHttpInfo($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
+    public function createIntegrationAsyncWithHttpInfo($slug, $workspace_id, string $contentType = self::contentTypes['createIntegration'][0])
     {
-        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-        $request = $this->createApiIntegrationRequest($workspace_id, $api_integration_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\IntegrationFlowResponse';
+        $request = $this->createIntegrationRequest($slug, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -417,34 +399,34 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'createApiIntegration'
+     * Create request for operation 'createIntegration'
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationCreateRequest $api_integration_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegration'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createApiIntegrationRequest($workspace_id, $api_integration_create_request, string $contentType = self::contentTypes['createApiIntegration'][0])
+    public function createIntegrationRequest($slug, $workspace_id, string $contentType = self::contentTypes['createIntegration'][0])
     {
+
+        // verify the required parameter 'slug' is set
+        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $slug when calling createIntegration'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createApiIntegration'
-            );
-        }
-
-        // verify the required parameter 'api_integration_create_request' is set
-        if ($api_integration_create_request === null || (is_array($api_integration_create_request) && count($api_integration_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_integration_create_request when calling createApiIntegration'
+                'Missing the required parameter $workspace_id when calling createIntegration'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/api_integrations/create';
+        $resourcePath = '/v2/integrations/{slug}/integrate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -462,6 +444,14 @@ class IntegrationsApi
         ) ?? []);
 
 
+        // path params
+        if ($slug !== null) {
+            $resourcePath = str_replace(
+                '{' . 'slug' . '}',
+                ObjectSerializer::toPathValue($slug),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -471,14 +461,7 @@ class IntegrationsApi
         );
 
         // for model (json/xml)
-        if (isset($api_integration_create_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_integration_create_request));
-            } else {
-                $httpBody = $api_integration_create_request;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -502,11 +485,6 @@ class IntegrationsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -534,42 +512,42 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createApiIntegrationEndpoint
+     * Operation deleteIntegration
      *
-     * Create Api Integration Endpoint
+     * Delete Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug slug (required)
      * @param  string $integration_id integration_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request api_endpoint_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteIntegration'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function createApiIntegrationEndpoint($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    public function deleteIntegration($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['deleteIntegration'][0])
     {
-        list($response) = $this->createApiIntegrationEndpointWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, $contentType);
+        list($response) = $this->deleteIntegrationWithHttpInfo($slug, $integration_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation createApiIntegrationEndpointWithHttpInfo
+     * Operation deleteIntegrationWithHttpInfo
      *
-     * Create Api Integration Endpoint
+     * Delete Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteIntegration'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createApiIntegrationEndpointWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    public function deleteIntegrationWithHttpInfo($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['deleteIntegration'][0])
     {
-        $request = $this->createApiIntegrationEndpointRequest($integration_id, $workspace_id, $api_endpoint_create_request, $contentType);
+        $request = $this->deleteIntegrationRequest($slug, $integration_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -596,11 +574,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\ApiEndpointResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiEndpointResponse' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -618,7 +596,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiEndpointResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -664,7 +642,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\ApiEndpointResponse';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -697,7 +675,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiEndpointResponse',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -716,21 +694,21 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createApiIntegrationEndpointAsync
+     * Operation deleteIntegrationAsync
      *
-     * Create Api Integration Endpoint
+     * Delete Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiIntegrationEndpointAsync($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    public function deleteIntegrationAsync($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['deleteIntegration'][0])
     {
-        return $this->createApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, $contentType)
+        return $this->deleteIntegrationAsyncWithHttpInfo($slug, $integration_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -739,22 +717,22 @@ class IntegrationsApi
     }
 
     /**
-     * Operation createApiIntegrationEndpointAsyncWithHttpInfo
+     * Operation deleteIntegrationAsyncWithHttpInfo
      *
-     * Create Api Integration Endpoint
+     * Delete Integration
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    public function deleteIntegrationAsyncWithHttpInfo($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['deleteIntegration'][0])
     {
-        $returnType = '\FlowHunt\Model\ApiEndpointResponse';
-        $request = $this->createApiIntegrationEndpointRequest($integration_id, $workspace_id, $api_endpoint_create_request, $contentType);
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->deleteIntegrationRequest($slug, $integration_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -793,42 +771,42 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'createApiIntegrationEndpoint'
+     * Create request for operation 'deleteIntegration'
      *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointCreateRequest $api_endpoint_create_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiIntegrationEndpoint'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createApiIntegrationEndpointRequest($integration_id, $workspace_id, $api_endpoint_create_request, string $contentType = self::contentTypes['createApiIntegrationEndpoint'][0])
+    public function deleteIntegrationRequest($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['deleteIntegration'][0])
     {
+
+        // verify the required parameter 'slug' is set
+        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $slug when calling deleteIntegration'
+            );
+        }
 
         // verify the required parameter 'integration_id' is set
         if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling createApiIntegrationEndpoint'
+                'Missing the required parameter $integration_id when calling deleteIntegration'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling createApiIntegrationEndpoint'
-            );
-        }
-
-        // verify the required parameter 'api_endpoint_create_request' is set
-        if ($api_endpoint_create_request === null || (is_array($api_endpoint_create_request) && count($api_endpoint_create_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_endpoint_create_request when calling createApiIntegrationEndpoint'
+                'Missing the required parameter $workspace_id when calling deleteIntegration'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints/create';
+        $resourcePath = '/v2/integrations/{slug}/{integration_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -847,6 +825,14 @@ class IntegrationsApi
 
 
         // path params
+        if ($slug !== null) {
+            $resourcePath = str_replace(
+                '{' . 'slug' . '}',
+                ObjectSerializer::toPathValue($slug),
+                $resourcePath
+            );
+        }
+        // path params
         if ($integration_id !== null) {
             $resourcePath = str_replace(
                 '{' . 'integration_id' . '}',
@@ -863,14 +849,7 @@ class IntegrationsApi
         );
 
         // for model (json/xml)
-        if (isset($api_endpoint_create_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_endpoint_create_request));
-            } else {
-                $httpBody = $api_endpoint_create_request;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -894,11 +873,6 @@ class IntegrationsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -918,7 +892,7 @@ class IntegrationsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -1279,40 +1253,42 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getApiIntegration
+     * Operation getIntegration
      *
-     * Get Api Integration
+     * Get Integration
      *
-     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSlug $slug slug (required)
      * @param  string $integration_id integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getIntegration'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\IntegrationDetailResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getApiIntegration($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    public function getIntegration($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['getIntegration'][0])
     {
-        list($response) = $this->getApiIntegrationWithHttpInfo($workspace_id, $integration_id, $contentType);
+        list($response) = $this->getIntegrationWithHttpInfo($slug, $integration_id, $workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getApiIntegrationWithHttpInfo
+     * Operation getIntegrationWithHttpInfo
      *
-     * Get Api Integration
+     * Get Integration
      *
-     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getIntegration'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\IntegrationDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getApiIntegrationWithHttpInfo($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    public function getIntegrationWithHttpInfo($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['getIntegration'][0])
     {
-        $request = $this->getApiIntegrationRequest($workspace_id, $integration_id, $contentType);
+        $request = $this->getIntegrationRequest($slug, $integration_id, $workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1339,11 +1315,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\IntegrationDetailResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
+                        if ('\FlowHunt\Model\IntegrationDetailResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1361,7 +1337,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\IntegrationDetailResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1407,7 +1383,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
+            $returnType = '\FlowHunt\Model\IntegrationDetailResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1440,7 +1416,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiIntegrationResponse',
+                        '\FlowHunt\Model\IntegrationDetailResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1459,20 +1435,21 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getApiIntegrationAsync
+     * Operation getIntegrationAsync
      *
-     * Get Api Integration
+     * Get Integration
      *
-     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApiIntegrationAsync($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    public function getIntegrationAsync($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['getIntegration'][0])
     {
-        return $this->getApiIntegrationAsyncWithHttpInfo($workspace_id, $integration_id, $contentType)
+        return $this->getIntegrationAsyncWithHttpInfo($slug, $integration_id, $workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1481,21 +1458,22 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getApiIntegrationAsyncWithHttpInfo
+     * Operation getIntegrationAsyncWithHttpInfo
      *
-     * Get Api Integration
+     * Get Integration
      *
-     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApiIntegrationAsyncWithHttpInfo($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    public function getIntegrationAsyncWithHttpInfo($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['getIntegration'][0])
     {
-        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-        $request = $this->getApiIntegrationRequest($workspace_id, $integration_id, $contentType);
+        $returnType = '\FlowHunt\Model\IntegrationDetailResponse';
+        $request = $this->getIntegrationRequest($slug, $integration_id, $workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1534,717 +1512,42 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'getApiIntegration'
+     * Create request for operation 'getIntegration'
      *
-     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
      * @param  string $integration_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegration'] to see the possible values for this operation
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getIntegration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getApiIntegrationRequest($workspace_id, $integration_id, string $contentType = self::contentTypes['getApiIntegration'][0])
+    public function getIntegrationRequest($slug, $integration_id, $workspace_id, string $contentType = self::contentTypes['getIntegration'][0])
     {
 
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+        // verify the required parameter 'slug' is set
+        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getApiIntegration'
+                'Missing the required parameter $slug when calling getIntegration'
             );
         }
 
         // verify the required parameter 'integration_id' is set
         if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling getApiIntegration'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/api_integrations/';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $integration_id,
-            'integration_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getApiIntegrationAuthMethods
-     *
-     * Get Api Integration Auth Methods
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationAuthMethods'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiIntegrationAuthenticationMethod[]
-     */
-    public function getApiIntegrationAuthMethods(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
-    {
-        list($response) = $this->getApiIntegrationAuthMethodsWithHttpInfo($contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getApiIntegrationAuthMethodsWithHttpInfo
-     *
-     * Get Api Integration Auth Methods
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationAuthMethods'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiIntegrationAuthenticationMethod[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getApiIntegrationAuthMethodsWithHttpInfo(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
-    {
-        $request = $this->getApiIntegrationAuthMethodsRequest($contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getApiIntegrationAuthMethodsAsync
-     *
-     * Get Api Integration Auth Methods
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationAuthMethods'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getApiIntegrationAuthMethodsAsync(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
-    {
-        return $this->getApiIntegrationAuthMethodsAsyncWithHttpInfo($contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getApiIntegrationAuthMethodsAsyncWithHttpInfo
-     *
-     * Get Api Integration Auth Methods
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationAuthMethods'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getApiIntegrationAuthMethodsAsyncWithHttpInfo(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
-    {
-        $returnType = '\FlowHunt\Model\ApiIntegrationAuthenticationMethod[]';
-        $request = $this->getApiIntegrationAuthMethodsRequest($contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getApiIntegrationAuthMethods'
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationAuthMethods'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getApiIntegrationAuthMethodsRequest(string $contentType = self::contentTypes['getApiIntegrationAuthMethods'][0])
-    {
-
-
-        $resourcePath = '/v2/integrations/api_integrations/auth_methods';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getApiIntegrationEndpoints
-     *
-     * Get Api Integration Endpoints
-     *
-     * @param  string $integration_id integration_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request api_endpoint_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiEndpointResponse[]|\FlowHunt\Model\HTTPValidationError
-     */
-    public function getApiIntegrationEndpoints($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
-    {
-        list($response) = $this->getApiIntegrationEndpointsWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getApiIntegrationEndpointsWithHttpInfo
-     *
-     * Get Api Integration Endpoints
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiEndpointResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getApiIntegrationEndpointsWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
-    {
-        $request = $this->getApiIntegrationEndpointsRequest($integration_id, $workspace_id, $api_endpoint_search_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\ApiEndpointResponse[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiEndpointResponse[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiEndpointResponse[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\ApiEndpointResponse[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiEndpointResponse[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getApiIntegrationEndpointsAsync
-     *
-     * Get Api Integration Endpoints
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getApiIntegrationEndpointsAsync($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
-    {
-        return $this->getApiIntegrationEndpointsAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getApiIntegrationEndpointsAsyncWithHttpInfo
-     *
-     * Get Api Integration Endpoints
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getApiIntegrationEndpointsAsyncWithHttpInfo($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
-    {
-        $returnType = '\FlowHunt\Model\ApiEndpointResponse[]';
-        $request = $this->getApiIntegrationEndpointsRequest($integration_id, $workspace_id, $api_endpoint_search_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getApiIntegrationEndpoints'
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointSearchRequest $api_endpoint_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrationEndpoints'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getApiIntegrationEndpointsRequest($integration_id, $workspace_id, $api_endpoint_search_request, string $contentType = self::contentTypes['getApiIntegrationEndpoints'][0])
-    {
-
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling getApiIntegrationEndpoints'
+                'Missing the required parameter $integration_id when calling getIntegration'
             );
         }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getApiIntegrationEndpoints'
-            );
-        }
-
-        // verify the required parameter 'api_endpoint_search_request' is set
-        if ($api_endpoint_search_request === null || (is_array($api_endpoint_search_request) && count($api_endpoint_search_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_endpoint_search_request when calling getApiIntegrationEndpoints'
+                'Missing the required parameter $workspace_id when calling getIntegration'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints';
+        $resourcePath = '/v2/integrations/{slug}/{integration_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2263,6 +1566,14 @@ class IntegrationsApi
 
 
         // path params
+        if ($slug !== null) {
+            $resourcePath = str_replace(
+                '{' . 'slug' . '}',
+                ObjectSerializer::toPathValue($slug),
+                $resourcePath
+            );
+        }
+        // path params
         if ($integration_id !== null) {
             $resourcePath = str_replace(
                 '{' . 'integration_id' . '}',
@@ -2279,14 +1590,375 @@ class IntegrationsApi
         );
 
         // for model (json/xml)
-        if (isset($api_endpoint_search_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_endpoint_search_request));
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
-                $httpBody = $api_endpoint_search_request;
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
-        } elseif (count($formParams) > 0) {
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getSlackChannels
+     *
+     * Get Slack Channels
+     *
+     * @param  string $slack_team_id slack_team_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\SlackChannelResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getSlackChannels($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    {
+        list($response) = $this->getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getSlackChannelsWithHttpInfo
+     *
+     * Get Slack Channels
+     *
+     * @param  string $slack_team_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\SlackChannelResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    {
+        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\SlackChannelResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\SlackChannelResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SlackChannelResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\SlackChannelResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\SlackChannelResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getSlackChannelsAsync
+     *
+     * Get Slack Channels
+     *
+     * @param  string $slack_team_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getSlackChannelsAsync($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    {
+        return $this->getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getSlackChannelsAsyncWithHttpInfo
+     *
+     * Get Slack Channels
+     *
+     * @param  string $slack_team_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    {
+        $returnType = '\FlowHunt\Model\SlackChannelResponse[]';
+        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getSlackChannels'
+     *
+     * @param  string $slack_team_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getSlackChannelsRequest($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    {
+
+        // verify the required parameter 'slack_team_id' is set
+        if ($slack_team_id === null || (is_array($slack_team_id) && count($slack_team_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $slack_team_id when calling getSlackChannels'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getSlackChannels'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/slack/{slack_team_id}/channels';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($slack_team_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'slack_team_id' . '}',
+                ObjectSerializer::toPathValue($slack_team_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2334,7 +2006,7 @@ class IntegrationsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -2342,40 +2014,38 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getApiIntegrations
+     * Operation getSlackWorkspaces
      *
-     * Get Api Integrations
+     * Get Slack Workspaces
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request api_integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackWorkspaces'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiIntegrationResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SlackWorkspaceResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function getApiIntegrations($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    public function getSlackWorkspaces($workspace_id, string $contentType = self::contentTypes['getSlackWorkspaces'][0])
     {
-        list($response) = $this->getApiIntegrationsWithHttpInfo($workspace_id, $api_integration_search_request, $contentType);
+        list($response) = $this->getSlackWorkspacesWithHttpInfo($workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getApiIntegrationsWithHttpInfo
+     * Operation getSlackWorkspacesWithHttpInfo
      *
-     * Get Api Integrations
+     * Get Slack Workspaces
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackWorkspaces'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiIntegrationResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SlackWorkspaceResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getApiIntegrationsWithHttpInfo($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    public function getSlackWorkspacesWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getSlackWorkspaces'][0])
     {
-        $request = $this->getApiIntegrationsRequest($workspace_id, $api_integration_search_request, $contentType);
+        $request = $this->getSlackWorkspacesRequest($workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2402,11 +2072,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\ApiIntegrationResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SlackWorkspaceResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiIntegrationResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\SlackWorkspaceResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2424,7 +2094,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SlackWorkspaceResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2470,7 +2140,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\ApiIntegrationResponse[]';
+            $returnType = '\FlowHunt\Model\SlackWorkspaceResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2503,7 +2173,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiIntegrationResponse[]',
+                        '\FlowHunt\Model\SlackWorkspaceResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2522,20 +2192,19 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getApiIntegrationsAsync
+     * Operation getSlackWorkspacesAsync
      *
-     * Get Api Integrations
+     * Get Slack Workspaces
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackWorkspaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApiIntegrationsAsync($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    public function getSlackWorkspacesAsync($workspace_id, string $contentType = self::contentTypes['getSlackWorkspaces'][0])
     {
-        return $this->getApiIntegrationsAsyncWithHttpInfo($workspace_id, $api_integration_search_request, $contentType)
+        return $this->getSlackWorkspacesAsyncWithHttpInfo($workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2544,21 +2213,20 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getApiIntegrationsAsyncWithHttpInfo
+     * Operation getSlackWorkspacesAsyncWithHttpInfo
      *
-     * Get Api Integrations
+     * Get Slack Workspaces
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackWorkspaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApiIntegrationsAsyncWithHttpInfo($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    public function getSlackWorkspacesAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getSlackWorkspaces'][0])
     {
-        $returnType = '\FlowHunt\Model\ApiIntegrationResponse[]';
-        $request = $this->getApiIntegrationsRequest($workspace_id, $api_integration_search_request, $contentType);
+        $returnType = '\FlowHunt\Model\SlackWorkspaceResponse[]';
+        $request = $this->getSlackWorkspacesRequest($workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2597,34 +2265,26 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'getApiIntegrations'
+     * Create request for operation 'getSlackWorkspaces'
      *
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationSearchRequest $api_integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiIntegrations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackWorkspaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getApiIntegrationsRequest($workspace_id, $api_integration_search_request, string $contentType = self::contentTypes['getApiIntegrations'][0])
+    public function getSlackWorkspacesRequest($workspace_id, string $contentType = self::contentTypes['getSlackWorkspaces'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getApiIntegrations'
-            );
-        }
-
-        // verify the required parameter 'api_integration_search_request' is set
-        if ($api_integration_search_request === null || (is_array($api_integration_search_request) && count($api_integration_search_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_integration_search_request when calling getApiIntegrations'
+                'Missing the required parameter $workspace_id when calling getSlackWorkspaces'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/api_integrations/';
+        $resourcePath = '/v2/integrations/slack/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2651,14 +2311,7 @@ class IntegrationsApi
         );
 
         // for model (json/xml)
-        if (isset($api_integration_search_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_integration_search_request));
-            } else {
-                $httpBody = $api_integration_search_request;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2706,7 +2359,7 @@ class IntegrationsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -2714,40 +2367,38 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getMyIntegrations
+     * Operation integrationCallback
      *
-     * Get My Integrations
+     * Integration Callback
      *
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\IntegrationSlug $slug slug (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['integrationCallback'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\IntegrationDetailResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return mixed|\FlowHunt\Model\HTTPValidationError
      */
-    public function getMyIntegrations($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
+    public function integrationCallback($slug, string $contentType = self::contentTypes['integrationCallback'][0])
     {
-        list($response) = $this->getMyIntegrationsWithHttpInfo($workspace_id, $integration_search_request, $contentType);
+        list($response) = $this->integrationCallbackWithHttpInfo($slug, $contentType);
         return $response;
     }
 
     /**
-     * Operation getMyIntegrationsWithHttpInfo
+     * Operation integrationCallbackWithHttpInfo
      *
-     * Get My Integrations
+     * Integration Callback
      *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['integrationCallback'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\IntegrationDetailResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMyIntegrationsWithHttpInfo($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
+    public function integrationCallbackWithHttpInfo($slug, string $contentType = self::contentTypes['integrationCallback'][0])
     {
-        $request = $this->getMyIntegrationsRequest($workspace_id, $integration_search_request, $contentType);
+        $request = $this->integrationCallbackRequest($slug, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2774,11 +2425,11 @@ class IntegrationsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\IntegrationDetailResponse[]' === '\SplFileObject') {
+                    if ('mixed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\IntegrationDetailResponse[]' !== 'string') {
+                        if ('mixed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2796,7 +2447,7 @@ class IntegrationsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\IntegrationDetailResponse[]', []),
+                        ObjectSerializer::deserialize($content, 'mixed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2842,7 +2493,7 @@ class IntegrationsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\IntegrationDetailResponse[]';
+            $returnType = 'mixed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2875,7 +2526,7 @@ class IntegrationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\IntegrationDetailResponse[]',
+                        'mixed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2894,20 +2545,19 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getMyIntegrationsAsync
+     * Operation integrationCallbackAsync
      *
-     * Get My Integrations
+     * Integration Callback
      *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['integrationCallback'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMyIntegrationsAsync($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
+    public function integrationCallbackAsync($slug, string $contentType = self::contentTypes['integrationCallback'][0])
     {
-        return $this->getMyIntegrationsAsyncWithHttpInfo($workspace_id, $integration_search_request, $contentType)
+        return $this->integrationCallbackAsyncWithHttpInfo($slug, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2916,21 +2566,20 @@ class IntegrationsApi
     }
 
     /**
-     * Operation getMyIntegrationsAsyncWithHttpInfo
+     * Operation integrationCallbackAsyncWithHttpInfo
      *
-     * Get My Integrations
+     * Integration Callback
      *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['integrationCallback'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMyIntegrationsAsyncWithHttpInfo($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
+    public function integrationCallbackAsyncWithHttpInfo($slug, string $contentType = self::contentTypes['integrationCallback'][0])
     {
-        $returnType = '\FlowHunt\Model\IntegrationDetailResponse[]';
-        $request = $this->getMyIntegrationsRequest($workspace_id, $integration_search_request, $contentType);
+        $returnType = 'mixed';
+        $request = $this->integrationCallbackRequest($slug, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2969,34 +2618,393 @@ class IntegrationsApi
     }
 
     /**
-     * Create request for operation 'getMyIntegrations'
+     * Create request for operation 'integrationCallback'
      *
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMyIntegrations'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['integrationCallback'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMyIntegrationsRequest($workspace_id, $integration_search_request, string $contentType = self::contentTypes['getMyIntegrations'][0])
+    public function integrationCallbackRequest($slug, string $contentType = self::contentTypes['integrationCallback'][0])
     {
+
+        // verify the required parameter 'slug' is set
+        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $slug when calling integrationCallback'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/{slug}/callback';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($slug !== null) {
+            $resourcePath = str_replace(
+                '{' . 'slug' . '}',
+                ObjectSerializer::toPathValue($slug),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchIntegrations
+     *
+     * Search Integrations
+     *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug slug (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchIntegrations'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\IntegrationResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchIntegrations($slug, $workspace_id, $integration_search_request, string $contentType = self::contentTypes['searchIntegrations'][0])
+    {
+        list($response) = $this->searchIntegrationsWithHttpInfo($slug, $workspace_id, $integration_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchIntegrationsWithHttpInfo
+     *
+     * Search Integrations
+     *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchIntegrations'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\IntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchIntegrationsWithHttpInfo($slug, $workspace_id, $integration_search_request, string $contentType = self::contentTypes['searchIntegrations'][0])
+    {
+        $request = $this->searchIntegrationsRequest($slug, $workspace_id, $integration_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\IntegrationResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\IntegrationResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\IntegrationResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\IntegrationResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\IntegrationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchIntegrationsAsync
+     *
+     * Search Integrations
+     *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchIntegrations'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchIntegrationsAsync($slug, $workspace_id, $integration_search_request, string $contentType = self::contentTypes['searchIntegrations'][0])
+    {
+        return $this->searchIntegrationsAsyncWithHttpInfo($slug, $workspace_id, $integration_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchIntegrationsAsyncWithHttpInfo
+     *
+     * Search Integrations
+     *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchIntegrations'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchIntegrationsAsyncWithHttpInfo($slug, $workspace_id, $integration_search_request, string $contentType = self::contentTypes['searchIntegrations'][0])
+    {
+        $returnType = '\FlowHunt\Model\IntegrationResponse';
+        $request = $this->searchIntegrationsRequest($slug, $workspace_id, $integration_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchIntegrations'
+     *
+     * @param  \FlowHunt\Model\IntegrationSlug $slug (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\IntegrationSearchRequest $integration_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchIntegrations'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchIntegrationsRequest($slug, $workspace_id, $integration_search_request, string $contentType = self::contentTypes['searchIntegrations'][0])
+    {
+
+        // verify the required parameter 'slug' is set
+        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $slug when calling searchIntegrations'
+            );
+        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getMyIntegrations'
+                'Missing the required parameter $workspace_id when calling searchIntegrations'
             );
         }
 
         // verify the required parameter 'integration_search_request' is set
         if ($integration_search_request === null || (is_array($integration_search_request) && count($integration_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_search_request when calling getMyIntegrations'
+                'Missing the required parameter $integration_search_request when calling searchIntegrations'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/';
+        $resourcePath = '/v2/integrations/{slug}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3014,6 +3022,14 @@ class IntegrationsApi
         ) ?? []);
 
 
+        // path params
+        if ($slug !== null) {
+            $resourcePath = str_replace(
+                '{' . 'slug' . '}',
+                ObjectSerializer::toPathValue($slug),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -3054,11 +3070,6 @@ class IntegrationsApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
         // this endpoint requires Bearer authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -3079,2365 +3090,6 @@ class IntegrationsApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation importOpenapiSpec
-     *
-     * Import Openapi Spec
-     *
-     * @param  string $integration_id integration_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \SplFileObject $file file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpec'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function importOpenapiSpec($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
-    {
-        list($response) = $this->importOpenapiSpecWithHttpInfo($integration_id, $workspace_id, $file, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation importOpenapiSpecWithHttpInfo
-     *
-     * Import Openapi Spec
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpec'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function importOpenapiSpecWithHttpInfo($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
-    {
-        $request = $this->importOpenapiSpecRequest($integration_id, $workspace_id, $file, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiIntegrationResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation importOpenapiSpecAsync
-     *
-     * Import Openapi Spec
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpec'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function importOpenapiSpecAsync($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
-    {
-        return $this->importOpenapiSpecAsyncWithHttpInfo($integration_id, $workspace_id, $file, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation importOpenapiSpecAsyncWithHttpInfo
-     *
-     * Import Openapi Spec
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpec'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function importOpenapiSpecAsyncWithHttpInfo($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
-    {
-        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-        $request = $this->importOpenapiSpecRequest($integration_id, $workspace_id, $file, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'importOpenapiSpec'
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpec'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function importOpenapiSpecRequest($integration_id, $workspace_id, $file, string $contentType = self::contentTypes['importOpenapiSpec'][0])
-    {
-
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling importOpenapiSpec'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling importOpenapiSpec'
-            );
-        }
-
-        // verify the required parameter 'file' is set
-        if ($file === null || (is_array($file) && count($file) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling importOpenapiSpec'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/import/openapi-file';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($integration_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'integration_id' . '}',
-                ObjectSerializer::toPathValue($integration_id),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($file !== null) {
-            $multipart = true;
-            $formParams['file'] = [];
-            $paramFiles = is_array($file) ? $file : [$file];
-            foreach ($paramFiles as $paramFile) {
-                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
-                    ObjectSerializer::toFormValue($paramFile),
-                    'rb'
-                );
-            }
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation importOpenapiSpecFromUrl
-     *
-     * Import Openapi Spec From Url
-     *
-     * @param  string $integration_id integration_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request api_integration_open_api_import_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function importOpenapiSpecFromUrl($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
-    {
-        list($response) = $this->importOpenapiSpecFromUrlWithHttpInfo($integration_id, $workspace_id, $api_integration_open_api_import_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation importOpenapiSpecFromUrlWithHttpInfo
-     *
-     * Import Openapi Spec From Url
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function importOpenapiSpecFromUrlWithHttpInfo($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
-    {
-        $request = $this->importOpenapiSpecFromUrlRequest($integration_id, $workspace_id, $api_integration_open_api_import_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiIntegrationResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation importOpenapiSpecFromUrlAsync
-     *
-     * Import Openapi Spec From Url
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function importOpenapiSpecFromUrlAsync($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
-    {
-        return $this->importOpenapiSpecFromUrlAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_open_api_import_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation importOpenapiSpecFromUrlAsyncWithHttpInfo
-     *
-     * Import Openapi Spec From Url
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function importOpenapiSpecFromUrlAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
-    {
-        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-        $request = $this->importOpenapiSpecFromUrlRequest($integration_id, $workspace_id, $api_integration_open_api_import_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'importOpenapiSpecFromUrl'
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationOpenApiImportRequest $api_integration_open_api_import_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['importOpenapiSpecFromUrl'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function importOpenapiSpecFromUrlRequest($integration_id, $workspace_id, $api_integration_open_api_import_request, string $contentType = self::contentTypes['importOpenapiSpecFromUrl'][0])
-    {
-
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling importOpenapiSpecFromUrl'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling importOpenapiSpecFromUrl'
-            );
-        }
-
-        // verify the required parameter 'api_integration_open_api_import_request' is set
-        if ($api_integration_open_api_import_request === null || (is_array($api_integration_open_api_import_request) && count($api_integration_open_api_import_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_integration_open_api_import_request when calling importOpenapiSpecFromUrl'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/import/openapi-url';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($integration_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'integration_id' . '}',
-                ObjectSerializer::toPathValue($integration_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($api_integration_open_api_import_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_integration_open_api_import_request));
-            } else {
-                $httpBody = $api_integration_open_api_import_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation removeApiIntegration
-     *
-     * Remove Api Integration
-     *
-     * @param  string $integration_id integration_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
-     */
-    public function removeApiIntegration($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
-    {
-        list($response) = $this->removeApiIntegrationWithHttpInfo($integration_id, $workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation removeApiIntegrationWithHttpInfo
-     *
-     * Remove Api Integration
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function removeApiIntegrationWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
-    {
-        $request = $this->removeApiIntegrationRequest($integration_id, $workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\Completed';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation removeApiIntegrationAsync
-     *
-     * Remove Api Integration
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function removeApiIntegrationAsync($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
-    {
-        return $this->removeApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation removeApiIntegrationAsyncWithHttpInfo
-     *
-     * Remove Api Integration
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function removeApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
-    {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->removeApiIntegrationRequest($integration_id, $workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'removeApiIntegration'
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function removeApiIntegrationRequest($integration_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegration'][0])
-    {
-
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling removeApiIntegration'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling removeApiIntegration'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($integration_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'integration_id' . '}',
-                ObjectSerializer::toPathValue($integration_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation removeApiIntegrationEndpoint
-     *
-     * Remove Api Integration Endpoint
-     *
-     * @param  string $integration_id integration_id (required)
-     * @param  string $endpoint_id endpoint_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
-     */
-    public function removeApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
-    {
-        list($response) = $this->removeApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation removeApiIntegrationEndpointWithHttpInfo
-     *
-     * Remove Api Integration Endpoint
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function removeApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
-    {
-        $request = $this->removeApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\Completed' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\Completed';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\Completed',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation removeApiIntegrationEndpointAsync
-     *
-     * Remove Api Integration Endpoint
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function removeApiIntegrationEndpointAsync($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
-    {
-        return $this->removeApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation removeApiIntegrationEndpointAsyncWithHttpInfo
-     *
-     * Remove Api Integration Endpoint
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function removeApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
-    {
-        $returnType = '\FlowHunt\Model\Completed';
-        $request = $this->removeApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'removeApiIntegrationEndpoint'
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function removeApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, string $contentType = self::contentTypes['removeApiIntegrationEndpoint'][0])
-    {
-
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling removeApiIntegrationEndpoint'
-            );
-        }
-
-        // verify the required parameter 'endpoint_id' is set
-        if ($endpoint_id === null || (is_array($endpoint_id) && count($endpoint_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $endpoint_id when calling removeApiIntegrationEndpoint'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling removeApiIntegrationEndpoint'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($integration_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'integration_id' . '}',
-                ObjectSerializer::toPathValue($integration_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($endpoint_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'endpoint_id' . '}',
-                ObjectSerializer::toPathValue($endpoint_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updateApiIntegration
-     *
-     * Update Api Integration
-     *
-     * @param  string $integration_id integration_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request api_integration_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function updateApiIntegration($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
-    {
-        list($response) = $this->updateApiIntegrationWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation updateApiIntegrationWithHttpInfo
-     *
-     * Update Api Integration
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiIntegrationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updateApiIntegrationWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
-    {
-        $request = $this->updateApiIntegrationRequest($integration_id, $workspace_id, $api_integration_update_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\ApiIntegrationResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiIntegrationResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiIntegrationResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiIntegrationResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updateApiIntegrationAsync
-     *
-     * Update Api Integration
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateApiIntegrationAsync($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
-    {
-        return $this->updateApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updateApiIntegrationAsyncWithHttpInfo
-     *
-     * Update Api Integration
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateApiIntegrationAsyncWithHttpInfo($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
-    {
-        $returnType = '\FlowHunt\Model\ApiIntegrationResponse';
-        $request = $this->updateApiIntegrationRequest($integration_id, $workspace_id, $api_integration_update_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updateApiIntegration'
-     *
-     * @param  string $integration_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiIntegrationUpdateRequest $api_integration_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegration'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateApiIntegrationRequest($integration_id, $workspace_id, $api_integration_update_request, string $contentType = self::contentTypes['updateApiIntegration'][0])
-    {
-
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling updateApiIntegration'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateApiIntegration'
-            );
-        }
-
-        // verify the required parameter 'api_integration_update_request' is set
-        if ($api_integration_update_request === null || (is_array($api_integration_update_request) && count($api_integration_update_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_integration_update_request when calling updateApiIntegration'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($integration_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'integration_id' . '}',
-                ObjectSerializer::toPathValue($integration_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($api_integration_update_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_integration_update_request));
-            } else {
-                $httpBody = $api_integration_update_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updateApiIntegrationEndpoint
-     *
-     * Update Api Integration Endpoint
-     *
-     * @param  string $integration_id integration_id (required)
-     * @param  string $endpoint_id endpoint_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request api_endpoint_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function updateApiIntegrationEndpoint($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
-    {
-        list($response) = $this->updateApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation updateApiIntegrationEndpointWithHttpInfo
-     *
-     * Update Api Integration Endpoint
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ApiEndpointResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updateApiIntegrationEndpointWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
-    {
-        $request = $this->updateApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\ApiEndpointResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ApiEndpointResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ApiEndpointResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\ApiEndpointResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\ApiEndpointResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updateApiIntegrationEndpointAsync
-     *
-     * Update Api Integration Endpoint
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateApiIntegrationEndpointAsync($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
-    {
-        return $this->updateApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updateApiIntegrationEndpointAsyncWithHttpInfo
-     *
-     * Update Api Integration Endpoint
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateApiIntegrationEndpointAsyncWithHttpInfo($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
-    {
-        $returnType = '\FlowHunt\Model\ApiEndpointResponse';
-        $request = $this->updateApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updateApiIntegrationEndpoint'
-     *
-     * @param  string $integration_id (required)
-     * @param  string $endpoint_id (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ApiEndpointUpdateRequest $api_endpoint_update_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiIntegrationEndpoint'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateApiIntegrationEndpointRequest($integration_id, $endpoint_id, $workspace_id, $api_endpoint_update_request, string $contentType = self::contentTypes['updateApiIntegrationEndpoint'][0])
-    {
-
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling updateApiIntegrationEndpoint'
-            );
-        }
-
-        // verify the required parameter 'endpoint_id' is set
-        if ($endpoint_id === null || (is_array($endpoint_id) && count($endpoint_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $endpoint_id when calling updateApiIntegrationEndpoint'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling updateApiIntegrationEndpoint'
-            );
-        }
-
-        // verify the required parameter 'api_endpoint_update_request' is set
-        if ($api_endpoint_update_request === null || (is_array($api_endpoint_update_request) && count($api_endpoint_update_request) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_endpoint_update_request when calling updateApiIntegrationEndpoint'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/api_integrations/{integration_id}/endpoints/{endpoint_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($integration_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'integration_id' . '}',
-                ObjectSerializer::toPathValue($integration_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($endpoint_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'endpoint_id' . '}',
-                ObjectSerializer::toPathValue($endpoint_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($api_endpoint_update_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($api_endpoint_update_request));
-            } else {
-                $httpBody = $api_endpoint_update_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

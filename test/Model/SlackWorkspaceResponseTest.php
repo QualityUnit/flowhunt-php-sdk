@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiIntegrationSearchRequestTest
+ * SlackWorkspaceResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ApiIntegrationSearchRequestTest Class Doc Comment
+ * SlackWorkspaceResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ApiIntegrationSearchRequest
+ * @description SlackWorkspaceResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ApiIntegrationSearchRequestTest extends TestCase
+class SlackWorkspaceResponseTest extends TestCase
 {
 
     /**
@@ -71,27 +71,36 @@ class ApiIntegrationSearchRequestTest extends TestCase
     }
 
     /**
-     * Test "ApiIntegrationSearchRequest"
+     * Test "SlackWorkspaceResponse"
      */
-    public function testApiIntegrationSearchRequest()
+    public function testSlackWorkspaceResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "team_id"
      */
-    public function testPropertyName()
+    public function testPropertyTeamId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "workspace_name"
      */
-    public function testPropertyDescription()
+    public function testPropertyWorkspaceName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "integration_id"
+     */
+    public function testPropertyIntegrationId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

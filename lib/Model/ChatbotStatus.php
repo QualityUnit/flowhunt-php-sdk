@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiMethod
+ * ChatbotStatus
  *
  * PHP version 7.4
  *
@@ -30,27 +30,21 @@ namespace FlowHunt\Model;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * ApiMethod Class Doc Comment
+ * ChatbotStatus Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ApiMethod
+class ChatbotStatus
 {
     /**
      * Possible values of this enum
      */
-    public const GET = 'GET';
+    public const A = 'A';
 
-    public const POST = 'POST';
-
-    public const PUT = 'PUT';
-
-    public const DELETE = 'DELETE';
-
-    public const PATCH = 'PATCH';
+    public const I = 'I';
 
     /**
      * Gets allowable values of the enum
@@ -59,11 +53,8 @@ class ApiMethod
     public static function getAllowableEnumValues()
     {
         return [
-            self::GET,
-            self::POST,
-            self::PUT,
-            self::DELETE,
-            self::PATCH
+            self::A,
+            self::I
         ];
     }
 }

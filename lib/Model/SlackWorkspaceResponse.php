@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiIntegrationAuthenticationMethod
+ * SlackWorkspaceResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * ApiIntegrationAuthenticationMethod Class Doc Comment
+ * SlackWorkspaceResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class SlackWorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ApiIntegrationAuthenticationMethod';
+    protected static $openAPIModelName = 'SlackWorkspaceResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,9 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'auth_type' => '\FlowHunt\Model\ApiIntegrationAuthType',
-        'description' => 'string',
-        'beta' => 'bool',
-        'link' => 'string',
-        'recommended_for_internal_assistant' => 'bool',
-        'recommended_for_public_facing_bot' => 'bool'
+        'team_id' => 'string',
+        'workspace_name' => 'string',
+        'integration_id' => 'string'
     ];
 
     /**
@@ -73,12 +70,9 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'auth_type' => null,
-        'description' => null,
-        'beta' => null,
-        'link' => null,
-        'recommended_for_internal_assistant' => null,
-        'recommended_for_public_facing_bot' => null
+        'team_id' => null,
+        'workspace_name' => null,
+        'integration_id' => 'uuid'
     ];
 
     /**
@@ -87,12 +81,9 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'auth_type' => false,
-        'description' => false,
-        'beta' => false,
-        'link' => false,
-        'recommended_for_internal_assistant' => false,
-        'recommended_for_public_facing_bot' => false
+        'team_id' => false,
+        'workspace_name' => false,
+        'integration_id' => false
     ];
 
     /**
@@ -181,12 +172,9 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'auth_type' => 'auth_type',
-        'description' => 'description',
-        'beta' => 'beta',
-        'link' => 'link',
-        'recommended_for_internal_assistant' => 'recommended_for_internal_assistant',
-        'recommended_for_public_facing_bot' => 'recommended_for_public_facing_bot'
+        'team_id' => 'team_id',
+        'workspace_name' => 'workspace_name',
+        'integration_id' => 'integration_id'
     ];
 
     /**
@@ -195,12 +183,9 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'auth_type' => 'setAuthType',
-        'description' => 'setDescription',
-        'beta' => 'setBeta',
-        'link' => 'setLink',
-        'recommended_for_internal_assistant' => 'setRecommendedForInternalAssistant',
-        'recommended_for_public_facing_bot' => 'setRecommendedForPublicFacingBot'
+        'team_id' => 'setTeamId',
+        'workspace_name' => 'setWorkspaceName',
+        'integration_id' => 'setIntegrationId'
     ];
 
     /**
@@ -209,12 +194,9 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'auth_type' => 'getAuthType',
-        'description' => 'getDescription',
-        'beta' => 'getBeta',
-        'link' => 'getLink',
-        'recommended_for_internal_assistant' => 'getRecommendedForInternalAssistant',
-        'recommended_for_public_facing_bot' => 'getRecommendedForPublicFacingBot'
+        'team_id' => 'getTeamId',
+        'workspace_name' => 'getWorkspaceName',
+        'integration_id' => 'getIntegrationId'
     ];
 
     /**
@@ -274,12 +256,9 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('auth_type', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('beta', $data ?? [], false);
-        $this->setIfExists('link', $data ?? [], null);
-        $this->setIfExists('recommended_for_internal_assistant', $data ?? [], false);
-        $this->setIfExists('recommended_for_public_facing_bot', $data ?? [], false);
+        $this->setIfExists('team_id', $data ?? [], null);
+        $this->setIfExists('workspace_name', $data ?? [], null);
+        $this->setIfExists('integration_id', $data ?? [], null);
     }
 
     /**
@@ -309,14 +288,14 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
-        if ($this->container['auth_type'] === null) {
-            $invalidProperties[] = "'auth_type' can't be null";
+        if ($this->container['team_id'] === null) {
+            $invalidProperties[] = "'team_id' can't be null";
         }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+        if ($this->container['workspace_name'] === null) {
+            $invalidProperties[] = "'workspace_name' can't be null";
         }
-        if ($this->container['link'] === null) {
-            $invalidProperties[] = "'link' can't be null";
+        if ($this->container['integration_id'] === null) {
+            $invalidProperties[] = "'integration_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -334,163 +313,82 @@ class ApiIntegrationAuthenticationMethod implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets auth_type
-     *
-     * @return \FlowHunt\Model\ApiIntegrationAuthType
-     */
-    public function getAuthType()
-    {
-        return $this->container['auth_type'];
-    }
-
-    /**
-     * Sets auth_type
-     *
-     * @param \FlowHunt\Model\ApiIntegrationAuthType $auth_type The authentication type of the API integration.
-     *
-     * @return self
-     */
-    public function setAuthType($auth_type)
-    {
-        if (is_null($auth_type)) {
-            throw new \InvalidArgumentException('non-nullable auth_type cannot be null');
-        }
-        $this->container['auth_type'] = $auth_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * Gets team_id
      *
      * @return string
      */
-    public function getDescription()
+    public function getTeamId()
     {
-        return $this->container['description'];
+        return $this->container['team_id'];
     }
 
     /**
-     * Sets description
+     * Sets team_id
      *
-     * @param string $description The description of the authentication type.
+     * @param string $team_id team_id
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setTeamId($team_id)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($team_id)) {
+            throw new \InvalidArgumentException('non-nullable team_id cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['team_id'] = $team_id;
 
         return $this;
     }
 
     /**
-     * Gets beta
-     *
-     * @return bool|null
-     */
-    public function getBeta()
-    {
-        return $this->container['beta'];
-    }
-
-    /**
-     * Sets beta
-     *
-     * @param bool|null $beta Whether the authentication type is in beta or not.
-     *
-     * @return self
-     */
-    public function setBeta($beta)
-    {
-        if (is_null($beta)) {
-            throw new \InvalidArgumentException('non-nullable beta cannot be null');
-        }
-        $this->container['beta'] = $beta;
-
-        return $this;
-    }
-
-    /**
-     * Gets link
+     * Gets workspace_name
      *
      * @return string
      */
-    public function getLink()
+    public function getWorkspaceName()
     {
-        return $this->container['link'];
+        return $this->container['workspace_name'];
     }
 
     /**
-     * Sets link
+     * Sets workspace_name
      *
-     * @param string $link The link of the authentication type documentation.
+     * @param string $workspace_name workspace_name
      *
      * @return self
      */
-    public function setLink($link)
+    public function setWorkspaceName($workspace_name)
     {
-        if (is_null($link)) {
-            throw new \InvalidArgumentException('non-nullable link cannot be null');
+        if (is_null($workspace_name)) {
+            throw new \InvalidArgumentException('non-nullable workspace_name cannot be null');
         }
-        $this->container['link'] = $link;
+        $this->container['workspace_name'] = $workspace_name;
 
         return $this;
     }
 
     /**
-     * Gets recommended_for_internal_assistant
+     * Gets integration_id
      *
-     * @return bool|null
+     * @return string
      */
-    public function getRecommendedForInternalAssistant()
+    public function getIntegrationId()
     {
-        return $this->container['recommended_for_internal_assistant'];
+        return $this->container['integration_id'];
     }
 
     /**
-     * Sets recommended_for_internal_assistant
+     * Sets integration_id
      *
-     * @param bool|null $recommended_for_internal_assistant Whether the authentication type is recommended for
+     * @param string $integration_id integration_id
      *
      * @return self
      */
-    public function setRecommendedForInternalAssistant($recommended_for_internal_assistant)
+    public function setIntegrationId($integration_id)
     {
-        if (is_null($recommended_for_internal_assistant)) {
-            throw new \InvalidArgumentException('non-nullable recommended_for_internal_assistant cannot be null');
+        if (is_null($integration_id)) {
+            throw new \InvalidArgumentException('non-nullable integration_id cannot be null');
         }
-        $this->container['recommended_for_internal_assistant'] = $recommended_for_internal_assistant;
-
-        return $this;
-    }
-
-    /**
-     * Gets recommended_for_public_facing_bot
-     *
-     * @return bool|null
-     */
-    public function getRecommendedForPublicFacingBot()
-    {
-        return $this->container['recommended_for_public_facing_bot'];
-    }
-
-    /**
-     * Sets recommended_for_public_facing_bot
-     *
-     * @param bool|null $recommended_for_public_facing_bot Whether the authentication type is recommended for
-     *
-     * @return self
-     */
-    public function setRecommendedForPublicFacingBot($recommended_for_public_facing_bot)
-    {
-        if (is_null($recommended_for_public_facing_bot)) {
-            throw new \InvalidArgumentException('non-nullable recommended_for_public_facing_bot cannot be null');
-        }
-        $this->container['recommended_for_public_facing_bot'] = $recommended_for_public_facing_bot;
+        $this->container['integration_id'] = $integration_id;
 
         return $this;
     }

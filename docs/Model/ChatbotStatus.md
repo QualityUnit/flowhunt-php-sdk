@@ -1,4 +1,4 @@
-# # ChatbotStatusOutput
+# # ChatbotStatus
 
 ## Properties
 

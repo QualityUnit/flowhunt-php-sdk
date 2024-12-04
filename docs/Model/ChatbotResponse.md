@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **title** | **string** | Tenant name |
 **description** | **string** |  | [optional]
 **flow_id** | **string** | Flow ID |
-**status** | [**\FlowHunt\Model\ChatbotStatusOutput**](ChatbotStatusOutput.md) |  |
+**status** | [**\FlowHunt\Model\ChatbotStatus**](ChatbotStatus.md) |  |
 **url_suffix** | **string** |  | [optional]
 **theme** | **string** |  | [optional]
 **max_window_size** | **string** |  | [optional]

@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiIntegrationAuthenticationMethodTest
+ * SlackChannelResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ApiIntegrationAuthenticationMethodTest Class Doc Comment
+ * SlackChannelResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ApiIntegrationAuthenticationMethod
+ * @description SlackChannelResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ApiIntegrationAuthenticationMethodTest extends TestCase
+class SlackChannelResponseTest extends TestCase
 {
 
     /**
@@ -71,63 +71,27 @@ class ApiIntegrationAuthenticationMethodTest extends TestCase
     }
 
     /**
-     * Test "ApiIntegrationAuthenticationMethod"
+     * Test "SlackChannelResponse"
      */
-    public function testApiIntegrationAuthenticationMethod()
+    public function testSlackChannelResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "auth_type"
+     * Test attribute "channel_id"
      */
-    public function testPropertyAuthType()
+    public function testPropertyChannelId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "channel_name"
      */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "beta"
-     */
-    public function testPropertyBeta()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "link"
-     */
-    public function testPropertyLink()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "recommended_for_internal_assistant"
-     */
-    public function testPropertyRecommendedForInternalAssistant()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "recommended_for_public_facing_bot"
-     */
-    public function testPropertyRecommendedForPublicFacingBot()
+    public function testPropertyChannelName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

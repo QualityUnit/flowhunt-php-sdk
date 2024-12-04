@@ -46,6 +46,10 @@ class IntegrationCategory
 
     public const CRM = 'crm';
 
+    public const SOCIAL_MEDIA = 'social_media';
+
+    public const ECOMMERCE = 'ecommerce';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -54,7 +58,9 @@ class IntegrationCategory
     {
         return [
             self::DEV_TOOLS,
-            self::CRM
+            self::CRM,
+            self::SOCIAL_MEDIA,
+            self::ECOMMERCE
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiEndpointSearchRequest
+ * IntegrationFlowResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * ApiEndpointSearchRequest Class Doc Comment
+ * IntegrationFlowResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class IntegrationFlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ApiEndpointSearchRequest';
+    protected static $openAPIModelName = 'IntegrationFlowResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'path' => 'string',
-        'method' => '\FlowHunt\Model\ApiMethod'
+        'redirect_to' => 'string'
     ];
 
     /**
@@ -69,8 +68,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'path' => null,
-        'method' => null
+        'redirect_to' => null
     ];
 
     /**
@@ -79,8 +77,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'path' => true,
-        'method' => true
+        'redirect_to' => false
     ];
 
     /**
@@ -169,8 +166,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'path' => 'path',
-        'method' => 'method'
+        'redirect_to' => 'redirect_to'
     ];
 
     /**
@@ -179,8 +175,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'path' => 'setPath',
-        'method' => 'setMethod'
+        'redirect_to' => 'setRedirectTo'
     ];
 
     /**
@@ -189,8 +184,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'path' => 'getPath',
-        'method' => 'getMethod'
+        'redirect_to' => 'getRedirectTo'
     ];
 
     /**
@@ -250,8 +244,7 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('path', $data ?? [], null);
-        $this->setIfExists('method', $data ?? [], null);
+        $this->setIfExists('redirect_to', $data ?? [], null);
     }
 
     /**
@@ -281,14 +274,9 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['path']) && (mb_strlen($this->container['path']) > 1024)) {
-            $invalidProperties[] = "invalid value for 'path', the character length must be smaller than or equal to 1024.";
+        if ($this->container['redirect_to'] === null) {
+            $invalidProperties[] = "'redirect_to' can't be null";
         }
-
-        if (!is_null($this->container['path']) && (mb_strlen($this->container['path']) < 1)) {
-            $invalidProperties[] = "invalid value for 'path', the character length must be bigger than or equal to 1.";
-        }
-
         return $invalidProperties;
     }
 
@@ -305,76 +293,28 @@ class ApiEndpointSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets path
+     * Gets redirect_to
      *
-     * @return string|null
+     * @return string
      */
-    public function getPath()
+    public function getRedirectTo()
     {
-        return $this->container['path'];
+        return $this->container['redirect_to'];
     }
 
     /**
-     * Sets path
+     * Sets redirect_to
      *
-     * @param string|null $path path
+     * @param string $redirect_to The URL to redirect to.
      *
      * @return self
      */
-    public function setPath($path)
+    public function setRedirectTo($redirect_to)
     {
-        if (is_null($path)) {
-            array_push($this->openAPINullablesSetToNull, 'path');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('path', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($redirect_to)) {
+            throw new \InvalidArgumentException('non-nullable redirect_to cannot be null');
         }
-        if (!is_null($path) && (mb_strlen($path) > 1024)) {
-            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointSearchRequest., must be smaller than or equal to 1024.');
-        }
-        if (!is_null($path) && (mb_strlen($path) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointSearchRequest., must be bigger than or equal to 1.');
-        }
-
-        $this->container['path'] = $path;
-
-        return $this;
-    }
-
-    /**
-     * Gets method
-     *
-     * @return \FlowHunt\Model\ApiMethod|null
-     */
-    public function getMethod()
-    {
-        return $this->container['method'];
-    }
-
-    /**
-     * Sets method
-     *
-     * @param \FlowHunt\Model\ApiMethod|null $method method
-     *
-     * @return self
-     */
-    public function setMethod($method)
-    {
-        if (is_null($method)) {
-            array_push($this->openAPINullablesSetToNull, 'method');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('method', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['method'] = $method;
+        $this->container['redirect_to'] = $redirect_to;
 
         return $this;
     }

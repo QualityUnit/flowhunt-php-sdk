@@ -72,24 +72,24 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
-     * Test case for createApiIntegration
+     * Test case for createIntegration
      *
-     * Create Api Integration.
+     * Create Integration.
      *
      */
-    public function testCreateApiIntegration()
+    public function testCreateIntegration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createApiIntegrationEndpoint
+     * Test case for deleteIntegration
      *
-     * Create Api Integration Endpoint.
+     * Delete Integration.
      *
      */
-    public function testCreateApiIntegrationEndpoint()
+    public function testDeleteIntegration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -108,132 +108,60 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
-     * Test case for getApiIntegration
+     * Test case for getIntegration
      *
-     * Get Api Integration.
+     * Get Integration.
      *
      */
-    public function testGetApiIntegration()
+    public function testGetIntegration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getApiIntegrationAuthMethods
+     * Test case for getSlackChannels
      *
-     * Get Api Integration Auth Methods.
+     * Get Slack Channels.
      *
      */
-    public function testGetApiIntegrationAuthMethods()
+    public function testGetSlackChannels()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getApiIntegrationEndpoints
+     * Test case for getSlackWorkspaces
      *
-     * Get Api Integration Endpoints.
+     * Get Slack Workspaces.
      *
      */
-    public function testGetApiIntegrationEndpoints()
+    public function testGetSlackWorkspaces()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getApiIntegrations
+     * Test case for integrationCallback
      *
-     * Get Api Integrations.
+     * Integration Callback.
      *
      */
-    public function testGetApiIntegrations()
+    public function testIntegrationCallback()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getMyIntegrations
+     * Test case for searchIntegrations
      *
-     * Get My Integrations.
-     *
-     */
-    public function testGetMyIntegrations()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for importOpenapiSpec
-     *
-     * Import Openapi Spec.
+     * Search Integrations.
      *
      */
-    public function testImportOpenapiSpec()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for importOpenapiSpecFromUrl
-     *
-     * Import Openapi Spec From Url.
-     *
-     */
-    public function testImportOpenapiSpecFromUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for removeApiIntegration
-     *
-     * Remove Api Integration.
-     *
-     */
-    public function testRemoveApiIntegration()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for removeApiIntegrationEndpoint
-     *
-     * Remove Api Integration Endpoint.
-     *
-     */
-    public function testRemoveApiIntegrationEndpoint()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updateApiIntegration
-     *
-     * Update Api Integration.
-     *
-     */
-    public function testUpdateApiIntegration()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updateApiIntegrationEndpoint
-     *
-     * Update Api Integration Endpoint.
-     *
-     */
-    public function testUpdateApiIntegrationEndpoint()
+    public function testSearchIntegrations()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

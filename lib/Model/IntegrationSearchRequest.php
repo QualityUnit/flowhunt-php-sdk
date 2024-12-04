@@ -57,7 +57,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'slug' => '\FlowHunt\Model\IntegrationSlug'
+        'integration_name' => 'string'
     ];
 
     /**
@@ -68,7 +68,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'slug' => null
+        'integration_name' => null
     ];
 
     /**
@@ -77,7 +77,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'slug' => true
+        'integration_name' => true
     ];
 
     /**
@@ -166,7 +166,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'slug' => 'slug'
+        'integration_name' => 'integration_name'
     ];
 
     /**
@@ -175,7 +175,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'slug' => 'setSlug'
+        'integration_name' => 'setIntegrationName'
     ];
 
     /**
@@ -184,7 +184,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'slug' => 'getSlug'
+        'integration_name' => 'getIntegrationName'
     ];
 
     /**
@@ -244,7 +244,7 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('slug', $data ?? [], null);
+        $this->setIfExists('integration_name', $data ?? [], null);
     }
 
     /**
@@ -290,35 +290,35 @@ class IntegrationSearchRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets slug
+     * Gets integration_name
      *
-     * @return \FlowHunt\Model\IntegrationSlug|null
+     * @return string|null
      */
-    public function getSlug()
+    public function getIntegrationName()
     {
-        return $this->container['slug'];
+        return $this->container['integration_name'];
     }
 
     /**
-     * Sets slug
+     * Sets integration_name
      *
-     * @param \FlowHunt\Model\IntegrationSlug|null $slug slug
+     * @param string|null $integration_name integration_name
      *
      * @return self
      */
-    public function setSlug($slug)
+    public function setIntegrationName($integration_name)
     {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
+        if (is_null($integration_name)) {
+            array_push($this->openAPINullablesSetToNull, 'integration_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
+            $index = array_search('integration_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['slug'] = $slug;
+        $this->container['integration_name'] = $integration_name;
 
         return $this;
     }

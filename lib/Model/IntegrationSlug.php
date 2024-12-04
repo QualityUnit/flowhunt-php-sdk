@@ -42,11 +42,15 @@ class IntegrationSlug
     /**
      * Possible values of this enum
      */
-    public const API_INTEGRATION = 'api_integration';
+    public const SHOPIFY_INTEGRATION = 'shopify_integration';
+
+    public const SLACK_INTEGRATION = 'slack_integration';
+
+    public const HUBSPOT_INTEGRATION = 'hubspot_integration';
 
     public const LIVEAGENT_INTEGRATION = 'liveagent_integration';
 
-    public const HUBSPOT_INTEGRATION = 'hubspot_integration';
+    public const HUBSPOT_WIDGET_INTEGRATION = 'hubspot_widget_integration';
 
     public const LIVECHAT_INTEGRATION = 'livechat_integration';
 
@@ -63,9 +67,11 @@ class IntegrationSlug
     public static function getAllowableEnumValues()
     {
         return [
-            self::API_INTEGRATION,
-            self::LIVEAGENT_INTEGRATION,
+            self::SHOPIFY_INTEGRATION,
+            self::SLACK_INTEGRATION,
             self::HUBSPOT_INTEGRATION,
+            self::LIVEAGENT_INTEGRATION,
+            self::HUBSPOT_WIDGET_INTEGRATION,
             self::LIVECHAT_INTEGRATION,
             self::SMARTSUPP_INTEGRATION,
             self::FRESHCHAT_INTEGRATION,

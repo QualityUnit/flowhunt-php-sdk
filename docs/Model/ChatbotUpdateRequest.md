@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **title** | **string** |  | [optional]
 **description** | **string** |  | [optional]
 **flow_id** | **string** |  | [optional]
-**status** | **string** |  | [optional]
+**status** | [**\FlowHunt\Model\ChatbotStatus**](ChatbotStatus.md) |  | [optional]
 **url_suffix** | **string** |  | [optional]
 **theme** | **string** |  | [optional]
 **max_window_size** | **string** |  | [optional]

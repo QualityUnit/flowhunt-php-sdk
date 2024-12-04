@@ -60,7 +60,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'title' => 'string',
         'description' => 'string',
         'flow_id' => 'string',
-        'status' => 'string',
+        'status' => '\FlowHunt\Model\ChatbotStatus',
         'url_suffix' => 'string',
         'theme' => 'string',
         'max_window_size' => 'string',
@@ -276,21 +276,6 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-    public const STATUS_A = 'A';
-    public const STATUS_I = 'I';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_A,
-            self::STATUS_I,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -355,19 +340,6 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ((mb_strlen($this->container['status']) > 1)) {
-            $invalidProperties[] = "invalid value for 'status', the character length must be smaller than or equal to 1.";
-        }
-
         if (!is_null($this->container['url_suffix']) && (mb_strlen($this->container['url_suffix']) > 100)) {
             $invalidProperties[] = "invalid value for 'url_suffix', the character length must be smaller than or equal to 100.";
         }
@@ -490,7 +462,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets status
      *
-     * @return string
+     * @return \FlowHunt\Model\ChatbotStatus
      */
     public function getStatus()
     {
@@ -500,7 +472,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets status
      *
-     * @param string $status status
+     * @param \FlowHunt\Model\ChatbotStatus $status status
      *
      * @return self
      */
@@ -509,20 +481,6 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        if ((mb_strlen($status) > 1)) {
-            throw new \InvalidArgumentException('invalid length for $status when calling ChatbotCreateRequest., must be smaller than or equal to 1.');
-        }
-
         $this->container['status'] = $status;
 
         return $this;

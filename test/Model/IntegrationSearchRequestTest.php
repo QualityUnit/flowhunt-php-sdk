@@ -80,9 +80,9 @@ class IntegrationSearchRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "slug"
+     * Test attribute "integration_name"
      */
-    public function testPropertySlug()
+    public function testPropertyIntegrationName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

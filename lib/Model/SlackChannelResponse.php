@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiEndpointCreateRequest
+ * SlackChannelResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * ApiEndpointCreateRequest Class Doc Comment
+ * SlackChannelResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ApiEndpointCreateRequest';
+    protected static $openAPIModelName = 'SlackChannelResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,13 +57,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'path' => 'string',
-        'method' => '\FlowHunt\Model\ApiMethod',
-        'parameters' => 'object[]',
-        'request_body' => 'object',
-        'success_response' => 'object',
-        'description' => 'string',
-        'security_scheme' => 'string[]'
+        'channel_id' => 'string',
+        'channel_name' => 'string'
     ];
 
     /**
@@ -74,13 +69,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'path' => null,
-        'method' => null,
-        'parameters' => null,
-        'request_body' => null,
-        'success_response' => null,
-        'description' => null,
-        'security_scheme' => null
+        'channel_id' => null,
+        'channel_name' => null
     ];
 
     /**
@@ -89,13 +79,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'path' => false,
-        'method' => false,
-        'parameters' => true,
-        'request_body' => true,
-        'success_response' => true,
-        'description' => false,
-        'security_scheme' => false
+        'channel_id' => false,
+        'channel_name' => false
     ];
 
     /**
@@ -184,13 +169,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'path' => 'path',
-        'method' => 'method',
-        'parameters' => 'parameters',
-        'request_body' => 'request_body',
-        'success_response' => 'success_response',
-        'description' => 'description',
-        'security_scheme' => 'security_scheme'
+        'channel_id' => 'channel_id',
+        'channel_name' => 'channel_name'
     ];
 
     /**
@@ -199,13 +179,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'path' => 'setPath',
-        'method' => 'setMethod',
-        'parameters' => 'setParameters',
-        'request_body' => 'setRequestBody',
-        'success_response' => 'setSuccessResponse',
-        'description' => 'setDescription',
-        'security_scheme' => 'setSecurityScheme'
+        'channel_id' => 'setChannelId',
+        'channel_name' => 'setChannelName'
     ];
 
     /**
@@ -214,13 +189,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'path' => 'getPath',
-        'method' => 'getMethod',
-        'parameters' => 'getParameters',
-        'request_body' => 'getRequestBody',
-        'success_response' => 'getSuccessResponse',
-        'description' => 'getDescription',
-        'security_scheme' => 'getSecurityScheme'
+        'channel_id' => 'getChannelId',
+        'channel_name' => 'getChannelName'
     ];
 
     /**
@@ -280,13 +250,8 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('path', $data ?? [], null);
-        $this->setIfExists('method', $data ?? [], null);
-        $this->setIfExists('parameters', $data ?? [], null);
-        $this->setIfExists('request_body', $data ?? [], null);
-        $this->setIfExists('success_response', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('security_scheme', $data ?? [], null);
+        $this->setIfExists('channel_id', $data ?? [], null);
+        $this->setIfExists('channel_name', $data ?? [], null);
     }
 
     /**
@@ -316,27 +281,12 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['path'] === null) {
-            $invalidProperties[] = "'path' can't be null";
+        if ($this->container['channel_id'] === null) {
+            $invalidProperties[] = "'channel_id' can't be null";
         }
-        if ((mb_strlen($this->container['path']) > 1024)) {
-            $invalidProperties[] = "invalid value for 'path', the character length must be smaller than or equal to 1024.";
+        if ($this->container['channel_name'] === null) {
+            $invalidProperties[] = "'channel_name' can't be null";
         }
-
-        if ((mb_strlen($this->container['path']) < 1)) {
-            $invalidProperties[] = "invalid value for 'path', the character length must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['method'] === null) {
-            $invalidProperties[] = "'method' can't be null";
-        }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ((mb_strlen($this->container['description']) < 1)) {
-            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 1.";
-        }
-
         return $invalidProperties;
     }
 
@@ -353,223 +303,55 @@ class ApiEndpointCreateRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets path
+     * Gets channel_id
      *
      * @return string
      */
-    public function getPath()
+    public function getChannelId()
     {
-        return $this->container['path'];
+        return $this->container['channel_id'];
     }
 
     /**
-     * Sets path
+     * Sets channel_id
      *
-     * @param string $path The path of the API endpoint.
+     * @param string $channel_id channel_id
      *
      * @return self
      */
-    public function setPath($path)
+    public function setChannelId($channel_id)
     {
-        if (is_null($path)) {
-            throw new \InvalidArgumentException('non-nullable path cannot be null');
+        if (is_null($channel_id)) {
+            throw new \InvalidArgumentException('non-nullable channel_id cannot be null');
         }
-        if ((mb_strlen($path) > 1024)) {
-            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointCreateRequest., must be smaller than or equal to 1024.');
-        }
-        if ((mb_strlen($path) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $path when calling ApiEndpointCreateRequest., must be bigger than or equal to 1.');
-        }
-
-        $this->container['path'] = $path;
+        $this->container['channel_id'] = $channel_id;
 
         return $this;
     }
 
     /**
-     * Gets method
-     *
-     * @return \FlowHunt\Model\ApiMethod
-     */
-    public function getMethod()
-    {
-        return $this->container['method'];
-    }
-
-    /**
-     * Sets method
-     *
-     * @param \FlowHunt\Model\ApiMethod $method The method of the API endpoint.
-     *
-     * @return self
-     */
-    public function setMethod($method)
-    {
-        if (is_null($method)) {
-            throw new \InvalidArgumentException('non-nullable method cannot be null');
-        }
-        $this->container['method'] = $method;
-
-        return $this;
-    }
-
-    /**
-     * Gets parameters
-     *
-     * @return object[]|null
-     */
-    public function getParameters()
-    {
-        return $this->container['parameters'];
-    }
-
-    /**
-     * Sets parameters
-     *
-     * @param object[]|null $parameters parameters
-     *
-     * @return self
-     */
-    public function setParameters($parameters)
-    {
-        if (is_null($parameters)) {
-            array_push($this->openAPINullablesSetToNull, 'parameters');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('parameters', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['parameters'] = $parameters;
-
-        return $this;
-    }
-
-    /**
-     * Gets request_body
-     *
-     * @return object|null
-     */
-    public function getRequestBody()
-    {
-        return $this->container['request_body'];
-    }
-
-    /**
-     * Sets request_body
-     *
-     * @param object|null $request_body request_body
-     *
-     * @return self
-     */
-    public function setRequestBody($request_body)
-    {
-        if (is_null($request_body)) {
-            array_push($this->openAPINullablesSetToNull, 'request_body');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('request_body', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['request_body'] = $request_body;
-
-        return $this;
-    }
-
-    /**
-     * Gets success_response
-     *
-     * @return object|null
-     */
-    public function getSuccessResponse()
-    {
-        return $this->container['success_response'];
-    }
-
-    /**
-     * Sets success_response
-     *
-     * @param object|null $success_response success_response
-     *
-     * @return self
-     */
-    public function setSuccessResponse($success_response)
-    {
-        if (is_null($success_response)) {
-            array_push($this->openAPINullablesSetToNull, 'success_response');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('success_response', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['success_response'] = $success_response;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * Gets channel_name
      *
      * @return string
      */
-    public function getDescription()
+    public function getChannelName()
     {
-        return $this->container['description'];
+        return $this->container['channel_name'];
     }
 
     /**
-     * Sets description
+     * Sets channel_name
      *
-     * @param string $description The description of the API endpoint.
+     * @param string $channel_name channel_name
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setChannelName($channel_name)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($channel_name)) {
+            throw new \InvalidArgumentException('non-nullable channel_name cannot be null');
         }
-
-        if ((mb_strlen($description) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling ApiEndpointCreateRequest., must be bigger than or equal to 1.');
-        }
-
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets security_scheme
-     *
-     * @return string[]|null
-     */
-    public function getSecurityScheme()
-    {
-        return $this->container['security_scheme'];
-    }
-
-    /**
-     * Sets security_scheme
-     *
-     * @param string[]|null $security_scheme The security scheme of the API endpoint.
-     *
-     * @return self
-     */
-    public function setSecurityScheme($security_scheme)
-    {
-        if (is_null($security_scheme)) {
-            throw new \InvalidArgumentException('non-nullable security_scheme cannot be null');
-        }
-        $this->container['security_scheme'] = $security_scheme;
+        $this->container['channel_name'] = $channel_name;
 
         return $this;
     }

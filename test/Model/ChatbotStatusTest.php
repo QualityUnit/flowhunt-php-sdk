@@ -1,6 +1,6 @@
 <?php
 /**
- * ChatbotStatusOutputTest
+ * ChatbotStatusTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ChatbotStatusOutputTest Class Doc Comment
+ * ChatbotStatusTest Class Doc Comment
  *
  * @category    Class
- * @description ChatbotStatusOutput
+ * @description ChatbotStatus
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ChatbotStatusOutputTest extends TestCase
+class ChatbotStatusTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class ChatbotStatusOutputTest extends TestCase
     }
 
     /**
-     * Test "ChatbotStatusOutput"
+     * Test "ChatbotStatus"
      */
-    public function testChatbotStatusOutput()
+    public function testChatbotStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

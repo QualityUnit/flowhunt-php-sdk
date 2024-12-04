@@ -48,6 +48,8 @@ class TriggerType
 
     public const CHAT_INPUT = 'chat_input';
 
+    public const SLACK_MESSAGE_RECEIVED = 'slack_message_received';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -57,7 +59,8 @@ class TriggerType
         return [
             self::ON_CHAT_OPEN,
             self::CUSTOM_TRIGGER,
-            self::CHAT_INPUT
+            self::CHAT_INPUT,
+            self::SLACK_MESSAGE_RECEIVED
         ];
     }
 }
