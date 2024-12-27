@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponseTest
+ * FlowEventActionTypeTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationResponseTest Class Doc Comment
+ * FlowEventActionTypeTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationResponse
+ * @description FlowEventActionType
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationResponseTest extends TestCase
+class FlowEventActionTypeTest extends TestCase
 {
 
     /**
@@ -71,27 +71,9 @@ class FlowSessionInvocationResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationResponse"
+     * Test "FlowEventActionType"
      */
-    public function testFlowSessionInvocationResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "message_id"
-     */
-    public function testPropertyMessageId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created_at"
-     */
-    public function testPropertyCreatedAt()
+    public function testFlowEventActionType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

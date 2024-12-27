@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponse
+ * SerpQueryRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationResponse Class Doc Comment
+ * SerpQueryRequest Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationResponse';
+    protected static $openAPIModelName = 'SerpQueryRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message_id' => 'string',
-        'created_at' => 'string'
+        'post_back_url' => 'string',
+        'query' => 'string',
+        'country' => 'string',
+        'language' => 'string',
+        'location' => 'string'
     ];
 
     /**
@@ -69,8 +72,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message_id' => null,
-        'created_at' => null
+        'post_back_url' => null,
+        'query' => null,
+        'country' => null,
+        'language' => null,
+        'location' => null
     ];
 
     /**
@@ -79,8 +85,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'message_id' => false,
-        'created_at' => false
+        'post_back_url' => true,
+        'query' => true,
+        'country' => true,
+        'language' => true,
+        'location' => true
     ];
 
     /**
@@ -169,8 +178,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'message_id' => 'message_id',
-        'created_at' => 'created_at'
+        'post_back_url' => 'post_back_url',
+        'query' => 'query',
+        'country' => 'country',
+        'language' => 'language',
+        'location' => 'location'
     ];
 
     /**
@@ -179,8 +191,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'message_id' => 'setMessageId',
-        'created_at' => 'setCreatedAt'
+        'post_back_url' => 'setPostBackUrl',
+        'query' => 'setQuery',
+        'country' => 'setCountry',
+        'language' => 'setLanguage',
+        'location' => 'setLocation'
     ];
 
     /**
@@ -189,8 +204,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'message_id' => 'getMessageId',
-        'created_at' => 'getCreatedAt'
+        'post_back_url' => 'getPostBackUrl',
+        'query' => 'getQuery',
+        'country' => 'getCountry',
+        'language' => 'getLanguage',
+        'location' => 'getLocation'
     ];
 
     /**
@@ -250,8 +268,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('post_back_url', $data ?? [], null);
+        $this->setIfExists('query', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('location', $data ?? [], null);
     }
 
     /**
@@ -281,12 +302,6 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
-        if ($this->container['message_id'] === null) {
-            $invalidProperties[] = "'message_id' can't be null";
-        }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -303,55 +318,171 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets message_id
+     * Gets post_back_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessageId()
+    public function getPostBackUrl()
     {
-        return $this->container['message_id'];
+        return $this->container['post_back_url'];
     }
 
     /**
-     * Sets message_id
+     * Sets post_back_url
      *
-     * @param string $message_id Message ID
+     * @param string|null $post_back_url post_back_url
      *
      * @return self
      */
-    public function setMessageId($message_id)
+    public function setPostBackUrl($post_back_url)
     {
-        if (is_null($message_id)) {
-            throw new \InvalidArgumentException('non-nullable message_id cannot be null');
+        if (is_null($post_back_url)) {
+            array_push($this->openAPINullablesSetToNull, 'post_back_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('post_back_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['message_id'] = $message_id;
+        $this->container['post_back_url'] = $post_back_url;
 
         return $this;
     }
 
     /**
-     * Gets created_at
+     * Gets query
      *
-     * @return string
+     * @return string|null
      */
-    public function getCreatedAt()
+    public function getQuery()
     {
-        return $this->container['created_at'];
+        return $this->container['query'];
     }
 
     /**
-     * Sets created_at
+     * Sets query
      *
-     * @param string $created_at Created at
+     * @param string|null $query query
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setQuery($query)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($query)) {
+            array_push($this->openAPINullablesSetToNull, 'query');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('query', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['query'] = $query;
+
+        return $this;
+    }
+
+    /**
+     * Gets country
+     *
+     * @return string|null
+     */
+    public function getCountry()
+    {
+        return $this->container['country'];
+    }
+
+    /**
+     * Sets country
+     *
+     * @param string|null $country country
+     *
+     * @return self
+     */
+    public function setCountry($country)
+    {
+        if (is_null($country)) {
+            array_push($this->openAPINullablesSetToNull, 'country');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('country', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language language
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            array_push($this->openAPINullablesSetToNull, 'language');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('language', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets location
+     *
+     * @return string|null
+     */
+    public function getLocation()
+    {
+        return $this->container['location'];
+    }
+
+    /**
+     * Sets location
+     *
+     * @param string|null $location location
+     *
+     * @return self
+     */
+    public function setLocation($location)
+    {
+        if (is_null($location)) {
+            array_push($this->openAPINullablesSetToNull, 'location');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('location', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['location'] = $location;
 
         return $this;
     }

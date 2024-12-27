@@ -61,8 +61,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'flow_id' => 'string',
         'tags' => 'string[]',
         'limit' => 'int',
-        'created_at_start' => '\DateTime',
-        'created_at_end' => '\DateTime'
+        'created_at_filter' => 'object',
+        'last_message_at_filter' => 'object',
+        'duration_filter' => 'object',
+        'msg_count_filter' => 'object',
+        'credits_filter' => 'object',
+        'chatbot_name' => 'string',
+        'flow_name' => 'string',
+        'ipaddress_filter' => 'object'
     ];
 
     /**
@@ -77,8 +83,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'flow_id' => 'uuid',
         'tags' => null,
         'limit' => null,
-        'created_at_start' => 'date-time',
-        'created_at_end' => 'date-time'
+        'created_at_filter' => null,
+        'last_message_at_filter' => null,
+        'duration_filter' => null,
+        'msg_count_filter' => null,
+        'credits_filter' => null,
+        'chatbot_name' => null,
+        'flow_name' => null,
+        'ipaddress_filter' => null
     ];
 
     /**
@@ -91,8 +103,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'flow_id' => true,
         'tags' => true,
         'limit' => true,
-        'created_at_start' => true,
-        'created_at_end' => true
+        'created_at_filter' => true,
+        'last_message_at_filter' => true,
+        'duration_filter' => true,
+        'msg_count_filter' => true,
+        'credits_filter' => true,
+        'chatbot_name' => true,
+        'flow_name' => true,
+        'ipaddress_filter' => true
     ];
 
     /**
@@ -185,8 +203,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'flow_id' => 'flow_id',
         'tags' => 'tags',
         'limit' => 'limit',
-        'created_at_start' => 'created_at_start',
-        'created_at_end' => 'created_at_end'
+        'created_at_filter' => 'created_at_filter',
+        'last_message_at_filter' => 'last_message_at_filter',
+        'duration_filter' => 'duration_filter',
+        'msg_count_filter' => 'msg_count_filter',
+        'credits_filter' => 'credits_filter',
+        'chatbot_name' => 'chatbot_name',
+        'flow_name' => 'flow_name',
+        'ipaddress_filter' => 'ipaddress_filter'
     ];
 
     /**
@@ -199,8 +223,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'flow_id' => 'setFlowId',
         'tags' => 'setTags',
         'limit' => 'setLimit',
-        'created_at_start' => 'setCreatedAtStart',
-        'created_at_end' => 'setCreatedAtEnd'
+        'created_at_filter' => 'setCreatedAtFilter',
+        'last_message_at_filter' => 'setLastMessageAtFilter',
+        'duration_filter' => 'setDurationFilter',
+        'msg_count_filter' => 'setMsgCountFilter',
+        'credits_filter' => 'setCreditsFilter',
+        'chatbot_name' => 'setChatbotName',
+        'flow_name' => 'setFlowName',
+        'ipaddress_filter' => 'setIpaddressFilter'
     ];
 
     /**
@@ -213,8 +243,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'flow_id' => 'getFlowId',
         'tags' => 'getTags',
         'limit' => 'getLimit',
-        'created_at_start' => 'getCreatedAtStart',
-        'created_at_end' => 'getCreatedAtEnd'
+        'created_at_filter' => 'getCreatedAtFilter',
+        'last_message_at_filter' => 'getLastMessageAtFilter',
+        'duration_filter' => 'getDurationFilter',
+        'msg_count_filter' => 'getMsgCountFilter',
+        'credits_filter' => 'getCreditsFilter',
+        'chatbot_name' => 'getChatbotName',
+        'flow_name' => 'getFlowName',
+        'ipaddress_filter' => 'getIpaddressFilter'
     ];
 
     /**
@@ -278,8 +314,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('flow_id', $data ?? [], null);
         $this->setIfExists('tags', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
-        $this->setIfExists('created_at_start', $data ?? [], null);
-        $this->setIfExists('created_at_end', $data ?? [], null);
+        $this->setIfExists('created_at_filter', $data ?? [], null);
+        $this->setIfExists('last_message_at_filter', $data ?? [], null);
+        $this->setIfExists('duration_filter', $data ?? [], null);
+        $this->setIfExists('msg_count_filter', $data ?? [], null);
+        $this->setIfExists('credits_filter', $data ?? [], null);
+        $this->setIfExists('chatbot_name', $data ?? [], null);
+        $this->setIfExists('flow_name', $data ?? [], null);
+        $this->setIfExists('ipaddress_filter', $data ?? [], null);
     }
 
     /**
@@ -461,69 +503,273 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets created_at_start
+     * Gets created_at_filter
      *
-     * @return \DateTime|null
+     * @return object|null
      */
-    public function getCreatedAtStart()
+    public function getCreatedAtFilter()
     {
-        return $this->container['created_at_start'];
+        return $this->container['created_at_filter'];
     }
 
     /**
-     * Sets created_at_start
+     * Sets created_at_filter
      *
-     * @param \DateTime|null $created_at_start created_at_start
+     * @param object|null $created_at_filter created_at_filter
      *
      * @return self
      */
-    public function setCreatedAtStart($created_at_start)
+    public function setCreatedAtFilter($created_at_filter)
     {
-        if (is_null($created_at_start)) {
-            array_push($this->openAPINullablesSetToNull, 'created_at_start');
+        if (is_null($created_at_filter)) {
+            array_push($this->openAPINullablesSetToNull, 'created_at_filter');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created_at_start', $nullablesSetToNull);
+            $index = array_search('created_at_filter', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['created_at_start'] = $created_at_start;
+        $this->container['created_at_filter'] = $created_at_filter;
 
         return $this;
     }
 
     /**
-     * Gets created_at_end
+     * Gets last_message_at_filter
      *
-     * @return \DateTime|null
+     * @return object|null
      */
-    public function getCreatedAtEnd()
+    public function getLastMessageAtFilter()
     {
-        return $this->container['created_at_end'];
+        return $this->container['last_message_at_filter'];
     }
 
     /**
-     * Sets created_at_end
+     * Sets last_message_at_filter
      *
-     * @param \DateTime|null $created_at_end created_at_end
+     * @param object|null $last_message_at_filter last_message_at_filter
      *
      * @return self
      */
-    public function setCreatedAtEnd($created_at_end)
+    public function setLastMessageAtFilter($last_message_at_filter)
     {
-        if (is_null($created_at_end)) {
-            array_push($this->openAPINullablesSetToNull, 'created_at_end');
+        if (is_null($last_message_at_filter)) {
+            array_push($this->openAPINullablesSetToNull, 'last_message_at_filter');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created_at_end', $nullablesSetToNull);
+            $index = array_search('last_message_at_filter', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['created_at_end'] = $created_at_end;
+        $this->container['last_message_at_filter'] = $last_message_at_filter;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration_filter
+     *
+     * @return object|null
+     */
+    public function getDurationFilter()
+    {
+        return $this->container['duration_filter'];
+    }
+
+    /**
+     * Sets duration_filter
+     *
+     * @param object|null $duration_filter duration_filter
+     *
+     * @return self
+     */
+    public function setDurationFilter($duration_filter)
+    {
+        if (is_null($duration_filter)) {
+            array_push($this->openAPINullablesSetToNull, 'duration_filter');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('duration_filter', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['duration_filter'] = $duration_filter;
+
+        return $this;
+    }
+
+    /**
+     * Gets msg_count_filter
+     *
+     * @return object|null
+     */
+    public function getMsgCountFilter()
+    {
+        return $this->container['msg_count_filter'];
+    }
+
+    /**
+     * Sets msg_count_filter
+     *
+     * @param object|null $msg_count_filter msg_count_filter
+     *
+     * @return self
+     */
+    public function setMsgCountFilter($msg_count_filter)
+    {
+        if (is_null($msg_count_filter)) {
+            array_push($this->openAPINullablesSetToNull, 'msg_count_filter');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('msg_count_filter', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['msg_count_filter'] = $msg_count_filter;
+
+        return $this;
+    }
+
+    /**
+     * Gets credits_filter
+     *
+     * @return object|null
+     */
+    public function getCreditsFilter()
+    {
+        return $this->container['credits_filter'];
+    }
+
+    /**
+     * Sets credits_filter
+     *
+     * @param object|null $credits_filter credits_filter
+     *
+     * @return self
+     */
+    public function setCreditsFilter($credits_filter)
+    {
+        if (is_null($credits_filter)) {
+            array_push($this->openAPINullablesSetToNull, 'credits_filter');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('credits_filter', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['credits_filter'] = $credits_filter;
+
+        return $this;
+    }
+
+    /**
+     * Gets chatbot_name
+     *
+     * @return string|null
+     */
+    public function getChatbotName()
+    {
+        return $this->container['chatbot_name'];
+    }
+
+    /**
+     * Sets chatbot_name
+     *
+     * @param string|null $chatbot_name chatbot_name
+     *
+     * @return self
+     */
+    public function setChatbotName($chatbot_name)
+    {
+        if (is_null($chatbot_name)) {
+            array_push($this->openAPINullablesSetToNull, 'chatbot_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('chatbot_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['chatbot_name'] = $chatbot_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets flow_name
+     *
+     * @return string|null
+     */
+    public function getFlowName()
+    {
+        return $this->container['flow_name'];
+    }
+
+    /**
+     * Sets flow_name
+     *
+     * @param string|null $flow_name flow_name
+     *
+     * @return self
+     */
+    public function setFlowName($flow_name)
+    {
+        if (is_null($flow_name)) {
+            array_push($this->openAPINullablesSetToNull, 'flow_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('flow_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['flow_name'] = $flow_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets ipaddress_filter
+     *
+     * @return object|null
+     */
+    public function getIpaddressFilter()
+    {
+        return $this->container['ipaddress_filter'];
+    }
+
+    /**
+     * Sets ipaddress_filter
+     *
+     * @param object|null $ipaddress_filter ipaddress_filter
+     *
+     * @return self
+     */
+    public function setIpaddressFilter($ipaddress_filter)
+    {
+        if (is_null($ipaddress_filter)) {
+            array_push($this->openAPINullablesSetToNull, 'ipaddress_filter');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ipaddress_filter', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ipaddress_filter'] = $ipaddress_filter;
 
         return $this;
     }

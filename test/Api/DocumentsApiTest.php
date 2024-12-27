@@ -156,6 +156,18 @@ class DocumentsApiTest extends TestCase
     }
 
     /**
+     * Test case for importFaq
+     *
+     * Import Faq.
+     *
+     */
+    public function testImportFaq()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for searchDocumentCategories
      *
      * Search Document Categories.

@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message_id** | **string** | Message ID |
 **response_status** | [**\FlowHunt\Model\FlowSessionStatus**](FlowSessionStatus.md) | Response status |
 **loading_indicator** | [**array<string,\FlowHunt\Model\FlowLoadingIndicator>**](FlowLoadingIndicator.md) |  | [optional]
 **intermediate_results** | [**array<string,\FlowHunt\Model\TaskOutput>**](TaskOutput.md) |  | [optional]

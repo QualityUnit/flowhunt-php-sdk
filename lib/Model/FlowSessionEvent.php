@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponse
+ * FlowSessionEvent
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationResponse Class Doc Comment
+ * FlowSessionEvent Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationResponse';
+    protected static $openAPIModelName = 'FlowSessionEvent';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,14 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message_id' => 'string',
-        'created_at' => 'string'
+        'workspace_id' => 'string',
+        'session_id' => 'string',
+        'event_id' => 'string',
+        'event_type' => '\FlowHunt\Model\MessageType',
+        'created_at_timestamp' => 'string',
+        'action_type' => '\FlowHunt\Model\FlowEventActionType',
+        'credits' => 'float',
+        'metadata' => '\FlowHunt\Model\Metadata'
     ];
 
     /**
@@ -69,8 +75,14 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message_id' => null,
-        'created_at' => null
+        'workspace_id' => null,
+        'session_id' => null,
+        'event_id' => null,
+        'event_type' => null,
+        'created_at_timestamp' => null,
+        'action_type' => null,
+        'credits' => null,
+        'metadata' => null
     ];
 
     /**
@@ -79,8 +91,14 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'message_id' => false,
-        'created_at' => false
+        'workspace_id' => false,
+        'session_id' => false,
+        'event_id' => false,
+        'event_type' => false,
+        'created_at_timestamp' => false,
+        'action_type' => false,
+        'credits' => false,
+        'metadata' => true
     ];
 
     /**
@@ -169,8 +187,14 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'message_id' => 'message_id',
-        'created_at' => 'created_at'
+        'workspace_id' => 'workspace_id',
+        'session_id' => 'session_id',
+        'event_id' => 'event_id',
+        'event_type' => 'event_type',
+        'created_at_timestamp' => 'created_at_timestamp',
+        'action_type' => 'action_type',
+        'credits' => 'credits',
+        'metadata' => 'metadata'
     ];
 
     /**
@@ -179,8 +203,14 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'message_id' => 'setMessageId',
-        'created_at' => 'setCreatedAt'
+        'workspace_id' => 'setWorkspaceId',
+        'session_id' => 'setSessionId',
+        'event_id' => 'setEventId',
+        'event_type' => 'setEventType',
+        'created_at_timestamp' => 'setCreatedAtTimestamp',
+        'action_type' => 'setActionType',
+        'credits' => 'setCredits',
+        'metadata' => 'setMetadata'
     ];
 
     /**
@@ -189,8 +219,14 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'message_id' => 'getMessageId',
-        'created_at' => 'getCreatedAt'
+        'workspace_id' => 'getWorkspaceId',
+        'session_id' => 'getSessionId',
+        'event_id' => 'getEventId',
+        'event_type' => 'getEventType',
+        'created_at_timestamp' => 'getCreatedAtTimestamp',
+        'action_type' => 'getActionType',
+        'credits' => 'getCredits',
+        'metadata' => 'getMetadata'
     ];
 
     /**
@@ -250,8 +286,14 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('workspace_id', $data ?? [], null);
+        $this->setIfExists('session_id', $data ?? [], null);
+        $this->setIfExists('event_id', $data ?? [], null);
+        $this->setIfExists('event_type', $data ?? [], null);
+        $this->setIfExists('created_at_timestamp', $data ?? [], null);
+        $this->setIfExists('action_type', $data ?? [], null);
+        $this->setIfExists('credits', $data ?? [], null);
+        $this->setIfExists('metadata', $data ?? [], null);
     }
 
     /**
@@ -281,11 +323,26 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
-        if ($this->container['message_id'] === null) {
-            $invalidProperties[] = "'message_id' can't be null";
+        if ($this->container['workspace_id'] === null) {
+            $invalidProperties[] = "'workspace_id' can't be null";
         }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['session_id'] === null) {
+            $invalidProperties[] = "'session_id' can't be null";
+        }
+        if ($this->container['event_id'] === null) {
+            $invalidProperties[] = "'event_id' can't be null";
+        }
+        if ($this->container['event_type'] === null) {
+            $invalidProperties[] = "'event_type' can't be null";
+        }
+        if ($this->container['created_at_timestamp'] === null) {
+            $invalidProperties[] = "'created_at_timestamp' can't be null";
+        }
+        if ($this->container['action_type'] === null) {
+            $invalidProperties[] = "'action_type' can't be null";
+        }
+        if ($this->container['credits'] === null) {
+            $invalidProperties[] = "'credits' can't be null";
         }
         return $invalidProperties;
     }
@@ -303,55 +360,224 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets message_id
+     * Gets workspace_id
      *
      * @return string
      */
-    public function getMessageId()
+    public function getWorkspaceId()
     {
-        return $this->container['message_id'];
+        return $this->container['workspace_id'];
     }
 
     /**
-     * Sets message_id
+     * Sets workspace_id
      *
-     * @param string $message_id Message ID
+     * @param string $workspace_id Workspace ID
      *
      * @return self
      */
-    public function setMessageId($message_id)
+    public function setWorkspaceId($workspace_id)
     {
-        if (is_null($message_id)) {
-            throw new \InvalidArgumentException('non-nullable message_id cannot be null');
+        if (is_null($workspace_id)) {
+            throw new \InvalidArgumentException('non-nullable workspace_id cannot be null');
         }
-        $this->container['message_id'] = $message_id;
+        $this->container['workspace_id'] = $workspace_id;
 
         return $this;
     }
 
     /**
-     * Gets created_at
+     * Gets session_id
      *
      * @return string
      */
-    public function getCreatedAt()
+    public function getSessionId()
     {
-        return $this->container['created_at'];
+        return $this->container['session_id'];
     }
 
     /**
-     * Sets created_at
+     * Sets session_id
      *
-     * @param string $created_at Created at
+     * @param string $session_id Session ID
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setSessionId($session_id)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($session_id)) {
+            throw new \InvalidArgumentException('non-nullable session_id cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['session_id'] = $session_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_id
+     *
+     * @return string
+     */
+    public function getEventId()
+    {
+        return $this->container['event_id'];
+    }
+
+    /**
+     * Sets event_id
+     *
+     * @param string $event_id Event ID
+     *
+     * @return self
+     */
+    public function setEventId($event_id)
+    {
+        if (is_null($event_id)) {
+            throw new \InvalidArgumentException('non-nullable event_id cannot be null');
+        }
+        $this->container['event_id'] = $event_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_type
+     *
+     * @return \FlowHunt\Model\MessageType
+     */
+    public function getEventType()
+    {
+        return $this->container['event_type'];
+    }
+
+    /**
+     * Sets event_type
+     *
+     * @param \FlowHunt\Model\MessageType $event_type Event type
+     *
+     * @return self
+     */
+    public function setEventType($event_type)
+    {
+        if (is_null($event_type)) {
+            throw new \InvalidArgumentException('non-nullable event_type cannot be null');
+        }
+        $this->container['event_type'] = $event_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at_timestamp
+     *
+     * @return string
+     */
+    public function getCreatedAtTimestamp()
+    {
+        return $this->container['created_at_timestamp'];
+    }
+
+    /**
+     * Sets created_at_timestamp
+     *
+     * @param string $created_at_timestamp Created at
+     *
+     * @return self
+     */
+    public function setCreatedAtTimestamp($created_at_timestamp)
+    {
+        if (is_null($created_at_timestamp)) {
+            throw new \InvalidArgumentException('non-nullable created_at_timestamp cannot be null');
+        }
+        $this->container['created_at_timestamp'] = $created_at_timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Gets action_type
+     *
+     * @return \FlowHunt\Model\FlowEventActionType
+     */
+    public function getActionType()
+    {
+        return $this->container['action_type'];
+    }
+
+    /**
+     * Sets action_type
+     *
+     * @param \FlowHunt\Model\FlowEventActionType $action_type Action type
+     *
+     * @return self
+     */
+    public function setActionType($action_type)
+    {
+        if (is_null($action_type)) {
+            throw new \InvalidArgumentException('non-nullable action_type cannot be null');
+        }
+        $this->container['action_type'] = $action_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets credits
+     *
+     * @return float
+     */
+    public function getCredits()
+    {
+        return $this->container['credits'];
+    }
+
+    /**
+     * Sets credits
+     *
+     * @param float $credits Credits
+     *
+     * @return self
+     */
+    public function setCredits($credits)
+    {
+        if (is_null($credits)) {
+            throw new \InvalidArgumentException('non-nullable credits cannot be null');
+        }
+        $this->container['credits'] = $credits;
+
+        return $this;
+    }
+
+    /**
+     * Gets metadata
+     *
+     * @return \FlowHunt\Model\Metadata|null
+     */
+    public function getMetadata()
+    {
+        return $this->container['metadata'];
+    }
+
+    /**
+     * Sets metadata
+     *
+     * @param \FlowHunt\Model\Metadata|null $metadata metadata
+     *
+     * @return self
+     */
+    public function setMetadata($metadata)
+    {
+        if (is_null($metadata)) {
+            array_push($this->openAPINullablesSetToNull, 'metadata');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metadata', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['metadata'] = $metadata;
 
         return $this;
     }

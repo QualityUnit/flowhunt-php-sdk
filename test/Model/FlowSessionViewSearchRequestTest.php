@@ -116,18 +116,72 @@ class FlowSessionViewSearchRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "created_at_start"
+     * Test attribute "created_at_filter"
      */
-    public function testPropertyCreatedAtStart()
+    public function testPropertyCreatedAtFilter()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at_end"
+     * Test attribute "last_message_at_filter"
      */
-    public function testPropertyCreatedAtEnd()
+    public function testPropertyLastMessageAtFilter()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "duration_filter"
+     */
+    public function testPropertyDurationFilter()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "msg_count_filter"
+     */
+    public function testPropertyMsgCountFilter()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credits_filter"
+     */
+    public function testPropertyCreditsFilter()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "chatbot_name"
+     */
+    public function testPropertyChatbotName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "flow_name"
+     */
+    public function testPropertyFlowName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ipaddress_filter"
+     */
+    public function testPropertyIpaddressFilter()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

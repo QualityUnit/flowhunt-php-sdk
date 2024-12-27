@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowMessageRole
+ * MessageType
  *
  * PHP version 7.4
  *
@@ -30,25 +30,23 @@ namespace FlowHunt\Model;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowMessageRole Class Doc Comment
+ * MessageType Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FlowMessageRole
+class MessageType
 {
     /**
      * Possible values of this enum
      */
-    public const A = 'A';
+    public const AI = 'ai';
 
-    public const U = 'U';
+    public const HUMAN = 'human';
 
-    public const S = 'S';
-
-    public const D = 'D';
+    public const SYSTEM = 'system';
 
     /**
      * Gets allowable values of the enum
@@ -57,10 +55,9 @@ class FlowMessageRole
     public static function getAllowableEnumValues()
     {
         return [
-            self::A,
-            self::U,
-            self::S,
-            self::D
+            self::AI,
+            self::HUMAN,
+            self::SYSTEM
         ];
     }
 }

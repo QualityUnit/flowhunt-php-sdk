@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponse
+ * FlowSessionMessageMetadata
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationResponse Class Doc Comment
+ * FlowSessionMessageMetadata Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationResponse';
+    protected static $openAPIModelName = 'FlowSessionMessageMetadata';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'message_id' => 'string',
-        'created_at' => 'string'
+        'message' => 'string'
     ];
 
     /**
@@ -70,7 +70,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPIFormats = [
         'message_id' => null,
-        'created_at' => null
+        'message' => null
     ];
 
     /**
@@ -80,7 +80,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       */
     protected static array $openAPINullables = [
         'message_id' => false,
-        'created_at' => false
+        'message' => false
     ];
 
     /**
@@ -170,7 +170,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $attributeMap = [
         'message_id' => 'message_id',
-        'created_at' => 'created_at'
+        'message' => 'message'
     ];
 
     /**
@@ -180,7 +180,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $setters = [
         'message_id' => 'setMessageId',
-        'created_at' => 'setCreatedAt'
+        'message' => 'setMessage'
     ];
 
     /**
@@ -190,7 +190,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $getters = [
         'message_id' => 'getMessageId',
-        'created_at' => 'getCreatedAt'
+        'message' => 'getMessage'
     ];
 
     /**
@@ -251,7 +251,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
     public function __construct(array $data = null)
     {
         $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
     }
 
     /**
@@ -284,8 +284,8 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['message_id'] === null) {
             $invalidProperties[] = "'message_id' can't be null";
         }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
         return $invalidProperties;
     }
@@ -330,28 +330,28 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
-     * Gets created_at
+     * Gets message
      *
      * @return string
      */
-    public function getCreatedAt()
+    public function getMessage()
     {
-        return $this->container['created_at'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets created_at
+     * Sets message
      *
-     * @param string $created_at Created at
+     * @param string $message Message
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setMessage($message)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($message)) {
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['message'] = $message;
 
         return $this;
     }

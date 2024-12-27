@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponseTest
+ * FlowSessionToolCallMetadataTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationResponseTest Class Doc Comment
+ * FlowSessionToolCallMetadataTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationResponse
+ * @description FlowSessionToolCallMetadata
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationResponseTest extends TestCase
+class FlowSessionToolCallMetadataTest extends TestCase
 {
 
     /**
@@ -71,27 +71,36 @@ class FlowSessionInvocationResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationResponse"
+     * Test "FlowSessionToolCallMetadata"
      */
-    public function testFlowSessionInvocationResponse()
+    public function testFlowSessionToolCallMetadata()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "message_id"
+     * Test attribute "tool_name"
      */
-    public function testPropertyMessageId()
+    public function testPropertyToolName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "agent_query"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyAgentQuery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tool_response"
+     */
+    public function testPropertyToolResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -133,7 +133,7 @@ class FlowMessagesApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\FlowMessageResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionEvent[]|\FlowHunt\Model\HTTPValidationError
      */
     public function searchFlowMessages($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
     {
@@ -152,7 +152,7 @@ class FlowMessagesApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\FlowMessageResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionEvent[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchFlowMessagesWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
     {
@@ -183,11 +183,11 @@ class FlowMessagesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\FlowMessageResponse[]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionEvent[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\FlowMessageResponse[]' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionEvent[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -205,7 +205,7 @@ class FlowMessagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowMessageResponse[]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionEvent[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -251,7 +251,7 @@ class FlowMessagesApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\FlowMessageResponse[]';
+            $returnType = '\FlowHunt\Model\FlowSessionEvent[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -284,7 +284,7 @@ class FlowMessagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\FlowMessageResponse[]',
+                        '\FlowHunt\Model\FlowSessionEvent[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -338,7 +338,7 @@ class FlowMessagesApi
      */
     public function searchFlowMessagesAsyncWithHttpInfo($session_id, $workspace_id, string $contentType = self::contentTypes['searchFlowMessages'][0])
     {
-        $returnType = '\FlowHunt\Model\FlowMessageResponse[]';
+        $returnType = '\FlowHunt\Model\FlowSessionEvent[]';
         $request = $this->searchFlowMessagesRequest($session_id, $workspace_id, $contentType);
 
         return $this->client

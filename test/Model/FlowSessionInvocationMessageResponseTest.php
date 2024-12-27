@@ -80,15 +80,6 @@ class FlowSessionInvocationMessageResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "message_id"
-     */
-    public function testPropertyMessageId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "response_status"
      */
     public function testPropertyResponseStatus()

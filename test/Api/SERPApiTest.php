@@ -120,6 +120,18 @@ class SERPApiTest extends TestCase
     }
 
     /**
+     * Test case for serpClusterBulkDeleteQueries
+     *
+     * Serp Cluster Bulk Delete Queries.
+     *
+     */
+    public function testSerpClusterBulkDeleteQueries()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for serpClusterDeleteAll
      *
      * Serp Cluster Delete All.

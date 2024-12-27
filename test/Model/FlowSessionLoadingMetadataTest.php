@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponseTest
+ * FlowSessionLoadingMetadataTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationResponseTest Class Doc Comment
+ * FlowSessionLoadingMetadataTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationResponse
+ * @description FlowSessionLoadingMetadata
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationResponseTest extends TestCase
+class FlowSessionLoadingMetadataTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class FlowSessionInvocationResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationResponse"
+     * Test "FlowSessionLoadingMetadata"
      */
-    public function testFlowSessionInvocationResponse()
+    public function testFlowSessionLoadingMetadata()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -89,9 +89,45 @@ class FlowSessionInvocationResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "tool_name"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyToolName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "loading_desc"
+     */
+    public function testPropertyLoadingDesc()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "icon"
+     */
+    public function testPropertyIcon()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "color"
+     */
+    public function testPropertyColor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "detailed_description"
+     */
+    public function testPropertyDetailedDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

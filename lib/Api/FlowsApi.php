@@ -6062,16 +6062,16 @@ class FlowsApi
      * Poll Flow Response
      *
      * @param  string $session_id session_id (required)
-     * @param  string $message_id message_id (required)
+     * @param  string $from_timestamp from_timestamp (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pollFlowResponse'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\FlowSessionInvocationMessageResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FlowSessionEvent[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function pollFlowResponse($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
+    public function pollFlowResponse($session_id, $from_timestamp, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
-        list($response) = $this->pollFlowResponseWithHttpInfo($session_id, $message_id, $contentType);
+        list($response) = $this->pollFlowResponseWithHttpInfo($session_id, $from_timestamp, $contentType);
         return $response;
     }
 
@@ -6081,16 +6081,16 @@ class FlowsApi
      * Poll Flow Response
      *
      * @param  string $session_id (required)
-     * @param  string $message_id (required)
+     * @param  string $from_timestamp (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pollFlowResponse'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\FlowSessionInvocationMessageResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FlowSessionEvent[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function pollFlowResponseWithHttpInfo($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
+    public function pollFlowResponseWithHttpInfo($session_id, $from_timestamp, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
-        $request = $this->pollFlowResponseRequest($session_id, $message_id, $contentType);
+        $request = $this->pollFlowResponseRequest($session_id, $from_timestamp, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6117,11 +6117,11 @@ class FlowsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\FlowSessionInvocationMessageResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FlowSessionEvent[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\FlowSessionInvocationMessageResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FlowSessionEvent[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6139,7 +6139,7 @@ class FlowsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionInvocationMessageResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FlowSessionEvent[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6185,7 +6185,7 @@ class FlowsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\FlowSessionInvocationMessageResponse';
+            $returnType = '\FlowHunt\Model\FlowSessionEvent[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -6218,7 +6218,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\FlowSessionInvocationMessageResponse',
+                        '\FlowHunt\Model\FlowSessionEvent[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6242,15 +6242,15 @@ class FlowsApi
      * Poll Flow Response
      *
      * @param  string $session_id (required)
-     * @param  string $message_id (required)
+     * @param  string $from_timestamp (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pollFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function pollFlowResponseAsync($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
+    public function pollFlowResponseAsync($session_id, $from_timestamp, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
-        return $this->pollFlowResponseAsyncWithHttpInfo($session_id, $message_id, $contentType)
+        return $this->pollFlowResponseAsyncWithHttpInfo($session_id, $from_timestamp, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6264,16 +6264,16 @@ class FlowsApi
      * Poll Flow Response
      *
      * @param  string $session_id (required)
-     * @param  string $message_id (required)
+     * @param  string $from_timestamp (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pollFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function pollFlowResponseAsyncWithHttpInfo($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
+    public function pollFlowResponseAsyncWithHttpInfo($session_id, $from_timestamp, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
-        $returnType = '\FlowHunt\Model\FlowSessionInvocationMessageResponse';
-        $request = $this->pollFlowResponseRequest($session_id, $message_id, $contentType);
+        $returnType = '\FlowHunt\Model\FlowSessionEvent[]';
+        $request = $this->pollFlowResponseRequest($session_id, $from_timestamp, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6315,13 +6315,13 @@ class FlowsApi
      * Create request for operation 'pollFlowResponse'
      *
      * @param  string $session_id (required)
-     * @param  string $message_id (required)
+     * @param  string $from_timestamp (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pollFlowResponse'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function pollFlowResponseRequest($session_id, $message_id, string $contentType = self::contentTypes['pollFlowResponse'][0])
+    public function pollFlowResponseRequest($session_id, $from_timestamp, string $contentType = self::contentTypes['pollFlowResponse'][0])
     {
 
         // verify the required parameter 'session_id' is set
@@ -6331,15 +6331,15 @@ class FlowsApi
             );
         }
 
-        // verify the required parameter 'message_id' is set
-        if ($message_id === null || (is_array($message_id) && count($message_id) === 0)) {
+        // verify the required parameter 'from_timestamp' is set
+        if ($from_timestamp === null || (is_array($from_timestamp) && count($from_timestamp) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $message_id when calling pollFlowResponse'
+                'Missing the required parameter $from_timestamp when calling pollFlowResponse'
             );
         }
 
 
-        $resourcePath = '/v2/flows/sessions/{session_id}/invocation_response/{message_id}';
+        $resourcePath = '/v2/flows/sessions/{session_id}/invocation_response/{from_timestamp}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -6357,10 +6357,10 @@ class FlowsApi
             );
         }
         // path params
-        if ($message_id !== null) {
+        if ($from_timestamp !== null) {
             $resourcePath = str_replace(
-                '{' . 'message_id' . '}',
-                ObjectSerializer::toPathValue($message_id),
+                '{' . 'from_timestamp' . '}',
+                ObjectSerializer::toPathValue($from_timestamp),
                 $resourcePath
             );
         }

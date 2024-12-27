@@ -111,6 +111,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**deleteFaq**](docs/Api/DocumentsApi.md#deletefaq) | **DELETE** /v2/documents/faqs/{faq_id} | Delete Faq
 *DocumentsApi* | [**downloadBinaryDocument**](docs/Api/DocumentsApi.md#downloadbinarydocument) | **GET** /v2/documents/download/binary/{doc_id} | Download Binary Document
 *DocumentsApi* | [**downloadTextDocument**](docs/Api/DocumentsApi.md#downloadtextdocument) | **GET** /v2/documents/download/text/{doc_id} | Download Text Document
+*DocumentsApi* | [**importFaq**](docs/Api/DocumentsApi.md#importfaq) | **POST** /v2/documents/faqs/import | Import Faq
 *DocumentsApi* | [**searchDocumentCategories**](docs/Api/DocumentsApi.md#searchdocumentcategories) | **POST** /v2/documents/categories/search | Search Document Categories
 *DocumentsApi* | [**searchDocuments**](docs/Api/DocumentsApi.md#searchdocuments) | **POST** /v2/documents/search | Search Documents
 *DocumentsApi* | [**searchFaqs**](docs/Api/DocumentsApi.md#searchfaqs) | **POST** /v2/documents/faqs/search | Search Faqs
@@ -144,7 +145,7 @@ Class | Method | HTTP request | Description
 *FlowsApi* | [**invokeFlow**](docs/Api/FlowsApi.md#invokeflow) | **POST** /v2/flows/{flow_id}/invoke | Invoke Flow
 *FlowsApi* | [**invokeFlowResponse**](docs/Api/FlowsApi.md#invokeflowresponse) | **POST** /v2/flows/sessions/{session_id}/invoke | Invoke Flow Response
 *FlowsApi* | [**invokeFlowSingleton**](docs/Api/FlowsApi.md#invokeflowsingleton) | **POST** /v2/flows/{flow_id}/invoke_singleton | Invoke Flow Singleton
-*FlowsApi* | [**pollFlowResponse**](docs/Api/FlowsApi.md#pollflowresponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{message_id} | Poll Flow Response
+*FlowsApi* | [**pollFlowResponse**](docs/Api/FlowsApi.md#pollflowresponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{from_timestamp} | Poll Flow Response
 *FlowsApi* | [**search**](docs/Api/FlowsApi.md#search) | **POST** /v2/flows/ | Search
 *FlowsApi* | [**searchAll**](docs/Api/FlowsApi.md#searchall) | **POST** /v2/flows/all | Search All
 *FlowsApi* | [**searchFlowCategories**](docs/Api/FlowsApi.md#searchflowcategories) | **POST** /v2/flows/categories/search | Search Flow Categories
@@ -190,6 +191,7 @@ Class | Method | HTTP request | Description
 *SERPApi* | [**searchClusterQuery**](docs/Api/SERPApi.md#searchclusterquery) | **POST** /v2/serp/cluster/{group_id}/search | Search Cluster Query
 *SERPApi* | [**serpClusterAddGroup**](docs/Api/SERPApi.md#serpclusteraddgroup) | **POST** /v2/serp/cluster/create | Serp Cluster Add Group
 *SERPApi* | [**serpClusterAddQueries**](docs/Api/SERPApi.md#serpclusteraddqueries) | **POST** /v2/serp/cluster/add_queries | Serp Cluster Add Queries
+*SERPApi* | [**serpClusterBulkDeleteQueries**](docs/Api/SERPApi.md#serpclusterbulkdeletequeries) | **DELETE** /v2/serp/cluster/{group_id}/bulk_delete | Serp Cluster Bulk Delete Queries
 *SERPApi* | [**serpClusterDeleteAll**](docs/Api/SERPApi.md#serpclusterdeleteall) | **DELETE** /v2/serp/cluster/delete_all | Serp Cluster Delete All
 *SERPApi* | [**serpClusterDeleteGroup**](docs/Api/SERPApi.md#serpclusterdeletegroup) | **DELETE** /v2/serp/cluster/{group_id} | Serp Cluster Delete Group
 *SERPApi* | [**serpClusterDeleteQuery**](docs/Api/SERPApi.md#serpclusterdeletequery) | **DELETE** /v2/serp/cluster/{group_id}/{query_id} | Serp Cluster Delete Query
@@ -282,23 +284,27 @@ Class | Method | HTTP request | Description
 - [FlowConfig](docs/Model/FlowConfig.md)
 - [FlowCreate](docs/Model/FlowCreate.md)
 - [FlowDetailResponse](docs/Model/FlowDetailResponse.md)
+- [FlowEventActionType](docs/Model/FlowEventActionType.md)
 - [FlowInvokeRequest](docs/Model/FlowInvokeRequest.md)
 - [FlowLoadingIndicator](docs/Model/FlowLoadingIndicator.md)
-- [FlowMessageResponse](docs/Model/FlowMessageResponse.md)
-- [FlowMessageRole](docs/Model/FlowMessageRole.md)
 - [FlowRequestChatRole](docs/Model/FlowRequestChatRole.md)
 - [FlowResponse](docs/Model/FlowResponse.md)
 - [FlowSearchRequest](docs/Model/FlowSearchRequest.md)
 - [FlowSessionAttachmentResponse](docs/Model/FlowSessionAttachmentResponse.md)
 - [FlowSessionCreateFromFlowRequest](docs/Model/FlowSessionCreateFromFlowRequest.md)
 - [FlowSessionCreateRequest](docs/Model/FlowSessionCreateRequest.md)
+- [FlowSessionEvent](docs/Model/FlowSessionEvent.md)
 - [FlowSessionInvocationMessageResponse](docs/Model/FlowSessionInvocationMessageResponse.md)
 - [FlowSessionInvocationResponse](docs/Model/FlowSessionInvocationResponse.md)
 - [FlowSessionInvokeRequest](docs/Model/FlowSessionInvokeRequest.md)
+- [FlowSessionLoadingMetadata](docs/Model/FlowSessionLoadingMetadata.md)
 - [FlowSessionMessage](docs/Model/FlowSessionMessage.md)
+- [FlowSessionMessageMetadata](docs/Model/FlowSessionMessageMetadata.md)
 - [FlowSessionResponse](docs/Model/FlowSessionResponse.md)
 - [FlowSessionStatus](docs/Model/FlowSessionStatus.md)
 - [FlowSessionStreamRequest](docs/Model/FlowSessionStreamRequest.md)
+- [FlowSessionTaskResponseMetadata](docs/Model/FlowSessionTaskResponseMetadata.md)
+- [FlowSessionToolCallMetadata](docs/Model/FlowSessionToolCallMetadata.md)
 - [FlowSessionViewResponse](docs/Model/FlowSessionViewResponse.md)
 - [FlowSessionViewSearchRequest](docs/Model/FlowSessionViewSearchRequest.md)
 - [FlowSessionViewUpdateRequest](docs/Model/FlowSessionViewUpdateRequest.md)
@@ -329,6 +335,8 @@ Class | Method | HTTP request | Description
 - [IntegrationSearchRequest](docs/Model/IntegrationSearchRequest.md)
 - [IntegrationSlug](docs/Model/IntegrationSlug.md)
 - [LoginUserRequest](docs/Model/LoginUserRequest.md)
+- [MessageType](docs/Model/MessageType.md)
+- [Metadata](docs/Model/Metadata.md)
 - [NewPasswordRequest](docs/Model/NewPasswordRequest.md)
 - [OutputFormat](docs/Model/OutputFormat.md)
 - [PlanResponse](docs/Model/PlanResponse.md)
@@ -369,6 +377,7 @@ Class | Method | HTTP request | Description
 - [SerpClusterGroupSearchRequest](docs/Model/SerpClusterGroupSearchRequest.md)
 - [SerpClusterQueryIntersectionsRequest](docs/Model/SerpClusterQueryIntersectionsRequest.md)
 - [SerpClusterQueryResponse](docs/Model/SerpClusterQueryResponse.md)
+- [SerpQueryRequest](docs/Model/SerpQueryRequest.md)
 - [SerpSearchRequest](docs/Model/SerpSearchRequest.md)
 - [SerpSearchRequests](docs/Model/SerpSearchRequests.md)
 - [SerpVolumeRequest](docs/Model/SerpVolumeRequest.md)
@@ -450,6 +459,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `3.5.20`
+    - Package version: `3.6.0`
     - Generator version: `7.9.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

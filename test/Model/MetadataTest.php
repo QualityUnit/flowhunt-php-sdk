@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowMessageResponseTest
+ * MetadataTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowMessageResponseTest Class Doc Comment
+ * MetadataTest Class Doc Comment
  *
  * @category    Class
- * @description FlowMessageResponse
+ * @description Metadata
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowMessageResponseTest extends TestCase
+class MetadataTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class FlowMessageResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowMessageResponse"
+     * Test "Metadata"
      */
-    public function testFlowMessageResponse()
+    public function testMetadata()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -89,33 +89,6 @@ class FlowMessageResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "session_id"
-     */
-    public function testPropertySessionId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "role"
-     */
-    public function testPropertyRole()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created_at"
-     */
-    public function testPropertyCreatedAt()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "message"
      */
     public function testPropertyMessage()
@@ -125,9 +98,99 @@ class FlowMessageResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "credits"
+     * Test attribute "tool_name"
      */
-    public function testPropertyCredits()
+    public function testPropertyToolName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "loading_desc"
+     */
+    public function testPropertyLoadingDesc()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "icon"
+     */
+    public function testPropertyIcon()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "color"
+     */
+    public function testPropertyColor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "detailed_description"
+     */
+    public function testPropertyDetailedDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "agent_query"
+     */
+    public function testPropertyAgentQuery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tool_response"
+     */
+    public function testPropertyToolResponse()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "task_name"
+     */
+    public function testPropertyTaskName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "task_input"
+     */
+    public function testPropertyTaskInput()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "agent"
+     */
+    public function testPropertyAgent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "task_response"
+     */
+    public function testPropertyTaskResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

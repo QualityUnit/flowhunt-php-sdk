@@ -1,10 +1,13 @@
-# # FlowSessionInvocationResponse
+# # SerpQueryRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message_id** | **string** | Message ID |
-**created_at** | **string** | Created at |
+**post_back_url** | **string** |  | [optional]
+**query** | **string** |  | [optional]
+**country** | **string** |  | [optional]
+**language** | **string** |  | [optional]
+**location** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

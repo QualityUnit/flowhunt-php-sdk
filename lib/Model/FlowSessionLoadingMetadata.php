@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponse
+ * FlowSessionLoadingMetadata
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationResponse Class Doc Comment
+ * FlowSessionLoadingMetadata Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionLoadingMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationResponse';
+    protected static $openAPIModelName = 'FlowSessionLoadingMetadata';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'message_id' => 'string',
-        'created_at' => 'string'
+        'tool_name' => 'string',
+        'loading_desc' => 'string',
+        'icon' => 'string',
+        'color' => 'string',
+        'detailed_description' => 'string'
     ];
 
     /**
@@ -70,7 +74,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPIFormats = [
         'message_id' => null,
-        'created_at' => null
+        'tool_name' => null,
+        'loading_desc' => null,
+        'icon' => null,
+        'color' => null,
+        'detailed_description' => null
     ];
 
     /**
@@ -80,7 +88,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       */
     protected static array $openAPINullables = [
         'message_id' => false,
-        'created_at' => false
+        'tool_name' => false,
+        'loading_desc' => false,
+        'icon' => true,
+        'color' => true,
+        'detailed_description' => true
     ];
 
     /**
@@ -170,7 +182,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $attributeMap = [
         'message_id' => 'message_id',
-        'created_at' => 'created_at'
+        'tool_name' => 'tool_name',
+        'loading_desc' => 'loading_desc',
+        'icon' => 'icon',
+        'color' => 'color',
+        'detailed_description' => 'detailed_description'
     ];
 
     /**
@@ -180,7 +196,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $setters = [
         'message_id' => 'setMessageId',
-        'created_at' => 'setCreatedAt'
+        'tool_name' => 'setToolName',
+        'loading_desc' => 'setLoadingDesc',
+        'icon' => 'setIcon',
+        'color' => 'setColor',
+        'detailed_description' => 'setDetailedDescription'
     ];
 
     /**
@@ -190,7 +210,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $getters = [
         'message_id' => 'getMessageId',
-        'created_at' => 'getCreatedAt'
+        'tool_name' => 'getToolName',
+        'loading_desc' => 'getLoadingDesc',
+        'icon' => 'getIcon',
+        'color' => 'getColor',
+        'detailed_description' => 'getDetailedDescription'
     ];
 
     /**
@@ -251,7 +275,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
     public function __construct(array $data = null)
     {
         $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('tool_name', $data ?? [], null);
+        $this->setIfExists('loading_desc', $data ?? [], null);
+        $this->setIfExists('icon', $data ?? [], null);
+        $this->setIfExists('color', $data ?? [], null);
+        $this->setIfExists('detailed_description', $data ?? [], null);
     }
 
     /**
@@ -284,8 +312,11 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['message_id'] === null) {
             $invalidProperties[] = "'message_id' can't be null";
         }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['tool_name'] === null) {
+            $invalidProperties[] = "'tool_name' can't be null";
+        }
+        if ($this->container['loading_desc'] === null) {
+            $invalidProperties[] = "'loading_desc' can't be null";
         }
         return $invalidProperties;
     }
@@ -330,28 +361,157 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
-     * Gets created_at
+     * Gets tool_name
      *
      * @return string
      */
-    public function getCreatedAt()
+    public function getToolName()
     {
-        return $this->container['created_at'];
+        return $this->container['tool_name'];
     }
 
     /**
-     * Sets created_at
+     * Sets tool_name
      *
-     * @param string $created_at Created at
+     * @param string $tool_name Tool name
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setToolName($tool_name)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($tool_name)) {
+            throw new \InvalidArgumentException('non-nullable tool_name cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['tool_name'] = $tool_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets loading_desc
+     *
+     * @return string
+     */
+    public function getLoadingDesc()
+    {
+        return $this->container['loading_desc'];
+    }
+
+    /**
+     * Sets loading_desc
+     *
+     * @param string $loading_desc Loading description
+     *
+     * @return self
+     */
+    public function setLoadingDesc($loading_desc)
+    {
+        if (is_null($loading_desc)) {
+            throw new \InvalidArgumentException('non-nullable loading_desc cannot be null');
+        }
+        $this->container['loading_desc'] = $loading_desc;
+
+        return $this;
+    }
+
+    /**
+     * Gets icon
+     *
+     * @return string|null
+     */
+    public function getIcon()
+    {
+        return $this->container['icon'];
+    }
+
+    /**
+     * Sets icon
+     *
+     * @param string|null $icon icon
+     *
+     * @return self
+     */
+    public function setIcon($icon)
+    {
+        if (is_null($icon)) {
+            array_push($this->openAPINullablesSetToNull, 'icon');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('icon', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['icon'] = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Gets color
+     *
+     * @return string|null
+     */
+    public function getColor()
+    {
+        return $this->container['color'];
+    }
+
+    /**
+     * Sets color
+     *
+     * @param string|null $color color
+     *
+     * @return self
+     */
+    public function setColor($color)
+    {
+        if (is_null($color)) {
+            array_push($this->openAPINullablesSetToNull, 'color');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('color', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Gets detailed_description
+     *
+     * @return string|null
+     */
+    public function getDetailedDescription()
+    {
+        return $this->container['detailed_description'];
+    }
+
+    /**
+     * Sets detailed_description
+     *
+     * @param string|null $detailed_description detailed_description
+     *
+     * @return self
+     */
+    public function setDetailedDescription($detailed_description)
+    {
+        if (is_null($detailed_description)) {
+            array_push($this->openAPINullablesSetToNull, 'detailed_description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('detailed_description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['detailed_description'] = $detailed_description;
 
         return $this;
     }

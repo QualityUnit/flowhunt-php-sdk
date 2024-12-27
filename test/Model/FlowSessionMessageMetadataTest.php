@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowMessageRoleTest
+ * FlowSessionMessageMetadataTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowMessageRoleTest Class Doc Comment
+ * FlowSessionMessageMetadataTest Class Doc Comment
  *
  * @category    Class
- * @description FlowMessageRole
+ * @description FlowSessionMessageMetadata
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowMessageRoleTest extends TestCase
+class FlowSessionMessageMetadataTest extends TestCase
 {
 
     /**
@@ -71,9 +71,27 @@ class FlowMessageRoleTest extends TestCase
     }
 
     /**
-     * Test "FlowMessageRole"
+     * Test "FlowSessionMessageMetadata"
      */
-    public function testFlowMessageRole()
+    public function testFlowSessionMessageMetadata()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "message_id"
+     */
+    public function testPropertyMessageId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "message"
+     */
+    public function testPropertyMessage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

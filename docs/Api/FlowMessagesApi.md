@@ -10,7 +10,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `searchFlowMessages()`
 
 ```php
-searchFlowMessages($session_id, $workspace_id): \FlowHunt\Model\FlowMessageResponse[]
+searchFlowMessages($session_id, $workspace_id): \FlowHunt\Model\FlowSessionEvent[]
 ```
 
 Search Flow Messages
@@ -57,7 +57,7 @@ try {
 
 ### Return type
 
-[**\FlowHunt\Model\FlowMessageResponse[]**](../Model/FlowMessageResponse.md)
+[**\FlowHunt\Model\FlowSessionEvent[]**](../Model/FlowSessionEvent.md)
 
 ### Authorization
 

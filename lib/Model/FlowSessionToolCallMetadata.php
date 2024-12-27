@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowMessageResponse
+ * FlowSessionToolCallMetadata
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowMessageResponse Class Doc Comment
+ * FlowSessionToolCallMetadata Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionToolCallMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowMessageResponse';
+    protected static $openAPIModelName = 'FlowSessionToolCallMetadata';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,9 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message_id' => 'string',
-        'session_id' => 'string',
-        'role' => '\FlowHunt\Model\FlowMessageRole',
-        'created_at' => '\DateTime',
-        'message' => 'string',
-        'credits' => 'int'
+        'tool_name' => 'string',
+        'agent_query' => 'string',
+        'tool_response' => 'string'
     ];
 
     /**
@@ -73,12 +70,9 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message_id' => null,
-        'session_id' => null,
-        'role' => null,
-        'created_at' => 'date-time',
-        'message' => null,
-        'credits' => null
+        'tool_name' => null,
+        'agent_query' => null,
+        'tool_response' => null
     ];
 
     /**
@@ -87,12 +81,9 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'message_id' => false,
-        'session_id' => false,
-        'role' => false,
-        'created_at' => false,
-        'message' => false,
-        'credits' => false
+        'tool_name' => false,
+        'agent_query' => false,
+        'tool_response' => false
     ];
 
     /**
@@ -181,12 +172,9 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'message_id' => 'message_id',
-        'session_id' => 'session_id',
-        'role' => 'role',
-        'created_at' => 'created_at',
-        'message' => 'message',
-        'credits' => 'credits'
+        'tool_name' => 'tool_name',
+        'agent_query' => 'agent_query',
+        'tool_response' => 'tool_response'
     ];
 
     /**
@@ -195,12 +183,9 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'message_id' => 'setMessageId',
-        'session_id' => 'setSessionId',
-        'role' => 'setRole',
-        'created_at' => 'setCreatedAt',
-        'message' => 'setMessage',
-        'credits' => 'setCredits'
+        'tool_name' => 'setToolName',
+        'agent_query' => 'setAgentQuery',
+        'tool_response' => 'setToolResponse'
     ];
 
     /**
@@ -209,12 +194,9 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'message_id' => 'getMessageId',
-        'session_id' => 'getSessionId',
-        'role' => 'getRole',
-        'created_at' => 'getCreatedAt',
-        'message' => 'getMessage',
-        'credits' => 'getCredits'
+        'tool_name' => 'getToolName',
+        'agent_query' => 'getAgentQuery',
+        'tool_response' => 'getToolResponse'
     ];
 
     /**
@@ -274,12 +256,9 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('session_id', $data ?? [], null);
-        $this->setIfExists('role', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('credits', $data ?? [], null);
+        $this->setIfExists('tool_name', $data ?? [], null);
+        $this->setIfExists('agent_query', $data ?? [], null);
+        $this->setIfExists('tool_response', $data ?? [], null);
     }
 
     /**
@@ -309,23 +288,14 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['message_id'] === null) {
-            $invalidProperties[] = "'message_id' can't be null";
+        if ($this->container['tool_name'] === null) {
+            $invalidProperties[] = "'tool_name' can't be null";
         }
-        if ($this->container['session_id'] === null) {
-            $invalidProperties[] = "'session_id' can't be null";
+        if ($this->container['agent_query'] === null) {
+            $invalidProperties[] = "'agent_query' can't be null";
         }
-        if ($this->container['role'] === null) {
-            $invalidProperties[] = "'role' can't be null";
-        }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['credits'] === null) {
-            $invalidProperties[] = "'credits' can't be null";
+        if ($this->container['tool_response'] === null) {
+            $invalidProperties[] = "'tool_response' can't be null";
         }
         return $invalidProperties;
     }
@@ -343,163 +313,82 @@ class FlowMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets message_id
+     * Gets tool_name
      *
      * @return string
      */
-    public function getMessageId()
+    public function getToolName()
     {
-        return $this->container['message_id'];
+        return $this->container['tool_name'];
     }
 
     /**
-     * Sets message_id
+     * Sets tool_name
      *
-     * @param string $message_id Message ID
+     * @param string $tool_name Tool name
      *
      * @return self
      */
-    public function setMessageId($message_id)
+    public function setToolName($tool_name)
     {
-        if (is_null($message_id)) {
-            throw new \InvalidArgumentException('non-nullable message_id cannot be null');
+        if (is_null($tool_name)) {
+            throw new \InvalidArgumentException('non-nullable tool_name cannot be null');
         }
-        $this->container['message_id'] = $message_id;
+        $this->container['tool_name'] = $tool_name;
 
         return $this;
     }
 
     /**
-     * Gets session_id
+     * Gets agent_query
      *
      * @return string
      */
-    public function getSessionId()
+    public function getAgentQuery()
     {
-        return $this->container['session_id'];
+        return $this->container['agent_query'];
     }
 
     /**
-     * Sets session_id
+     * Sets agent_query
      *
-     * @param string $session_id Session ID
+     * @param string $agent_query Search query
      *
      * @return self
      */
-    public function setSessionId($session_id)
+    public function setAgentQuery($agent_query)
     {
-        if (is_null($session_id)) {
-            throw new \InvalidArgumentException('non-nullable session_id cannot be null');
+        if (is_null($agent_query)) {
+            throw new \InvalidArgumentException('non-nullable agent_query cannot be null');
         }
-        $this->container['session_id'] = $session_id;
+        $this->container['agent_query'] = $agent_query;
 
         return $this;
     }
 
     /**
-     * Gets role
-     *
-     * @return \FlowHunt\Model\FlowMessageRole
-     */
-    public function getRole()
-    {
-        return $this->container['role'];
-    }
-
-    /**
-     * Sets role
-     *
-     * @param \FlowHunt\Model\FlowMessageRole $role Chat role
-     *
-     * @return self
-     */
-    public function setRole($role)
-    {
-        if (is_null($role)) {
-            throw new \InvalidArgumentException('non-nullable role cannot be null');
-        }
-        $this->container['role'] = $role;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Created at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
+     * Gets tool_response
      *
      * @return string
      */
-    public function getMessage()
+    public function getToolResponse()
     {
-        return $this->container['message'];
+        return $this->container['tool_response'];
     }
 
     /**
-     * Sets message
+     * Sets tool_response
      *
-     * @param string $message Message
+     * @param string $tool_response Tool response
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setToolResponse($tool_response)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
+        if (is_null($tool_response)) {
+            throw new \InvalidArgumentException('non-nullable tool_response cannot be null');
         }
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-
-    /**
-     * Gets credits
-     *
-     * @return int
-     */
-    public function getCredits()
-    {
-        return $this->container['credits'];
-    }
-
-    /**
-     * Sets credits
-     *
-     * @param int $credits Credits
-     *
-     * @return self
-     */
-    public function setCredits($credits)
-    {
-        if (is_null($credits)) {
-            throw new \InvalidArgumentException('non-nullable credits cannot be null');
-        }
-        $this->container['credits'] = $credits;
+        $this->container['tool_response'] = $tool_response;
 
         return $this;
     }

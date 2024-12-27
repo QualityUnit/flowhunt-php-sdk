@@ -1,6 +1,6 @@
 <?php
 /**
- * TriggerType
+ * FlowEventActionType
  *
  * PHP version 7.4
  *
@@ -30,27 +30,27 @@ namespace FlowHunt\Model;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * TriggerType Class Doc Comment
+ * FlowEventActionType Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TriggerType
+class FlowEventActionType
 {
     /**
      * Possible values of this enum
      */
-    public const ON_CHAT_OPEN = 'on_chat_open';
+    public const LOADING = 'loading';
 
-    public const CUSTOM_TRIGGER = 'custom_trigger';
+    public const MESSAGE = 'message';
 
-    public const CHAT_INPUT = 'chat_input';
+    public const TOOL_CALL = 'tool_call';
 
-    public const SLACK_MESSAGE_RECEIVED = 'slack_message_received';
+    public const TASK_RESPONSE = 'task_response';
 
-    public const SLACK_SHORTCUTS = 'slack_shortcuts';
+    public const FAILED = 'failed';
 
     /**
      * Gets allowable values of the enum
@@ -59,11 +59,11 @@ class TriggerType
     public static function getAllowableEnumValues()
     {
         return [
-            self::ON_CHAT_OPEN,
-            self::CUSTOM_TRIGGER,
-            self::CHAT_INPUT,
-            self::SLACK_MESSAGE_RECEIVED,
-            self::SLACK_SHORTCUTS
+            self::LOADING,
+            self::MESSAGE,
+            self::TOOL_CALL,
+            self::TASK_RESPONSE,
+            self::FAILED
         ];
     }
 }

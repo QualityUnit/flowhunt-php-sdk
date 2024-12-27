@@ -1,14 +1,14 @@
-# # FlowMessageResponse
+# # FlowSessionLoadingMetadata
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message_id** | **string** | Message ID |
-**session_id** | **string** | Session ID |
-**role** | [**\FlowHunt\Model\FlowMessageRole**](FlowMessageRole.md) | Chat role |
-**created_at** | **\DateTime** | Created at |
-**message** | **string** | Message |
-**credits** | **int** | Credits |
+**tool_name** | **string** | Tool name |
+**loading_desc** | **string** | Loading description |
+**icon** | **string** |  | [optional]
+**color** | **string** |  | [optional]
+**detailed_description** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

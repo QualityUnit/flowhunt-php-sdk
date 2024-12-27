@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponseTest
+ * FlowSessionTaskResponseMetadataTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationResponseTest Class Doc Comment
+ * FlowSessionTaskResponseMetadataTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationResponse
+ * @description FlowSessionTaskResponseMetadata
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationResponseTest extends TestCase
+class FlowSessionTaskResponseMetadataTest extends TestCase
 {
 
     /**
@@ -71,27 +71,45 @@ class FlowSessionInvocationResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationResponse"
+     * Test "FlowSessionTaskResponseMetadata"
      */
-    public function testFlowSessionInvocationResponse()
+    public function testFlowSessionTaskResponseMetadata()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "message_id"
+     * Test attribute "task_name"
      */
-    public function testPropertyMessageId()
+    public function testPropertyTaskName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "task_input"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyTaskInput()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "agent"
+     */
+    public function testPropertyAgent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "task_response"
+     */
+    public function testPropertyTaskResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

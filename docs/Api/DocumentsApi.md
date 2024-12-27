@@ -11,6 +11,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**deleteFaq()**](DocumentsApi.md#deleteFaq) | **DELETE** /v2/documents/faqs/{faq_id} | Delete Faq |
 | [**downloadBinaryDocument()**](DocumentsApi.md#downloadBinaryDocument) | **GET** /v2/documents/download/binary/{doc_id} | Download Binary Document |
 | [**downloadTextDocument()**](DocumentsApi.md#downloadTextDocument) | **GET** /v2/documents/download/text/{doc_id} | Download Text Document |
+| [**importFaq()**](DocumentsApi.md#importFaq) | **POST** /v2/documents/faqs/import | Import Faq |
 | [**searchDocumentCategories()**](DocumentsApi.md#searchDocumentCategories) | **POST** /v2/documents/categories/search | Search Document Categories |
 | [**searchDocuments()**](DocumentsApi.md#searchDocuments) | **POST** /v2/documents/search | Search Documents |
 | [**searchFaqs()**](DocumentsApi.md#searchFaqs) | **POST** /v2/documents/faqs/search | Search Faqs |
@@ -470,6 +471,71 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `importFaq()`
+
+```php
+importFaq($workspace_id, $file): \FlowHunt\Model\FaqResponse[]
+```
+
+Import Faq
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$file = "/path/to/file.txt"; // \SplFileObject
+
+try {
+    $result = $apiInstance->importFaq($workspace_id, $file);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->importFaq: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **file** | **\SplFileObject****\SplFileObject**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FaqResponse[]**](../Model/FaqResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

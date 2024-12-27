@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponseTest
+ * FlowSessionEventTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationResponseTest Class Doc Comment
+ * FlowSessionEventTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationResponse
+ * @description FlowSessionEvent
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationResponseTest extends TestCase
+class FlowSessionEventTest extends TestCase
 {
 
     /**
@@ -71,27 +71,81 @@ class FlowSessionInvocationResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationResponse"
+     * Test "FlowSessionEvent"
      */
-    public function testFlowSessionInvocationResponse()
+    public function testFlowSessionEvent()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "message_id"
+     * Test attribute "workspace_id"
      */
-    public function testPropertyMessageId()
+    public function testPropertyWorkspaceId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "session_id"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertySessionId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "event_id"
+     */
+    public function testPropertyEventId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "event_type"
+     */
+    public function testPropertyEventType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created_at_timestamp"
+     */
+    public function testPropertyCreatedAtTimestamp()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "action_type"
+     */
+    public function testPropertyActionType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credits"
+     */
+    public function testPropertyCredits()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "metadata"
+     */
+    public function testPropertyMetadata()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

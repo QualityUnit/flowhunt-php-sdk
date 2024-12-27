@@ -57,7 +57,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message_id' => 'string',
         'response_status' => '\FlowHunt\Model\FlowSessionStatus',
         'loading_indicator' => 'array<string,\FlowHunt\Model\FlowLoadingIndicator>',
         'intermediate_results' => 'array<string,\FlowHunt\Model\TaskOutput>',
@@ -72,7 +71,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message_id' => null,
         'response_status' => null,
         'loading_indicator' => null,
         'intermediate_results' => null,
@@ -85,7 +83,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'message_id' => false,
         'response_status' => false,
         'loading_indicator' => true,
         'intermediate_results' => true,
@@ -178,7 +175,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'message_id' => 'message_id',
         'response_status' => 'response_status',
         'loading_indicator' => 'loading_indicator',
         'intermediate_results' => 'intermediate_results',
@@ -191,7 +187,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'message_id' => 'setMessageId',
         'response_status' => 'setResponseStatus',
         'loading_indicator' => 'setLoadingIndicator',
         'intermediate_results' => 'setIntermediateResults',
@@ -204,7 +199,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'message_id' => 'getMessageId',
         'response_status' => 'getResponseStatus',
         'loading_indicator' => 'getLoadingIndicator',
         'intermediate_results' => 'getIntermediateResults',
@@ -268,7 +262,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('message_id', $data ?? [], null);
         $this->setIfExists('response_status', $data ?? [], null);
         $this->setIfExists('loading_indicator', $data ?? [], null);
         $this->setIfExists('intermediate_results', $data ?? [], null);
@@ -302,9 +295,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
-        if ($this->container['message_id'] === null) {
-            $invalidProperties[] = "'message_id' can't be null";
-        }
         if ($this->container['response_status'] === null) {
             $invalidProperties[] = "'response_status' can't be null";
         }
@@ -322,33 +312,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets message_id
-     *
-     * @return string
-     */
-    public function getMessageId()
-    {
-        return $this->container['message_id'];
-    }
-
-    /**
-     * Sets message_id
-     *
-     * @param string $message_id Message ID
-     *
-     * @return self
-     */
-    public function setMessageId($message_id)
-    {
-        if (is_null($message_id)) {
-            throw new \InvalidArgumentException('non-nullable message_id cannot be null');
-        }
-        $this->container['message_id'] = $message_id;
-
-        return $this;
-    }
 
     /**
      * Gets response_status

@@ -20,7 +20,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**invokeFlow()**](FlowsApi.md#invokeFlow) | **POST** /v2/flows/{flow_id}/invoke | Invoke Flow |
 | [**invokeFlowResponse()**](FlowsApi.md#invokeFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invoke | Invoke Flow Response |
 | [**invokeFlowSingleton()**](FlowsApi.md#invokeFlowSingleton) | **POST** /v2/flows/{flow_id}/invoke_singleton | Invoke Flow Singleton |
-| [**pollFlowResponse()**](FlowsApi.md#pollFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{message_id} | Poll Flow Response |
+| [**pollFlowResponse()**](FlowsApi.md#pollFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{from_timestamp} | Poll Flow Response |
 | [**search()**](FlowsApi.md#search) | **POST** /v2/flows/ | Search |
 | [**searchAll()**](FlowsApi.md#searchAll) | **POST** /v2/flows/all | Search All |
 | [**searchFlowCategories()**](FlowsApi.md#searchFlowCategories) | **POST** /v2/flows/categories/search | Search Flow Categories |
@@ -1034,7 +1034,7 @@ try {
 ## `pollFlowResponse()`
 
 ```php
-pollFlowResponse($session_id, $message_id): \FlowHunt\Model\FlowSessionInvocationMessageResponse
+pollFlowResponse($session_id, $from_timestamp): \FlowHunt\Model\FlowSessionEvent[]
 ```
 
 Poll Flow Response
@@ -1053,10 +1053,10 @@ $apiInstance = new FlowHunt\Api\FlowsApi(
     new GuzzleHttp\Client()
 );
 $session_id = 'session_id_example'; // string
-$message_id = 'message_id_example'; // string
+$from_timestamp = 'from_timestamp_example'; // string
 
 try {
-    $result = $apiInstance->pollFlowResponse($session_id, $message_id);
+    $result = $apiInstance->pollFlowResponse($session_id, $from_timestamp);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FlowsApi->pollFlowResponse: ', $e->getMessage(), PHP_EOL;
@@ -1068,11 +1068,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **session_id** | **string**|  | |
-| **message_id** | **string**|  | |
+| **from_timestamp** | **string**|  | |
 
 ### Return type
 
-[**\FlowHunt\Model\FlowSessionInvocationMessageResponse**](../Model/FlowSessionInvocationMessageResponse.md)
+[**\FlowHunt\Model\FlowSessionEvent[]**](../Model/FlowSessionEvent.md)
 
 ### Authorization
 

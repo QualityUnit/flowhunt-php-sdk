@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponse
+ * FlowSessionTaskResponseMetadata
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationResponse Class Doc Comment
+ * FlowSessionTaskResponseMetadata Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowSessionTaskResponseMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationResponse';
+    protected static $openAPIModelName = 'FlowSessionTaskResponseMetadata';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,10 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message_id' => 'string',
-        'created_at' => 'string'
+        'task_name' => 'string',
+        'task_input' => 'string',
+        'agent' => 'string',
+        'task_response' => 'string'
     ];
 
     /**
@@ -69,8 +71,10 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message_id' => null,
-        'created_at' => null
+        'task_name' => null,
+        'task_input' => null,
+        'agent' => null,
+        'task_response' => null
     ];
 
     /**
@@ -79,8 +83,10 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'message_id' => false,
-        'created_at' => false
+        'task_name' => true,
+        'task_input' => true,
+        'agent' => true,
+        'task_response' => true
     ];
 
     /**
@@ -169,8 +175,10 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'message_id' => 'message_id',
-        'created_at' => 'created_at'
+        'task_name' => 'task_name',
+        'task_input' => 'task_input',
+        'agent' => 'agent',
+        'task_response' => 'task_response'
     ];
 
     /**
@@ -179,8 +187,10 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'message_id' => 'setMessageId',
-        'created_at' => 'setCreatedAt'
+        'task_name' => 'setTaskName',
+        'task_input' => 'setTaskInput',
+        'agent' => 'setAgent',
+        'task_response' => 'setTaskResponse'
     ];
 
     /**
@@ -189,8 +199,10 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'message_id' => 'getMessageId',
-        'created_at' => 'getCreatedAt'
+        'task_name' => 'getTaskName',
+        'task_input' => 'getTaskInput',
+        'agent' => 'getAgent',
+        'task_response' => 'getTaskResponse'
     ];
 
     /**
@@ -250,8 +262,10 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('task_name', $data ?? [], null);
+        $this->setIfExists('task_input', $data ?? [], null);
+        $this->setIfExists('agent', $data ?? [], null);
+        $this->setIfExists('task_response', $data ?? [], null);
     }
 
     /**
@@ -281,11 +295,17 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
-        if ($this->container['message_id'] === null) {
-            $invalidProperties[] = "'message_id' can't be null";
+        if ($this->container['task_name'] === null) {
+            $invalidProperties[] = "'task_name' can't be null";
         }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['task_input'] === null) {
+            $invalidProperties[] = "'task_input' can't be null";
+        }
+        if ($this->container['agent'] === null) {
+            $invalidProperties[] = "'agent' can't be null";
+        }
+        if ($this->container['task_response'] === null) {
+            $invalidProperties[] = "'task_response' can't be null";
         }
         return $invalidProperties;
     }
@@ -303,55 +323,137 @@ class FlowSessionInvocationResponse implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets message_id
+     * Gets task_name
      *
      * @return string
      */
-    public function getMessageId()
+    public function getTaskName()
     {
-        return $this->container['message_id'];
+        return $this->container['task_name'];
     }
 
     /**
-     * Sets message_id
+     * Sets task_name
      *
-     * @param string $message_id Message ID
+     * @param string $task_name task_name
      *
      * @return self
      */
-    public function setMessageId($message_id)
+    public function setTaskName($task_name)
     {
-        if (is_null($message_id)) {
-            throw new \InvalidArgumentException('non-nullable message_id cannot be null');
+        if (is_null($task_name)) {
+            array_push($this->openAPINullablesSetToNull, 'task_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('task_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['message_id'] = $message_id;
+        $this->container['task_name'] = $task_name;
 
         return $this;
     }
 
     /**
-     * Gets created_at
+     * Gets task_input
      *
      * @return string
      */
-    public function getCreatedAt()
+    public function getTaskInput()
     {
-        return $this->container['created_at'];
+        return $this->container['task_input'];
     }
 
     /**
-     * Sets created_at
+     * Sets task_input
      *
-     * @param string $created_at Created at
+     * @param string $task_input task_input
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setTaskInput($task_input)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($task_input)) {
+            array_push($this->openAPINullablesSetToNull, 'task_input');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('task_input', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['task_input'] = $task_input;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent
+     *
+     * @return string
+     */
+    public function getAgent()
+    {
+        return $this->container['agent'];
+    }
+
+    /**
+     * Sets agent
+     *
+     * @param string $agent agent
+     *
+     * @return self
+     */
+    public function setAgent($agent)
+    {
+        if (is_null($agent)) {
+            array_push($this->openAPINullablesSetToNull, 'agent');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agent', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['agent'] = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets task_response
+     *
+     * @return string
+     */
+    public function getTaskResponse()
+    {
+        return $this->container['task_response'];
+    }
+
+    /**
+     * Sets task_response
+     *
+     * @param string $task_response task_response
+     *
+     * @return self
+     */
+    public function setTaskResponse($task_response)
+    {
+        if (is_null($task_response)) {
+            array_push($this->openAPINullablesSetToNull, 'task_response');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('task_response', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['task_response'] = $task_response;
 
         return $this;
     }

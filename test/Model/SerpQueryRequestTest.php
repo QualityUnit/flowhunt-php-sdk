@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationResponseTest
+ * SerpQueryRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationResponseTest Class Doc Comment
+ * SerpQueryRequestTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationResponse
+ * @description SerpQueryRequest
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationResponseTest extends TestCase
+class SerpQueryRequestTest extends TestCase
 {
 
     /**
@@ -71,27 +71,54 @@ class FlowSessionInvocationResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationResponse"
+     * Test "SerpQueryRequest"
      */
-    public function testFlowSessionInvocationResponse()
+    public function testSerpQueryRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "message_id"
+     * Test attribute "post_back_url"
      */
-    public function testPropertyMessageId()
+    public function testPropertyPostBackUrl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "query"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyQuery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "country"
+     */
+    public function testPropertyCountry()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "language"
+     */
+    public function testPropertyLanguage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "location"
+     */
+    public function testPropertyLocation()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
