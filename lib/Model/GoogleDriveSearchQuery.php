@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationMessageResponse
+ * GoogleDriveSearchQuery
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationMessageResponse Class Doc Comment
+ * GoogleDriveSearchQuery Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GoogleDriveSearchQuery implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationMessageResponse';
+    protected static $openAPIModelName = 'GoogleDriveSearchQuery';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'response_status' => '\FlowHunt\Model\FlowSessionStatus',
-        'loading_indicator' => 'array<string,\FlowHunt\Model\FlowLoadingIndicator>',
-        'intermediate_results' => 'array<string,\FlowHunt\Model\TaskOutput>',
-        'final_response' => 'string[]',
-        'events' => '\FlowHunt\Model\FlowSessionEvent[]'
+        'order_by' => 'string',
+        'page_size' => 'int',
+        'page_token' => 'string',
+        'search_term' => 'string'
     ];
 
     /**
@@ -72,11 +71,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'response_status' => null,
-        'loading_indicator' => null,
-        'intermediate_results' => null,
-        'final_response' => null,
-        'events' => null
+        'order_by' => null,
+        'page_size' => null,
+        'page_token' => null,
+        'search_term' => null
     ];
 
     /**
@@ -85,11 +83,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'response_status' => false,
-        'loading_indicator' => true,
-        'intermediate_results' => true,
-        'final_response' => true,
-        'events' => true
+        'order_by' => true,
+        'page_size' => true,
+        'page_token' => true,
+        'search_term' => true
     ];
 
     /**
@@ -178,11 +175,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'response_status' => 'response_status',
-        'loading_indicator' => 'loading_indicator',
-        'intermediate_results' => 'intermediate_results',
-        'final_response' => 'final_response',
-        'events' => 'events'
+        'order_by' => 'order_by',
+        'page_size' => 'page_size',
+        'page_token' => 'page_token',
+        'search_term' => 'search_term'
     ];
 
     /**
@@ -191,11 +187,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'response_status' => 'setResponseStatus',
-        'loading_indicator' => 'setLoadingIndicator',
-        'intermediate_results' => 'setIntermediateResults',
-        'final_response' => 'setFinalResponse',
-        'events' => 'setEvents'
+        'order_by' => 'setOrderBy',
+        'page_size' => 'setPageSize',
+        'page_token' => 'setPageToken',
+        'search_term' => 'setSearchTerm'
     ];
 
     /**
@@ -204,11 +199,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'response_status' => 'getResponseStatus',
-        'loading_indicator' => 'getLoadingIndicator',
-        'intermediate_results' => 'getIntermediateResults',
-        'final_response' => 'getFinalResponse',
-        'events' => 'getEvents'
+        'order_by' => 'getOrderBy',
+        'page_size' => 'getPageSize',
+        'page_token' => 'getPageToken',
+        'search_term' => 'getSearchTerm'
     ];
 
     /**
@@ -268,11 +262,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('response_status', $data ?? [], null);
-        $this->setIfExists('loading_indicator', $data ?? [], null);
-        $this->setIfExists('intermediate_results', $data ?? [], null);
-        $this->setIfExists('final_response', $data ?? [], null);
-        $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('order_by', $data ?? [], null);
+        $this->setIfExists('page_size', $data ?? [], null);
+        $this->setIfExists('page_token', $data ?? [], null);
+        $this->setIfExists('search_term', $data ?? [], null);
     }
 
     /**
@@ -302,9 +295,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
-        if ($this->container['response_status'] === null) {
-            $invalidProperties[] = "'response_status' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -321,164 +311,137 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
 
 
     /**
-     * Gets response_status
+     * Gets order_by
      *
-     * @return \FlowHunt\Model\FlowSessionStatus
+     * @return string|null
      */
-    public function getResponseStatus()
+    public function getOrderBy()
     {
-        return $this->container['response_status'];
+        return $this->container['order_by'];
     }
 
     /**
-     * Sets response_status
+     * Sets order_by
      *
-     * @param \FlowHunt\Model\FlowSessionStatus $response_status Response status
+     * @param string|null $order_by order_by
      *
      * @return self
      */
-    public function setResponseStatus($response_status)
+    public function setOrderBy($order_by)
     {
-        if (is_null($response_status)) {
-            throw new \InvalidArgumentException('non-nullable response_status cannot be null');
-        }
-        $this->container['response_status'] = $response_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets loading_indicator
-     *
-     * @return array<string,\FlowHunt\Model\FlowLoadingIndicator>|null
-     */
-    public function getLoadingIndicator()
-    {
-        return $this->container['loading_indicator'];
-    }
-
-    /**
-     * Sets loading_indicator
-     *
-     * @param array<string,\FlowHunt\Model\FlowLoadingIndicator>|null $loading_indicator loading_indicator
-     *
-     * @return self
-     */
-    public function setLoadingIndicator($loading_indicator)
-    {
-        if (is_null($loading_indicator)) {
-            array_push($this->openAPINullablesSetToNull, 'loading_indicator');
+        if (is_null($order_by)) {
+            array_push($this->openAPINullablesSetToNull, 'order_by');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('loading_indicator', $nullablesSetToNull);
+            $index = array_search('order_by', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['loading_indicator'] = $loading_indicator;
+        $this->container['order_by'] = $order_by;
 
         return $this;
     }
 
     /**
-     * Gets intermediate_results
+     * Gets page_size
      *
-     * @return array<string,\FlowHunt\Model\TaskOutput>|null
+     * @return int|null
      */
-    public function getIntermediateResults()
+    public function getPageSize()
     {
-        return $this->container['intermediate_results'];
+        return $this->container['page_size'];
     }
 
     /**
-     * Sets intermediate_results
+     * Sets page_size
      *
-     * @param array<string,\FlowHunt\Model\TaskOutput>|null $intermediate_results intermediate_results
+     * @param int|null $page_size page_size
      *
      * @return self
      */
-    public function setIntermediateResults($intermediate_results)
+    public function setPageSize($page_size)
     {
-        if (is_null($intermediate_results)) {
-            array_push($this->openAPINullablesSetToNull, 'intermediate_results');
+        if (is_null($page_size)) {
+            array_push($this->openAPINullablesSetToNull, 'page_size');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('intermediate_results', $nullablesSetToNull);
+            $index = array_search('page_size', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['intermediate_results'] = $intermediate_results;
+        $this->container['page_size'] = $page_size;
 
         return $this;
     }
 
     /**
-     * Gets final_response
+     * Gets page_token
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getFinalResponse()
+    public function getPageToken()
     {
-        return $this->container['final_response'];
+        return $this->container['page_token'];
     }
 
     /**
-     * Sets final_response
+     * Sets page_token
      *
-     * @param string[]|null $final_response final_response
+     * @param string|null $page_token page_token
      *
      * @return self
      */
-    public function setFinalResponse($final_response)
+    public function setPageToken($page_token)
     {
-        if (is_null($final_response)) {
-            array_push($this->openAPINullablesSetToNull, 'final_response');
+        if (is_null($page_token)) {
+            array_push($this->openAPINullablesSetToNull, 'page_token');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('final_response', $nullablesSetToNull);
+            $index = array_search('page_token', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['final_response'] = $final_response;
+        $this->container['page_token'] = $page_token;
 
         return $this;
     }
 
     /**
-     * Gets events
+     * Gets search_term
      *
-     * @return \FlowHunt\Model\FlowSessionEvent[]|null
+     * @return string|null
      */
-    public function getEvents()
+    public function getSearchTerm()
     {
-        return $this->container['events'];
+        return $this->container['search_term'];
     }
 
     /**
-     * Sets events
+     * Sets search_term
      *
-     * @param \FlowHunt\Model\FlowSessionEvent[]|null $events events
+     * @param string|null $search_term search_term
      *
      * @return self
      */
-    public function setEvents($events)
+    public function setSearchTerm($search_term)
     {
-        if (is_null($events)) {
-            array_push($this->openAPINullablesSetToNull, 'events');
+        if (is_null($search_term)) {
+            array_push($this->openAPINullablesSetToNull, 'search_term');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('events', $nullablesSetToNull);
+            $index = array_search('search_term', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['events'] = $events;
+        $this->container['search_term'] = $search_term;
 
         return $this;
     }

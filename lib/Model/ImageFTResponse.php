@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationMessageResponse
+ * ImageFTResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationMessageResponse Class Doc Comment
+ * ImageFTResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationMessageResponse';
+    protected static $openAPIModelName = 'ImageFTResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'response_status' => '\FlowHunt\Model\FlowSessionStatus',
-        'loading_indicator' => 'array<string,\FlowHunt\Model\FlowLoadingIndicator>',
-        'intermediate_results' => 'array<string,\FlowHunt\Model\TaskOutput>',
-        'final_response' => 'string[]',
-        'events' => '\FlowHunt\Model\FlowSessionEvent[]'
+        'ft_type' => '\FlowHunt\Model\FTType',
+        'ft_id' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -72,11 +70,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'response_status' => null,
-        'loading_indicator' => null,
-        'intermediate_results' => null,
-        'final_response' => null,
-        'events' => null
+        'ft_type' => null,
+        'ft_id' => 'uuid',
+        'name' => null
     ];
 
     /**
@@ -85,11 +81,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'response_status' => false,
-        'loading_indicator' => true,
-        'intermediate_results' => true,
-        'final_response' => true,
-        'events' => true
+        'ft_type' => false,
+        'ft_id' => false,
+        'name' => false
     ];
 
     /**
@@ -178,11 +172,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'response_status' => 'response_status',
-        'loading_indicator' => 'loading_indicator',
-        'intermediate_results' => 'intermediate_results',
-        'final_response' => 'final_response',
-        'events' => 'events'
+        'ft_type' => 'ft_type',
+        'ft_id' => 'ft_id',
+        'name' => 'name'
     ];
 
     /**
@@ -191,11 +183,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'response_status' => 'setResponseStatus',
-        'loading_indicator' => 'setLoadingIndicator',
-        'intermediate_results' => 'setIntermediateResults',
-        'final_response' => 'setFinalResponse',
-        'events' => 'setEvents'
+        'ft_type' => 'setFtType',
+        'ft_id' => 'setFtId',
+        'name' => 'setName'
     ];
 
     /**
@@ -204,11 +194,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'response_status' => 'getResponseStatus',
-        'loading_indicator' => 'getLoadingIndicator',
-        'intermediate_results' => 'getIntermediateResults',
-        'final_response' => 'getFinalResponse',
-        'events' => 'getEvents'
+        'ft_type' => 'getFtType',
+        'ft_id' => 'getFtId',
+        'name' => 'getName'
     ];
 
     /**
@@ -268,11 +256,9 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('response_status', $data ?? [], null);
-        $this->setIfExists('loading_indicator', $data ?? [], null);
-        $this->setIfExists('intermediate_results', $data ?? [], null);
-        $this->setIfExists('final_response', $data ?? [], null);
-        $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('ft_type', $data ?? [], null);
+        $this->setIfExists('ft_id', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -302,8 +288,14 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
-        if ($this->container['response_status'] === null) {
-            $invalidProperties[] = "'response_status' can't be null";
+        if ($this->container['ft_type'] === null) {
+            $invalidProperties[] = "'ft_type' can't be null";
+        }
+        if ($this->container['ft_id'] === null) {
+            $invalidProperties[] = "'ft_id' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -321,164 +313,82 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
 
 
     /**
-     * Gets response_status
+     * Gets ft_type
      *
-     * @return \FlowHunt\Model\FlowSessionStatus
+     * @return \FlowHunt\Model\FTType
      */
-    public function getResponseStatus()
+    public function getFtType()
     {
-        return $this->container['response_status'];
+        return $this->container['ft_type'];
     }
 
     /**
-     * Sets response_status
+     * Sets ft_type
      *
-     * @param \FlowHunt\Model\FlowSessionStatus $response_status Response status
+     * @param \FlowHunt\Model\FTType $ft_type Fine tuning type
      *
      * @return self
      */
-    public function setResponseStatus($response_status)
+    public function setFtType($ft_type)
     {
-        if (is_null($response_status)) {
-            throw new \InvalidArgumentException('non-nullable response_status cannot be null');
+        if (is_null($ft_type)) {
+            throw new \InvalidArgumentException('non-nullable ft_type cannot be null');
         }
-        $this->container['response_status'] = $response_status;
+        $this->container['ft_type'] = $ft_type;
 
         return $this;
     }
 
     /**
-     * Gets loading_indicator
+     * Gets ft_id
      *
-     * @return array<string,\FlowHunt\Model\FlowLoadingIndicator>|null
+     * @return string
      */
-    public function getLoadingIndicator()
+    public function getFtId()
     {
-        return $this->container['loading_indicator'];
+        return $this->container['ft_id'];
     }
 
     /**
-     * Sets loading_indicator
+     * Sets ft_id
      *
-     * @param array<string,\FlowHunt\Model\FlowLoadingIndicator>|null $loading_indicator loading_indicator
+     * @param string $ft_id Fine tuning id
      *
      * @return self
      */
-    public function setLoadingIndicator($loading_indicator)
+    public function setFtId($ft_id)
     {
-        if (is_null($loading_indicator)) {
-            array_push($this->openAPINullablesSetToNull, 'loading_indicator');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('loading_indicator', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($ft_id)) {
+            throw new \InvalidArgumentException('non-nullable ft_id cannot be null');
         }
-        $this->container['loading_indicator'] = $loading_indicator;
+        $this->container['ft_id'] = $ft_id;
 
         return $this;
     }
 
     /**
-     * Gets intermediate_results
+     * Gets name
      *
-     * @return array<string,\FlowHunt\Model\TaskOutput>|null
+     * @return string
      */
-    public function getIntermediateResults()
+    public function getName()
     {
-        return $this->container['intermediate_results'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets intermediate_results
+     * Sets name
      *
-     * @param array<string,\FlowHunt\Model\TaskOutput>|null $intermediate_results intermediate_results
+     * @param string $name Fine tuning name
      *
      * @return self
      */
-    public function setIntermediateResults($intermediate_results)
+    public function setName($name)
     {
-        if (is_null($intermediate_results)) {
-            array_push($this->openAPINullablesSetToNull, 'intermediate_results');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('intermediate_results', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['intermediate_results'] = $intermediate_results;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_response
-     *
-     * @return string[]|null
-     */
-    public function getFinalResponse()
-    {
-        return $this->container['final_response'];
-    }
-
-    /**
-     * Sets final_response
-     *
-     * @param string[]|null $final_response final_response
-     *
-     * @return self
-     */
-    public function setFinalResponse($final_response)
-    {
-        if (is_null($final_response)) {
-            array_push($this->openAPINullablesSetToNull, 'final_response');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('final_response', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['final_response'] = $final_response;
-
-        return $this;
-    }
-
-    /**
-     * Gets events
-     *
-     * @return \FlowHunt\Model\FlowSessionEvent[]|null
-     */
-    public function getEvents()
-    {
-        return $this->container['events'];
-    }
-
-    /**
-     * Sets events
-     *
-     * @param \FlowHunt\Model\FlowSessionEvent[]|null $events events
-     *
-     * @return self
-     */
-    public function setEvents($events)
-    {
-        if (is_null($events)) {
-            array_push($this->openAPINullablesSetToNull, 'events');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('events', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['events'] = $events;
+        $this->container['name'] = $name;
 
         return $this;
     }

@@ -60,6 +60,22 @@ class IntegrationSlug
 
     public const TAWK_INTEGRATION = 'tawk_integration';
 
+    public const GOOGLE_INTEGRATION = 'google_integration';
+
+    public const GOOGLE_CALENDAR_INTEGRATION = 'google_calendar_integration';
+
+    public const GOOGLE_ADS_INTEGRATION = 'google_ads_integration';
+
+    public const GOOGLE_DOCS_INTEGRATION = 'google_docs_integration';
+
+    public const GOOGLE_DRIVE_INTEGRATION = 'google_drive_integration';
+
+    public const GOOGLE_SHEETS_INTEGRATION = 'google_sheets_integration';
+
+    public const GOOGLE_TASKS_INTEGRATION = 'google_tasks_integration';
+
+    public const GOOGLE_MEET_INTEGRATION = 'google_meet_integration';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -75,7 +91,15 @@ class IntegrationSlug
             self::LIVECHAT_INTEGRATION,
             self::SMARTSUPP_INTEGRATION,
             self::FRESHCHAT_INTEGRATION,
-            self::TAWK_INTEGRATION
+            self::TAWK_INTEGRATION,
+            self::GOOGLE_INTEGRATION,
+            self::GOOGLE_CALENDAR_INTEGRATION,
+            self::GOOGLE_ADS_INTEGRATION,
+            self::GOOGLE_DOCS_INTEGRATION,
+            self::GOOGLE_DRIVE_INTEGRATION,
+            self::GOOGLE_SHEETS_INTEGRATION,
+            self::GOOGLE_TASKS_INTEGRATION,
+            self::GOOGLE_MEET_INTEGRATION
         ];
     }
 }

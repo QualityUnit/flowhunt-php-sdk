@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationMessageResponse
+ * GoogleDriveSearchResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationMessageResponse Class Doc Comment
+ * GoogleDriveSearchResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GoogleDriveSearchResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationMessageResponse';
+    protected static $openAPIModelName = 'GoogleDriveSearchResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'response_status' => '\FlowHunt\Model\FlowSessionStatus',
-        'loading_indicator' => 'array<string,\FlowHunt\Model\FlowLoadingIndicator>',
-        'intermediate_results' => 'array<string,\FlowHunt\Model\TaskOutput>',
-        'final_response' => 'string[]',
-        'events' => '\FlowHunt\Model\FlowSessionEvent[]'
+        'next_page_token' => 'string',
+        'files' => '\FlowHunt\Model\GoogleDriveFileResponse[]'
     ];
 
     /**
@@ -72,11 +69,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'response_status' => null,
-        'loading_indicator' => null,
-        'intermediate_results' => null,
-        'final_response' => null,
-        'events' => null
+        'next_page_token' => null,
+        'files' => null
     ];
 
     /**
@@ -85,11 +79,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'response_status' => false,
-        'loading_indicator' => true,
-        'intermediate_results' => true,
-        'final_response' => true,
-        'events' => true
+        'next_page_token' => true,
+        'files' => false
     ];
 
     /**
@@ -178,11 +169,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'response_status' => 'response_status',
-        'loading_indicator' => 'loading_indicator',
-        'intermediate_results' => 'intermediate_results',
-        'final_response' => 'final_response',
-        'events' => 'events'
+        'next_page_token' => 'next_page_token',
+        'files' => 'files'
     ];
 
     /**
@@ -191,11 +179,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'response_status' => 'setResponseStatus',
-        'loading_indicator' => 'setLoadingIndicator',
-        'intermediate_results' => 'setIntermediateResults',
-        'final_response' => 'setFinalResponse',
-        'events' => 'setEvents'
+        'next_page_token' => 'setNextPageToken',
+        'files' => 'setFiles'
     ];
 
     /**
@@ -204,11 +189,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'response_status' => 'getResponseStatus',
-        'loading_indicator' => 'getLoadingIndicator',
-        'intermediate_results' => 'getIntermediateResults',
-        'final_response' => 'getFinalResponse',
-        'events' => 'getEvents'
+        'next_page_token' => 'getNextPageToken',
+        'files' => 'getFiles'
     ];
 
     /**
@@ -268,11 +250,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('response_status', $data ?? [], null);
-        $this->setIfExists('loading_indicator', $data ?? [], null);
-        $this->setIfExists('intermediate_results', $data ?? [], null);
-        $this->setIfExists('final_response', $data ?? [], null);
-        $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('next_page_token', $data ?? [], null);
+        $this->setIfExists('files', $data ?? [], null);
     }
 
     /**
@@ -302,8 +281,8 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
-        if ($this->container['response_status'] === null) {
-            $invalidProperties[] = "'response_status' can't be null";
+        if ($this->container['files'] === null) {
+            $invalidProperties[] = "'files' can't be null";
         }
         return $invalidProperties;
     }
@@ -321,164 +300,62 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
 
 
     /**
-     * Gets response_status
+     * Gets next_page_token
      *
-     * @return \FlowHunt\Model\FlowSessionStatus
+     * @return string|null
      */
-    public function getResponseStatus()
+    public function getNextPageToken()
     {
-        return $this->container['response_status'];
+        return $this->container['next_page_token'];
     }
 
     /**
-     * Sets response_status
+     * Sets next_page_token
      *
-     * @param \FlowHunt\Model\FlowSessionStatus $response_status Response status
+     * @param string|null $next_page_token next_page_token
      *
      * @return self
      */
-    public function setResponseStatus($response_status)
+    public function setNextPageToken($next_page_token)
     {
-        if (is_null($response_status)) {
-            throw new \InvalidArgumentException('non-nullable response_status cannot be null');
-        }
-        $this->container['response_status'] = $response_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets loading_indicator
-     *
-     * @return array<string,\FlowHunt\Model\FlowLoadingIndicator>|null
-     */
-    public function getLoadingIndicator()
-    {
-        return $this->container['loading_indicator'];
-    }
-
-    /**
-     * Sets loading_indicator
-     *
-     * @param array<string,\FlowHunt\Model\FlowLoadingIndicator>|null $loading_indicator loading_indicator
-     *
-     * @return self
-     */
-    public function setLoadingIndicator($loading_indicator)
-    {
-        if (is_null($loading_indicator)) {
-            array_push($this->openAPINullablesSetToNull, 'loading_indicator');
+        if (is_null($next_page_token)) {
+            array_push($this->openAPINullablesSetToNull, 'next_page_token');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('loading_indicator', $nullablesSetToNull);
+            $index = array_search('next_page_token', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['loading_indicator'] = $loading_indicator;
+        $this->container['next_page_token'] = $next_page_token;
 
         return $this;
     }
 
     /**
-     * Gets intermediate_results
+     * Gets files
      *
-     * @return array<string,\FlowHunt\Model\TaskOutput>|null
+     * @return \FlowHunt\Model\GoogleDriveFileResponse[]
      */
-    public function getIntermediateResults()
+    public function getFiles()
     {
-        return $this->container['intermediate_results'];
+        return $this->container['files'];
     }
 
     /**
-     * Sets intermediate_results
+     * Sets files
      *
-     * @param array<string,\FlowHunt\Model\TaskOutput>|null $intermediate_results intermediate_results
+     * @param \FlowHunt\Model\GoogleDriveFileResponse[] $files Files
      *
      * @return self
      */
-    public function setIntermediateResults($intermediate_results)
+    public function setFiles($files)
     {
-        if (is_null($intermediate_results)) {
-            array_push($this->openAPINullablesSetToNull, 'intermediate_results');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('intermediate_results', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($files)) {
+            throw new \InvalidArgumentException('non-nullable files cannot be null');
         }
-        $this->container['intermediate_results'] = $intermediate_results;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_response
-     *
-     * @return string[]|null
-     */
-    public function getFinalResponse()
-    {
-        return $this->container['final_response'];
-    }
-
-    /**
-     * Sets final_response
-     *
-     * @param string[]|null $final_response final_response
-     *
-     * @return self
-     */
-    public function setFinalResponse($final_response)
-    {
-        if (is_null($final_response)) {
-            array_push($this->openAPINullablesSetToNull, 'final_response');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('final_response', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['final_response'] = $final_response;
-
-        return $this;
-    }
-
-    /**
-     * Gets events
-     *
-     * @return \FlowHunt\Model\FlowSessionEvent[]|null
-     */
-    public function getEvents()
-    {
-        return $this->container['events'];
-    }
-
-    /**
-     * Sets events
-     *
-     * @param \FlowHunt\Model\FlowSessionEvent[]|null $events events
-     *
-     * @return self
-     */
-    public function setEvents($events)
-    {
-        if (is_null($events)) {
-            array_push($this->openAPINullablesSetToNull, 'events');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('events', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['events'] = $events;
+        $this->container['files'] = $files;
 
         return $this;
     }

@@ -76,6 +76,12 @@ class TransactionType
 
     public const N = 'N';
 
+    public const FT_I = 'FT_I';
+
+    public const DDG = 'DDG';
+
+    public const CGD = 'CGD';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -120,6 +126,9 @@ class TransactionType
             self::W,
             self::O,
             self::N,
+            self::FT_I,
+            self::DDG,
+            self::CGD,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,

@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **loading_indicator** | [**array<string,\FlowHunt\Model\FlowLoadingIndicator>**](FlowLoadingIndicator.md) |  | [optional]
 **intermediate_results** | [**array<string,\FlowHunt\Model\TaskOutput>**](TaskOutput.md) |  | [optional]
 **final_response** | **string[]** |  | [optional]
+**events** | [**\FlowHunt\Model\FlowSessionEvent[]**](FlowSessionEvent.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

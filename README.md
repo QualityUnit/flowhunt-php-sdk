@@ -120,6 +120,13 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**updateFaq**](docs/Api/DocumentsApi.md#updatefaq) | **PUT** /v2/documents/faqs/{faq_id} | Update Faq
 *DocumentsApi* | [**uploadDocument**](docs/Api/DocumentsApi.md#uploaddocument) | **POST** /v2/documents/upload/{cat_id} | Upload Document
 *DocumentsApi* | [**uploadFromUrlDocument**](docs/Api/DocumentsApi.md#uploadfromurldocument) | **POST** /v2/documents/upload-from-url/{cat_id} | Upload From Url Document
+*FineTuningsApi* | [**createImageFt**](docs/Api/FineTuningsApi.md#createimageft) | **POST** /v2/fine_tunings/images/ | Create Image Ft
+*FineTuningsApi* | [**deleteImageFt**](docs/Api/FineTuningsApi.md#deleteimageft) | **DELETE** /v2/fine_tunings/images/{ft_id} | Delete Image Ft
+*FineTuningsApi* | [**handleReplicateWebhook**](docs/Api/FineTuningsApi.md#handlereplicatewebhook) | **POST** /v2/fine_tunings/webhooks/replicate | Handle Replicate Webhook
+*FineTuningsApi* | [**searchImageFts**](docs/Api/FineTuningsApi.md#searchimagefts) | **POST** /v2/fine_tunings/images/search | Search Image Fts
+*FineTuningsApi* | [**trainImageFt**](docs/Api/FineTuningsApi.md#trainimageft) | **POST** /v2/fine_tunings/images/{ft_id}/train | Train Image Ft
+*FineTuningsApi* | [**updateImageFt**](docs/Api/FineTuningsApi.md#updateimageft) | **PUT** /v2/fine_tunings/images/{ft_id} | Update Image Ft
+*FineTuningsApi* | [**uploadImageFt**](docs/Api/FineTuningsApi.md#uploadimageft) | **POST** /v2/fine_tunings/images/{ft_id}/upload | Upload Image Ft
 *FlowMessagesApi* | [**searchFlowMessages**](docs/Api/FlowMessagesApi.md#searchflowmessages) | **POST** /v2/chatbots/search/{session_id} | Search Flow Messages
 *FlowSessionsApi* | [**deleteChatbotSessionView**](docs/Api/FlowSessionsApi.md#deletechatbotsessionview) | **DELETE** /v2/chatbots/sessions/{session_id} | Delete Chatbot Session View
 *FlowSessionsApi* | [**getChatbotSessionView**](docs/Api/FlowSessionsApi.md#getchatbotsessionview) | **GET** /v2/chatbots/sessions/{session_id} | Get Chatbot Session View
@@ -153,6 +160,7 @@ Class | Method | HTTP request | Description
 *FlowsApi* | [**updateFlow**](docs/Api/FlowsApi.md#updateflow) | **PUT** /v2/flows/{flow_id} | Update Flow
 *FlowsApi* | [**updateFlowCategory**](docs/Api/FlowsApi.md#updateflowcategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category
 *FlowsApi* | [**uploadAttachments**](docs/Api/FlowsApi.md#uploadattachments) | **POST** /v2/flows/sessions/{session_id}/attachments | Upload Attachments
+*GoogleApi* | [**getDriveDocuments_0**](docs/Api/GoogleApi.md#getdrivedocuments_0) | **POST** /v2/integrations/google/{integration_slug}/drive/files | Get Drive Documents
 *GridsApi* | [**createColumn**](docs/Api/GridsApi.md#createcolumn) | **POST** /v2/grids/{grid_id}/create | Create Column
 *GridsApi* | [**createGrid**](docs/Api/GridsApi.md#creategrid) | **POST** /v2/grids/create | Create Grid
 *GridsApi* | [**createGridRow**](docs/Api/GridsApi.md#creategridrow) | **POST** /v2/grids/{grid_id}/create_row | Create Grid Row
@@ -171,6 +179,7 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**createIntegration**](docs/Api/IntegrationsApi.md#createintegration) | **POST** /v2/integrations/{slug}/integrate | Create Integration
 *IntegrationsApi* | [**deleteIntegration**](docs/Api/IntegrationsApi.md#deleteintegration) | **DELETE** /v2/integrations/{slug}/{integration_id} | Delete Integration
 *IntegrationsApi* | [**getAllIntegrations**](docs/Api/IntegrationsApi.md#getallintegrations) | **GET** /v2/integrations/all | Get All Integrations
+*IntegrationsApi* | [**getDriveDocuments**](docs/Api/IntegrationsApi.md#getdrivedocuments) | **POST** /v2/integrations/google/{integration_slug}/drive/files | Get Drive Documents
 *IntegrationsApi* | [**getIntegration**](docs/Api/IntegrationsApi.md#getintegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration
 *IntegrationsApi* | [**getSlackChannels**](docs/Api/IntegrationsApi.md#getslackchannels) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels
 *IntegrationsApi* | [**getSlackWorkspaces**](docs/Api/IntegrationsApi.md#getslackworkspaces) | **GET** /v2/integrations/slack/ | Get Slack Workspaces
@@ -271,6 +280,7 @@ Class | Method | HTTP request | Description
 - [DocumentStatus](docs/Model/DocumentStatus.md)
 - [DocumentType](docs/Model/DocumentType.md)
 - [DocumentUpdateRequest](docs/Model/DocumentUpdateRequest.md)
+- [FTType](docs/Model/FTType.md)
 - [FaqCreateRequest](docs/Model/FaqCreateRequest.md)
 - [FaqResponse](docs/Model/FaqResponse.md)
 - [FaqSearchRequest](docs/Model/FaqSearchRequest.md)
@@ -309,6 +319,9 @@ Class | Method | HTTP request | Description
 - [FlowSessionViewSearchRequest](docs/Model/FlowSessionViewSearchRequest.md)
 - [FlowSessionViewUpdateRequest](docs/Model/FlowSessionViewUpdateRequest.md)
 - [FlowType](docs/Model/FlowType.md)
+- [GoogleDriveFileResponse](docs/Model/GoogleDriveFileResponse.md)
+- [GoogleDriveSearchQuery](docs/Model/GoogleDriveSearchQuery.md)
+- [GoogleDriveSearchResponse](docs/Model/GoogleDriveSearchResponse.md)
 - [GridCellStatus](docs/Model/GridCellStatus.md)
 - [GridColumnCreateRequest](docs/Model/GridColumnCreateRequest.md)
 - [GridColumnResponse](docs/Model/GridColumnResponse.md)
@@ -327,6 +340,12 @@ Class | Method | HTTP request | Description
 - [HTTPValidationError](docs/Model/HTTPValidationError.md)
 - [Health](docs/Model/Health.md)
 - [ImageConvertRequest](docs/Model/ImageConvertRequest.md)
+- [ImageFTCreateRequest](docs/Model/ImageFTCreateRequest.md)
+- [ImageFTModelName](docs/Model/ImageFTModelName.md)
+- [ImageFTResponse](docs/Model/ImageFTResponse.md)
+- [ImageFTSearchRequest](docs/Model/ImageFTSearchRequest.md)
+- [ImageFTTrainRequest](docs/Model/ImageFTTrainRequest.md)
+- [ImageFTUpdateRequest](docs/Model/ImageFTUpdateRequest.md)
 - [ImageOptimizeRequest](docs/Model/ImageOptimizeRequest.md)
 - [IntegrationCategory](docs/Model/IntegrationCategory.md)
 - [IntegrationDetailResponse](docs/Model/IntegrationDetailResponse.md)
@@ -459,6 +478,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `3.6.0`
+    - Package version: `3.7.0`
     - Generator version: `7.9.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

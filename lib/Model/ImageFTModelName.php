@@ -1,6 +1,6 @@
 <?php
 /**
- * IntegrationCategory
+ * ImageFTModelName
  *
  * PHP version 7.4
  *
@@ -30,31 +30,19 @@ namespace FlowHunt\Model;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * IntegrationCategory Class Doc Comment
+ * ImageFTModelName Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class IntegrationCategory
+class ImageFTModelName
 {
     /**
      * Possible values of this enum
      */
-    public const DEV_TOOLS = 'dev_tools';
-
-    public const CRM = 'crm';
-
-    public const SOCIAL_MEDIA = 'social_media';
-
-    public const ECOMMERCE = 'ecommerce';
-
-    public const CONTENT = 'content';
-
-    public const SALES = 'sales';
-
-    public const MARKETING = 'marketing';
+    public const FLUX = 'flux';
 
     /**
      * Gets allowable values of the enum
@@ -63,13 +51,7 @@ class IntegrationCategory
     public static function getAllowableEnumValues()
     {
         return [
-            self::DEV_TOOLS,
-            self::CRM,
-            self::SOCIAL_MEDIA,
-            self::ECOMMERCE,
-            self::CONTENT,
-            self::SALES,
-            self::MARKETING
+            self::FLUX
         ];
     }
 }

@@ -84,6 +84,8 @@ class DocumentType
 
     public const WEBP = 'WEBP';
 
+    public const GOOGLE_DOCS = 'GOOGLE_DOCS';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -111,7 +113,8 @@ class DocumentType
             self::JPG,
             self::PNG,
             self::GIF,
-            self::WEBP
+            self::WEBP,
+            self::GOOGLE_DOCS
         ];
     }
 }

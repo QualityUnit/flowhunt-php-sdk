@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationMessageResponseTest
+ * ImageFTResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationMessageResponseTest Class Doc Comment
+ * ImageFTResponseTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationMessageResponse
+ * @description ImageFTResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationMessageResponseTest extends TestCase
+class ImageFTResponseTest extends TestCase
 {
 
     /**
@@ -71,54 +71,36 @@ class FlowSessionInvocationMessageResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationMessageResponse"
+     * Test "ImageFTResponse"
      */
-    public function testFlowSessionInvocationMessageResponse()
+    public function testImageFTResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "response_status"
+     * Test attribute "ft_type"
      */
-    public function testPropertyResponseStatus()
+    public function testPropertyFtType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "loading_indicator"
+     * Test attribute "ft_id"
      */
-    public function testPropertyLoadingIndicator()
+    public function testPropertyFtId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "intermediate_results"
+     * Test attribute "name"
      */
-    public function testPropertyIntermediateResults()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "final_response"
-     */
-    public function testPropertyFinalResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "events"
-     */
-    public function testPropertyEvents()
+    public function testPropertyName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

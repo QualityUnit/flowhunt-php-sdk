@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationMessageResponseTest
+ * GoogleDriveSearchQueryTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationMessageResponseTest Class Doc Comment
+ * GoogleDriveSearchQueryTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationMessageResponse
+ * @description GoogleDriveSearchQuery
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationMessageResponseTest extends TestCase
+class GoogleDriveSearchQueryTest extends TestCase
 {
 
     /**
@@ -71,54 +71,45 @@ class FlowSessionInvocationMessageResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationMessageResponse"
+     * Test "GoogleDriveSearchQuery"
      */
-    public function testFlowSessionInvocationMessageResponse()
+    public function testGoogleDriveSearchQuery()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "response_status"
+     * Test attribute "order_by"
      */
-    public function testPropertyResponseStatus()
+    public function testPropertyOrderBy()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "loading_indicator"
+     * Test attribute "page_size"
      */
-    public function testPropertyLoadingIndicator()
+    public function testPropertyPageSize()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "intermediate_results"
+     * Test attribute "page_token"
      */
-    public function testPropertyIntermediateResults()
+    public function testPropertyPageToken()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "final_response"
+     * Test attribute "search_term"
      */
-    public function testPropertyFinalResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "events"
-     */
-    public function testPropertyEvents()
+    public function testPropertySearchTerm()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

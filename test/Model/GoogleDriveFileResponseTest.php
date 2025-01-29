@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationMessageResponseTest
+ * GoogleDriveFileResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FlowSessionInvocationMessageResponseTest Class Doc Comment
+ * GoogleDriveFileResponseTest Class Doc Comment
  *
  * @category    Class
- * @description FlowSessionInvocationMessageResponse
+ * @description GoogleDriveFileResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FlowSessionInvocationMessageResponseTest extends TestCase
+class GoogleDriveFileResponseTest extends TestCase
 {
 
     /**
@@ -71,54 +71,45 @@ class FlowSessionInvocationMessageResponseTest extends TestCase
     }
 
     /**
-     * Test "FlowSessionInvocationMessageResponse"
+     * Test "GoogleDriveFileResponse"
      */
-    public function testFlowSessionInvocationMessageResponse()
+    public function testGoogleDriveFileResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "response_status"
+     * Test attribute "kind"
      */
-    public function testPropertyResponseStatus()
+    public function testPropertyKind()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "loading_indicator"
+     * Test attribute "mime_type"
      */
-    public function testPropertyLoadingIndicator()
+    public function testPropertyMimeType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "intermediate_results"
+     * Test attribute "id"
      */
-    public function testPropertyIntermediateResults()
+    public function testPropertyId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "final_response"
+     * Test attribute "name"
      */
-    public function testPropertyFinalResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "events"
-     */
-    public function testPropertyEvents()
+    public function testPropertyName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -1,6 +1,6 @@
 <?php
 /**
- * FlowSessionInvocationMessageResponse
+ * GoogleDriveFileResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * FlowSessionInvocationMessageResponse Class Doc Comment
+ * GoogleDriveFileResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FlowSessionInvocationMessageResponse';
+    protected static $openAPIModelName = 'GoogleDriveFileResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'response_status' => '\FlowHunt\Model\FlowSessionStatus',
-        'loading_indicator' => 'array<string,\FlowHunt\Model\FlowLoadingIndicator>',
-        'intermediate_results' => 'array<string,\FlowHunt\Model\TaskOutput>',
-        'final_response' => 'string[]',
-        'events' => '\FlowHunt\Model\FlowSessionEvent[]'
+        'kind' => 'string',
+        'mime_type' => 'string',
+        'id' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -72,11 +71,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'response_status' => null,
-        'loading_indicator' => null,
-        'intermediate_results' => null,
-        'final_response' => null,
-        'events' => null
+        'kind' => null,
+        'mime_type' => null,
+        'id' => null,
+        'name' => null
     ];
 
     /**
@@ -85,11 +83,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'response_status' => false,
-        'loading_indicator' => true,
-        'intermediate_results' => true,
-        'final_response' => true,
-        'events' => true
+        'kind' => true,
+        'mime_type' => true,
+        'id' => true,
+        'name' => true
     ];
 
     /**
@@ -178,11 +175,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'response_status' => 'response_status',
-        'loading_indicator' => 'loading_indicator',
-        'intermediate_results' => 'intermediate_results',
-        'final_response' => 'final_response',
-        'events' => 'events'
+        'kind' => 'kind',
+        'mime_type' => 'mime_type',
+        'id' => 'id',
+        'name' => 'name'
     ];
 
     /**
@@ -191,11 +187,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'response_status' => 'setResponseStatus',
-        'loading_indicator' => 'setLoadingIndicator',
-        'intermediate_results' => 'setIntermediateResults',
-        'final_response' => 'setFinalResponse',
-        'events' => 'setEvents'
+        'kind' => 'setKind',
+        'mime_type' => 'setMimeType',
+        'id' => 'setId',
+        'name' => 'setName'
     ];
 
     /**
@@ -204,11 +199,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'response_status' => 'getResponseStatus',
-        'loading_indicator' => 'getLoadingIndicator',
-        'intermediate_results' => 'getIntermediateResults',
-        'final_response' => 'getFinalResponse',
-        'events' => 'getEvents'
+        'kind' => 'getKind',
+        'mime_type' => 'getMimeType',
+        'id' => 'getId',
+        'name' => 'getName'
     ];
 
     /**
@@ -268,11 +262,10 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('response_status', $data ?? [], null);
-        $this->setIfExists('loading_indicator', $data ?? [], null);
-        $this->setIfExists('intermediate_results', $data ?? [], null);
-        $this->setIfExists('final_response', $data ?? [], null);
-        $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('kind', $data ?? [], null);
+        $this->setIfExists('mime_type', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -302,9 +295,6 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
-        if ($this->container['response_status'] === null) {
-            $invalidProperties[] = "'response_status' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -321,164 +311,137 @@ class FlowSessionInvocationMessageResponse implements ModelInterface, ArrayAcces
 
 
     /**
-     * Gets response_status
+     * Gets kind
      *
-     * @return \FlowHunt\Model\FlowSessionStatus
+     * @return string|null
      */
-    public function getResponseStatus()
+    public function getKind()
     {
-        return $this->container['response_status'];
+        return $this->container['kind'];
     }
 
     /**
-     * Sets response_status
+     * Sets kind
      *
-     * @param \FlowHunt\Model\FlowSessionStatus $response_status Response status
+     * @param string|null $kind kind
      *
      * @return self
      */
-    public function setResponseStatus($response_status)
+    public function setKind($kind)
     {
-        if (is_null($response_status)) {
-            throw new \InvalidArgumentException('non-nullable response_status cannot be null');
-        }
-        $this->container['response_status'] = $response_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets loading_indicator
-     *
-     * @return array<string,\FlowHunt\Model\FlowLoadingIndicator>|null
-     */
-    public function getLoadingIndicator()
-    {
-        return $this->container['loading_indicator'];
-    }
-
-    /**
-     * Sets loading_indicator
-     *
-     * @param array<string,\FlowHunt\Model\FlowLoadingIndicator>|null $loading_indicator loading_indicator
-     *
-     * @return self
-     */
-    public function setLoadingIndicator($loading_indicator)
-    {
-        if (is_null($loading_indicator)) {
-            array_push($this->openAPINullablesSetToNull, 'loading_indicator');
+        if (is_null($kind)) {
+            array_push($this->openAPINullablesSetToNull, 'kind');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('loading_indicator', $nullablesSetToNull);
+            $index = array_search('kind', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['loading_indicator'] = $loading_indicator;
+        $this->container['kind'] = $kind;
 
         return $this;
     }
 
     /**
-     * Gets intermediate_results
+     * Gets mime_type
      *
-     * @return array<string,\FlowHunt\Model\TaskOutput>|null
+     * @return string|null
      */
-    public function getIntermediateResults()
+    public function getMimeType()
     {
-        return $this->container['intermediate_results'];
+        return $this->container['mime_type'];
     }
 
     /**
-     * Sets intermediate_results
+     * Sets mime_type
      *
-     * @param array<string,\FlowHunt\Model\TaskOutput>|null $intermediate_results intermediate_results
+     * @param string|null $mime_type mime_type
      *
      * @return self
      */
-    public function setIntermediateResults($intermediate_results)
+    public function setMimeType($mime_type)
     {
-        if (is_null($intermediate_results)) {
-            array_push($this->openAPINullablesSetToNull, 'intermediate_results');
+        if (is_null($mime_type)) {
+            array_push($this->openAPINullablesSetToNull, 'mime_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('intermediate_results', $nullablesSetToNull);
+            $index = array_search('mime_type', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['intermediate_results'] = $intermediate_results;
+        $this->container['mime_type'] = $mime_type;
 
         return $this;
     }
 
     /**
-     * Gets final_response
+     * Gets id
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getFinalResponse()
+    public function getId()
     {
-        return $this->container['final_response'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets final_response
+     * Sets id
      *
-     * @param string[]|null $final_response final_response
+     * @param string|null $id id
      *
      * @return self
      */
-    public function setFinalResponse($final_response)
+    public function setId($id)
     {
-        if (is_null($final_response)) {
-            array_push($this->openAPINullablesSetToNull, 'final_response');
+        if (is_null($id)) {
+            array_push($this->openAPINullablesSetToNull, 'id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('final_response', $nullablesSetToNull);
+            $index = array_search('id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['final_response'] = $final_response;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets events
+     * Gets name
      *
-     * @return \FlowHunt\Model\FlowSessionEvent[]|null
+     * @return string|null
      */
-    public function getEvents()
+    public function getName()
     {
-        return $this->container['events'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets events
+     * Sets name
      *
-     * @param \FlowHunt\Model\FlowSessionEvent[]|null $events events
+     * @param string|null $name name
      *
      * @return self
      */
-    public function setEvents($events)
+    public function setName($name)
     {
-        if (is_null($events)) {
-            array_push($this->openAPINullablesSetToNull, 'events');
+        if (is_null($name)) {
+            array_push($this->openAPINullablesSetToNull, 'name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('events', $nullablesSetToNull);
+            $index = array_search('name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['events'] = $events;
+        $this->container['name'] = $name;
 
         return $this;
     }
