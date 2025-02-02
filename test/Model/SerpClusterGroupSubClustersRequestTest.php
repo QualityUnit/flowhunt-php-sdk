@@ -1,6 +1,6 @@
 <?php
 /**
- * GoogleDriveFileResponseTest
+ * SerpClusterGroupSubClustersRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * GoogleDriveFileResponseTest Class Doc Comment
+ * SerpClusterGroupSubClustersRequestTest Class Doc Comment
  *
  * @category    Class
- * @description GoogleDriveFileResponse
+ * @description SerpClusterGroupSubClustersRequest
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class GoogleDriveFileResponseTest extends TestCase
+class SerpClusterGroupSubClustersRequestTest extends TestCase
 {
 
     /**
@@ -71,108 +71,63 @@ class GoogleDriveFileResponseTest extends TestCase
     }
 
     /**
-     * Test "GoogleDriveFileResponse"
+     * Test "SerpClusterGroupSubClustersRequest"
      */
-    public function testGoogleDriveFileResponse()
+    public function testSerpClusterGroupSubClustersRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "document_id"
+     * Test attribute "customer_id"
      */
-    public function testPropertyDocumentId()
+    public function testPropertyCustomerId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "campaign_id"
      */
-    public function testPropertyName()
+    public function testPropertyCampaignId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "kind"
+     * Test attribute "group_id"
      */
-    public function testPropertyKind()
+    public function testPropertyGroupId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "viewed_by_me"
+     * Test attribute "min_cluster_strength"
      */
-    public function testPropertyViewedByMe()
+    public function testPropertyMinClusterStrength()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_time"
+     * Test attribute "suggest_other_matching_keywords"
      */
-    public function testPropertyCreatedTime()
+    public function testPropertySuggestOtherMatchingKeywords()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "mime_type"
+     * Test attribute "include_group_keywords"
      */
-    public function testPropertyMimeType()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "has_thumbnail"
-     */
-    public function testPropertyHasThumbnail()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "thumbnail_link"
-     */
-    public function testPropertyThumbnailLink()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "size"
-     */
-    public function testPropertySize()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "icon_link"
-     */
-    public function testPropertyIconLink()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "web_view_link"
-     */
-    public function testPropertyWebViewLink()
+    public function testPropertyIncludeGroupKeywords()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

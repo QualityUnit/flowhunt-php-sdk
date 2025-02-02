@@ -10,9 +10,10 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**serpClusterDeleteCustomer()**](SERPApi.md#serpClusterDeleteCustomer) | **DELETE** /v2/serp/clusters/{customer_id} | Serp Cluster Delete Customer |
 | [**serpClusterDeleteGroup()**](SERPApi.md#serpClusterDeleteGroup) | **DELETE** /v2/serp/clusters/{customer_id}/{campaign_id}/{group_id} | Serp Cluster Delete Group |
 | [**serpClusterDeleteGroupQueries()**](SERPApi.md#serpClusterDeleteGroupQueries) | **DELETE** /v2/serp/clusters/{customer_id}/{campaign_id}/{group_id}/delete_queries | Serp Cluster Delete Group Queries |
-| [**serpClusterGetBulkQueryIntersections()**](SERPApi.md#serpClusterGetBulkQueryIntersections) | **POST** /v2/serp/clusters/intersections | Serp Cluster Get Bulk Query Intersections |
+| [**serpClusterGetGraphNodes()**](SERPApi.md#serpClusterGetGraphNodes) | **POST** /v2/serp/clusters/graph_nodes | Serp Cluster Get Graph Nodes |
 | [**serpClusterGetMatchingGroupsToQuery()**](SERPApi.md#serpClusterGetMatchingGroupsToQuery) | **POST** /v2/serp/clusters/recommended_groups | Serp Cluster Get Matching Groups To Query |
 | [**serpClusterGetRelatedKeywordsToQuery()**](SERPApi.md#serpClusterGetRelatedKeywordsToQuery) | **POST** /v2/serp/clusters/related_keywords | Serp Cluster Get Related Keywords To Query |
+| [**serpClusterSplitToSubClusters()**](SERPApi.md#serpClusterSplitToSubClusters) | **POST** /v2/serp/clusters/split_sub_clusters | Serp Cluster Split To Sub Clusters |
 | [**serpSearch()**](SERPApi.md#serpSearch) | **POST** /v2/serp/serp/search | Serp Search |
 | [**serpVolumes()**](SERPApi.md#serpVolumes) | **POST** /v2/serp/serp/volumes | Serp Volumes |
 | [**serpVolumesPingback()**](SERPApi.md#serpVolumesPingback) | **GET** /v2/serp/serp/volumes/pingback/{id}/{tag} | Serp Volumes Pingback |
@@ -426,13 +427,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `serpClusterGetBulkQueryIntersections()`
+## `serpClusterGetGraphNodes()`
 
 ```php
-serpClusterGetBulkQueryIntersections($workspace_id, $serp_cluster_group_intersections_request): \FlowHunt\Model\SerpKeywordRelation[]
+serpClusterGetGraphNodes($workspace_id, $serp_cluster_group_intersections_request): \FlowHunt\Model\SerpKeywordRelation[]
 ```
 
-Serp Cluster Get Bulk Query Intersections
+Serp Cluster Get Graph Nodes
 
 ### Example
 
@@ -460,10 +461,10 @@ $workspace_id = 'workspace_id_example'; // string
 $serp_cluster_group_intersections_request = new \FlowHunt\Model\SerpClusterGroupIntersectionsRequest(); // \FlowHunt\Model\SerpClusterGroupIntersectionsRequest
 
 try {
-    $result = $apiInstance->serpClusterGetBulkQueryIntersections($workspace_id, $serp_cluster_group_intersections_request);
+    $result = $apiInstance->serpClusterGetGraphNodes($workspace_id, $serp_cluster_group_intersections_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SERPApi->serpClusterGetBulkQueryIntersections: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SERPApi->serpClusterGetGraphNodes: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -607,6 +608,71 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\SerpKeywordRelation[]**](../Model/SerpKeywordRelation.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `serpClusterSplitToSubClusters()`
+
+```php
+serpClusterSplitToSubClusters($workspace_id, $serp_cluster_group_sub_clusters_request): string[][]
+```
+
+Serp Cluster Split To Sub Clusters
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\SERPApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$serp_cluster_group_sub_clusters_request = new \FlowHunt\Model\SerpClusterGroupSubClustersRequest(); // \FlowHunt\Model\SerpClusterGroupSubClustersRequest
+
+try {
+    $result = $apiInstance->serpClusterSplitToSubClusters($workspace_id, $serp_cluster_group_sub_clusters_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SERPApi->serpClusterSplitToSubClusters: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **serp_cluster_group_sub_clusters_request** | [**\FlowHunt\Model\SerpClusterGroupSubClustersRequest**](../Model/SerpClusterGroupSubClustersRequest.md)|  | |
+
+### Return type
+
+**string[][]**
 
 ### Authorization
 

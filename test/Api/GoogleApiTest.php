@@ -72,6 +72,18 @@ class GoogleApiTest extends TestCase
     }
 
     /**
+     * Test case for getDriveDocumentDetail_0
+     *
+     * Get Drive Document Detail.
+     *
+     */
+    public function testGetDriveDocumentDetail0()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getDriveDocuments_0
      *
      * Get Drive Documents.

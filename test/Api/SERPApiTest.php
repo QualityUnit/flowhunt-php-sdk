@@ -144,12 +144,12 @@ class SERPApiTest extends TestCase
     }
 
     /**
-     * Test case for serpClusterGetBulkQueryIntersections
+     * Test case for serpClusterGetGraphNodes
      *
-     * Serp Cluster Get Bulk Query Intersections.
+     * Serp Cluster Get Graph Nodes.
      *
      */
-    public function testSerpClusterGetBulkQueryIntersections()
+    public function testSerpClusterGetGraphNodes()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -174,6 +174,18 @@ class SERPApiTest extends TestCase
      *
      */
     public function testSerpClusterGetRelatedKeywordsToQuery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serpClusterSplitToSubClusters
+     *
+     * Serp Cluster Split To Sub Clusters.
+     *
+     */
+    public function testSerpClusterSplitToSubClusters()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

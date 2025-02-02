@@ -197,6 +197,7 @@ docs/Model/SerpClusterAddQueryRequests.md
 docs/Model/SerpClusterBestGroupsRequest.md
 docs/Model/SerpClusterGroupIntersectionsRequest.md
 docs/Model/SerpClusterGroupSearchRequest.md
+docs/Model/SerpClusterGroupSubClustersRequest.md
 docs/Model/SerpClusterKeywordIntersectionsRequest.md
 docs/Model/SerpClusterKeywordResponse.md
 docs/Model/SerpGroupIntersection.md
@@ -443,6 +444,7 @@ lib/Model/SerpClusterAddQueryRequests.php
 lib/Model/SerpClusterBestGroupsRequest.php
 lib/Model/SerpClusterGroupIntersectionsRequest.php
 lib/Model/SerpClusterGroupSearchRequest.php
+lib/Model/SerpClusterGroupSubClustersRequest.php
 lib/Model/SerpClusterKeywordIntersectionsRequest.php
 lib/Model/SerpClusterKeywordResponse.php
 lib/Model/SerpGroupIntersection.php
@@ -686,6 +688,7 @@ test/Model/SerpClusterAddQueryRequestsTest.php
 test/Model/SerpClusterBestGroupsRequestTest.php
 test/Model/SerpClusterGroupIntersectionsRequestTest.php
 test/Model/SerpClusterGroupSearchRequestTest.php
+test/Model/SerpClusterGroupSubClustersRequestTest.php
 test/Model/SerpClusterKeywordIntersectionsRequestTest.php
 test/Model/SerpClusterKeywordResponseTest.php
 test/Model/SerpGroupIntersectionTest.php

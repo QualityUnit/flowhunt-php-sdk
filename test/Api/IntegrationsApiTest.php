@@ -108,6 +108,18 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for getDriveDocumentDetail
+     *
+     * Get Drive Document Detail.
+     *
+     */
+    public function testGetDriveDocumentDetail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getDriveDocuments
      *
      * Get Drive Documents.

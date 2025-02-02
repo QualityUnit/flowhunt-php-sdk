@@ -7,6 +7,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**createIntegration()**](IntegrationsApi.md#createIntegration) | **POST** /v2/integrations/{slug}/integrate | Create Integration |
 | [**deleteIntegration()**](IntegrationsApi.md#deleteIntegration) | **DELETE** /v2/integrations/{slug}/{integration_id} | Delete Integration |
 | [**getAllIntegrations()**](IntegrationsApi.md#getAllIntegrations) | **GET** /v2/integrations/all | Get All Integrations |
+| [**getDriveDocumentDetail()**](IntegrationsApi.md#getDriveDocumentDetail) | **POST** /v2/integrations/google/drive/files/{document_id} | Get Drive Document Detail |
 | [**getDriveDocuments()**](IntegrationsApi.md#getDriveDocuments) | **POST** /v2/integrations/google/{integration_slug}/drive/files | Get Drive Documents |
 | [**getIntegration()**](IntegrationsApi.md#getIntegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration |
 | [**getSlackChannels()**](IntegrationsApi.md#getSlackChannels) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels |
@@ -190,6 +191,66 @@ try {
 ### Authorization
 
 [APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getDriveDocumentDetail()`
+
+```php
+getDriveDocumentDetail($document_id, $workspace_id): \FlowHunt\Model\GoogleDriveFileResponse
+```
+
+Get Drive Document Detail
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$document_id = 'document_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getDriveDocumentDetail($document_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getDriveDocumentDetail: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **document_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleDriveFileResponse**](../Model/GoogleDriveFileResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 

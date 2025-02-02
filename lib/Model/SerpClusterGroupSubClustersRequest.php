@@ -1,6 +1,6 @@
 <?php
 /**
- * GoogleDriveFileResponse
+ * SerpClusterGroupSubClustersRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * GoogleDriveFileResponse Class Doc Comment
+ * SerpClusterGroupSubClustersRequest Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GoogleDriveFileResponse';
+    protected static $openAPIModelName = 'SerpClusterGroupSubClustersRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,17 +57,12 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'document_id' => 'string',
-        'name' => 'string',
-        'kind' => 'string',
-        'viewed_by_me' => 'bool',
-        'created_time' => 'string',
-        'mime_type' => 'string',
-        'has_thumbnail' => 'bool',
-        'thumbnail_link' => 'string',
-        'size' => 'string',
-        'icon_link' => 'string',
-        'web_view_link' => 'string'
+        'customer_id' => 'int',
+        'campaign_id' => 'int',
+        'group_id' => 'int',
+        'min_cluster_strength' => 'int',
+        'suggest_other_matching_keywords' => 'bool',
+        'include_group_keywords' => 'bool'
     ];
 
     /**
@@ -78,17 +73,12 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'document_id' => null,
-        'name' => null,
-        'kind' => null,
-        'viewed_by_me' => null,
-        'created_time' => null,
-        'mime_type' => null,
-        'has_thumbnail' => null,
-        'thumbnail_link' => null,
-        'size' => null,
-        'icon_link' => null,
-        'web_view_link' => null
+        'customer_id' => null,
+        'campaign_id' => null,
+        'group_id' => null,
+        'min_cluster_strength' => null,
+        'suggest_other_matching_keywords' => null,
+        'include_group_keywords' => null
     ];
 
     /**
@@ -97,17 +87,12 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'document_id' => false,
-        'name' => false,
-        'kind' => false,
-        'viewed_by_me' => false,
-        'created_time' => false,
-        'mime_type' => false,
-        'has_thumbnail' => false,
-        'thumbnail_link' => true,
-        'size' => false,
-        'icon_link' => true,
-        'web_view_link' => true
+        'customer_id' => false,
+        'campaign_id' => true,
+        'group_id' => true,
+        'min_cluster_strength' => true,
+        'suggest_other_matching_keywords' => true,
+        'include_group_keywords' => true
     ];
 
     /**
@@ -196,17 +181,12 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'document_id' => 'document_id',
-        'name' => 'name',
-        'kind' => 'kind',
-        'viewed_by_me' => 'viewed_by_me',
-        'created_time' => 'created_time',
-        'mime_type' => 'mime_type',
-        'has_thumbnail' => 'has_thumbnail',
-        'thumbnail_link' => 'thumbnail_link',
-        'size' => 'size',
-        'icon_link' => 'icon_link',
-        'web_view_link' => 'web_view_link'
+        'customer_id' => 'customer_id',
+        'campaign_id' => 'campaign_id',
+        'group_id' => 'group_id',
+        'min_cluster_strength' => 'min_cluster_strength',
+        'suggest_other_matching_keywords' => 'suggest_other_matching_keywords',
+        'include_group_keywords' => 'include_group_keywords'
     ];
 
     /**
@@ -215,17 +195,12 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'document_id' => 'setDocumentId',
-        'name' => 'setName',
-        'kind' => 'setKind',
-        'viewed_by_me' => 'setViewedByMe',
-        'created_time' => 'setCreatedTime',
-        'mime_type' => 'setMimeType',
-        'has_thumbnail' => 'setHasThumbnail',
-        'thumbnail_link' => 'setThumbnailLink',
-        'size' => 'setSize',
-        'icon_link' => 'setIconLink',
-        'web_view_link' => 'setWebViewLink'
+        'customer_id' => 'setCustomerId',
+        'campaign_id' => 'setCampaignId',
+        'group_id' => 'setGroupId',
+        'min_cluster_strength' => 'setMinClusterStrength',
+        'suggest_other_matching_keywords' => 'setSuggestOtherMatchingKeywords',
+        'include_group_keywords' => 'setIncludeGroupKeywords'
     ];
 
     /**
@@ -234,17 +209,12 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'document_id' => 'getDocumentId',
-        'name' => 'getName',
-        'kind' => 'getKind',
-        'viewed_by_me' => 'getViewedByMe',
-        'created_time' => 'getCreatedTime',
-        'mime_type' => 'getMimeType',
-        'has_thumbnail' => 'getHasThumbnail',
-        'thumbnail_link' => 'getThumbnailLink',
-        'size' => 'getSize',
-        'icon_link' => 'getIconLink',
-        'web_view_link' => 'getWebViewLink'
+        'customer_id' => 'getCustomerId',
+        'campaign_id' => 'getCampaignId',
+        'group_id' => 'getGroupId',
+        'min_cluster_strength' => 'getMinClusterStrength',
+        'suggest_other_matching_keywords' => 'getSuggestOtherMatchingKeywords',
+        'include_group_keywords' => 'getIncludeGroupKeywords'
     ];
 
     /**
@@ -304,17 +274,12 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('document_id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('kind', $data ?? [], null);
-        $this->setIfExists('viewed_by_me', $data ?? [], null);
-        $this->setIfExists('created_time', $data ?? [], null);
-        $this->setIfExists('mime_type', $data ?? [], null);
-        $this->setIfExists('has_thumbnail', $data ?? [], null);
-        $this->setIfExists('thumbnail_link', $data ?? [], null);
-        $this->setIfExists('size', $data ?? [], null);
-        $this->setIfExists('icon_link', $data ?? [], null);
-        $this->setIfExists('web_view_link', $data ?? [], null);
+        $this->setIfExists('customer_id', $data ?? [], null);
+        $this->setIfExists('campaign_id', $data ?? [], null);
+        $this->setIfExists('group_id', $data ?? [], null);
+        $this->setIfExists('min_cluster_strength', $data ?? [], null);
+        $this->setIfExists('suggest_other_matching_keywords', $data ?? [], null);
+        $this->setIfExists('include_group_keywords', $data ?? [], null);
     }
 
     /**
@@ -344,29 +309,8 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if ($this->container['document_id'] === null) {
-            $invalidProperties[] = "'document_id' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['kind'] === null) {
-            $invalidProperties[] = "'kind' can't be null";
-        }
-        if ($this->container['viewed_by_me'] === null) {
-            $invalidProperties[] = "'viewed_by_me' can't be null";
-        }
-        if ($this->container['created_time'] === null) {
-            $invalidProperties[] = "'created_time' can't be null";
-        }
-        if ($this->container['mime_type'] === null) {
-            $invalidProperties[] = "'mime_type' can't be null";
-        }
-        if ($this->container['has_thumbnail'] === null) {
-            $invalidProperties[] = "'has_thumbnail' can't be null";
-        }
-        if ($this->container['size'] === null) {
-            $invalidProperties[] = "'size' can't be null";
+        if ($this->container['customer_id'] === null) {
+            $invalidProperties[] = "'customer_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -384,319 +328,198 @@ class GoogleDriveFileResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets document_id
+     * Gets customer_id
      *
-     * @return string
+     * @return int
      */
-    public function getDocumentId()
+    public function getCustomerId()
     {
-        return $this->container['document_id'];
+        return $this->container['customer_id'];
     }
 
     /**
-     * Sets document_id
+     * Sets customer_id
      *
-     * @param string $document_id Document ID
+     * @param int $customer_id Customer ID of cluster
      *
      * @return self
      */
-    public function setDocumentId($document_id)
+    public function setCustomerId($customer_id)
     {
-        if (is_null($document_id)) {
-            throw new \InvalidArgumentException('non-nullable document_id cannot be null');
+        if (is_null($customer_id)) {
+            throw new \InvalidArgumentException('non-nullable customer_id cannot be null');
         }
-        $this->container['document_id'] = $document_id;
+        $this->container['customer_id'] = $customer_id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets campaign_id
      *
-     * @return string
+     * @return int|null
      */
-    public function getName()
+    public function getCampaignId()
     {
-        return $this->container['name'];
+        return $this->container['campaign_id'];
     }
 
     /**
-     * Sets name
+     * Sets campaign_id
      *
-     * @param string $name Name
+     * @param int|null $campaign_id campaign_id
      *
      * @return self
      */
-    public function setName($name)
+    public function setCampaignId($campaign_id)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets kind
-     *
-     * @return string
-     */
-    public function getKind()
-    {
-        return $this->container['kind'];
-    }
-
-    /**
-     * Sets kind
-     *
-     * @param string $kind Kind of document retrieved
-     *
-     * @return self
-     */
-    public function setKind($kind)
-    {
-        if (is_null($kind)) {
-            throw new \InvalidArgumentException('non-nullable kind cannot be null');
-        }
-        $this->container['kind'] = $kind;
-
-        return $this;
-    }
-
-    /**
-     * Gets viewed_by_me
-     *
-     * @return bool
-     */
-    public function getViewedByMe()
-    {
-        return $this->container['viewed_by_me'];
-    }
-
-    /**
-     * Sets viewed_by_me
-     *
-     * @param bool $viewed_by_me Viewed by me
-     *
-     * @return self
-     */
-    public function setViewedByMe($viewed_by_me)
-    {
-        if (is_null($viewed_by_me)) {
-            throw new \InvalidArgumentException('non-nullable viewed_by_me cannot be null');
-        }
-        $this->container['viewed_by_me'] = $viewed_by_me;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_time
-     *
-     * @return string
-     */
-    public function getCreatedTime()
-    {
-        return $this->container['created_time'];
-    }
-
-    /**
-     * Sets created_time
-     *
-     * @param string $created_time Created time
-     *
-     * @return self
-     */
-    public function setCreatedTime($created_time)
-    {
-        if (is_null($created_time)) {
-            throw new \InvalidArgumentException('non-nullable created_time cannot be null');
-        }
-        $this->container['created_time'] = $created_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets mime_type
-     *
-     * @return string
-     */
-    public function getMimeType()
-    {
-        return $this->container['mime_type'];
-    }
-
-    /**
-     * Sets mime_type
-     *
-     * @param string $mime_type Mime type
-     *
-     * @return self
-     */
-    public function setMimeType($mime_type)
-    {
-        if (is_null($mime_type)) {
-            throw new \InvalidArgumentException('non-nullable mime_type cannot be null');
-        }
-        $this->container['mime_type'] = $mime_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets has_thumbnail
-     *
-     * @return bool
-     */
-    public function getHasThumbnail()
-    {
-        return $this->container['has_thumbnail'];
-    }
-
-    /**
-     * Sets has_thumbnail
-     *
-     * @param bool $has_thumbnail Has thumbnail
-     *
-     * @return self
-     */
-    public function setHasThumbnail($has_thumbnail)
-    {
-        if (is_null($has_thumbnail)) {
-            throw new \InvalidArgumentException('non-nullable has_thumbnail cannot be null');
-        }
-        $this->container['has_thumbnail'] = $has_thumbnail;
-
-        return $this;
-    }
-
-    /**
-     * Gets thumbnail_link
-     *
-     * @return string|null
-     */
-    public function getThumbnailLink()
-    {
-        return $this->container['thumbnail_link'];
-    }
-
-    /**
-     * Sets thumbnail_link
-     *
-     * @param string|null $thumbnail_link thumbnail_link
-     *
-     * @return self
-     */
-    public function setThumbnailLink($thumbnail_link)
-    {
-        if (is_null($thumbnail_link)) {
-            array_push($this->openAPINullablesSetToNull, 'thumbnail_link');
+        if (is_null($campaign_id)) {
+            array_push($this->openAPINullablesSetToNull, 'campaign_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('thumbnail_link', $nullablesSetToNull);
+            $index = array_search('campaign_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['thumbnail_link'] = $thumbnail_link;
+        $this->container['campaign_id'] = $campaign_id;
 
         return $this;
     }
 
     /**
-     * Gets size
+     * Gets group_id
      *
-     * @return string
+     * @return int|null
      */
-    public function getSize()
+    public function getGroupId()
     {
-        return $this->container['size'];
+        return $this->container['group_id'];
     }
 
     /**
-     * Sets size
+     * Sets group_id
      *
-     * @param string $size Size
+     * @param int|null $group_id group_id
      *
      * @return self
      */
-    public function setSize($size)
+    public function setGroupId($group_id)
     {
-        if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
-        }
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-
-    /**
-     * Gets icon_link
-     *
-     * @return string|null
-     */
-    public function getIconLink()
-    {
-        return $this->container['icon_link'];
-    }
-
-    /**
-     * Sets icon_link
-     *
-     * @param string|null $icon_link icon_link
-     *
-     * @return self
-     */
-    public function setIconLink($icon_link)
-    {
-        if (is_null($icon_link)) {
-            array_push($this->openAPINullablesSetToNull, 'icon_link');
+        if (is_null($group_id)) {
+            array_push($this->openAPINullablesSetToNull, 'group_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('icon_link', $nullablesSetToNull);
+            $index = array_search('group_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['icon_link'] = $icon_link;
+        $this->container['group_id'] = $group_id;
 
         return $this;
     }
 
     /**
-     * Gets web_view_link
+     * Gets min_cluster_strength
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getWebViewLink()
+    public function getMinClusterStrength()
     {
-        return $this->container['web_view_link'];
+        return $this->container['min_cluster_strength'];
     }
 
     /**
-     * Sets web_view_link
+     * Sets min_cluster_strength
      *
-     * @param string|null $web_view_link web_view_link
+     * @param int|null $min_cluster_strength min_cluster_strength
      *
      * @return self
      */
-    public function setWebViewLink($web_view_link)
+    public function setMinClusterStrength($min_cluster_strength)
     {
-        if (is_null($web_view_link)) {
-            array_push($this->openAPINullablesSetToNull, 'web_view_link');
+        if (is_null($min_cluster_strength)) {
+            array_push($this->openAPINullablesSetToNull, 'min_cluster_strength');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('web_view_link', $nullablesSetToNull);
+            $index = array_search('min_cluster_strength', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['web_view_link'] = $web_view_link;
+        $this->container['min_cluster_strength'] = $min_cluster_strength;
+
+        return $this;
+    }
+
+    /**
+     * Gets suggest_other_matching_keywords
+     *
+     * @return bool|null
+     */
+    public function getSuggestOtherMatchingKeywords()
+    {
+        return $this->container['suggest_other_matching_keywords'];
+    }
+
+    /**
+     * Sets suggest_other_matching_keywords
+     *
+     * @param bool|null $suggest_other_matching_keywords suggest_other_matching_keywords
+     *
+     * @return self
+     */
+    public function setSuggestOtherMatchingKeywords($suggest_other_matching_keywords)
+    {
+        if (is_null($suggest_other_matching_keywords)) {
+            array_push($this->openAPINullablesSetToNull, 'suggest_other_matching_keywords');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('suggest_other_matching_keywords', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['suggest_other_matching_keywords'] = $suggest_other_matching_keywords;
+
+        return $this;
+    }
+
+    /**
+     * Gets include_group_keywords
+     *
+     * @return bool|null
+     */
+    public function getIncludeGroupKeywords()
+    {
+        return $this->container['include_group_keywords'];
+    }
+
+    /**
+     * Sets include_group_keywords
+     *
+     * @param bool|null $include_group_keywords include_group_keywords
+     *
+     * @return self
+     */
+    public function setIncludeGroupKeywords($include_group_keywords)
+    {
+        if (is_null($include_group_keywords)) {
+            array_push($this->openAPINullablesSetToNull, 'include_group_keywords');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('include_group_keywords', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['include_group_keywords'] = $include_group_keywords;
 
         return $this;
     }

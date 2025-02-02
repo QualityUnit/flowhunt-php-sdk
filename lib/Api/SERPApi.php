@@ -89,13 +89,16 @@ class SERPApi
         'serpClusterDeleteGroupQueries' => [
             'application/json',
         ],
-        'serpClusterGetBulkQueryIntersections' => [
+        'serpClusterGetGraphNodes' => [
             'application/json',
         ],
         'serpClusterGetMatchingGroupsToQuery' => [
             'application/json',
         ],
         'serpClusterGetRelatedKeywordsToQuery' => [
+            'application/json',
+        ],
+        'serpClusterSplitToSubClusters' => [
             'application/json',
         ],
         'serpSearch' => [
@@ -2571,40 +2574,40 @@ class SERPApi
     }
 
     /**
-     * Operation serpClusterGetBulkQueryIntersections
+     * Operation serpClusterGetGraphNodes
      *
-     * Serp Cluster Get Bulk Query Intersections
+     * Serp Cluster Get Graph Nodes
      *
      * @param  string $workspace_id workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterGroupIntersectionsRequest $serp_cluster_group_intersections_request serp_cluster_group_intersections_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetBulkQueryIntersections'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetGraphNodes'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\SerpKeywordRelation[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function serpClusterGetBulkQueryIntersections($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetBulkQueryIntersections'][0])
+    public function serpClusterGetGraphNodes($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetGraphNodes'][0])
     {
-        list($response) = $this->serpClusterGetBulkQueryIntersectionsWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, $contentType);
+        list($response) = $this->serpClusterGetGraphNodesWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation serpClusterGetBulkQueryIntersectionsWithHttpInfo
+     * Operation serpClusterGetGraphNodesWithHttpInfo
      *
-     * Serp Cluster Get Bulk Query Intersections
+     * Serp Cluster Get Graph Nodes
      *
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterGroupIntersectionsRequest $serp_cluster_group_intersections_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetBulkQueryIntersections'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetGraphNodes'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\SerpKeywordRelation[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function serpClusterGetBulkQueryIntersectionsWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetBulkQueryIntersections'][0])
+    public function serpClusterGetGraphNodesWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetGraphNodes'][0])
     {
-        $request = $this->serpClusterGetBulkQueryIntersectionsRequest($workspace_id, $serp_cluster_group_intersections_request, $contentType);
+        $request = $this->serpClusterGetGraphNodesRequest($workspace_id, $serp_cluster_group_intersections_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2751,20 +2754,20 @@ class SERPApi
     }
 
     /**
-     * Operation serpClusterGetBulkQueryIntersectionsAsync
+     * Operation serpClusterGetGraphNodesAsync
      *
-     * Serp Cluster Get Bulk Query Intersections
+     * Serp Cluster Get Graph Nodes
      *
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterGroupIntersectionsRequest $serp_cluster_group_intersections_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetBulkQueryIntersections'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetGraphNodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpClusterGetBulkQueryIntersectionsAsync($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetBulkQueryIntersections'][0])
+    public function serpClusterGetGraphNodesAsync($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetGraphNodes'][0])
     {
-        return $this->serpClusterGetBulkQueryIntersectionsAsyncWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, $contentType)
+        return $this->serpClusterGetGraphNodesAsyncWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2773,21 +2776,21 @@ class SERPApi
     }
 
     /**
-     * Operation serpClusterGetBulkQueryIntersectionsAsyncWithHttpInfo
+     * Operation serpClusterGetGraphNodesAsyncWithHttpInfo
      *
-     * Serp Cluster Get Bulk Query Intersections
+     * Serp Cluster Get Graph Nodes
      *
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterGroupIntersectionsRequest $serp_cluster_group_intersections_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetBulkQueryIntersections'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetGraphNodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function serpClusterGetBulkQueryIntersectionsAsyncWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetBulkQueryIntersections'][0])
+    public function serpClusterGetGraphNodesAsyncWithHttpInfo($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetGraphNodes'][0])
     {
         $returnType = '\FlowHunt\Model\SerpKeywordRelation[]';
-        $request = $this->serpClusterGetBulkQueryIntersectionsRequest($workspace_id, $serp_cluster_group_intersections_request, $contentType);
+        $request = $this->serpClusterGetGraphNodesRequest($workspace_id, $serp_cluster_group_intersections_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2826,34 +2829,34 @@ class SERPApi
     }
 
     /**
-     * Create request for operation 'serpClusterGetBulkQueryIntersections'
+     * Create request for operation 'serpClusterGetGraphNodes'
      *
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterGroupIntersectionsRequest $serp_cluster_group_intersections_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetBulkQueryIntersections'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterGetGraphNodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function serpClusterGetBulkQueryIntersectionsRequest($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetBulkQueryIntersections'][0])
+    public function serpClusterGetGraphNodesRequest($workspace_id, $serp_cluster_group_intersections_request, string $contentType = self::contentTypes['serpClusterGetGraphNodes'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling serpClusterGetBulkQueryIntersections'
+                'Missing the required parameter $workspace_id when calling serpClusterGetGraphNodes'
             );
         }
 
         // verify the required parameter 'serp_cluster_group_intersections_request' is set
         if ($serp_cluster_group_intersections_request === null || (is_array($serp_cluster_group_intersections_request) && count($serp_cluster_group_intersections_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $serp_cluster_group_intersections_request when calling serpClusterGetBulkQueryIntersections'
+                'Missing the required parameter $serp_cluster_group_intersections_request when calling serpClusterGetGraphNodes'
             );
         }
 
 
-        $resourcePath = '/v2/serp/clusters/intersections';
+        $resourcePath = '/v2/serp/clusters/graph_nodes';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3630,6 +3633,378 @@ class SERPApi
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($serp_cluster_keyword_intersections_request));
             } else {
                 $httpBody = $serp_cluster_keyword_intersections_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation serpClusterSplitToSubClusters
+     *
+     * Serp Cluster Split To Sub Clusters
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\SerpClusterGroupSubClustersRequest $serp_cluster_group_sub_clusters_request serp_cluster_group_sub_clusters_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterSplitToSubClusters'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return string[][]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function serpClusterSplitToSubClusters($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
+    {
+        list($response) = $this->serpClusterSplitToSubClustersWithHttpInfo($workspace_id, $serp_cluster_group_sub_clusters_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation serpClusterSplitToSubClustersWithHttpInfo
+     *
+     * Serp Cluster Split To Sub Clusters
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SerpClusterGroupSubClustersRequest $serp_cluster_group_sub_clusters_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterSplitToSubClusters'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of string[][]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function serpClusterSplitToSubClustersWithHttpInfo($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
+    {
+        $request = $this->serpClusterSplitToSubClustersRequest($workspace_id, $serp_cluster_group_sub_clusters_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('string[][]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('string[][]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'string[][]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = 'string[][]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string[][]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation serpClusterSplitToSubClustersAsync
+     *
+     * Serp Cluster Split To Sub Clusters
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SerpClusterGroupSubClustersRequest $serp_cluster_group_sub_clusters_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterSplitToSubClusters'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function serpClusterSplitToSubClustersAsync($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
+    {
+        return $this->serpClusterSplitToSubClustersAsyncWithHttpInfo($workspace_id, $serp_cluster_group_sub_clusters_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation serpClusterSplitToSubClustersAsyncWithHttpInfo
+     *
+     * Serp Cluster Split To Sub Clusters
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SerpClusterGroupSubClustersRequest $serp_cluster_group_sub_clusters_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterSplitToSubClusters'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function serpClusterSplitToSubClustersAsyncWithHttpInfo($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
+    {
+        $returnType = 'string[][]';
+        $request = $this->serpClusterSplitToSubClustersRequest($workspace_id, $serp_cluster_group_sub_clusters_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'serpClusterSplitToSubClusters'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\SerpClusterGroupSubClustersRequest $serp_cluster_group_sub_clusters_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterSplitToSubClusters'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function serpClusterSplitToSubClustersRequest($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling serpClusterSplitToSubClusters'
+            );
+        }
+
+        // verify the required parameter 'serp_cluster_group_sub_clusters_request' is set
+        if ($serp_cluster_group_sub_clusters_request === null || (is_array($serp_cluster_group_sub_clusters_request) && count($serp_cluster_group_sub_clusters_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $serp_cluster_group_sub_clusters_request when calling serpClusterSplitToSubClusters'
+            );
+        }
+
+
+        $resourcePath = '/v2/serp/clusters/split_sub_clusters';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($serp_cluster_group_sub_clusters_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($serp_cluster_group_sub_clusters_request));
+            } else {
+                $httpBody = $serp_cluster_group_sub_clusters_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
