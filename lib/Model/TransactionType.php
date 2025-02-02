@@ -44,6 +44,8 @@ class TransactionType
      */
     public const G = 'G';
 
+    public const K = 'K';
+
     public const V = 'V';
 
     public const S = 'S';
@@ -82,6 +84,8 @@ class TransactionType
 
     public const CGD = 'CGD';
 
+    public const CGS = 'CGS';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -110,6 +114,7 @@ class TransactionType
     {
         return [
             self::G,
+            self::K,
             self::V,
             self::S,
             self::T,
@@ -129,6 +134,7 @@ class TransactionType
             self::FT_I,
             self::DDG,
             self::CGD,
+            self::CGS,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,

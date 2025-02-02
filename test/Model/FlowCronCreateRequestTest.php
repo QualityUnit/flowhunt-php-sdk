@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterGroupResponseTest
+ * FlowCronCreateRequestTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SerpClusterGroupResponseTest Class Doc Comment
+ * FlowCronCreateRequestTest Class Doc Comment
  *
  * @category    Class
- * @description SerpClusterGroupResponse
+ * @description FlowCronCreateRequest
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SerpClusterGroupResponseTest extends TestCase
+class FlowCronCreateRequestTest extends TestCase
 {
 
     /**
@@ -71,27 +71,54 @@ class SerpClusterGroupResponseTest extends TestCase
     }
 
     /**
-     * Test "SerpClusterGroupResponse"
+     * Test "FlowCronCreateRequest"
      */
-    public function testSerpClusterGroupResponse()
+    public function testFlowCronCreateRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "group_id"
+     * Test attribute "flow_id"
      */
-    public function testPropertyGroupId()
+    public function testPropertyFlowId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "group_name"
+     * Test attribute "status"
      */
-    public function testPropertyGroupName()
+    public function testPropertyStatus()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "input_text"
+     */
+    public function testPropertyInputText()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "variables"
+     */
+    public function testPropertyVariables()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "interval_settings"
+     */
+    public function testPropertyIntervalSettings()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

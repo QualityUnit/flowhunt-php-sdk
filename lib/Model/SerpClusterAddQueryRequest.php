@@ -58,13 +58,11 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPITypes = [
         'post_back_url' => 'string',
-        'query' => 'string',
-        'country' => 'string',
-        'language' => 'string',
-        'location' => 'string',
-        'group_name' => 'string',
-        'group_id' => 'string',
-        'count_urls' => 'int'
+        'queries' => '\FlowHunt\Model\SerpKeyword[]',
+        'customer_id' => 'int',
+        'campaign_id' => 'int',
+        'group_id' => 'int',
+        'group_name' => 'string'
     ];
 
     /**
@@ -76,13 +74,11 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPIFormats = [
         'post_back_url' => null,
-        'query' => null,
-        'country' => null,
-        'language' => null,
-        'location' => null,
-        'group_name' => null,
+        'queries' => null,
+        'customer_id' => null,
+        'campaign_id' => null,
         'group_id' => null,
-        'count_urls' => null
+        'group_name' => null
     ];
 
     /**
@@ -92,13 +88,11 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static array $openAPINullables = [
         'post_back_url' => true,
-        'query' => true,
-        'country' => true,
-        'language' => true,
-        'location' => true,
-        'group_name' => false,
-        'group_id' => true,
-        'count_urls' => true
+        'queries' => false,
+        'customer_id' => false,
+        'campaign_id' => false,
+        'group_id' => false,
+        'group_name' => false
     ];
 
     /**
@@ -188,13 +182,11 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $attributeMap = [
         'post_back_url' => 'post_back_url',
-        'query' => 'query',
-        'country' => 'country',
-        'language' => 'language',
-        'location' => 'location',
-        'group_name' => 'group_name',
+        'queries' => 'queries',
+        'customer_id' => 'customer_id',
+        'campaign_id' => 'campaign_id',
         'group_id' => 'group_id',
-        'count_urls' => 'count_urls'
+        'group_name' => 'group_name'
     ];
 
     /**
@@ -204,13 +196,11 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $setters = [
         'post_back_url' => 'setPostBackUrl',
-        'query' => 'setQuery',
-        'country' => 'setCountry',
-        'language' => 'setLanguage',
-        'location' => 'setLocation',
-        'group_name' => 'setGroupName',
+        'queries' => 'setQueries',
+        'customer_id' => 'setCustomerId',
+        'campaign_id' => 'setCampaignId',
         'group_id' => 'setGroupId',
-        'count_urls' => 'setCountUrls'
+        'group_name' => 'setGroupName'
     ];
 
     /**
@@ -220,13 +210,11 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $getters = [
         'post_back_url' => 'getPostBackUrl',
-        'query' => 'getQuery',
-        'country' => 'getCountry',
-        'language' => 'getLanguage',
-        'location' => 'getLocation',
-        'group_name' => 'getGroupName',
+        'queries' => 'getQueries',
+        'customer_id' => 'getCustomerId',
+        'campaign_id' => 'getCampaignId',
         'group_id' => 'getGroupId',
-        'count_urls' => 'getCountUrls'
+        'group_name' => 'getGroupName'
     ];
 
     /**
@@ -287,13 +275,11 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     public function __construct(array $data = null)
     {
         $this->setIfExists('post_back_url', $data ?? [], null);
-        $this->setIfExists('query', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('language', $data ?? [], null);
-        $this->setIfExists('location', $data ?? [], null);
-        $this->setIfExists('group_name', $data ?? [], '');
+        $this->setIfExists('queries', $data ?? [], null);
+        $this->setIfExists('customer_id', $data ?? [], null);
+        $this->setIfExists('campaign_id', $data ?? [], null);
         $this->setIfExists('group_id', $data ?? [], null);
-        $this->setIfExists('count_urls', $data ?? [], null);
+        $this->setIfExists('group_name', $data ?? [], '');
     }
 
     /**
@@ -323,6 +309,9 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
+        if ($this->container['queries'] === null) {
+            $invalidProperties[] = "'queries' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -373,137 +362,109 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets query
+     * Gets queries
      *
-     * @return string|null
+     * @return \FlowHunt\Model\SerpKeyword[]
      */
-    public function getQuery()
+    public function getQueries()
     {
-        return $this->container['query'];
+        return $this->container['queries'];
     }
 
     /**
-     * Sets query
+     * Sets queries
      *
-     * @param string|null $query query
+     * @param \FlowHunt\Model\SerpKeyword[] $queries List of queries
      *
      * @return self
      */
-    public function setQuery($query)
+    public function setQueries($queries)
     {
-        if (is_null($query)) {
-            array_push($this->openAPINullablesSetToNull, 'query');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('query', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($queries)) {
+            throw new \InvalidArgumentException('non-nullable queries cannot be null');
         }
-        $this->container['query'] = $query;
+        $this->container['queries'] = $queries;
 
         return $this;
     }
 
     /**
-     * Gets country
+     * Gets customer_id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getCountry()
+    public function getCustomerId()
     {
-        return $this->container['country'];
+        return $this->container['customer_id'];
     }
 
     /**
-     * Sets country
+     * Sets customer_id
      *
-     * @param string|null $country country
+     * @param int|null $customer_id Customer ID of cluster
      *
      * @return self
      */
-    public function setCountry($country)
+    public function setCustomerId($customer_id)
     {
-        if (is_null($country)) {
-            array_push($this->openAPINullablesSetToNull, 'country');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('country', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($customer_id)) {
+            throw new \InvalidArgumentException('non-nullable customer_id cannot be null');
         }
-        $this->container['country'] = $country;
+        $this->container['customer_id'] = $customer_id;
 
         return $this;
     }
 
     /**
-     * Gets language
+     * Gets campaign_id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getLanguage()
+    public function getCampaignId()
     {
-        return $this->container['language'];
+        return $this->container['campaign_id'];
     }
 
     /**
-     * Sets language
+     * Sets campaign_id
      *
-     * @param string|null $language language
+     * @param int|null $campaign_id Campaign ID of cluster
      *
      * @return self
      */
-    public function setLanguage($language)
+    public function setCampaignId($campaign_id)
     {
-        if (is_null($language)) {
-            array_push($this->openAPINullablesSetToNull, 'language');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('language', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($campaign_id)) {
+            throw new \InvalidArgumentException('non-nullable campaign_id cannot be null');
         }
-        $this->container['language'] = $language;
+        $this->container['campaign_id'] = $campaign_id;
 
         return $this;
     }
 
     /**
-     * Gets location
+     * Gets group_id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getLocation()
+    public function getGroupId()
     {
-        return $this->container['location'];
+        return $this->container['group_id'];
     }
 
     /**
-     * Sets location
+     * Sets group_id
      *
-     * @param string|null $location location
+     * @param int|null $group_id Group ID of cluster - will be generated if not provided
      *
      * @return self
      */
-    public function setLocation($location)
+    public function setGroupId($group_id)
     {
-        if (is_null($location)) {
-            array_push($this->openAPINullablesSetToNull, 'location');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('location', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($group_id)) {
+            throw new \InvalidArgumentException('non-nullable group_id cannot be null');
         }
-        $this->container['location'] = $location;
+        $this->container['group_id'] = $group_id;
 
         return $this;
     }
@@ -531,74 +492,6 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable group_name cannot be null');
         }
         $this->container['group_name'] = $group_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets group_id
-     *
-     * @return string|null
-     */
-    public function getGroupId()
-    {
-        return $this->container['group_id'];
-    }
-
-    /**
-     * Sets group_id
-     *
-     * @param string|null $group_id group_id
-     *
-     * @return self
-     */
-    public function setGroupId($group_id)
-    {
-        if (is_null($group_id)) {
-            array_push($this->openAPINullablesSetToNull, 'group_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('group_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['group_id'] = $group_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets count_urls
-     *
-     * @return int|null
-     */
-    public function getCountUrls()
-    {
-        return $this->container['count_urls'];
-    }
-
-    /**
-     * Sets count_urls
-     *
-     * @param int|null $count_urls count_urls
-     *
-     * @return self
-     */
-    public function setCountUrls($count_urls)
-    {
-        if (is_null($count_urls)) {
-            array_push($this->openAPINullablesSetToNull, 'count_urls');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('count_urls', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['count_urls'] = $count_urls;
 
         return $this;
     }

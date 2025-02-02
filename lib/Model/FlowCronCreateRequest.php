@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterGroupResponse
+ * FlowCronCreateRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * SerpClusterGroupResponse Class Doc Comment
+ * FlowCronCreateRequest Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class FlowCronCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SerpClusterGroupResponse';
+    protected static $openAPIModelName = 'FlowCronCreateRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,11 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'group_id' => 'string',
-        'group_name' => 'string'
+        'flow_id' => 'string',
+        'status' => '\FlowHunt\Model\FlowCronStatus',
+        'input_text' => 'string',
+        'variables' => 'object',
+        'interval_settings' => 'string'
     ];
 
     /**
@@ -69,8 +72,11 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'group_id' => null,
-        'group_name' => null
+        'flow_id' => 'uuid',
+        'status' => null,
+        'input_text' => null,
+        'variables' => null,
+        'interval_settings' => null
     ];
 
     /**
@@ -79,8 +85,11 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'group_id' => false,
-        'group_name' => false
+        'flow_id' => false,
+        'status' => false,
+        'input_text' => true,
+        'variables' => true,
+        'interval_settings' => false
     ];
 
     /**
@@ -169,8 +178,11 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'group_id' => 'group_id',
-        'group_name' => 'group_name'
+        'flow_id' => 'flow_id',
+        'status' => 'status',
+        'input_text' => 'input_text',
+        'variables' => 'variables',
+        'interval_settings' => 'interval_settings'
     ];
 
     /**
@@ -179,8 +191,11 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'group_id' => 'setGroupId',
-        'group_name' => 'setGroupName'
+        'flow_id' => 'setFlowId',
+        'status' => 'setStatus',
+        'input_text' => 'setInputText',
+        'variables' => 'setVariables',
+        'interval_settings' => 'setIntervalSettings'
     ];
 
     /**
@@ -189,8 +204,11 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'group_id' => 'getGroupId',
-        'group_name' => 'getGroupName'
+        'flow_id' => 'getFlowId',
+        'status' => 'getStatus',
+        'input_text' => 'getInputText',
+        'variables' => 'getVariables',
+        'interval_settings' => 'getIntervalSettings'
     ];
 
     /**
@@ -250,8 +268,11 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('group_id', $data ?? [], '');
-        $this->setIfExists('group_name', $data ?? [], '');
+        $this->setIfExists('flow_id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('input_text', $data ?? [], null);
+        $this->setIfExists('variables', $data ?? [], null);
+        $this->setIfExists('interval_settings', $data ?? [], null);
     }
 
     /**
@@ -281,6 +302,15 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['flow_id'] === null) {
+            $invalidProperties[] = "'flow_id' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['interval_settings'] === null) {
+            $invalidProperties[] = "'interval_settings' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -297,55 +327,150 @@ class SerpClusterGroupResponse implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets group_id
+     * Gets flow_id
      *
-     * @return string|null
+     * @return string
      */
-    public function getGroupId()
+    public function getFlowId()
     {
-        return $this->container['group_id'];
+        return $this->container['flow_id'];
     }
 
     /**
-     * Sets group_id
+     * Sets flow_id
      *
-     * @param string|null $group_id Group ID
+     * @param string $flow_id flow_id
      *
      * @return self
      */
-    public function setGroupId($group_id)
+    public function setFlowId($flow_id)
     {
-        if (is_null($group_id)) {
-            throw new \InvalidArgumentException('non-nullable group_id cannot be null');
+        if (is_null($flow_id)) {
+            throw new \InvalidArgumentException('non-nullable flow_id cannot be null');
         }
-        $this->container['group_id'] = $group_id;
+        $this->container['flow_id'] = $flow_id;
 
         return $this;
     }
 
     /**
-     * Gets group_name
+     * Gets status
      *
-     * @return string|null
+     * @return \FlowHunt\Model\FlowCronStatus
      */
-    public function getGroupName()
+    public function getStatus()
     {
-        return $this->container['group_name'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets group_name
+     * Sets status
      *
-     * @param string|null $group_name Group name
+     * @param \FlowHunt\Model\FlowCronStatus $status status
      *
      * @return self
      */
-    public function setGroupName($group_name)
+    public function setStatus($status)
     {
-        if (is_null($group_name)) {
-            throw new \InvalidArgumentException('non-nullable group_name cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['group_name'] = $group_name;
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets input_text
+     *
+     * @return string|null
+     */
+    public function getInputText()
+    {
+        return $this->container['input_text'];
+    }
+
+    /**
+     * Sets input_text
+     *
+     * @param string|null $input_text input_text
+     *
+     * @return self
+     */
+    public function setInputText($input_text)
+    {
+        if (is_null($input_text)) {
+            array_push($this->openAPINullablesSetToNull, 'input_text');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('input_text', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['input_text'] = $input_text;
+
+        return $this;
+    }
+
+    /**
+     * Gets variables
+     *
+     * @return object|null
+     */
+    public function getVariables()
+    {
+        return $this->container['variables'];
+    }
+
+    /**
+     * Sets variables
+     *
+     * @param object|null $variables variables
+     *
+     * @return self
+     */
+    public function setVariables($variables)
+    {
+        if (is_null($variables)) {
+            array_push($this->openAPINullablesSetToNull, 'variables');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('variables', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['variables'] = $variables;
+
+        return $this;
+    }
+
+    /**
+     * Gets interval_settings
+     *
+     * @return string
+     */
+    public function getIntervalSettings()
+    {
+        return $this->container['interval_settings'];
+    }
+
+    /**
+     * Sets interval_settings
+     *
+     * @param string $interval_settings interval_settings
+     *
+     * @return self
+     */
+    public function setIntervalSettings($interval_settings)
+    {
+        if (is_null($interval_settings)) {
+            throw new \InvalidArgumentException('non-nullable interval_settings cannot be null');
+        }
+        $this->container['interval_settings'] = $interval_settings;
 
         return $this;
     }

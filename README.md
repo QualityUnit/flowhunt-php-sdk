@@ -139,10 +139,13 @@ Class | Method | HTTP request | Description
 *FlowsApi* | [**createChatbotSession**](docs/Api/FlowsApi.md#createchatbotsession) | **POST** /v2/flows/sessions/create | Create Chatbot Session
 *FlowsApi* | [**createFlow**](docs/Api/FlowsApi.md#createflow) | **POST** /v2/flows/create | Create Flow
 *FlowsApi* | [**createFlowCategory**](docs/Api/FlowsApi.md#createflowcategory) | **POST** /v2/flows/categories/create | Create Flow Category
+*FlowsApi* | [**createFlowCron**](docs/Api/FlowsApi.md#createflowcron) | **POST** /v2/flows/crons/create | Create Flow Cron
 *FlowsApi* | [**createFlowSession**](docs/Api/FlowsApi.md#createflowsession) | **POST** /v2/flows/sessions/from_flow/create | Create Flow Session
 *FlowsApi* | [**deleteAttachment**](docs/Api/FlowsApi.md#deleteattachment) | **DELETE** /v2/flows/sessions/{session_id}/attachments/{file_id} | Delete Attachment
 *FlowsApi* | [**deleteFlow**](docs/Api/FlowsApi.md#deleteflow) | **DELETE** /v2/flows/{flow_id} | Delete Flow
 *FlowsApi* | [**deleteFlowCategory**](docs/Api/FlowsApi.md#deleteflowcategory) | **DELETE** /v2/flows/categories/{cat_id} | Delete Flow Category
+*FlowsApi* | [**deleteFlowCron**](docs/Api/FlowsApi.md#deleteflowcron) | **DELETE** /v2/flows/crons/{flow_id}/{cron_id} | Delete Flow Cron
+*FlowsApi* | [**executeFlowCron**](docs/Api/FlowsApi.md#executeflowcron) | **POST** /v2/flows/crons/{flow_id}/{cron_id}/execute | Execute Flow Cron
 *FlowsApi* | [**get**](docs/Api/FlowsApi.md#get) | **GET** /v2/flows/{flow_id} | Get
 *FlowsApi* | [**getAllComponents**](docs/Api/FlowsApi.md#getallcomponents) | **GET** /v2/flows/components/all | Get All Components
 *FlowsApi* | [**getAttachments**](docs/Api/FlowsApi.md#getattachments) | **GET** /v2/flows/sessions/{session_id}/attachments | Get Attachments
@@ -156,11 +159,24 @@ Class | Method | HTTP request | Description
 *FlowsApi* | [**search**](docs/Api/FlowsApi.md#search) | **POST** /v2/flows/ | Search
 *FlowsApi* | [**searchAll**](docs/Api/FlowsApi.md#searchall) | **POST** /v2/flows/all | Search All
 *FlowsApi* | [**searchFlowCategories**](docs/Api/FlowsApi.md#searchflowcategories) | **POST** /v2/flows/categories/search | Search Flow Categories
+*FlowsApi* | [**searchFlowCrons**](docs/Api/FlowsApi.md#searchflowcrons) | **POST** /v2/flows/crons/search | Search Flow Crons
 *FlowsApi* | [**streamFlowResponse**](docs/Api/FlowsApi.md#streamflowresponse) | **POST** /v2/flows/sessions/{session_id}/stream | Stream Flow Response
 *FlowsApi* | [**updateFlow**](docs/Api/FlowsApi.md#updateflow) | **PUT** /v2/flows/{flow_id} | Update Flow
 *FlowsApi* | [**updateFlowCategory**](docs/Api/FlowsApi.md#updateflowcategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category
+*FlowsApi* | [**updateFlowCron**](docs/Api/FlowsApi.md#updateflowcron) | **PUT** /v2/flows/crons/{flow_id}/{cron_id} | Update Flow Cron
 *FlowsApi* | [**uploadAttachments**](docs/Api/FlowsApi.md#uploadattachments) | **POST** /v2/flows/sessions/{session_id}/attachments | Upload Attachments
 *GoogleApi* | [**getDriveDocuments_0**](docs/Api/GoogleApi.md#getdrivedocuments_0) | **POST** /v2/integrations/google/{integration_slug}/drive/files | Get Drive Documents
+*GoogleAdsApi* | [**analyzeNotAssignedKeywords**](docs/Api/GoogleAdsApi.md#analyzenotassignedkeywords) | **POST** /v2/integrations/google_ads/analyze_not_assigned_keywords | Analyze Not Assigned Keywords
+*GoogleAdsApi* | [**getGoogleAdsCampaigns**](docs/Api/GoogleAdsApi.md#getgoogleadscampaigns) | **POST** /v2/integrations/google_ads/{customer_id}/campaigns | Get Google Ads Campaigns
+*GoogleAdsApi* | [**getGoogleAdsCustomers**](docs/Api/GoogleAdsApi.md#getgoogleadscustomers) | **POST** /v2/integrations/google_ads/customers | Get Google Ads Customers
+*GoogleAdsApi* | [**getGoogleAdsGroups**](docs/Api/GoogleAdsApi.md#getgoogleadsgroups) | **POST** /v2/integrations/google_ads/{customer_id}/campaigns/{campaign_id}/groups | Get Google Ads Groups
+*GoogleAdsApi* | [**importAllGoogleAdsGroups**](docs/Api/GoogleAdsApi.md#importallgoogleadsgroups) | **POST** /v2/integrations/google_ads/{customer_id}/campaigns/import_all_groups | Import All Google Ads Groups
+*GoogleAdsApi* | [**importGoogleAdsCampaigns**](docs/Api/GoogleAdsApi.md#importgoogleadscampaigns) | **POST** /v2/integrations/google_ads/{customer_id}/campaigns/import | Import Google Ads Campaigns
+*GoogleAdsApi* | [**importGoogleAdsCustomers**](docs/Api/GoogleAdsApi.md#importgoogleadscustomers) | **POST** /v2/integrations/google_ads/customers/import | Import Google Ads Customers
+*GoogleAdsApi* | [**importGoogleAdsGroups**](docs/Api/GoogleAdsApi.md#importgoogleadsgroups) | **POST** /v2/integrations/google_ads/{customer_id}/campaigns/{campaign_id}/groups/import | Import Google Ads Groups
+*GoogleAdsApi* | [**updateGoogleAdsCampaign**](docs/Api/GoogleAdsApi.md#updategoogleadscampaign) | **PUT** /v2/integrations/google_ads/{customer_id}/campaigns/{campaign_id} | Update Google Ads Campaign
+*GoogleAdsApi* | [**updateGoogleAdsCustomerUpdate**](docs/Api/GoogleAdsApi.md#updategoogleadscustomerupdate) | **PUT** /v2/integrations/google_ads/customers/{customer_id} | Update Google Ads Customer Update
+*GoogleAdsApi* | [**updateGoogleAdsGroup**](docs/Api/GoogleAdsApi.md#updategoogleadsgroup) | **PUT** /v2/integrations/google_ads/{customer_id}/campaigns/{campaign_id}/groups/{group_id} | Update Google Ads Group
 *GridsApi* | [**createColumn**](docs/Api/GridsApi.md#createcolumn) | **POST** /v2/grids/{grid_id}/create | Create Column
 *GridsApi* | [**createGrid**](docs/Api/GridsApi.md#creategrid) | **POST** /v2/grids/create | Create Grid
 *GridsApi* | [**createGridRow**](docs/Api/GridsApi.md#creategridrow) | **POST** /v2/grids/{grid_id}/create_row | Create Grid Row
@@ -196,16 +212,15 @@ Class | Method | HTTP request | Description
 *PromptsApi* | [**searchPrompts**](docs/Api/PromptsApi.md#searchprompts) | **POST** /v2/prompts/search | Search Prompts
 *PromptsApi* | [**updatePrompt**](docs/Api/PromptsApi.md#updateprompt) | **PUT** /v2/prompts/{prompt_id} | Update Prompt
 *PromptsApi* | [**updatePromptCategory**](docs/Api/PromptsApi.md#updatepromptcategory) | **PUT** /v2/prompts/categories/{cat_id} | Update Prompt Category
-*SERPApi* | [**searchClusterGroup**](docs/Api/SERPApi.md#searchclustergroup) | **POST** /v2/serp/cluster/search | Search Cluster Group
-*SERPApi* | [**searchClusterQuery**](docs/Api/SERPApi.md#searchclusterquery) | **POST** /v2/serp/cluster/{group_id}/search | Search Cluster Query
-*SERPApi* | [**serpClusterAddGroup**](docs/Api/SERPApi.md#serpclusteraddgroup) | **POST** /v2/serp/cluster/create | Serp Cluster Add Group
-*SERPApi* | [**serpClusterAddQueries**](docs/Api/SERPApi.md#serpclusteraddqueries) | **POST** /v2/serp/cluster/add_queries | Serp Cluster Add Queries
-*SERPApi* | [**serpClusterBulkDeleteQueries**](docs/Api/SERPApi.md#serpclusterbulkdeletequeries) | **DELETE** /v2/serp/cluster/{group_id}/bulk_delete | Serp Cluster Bulk Delete Queries
-*SERPApi* | [**serpClusterDeleteAll**](docs/Api/SERPApi.md#serpclusterdeleteall) | **DELETE** /v2/serp/cluster/delete_all | Serp Cluster Delete All
-*SERPApi* | [**serpClusterDeleteGroup**](docs/Api/SERPApi.md#serpclusterdeletegroup) | **DELETE** /v2/serp/cluster/{group_id} | Serp Cluster Delete Group
-*SERPApi* | [**serpClusterDeleteQuery**](docs/Api/SERPApi.md#serpclusterdeletequery) | **DELETE** /v2/serp/cluster/{group_id}/{query_id} | Serp Cluster Delete Query
-*SERPApi* | [**serpClusterGetBulkQueryIntersections**](docs/Api/SERPApi.md#serpclustergetbulkqueryintersections) | **POST** /v2/serp/cluster/bulk_query_intersections | Serp Cluster Get Bulk Query Intersections
-*SERPApi* | [**serpClusterGetQueryIntersections**](docs/Api/SERPApi.md#serpclustergetqueryintersections) | **POST** /v2/serp/cluster/query_intersections | Serp Cluster Get Query Intersections
+*SERPApi* | [**searchClusterQuery**](docs/Api/SERPApi.md#searchclusterquery) | **POST** /v2/serp/clusters/keywords | Search Cluster Query
+*SERPApi* | [**serpClusterAddQueries**](docs/Api/SERPApi.md#serpclusteraddqueries) | **POST** /v2/serp/clusters/{customer_id}/{campaign_id}/{group_id}/add_keywords | Serp Cluster Add Queries
+*SERPApi* | [**serpClusterDeleteCampaign**](docs/Api/SERPApi.md#serpclusterdeletecampaign) | **DELETE** /v2/serp/clusters/{customer_id}/{campaign_id} | Serp Cluster Delete Campaign
+*SERPApi* | [**serpClusterDeleteCustomer**](docs/Api/SERPApi.md#serpclusterdeletecustomer) | **DELETE** /v2/serp/clusters/{customer_id} | Serp Cluster Delete Customer
+*SERPApi* | [**serpClusterDeleteGroup**](docs/Api/SERPApi.md#serpclusterdeletegroup) | **DELETE** /v2/serp/clusters/{customer_id}/{campaign_id}/{group_id} | Serp Cluster Delete Group
+*SERPApi* | [**serpClusterDeleteGroupQueries**](docs/Api/SERPApi.md#serpclusterdeletegroupqueries) | **DELETE** /v2/serp/clusters/{customer_id}/{campaign_id}/{group_id}/delete_queries | Serp Cluster Delete Group Queries
+*SERPApi* | [**serpClusterGetBulkQueryIntersections**](docs/Api/SERPApi.md#serpclustergetbulkqueryintersections) | **POST** /v2/serp/clusters/intersections | Serp Cluster Get Bulk Query Intersections
+*SERPApi* | [**serpClusterGetMatchingGroupsToQuery**](docs/Api/SERPApi.md#serpclustergetmatchinggroupstoquery) | **POST** /v2/serp/clusters/recommended_groups | Serp Cluster Get Matching Groups To Query
+*SERPApi* | [**serpClusterGetRelatedKeywordsToQuery**](docs/Api/SERPApi.md#serpclustergetrelatedkeywordstoquery) | **POST** /v2/serp/clusters/related_keywords | Serp Cluster Get Related Keywords To Query
 *SERPApi* | [**serpSearch**](docs/Api/SERPApi.md#serpsearch) | **POST** /v2/serp/serp/search | Serp Search
 *SERPApi* | [**serpVolumes**](docs/Api/SERPApi.md#serpvolumes) | **POST** /v2/serp/serp/volumes | Serp Volumes
 *SERPApi* | [**serpVolumesPingback**](docs/Api/SERPApi.md#serpvolumespingback) | **GET** /v2/serp/serp/volumes/pingback/{id}/{tag} | Serp Volumes Pingback
@@ -293,6 +308,11 @@ Class | Method | HTTP request | Description
 - [FlowCategorySearchRequest](docs/Model/FlowCategorySearchRequest.md)
 - [FlowConfig](docs/Model/FlowConfig.md)
 - [FlowCreate](docs/Model/FlowCreate.md)
+- [FlowCronCreateRequest](docs/Model/FlowCronCreateRequest.md)
+- [FlowCronResponse](docs/Model/FlowCronResponse.md)
+- [FlowCronSearchRequest](docs/Model/FlowCronSearchRequest.md)
+- [FlowCronStatus](docs/Model/FlowCronStatus.md)
+- [FlowCronUpdateRequest](docs/Model/FlowCronUpdateRequest.md)
 - [FlowDetailResponse](docs/Model/FlowDetailResponse.md)
 - [FlowEventActionType](docs/Model/FlowEventActionType.md)
 - [FlowInvokeRequest](docs/Model/FlowInvokeRequest.md)
@@ -319,6 +339,18 @@ Class | Method | HTTP request | Description
 - [FlowSessionViewSearchRequest](docs/Model/FlowSessionViewSearchRequest.md)
 - [FlowSessionViewUpdateRequest](docs/Model/FlowSessionViewUpdateRequest.md)
 - [FlowType](docs/Model/FlowType.md)
+- [GoogleAdsActionType](docs/Model/GoogleAdsActionType.md)
+- [GoogleAdsCampaignResponse](docs/Model/GoogleAdsCampaignResponse.md)
+- [GoogleAdsCampaignStatus](docs/Model/GoogleAdsCampaignStatus.md)
+- [GoogleAdsCampaignUpdateRequest](docs/Model/GoogleAdsCampaignUpdateRequest.md)
+- [GoogleAdsCampaignsResponse](docs/Model/GoogleAdsCampaignsResponse.md)
+- [GoogleAdsCustomerResponse](docs/Model/GoogleAdsCustomerResponse.md)
+- [GoogleAdsCustomerUpdateRequest](docs/Model/GoogleAdsCustomerUpdateRequest.md)
+- [GoogleAdsCustomersResponse](docs/Model/GoogleAdsCustomersResponse.md)
+- [GoogleAdsGroupResponse](docs/Model/GoogleAdsGroupResponse.md)
+- [GoogleAdsGroupStatus](docs/Model/GoogleAdsGroupStatus.md)
+- [GoogleAdsGroupUpdateRequest](docs/Model/GoogleAdsGroupUpdateRequest.md)
+- [GoogleAdsGroupsResponse](docs/Model/GoogleAdsGroupsResponse.md)
 - [GoogleDriveFileResponse](docs/Model/GoogleDriveFileResponse.md)
 - [GoogleDriveSearchQuery](docs/Model/GoogleDriveSearchQuery.md)
 - [GoogleDriveSearchResponse](docs/Model/GoogleDriveSearchResponse.md)
@@ -389,14 +421,18 @@ Class | Method | HTTP request | Description
 - [SecretResponse](docs/Model/SecretResponse.md)
 - [SecretSearchRequest](docs/Model/SecretSearchRequest.md)
 - [SecretUpdateRequest](docs/Model/SecretUpdateRequest.md)
-- [SerpClusterAddGroupRequest](docs/Model/SerpClusterAddGroupRequest.md)
 - [SerpClusterAddQueryRequest](docs/Model/SerpClusterAddQueryRequest.md)
 - [SerpClusterAddQueryRequests](docs/Model/SerpClusterAddQueryRequests.md)
-- [SerpClusterGroupResponse](docs/Model/SerpClusterGroupResponse.md)
+- [SerpClusterBestGroupsRequest](docs/Model/SerpClusterBestGroupsRequest.md)
+- [SerpClusterGroupIntersectionsRequest](docs/Model/SerpClusterGroupIntersectionsRequest.md)
 - [SerpClusterGroupSearchRequest](docs/Model/SerpClusterGroupSearchRequest.md)
-- [SerpClusterQueryIntersectionsRequest](docs/Model/SerpClusterQueryIntersectionsRequest.md)
-- [SerpClusterQueryResponse](docs/Model/SerpClusterQueryResponse.md)
+- [SerpClusterKeywordIntersectionsRequest](docs/Model/SerpClusterKeywordIntersectionsRequest.md)
+- [SerpClusterKeywordResponse](docs/Model/SerpClusterKeywordResponse.md)
+- [SerpGroupIntersection](docs/Model/SerpGroupIntersection.md)
+- [SerpKeyword](docs/Model/SerpKeyword.md)
+- [SerpKeywordRelation](docs/Model/SerpKeywordRelation.md)
 - [SerpQueryRequest](docs/Model/SerpQueryRequest.md)
+- [SerpSearchEngineType](docs/Model/SerpSearchEngineType.md)
 - [SerpSearchRequest](docs/Model/SerpSearchRequest.md)
 - [SerpSearchRequests](docs/Model/SerpSearchRequests.md)
 - [SerpVolumeRequest](docs/Model/SerpVolumeRequest.md)
@@ -478,6 +514,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `3.7.0`
+    - Package version: `3.9.0`
     - Generator version: `7.9.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

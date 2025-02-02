@@ -87,4 +87,31 @@ class SerpClusterGroupSearchRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "customer_id"
+     */
+    public function testPropertyCustomerId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "campaign_id"
+     */
+    public function testPropertyCampaignId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "group_id"
+     */
+    public function testPropertyGroupId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

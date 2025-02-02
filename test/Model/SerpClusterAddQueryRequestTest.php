@@ -89,45 +89,27 @@ class SerpClusterAddQueryRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "query"
+     * Test attribute "queries"
      */
-    public function testPropertyQuery()
+    public function testPropertyQueries()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "country"
+     * Test attribute "customer_id"
      */
-    public function testPropertyCountry()
+    public function testPropertyCustomerId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "language"
+     * Test attribute "campaign_id"
      */
-    public function testPropertyLanguage()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "location"
-     */
-    public function testPropertyLocation()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "group_name"
-     */
-    public function testPropertyGroupName()
+    public function testPropertyCampaignId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -143,9 +125,9 @@ class SerpClusterAddQueryRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "count_urls"
+     * Test attribute "group_name"
      */
-    public function testPropertyCountUrls()
+    public function testPropertyGroupName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -89,36 +89,9 @@ class SerpQueryRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "query"
+     * Test attribute "queries"
      */
-    public function testPropertyQuery()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "country"
-     */
-    public function testPropertyCountry()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "language"
-     */
-    public function testPropertyLanguage()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "location"
-     */
-    public function testPropertyLocation()
+    public function testPropertyQueries()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterQueryResponse
+ * SerpClusterGroupIntersectionsRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * SerpClusterQueryResponse Class Doc Comment
+ * SerpClusterGroupIntersectionsRequest Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SerpClusterQueryResponse';
+    protected static $openAPIModelName = 'SerpClusterGroupIntersectionsRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,11 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'query_id' => 'string',
-        'query' => 'string',
-        'country' => 'string',
-        'language' => 'string',
-        'location' => 'string'
+        'customer_id' => 'int',
+        'campaign_id' => 'int',
+        'group_id' => 'int',
+        'min_cluster_strength' => 'int',
+        'suggest_other_matching_keywords' => 'bool'
     ];
 
     /**
@@ -72,11 +72,11 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'query_id' => null,
-        'query' => null,
-        'country' => null,
-        'language' => null,
-        'location' => null
+        'customer_id' => null,
+        'campaign_id' => null,
+        'group_id' => null,
+        'min_cluster_strength' => null,
+        'suggest_other_matching_keywords' => null
     ];
 
     /**
@@ -85,11 +85,11 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'query_id' => false,
-        'query' => false,
-        'country' => true,
-        'language' => true,
-        'location' => true
+        'customer_id' => false,
+        'campaign_id' => true,
+        'group_id' => true,
+        'min_cluster_strength' => true,
+        'suggest_other_matching_keywords' => true
     ];
 
     /**
@@ -178,11 +178,11 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'query_id' => 'query_id',
-        'query' => 'query',
-        'country' => 'country',
-        'language' => 'language',
-        'location' => 'location'
+        'customer_id' => 'customer_id',
+        'campaign_id' => 'campaign_id',
+        'group_id' => 'group_id',
+        'min_cluster_strength' => 'min_cluster_strength',
+        'suggest_other_matching_keywords' => 'suggest_other_matching_keywords'
     ];
 
     /**
@@ -191,11 +191,11 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'query_id' => 'setQueryId',
-        'query' => 'setQuery',
-        'country' => 'setCountry',
-        'language' => 'setLanguage',
-        'location' => 'setLocation'
+        'customer_id' => 'setCustomerId',
+        'campaign_id' => 'setCampaignId',
+        'group_id' => 'setGroupId',
+        'min_cluster_strength' => 'setMinClusterStrength',
+        'suggest_other_matching_keywords' => 'setSuggestOtherMatchingKeywords'
     ];
 
     /**
@@ -204,11 +204,11 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'query_id' => 'getQueryId',
-        'query' => 'getQuery',
-        'country' => 'getCountry',
-        'language' => 'getLanguage',
-        'location' => 'getLocation'
+        'customer_id' => 'getCustomerId',
+        'campaign_id' => 'getCampaignId',
+        'group_id' => 'getGroupId',
+        'min_cluster_strength' => 'getMinClusterStrength',
+        'suggest_other_matching_keywords' => 'getSuggestOtherMatchingKeywords'
     ];
 
     /**
@@ -268,11 +268,11 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('query_id', $data ?? [], null);
-        $this->setIfExists('query', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('language', $data ?? [], null);
-        $this->setIfExists('location', $data ?? [], null);
+        $this->setIfExists('customer_id', $data ?? [], null);
+        $this->setIfExists('campaign_id', $data ?? [], null);
+        $this->setIfExists('group_id', $data ?? [], null);
+        $this->setIfExists('min_cluster_strength', $data ?? [], null);
+        $this->setIfExists('suggest_other_matching_keywords', $data ?? [], null);
     }
 
     /**
@@ -302,11 +302,8 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['query_id'] === null) {
-            $invalidProperties[] = "'query_id' can't be null";
-        }
-        if ($this->container['query'] === null) {
-            $invalidProperties[] = "'query' can't be null";
+        if ($this->container['customer_id'] === null) {
+            $invalidProperties[] = "'customer_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -324,157 +321,164 @@ class SerpClusterQueryResponse implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets query_id
+     * Gets customer_id
      *
-     * @return string
+     * @return int
      */
-    public function getQueryId()
+    public function getCustomerId()
     {
-        return $this->container['query_id'];
+        return $this->container['customer_id'];
     }
 
     /**
-     * Sets query_id
+     * Sets customer_id
      *
-     * @param string $query_id Query ID
+     * @param int $customer_id Customer ID of cluster
      *
      * @return self
      */
-    public function setQueryId($query_id)
+    public function setCustomerId($customer_id)
     {
-        if (is_null($query_id)) {
-            throw new \InvalidArgumentException('non-nullable query_id cannot be null');
+        if (is_null($customer_id)) {
+            throw new \InvalidArgumentException('non-nullable customer_id cannot be null');
         }
-        $this->container['query_id'] = $query_id;
+        $this->container['customer_id'] = $customer_id;
 
         return $this;
     }
 
     /**
-     * Gets query
+     * Gets campaign_id
      *
-     * @return string
+     * @return int|null
      */
-    public function getQuery()
+    public function getCampaignId()
     {
-        return $this->container['query'];
+        return $this->container['campaign_id'];
     }
 
     /**
-     * Sets query
+     * Sets campaign_id
      *
-     * @param string $query Query
+     * @param int|null $campaign_id campaign_id
      *
      * @return self
      */
-    public function setQuery($query)
+    public function setCampaignId($campaign_id)
     {
-        if (is_null($query)) {
-            throw new \InvalidArgumentException('non-nullable query cannot be null');
-        }
-        $this->container['query'] = $query;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     *
-     * @param string|null $country country
-     *
-     * @return self
-     */
-    public function setCountry($country)
-    {
-        if (is_null($country)) {
-            array_push($this->openAPINullablesSetToNull, 'country');
+        if (is_null($campaign_id)) {
+            array_push($this->openAPINullablesSetToNull, 'campaign_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('country', $nullablesSetToNull);
+            $index = array_search('campaign_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['country'] = $country;
+        $this->container['campaign_id'] = $campaign_id;
 
         return $this;
     }
 
     /**
-     * Gets language
+     * Gets group_id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getLanguage()
+    public function getGroupId()
     {
-        return $this->container['language'];
+        return $this->container['group_id'];
     }
 
     /**
-     * Sets language
+     * Sets group_id
      *
-     * @param string|null $language language
+     * @param int|null $group_id group_id
      *
      * @return self
      */
-    public function setLanguage($language)
+    public function setGroupId($group_id)
     {
-        if (is_null($language)) {
-            array_push($this->openAPINullablesSetToNull, 'language');
+        if (is_null($group_id)) {
+            array_push($this->openAPINullablesSetToNull, 'group_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('language', $nullablesSetToNull);
+            $index = array_search('group_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['language'] = $language;
+        $this->container['group_id'] = $group_id;
 
         return $this;
     }
 
     /**
-     * Gets location
+     * Gets min_cluster_strength
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getLocation()
+    public function getMinClusterStrength()
     {
-        return $this->container['location'];
+        return $this->container['min_cluster_strength'];
     }
 
     /**
-     * Sets location
+     * Sets min_cluster_strength
      *
-     * @param string|null $location location
+     * @param int|null $min_cluster_strength min_cluster_strength
      *
      * @return self
      */
-    public function setLocation($location)
+    public function setMinClusterStrength($min_cluster_strength)
     {
-        if (is_null($location)) {
-            array_push($this->openAPINullablesSetToNull, 'location');
+        if (is_null($min_cluster_strength)) {
+            array_push($this->openAPINullablesSetToNull, 'min_cluster_strength');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('location', $nullablesSetToNull);
+            $index = array_search('min_cluster_strength', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['location'] = $location;
+        $this->container['min_cluster_strength'] = $min_cluster_strength;
+
+        return $this;
+    }
+
+    /**
+     * Gets suggest_other_matching_keywords
+     *
+     * @return bool|null
+     */
+    public function getSuggestOtherMatchingKeywords()
+    {
+        return $this->container['suggest_other_matching_keywords'];
+    }
+
+    /**
+     * Sets suggest_other_matching_keywords
+     *
+     * @param bool|null $suggest_other_matching_keywords suggest_other_matching_keywords
+     *
+     * @return self
+     */
+    public function setSuggestOtherMatchingKeywords($suggest_other_matching_keywords)
+    {
+        if (is_null($suggest_other_matching_keywords)) {
+            array_push($this->openAPINullablesSetToNull, 'suggest_other_matching_keywords');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('suggest_other_matching_keywords', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['suggest_other_matching_keywords'] = $suggest_other_matching_keywords;
 
         return $this;
     }

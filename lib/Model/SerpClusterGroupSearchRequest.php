@@ -57,7 +57,10 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'search' => 'string'
+        'search' => 'string',
+        'customer_id' => 'int',
+        'campaign_id' => 'int',
+        'group_id' => 'int'
     ];
 
     /**
@@ -68,7 +71,10 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'search' => null
+        'search' => null,
+        'customer_id' => null,
+        'campaign_id' => null,
+        'group_id' => null
     ];
 
     /**
@@ -77,7 +83,10 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'search' => true
+        'search' => true,
+        'customer_id' => true,
+        'campaign_id' => true,
+        'group_id' => true
     ];
 
     /**
@@ -166,7 +175,10 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'search' => 'search'
+        'search' => 'search',
+        'customer_id' => 'customer_id',
+        'campaign_id' => 'campaign_id',
+        'group_id' => 'group_id'
     ];
 
     /**
@@ -175,7 +187,10 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'search' => 'setSearch'
+        'search' => 'setSearch',
+        'customer_id' => 'setCustomerId',
+        'campaign_id' => 'setCampaignId',
+        'group_id' => 'setGroupId'
     ];
 
     /**
@@ -184,7 +199,10 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'search' => 'getSearch'
+        'search' => 'getSearch',
+        'customer_id' => 'getCustomerId',
+        'campaign_id' => 'getCampaignId',
+        'group_id' => 'getGroupId'
     ];
 
     /**
@@ -245,6 +263,9 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
     public function __construct(array $data = null)
     {
         $this->setIfExists('search', $data ?? [], null);
+        $this->setIfExists('customer_id', $data ?? [], null);
+        $this->setIfExists('campaign_id', $data ?? [], null);
+        $this->setIfExists('group_id', $data ?? [], null);
     }
 
     /**
@@ -319,6 +340,108 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['search'] = $search;
+
+        return $this;
+    }
+
+    /**
+     * Gets customer_id
+     *
+     * @return int|null
+     */
+    public function getCustomerId()
+    {
+        return $this->container['customer_id'];
+    }
+
+    /**
+     * Sets customer_id
+     *
+     * @param int|null $customer_id customer_id
+     *
+     * @return self
+     */
+    public function setCustomerId($customer_id)
+    {
+        if (is_null($customer_id)) {
+            array_push($this->openAPINullablesSetToNull, 'customer_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('customer_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['customer_id'] = $customer_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets campaign_id
+     *
+     * @return int|null
+     */
+    public function getCampaignId()
+    {
+        return $this->container['campaign_id'];
+    }
+
+    /**
+     * Sets campaign_id
+     *
+     * @param int|null $campaign_id campaign_id
+     *
+     * @return self
+     */
+    public function setCampaignId($campaign_id)
+    {
+        if (is_null($campaign_id)) {
+            array_push($this->openAPINullablesSetToNull, 'campaign_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('campaign_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['campaign_id'] = $campaign_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets group_id
+     *
+     * @return int|null
+     */
+    public function getGroupId()
+    {
+        return $this->container['group_id'];
+    }
+
+    /**
+     * Sets group_id
+     *
+     * @param int|null $group_id group_id
+     *
+     * @return self
+     */
+    public function setGroupId($group_id)
+    {
+        if (is_null($group_id)) {
+            array_push($this->openAPINullablesSetToNull, 'group_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('group_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['group_id'] = $group_id;
 
         return $this;
     }

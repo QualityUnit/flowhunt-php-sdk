@@ -7,10 +7,13 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**createChatbotSession()**](FlowsApi.md#createChatbotSession) | **POST** /v2/flows/sessions/create | Create Chatbot Session |
 | [**createFlow()**](FlowsApi.md#createFlow) | **POST** /v2/flows/create | Create Flow |
 | [**createFlowCategory()**](FlowsApi.md#createFlowCategory) | **POST** /v2/flows/categories/create | Create Flow Category |
+| [**createFlowCron()**](FlowsApi.md#createFlowCron) | **POST** /v2/flows/crons/create | Create Flow Cron |
 | [**createFlowSession()**](FlowsApi.md#createFlowSession) | **POST** /v2/flows/sessions/from_flow/create | Create Flow Session |
 | [**deleteAttachment()**](FlowsApi.md#deleteAttachment) | **DELETE** /v2/flows/sessions/{session_id}/attachments/{file_id} | Delete Attachment |
 | [**deleteFlow()**](FlowsApi.md#deleteFlow) | **DELETE** /v2/flows/{flow_id} | Delete Flow |
 | [**deleteFlowCategory()**](FlowsApi.md#deleteFlowCategory) | **DELETE** /v2/flows/categories/{cat_id} | Delete Flow Category |
+| [**deleteFlowCron()**](FlowsApi.md#deleteFlowCron) | **DELETE** /v2/flows/crons/{flow_id}/{cron_id} | Delete Flow Cron |
+| [**executeFlowCron()**](FlowsApi.md#executeFlowCron) | **POST** /v2/flows/crons/{flow_id}/{cron_id}/execute | Execute Flow Cron |
 | [**get()**](FlowsApi.md#get) | **GET** /v2/flows/{flow_id} | Get |
 | [**getAllComponents()**](FlowsApi.md#getAllComponents) | **GET** /v2/flows/components/all | Get All Components |
 | [**getAttachments()**](FlowsApi.md#getAttachments) | **GET** /v2/flows/sessions/{session_id}/attachments | Get Attachments |
@@ -24,9 +27,11 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**search()**](FlowsApi.md#search) | **POST** /v2/flows/ | Search |
 | [**searchAll()**](FlowsApi.md#searchAll) | **POST** /v2/flows/all | Search All |
 | [**searchFlowCategories()**](FlowsApi.md#searchFlowCategories) | **POST** /v2/flows/categories/search | Search Flow Categories |
+| [**searchFlowCrons()**](FlowsApi.md#searchFlowCrons) | **POST** /v2/flows/crons/search | Search Flow Crons |
 | [**streamFlowResponse()**](FlowsApi.md#streamFlowResponse) | **POST** /v2/flows/sessions/{session_id}/stream | Stream Flow Response |
 | [**updateFlow()**](FlowsApi.md#updateFlow) | **PUT** /v2/flows/{flow_id} | Update Flow |
 | [**updateFlowCategory()**](FlowsApi.md#updateFlowCategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category |
+| [**updateFlowCron()**](FlowsApi.md#updateFlowCron) | **PUT** /v2/flows/crons/{flow_id}/{cron_id} | Update Flow Cron |
 | [**uploadAttachments()**](FlowsApi.md#uploadAttachments) | **POST** /v2/flows/sessions/{session_id}/attachments | Upload Attachments |
 
 
@@ -202,6 +207,71 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createFlowCron()`
+
+```php
+createFlowCron($workspace_id, $flow_cron_create_request): \FlowHunt\Model\FlowCronResponse
+```
+
+Create Flow Cron
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$flow_cron_create_request = new \FlowHunt\Model\FlowCronCreateRequest(); // \FlowHunt\Model\FlowCronCreateRequest
+
+try {
+    $result = $apiInstance->createFlowCron($workspace_id, $flow_cron_create_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->createFlowCron: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **flow_cron_create_request** | [**\FlowHunt\Model\FlowCronCreateRequest**](../Model/FlowCronCreateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowCronResponse**](../Model/FlowCronResponse.md)
 
 ### Authorization
 
@@ -453,6 +523,140 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteFlowCron()`
+
+```php
+deleteFlowCron($flow_id, $cron_id, $workspace_id): \FlowHunt\Model\Completed
+```
+
+Delete Flow Cron
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$cron_id = 'cron_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->deleteFlowCron($flow_id, $cron_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->deleteFlowCron: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **cron_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `executeFlowCron()`
+
+```php
+executeFlowCron($cron_id, $flow_id, $workspace_id): \FlowHunt\Model\TaskResponse
+```
+
+Execute Flow Cron
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$cron_id = 'cron_id_example'; // string
+$flow_id = 'flow_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->executeFlowCron($cron_id, $flow_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->executeFlowCron: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **cron_id** | **string**|  | |
+| **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\TaskResponse**](../Model/TaskResponse.md)
 
 ### Authorization
 
@@ -1282,6 +1486,71 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `searchFlowCrons()`
+
+```php
+searchFlowCrons($workspace_id, $flow_cron_search_request): \FlowHunt\Model\FlowCronResponse[]
+```
+
+Search Flow Crons
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$flow_cron_search_request = new \FlowHunt\Model\FlowCronSearchRequest(); // \FlowHunt\Model\FlowCronSearchRequest
+
+try {
+    $result = $apiInstance->searchFlowCrons($workspace_id, $flow_cron_search_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->searchFlowCrons: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **flow_cron_search_request** | [**\FlowHunt\Model\FlowCronSearchRequest**](../Model/FlowCronSearchRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowCronResponse[]**](../Model/FlowCronResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `streamFlowResponse()`
 
 ```php
@@ -1458,6 +1727,75 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\FlowCategoryResponse**](../Model/FlowCategoryResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateFlowCron()`
+
+```php
+updateFlowCron($cron_id, $flow_id, $workspace_id, $flow_cron_update_request): \FlowHunt\Model\FlowCronResponse
+```
+
+Update Flow Cron
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$cron_id = 'cron_id_example'; // string
+$flow_id = 'flow_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$flow_cron_update_request = new \FlowHunt\Model\FlowCronUpdateRequest(); // \FlowHunt\Model\FlowCronUpdateRequest
+
+try {
+    $result = $apiInstance->updateFlowCron($cron_id, $flow_id, $workspace_id, $flow_cron_update_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->updateFlowCron: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **cron_id** | **string**|  | |
+| **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **flow_cron_update_request** | [**\FlowHunt\Model\FlowCronUpdateRequest**](../Model/FlowCronUpdateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowCronResponse**](../Model/FlowCronResponse.md)
 
 ### Authorization
 

@@ -5,9 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **post_back_url** | **string** |  | [optional]
-**query** | **string** |  | [optional]
-**country** | **string** |  | [optional]
-**language** | **string** |  | [optional]
-**location** | **string** |  | [optional]
+**queries** | [**\FlowHunt\Model\SerpKeyword[]**](SerpKeyword.md) | List of queries |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

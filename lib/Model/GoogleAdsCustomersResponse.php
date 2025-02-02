@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterAddGroupRequest
+ * GoogleAdsCustomersResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * SerpClusterAddGroupRequest Class Doc Comment
+ * GoogleAdsCustomersResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class GoogleAdsCustomersResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SerpClusterAddGroupRequest';
+    protected static $openAPIModelName = 'GoogleAdsCustomersResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
-        'group_name' => 'string',
-        'group_id' => 'string'
+        'customers' => '\FlowHunt\Model\GoogleAdsCustomerResponse[]'
     ];
 
     /**
@@ -69,8 +68,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'group_name' => null,
-        'group_id' => null
+        'customers' => null
     ];
 
     /**
@@ -79,8 +77,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'group_name' => false,
-        'group_id' => true
+        'customers' => false
     ];
 
     /**
@@ -169,8 +166,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
-        'group_name' => 'group_name',
-        'group_id' => 'group_id'
+        'customers' => 'customers'
     ];
 
     /**
@@ -179,8 +175,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
-        'group_name' => 'setGroupName',
-        'group_id' => 'setGroupId'
+        'customers' => 'setCustomers'
     ];
 
     /**
@@ -189,8 +184,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
-        'group_name' => 'getGroupName',
-        'group_id' => 'getGroupId'
+        'customers' => 'getCustomers'
     ];
 
     /**
@@ -250,8 +244,7 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('group_name', $data ?? [], '');
-        $this->setIfExists('group_id', $data ?? [], null);
+        $this->setIfExists('customers', $data ?? [], null);
     }
 
     /**
@@ -281,6 +274,9 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
+        if ($this->container['customers'] === null) {
+            $invalidProperties[] = "'customers' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -297,62 +293,28 @@ class SerpClusterAddGroupRequest implements ModelInterface, ArrayAccess, \JsonSe
 
 
     /**
-     * Gets group_name
+     * Gets customers
      *
-     * @return string|null
+     * @return \FlowHunt\Model\GoogleAdsCustomerResponse[]
      */
-    public function getGroupName()
+    public function getCustomers()
     {
-        return $this->container['group_name'];
+        return $this->container['customers'];
     }
 
     /**
-     * Sets group_name
+     * Sets customers
      *
-     * @param string|null $group_name Group name of cluster
+     * @param \FlowHunt\Model\GoogleAdsCustomerResponse[] $customers List of Google Ads Customers
      *
      * @return self
      */
-    public function setGroupName($group_name)
+    public function setCustomers($customers)
     {
-        if (is_null($group_name)) {
-            throw new \InvalidArgumentException('non-nullable group_name cannot be null');
+        if (is_null($customers)) {
+            throw new \InvalidArgumentException('non-nullable customers cannot be null');
         }
-        $this->container['group_name'] = $group_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets group_id
-     *
-     * @return string|null
-     */
-    public function getGroupId()
-    {
-        return $this->container['group_id'];
-    }
-
-    /**
-     * Sets group_id
-     *
-     * @param string|null $group_id group_id
-     *
-     * @return self
-     */
-    public function setGroupId($group_id)
-    {
-        if (is_null($group_id)) {
-            array_push($this->openAPINullablesSetToNull, 'group_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('group_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['group_id'] = $group_id;
+        $this->container['customers'] = $customers;
 
         return $this;
     }

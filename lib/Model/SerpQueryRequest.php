@@ -58,10 +58,7 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'post_back_url' => 'string',
-        'query' => 'string',
-        'country' => 'string',
-        'language' => 'string',
-        'location' => 'string'
+        'queries' => '\FlowHunt\Model\SerpKeyword[]'
     ];
 
     /**
@@ -73,10 +70,7 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'post_back_url' => null,
-        'query' => null,
-        'country' => null,
-        'language' => null,
-        'location' => null
+        'queries' => null
     ];
 
     /**
@@ -86,10 +80,7 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'post_back_url' => true,
-        'query' => true,
-        'country' => true,
-        'language' => true,
-        'location' => true
+        'queries' => false
     ];
 
     /**
@@ -179,10 +170,7 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'post_back_url' => 'post_back_url',
-        'query' => 'query',
-        'country' => 'country',
-        'language' => 'language',
-        'location' => 'location'
+        'queries' => 'queries'
     ];
 
     /**
@@ -192,10 +180,7 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'post_back_url' => 'setPostBackUrl',
-        'query' => 'setQuery',
-        'country' => 'setCountry',
-        'language' => 'setLanguage',
-        'location' => 'setLocation'
+        'queries' => 'setQueries'
     ];
 
     /**
@@ -205,10 +190,7 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'post_back_url' => 'getPostBackUrl',
-        'query' => 'getQuery',
-        'country' => 'getCountry',
-        'language' => 'getLanguage',
-        'location' => 'getLocation'
+        'queries' => 'getQueries'
     ];
 
     /**
@@ -269,10 +251,7 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('post_back_url', $data ?? [], null);
-        $this->setIfExists('query', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('language', $data ?? [], null);
-        $this->setIfExists('location', $data ?? [], null);
+        $this->setIfExists('queries', $data ?? [], null);
     }
 
     /**
@@ -302,6 +281,9 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['queries'] === null) {
+            $invalidProperties[] = "'queries' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -352,137 +334,28 @@ class SerpQueryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets query
+     * Gets queries
      *
-     * @return string|null
+     * @return \FlowHunt\Model\SerpKeyword[]
      */
-    public function getQuery()
+    public function getQueries()
     {
-        return $this->container['query'];
+        return $this->container['queries'];
     }
 
     /**
-     * Sets query
+     * Sets queries
      *
-     * @param string|null $query query
+     * @param \FlowHunt\Model\SerpKeyword[] $queries List of queries
      *
      * @return self
      */
-    public function setQuery($query)
+    public function setQueries($queries)
     {
-        if (is_null($query)) {
-            array_push($this->openAPINullablesSetToNull, 'query');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('query', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($queries)) {
+            throw new \InvalidArgumentException('non-nullable queries cannot be null');
         }
-        $this->container['query'] = $query;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     *
-     * @param string|null $country country
-     *
-     * @return self
-     */
-    public function setCountry($country)
-    {
-        if (is_null($country)) {
-            array_push($this->openAPINullablesSetToNull, 'country');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('country', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage()
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language language
-     *
-     * @return self
-     */
-    public function setLanguage($language)
-    {
-        if (is_null($language)) {
-            array_push($this->openAPINullablesSetToNull, 'language');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('language', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-
-    /**
-     * Gets location
-     *
-     * @return string|null
-     */
-    public function getLocation()
-    {
-        return $this->container['location'];
-    }
-
-    /**
-     * Sets location
-     *
-     * @param string|null $location location
-     *
-     * @return self
-     */
-    public function setLocation($location)
-    {
-        if (is_null($location)) {
-            array_push($this->openAPINullablesSetToNull, 'location');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('location', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['location'] = $location;
+        $this->container['queries'] = $queries;
 
         return $this;
     }

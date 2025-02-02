@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterQueryIntersectionsRequest
+ * GoogleAdsCampaignResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * SerpClusterQueryIntersectionsRequest Class Doc Comment
+ * GoogleAdsCampaignResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class GoogleAdsCampaignResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SerpClusterQueryIntersectionsRequest';
+    protected static $openAPIModelName = 'GoogleAdsCampaignResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,15 +57,17 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'post_back_url' => 'string',
-        'query' => 'string',
+        'workspace_id' => 'string',
+        'customer_id' => 'int',
+        'campaign_id' => 'int',
+        'campaign_name' => 'string',
+        'campaign_status' => '\FlowHunt\Model\GoogleAdsCampaignStatus',
+        'language_code' => 'string',
         'country' => 'string',
-        'language' => 'string',
-        'location' => 'string',
-        'group_name' => 'string',
-        'group_id' => 'string',
-        'live_mode' => 'bool',
-        'max_position' => 'int'
+        'min_queries' => 'int',
+        'cluster_strength' => 'int',
+        'last_update' => '\DateTime',
+        'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
     ];
 
     /**
@@ -76,15 +78,17 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'post_back_url' => null,
-        'query' => null,
+        'workspace_id' => null,
+        'customer_id' => null,
+        'campaign_id' => null,
+        'campaign_name' => null,
+        'campaign_status' => null,
+        'language_code' => null,
         'country' => null,
-        'language' => null,
-        'location' => null,
-        'group_name' => null,
-        'group_id' => null,
-        'live_mode' => null,
-        'max_position' => null
+        'min_queries' => null,
+        'cluster_strength' => null,
+        'last_update' => 'date-time',
+        'action_type' => null
     ];
 
     /**
@@ -93,15 +97,17 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'post_back_url' => true,
-        'query' => true,
+        'workspace_id' => false,
+        'customer_id' => false,
+        'campaign_id' => false,
+        'campaign_name' => false,
+        'campaign_status' => false,
+        'language_code' => true,
         'country' => true,
-        'language' => true,
-        'location' => true,
-        'group_name' => false,
-        'group_id' => true,
-        'live_mode' => true,
-        'max_position' => true
+        'min_queries' => true,
+        'cluster_strength' => true,
+        'last_update' => true,
+        'action_type' => false
     ];
 
     /**
@@ -190,15 +196,17 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'post_back_url' => 'post_back_url',
-        'query' => 'query',
+        'workspace_id' => 'workspace_id',
+        'customer_id' => 'customer_id',
+        'campaign_id' => 'campaign_id',
+        'campaign_name' => 'campaign_name',
+        'campaign_status' => 'campaign_status',
+        'language_code' => 'language_code',
         'country' => 'country',
-        'language' => 'language',
-        'location' => 'location',
-        'group_name' => 'group_name',
-        'group_id' => 'group_id',
-        'live_mode' => 'live_mode',
-        'max_position' => 'max_position'
+        'min_queries' => 'min_queries',
+        'cluster_strength' => 'cluster_strength',
+        'last_update' => 'last_update',
+        'action_type' => 'action_type'
     ];
 
     /**
@@ -207,15 +215,17 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'post_back_url' => 'setPostBackUrl',
-        'query' => 'setQuery',
+        'workspace_id' => 'setWorkspaceId',
+        'customer_id' => 'setCustomerId',
+        'campaign_id' => 'setCampaignId',
+        'campaign_name' => 'setCampaignName',
+        'campaign_status' => 'setCampaignStatus',
+        'language_code' => 'setLanguageCode',
         'country' => 'setCountry',
-        'language' => 'setLanguage',
-        'location' => 'setLocation',
-        'group_name' => 'setGroupName',
-        'group_id' => 'setGroupId',
-        'live_mode' => 'setLiveMode',
-        'max_position' => 'setMaxPosition'
+        'min_queries' => 'setMinQueries',
+        'cluster_strength' => 'setClusterStrength',
+        'last_update' => 'setLastUpdate',
+        'action_type' => 'setActionType'
     ];
 
     /**
@@ -224,15 +234,17 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'post_back_url' => 'getPostBackUrl',
-        'query' => 'getQuery',
+        'workspace_id' => 'getWorkspaceId',
+        'customer_id' => 'getCustomerId',
+        'campaign_id' => 'getCampaignId',
+        'campaign_name' => 'getCampaignName',
+        'campaign_status' => 'getCampaignStatus',
+        'language_code' => 'getLanguageCode',
         'country' => 'getCountry',
-        'language' => 'getLanguage',
-        'location' => 'getLocation',
-        'group_name' => 'getGroupName',
-        'group_id' => 'getGroupId',
-        'live_mode' => 'getLiveMode',
-        'max_position' => 'getMaxPosition'
+        'min_queries' => 'getMinQueries',
+        'cluster_strength' => 'getClusterStrength',
+        'last_update' => 'getLastUpdate',
+        'action_type' => 'getActionType'
     ];
 
     /**
@@ -292,15 +304,17 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('post_back_url', $data ?? [], null);
-        $this->setIfExists('query', $data ?? [], null);
+        $this->setIfExists('workspace_id', $data ?? [], null);
+        $this->setIfExists('customer_id', $data ?? [], null);
+        $this->setIfExists('campaign_id', $data ?? [], null);
+        $this->setIfExists('campaign_name', $data ?? [], null);
+        $this->setIfExists('campaign_status', $data ?? [], null);
+        $this->setIfExists('language_code', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('language', $data ?? [], null);
-        $this->setIfExists('location', $data ?? [], null);
-        $this->setIfExists('group_name', $data ?? [], '');
-        $this->setIfExists('group_id', $data ?? [], null);
-        $this->setIfExists('live_mode', $data ?? [], null);
-        $this->setIfExists('max_position', $data ?? [], null);
+        $this->setIfExists('min_queries', $data ?? [], null);
+        $this->setIfExists('cluster_strength', $data ?? [], null);
+        $this->setIfExists('last_update', $data ?? [], null);
+        $this->setIfExists('action_type', $data ?? [], null);
     }
 
     /**
@@ -330,6 +344,24 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
+        if ($this->container['workspace_id'] === null) {
+            $invalidProperties[] = "'workspace_id' can't be null";
+        }
+        if ($this->container['customer_id'] === null) {
+            $invalidProperties[] = "'customer_id' can't be null";
+        }
+        if ($this->container['campaign_id'] === null) {
+            $invalidProperties[] = "'campaign_id' can't be null";
+        }
+        if ($this->container['campaign_name'] === null) {
+            $invalidProperties[] = "'campaign_name' can't be null";
+        }
+        if ($this->container['campaign_status'] === null) {
+            $invalidProperties[] = "'campaign_status' can't be null";
+        }
+        if ($this->container['action_type'] === null) {
+            $invalidProperties[] = "'action_type' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -346,69 +378,170 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
 
 
     /**
-     * Gets post_back_url
+     * Gets workspace_id
      *
-     * @return string|null
+     * @return string
      */
-    public function getPostBackUrl()
+    public function getWorkspaceId()
     {
-        return $this->container['post_back_url'];
+        return $this->container['workspace_id'];
     }
 
     /**
-     * Sets post_back_url
+     * Sets workspace_id
      *
-     * @param string|null $post_back_url post_back_url
+     * @param string $workspace_id Workspace ID
      *
      * @return self
      */
-    public function setPostBackUrl($post_back_url)
+    public function setWorkspaceId($workspace_id)
     {
-        if (is_null($post_back_url)) {
-            array_push($this->openAPINullablesSetToNull, 'post_back_url');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('post_back_url', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($workspace_id)) {
+            throw new \InvalidArgumentException('non-nullable workspace_id cannot be null');
         }
-        $this->container['post_back_url'] = $post_back_url;
+        $this->container['workspace_id'] = $workspace_id;
 
         return $this;
     }
 
     /**
-     * Gets query
+     * Gets customer_id
      *
-     * @return string|null
+     * @return int
      */
-    public function getQuery()
+    public function getCustomerId()
     {
-        return $this->container['query'];
+        return $this->container['customer_id'];
     }
 
     /**
-     * Sets query
+     * Sets customer_id
      *
-     * @param string|null $query query
+     * @param int $customer_id Google Ads Customer ID
      *
      * @return self
      */
-    public function setQuery($query)
+    public function setCustomerId($customer_id)
     {
-        if (is_null($query)) {
-            array_push($this->openAPINullablesSetToNull, 'query');
+        if (is_null($customer_id)) {
+            throw new \InvalidArgumentException('non-nullable customer_id cannot be null');
+        }
+        $this->container['customer_id'] = $customer_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets campaign_id
+     *
+     * @return int
+     */
+    public function getCampaignId()
+    {
+        return $this->container['campaign_id'];
+    }
+
+    /**
+     * Sets campaign_id
+     *
+     * @param int $campaign_id Google Ads Campaign ID
+     *
+     * @return self
+     */
+    public function setCampaignId($campaign_id)
+    {
+        if (is_null($campaign_id)) {
+            throw new \InvalidArgumentException('non-nullable campaign_id cannot be null');
+        }
+        $this->container['campaign_id'] = $campaign_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets campaign_name
+     *
+     * @return string
+     */
+    public function getCampaignName()
+    {
+        return $this->container['campaign_name'];
+    }
+
+    /**
+     * Sets campaign_name
+     *
+     * @param string $campaign_name Google Ads Campaign Name
+     *
+     * @return self
+     */
+    public function setCampaignName($campaign_name)
+    {
+        if (is_null($campaign_name)) {
+            throw new \InvalidArgumentException('non-nullable campaign_name cannot be null');
+        }
+        $this->container['campaign_name'] = $campaign_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets campaign_status
+     *
+     * @return \FlowHunt\Model\GoogleAdsCampaignStatus
+     */
+    public function getCampaignStatus()
+    {
+        return $this->container['campaign_status'];
+    }
+
+    /**
+     * Sets campaign_status
+     *
+     * @param \FlowHunt\Model\GoogleAdsCampaignStatus $campaign_status Campaign Status
+     *
+     * @return self
+     */
+    public function setCampaignStatus($campaign_status)
+    {
+        if (is_null($campaign_status)) {
+            throw new \InvalidArgumentException('non-nullable campaign_status cannot be null');
+        }
+        $this->container['campaign_status'] = $campaign_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets language_code
+     *
+     * @return string|null
+     */
+    public function getLanguageCode()
+    {
+        return $this->container['language_code'];
+    }
+
+    /**
+     * Sets language_code
+     *
+     * @param string|null $language_code language_code
+     *
+     * @return self
+     */
+    public function setLanguageCode($language_code)
+    {
+        if (is_null($language_code)) {
+            array_push($this->openAPINullablesSetToNull, 'language_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('query', $nullablesSetToNull);
+            $index = array_search('language_code', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['query'] = $query;
+        $this->container['language_code'] = $language_code;
 
         return $this;
     }
@@ -448,198 +581,130 @@ class SerpClusterQueryIntersectionsRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage()
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language language
-     *
-     * @return self
-     */
-    public function setLanguage($language)
-    {
-        if (is_null($language)) {
-            array_push($this->openAPINullablesSetToNull, 'language');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('language', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-
-    /**
-     * Gets location
-     *
-     * @return string|null
-     */
-    public function getLocation()
-    {
-        return $this->container['location'];
-    }
-
-    /**
-     * Sets location
-     *
-     * @param string|null $location location
-     *
-     * @return self
-     */
-    public function setLocation($location)
-    {
-        if (is_null($location)) {
-            array_push($this->openAPINullablesSetToNull, 'location');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('location', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['location'] = $location;
-
-        return $this;
-    }
-
-    /**
-     * Gets group_name
-     *
-     * @return string|null
-     */
-    public function getGroupName()
-    {
-        return $this->container['group_name'];
-    }
-
-    /**
-     * Sets group_name
-     *
-     * @param string|null $group_name Group name of cluster
-     *
-     * @return self
-     */
-    public function setGroupName($group_name)
-    {
-        if (is_null($group_name)) {
-            throw new \InvalidArgumentException('non-nullable group_name cannot be null');
-        }
-        $this->container['group_name'] = $group_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets group_id
-     *
-     * @return string|null
-     */
-    public function getGroupId()
-    {
-        return $this->container['group_id'];
-    }
-
-    /**
-     * Sets group_id
-     *
-     * @param string|null $group_id group_id
-     *
-     * @return self
-     */
-    public function setGroupId($group_id)
-    {
-        if (is_null($group_id)) {
-            array_push($this->openAPINullablesSetToNull, 'group_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('group_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['group_id'] = $group_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets live_mode
-     *
-     * @return bool|null
-     */
-    public function getLiveMode()
-    {
-        return $this->container['live_mode'];
-    }
-
-    /**
-     * Sets live_mode
-     *
-     * @param bool|null $live_mode live_mode
-     *
-     * @return self
-     */
-    public function setLiveMode($live_mode)
-    {
-        if (is_null($live_mode)) {
-            array_push($this->openAPINullablesSetToNull, 'live_mode');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('live_mode', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['live_mode'] = $live_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets max_position
+     * Gets min_queries
      *
      * @return int|null
      */
-    public function getMaxPosition()
+    public function getMinQueries()
     {
-        return $this->container['max_position'];
+        return $this->container['min_queries'];
     }
 
     /**
-     * Sets max_position
+     * Sets min_queries
      *
-     * @param int|null $max_position max_position
+     * @param int|null $min_queries min_queries
      *
      * @return self
      */
-    public function setMaxPosition($max_position)
+    public function setMinQueries($min_queries)
     {
-        if (is_null($max_position)) {
-            array_push($this->openAPINullablesSetToNull, 'max_position');
+        if (is_null($min_queries)) {
+            array_push($this->openAPINullablesSetToNull, 'min_queries');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('max_position', $nullablesSetToNull);
+            $index = array_search('min_queries', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['max_position'] = $max_position;
+        $this->container['min_queries'] = $min_queries;
+
+        return $this;
+    }
+
+    /**
+     * Gets cluster_strength
+     *
+     * @return int|null
+     */
+    public function getClusterStrength()
+    {
+        return $this->container['cluster_strength'];
+    }
+
+    /**
+     * Sets cluster_strength
+     *
+     * @param int|null $cluster_strength cluster_strength
+     *
+     * @return self
+     */
+    public function setClusterStrength($cluster_strength)
+    {
+        if (is_null($cluster_strength)) {
+            array_push($this->openAPINullablesSetToNull, 'cluster_strength');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cluster_strength', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cluster_strength'] = $cluster_strength;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_update
+     *
+     * @return \DateTime|null
+     */
+    public function getLastUpdate()
+    {
+        return $this->container['last_update'];
+    }
+
+    /**
+     * Sets last_update
+     *
+     * @param \DateTime|null $last_update last_update
+     *
+     * @return self
+     */
+    public function setLastUpdate($last_update)
+    {
+        if (is_null($last_update)) {
+            array_push($this->openAPINullablesSetToNull, 'last_update');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_update', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_update'] = $last_update;
+
+        return $this;
+    }
+
+    /**
+     * Gets action_type
+     *
+     * @return \FlowHunt\Model\GoogleAdsActionType
+     */
+    public function getActionType()
+    {
+        return $this->container['action_type'];
+    }
+
+    /**
+     * Sets action_type
+     *
+     * @param \FlowHunt\Model\GoogleAdsActionType $action_type Action Type
+     *
+     * @return self
+     */
+    public function setActionType($action_type)
+    {
+        if (is_null($action_type)) {
+            throw new \InvalidArgumentException('non-nullable action_type cannot be null');
+        }
+        $this->container['action_type'] = $action_type;
 
         return $this;
     }

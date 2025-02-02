@@ -108,6 +108,18 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for createFlowCron
+     *
+     * Create Flow Cron.
+     *
+     */
+    public function testCreateFlowCron()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createFlowSession
      *
      * Create Flow Session.
@@ -150,6 +162,30 @@ class FlowsApiTest extends TestCase
      *
      */
     public function testDeleteFlowCategory()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteFlowCron
+     *
+     * Delete Flow Cron.
+     *
+     */
+    public function testDeleteFlowCron()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for executeFlowCron
+     *
+     * Execute Flow Cron.
+     *
+     */
+    public function testExecuteFlowCron()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -312,6 +348,18 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for searchFlowCrons
+     *
+     * Search Flow Crons.
+     *
+     */
+    public function testSearchFlowCrons()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for streamFlowResponse
      *
      * Stream Flow Response.
@@ -342,6 +390,18 @@ class FlowsApiTest extends TestCase
      *
      */
     public function testUpdateFlowCategory()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateFlowCron
+     *
+     * Update Flow Cron.
+     *
+     */
+    public function testUpdateFlowCron()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

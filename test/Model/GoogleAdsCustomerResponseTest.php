@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterQueryIntersectionsRequestTest
+ * GoogleAdsCustomerResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SerpClusterQueryIntersectionsRequestTest Class Doc Comment
+ * GoogleAdsCustomerResponseTest Class Doc Comment
  *
  * @category    Class
- * @description SerpClusterQueryIntersectionsRequest
+ * @description GoogleAdsCustomerResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SerpClusterQueryIntersectionsRequestTest extends TestCase
+class GoogleAdsCustomerResponseTest extends TestCase
 {
 
     /**
@@ -71,27 +71,45 @@ class SerpClusterQueryIntersectionsRequestTest extends TestCase
     }
 
     /**
-     * Test "SerpClusterQueryIntersectionsRequest"
+     * Test "GoogleAdsCustomerResponse"
      */
-    public function testSerpClusterQueryIntersectionsRequest()
+    public function testGoogleAdsCustomerResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "post_back_url"
+     * Test attribute "workspace_id"
      */
-    public function testPropertyPostBackUrl()
+    public function testPropertyWorkspaceId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "query"
+     * Test attribute "customer_id"
      */
-    public function testPropertyQuery()
+    public function testPropertyCustomerId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "customer_name"
+     */
+    public function testPropertyCustomerName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "language_code"
+     */
+    public function testPropertyLanguageCode()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,54 +125,36 @@ class SerpClusterQueryIntersectionsRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "language"
+     * Test attribute "min_queries"
      */
-    public function testPropertyLanguage()
+    public function testPropertyMinQueries()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "location"
+     * Test attribute "cluster_strength"
      */
-    public function testPropertyLocation()
+    public function testPropertyClusterStrength()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "group_name"
+     * Test attribute "last_update"
      */
-    public function testPropertyGroupName()
+    public function testPropertyLastUpdate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "group_id"
+     * Test attribute "action_type"
      */
-    public function testPropertyGroupId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "live_mode"
-     */
-    public function testPropertyLiveMode()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "max_position"
-     */
-    public function testPropertyMaxPosition()
+    public function testPropertyActionType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

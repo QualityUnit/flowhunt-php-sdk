@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterQueryResponseTest
+ * GoogleAdsCampaignResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SerpClusterQueryResponseTest Class Doc Comment
+ * GoogleAdsCampaignResponseTest Class Doc Comment
  *
  * @category    Class
- * @description SerpClusterQueryResponse
+ * @description GoogleAdsCampaignResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SerpClusterQueryResponseTest extends TestCase
+class GoogleAdsCampaignResponseTest extends TestCase
 {
 
     /**
@@ -71,27 +71,63 @@ class SerpClusterQueryResponseTest extends TestCase
     }
 
     /**
-     * Test "SerpClusterQueryResponse"
+     * Test "GoogleAdsCampaignResponse"
      */
-    public function testSerpClusterQueryResponse()
+    public function testGoogleAdsCampaignResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "query_id"
+     * Test attribute "workspace_id"
      */
-    public function testPropertyQueryId()
+    public function testPropertyWorkspaceId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "query"
+     * Test attribute "customer_id"
      */
-    public function testPropertyQuery()
+    public function testPropertyCustomerId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "campaign_id"
+     */
+    public function testPropertyCampaignId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "campaign_name"
+     */
+    public function testPropertyCampaignName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "campaign_status"
+     */
+    public function testPropertyCampaignStatus()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "language_code"
+     */
+    public function testPropertyLanguageCode()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,18 +143,36 @@ class SerpClusterQueryResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "language"
+     * Test attribute "min_queries"
      */
-    public function testPropertyLanguage()
+    public function testPropertyMinQueries()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "location"
+     * Test attribute "cluster_strength"
      */
-    public function testPropertyLocation()
+    public function testPropertyClusterStrength()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "last_update"
+     */
+    public function testPropertyLastUpdate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "action_type"
+     */
+    public function testPropertyActionType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

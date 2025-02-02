@@ -1,6 +1,6 @@
 <?php
 /**
- * SerpClusterAddGroupRequestTest
+ * GoogleAdsCampaignStatusTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SerpClusterAddGroupRequestTest Class Doc Comment
+ * GoogleAdsCampaignStatusTest Class Doc Comment
  *
  * @category    Class
- * @description SerpClusterAddGroupRequest
+ * @description The possible statuses of an ad group.
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SerpClusterAddGroupRequestTest extends TestCase
+class GoogleAdsCampaignStatusTest extends TestCase
 {
 
     /**
@@ -71,27 +71,9 @@ class SerpClusterAddGroupRequestTest extends TestCase
     }
 
     /**
-     * Test "SerpClusterAddGroupRequest"
+     * Test "GoogleAdsCampaignStatus"
      */
-    public function testSerpClusterAddGroupRequest()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "group_name"
-     */
-    public function testPropertyGroupName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "group_id"
-     */
-    public function testPropertyGroupId()
+    public function testGoogleAdsCampaignStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
