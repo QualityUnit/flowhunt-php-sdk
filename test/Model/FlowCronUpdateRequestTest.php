@@ -114,4 +114,13 @@ class FlowCronUpdateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "cron_name"
+     */
+    public function testPropertyCronName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

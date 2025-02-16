@@ -71,10 +71,7 @@ class GoogleApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getDriveDocumentDetail_0' => [
-            'application/json',
-        ],
-        'getDriveDocuments_0' => [
+        'getPickerToken_0' => [
             'application/json',
         ],
     ];
@@ -126,40 +123,38 @@ class GoogleApi
     }
 
     /**
-     * Operation getDriveDocumentDetail_0
+     * Operation getPickerToken_0
      *
-     * Get Drive Document Detail
+     * Get Picker Token
      *
-     * @param  string $document_id document_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocumentDetail_0'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPickerToken_0'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleDriveFileResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GooglePickerTokenResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getDriveDocumentDetail_0($document_id, $workspace_id, string $contentType = self::contentTypes['getDriveDocumentDetail_0'][0])
+    public function getPickerToken_0($workspace_id, string $contentType = self::contentTypes['getPickerToken_0'][0])
     {
-        list($response) = $this->getDriveDocumentDetail_0WithHttpInfo($document_id, $workspace_id, $contentType);
+        list($response) = $this->getPickerToken_0WithHttpInfo($workspace_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getDriveDocumentDetail_0WithHttpInfo
+     * Operation getPickerToken_0WithHttpInfo
      *
-     * Get Drive Document Detail
+     * Get Picker Token
      *
-     * @param  string $document_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocumentDetail_0'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPickerToken_0'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleDriveFileResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GooglePickerTokenResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getDriveDocumentDetail_0WithHttpInfo($document_id, $workspace_id, string $contentType = self::contentTypes['getDriveDocumentDetail_0'][0])
+    public function getPickerToken_0WithHttpInfo($workspace_id, string $contentType = self::contentTypes['getPickerToken_0'][0])
     {
-        $request = $this->getDriveDocumentDetail_0Request($document_id, $workspace_id, $contentType);
+        $request = $this->getPickerToken_0Request($workspace_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -186,11 +181,11 @@ class GoogleApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\GoogleDriveFileResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\GooglePickerTokenResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\GoogleDriveFileResponse' !== 'string') {
+                        if ('\FlowHunt\Model\GooglePickerTokenResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -208,7 +203,7 @@ class GoogleApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GoogleDriveFileResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GooglePickerTokenResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -254,7 +249,7 @@ class GoogleApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\GoogleDriveFileResponse';
+            $returnType = '\FlowHunt\Model\GooglePickerTokenResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -287,7 +282,7 @@ class GoogleApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleDriveFileResponse',
+                        '\FlowHunt\Model\GooglePickerTokenResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -306,20 +301,19 @@ class GoogleApi
     }
 
     /**
-     * Operation getDriveDocumentDetail_0Async
+     * Operation getPickerToken_0Async
      *
-     * Get Drive Document Detail
+     * Get Picker Token
      *
-     * @param  string $document_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocumentDetail_0'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPickerToken_0'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDriveDocumentDetail_0Async($document_id, $workspace_id, string $contentType = self::contentTypes['getDriveDocumentDetail_0'][0])
+    public function getPickerToken_0Async($workspace_id, string $contentType = self::contentTypes['getPickerToken_0'][0])
     {
-        return $this->getDriveDocumentDetail_0AsyncWithHttpInfo($document_id, $workspace_id, $contentType)
+        return $this->getPickerToken_0AsyncWithHttpInfo($workspace_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -328,21 +322,20 @@ class GoogleApi
     }
 
     /**
-     * Operation getDriveDocumentDetail_0AsyncWithHttpInfo
+     * Operation getPickerToken_0AsyncWithHttpInfo
      *
-     * Get Drive Document Detail
+     * Get Picker Token
      *
-     * @param  string $document_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocumentDetail_0'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPickerToken_0'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDriveDocumentDetail_0AsyncWithHttpInfo($document_id, $workspace_id, string $contentType = self::contentTypes['getDriveDocumentDetail_0'][0])
+    public function getPickerToken_0AsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getPickerToken_0'][0])
     {
-        $returnType = '\FlowHunt\Model\GoogleDriveFileResponse';
-        $request = $this->getDriveDocumentDetail_0Request($document_id, $workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\GooglePickerTokenResponse';
+        $request = $this->getPickerToken_0Request($workspace_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -381,34 +374,26 @@ class GoogleApi
     }
 
     /**
-     * Create request for operation 'getDriveDocumentDetail_0'
+     * Create request for operation 'getPickerToken_0'
      *
-     * @param  string $document_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocumentDetail_0'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPickerToken_0'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDriveDocumentDetail_0Request($document_id, $workspace_id, string $contentType = self::contentTypes['getDriveDocumentDetail_0'][0])
+    public function getPickerToken_0Request($workspace_id, string $contentType = self::contentTypes['getPickerToken_0'][0])
     {
-
-        // verify the required parameter 'document_id' is set
-        if ($document_id === null || (is_array($document_id) && count($document_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $document_id when calling getDriveDocumentDetail_0'
-            );
-        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getDriveDocumentDetail_0'
+                'Missing the required parameter $workspace_id when calling getPickerToken_0'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/google/drive/files/{document_id}';
+        $resourcePath = '/v2/integrations/google/picker_token';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -426,14 +411,6 @@ class GoogleApi
         ) ?? []);
 
 
-        // path params
-        if ($document_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'document_id' . '}',
-                ObjectSerializer::toPathValue($document_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -486,394 +463,7 @@ class GoogleApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getDriveDocuments_0
-     *
-     * Get Drive Documents
-     *
-     * @param  \FlowHunt\Model\IntegrationSlug $integration_slug integration_slug (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\GoogleDriveSearchQuery $google_drive_search_query google_drive_search_query (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocuments_0'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleDriveSearchResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function getDriveDocuments_0($integration_slug, $workspace_id, $google_drive_search_query, string $contentType = self::contentTypes['getDriveDocuments_0'][0])
-    {
-        list($response) = $this->getDriveDocuments_0WithHttpInfo($integration_slug, $workspace_id, $google_drive_search_query, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getDriveDocuments_0WithHttpInfo
-     *
-     * Get Drive Documents
-     *
-     * @param  \FlowHunt\Model\IntegrationSlug $integration_slug (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\GoogleDriveSearchQuery $google_drive_search_query (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocuments_0'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleDriveSearchResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getDriveDocuments_0WithHttpInfo($integration_slug, $workspace_id, $google_drive_search_query, string $contentType = self::contentTypes['getDriveDocuments_0'][0])
-    {
-        $request = $this->getDriveDocuments_0Request($integration_slug, $workspace_id, $google_drive_search_query, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\GoogleDriveSearchResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\GoogleDriveSearchResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GoogleDriveSearchResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\GoogleDriveSearchResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleDriveSearchResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getDriveDocuments_0Async
-     *
-     * Get Drive Documents
-     *
-     * @param  \FlowHunt\Model\IntegrationSlug $integration_slug (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\GoogleDriveSearchQuery $google_drive_search_query (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocuments_0'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getDriveDocuments_0Async($integration_slug, $workspace_id, $google_drive_search_query, string $contentType = self::contentTypes['getDriveDocuments_0'][0])
-    {
-        return $this->getDriveDocuments_0AsyncWithHttpInfo($integration_slug, $workspace_id, $google_drive_search_query, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getDriveDocuments_0AsyncWithHttpInfo
-     *
-     * Get Drive Documents
-     *
-     * @param  \FlowHunt\Model\IntegrationSlug $integration_slug (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\GoogleDriveSearchQuery $google_drive_search_query (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocuments_0'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getDriveDocuments_0AsyncWithHttpInfo($integration_slug, $workspace_id, $google_drive_search_query, string $contentType = self::contentTypes['getDriveDocuments_0'][0])
-    {
-        $returnType = '\FlowHunt\Model\GoogleDriveSearchResponse';
-        $request = $this->getDriveDocuments_0Request($integration_slug, $workspace_id, $google_drive_search_query, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getDriveDocuments_0'
-     *
-     * @param  \FlowHunt\Model\IntegrationSlug $integration_slug (required)
-     * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\GoogleDriveSearchQuery $google_drive_search_query (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveDocuments_0'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getDriveDocuments_0Request($integration_slug, $workspace_id, $google_drive_search_query, string $contentType = self::contentTypes['getDriveDocuments_0'][0])
-    {
-
-        // verify the required parameter 'integration_slug' is set
-        if ($integration_slug === null || (is_array($integration_slug) && count($integration_slug) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_slug when calling getDriveDocuments_0'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getDriveDocuments_0'
-            );
-        }
-
-        // verify the required parameter 'google_drive_search_query' is set
-        if ($google_drive_search_query === null || (is_array($google_drive_search_query) && count($google_drive_search_query) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $google_drive_search_query when calling getDriveDocuments_0'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/google/{integration_slug}/drive/files';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($integration_slug !== null) {
-            $resourcePath = str_replace(
-                '{' . 'integration_slug' . '}',
-                ObjectSerializer::toPathValue($integration_slug),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($google_drive_search_query)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($google_drive_search_query));
-            } else {
-                $httpBody = $google_drive_search_query;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

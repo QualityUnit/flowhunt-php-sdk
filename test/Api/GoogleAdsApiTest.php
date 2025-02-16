@@ -84,6 +84,30 @@ class GoogleAdsApiTest extends TestCase
     }
 
     /**
+     * Test case for getConversionTrackingCodeExamples
+     *
+     * Get Conversion Tracking Code Examples.
+     *
+     */
+    public function testGetConversionTrackingCodeExamples()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getConversionTrackingSettings
+     *
+     * Get Conversion Tracking Settings.
+     *
+     */
+    public function testGetConversionTrackingSettings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getGoogleAdsCampaigns
      *
      * Get Google Ads Campaigns.
@@ -120,12 +144,12 @@ class GoogleAdsApiTest extends TestCase
     }
 
     /**
-     * Test case for importAllGoogleAdsGroups
+     * Test case for getSourceTrackingCodeExamples
      *
-     * Import All Google Ads Groups.
+     * Get Source Tracking Code Examples.
      *
      */
-    public function testImportAllGoogleAdsGroups()
+    public function testGetSourceTrackingCodeExamples()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -162,6 +186,18 @@ class GoogleAdsApiTest extends TestCase
      *
      */
     public function testImportGoogleAdsGroups()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listConversionActions
+     *
+     * List Conversion Actions.
+     *
+     */
+    public function testListConversionActions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

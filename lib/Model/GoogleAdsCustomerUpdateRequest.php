@@ -61,6 +61,9 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
         'country' => 'string',
         'min_queries' => 'int',
         'cluster_strength' => 'int',
+        'min_impressions' => 'int',
+        'min_clicks' => 'int',
+        'cron_settings' => 'string',
         'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
     ];
 
@@ -76,6 +79,9 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
         'country' => null,
         'min_queries' => null,
         'cluster_strength' => null,
+        'min_impressions' => null,
+        'min_clicks' => null,
+        'cron_settings' => null,
         'action_type' => null
     ];
 
@@ -85,11 +91,14 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'language_code' => false,
-        'country' => false,
-        'min_queries' => false,
-        'cluster_strength' => false,
-        'action_type' => false
+        'language_code' => true,
+        'country' => true,
+        'min_queries' => true,
+        'cluster_strength' => true,
+        'min_impressions' => true,
+        'min_clicks' => true,
+        'cron_settings' => true,
+        'action_type' => true
     ];
 
     /**
@@ -182,6 +191,9 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
         'country' => 'country',
         'min_queries' => 'min_queries',
         'cluster_strength' => 'cluster_strength',
+        'min_impressions' => 'min_impressions',
+        'min_clicks' => 'min_clicks',
+        'cron_settings' => 'cron_settings',
         'action_type' => 'action_type'
     ];
 
@@ -195,6 +207,9 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
         'country' => 'setCountry',
         'min_queries' => 'setMinQueries',
         'cluster_strength' => 'setClusterStrength',
+        'min_impressions' => 'setMinImpressions',
+        'min_clicks' => 'setMinClicks',
+        'cron_settings' => 'setCronSettings',
         'action_type' => 'setActionType'
     ];
 
@@ -208,6 +223,9 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
         'country' => 'getCountry',
         'min_queries' => 'getMinQueries',
         'cluster_strength' => 'getClusterStrength',
+        'min_impressions' => 'getMinImpressions',
+        'min_clicks' => 'getMinClicks',
+        'cron_settings' => 'getCronSettings',
         'action_type' => 'getActionType'
     ];
 
@@ -272,6 +290,9 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('min_queries', $data ?? [], null);
         $this->setIfExists('cluster_strength', $data ?? [], null);
+        $this->setIfExists('min_impressions', $data ?? [], null);
+        $this->setIfExists('min_clicks', $data ?? [], null);
+        $this->setIfExists('cron_settings', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
     }
 
@@ -302,21 +323,6 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     {
         $invalidProperties = [];
 
-        if ($this->container['language_code'] === null) {
-            $invalidProperties[] = "'language_code' can't be null";
-        }
-        if ($this->container['country'] === null) {
-            $invalidProperties[] = "'country' can't be null";
-        }
-        if ($this->container['min_queries'] === null) {
-            $invalidProperties[] = "'min_queries' can't be null";
-        }
-        if ($this->container['cluster_strength'] === null) {
-            $invalidProperties[] = "'cluster_strength' can't be null";
-        }
-        if ($this->container['action_type'] === null) {
-            $invalidProperties[] = "'action_type' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -335,7 +341,7 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets language_code
      *
-     * @return string
+     * @return string|null
      */
     public function getLanguageCode()
     {
@@ -345,14 +351,21 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets language_code
      *
-     * @param string $language_code Language code
+     * @param string|null $language_code language_code
      *
      * @return self
      */
     public function setLanguageCode($language_code)
     {
         if (is_null($language_code)) {
-            throw new \InvalidArgumentException('non-nullable language_code cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'language_code');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('language_code', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['language_code'] = $language_code;
 
@@ -362,7 +375,7 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets country
      *
-     * @return string
+     * @return string|null
      */
     public function getCountry()
     {
@@ -372,14 +385,21 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets country
      *
-     * @param string $country Country
+     * @param string|null $country country
      *
      * @return self
      */
     public function setCountry($country)
     {
         if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'country');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('country', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['country'] = $country;
 
@@ -389,7 +409,7 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets min_queries
      *
-     * @return int
+     * @return int|null
      */
     public function getMinQueries()
     {
@@ -399,14 +419,21 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets min_queries
      *
-     * @param int $min_queries Min queries
+     * @param int|null $min_queries min_queries
      *
      * @return self
      */
     public function setMinQueries($min_queries)
     {
         if (is_null($min_queries)) {
-            throw new \InvalidArgumentException('non-nullable min_queries cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'min_queries');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('min_queries', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['min_queries'] = $min_queries;
 
@@ -416,7 +443,7 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets cluster_strength
      *
-     * @return int
+     * @return int|null
      */
     public function getClusterStrength()
     {
@@ -426,14 +453,21 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets cluster_strength
      *
-     * @param int $cluster_strength Cluster strength
+     * @param int|null $cluster_strength cluster_strength
      *
      * @return self
      */
     public function setClusterStrength($cluster_strength)
     {
         if (is_null($cluster_strength)) {
-            throw new \InvalidArgumentException('non-nullable cluster_strength cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'cluster_strength');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cluster_strength', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['cluster_strength'] = $cluster_strength;
 
@@ -441,9 +475,111 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
+     * Gets min_impressions
+     *
+     * @return int|null
+     */
+    public function getMinImpressions()
+    {
+        return $this->container['min_impressions'];
+    }
+
+    /**
+     * Sets min_impressions
+     *
+     * @param int|null $min_impressions min_impressions
+     *
+     * @return self
+     */
+    public function setMinImpressions($min_impressions)
+    {
+        if (is_null($min_impressions)) {
+            array_push($this->openAPINullablesSetToNull, 'min_impressions');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('min_impressions', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['min_impressions'] = $min_impressions;
+
+        return $this;
+    }
+
+    /**
+     * Gets min_clicks
+     *
+     * @return int|null
+     */
+    public function getMinClicks()
+    {
+        return $this->container['min_clicks'];
+    }
+
+    /**
+     * Sets min_clicks
+     *
+     * @param int|null $min_clicks min_clicks
+     *
+     * @return self
+     */
+    public function setMinClicks($min_clicks)
+    {
+        if (is_null($min_clicks)) {
+            array_push($this->openAPINullablesSetToNull, 'min_clicks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('min_clicks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['min_clicks'] = $min_clicks;
+
+        return $this;
+    }
+
+    /**
+     * Gets cron_settings
+     *
+     * @return string|null
+     */
+    public function getCronSettings()
+    {
+        return $this->container['cron_settings'];
+    }
+
+    /**
+     * Sets cron_settings
+     *
+     * @param string|null $cron_settings cron_settings
+     *
+     * @return self
+     */
+    public function setCronSettings($cron_settings)
+    {
+        if (is_null($cron_settings)) {
+            array_push($this->openAPINullablesSetToNull, 'cron_settings');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cron_settings', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cron_settings'] = $cron_settings;
+
+        return $this;
+    }
+
+    /**
      * Gets action_type
      *
-     * @return \FlowHunt\Model\GoogleAdsActionType
+     * @return \FlowHunt\Model\GoogleAdsActionType|null
      */
     public function getActionType()
     {
@@ -453,14 +589,21 @@ class GoogleAdsCustomerUpdateRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets action_type
      *
-     * @param \FlowHunt\Model\GoogleAdsActionType $action_type Action type
+     * @param \FlowHunt\Model\GoogleAdsActionType|null $action_type action_type
      *
      * @return self
      */
     public function setActionType($action_type)
     {
         if (is_null($action_type)) {
-            throw new \InvalidArgumentException('non-nullable action_type cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'action_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('action_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['action_type'] = $action_type;
 

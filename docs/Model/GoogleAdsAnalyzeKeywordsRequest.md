@@ -1,0 +1,11 @@
+# # GoogleAdsAnalyzeKeywordsRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**customer_id** | **int** |  | [optional]
+**campaign_id** | **int** |  | [optional]
+**group_id** | **int** |  | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

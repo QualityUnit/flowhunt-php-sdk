@@ -143,9 +143,45 @@ class GoogleAdsCustomerResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "min_impressions"
+     */
+    public function testPropertyMinImpressions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "min_clicks"
+     */
+    public function testPropertyMinClicks()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "last_update"
      */
     public function testPropertyLastUpdate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "next_update"
+     */
+    public function testPropertyNextUpdate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cron_settings"
+     */
+    public function testPropertyCronSettings()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

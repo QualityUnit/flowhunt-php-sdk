@@ -161,6 +161,15 @@ class YoutubeContentTest extends TestCase
     }
 
     /**
+     * Test attribute "apparent_encoding"
+     */
+    public function testPropertyApparentEncoding()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "description"
      */
     public function testPropertyDescription()

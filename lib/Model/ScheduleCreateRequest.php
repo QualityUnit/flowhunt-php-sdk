@@ -64,7 +64,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_browser' => '\FlowHunt\Model\BoolChar',
         'follow_links' => '\FlowHunt\Model\BoolChar',
         'with_proxy_rotation' => '\FlowHunt\Model\BoolChar',
-        'disallow_urls' => 'string'
+        'disallow_urls' => 'string',
+        'filter_urls' => 'string'
     ];
 
     /**
@@ -82,7 +83,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_browser' => null,
         'follow_links' => null,
         'with_proxy_rotation' => null,
-        'disallow_urls' => null
+        'disallow_urls' => null,
+        'filter_urls' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_browser' => true,
         'follow_links' => true,
         'with_proxy_rotation' => true,
-        'disallow_urls' => true
+        'disallow_urls' => true,
+        'filter_urls' => true
     ];
 
     /**
@@ -194,7 +197,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_browser' => 'with_browser',
         'follow_links' => 'follow_links',
         'with_proxy_rotation' => 'with_proxy_rotation',
-        'disallow_urls' => 'disallow_urls'
+        'disallow_urls' => 'disallow_urls',
+        'filter_urls' => 'filter_urls'
     ];
 
     /**
@@ -210,7 +214,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_browser' => 'setWithBrowser',
         'follow_links' => 'setFollowLinks',
         'with_proxy_rotation' => 'setWithProxyRotation',
-        'disallow_urls' => 'setDisallowUrls'
+        'disallow_urls' => 'setDisallowUrls',
+        'filter_urls' => 'setFilterUrls'
     ];
 
     /**
@@ -226,7 +231,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_browser' => 'getWithBrowser',
         'follow_links' => 'getFollowLinks',
         'with_proxy_rotation' => 'getWithProxyRotation',
-        'disallow_urls' => 'getDisallowUrls'
+        'disallow_urls' => 'getDisallowUrls',
+        'filter_urls' => 'getFilterUrls'
     ];
 
     /**
@@ -294,6 +300,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('follow_links', $data ?? [], null);
         $this->setIfExists('with_proxy_rotation', $data ?? [], null);
         $this->setIfExists('disallow_urls', $data ?? [], null);
+        $this->setIfExists('filter_urls', $data ?? [], null);
     }
 
     /**
@@ -594,6 +601,40 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['disallow_urls'] = $disallow_urls;
+
+        return $this;
+    }
+
+    /**
+     * Gets filter_urls
+     *
+     * @return string|null
+     */
+    public function getFilterUrls()
+    {
+        return $this->container['filter_urls'];
+    }
+
+    /**
+     * Sets filter_urls
+     *
+     * @param string|null $filter_urls filter_urls
+     *
+     * @return self
+     */
+    public function setFilterUrls($filter_urls)
+    {
+        if (is_null($filter_urls)) {
+            array_push($this->openAPINullablesSetToNull, 'filter_urls');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('filter_urls', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['filter_urls'] = $filter_urls;
 
         return $this;
     }

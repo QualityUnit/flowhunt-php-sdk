@@ -625,7 +625,7 @@ try {
 ## `serpClusterSplitToSubClusters()`
 
 ```php
-serpClusterSplitToSubClusters($workspace_id, $serp_cluster_group_sub_clusters_request): string[][]
+serpClusterSplitToSubClusters($workspace_id, $serp_cluster_group_sub_clusters_request): \FlowHunt\Model\SerpSubclusterKeywordsResponse[]
 ```
 
 Serp Cluster Split To Sub Clusters
@@ -672,7 +672,7 @@ try {
 
 ### Return type
 
-**string[][]**
+[**\FlowHunt\Model\SerpSubclusterKeywordsResponse[]**](../Model/SerpSubclusterKeywordsResponse.md)
 
 ### Authorization
 

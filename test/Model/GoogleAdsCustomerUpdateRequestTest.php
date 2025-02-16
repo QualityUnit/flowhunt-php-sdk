@@ -116,6 +116,33 @@ class GoogleAdsCustomerUpdateRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "min_impressions"
+     */
+    public function testPropertyMinImpressions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "min_clicks"
+     */
+    public function testPropertyMinClicks()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cron_settings"
+     */
+    public function testPropertyCronSettings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "action_type"
      */
     public function testPropertyActionType()

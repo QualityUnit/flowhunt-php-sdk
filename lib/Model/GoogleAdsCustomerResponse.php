@@ -64,7 +64,11 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'country' => 'string',
         'min_queries' => 'int',
         'cluster_strength' => 'int',
+        'min_impressions' => 'int',
+        'min_clicks' => 'int',
         'last_update' => '\DateTime',
+        'next_update' => '\DateTime',
+        'cron_settings' => 'string',
         'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
     ];
 
@@ -83,7 +87,11 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'country' => null,
         'min_queries' => null,
         'cluster_strength' => null,
+        'min_impressions' => null,
+        'min_clicks' => null,
         'last_update' => 'date-time',
+        'next_update' => 'date-time',
+        'cron_settings' => null,
         'action_type' => null
     ];
 
@@ -100,7 +108,11 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'country' => false,
         'min_queries' => false,
         'cluster_strength' => false,
+        'min_impressions' => false,
+        'min_clicks' => false,
         'last_update' => true,
+        'next_update' => true,
+        'cron_settings' => true,
         'action_type' => false
     ];
 
@@ -197,7 +209,11 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'country' => 'country',
         'min_queries' => 'min_queries',
         'cluster_strength' => 'cluster_strength',
+        'min_impressions' => 'min_impressions',
+        'min_clicks' => 'min_clicks',
         'last_update' => 'last_update',
+        'next_update' => 'next_update',
+        'cron_settings' => 'cron_settings',
         'action_type' => 'action_type'
     ];
 
@@ -214,7 +230,11 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'country' => 'setCountry',
         'min_queries' => 'setMinQueries',
         'cluster_strength' => 'setClusterStrength',
+        'min_impressions' => 'setMinImpressions',
+        'min_clicks' => 'setMinClicks',
         'last_update' => 'setLastUpdate',
+        'next_update' => 'setNextUpdate',
+        'cron_settings' => 'setCronSettings',
         'action_type' => 'setActionType'
     ];
 
@@ -231,7 +251,11 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'country' => 'getCountry',
         'min_queries' => 'getMinQueries',
         'cluster_strength' => 'getClusterStrength',
+        'min_impressions' => 'getMinImpressions',
+        'min_clicks' => 'getMinClicks',
         'last_update' => 'getLastUpdate',
+        'next_update' => 'getNextUpdate',
+        'cron_settings' => 'getCronSettings',
         'action_type' => 'getActionType'
     ];
 
@@ -299,7 +323,11 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('min_queries', $data ?? [], null);
         $this->setIfExists('cluster_strength', $data ?? [], null);
+        $this->setIfExists('min_impressions', $data ?? [], null);
+        $this->setIfExists('min_clicks', $data ?? [], null);
         $this->setIfExists('last_update', $data ?? [], null);
+        $this->setIfExists('next_update', $data ?? [], null);
+        $this->setIfExists('cron_settings', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
     }
 
@@ -350,6 +378,12 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         }
         if ($this->container['cluster_strength'] === null) {
             $invalidProperties[] = "'cluster_strength' can't be null";
+        }
+        if ($this->container['min_impressions'] === null) {
+            $invalidProperties[] = "'min_impressions' can't be null";
+        }
+        if ($this->container['min_clicks'] === null) {
+            $invalidProperties[] = "'min_clicks' can't be null";
         }
         if ($this->container['action_type'] === null) {
             $invalidProperties[] = "'action_type' can't be null";
@@ -559,6 +593,60 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Gets min_impressions
+     *
+     * @return int
+     */
+    public function getMinImpressions()
+    {
+        return $this->container['min_impressions'];
+    }
+
+    /**
+     * Sets min_impressions
+     *
+     * @param int $min_impressions Minimum Impressions
+     *
+     * @return self
+     */
+    public function setMinImpressions($min_impressions)
+    {
+        if (is_null($min_impressions)) {
+            throw new \InvalidArgumentException('non-nullable min_impressions cannot be null');
+        }
+        $this->container['min_impressions'] = $min_impressions;
+
+        return $this;
+    }
+
+    /**
+     * Gets min_clicks
+     *
+     * @return int
+     */
+    public function getMinClicks()
+    {
+        return $this->container['min_clicks'];
+    }
+
+    /**
+     * Sets min_clicks
+     *
+     * @param int $min_clicks Minimum Clicks
+     *
+     * @return self
+     */
+    public function setMinClicks($min_clicks)
+    {
+        if (is_null($min_clicks)) {
+            throw new \InvalidArgumentException('non-nullable min_clicks cannot be null');
+        }
+        $this->container['min_clicks'] = $min_clicks;
+
+        return $this;
+    }
+
+    /**
      * Gets last_update
      *
      * @return \DateTime|null
@@ -588,6 +676,74 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['last_update'] = $last_update;
+
+        return $this;
+    }
+
+    /**
+     * Gets next_update
+     *
+     * @return \DateTime|null
+     */
+    public function getNextUpdate()
+    {
+        return $this->container['next_update'];
+    }
+
+    /**
+     * Sets next_update
+     *
+     * @param \DateTime|null $next_update next_update
+     *
+     * @return self
+     */
+    public function setNextUpdate($next_update)
+    {
+        if (is_null($next_update)) {
+            array_push($this->openAPINullablesSetToNull, 'next_update');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('next_update', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['next_update'] = $next_update;
+
+        return $this;
+    }
+
+    /**
+     * Gets cron_settings
+     *
+     * @return string|null
+     */
+    public function getCronSettings()
+    {
+        return $this->container['cron_settings'];
+    }
+
+    /**
+     * Sets cron_settings
+     *
+     * @param string|null $cron_settings cron_settings
+     *
+     * @return self
+     */
+    public function setCronSettings($cron_settings)
+    {
+        if (is_null($cron_settings)) {
+            array_push($this->openAPINullablesSetToNull, 'cron_settings');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cron_settings', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cron_settings'] = $cron_settings;
 
         return $this;
     }

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **lang** | **string** |  | [optional]
 **content_type** | **string** |  | [optional]
 **encoding** | **string** |  | [optional]
+**apparent_encoding** | **string** |  | [optional]
 **description** | **string** |  | [optional]
 **content** | **mixed[][]** |  | [optional]
 **metadata** | **object** |  | [optional]

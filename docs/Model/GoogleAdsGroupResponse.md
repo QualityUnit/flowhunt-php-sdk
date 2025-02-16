@@ -14,7 +14,5 @@ Name | Type | Description | Notes
 **action_type** | [**\FlowHunt\Model\GoogleAdsActionType**](GoogleAdsActionType.md) | Action Type |
 **language_code** | **string** |  | [optional]
 **country** | **string** |  | [optional]
-**min_queries** | **int** |  | [optional]
-**cluster_strength** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

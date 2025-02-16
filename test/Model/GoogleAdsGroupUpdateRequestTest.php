@@ -98,24 +98,6 @@ class GoogleAdsGroupUpdateRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "min_queries"
-     */
-    public function testPropertyMinQueries()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "cluster_strength"
-     */
-    public function testPropertyClusterStrength()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "action_type"
      */
     public function testPropertyActionType()

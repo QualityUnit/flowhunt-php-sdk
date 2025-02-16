@@ -74,7 +74,19 @@ class FineTuningsApi
         'createImageFt' => [
             'application/json',
         ],
+        'deleteFileFt' => [
+            'application/json',
+        ],
         'deleteImageFt' => [
+            'application/json',
+        ],
+        'generateImages' => [
+            'application/json',
+        ],
+        'getFileFt' => [
+            'application/json',
+        ],
+        'getInferenceResults' => [
             'application/json',
         ],
         'handleReplicateWebhook' => [
@@ -83,7 +95,7 @@ class FineTuningsApi
         'searchImageFts' => [
             'application/json',
         ],
-        'trainImageFt' => [
+        'searchInferenceHistory' => [
             'application/json',
         ],
         'updateImageFt' => [
@@ -513,6 +525,379 @@ class FineTuningsApi
     }
 
     /**
+     * Operation deleteFileFt
+     *
+     * Delete File Ft
+     *
+     * @param  string $file_key file_key (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function deleteFileFt($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    {
+        list($response) = $this->deleteFileFtWithHttpInfo($file_key, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteFileFtWithHttpInfo
+     *
+     * Delete File Ft
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteFileFtWithHttpInfo($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    {
+        $request = $this->deleteFileFtRequest($file_key, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteFileFtAsync
+     *
+     * Delete File Ft
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteFileFtAsync($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    {
+        return $this->deleteFileFtAsyncWithHttpInfo($file_key, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteFileFtAsyncWithHttpInfo
+     *
+     * Delete File Ft
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteFileFtAsyncWithHttpInfo($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->deleteFileFtRequest($file_key, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteFileFt'
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteFileFtRequest($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    {
+
+        // verify the required parameter 'file_key' is set
+        if ($file_key === null || (is_array($file_key) && count($file_key) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file_key when calling deleteFileFt'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling deleteFileFt'
+            );
+        }
+
+
+        $resourcePath = '/v2/fine_tunings/files/{file_key}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($file_key !== null) {
+            $resourcePath = str_replace(
+                '{' . 'file_key' . '}',
+                ObjectSerializer::toPathValue($file_key),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteImageFt
      *
      * Delete Image Ft
@@ -879,6 +1264,1145 @@ class FineTuningsApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation generateImages
+     *
+     * Generate Images
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ImageInferenceRequest $image_inference_request image_inference_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateImages'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ImageInferenceScheduleResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function generateImages($workspace_id, $image_inference_request, string $contentType = self::contentTypes['generateImages'][0])
+    {
+        list($response) = $this->generateImagesWithHttpInfo($workspace_id, $image_inference_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation generateImagesWithHttpInfo
+     *
+     * Generate Images
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ImageInferenceRequest $image_inference_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateImages'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ImageInferenceScheduleResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function generateImagesWithHttpInfo($workspace_id, $image_inference_request, string $contentType = self::contentTypes['generateImages'][0])
+    {
+        $request = $this->generateImagesRequest($workspace_id, $image_inference_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\ImageInferenceScheduleResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\ImageInferenceScheduleResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ImageInferenceScheduleResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\ImageInferenceScheduleResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ImageInferenceScheduleResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation generateImagesAsync
+     *
+     * Generate Images
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ImageInferenceRequest $image_inference_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateImages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function generateImagesAsync($workspace_id, $image_inference_request, string $contentType = self::contentTypes['generateImages'][0])
+    {
+        return $this->generateImagesAsyncWithHttpInfo($workspace_id, $image_inference_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation generateImagesAsyncWithHttpInfo
+     *
+     * Generate Images
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ImageInferenceRequest $image_inference_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateImages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function generateImagesAsyncWithHttpInfo($workspace_id, $image_inference_request, string $contentType = self::contentTypes['generateImages'][0])
+    {
+        $returnType = '\FlowHunt\Model\ImageInferenceScheduleResponse';
+        $request = $this->generateImagesRequest($workspace_id, $image_inference_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'generateImages'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ImageInferenceRequest $image_inference_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateImages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function generateImagesRequest($workspace_id, $image_inference_request, string $contentType = self::contentTypes['generateImages'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling generateImages'
+            );
+        }
+
+        // verify the required parameter 'image_inference_request' is set
+        if ($image_inference_request === null || (is_array($image_inference_request) && count($image_inference_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $image_inference_request when calling generateImages'
+            );
+        }
+
+
+        $resourcePath = '/v2/fine_tunings/inference/images';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($image_inference_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($image_inference_request));
+            } else {
+                $httpBody = $image_inference_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getFileFt
+     *
+     * Get File Ft
+     *
+     * @param  string $file_key file_key (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type file_type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFileFt'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getFileFt($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['getFileFt'][0])
+    {
+        list($response) = $this->getFileFtWithHttpInfo($file_key, $workspace_id, $file_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getFileFtWithHttpInfo
+     *
+     * Get File Ft
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFileFt'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getFileFtWithHttpInfo($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['getFileFt'][0])
+    {
+        $request = $this->getFileFtRequest($file_key, $workspace_id, $file_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getFileFtAsync
+     *
+     * Get File Ft
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFileFt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getFileFtAsync($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['getFileFt'][0])
+    {
+        return $this->getFileFtAsyncWithHttpInfo($file_key, $workspace_id, $file_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getFileFtAsyncWithHttpInfo
+     *
+     * Get File Ft
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFileFt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getFileFtAsyncWithHttpInfo($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['getFileFt'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->getFileFtRequest($file_key, $workspace_id, $file_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getFileFt'
+     *
+     * @param  string $file_key (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFileFt'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getFileFtRequest($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['getFileFt'][0])
+    {
+
+        // verify the required parameter 'file_key' is set
+        if ($file_key === null || (is_array($file_key) && count($file_key) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file_key when calling getFileFt'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getFileFt'
+            );
+        }
+
+        // verify the required parameter 'file_type' is set
+        if ($file_type === null || (is_array($file_type) && count($file_type) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file_type when calling getFileFt'
+            );
+        }
+
+
+        $resourcePath = '/v2/fine_tunings/files/{file_key}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $file_type,
+            'file_type', // param base name
+            'InferenceFileType', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($file_key !== null) {
+            $resourcePath = str_replace(
+                '{' . 'file_key' . '}',
+                ObjectSerializer::toPathValue($file_key),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getInferenceResults
+     *
+     * Get Inference Results
+     *
+     * @param  string $inference_id inference_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInferenceResults'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ImageInferenceResultResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getInferenceResults($inference_id, $workspace_id, string $contentType = self::contentTypes['getInferenceResults'][0])
+    {
+        list($response) = $this->getInferenceResultsWithHttpInfo($inference_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getInferenceResultsWithHttpInfo
+     *
+     * Get Inference Results
+     *
+     * @param  string $inference_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInferenceResults'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ImageInferenceResultResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getInferenceResultsWithHttpInfo($inference_id, $workspace_id, string $contentType = self::contentTypes['getInferenceResults'][0])
+    {
+        $request = $this->getInferenceResultsRequest($inference_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\ImageInferenceResultResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\ImageInferenceResultResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ImageInferenceResultResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\ImageInferenceResultResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ImageInferenceResultResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getInferenceResultsAsync
+     *
+     * Get Inference Results
+     *
+     * @param  string $inference_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInferenceResults'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getInferenceResultsAsync($inference_id, $workspace_id, string $contentType = self::contentTypes['getInferenceResults'][0])
+    {
+        return $this->getInferenceResultsAsyncWithHttpInfo($inference_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getInferenceResultsAsyncWithHttpInfo
+     *
+     * Get Inference Results
+     *
+     * @param  string $inference_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInferenceResults'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getInferenceResultsAsyncWithHttpInfo($inference_id, $workspace_id, string $contentType = self::contentTypes['getInferenceResults'][0])
+    {
+        $returnType = '\FlowHunt\Model\ImageInferenceResultResponse';
+        $request = $this->getInferenceResultsRequest($inference_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getInferenceResults'
+     *
+     * @param  string $inference_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInferenceResults'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getInferenceResultsRequest($inference_id, $workspace_id, string $contentType = self::contentTypes['getInferenceResults'][0])
+    {
+
+        // verify the required parameter 'inference_id' is set
+        if ($inference_id === null || (is_array($inference_id) && count($inference_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $inference_id when calling getInferenceResults'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getInferenceResults'
+            );
+        }
+
+
+        $resourcePath = '/v2/fine_tunings/inference/results/{inference_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($inference_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'inference_id' . '}',
+                ObjectSerializer::toPathValue($inference_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -1623,42 +3147,40 @@ class FineTuningsApi
     }
 
     /**
-     * Operation trainImageFt
+     * Operation searchInferenceHistory
      *
-     * Train Image Ft
+     * Search Inference History
      *
-     * @param  string $ft_id ft_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  \FlowHunt\Model\ImageFTTrainRequest $image_ft_train_request image_ft_train_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trainImageFt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\InferenceHistorySearchRequest $inference_history_search_request inference_history_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchInferenceHistory'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ImageFTResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\ImageInferenceResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function trainImageFt($ft_id, $workspace_id, $image_ft_train_request, string $contentType = self::contentTypes['trainImageFt'][0])
+    public function searchInferenceHistory($workspace_id, $inference_history_search_request, string $contentType = self::contentTypes['searchInferenceHistory'][0])
     {
-        list($response) = $this->trainImageFtWithHttpInfo($ft_id, $workspace_id, $image_ft_train_request, $contentType);
+        list($response) = $this->searchInferenceHistoryWithHttpInfo($workspace_id, $inference_history_search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation trainImageFtWithHttpInfo
+     * Operation searchInferenceHistoryWithHttpInfo
      *
-     * Train Image Ft
+     * Search Inference History
      *
-     * @param  string $ft_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ImageFTTrainRequest $image_ft_train_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trainImageFt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\InferenceHistorySearchRequest $inference_history_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchInferenceHistory'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ImageFTResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\ImageInferenceResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function trainImageFtWithHttpInfo($ft_id, $workspace_id, $image_ft_train_request, string $contentType = self::contentTypes['trainImageFt'][0])
+    public function searchInferenceHistoryWithHttpInfo($workspace_id, $inference_history_search_request, string $contentType = self::contentTypes['searchInferenceHistory'][0])
     {
-        $request = $this->trainImageFtRequest($ft_id, $workspace_id, $image_ft_train_request, $contentType);
+        $request = $this->searchInferenceHistoryRequest($workspace_id, $inference_history_search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1685,11 +3207,11 @@ class FineTuningsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\ImageFTResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\ImageInferenceResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ImageFTResponse' !== 'string') {
+                        if ('\FlowHunt\Model\ImageInferenceResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1707,7 +3229,7 @@ class FineTuningsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ImageFTResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ImageInferenceResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1753,7 +3275,7 @@ class FineTuningsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\ImageFTResponse';
+            $returnType = '\FlowHunt\Model\ImageInferenceResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1786,7 +3308,7 @@ class FineTuningsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\ImageFTResponse',
+                        '\FlowHunt\Model\ImageInferenceResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1805,21 +3327,20 @@ class FineTuningsApi
     }
 
     /**
-     * Operation trainImageFtAsync
+     * Operation searchInferenceHistoryAsync
      *
-     * Train Image Ft
+     * Search Inference History
      *
-     * @param  string $ft_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ImageFTTrainRequest $image_ft_train_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trainImageFt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\InferenceHistorySearchRequest $inference_history_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchInferenceHistory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function trainImageFtAsync($ft_id, $workspace_id, $image_ft_train_request, string $contentType = self::contentTypes['trainImageFt'][0])
+    public function searchInferenceHistoryAsync($workspace_id, $inference_history_search_request, string $contentType = self::contentTypes['searchInferenceHistory'][0])
     {
-        return $this->trainImageFtAsyncWithHttpInfo($ft_id, $workspace_id, $image_ft_train_request, $contentType)
+        return $this->searchInferenceHistoryAsyncWithHttpInfo($workspace_id, $inference_history_search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1828,22 +3349,21 @@ class FineTuningsApi
     }
 
     /**
-     * Operation trainImageFtAsyncWithHttpInfo
+     * Operation searchInferenceHistoryAsyncWithHttpInfo
      *
-     * Train Image Ft
+     * Search Inference History
      *
-     * @param  string $ft_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ImageFTTrainRequest $image_ft_train_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trainImageFt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\InferenceHistorySearchRequest $inference_history_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchInferenceHistory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function trainImageFtAsyncWithHttpInfo($ft_id, $workspace_id, $image_ft_train_request, string $contentType = self::contentTypes['trainImageFt'][0])
+    public function searchInferenceHistoryAsyncWithHttpInfo($workspace_id, $inference_history_search_request, string $contentType = self::contentTypes['searchInferenceHistory'][0])
     {
-        $returnType = '\FlowHunt\Model\ImageFTResponse';
-        $request = $this->trainImageFtRequest($ft_id, $workspace_id, $image_ft_train_request, $contentType);
+        $returnType = '\FlowHunt\Model\ImageInferenceResponse[]';
+        $request = $this->searchInferenceHistoryRequest($workspace_id, $inference_history_search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1882,42 +3402,34 @@ class FineTuningsApi
     }
 
     /**
-     * Create request for operation 'trainImageFt'
+     * Create request for operation 'searchInferenceHistory'
      *
-     * @param  string $ft_id (required)
      * @param  string $workspace_id (required)
-     * @param  \FlowHunt\Model\ImageFTTrainRequest $image_ft_train_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trainImageFt'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\InferenceHistorySearchRequest $inference_history_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchInferenceHistory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function trainImageFtRequest($ft_id, $workspace_id, $image_ft_train_request, string $contentType = self::contentTypes['trainImageFt'][0])
+    public function searchInferenceHistoryRequest($workspace_id, $inference_history_search_request, string $contentType = self::contentTypes['searchInferenceHistory'][0])
     {
-
-        // verify the required parameter 'ft_id' is set
-        if ($ft_id === null || (is_array($ft_id) && count($ft_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $ft_id when calling trainImageFt'
-            );
-        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling trainImageFt'
+                'Missing the required parameter $workspace_id when calling searchInferenceHistory'
             );
         }
 
-        // verify the required parameter 'image_ft_train_request' is set
-        if ($image_ft_train_request === null || (is_array($image_ft_train_request) && count($image_ft_train_request) === 0)) {
+        // verify the required parameter 'inference_history_search_request' is set
+        if ($inference_history_search_request === null || (is_array($inference_history_search_request) && count($inference_history_search_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $image_ft_train_request when calling trainImageFt'
+                'Missing the required parameter $inference_history_search_request when calling searchInferenceHistory'
             );
         }
 
 
-        $resourcePath = '/v2/fine_tunings/images/{ft_id}/train';
+        $resourcePath = '/v2/fine_tunings/inference/history';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1935,14 +3447,6 @@ class FineTuningsApi
         ) ?? []);
 
 
-        // path params
-        if ($ft_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'ft_id' . '}',
-                ObjectSerializer::toPathValue($ft_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1952,12 +3456,12 @@ class FineTuningsApi
         );
 
         // for model (json/xml)
-        if (isset($image_ft_train_request)) {
+        if (isset($inference_history_search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($image_ft_train_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($inference_history_search_request));
             } else {
-                $httpBody = $image_ft_train_request;
+                $httpBody = $inference_history_search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2411,18 +3915,18 @@ class FineTuningsApi
      *
      * Upload Image Ft
      *
-     * @param  string $ft_id ft_id (required)
+     * @param  \FlowHunt\Model\FTType $ft_type ft_type (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  \SplFileObject $file file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadImageFt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\ImageFTResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\FileUploadResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function uploadImageFt($ft_id, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
+    public function uploadImageFt($ft_type, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
     {
-        list($response) = $this->uploadImageFtWithHttpInfo($ft_id, $workspace_id, $file, $contentType);
+        list($response) = $this->uploadImageFtWithHttpInfo($ft_type, $workspace_id, $file, $contentType);
         return $response;
     }
 
@@ -2431,18 +3935,18 @@ class FineTuningsApi
      *
      * Upload Image Ft
      *
-     * @param  string $ft_id (required)
+     * @param  \FlowHunt\Model\FTType $ft_type (required)
      * @param  string $workspace_id (required)
      * @param  \SplFileObject $file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadImageFt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\ImageFTResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\FileUploadResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function uploadImageFtWithHttpInfo($ft_id, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
+    public function uploadImageFtWithHttpInfo($ft_type, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
     {
-        $request = $this->uploadImageFtRequest($ft_id, $workspace_id, $file, $contentType);
+        $request = $this->uploadImageFtRequest($ft_type, $workspace_id, $file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2469,11 +3973,11 @@ class FineTuningsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\ImageFTResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\FileUploadResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\ImageFTResponse' !== 'string') {
+                        if ('\FlowHunt\Model\FileUploadResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2491,7 +3995,7 @@ class FineTuningsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\ImageFTResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\FileUploadResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2537,7 +4041,7 @@ class FineTuningsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\ImageFTResponse';
+            $returnType = '\FlowHunt\Model\FileUploadResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2570,7 +4074,7 @@ class FineTuningsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\ImageFTResponse',
+                        '\FlowHunt\Model\FileUploadResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2593,7 +4097,7 @@ class FineTuningsApi
      *
      * Upload Image Ft
      *
-     * @param  string $ft_id (required)
+     * @param  \FlowHunt\Model\FTType $ft_type (required)
      * @param  string $workspace_id (required)
      * @param  \SplFileObject $file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadImageFt'] to see the possible values for this operation
@@ -2601,9 +4105,9 @@ class FineTuningsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadImageFtAsync($ft_id, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
+    public function uploadImageFtAsync($ft_type, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
     {
-        return $this->uploadImageFtAsyncWithHttpInfo($ft_id, $workspace_id, $file, $contentType)
+        return $this->uploadImageFtAsyncWithHttpInfo($ft_type, $workspace_id, $file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2616,7 +4120,7 @@ class FineTuningsApi
      *
      * Upload Image Ft
      *
-     * @param  string $ft_id (required)
+     * @param  \FlowHunt\Model\FTType $ft_type (required)
      * @param  string $workspace_id (required)
      * @param  \SplFileObject $file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadImageFt'] to see the possible values for this operation
@@ -2624,10 +4128,10 @@ class FineTuningsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadImageFtAsyncWithHttpInfo($ft_id, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
+    public function uploadImageFtAsyncWithHttpInfo($ft_type, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
     {
-        $returnType = '\FlowHunt\Model\ImageFTResponse';
-        $request = $this->uploadImageFtRequest($ft_id, $workspace_id, $file, $contentType);
+        $returnType = '\FlowHunt\Model\FileUploadResponse';
+        $request = $this->uploadImageFtRequest($ft_type, $workspace_id, $file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2668,7 +4172,7 @@ class FineTuningsApi
     /**
      * Create request for operation 'uploadImageFt'
      *
-     * @param  string $ft_id (required)
+     * @param  \FlowHunt\Model\FTType $ft_type (required)
      * @param  string $workspace_id (required)
      * @param  \SplFileObject $file (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadImageFt'] to see the possible values for this operation
@@ -2676,13 +4180,13 @@ class FineTuningsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function uploadImageFtRequest($ft_id, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
+    public function uploadImageFtRequest($ft_type, $workspace_id, $file, string $contentType = self::contentTypes['uploadImageFt'][0])
     {
 
-        // verify the required parameter 'ft_id' is set
-        if ($ft_id === null || (is_array($ft_id) && count($ft_id) === 0)) {
+        // verify the required parameter 'ft_type' is set
+        if ($ft_type === null || (is_array($ft_type) && count($ft_type) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $ft_id when calling uploadImageFt'
+                'Missing the required parameter $ft_type when calling uploadImageFt'
             );
         }
 
@@ -2701,7 +4205,7 @@ class FineTuningsApi
         }
 
 
-        $resourcePath = '/v2/fine_tunings/images/{ft_id}/upload';
+        $resourcePath = '/v2/fine_tunings/files/{ft_type}/upload';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2720,10 +4224,10 @@ class FineTuningsApi
 
 
         // path params
-        if ($ft_id !== null) {
+        if ($ft_type !== null) {
             $resourcePath = str_replace(
-                '{' . 'ft_id' . '}',
-                ObjectSerializer::toPathValue($ft_id),
+                '{' . 'ft_type' . '}',
+                ObjectSerializer::toPathValue($ft_type),
                 $resourcePath
             );
         }

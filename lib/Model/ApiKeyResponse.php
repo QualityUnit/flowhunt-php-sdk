@@ -61,7 +61,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_id' => 'string',
         'display_name' => 'string',
         'mask' => 'string',
-        'last_used' => '\DateTime'
+        'last_used' => '\DateTime',
+        'valid_to' => '\DateTime'
     ];
 
     /**
@@ -76,7 +77,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_id' => null,
         'display_name' => null,
         'mask' => null,
-        'last_used' => 'date-time'
+        'last_used' => 'date-time',
+        'valid_to' => 'date-time'
     ];
 
     /**
@@ -89,7 +91,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_id' => false,
         'display_name' => false,
         'mask' => false,
-        'last_used' => true
+        'last_used' => true,
+        'valid_to' => true
     ];
 
     /**
@@ -182,7 +185,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_id' => 'api_key_id',
         'display_name' => 'display_name',
         'mask' => 'mask',
-        'last_used' => 'last_used'
+        'last_used' => 'last_used',
+        'valid_to' => 'valid_to'
     ];
 
     /**
@@ -195,7 +199,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_id' => 'setApiKeyId',
         'display_name' => 'setDisplayName',
         'mask' => 'setMask',
-        'last_used' => 'setLastUsed'
+        'last_used' => 'setLastUsed',
+        'valid_to' => 'setValidTo'
     ];
 
     /**
@@ -208,7 +213,8 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_id' => 'getApiKeyId',
         'display_name' => 'getDisplayName',
         'mask' => 'getMask',
-        'last_used' => 'getLastUsed'
+        'last_used' => 'getLastUsed',
+        'valid_to' => 'getValidTo'
     ];
 
     /**
@@ -273,6 +279,7 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('display_name', $data ?? [], null);
         $this->setIfExists('mask', $data ?? [], null);
         $this->setIfExists('last_used', $data ?? [], null);
+        $this->setIfExists('valid_to', $data ?? [], null);
     }
 
     /**
@@ -467,6 +474,40 @@ class ApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['last_used'] = $last_used;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_to
+     *
+     * @return \DateTime|null
+     */
+    public function getValidTo()
+    {
+        return $this->container['valid_to'];
+    }
+
+    /**
+     * Sets valid_to
+     *
+     * @param \DateTime|null $valid_to valid_to
+     *
+     * @return self
+     */
+    public function setValidTo($valid_to)
+    {
+        if (is_null($valid_to)) {
+            array_push($this->openAPINullablesSetToNull, 'valid_to');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('valid_to', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['valid_to'] = $valid_to;
 
         return $this;
     }

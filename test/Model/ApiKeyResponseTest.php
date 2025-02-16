@@ -123,4 +123,13 @@ class ApiKeyResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "valid_to"
+     */
+    public function testPropertyValidTo()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

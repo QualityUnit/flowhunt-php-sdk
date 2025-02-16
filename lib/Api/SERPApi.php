@@ -3700,7 +3700,7 @@ class SERPApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return string[][]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\SerpSubclusterKeywordsResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function serpClusterSplitToSubClusters($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
     {
@@ -3719,7 +3719,7 @@ class SERPApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of string[][]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\SerpSubclusterKeywordsResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function serpClusterSplitToSubClustersWithHttpInfo($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
     {
@@ -3750,11 +3750,11 @@ class SERPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('string[][]' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\SerpSubclusterKeywordsResponse[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('string[][]' !== 'string') {
+                        if ('\FlowHunt\Model\SerpSubclusterKeywordsResponse[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3772,7 +3772,7 @@ class SERPApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'string[][]', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\SerpSubclusterKeywordsResponse[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3818,7 +3818,7 @@ class SERPApi
                 );
             }
 
-            $returnType = 'string[][]';
+            $returnType = '\FlowHunt\Model\SerpSubclusterKeywordsResponse[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3851,7 +3851,7 @@ class SERPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'string[][]',
+                        '\FlowHunt\Model\SerpSubclusterKeywordsResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3905,7 +3905,7 @@ class SERPApi
      */
     public function serpClusterSplitToSubClustersAsyncWithHttpInfo($workspace_id, $serp_cluster_group_sub_clusters_request, string $contentType = self::contentTypes['serpClusterSplitToSubClusters'][0])
     {
-        $returnType = 'string[][]';
+        $returnType = '\FlowHunt\Model\SerpSubclusterKeywordsResponse[]';
         $request = $this->serpClusterSplitToSubClustersRequest($workspace_id, $serp_cluster_group_sub_clusters_request, $contentType);
 
         return $this->client

@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **input_text** | **string** |  | [optional]
 **interval_settings** | **string** |  |
 **variables** | **object** |  | [optional]
+**cron_name** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

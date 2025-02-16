@@ -59,8 +59,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'language_code' => 'string',
         'country' => 'string',
-        'min_queries' => 'int',
-        'cluster_strength' => 'int',
         'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
     ];
 
@@ -74,8 +72,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'language_code' => null,
         'country' => null,
-        'min_queries' => null,
-        'cluster_strength' => null,
         'action_type' => null
     ];
 
@@ -87,8 +83,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'language_code' => true,
         'country' => true,
-        'min_queries' => true,
-        'cluster_strength' => true,
         'action_type' => true
     ];
 
@@ -180,8 +174,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'language_code' => 'language_code',
         'country' => 'country',
-        'min_queries' => 'min_queries',
-        'cluster_strength' => 'cluster_strength',
         'action_type' => 'action_type'
     ];
 
@@ -193,8 +185,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'language_code' => 'setLanguageCode',
         'country' => 'setCountry',
-        'min_queries' => 'setMinQueries',
-        'cluster_strength' => 'setClusterStrength',
         'action_type' => 'setActionType'
     ];
 
@@ -206,8 +196,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'language_code' => 'getLanguageCode',
         'country' => 'getCountry',
-        'min_queries' => 'getMinQueries',
-        'cluster_strength' => 'getClusterStrength',
         'action_type' => 'getActionType'
     ];
 
@@ -270,8 +258,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $this->setIfExists('language_code', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('min_queries', $data ?? [], null);
-        $this->setIfExists('cluster_strength', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
     }
 
@@ -307,12 +293,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         }
         if ($this->container['country'] === null) {
             $invalidProperties[] = "'country' can't be null";
-        }
-        if ($this->container['min_queries'] === null) {
-            $invalidProperties[] = "'min_queries' can't be null";
-        }
-        if ($this->container['cluster_strength'] === null) {
-            $invalidProperties[] = "'cluster_strength' can't be null";
         }
         if ($this->container['action_type'] === null) {
             $invalidProperties[] = "'action_type' can't be null";
@@ -396,74 +376,6 @@ class GoogleAdsGroupUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets min_queries
-     *
-     * @return int
-     */
-    public function getMinQueries()
-    {
-        return $this->container['min_queries'];
-    }
-
-    /**
-     * Sets min_queries
-     *
-     * @param int $min_queries min_queries
-     *
-     * @return self
-     */
-    public function setMinQueries($min_queries)
-    {
-        if (is_null($min_queries)) {
-            array_push($this->openAPINullablesSetToNull, 'min_queries');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('min_queries', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['min_queries'] = $min_queries;
-
-        return $this;
-    }
-
-    /**
-     * Gets cluster_strength
-     *
-     * @return int
-     */
-    public function getClusterStrength()
-    {
-        return $this->container['cluster_strength'];
-    }
-
-    /**
-     * Sets cluster_strength
-     *
-     * @param int $cluster_strength cluster_strength
-     *
-     * @return self
-     */
-    public function setClusterStrength($cluster_strength)
-    {
-        if (is_null($cluster_strength)) {
-            array_push($this->openAPINullablesSetToNull, 'cluster_strength');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cluster_strength', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['cluster_strength'] = $cluster_strength;
 
         return $this;
     }

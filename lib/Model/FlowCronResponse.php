@@ -65,7 +65,8 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => '\FlowHunt\Model\FlowCronStatus',
         'input_text' => 'string',
         'interval_settings' => 'string',
-        'variables' => 'object'
+        'variables' => 'object',
+        'cron_name' => 'string'
     ];
 
     /**
@@ -76,14 +77,15 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'flow_id' => 'uuid',
-        'cron_id' => 'uuid',
+        'flow_id' => null,
+        'cron_id' => null,
         'last_run' => 'date-time',
         'next_run' => 'date-time',
         'status' => null,
         'input_text' => null,
         'interval_settings' => null,
-        'variables' => null
+        'variables' => null,
+        'cron_name' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => false,
         'input_text' => true,
         'interval_settings' => false,
-        'variables' => true
+        'variables' => true,
+        'cron_name' => false
     ];
 
     /**
@@ -195,7 +198,8 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'status',
         'input_text' => 'input_text',
         'interval_settings' => 'interval_settings',
-        'variables' => 'variables'
+        'variables' => 'variables',
+        'cron_name' => 'cron_name'
     ];
 
     /**
@@ -211,7 +215,8 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'setStatus',
         'input_text' => 'setInputText',
         'interval_settings' => 'setIntervalSettings',
-        'variables' => 'setVariables'
+        'variables' => 'setVariables',
+        'cron_name' => 'setCronName'
     ];
 
     /**
@@ -227,7 +232,8 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'getStatus',
         'input_text' => 'getInputText',
         'interval_settings' => 'getIntervalSettings',
-        'variables' => 'getVariables'
+        'variables' => 'getVariables',
+        'cron_name' => 'getCronName'
     ];
 
     /**
@@ -295,6 +301,7 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('input_text', $data ?? [], null);
         $this->setIfExists('interval_settings', $data ?? [], null);
         $this->setIfExists('variables', $data ?? [], null);
+        $this->setIfExists('cron_name', $data ?? [], null);
     }
 
     /**
@@ -335,6 +342,9 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['interval_settings'] === null) {
             $invalidProperties[] = "'interval_settings' can't be null";
+        }
+        if ($this->container['cron_name'] === null) {
+            $invalidProperties[] = "'cron_name' can't be null";
         }
         return $invalidProperties;
     }
@@ -591,6 +601,33 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['variables'] = $variables;
+
+        return $this;
+    }
+
+    /**
+     * Gets cron_name
+     *
+     * @return string
+     */
+    public function getCronName()
+    {
+        return $this->container['cron_name'];
+    }
+
+    /**
+     * Sets cron_name
+     *
+     * @param string $cron_name cron_name
+     *
+     * @return self
+     */
+    public function setCronName($cron_name)
+    {
+        if (is_null($cron_name)) {
+            throw new \InvalidArgumentException('non-nullable cron_name cannot be null');
+        }
+        $this->container['cron_name'] = $cron_name;
 
         return $this;
     }

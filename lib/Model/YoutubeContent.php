@@ -66,6 +66,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'lang' => 'string',
         'content_type' => 'string',
         'encoding' => 'string',
+        'apparent_encoding' => 'string',
         'description' => 'string',
         'content' => 'string',
         'metadata' => 'object',
@@ -98,6 +99,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'lang' => null,
         'content_type' => null,
         'encoding' => null,
+        'apparent_encoding' => null,
         'description' => null,
         'content' => null,
         'metadata' => null,
@@ -128,6 +130,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'lang' => true,
         'content_type' => true,
         'encoding' => true,
+        'apparent_encoding' => true,
         'description' => true,
         'content' => true,
         'metadata' => true,
@@ -238,6 +241,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'lang' => 'lang',
         'content_type' => 'content_type',
         'encoding' => 'encoding',
+        'apparent_encoding' => 'apparent_encoding',
         'description' => 'description',
         'content' => 'content',
         'metadata' => 'metadata',
@@ -268,6 +272,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'lang' => 'setLang',
         'content_type' => 'setContentType',
         'encoding' => 'setEncoding',
+        'apparent_encoding' => 'setApparentEncoding',
         'description' => 'setDescription',
         'content' => 'setContent',
         'metadata' => 'setMetadata',
@@ -298,6 +303,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'lang' => 'getLang',
         'content_type' => 'getContentType',
         'encoding' => 'getEncoding',
+        'apparent_encoding' => 'getApparentEncoding',
         'description' => 'getDescription',
         'content' => 'getContent',
         'metadata' => 'getMetadata',
@@ -379,6 +385,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('lang', $data ?? [], null);
         $this->setIfExists('content_type', $data ?? [], null);
         $this->setIfExists('encoding', $data ?? [], null);
+        $this->setIfExists('apparent_encoding', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('content', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
@@ -738,6 +745,40 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['encoding'] = $encoding;
+
+        return $this;
+    }
+
+    /**
+     * Gets apparent_encoding
+     *
+     * @return string|null
+     */
+    public function getApparentEncoding()
+    {
+        return $this->container['apparent_encoding'];
+    }
+
+    /**
+     * Sets apparent_encoding
+     *
+     * @param string|null $apparent_encoding apparent_encoding
+     *
+     * @return self
+     */
+    public function setApparentEncoding($apparent_encoding)
+    {
+        if (is_null($apparent_encoding)) {
+            array_push($this->openAPINullablesSetToNull, 'apparent_encoding');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('apparent_encoding', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['apparent_encoding'] = $apparent_encoding;
 
         return $this;
     }

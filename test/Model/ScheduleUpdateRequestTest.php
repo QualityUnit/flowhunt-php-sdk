@@ -141,4 +141,13 @@ class ScheduleUpdateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "filter_urls"
+     */
+    public function testPropertyFilterUrls()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

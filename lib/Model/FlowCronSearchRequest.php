@@ -61,7 +61,9 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'next_run_to' => '\DateTime',
         'next_run_from' => '\DateTime',
         'last_run_to' => '\DateTime',
-        'last_run_from' => '\DateTime'
+        'last_run_from' => '\DateTime',
+        'flow_id' => 'string',
+        'cron_name' => 'string'
     ];
 
     /**
@@ -76,7 +78,9 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'next_run_to' => 'date-time',
         'next_run_from' => 'date-time',
         'last_run_to' => 'date-time',
-        'last_run_from' => 'date-time'
+        'last_run_from' => 'date-time',
+        'flow_id' => 'uuid',
+        'cron_name' => null
     ];
 
     /**
@@ -89,7 +93,9 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'next_run_to' => true,
         'next_run_from' => true,
         'last_run_to' => true,
-        'last_run_from' => true
+        'last_run_from' => true,
+        'flow_id' => true,
+        'cron_name' => true
     ];
 
     /**
@@ -182,7 +188,9 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'next_run_to' => 'next_run_to',
         'next_run_from' => 'next_run_from',
         'last_run_to' => 'last_run_to',
-        'last_run_from' => 'last_run_from'
+        'last_run_from' => 'last_run_from',
+        'flow_id' => 'flow_id',
+        'cron_name' => 'cron_name'
     ];
 
     /**
@@ -195,7 +203,9 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'next_run_to' => 'setNextRunTo',
         'next_run_from' => 'setNextRunFrom',
         'last_run_to' => 'setLastRunTo',
-        'last_run_from' => 'setLastRunFrom'
+        'last_run_from' => 'setLastRunFrom',
+        'flow_id' => 'setFlowId',
+        'cron_name' => 'setCronName'
     ];
 
     /**
@@ -208,7 +218,9 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'next_run_to' => 'getNextRunTo',
         'next_run_from' => 'getNextRunFrom',
         'last_run_to' => 'getLastRunTo',
-        'last_run_from' => 'getLastRunFrom'
+        'last_run_from' => 'getLastRunFrom',
+        'flow_id' => 'getFlowId',
+        'cron_name' => 'getCronName'
     ];
 
     /**
@@ -273,6 +285,8 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('next_run_from', $data ?? [], null);
         $this->setIfExists('last_run_to', $data ?? [], null);
         $this->setIfExists('last_run_from', $data ?? [], null);
+        $this->setIfExists('flow_id', $data ?? [], null);
+        $this->setIfExists('cron_name', $data ?? [], null);
     }
 
     /**
@@ -483,6 +497,74 @@ class FlowCronSearchRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['last_run_from'] = $last_run_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets flow_id
+     *
+     * @return string|null
+     */
+    public function getFlowId()
+    {
+        return $this->container['flow_id'];
+    }
+
+    /**
+     * Sets flow_id
+     *
+     * @param string|null $flow_id flow_id
+     *
+     * @return self
+     */
+    public function setFlowId($flow_id)
+    {
+        if (is_null($flow_id)) {
+            array_push($this->openAPINullablesSetToNull, 'flow_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('flow_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['flow_id'] = $flow_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets cron_name
+     *
+     * @return string|null
+     */
+    public function getCronName()
+    {
+        return $this->container['cron_name'];
+    }
+
+    /**
+     * Sets cron_name
+     *
+     * @param string|null $cron_name cron_name
+     *
+     * @return self
+     */
+    public function setCronName($cron_name)
+    {
+        if (is_null($cron_name)) {
+            array_push($this->openAPINullablesSetToNull, 'cron_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cron_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cron_name'] = $cron_name;
 
         return $this;
     }

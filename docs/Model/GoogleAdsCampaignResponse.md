@@ -11,8 +11,6 @@ Name | Type | Description | Notes
 **campaign_status** | [**\FlowHunt\Model\GoogleAdsCampaignStatus**](GoogleAdsCampaignStatus.md) | Campaign Status |
 **language_code** | **string** |  | [optional]
 **country** | **string** |  | [optional]
-**min_queries** | **int** |  | [optional]
-**cluster_strength** | **int** |  | [optional]
 **last_update** | **\DateTime** |  | [optional]
 **action_type** | [**\FlowHunt\Model\GoogleAdsActionType**](GoogleAdsActionType.md) | Action Type |
 

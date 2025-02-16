@@ -84,12 +84,60 @@ class FineTuningsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteFileFt
+     *
+     * Delete File Ft.
+     *
+     */
+    public function testDeleteFileFt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteImageFt
      *
      * Delete Image Ft.
      *
      */
     public function testDeleteImageFt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for generateImages
+     *
+     * Generate Images.
+     *
+     */
+    public function testGenerateImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getFileFt
+     *
+     * Get File Ft.
+     *
+     */
+    public function testGetFileFt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getInferenceResults
+     *
+     * Get Inference Results.
+     *
+     */
+    public function testGetInferenceResults()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -120,12 +168,12 @@ class FineTuningsApiTest extends TestCase
     }
 
     /**
-     * Test case for trainImageFt
+     * Test case for searchInferenceHistory
      *
-     * Train Image Ft.
+     * Search Inference History.
      *
      */
-    public function testTrainImageFt()
+    public function testSearchInferenceHistory()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

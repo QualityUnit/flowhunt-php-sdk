@@ -60,7 +60,8 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'status' => '\FlowHunt\Model\FlowCronStatus',
         'input_text' => 'string',
         'variables' => 'object',
-        'interval_settings' => 'string'
+        'interval_settings' => 'string',
+        'cron_name' => 'string'
     ];
 
     /**
@@ -74,7 +75,8 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'status' => null,
         'input_text' => null,
         'variables' => null,
-        'interval_settings' => null
+        'interval_settings' => null,
+        'cron_name' => null
     ];
 
     /**
@@ -86,7 +88,8 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'status' => true,
         'input_text' => true,
         'variables' => true,
-        'interval_settings' => true
+        'interval_settings' => true,
+        'cron_name' => true
     ];
 
     /**
@@ -178,7 +181,8 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'status' => 'status',
         'input_text' => 'input_text',
         'variables' => 'variables',
-        'interval_settings' => 'interval_settings'
+        'interval_settings' => 'interval_settings',
+        'cron_name' => 'cron_name'
     ];
 
     /**
@@ -190,7 +194,8 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'status' => 'setStatus',
         'input_text' => 'setInputText',
         'variables' => 'setVariables',
-        'interval_settings' => 'setIntervalSettings'
+        'interval_settings' => 'setIntervalSettings',
+        'cron_name' => 'setCronName'
     ];
 
     /**
@@ -202,7 +207,8 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'status' => 'getStatus',
         'input_text' => 'getInputText',
         'variables' => 'getVariables',
-        'interval_settings' => 'getIntervalSettings'
+        'interval_settings' => 'getIntervalSettings',
+        'cron_name' => 'getCronName'
     ];
 
     /**
@@ -266,6 +272,7 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('input_text', $data ?? [], null);
         $this->setIfExists('variables', $data ?? [], null);
         $this->setIfExists('interval_settings', $data ?? [], null);
+        $this->setIfExists('cron_name', $data ?? [], null);
     }
 
     /**
@@ -442,6 +449,40 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['interval_settings'] = $interval_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets cron_name
+     *
+     * @return string|null
+     */
+    public function getCronName()
+    {
+        return $this->container['cron_name'];
+    }
+
+    /**
+     * Sets cron_name
+     *
+     * @param string|null $cron_name cron_name
+     *
+     * @return self
+     */
+    public function setCronName($cron_name)
+    {
+        if (is_null($cron_name)) {
+            array_push($this->openAPINullablesSetToNull, 'cron_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cron_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cron_name'] = $cron_name;
 
         return $this;
     }

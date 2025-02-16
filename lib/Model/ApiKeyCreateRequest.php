@@ -57,7 +57,8 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'display_name' => 'string'
+        'display_name' => 'string',
+        'valid_to' => '\DateTime'
     ];
 
     /**
@@ -68,7 +69,8 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'display_name' => null
+        'display_name' => null,
+        'valid_to' => 'date-time'
     ];
 
     /**
@@ -77,7 +79,8 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'display_name' => false
+        'display_name' => false,
+        'valid_to' => true
     ];
 
     /**
@@ -166,7 +169,8 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'display_name' => 'display_name'
+        'display_name' => 'display_name',
+        'valid_to' => 'valid_to'
     ];
 
     /**
@@ -175,7 +179,8 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'display_name' => 'setDisplayName'
+        'display_name' => 'setDisplayName',
+        'valid_to' => 'setValidTo'
     ];
 
     /**
@@ -184,7 +189,8 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'display_name' => 'getDisplayName'
+        'display_name' => 'getDisplayName',
+        'valid_to' => 'getValidTo'
     ];
 
     /**
@@ -245,6 +251,7 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(array $data = null)
     {
         $this->setIfExists('display_name', $data ?? [], null);
+        $this->setIfExists('valid_to', $data ?? [], null);
     }
 
     /**
@@ -315,6 +322,40 @@ class ApiKeyCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');
         }
         $this->container['display_name'] = $display_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_to
+     *
+     * @return \DateTime|null
+     */
+    public function getValidTo()
+    {
+        return $this->container['valid_to'];
+    }
+
+    /**
+     * Sets valid_to
+     *
+     * @param \DateTime|null $valid_to valid_to
+     *
+     * @return self
+     */
+    public function setValidTo($valid_to)
+    {
+        if (is_null($valid_to)) {
+            array_push($this->openAPINullablesSetToNull, 'valid_to');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('valid_to', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['valid_to'] = $valid_to;
 
         return $this;
     }

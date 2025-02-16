@@ -86,6 +86,14 @@ class TransactionType
 
     public const CGS = 'CGS';
 
+    public const RGS = 'RGS';
+
+    public const UGS = 'UGS';
+
+    public const IGI = 'IGI';
+
+    public const TR = 'TR';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -135,6 +143,10 @@ class TransactionType
             self::DDG,
             self::CGD,
             self::CGS,
+            self::RGS,
+            self::UGS,
+            self::IGI,
+            self::TR,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,

@@ -89,9 +89,45 @@ class ImageFTCreateRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "model_name"
+     * Test attribute "trigger_word"
      */
-    public function testPropertyModelName()
+    public function testPropertyTriggerWord()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "steps"
+     */
+    public function testPropertySteps()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "lora_rank"
+     */
+    public function testPropertyLoraRank()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "training_images"
+     */
+    public function testPropertyTrainingImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cover_image"
+     */
+    public function testPropertyCoverImage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

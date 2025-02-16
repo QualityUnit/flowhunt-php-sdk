@@ -66,9 +66,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'last_update' => '\DateTime',
         'action_type' => '\FlowHunt\Model\GoogleAdsActionType',
         'language_code' => 'string',
-        'country' => 'string',
-        'min_queries' => 'int',
-        'cluster_strength' => 'int'
+        'country' => 'string'
     ];
 
     /**
@@ -88,9 +86,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'last_update' => 'date-time',
         'action_type' => null,
         'language_code' => null,
-        'country' => null,
-        'min_queries' => null,
-        'cluster_strength' => null
+        'country' => null
     ];
 
     /**
@@ -108,9 +104,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'last_update' => true,
         'action_type' => false,
         'language_code' => true,
-        'country' => true,
-        'min_queries' => true,
-        'cluster_strength' => true
+        'country' => true
     ];
 
     /**
@@ -208,9 +202,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'last_update' => 'last_update',
         'action_type' => 'action_type',
         'language_code' => 'language_code',
-        'country' => 'country',
-        'min_queries' => 'min_queries',
-        'cluster_strength' => 'cluster_strength'
+        'country' => 'country'
     ];
 
     /**
@@ -228,9 +220,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'last_update' => 'setLastUpdate',
         'action_type' => 'setActionType',
         'language_code' => 'setLanguageCode',
-        'country' => 'setCountry',
-        'min_queries' => 'setMinQueries',
-        'cluster_strength' => 'setClusterStrength'
+        'country' => 'setCountry'
     ];
 
     /**
@@ -248,9 +238,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'last_update' => 'getLastUpdate',
         'action_type' => 'getActionType',
         'language_code' => 'getLanguageCode',
-        'country' => 'getCountry',
-        'min_queries' => 'getMinQueries',
-        'cluster_strength' => 'getClusterStrength'
+        'country' => 'getCountry'
     ];
 
     /**
@@ -320,8 +308,6 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('action_type', $data ?? [], null);
         $this->setIfExists('language_code', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('min_queries', $data ?? [], null);
-        $this->setIfExists('cluster_strength', $data ?? [], null);
     }
 
     /**
@@ -674,74 +660,6 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets min_queries
-     *
-     * @return int|null
-     */
-    public function getMinQueries()
-    {
-        return $this->container['min_queries'];
-    }
-
-    /**
-     * Sets min_queries
-     *
-     * @param int|null $min_queries min_queries
-     *
-     * @return self
-     */
-    public function setMinQueries($min_queries)
-    {
-        if (is_null($min_queries)) {
-            array_push($this->openAPINullablesSetToNull, 'min_queries');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('min_queries', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['min_queries'] = $min_queries;
-
-        return $this;
-    }
-
-    /**
-     * Gets cluster_strength
-     *
-     * @return int|null
-     */
-    public function getClusterStrength()
-    {
-        return $this->container['cluster_strength'];
-    }
-
-    /**
-     * Sets cluster_strength
-     *
-     * @param int|null $cluster_strength cluster_strength
-     *
-     * @return self
-     */
-    public function setClusterStrength($cluster_strength)
-    {
-        if (is_null($cluster_strength)) {
-            array_push($this->openAPINullablesSetToNull, 'cluster_strength');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cluster_strength', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['cluster_strength'] = $cluster_strength;
 
         return $this;
     }
