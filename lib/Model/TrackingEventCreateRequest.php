@@ -65,7 +65,8 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'link_ids' => 'string[]',
         'valid_until' => '\DateTime',
         'conversion_action_id' => 'string',
-        'include_in_conversions_metric' => 'bool'
+        'include_in_conversions_metric' => 'bool',
+        'with_address' => 'bool'
     ];
 
     /**
@@ -84,7 +85,8 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'link_ids' => null,
         'valid_until' => 'date-time',
         'conversion_action_id' => null,
-        'include_in_conversions_metric' => null
+        'include_in_conversions_metric' => null,
+        'with_address' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'link_ids' => true,
         'valid_until' => true,
         'conversion_action_id' => true,
-        'include_in_conversions_metric' => true
+        'include_in_conversions_metric' => true,
+        'with_address' => true
     ];
 
     /**
@@ -198,7 +201,8 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'link_ids' => 'link_ids',
         'valid_until' => 'valid_until',
         'conversion_action_id' => 'conversion_action_id',
-        'include_in_conversions_metric' => 'include_in_conversions_metric'
+        'include_in_conversions_metric' => 'include_in_conversions_metric',
+        'with_address' => 'with_address'
     ];
 
     /**
@@ -215,7 +219,8 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'link_ids' => 'setLinkIds',
         'valid_until' => 'setValidUntil',
         'conversion_action_id' => 'setConversionActionId',
-        'include_in_conversions_metric' => 'setIncludeInConversionsMetric'
+        'include_in_conversions_metric' => 'setIncludeInConversionsMetric',
+        'with_address' => 'setWithAddress'
     ];
 
     /**
@@ -232,7 +237,8 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'link_ids' => 'getLinkIds',
         'valid_until' => 'getValidUntil',
         'conversion_action_id' => 'getConversionActionId',
-        'include_in_conversions_metric' => 'getIncludeInConversionsMetric'
+        'include_in_conversions_metric' => 'getIncludeInConversionsMetric',
+        'with_address' => 'getWithAddress'
     ];
 
     /**
@@ -301,6 +307,7 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('valid_until', $data ?? [], null);
         $this->setIfExists('conversion_action_id', $data ?? [], null);
         $this->setIfExists('include_in_conversions_metric', $data ?? [], null);
+        $this->setIfExists('with_address', $data ?? [], null);
     }
 
     /**
@@ -643,6 +650,40 @@ class TrackingEventCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
             }
         }
         $this->container['include_in_conversions_metric'] = $include_in_conversions_metric;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_address
+     *
+     * @return bool|null
+     */
+    public function getWithAddress()
+    {
+        return $this->container['with_address'];
+    }
+
+    /**
+     * Sets with_address
+     *
+     * @param bool|null $with_address with_address
+     *
+     * @return self
+     */
+    public function setWithAddress($with_address)
+    {
+        if (is_null($with_address)) {
+            array_push($this->openAPINullablesSetToNull, 'with_address');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('with_address', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['with_address'] = $with_address;
 
         return $this;
     }

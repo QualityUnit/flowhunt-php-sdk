@@ -159,4 +159,13 @@ class TrackingEventCreateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "with_address"
+     */
+    public function testPropertyWithAddress()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
