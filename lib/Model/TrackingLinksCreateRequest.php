@@ -60,7 +60,9 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'links' => '\FlowHunt\Model\TrackingLinkCreateRequest[]',
         'with_address' => 'bool',
         'unique_id' => 'string',
-        'fp' => 'string'
+        'fp' => 'string',
+        'session_id' => 'string',
+        'ga' => 'string'
     ];
 
     /**
@@ -74,7 +76,9 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'links' => null,
         'with_address' => null,
         'unique_id' => null,
-        'fp' => null
+        'fp' => null,
+        'session_id' => null,
+        'ga' => null
     ];
 
     /**
@@ -86,7 +90,9 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'links' => false,
         'with_address' => true,
         'unique_id' => true,
-        'fp' => true
+        'fp' => true,
+        'session_id' => true,
+        'ga' => true
     ];
 
     /**
@@ -178,7 +184,9 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'links' => 'links',
         'with_address' => 'with_address',
         'unique_id' => 'unique_id',
-        'fp' => 'fp'
+        'fp' => 'fp',
+        'session_id' => 'session_id',
+        'ga' => 'ga'
     ];
 
     /**
@@ -190,7 +198,9 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'links' => 'setLinks',
         'with_address' => 'setWithAddress',
         'unique_id' => 'setUniqueId',
-        'fp' => 'setFp'
+        'fp' => 'setFp',
+        'session_id' => 'setSessionId',
+        'ga' => 'setGa'
     ];
 
     /**
@@ -202,7 +212,9 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         'links' => 'getLinks',
         'with_address' => 'getWithAddress',
         'unique_id' => 'getUniqueId',
-        'fp' => 'getFp'
+        'fp' => 'getFp',
+        'session_id' => 'getSessionId',
+        'ga' => 'getGa'
     ];
 
     /**
@@ -266,6 +278,8 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('with_address', $data ?? [], null);
         $this->setIfExists('unique_id', $data ?? [], null);
         $this->setIfExists('fp', $data ?? [], null);
+        $this->setIfExists('session_id', $data ?? [], null);
+        $this->setIfExists('ga', $data ?? [], null);
     }
 
     /**
@@ -438,6 +452,74 @@ class TrackingLinksCreateRequest implements ModelInterface, ArrayAccess, \JsonSe
             }
         }
         $this->container['fp'] = $fp;
+
+        return $this;
+    }
+
+    /**
+     * Gets session_id
+     *
+     * @return string|null
+     */
+    public function getSessionId()
+    {
+        return $this->container['session_id'];
+    }
+
+    /**
+     * Sets session_id
+     *
+     * @param string|null $session_id session_id
+     *
+     * @return self
+     */
+    public function setSessionId($session_id)
+    {
+        if (is_null($session_id)) {
+            array_push($this->openAPINullablesSetToNull, 'session_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('session_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['session_id'] = $session_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets ga
+     *
+     * @return string|null
+     */
+    public function getGa()
+    {
+        return $this->container['ga'];
+    }
+
+    /**
+     * Sets ga
+     *
+     * @param string|null $ga ga
+     *
+     * @return self
+     */
+    public function setGa($ga)
+    {
+        if (is_null($ga)) {
+            array_push($this->openAPINullablesSetToNull, 'ga');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ga', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ga'] = $ga;
 
         return $this;
     }

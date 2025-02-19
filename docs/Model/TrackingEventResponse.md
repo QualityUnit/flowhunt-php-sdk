@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **event_id** | **string** |  |
+**unique_id** | **string** |  | [optional]
+**url** | **string** |  | [optional]
 **event_name** | **string** |  | [optional]
 **event_value** | **float** |  | [optional]
 **currency** | **string** |  | [optional]

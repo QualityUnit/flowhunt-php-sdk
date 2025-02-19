@@ -177,4 +177,22 @@ class GoogleAdsCustomersSearchRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "ga_measurement_id"
+     */
+    public function testPropertyGaMeasurementId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ga_api_secret"
+     */
+    public function testPropertyGaApiSecret()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

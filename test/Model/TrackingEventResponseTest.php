@@ -89,6 +89,24 @@ class TrackingEventResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "unique_id"
+     */
+    public function testPropertyUniqueId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "url"
+     */
+    public function testPropertyUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "event_name"
      */
     public function testPropertyEventName()

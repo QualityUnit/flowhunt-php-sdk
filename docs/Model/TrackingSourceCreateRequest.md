@@ -20,5 +20,6 @@ Name | Type | Description | Notes
 **event_data** | [**\FlowHunt\Model\TrackingEventData[]**](TrackingEventData.md) |  | [optional]
 **unique_id** | **string** |  | [optional]
 **fp** | **string** |  | [optional]
+**session_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -69,7 +69,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'last_update' => '\DateTime',
         'next_update' => '\DateTime',
         'cron_settings' => 'string',
-        'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
+        'action_type' => '\FlowHunt\Model\GoogleAdsActionType',
+        'ga_measurement_id' => 'string'
     ];
 
     /**
@@ -92,7 +93,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'last_update' => 'date-time',
         'next_update' => 'date-time',
         'cron_settings' => null,
-        'action_type' => null
+        'action_type' => null,
+        'ga_measurement_id' => null
     ];
 
     /**
@@ -113,7 +115,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'last_update' => true,
         'next_update' => true,
         'cron_settings' => true,
-        'action_type' => false
+        'action_type' => false,
+        'ga_measurement_id' => true
     ];
 
     /**
@@ -214,7 +217,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'last_update' => 'last_update',
         'next_update' => 'next_update',
         'cron_settings' => 'cron_settings',
-        'action_type' => 'action_type'
+        'action_type' => 'action_type',
+        'ga_measurement_id' => 'ga_measurement_id'
     ];
 
     /**
@@ -235,7 +239,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'last_update' => 'setLastUpdate',
         'next_update' => 'setNextUpdate',
         'cron_settings' => 'setCronSettings',
-        'action_type' => 'setActionType'
+        'action_type' => 'setActionType',
+        'ga_measurement_id' => 'setGaMeasurementId'
     ];
 
     /**
@@ -256,7 +261,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'last_update' => 'getLastUpdate',
         'next_update' => 'getNextUpdate',
         'cron_settings' => 'getCronSettings',
-        'action_type' => 'getActionType'
+        'action_type' => 'getActionType',
+        'ga_measurement_id' => 'getGaMeasurementId'
     ];
 
     /**
@@ -329,6 +335,7 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('next_update', $data ?? [], null);
         $this->setIfExists('cron_settings', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
+        $this->setIfExists('ga_measurement_id', $data ?? [], null);
     }
 
     /**
@@ -771,6 +778,40 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable action_type cannot be null');
         }
         $this->container['action_type'] = $action_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets ga_measurement_id
+     *
+     * @return string|null
+     */
+    public function getGaMeasurementId()
+    {
+        return $this->container['ga_measurement_id'];
+    }
+
+    /**
+     * Sets ga_measurement_id
+     *
+     * @param string|null $ga_measurement_id ga_measurement_id
+     *
+     * @return self
+     */
+    public function setGaMeasurementId($ga_measurement_id)
+    {
+        if (is_null($ga_measurement_id)) {
+            array_push($this->openAPINullablesSetToNull, 'ga_measurement_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ga_measurement_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ga_measurement_id'] = $ga_measurement_id;
 
         return $this;
     }

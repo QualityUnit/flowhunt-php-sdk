@@ -17,5 +17,6 @@ Name | Type | Description | Notes
 **next_update** | **\DateTime** |  | [optional]
 **cron_settings** | **string** |  | [optional]
 **action_type** | [**\FlowHunt\Model\GoogleAdsActionType**](GoogleAdsActionType.md) | Action Type |
+**ga_measurement_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

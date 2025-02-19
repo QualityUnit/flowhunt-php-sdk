@@ -58,6 +58,8 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'event_id' => 'string',
+        'unique_id' => 'string',
+        'url' => 'string',
         'event_name' => 'string',
         'event_value' => 'float',
         'currency' => 'string',
@@ -78,6 +80,8 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'event_id' => null,
+        'unique_id' => null,
+        'url' => null,
         'event_name' => null,
         'event_value' => null,
         'currency' => null,
@@ -96,6 +100,8 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'event_id' => false,
+        'unique_id' => true,
+        'url' => true,
         'event_name' => true,
         'event_value' => true,
         'currency' => true,
@@ -194,6 +200,8 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'event_id' => 'event_id',
+        'unique_id' => 'unique_id',
+        'url' => 'url',
         'event_name' => 'event_name',
         'event_value' => 'event_value',
         'currency' => 'currency',
@@ -212,6 +220,8 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'event_id' => 'setEventId',
+        'unique_id' => 'setUniqueId',
+        'url' => 'setUrl',
         'event_name' => 'setEventName',
         'event_value' => 'setEventValue',
         'currency' => 'setCurrency',
@@ -230,6 +240,8 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'event_id' => 'getEventId',
+        'unique_id' => 'getUniqueId',
+        'url' => 'getUrl',
         'event_name' => 'getEventName',
         'event_value' => 'getEventValue',
         'currency' => 'getCurrency',
@@ -299,6 +311,8 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(array $data = null)
     {
         $this->setIfExists('event_id', $data ?? [], null);
+        $this->setIfExists('unique_id', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('event_name', $data ?? [], null);
         $this->setIfExists('event_value', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
@@ -378,6 +392,74 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable event_id cannot be null');
         }
         $this->container['event_id'] = $event_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets unique_id
+     *
+     * @return string|null
+     */
+    public function getUniqueId()
+    {
+        return $this->container['unique_id'];
+    }
+
+    /**
+     * Sets unique_id
+     *
+     * @param string|null $unique_id unique_id
+     *
+     * @return self
+     */
+    public function setUniqueId($unique_id)
+    {
+        if (is_null($unique_id)) {
+            array_push($this->openAPINullablesSetToNull, 'unique_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('unique_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['unique_id'] = $unique_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url url
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        if (is_null($url)) {
+            array_push($this->openAPINullablesSetToNull, 'url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['url'] = $url;
 
         return $this;
     }

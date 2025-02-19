@@ -94,6 +94,8 @@ class TransactionType
 
     public const TR = 'TR';
 
+    public const FAT_GC = 'FAT_GC';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -147,6 +149,7 @@ class TransactionType
             self::UGS,
             self::IGI,
             self::TR,
+            self::FAT_GC,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,

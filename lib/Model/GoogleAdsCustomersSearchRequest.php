@@ -67,7 +67,9 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
         'cluster_strength' => 'int',
         'last_update' => '\DateTime',
         'next_update' => '\DateTime',
-        'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
+        'action_type' => '\FlowHunt\Model\GoogleAdsActionType',
+        'ga_measurement_id' => 'string',
+        'ga_api_secret' => 'string'
     ];
 
     /**
@@ -88,7 +90,9 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
         'cluster_strength' => null,
         'last_update' => 'date-time',
         'next_update' => 'date-time',
-        'action_type' => null
+        'action_type' => null,
+        'ga_measurement_id' => null,
+        'ga_api_secret' => null
     ];
 
     /**
@@ -107,7 +111,9 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
         'cluster_strength' => true,
         'last_update' => true,
         'next_update' => true,
-        'action_type' => true
+        'action_type' => true,
+        'ga_measurement_id' => true,
+        'ga_api_secret' => true
     ];
 
     /**
@@ -206,7 +212,9 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
         'cluster_strength' => 'cluster_strength',
         'last_update' => 'last_update',
         'next_update' => 'next_update',
-        'action_type' => 'action_type'
+        'action_type' => 'action_type',
+        'ga_measurement_id' => 'ga_measurement_id',
+        'ga_api_secret' => 'ga_api_secret'
     ];
 
     /**
@@ -225,7 +233,9 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
         'cluster_strength' => 'setClusterStrength',
         'last_update' => 'setLastUpdate',
         'next_update' => 'setNextUpdate',
-        'action_type' => 'setActionType'
+        'action_type' => 'setActionType',
+        'ga_measurement_id' => 'setGaMeasurementId',
+        'ga_api_secret' => 'setGaApiSecret'
     ];
 
     /**
@@ -244,7 +254,9 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
         'cluster_strength' => 'getClusterStrength',
         'last_update' => 'getLastUpdate',
         'next_update' => 'getNextUpdate',
-        'action_type' => 'getActionType'
+        'action_type' => 'getActionType',
+        'ga_measurement_id' => 'getGaMeasurementId',
+        'ga_api_secret' => 'getGaApiSecret'
     ];
 
     /**
@@ -315,6 +327,8 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('last_update', $data ?? [], null);
         $this->setIfExists('next_update', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
+        $this->setIfExists('ga_measurement_id', $data ?? [], null);
+        $this->setIfExists('ga_api_secret', $data ?? [], null);
     }
 
     /**
@@ -729,6 +743,74 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['action_type'] = $action_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets ga_measurement_id
+     *
+     * @return string|null
+     */
+    public function getGaMeasurementId()
+    {
+        return $this->container['ga_measurement_id'];
+    }
+
+    /**
+     * Sets ga_measurement_id
+     *
+     * @param string|null $ga_measurement_id ga_measurement_id
+     *
+     * @return self
+     */
+    public function setGaMeasurementId($ga_measurement_id)
+    {
+        if (is_null($ga_measurement_id)) {
+            array_push($this->openAPINullablesSetToNull, 'ga_measurement_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ga_measurement_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ga_measurement_id'] = $ga_measurement_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets ga_api_secret
+     *
+     * @return string|null
+     */
+    public function getGaApiSecret()
+    {
+        return $this->container['ga_api_secret'];
+    }
+
+    /**
+     * Sets ga_api_secret
+     *
+     * @param string|null $ga_api_secret ga_api_secret
+     *
+     * @return self
+     */
+    public function setGaApiSecret($ga_api_secret)
+    {
+        if (is_null($ga_api_secret)) {
+            array_push($this->openAPINullablesSetToNull, 'ga_api_secret');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ga_api_secret', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ga_api_secret'] = $ga_api_secret;
 
         return $this;
     }

@@ -72,7 +72,8 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         'with_address' => 'bool',
         'event_data' => '\FlowHunt\Model\TrackingEventData[]',
         'unique_id' => 'string',
-        'fp' => 'string'
+        'fp' => 'string',
+        'session_id' => 'string'
     ];
 
     /**
@@ -98,7 +99,8 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         'with_address' => null,
         'event_data' => null,
         'unique_id' => null,
-        'fp' => null
+        'fp' => null,
+        'session_id' => null
     ];
 
     /**
@@ -122,7 +124,8 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         'with_address' => true,
         'event_data' => true,
         'unique_id' => true,
-        'fp' => true
+        'fp' => true,
+        'session_id' => true
     ];
 
     /**
@@ -226,7 +229,8 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         'with_address' => 'with_address',
         'event_data' => 'event_data',
         'unique_id' => 'unique_id',
-        'fp' => 'fp'
+        'fp' => 'fp',
+        'session_id' => 'session_id'
     ];
 
     /**
@@ -250,7 +254,8 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         'with_address' => 'setWithAddress',
         'event_data' => 'setEventData',
         'unique_id' => 'setUniqueId',
-        'fp' => 'setFp'
+        'fp' => 'setFp',
+        'session_id' => 'setSessionId'
     ];
 
     /**
@@ -274,7 +279,8 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         'with_address' => 'getWithAddress',
         'event_data' => 'getEventData',
         'unique_id' => 'getUniqueId',
-        'fp' => 'getFp'
+        'fp' => 'getFp',
+        'session_id' => 'getSessionId'
     ];
 
     /**
@@ -350,6 +356,7 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('event_data', $data ?? [], null);
         $this->setIfExists('unique_id', $data ?? [], null);
         $this->setIfExists('fp', $data ?? [], null);
+        $this->setIfExists('session_id', $data ?? [], null);
     }
 
     /**
@@ -927,6 +934,40 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['fp'] = $fp;
+
+        return $this;
+    }
+
+    /**
+     * Gets session_id
+     *
+     * @return string|null
+     */
+    public function getSessionId()
+    {
+        return $this->container['session_id'];
+    }
+
+    /**
+     * Sets session_id
+     *
+     * @param string|null $session_id session_id
+     *
+     * @return self
+     */
+    public function setSessionId($session_id)
+    {
+        if (is_null($session_id)) {
+            array_push($this->openAPINullablesSetToNull, 'session_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('session_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['session_id'] = $session_id;
 
         return $this;
     }
