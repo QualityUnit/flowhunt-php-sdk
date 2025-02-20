@@ -30,6 +30,7 @@ docs/Api/SemanticSearchApi.md
 docs/Api/SlackApi.md
 docs/Api/TagsApi.md
 docs/Api/TrackingApi.md
+docs/Api/WordPressApi.md
 docs/Api/WorkspacesApi.md
 docs/Model/AllFlowsSearchRequest.md
 docs/Model/ApiKeyCreateRequest.md
@@ -271,6 +272,9 @@ docs/Model/ValidationErrorLocInner.md
 docs/Model/VectorDocumentResponse.md
 docs/Model/VectorDocumentType.md
 docs/Model/VectorDocumentsTaskResponse.md
+docs/Model/WordPressCategoryResponse.md
+docs/Model/WordPressSiteResponse.md
+docs/Model/WordPressTagsResponse.md
 docs/Model/WorkspaceCreateRequest.md
 docs/Model/WorkspaceResponse.md
 docs/Model/WorkspaceRole.md
@@ -310,6 +314,7 @@ lib/Api/SemanticSearchApi.php
 lib/Api/SlackApi.php
 lib/Api/TagsApi.php
 lib/Api/TrackingApi.php
+lib/Api/WordPressApi.php
 lib/Api/WorkspacesApi.php
 lib/ApiException.php
 lib/Configuration.php
@@ -555,6 +560,9 @@ lib/Model/ValidationErrorLocInner.php
 lib/Model/VectorDocumentResponse.php
 lib/Model/VectorDocumentType.php
 lib/Model/VectorDocumentsTaskResponse.php
+lib/Model/WordPressCategoryResponse.php
+lib/Model/WordPressSiteResponse.php
+lib/Model/WordPressTagsResponse.php
 lib/Model/WorkspaceCreateRequest.php
 lib/Model/WorkspaceResponse.php
 lib/Model/WorkspaceRole.php
@@ -595,6 +603,7 @@ test/Api/SemanticSearchApiTest.php
 test/Api/SlackApiTest.php
 test/Api/TagsApiTest.php
 test/Api/TrackingApiTest.php
+test/Api/WordPressApiTest.php
 test/Api/WorkspacesApiTest.php
 test/Model/AllFlowsSearchRequestTest.php
 test/Model/ApiKeyCreateRequestTest.php
@@ -836,6 +845,9 @@ test/Model/ValidationErrorTest.php
 test/Model/VectorDocumentResponseTest.php
 test/Model/VectorDocumentTypeTest.php
 test/Model/VectorDocumentsTaskResponseTest.php
+test/Model/WordPressCategoryResponseTest.php
+test/Model/WordPressSiteResponseTest.php
+test/Model/WordPressTagsResponseTest.php
 test/Model/WorkspaceCreateRequestTest.php
 test/Model/WorkspaceResponseTest.php
 test/Model/WorkspaceRoleTest.php

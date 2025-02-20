@@ -62,6 +62,8 @@ class IntegrationSlug
 
     public const GOOGLE_INTEGRATION = 'google_integration';
 
+    public const WORDPRESS_INTEGRATION = 'wordpress_integration';
+
     public const GOOGLE_CALENDAR_INTEGRATION = 'google_calendar_integration';
 
     public const GOOGLE_ADS_INTEGRATION = 'google_ads_integration';
@@ -93,6 +95,7 @@ class IntegrationSlug
             self::FRESHCHAT_INTEGRATION,
             self::TAWK_INTEGRATION,
             self::GOOGLE_INTEGRATION,
+            self::WORDPRESS_INTEGRATION,
             self::GOOGLE_CALENDAR_INTEGRATION,
             self::GOOGLE_ADS_INTEGRATION,
             self::GOOGLE_DOCS_INTEGRATION,

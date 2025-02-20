@@ -23,11 +23,6 @@ Get Slack Channels
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: APIKeyHeader
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
-
 // Configure Bearer authorization: HTTPBearer
 $config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -62,7 +57,7 @@ try {
 
 ### Authorization
 
-[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+[HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -87,11 +82,6 @@ Get Slack Workspaces
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure API key authorization: APIKeyHeader
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
 
 // Configure Bearer authorization: HTTPBearer
 $config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -125,7 +115,7 @@ try {
 
 ### Authorization
 
-[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+[HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 

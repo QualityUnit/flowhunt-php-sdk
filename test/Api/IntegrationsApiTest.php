@@ -156,6 +156,42 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for getWordpressPostCategories
+     *
+     * Get Wordpress Post Categories.
+     *
+     */
+    public function testGetWordpressPostCategories()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getWordpressPostTags
+     *
+     * Get Wordpress Post Tags.
+     *
+     */
+    public function testGetWordpressPostTags()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getWordpressSites
+     *
+     * Get Wordpress Sites.
+     *
+     */
+    public function testGetWordpressSites()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for integrationCallback
      *
      * Integration Callback.
