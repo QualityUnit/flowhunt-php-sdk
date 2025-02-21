@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **int** |  | [optional]
-**campaign_id** | **int** |  | [optional]
-**group_id** | **int** |  | [optional]
+**customer_id** | **string** |  | [optional]
+**campaign_id** | **string** |  | [optional]
+**group_id** | **string** |  | [optional]
 **group_name** | **string** |  | [optional]
 **language_code** | **string** |  | [optional]
 **country** | **string** |  | [optional]

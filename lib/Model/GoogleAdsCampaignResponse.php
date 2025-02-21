@@ -58,8 +58,8 @@ class GoogleAdsCampaignResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'workspace_id' => 'string',
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
         'campaign_name' => 'string',
         'campaign_status' => '\FlowHunt\Model\GoogleAdsCampaignStatus',
         'language_code' => 'string',
@@ -393,7 +393,7 @@ class GoogleAdsCampaignResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -403,7 +403,7 @@ class GoogleAdsCampaignResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets customer_id
      *
-     * @param int $customer_id Google Ads Customer ID
+     * @param string $customer_id Google Ads Customer ID
      *
      * @return self
      */
@@ -420,7 +420,7 @@ class GoogleAdsCampaignResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets campaign_id
      *
-     * @return int
+     * @return string
      */
     public function getCampaignId()
     {
@@ -430,7 +430,7 @@ class GoogleAdsCampaignResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets campaign_id
      *
-     * @param int $campaign_id Google Ads Campaign ID
+     * @param string $campaign_id Google Ads Campaign ID
      *
      * @return self
      */

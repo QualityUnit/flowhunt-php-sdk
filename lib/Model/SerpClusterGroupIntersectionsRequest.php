@@ -57,9 +57,9 @@ class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string',
         'min_cluster_strength' => 'int',
         'suggest_other_matching_keywords' => 'bool'
     ];
@@ -323,7 +323,7 @@ class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAcces
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -333,7 +333,7 @@ class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAcces
     /**
      * Sets customer_id
      *
-     * @param int $customer_id Customer ID of cluster
+     * @param string $customer_id Customer ID of cluster
      *
      * @return self
      */
@@ -350,7 +350,7 @@ class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAcces
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -360,7 +360,7 @@ class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAcces
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id campaign_id
+     * @param string|null $campaign_id campaign_id
      *
      * @return self
      */
@@ -384,7 +384,7 @@ class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAcces
     /**
      * Gets group_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getGroupId()
     {
@@ -394,7 +394,7 @@ class SerpClusterGroupIntersectionsRequest implements ModelInterface, ArrayAcces
     /**
      * Sets group_id
      *
-     * @param int|null $group_id group_id
+     * @param string|null $group_id group_id
      *
      * @return self
      */

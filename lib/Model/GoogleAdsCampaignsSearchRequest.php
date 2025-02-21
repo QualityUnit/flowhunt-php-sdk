@@ -57,8 +57,8 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
         'campaign_name' => 'string',
         'campaign_status' => '\FlowHunt\Model\GoogleAdsCampaignStatus',
         'language_code' => 'string',
@@ -334,7 +334,7 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -344,7 +344,7 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id customer_id
+     * @param string|null $customer_id customer_id
      *
      * @return self
      */
@@ -368,7 +368,7 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -378,7 +378,7 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id campaign_id
+     * @param string|null $campaign_id campaign_id
      *
      * @return self
      */

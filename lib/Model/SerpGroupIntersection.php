@@ -58,9 +58,9 @@ class SerpGroupIntersection implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'workspace_id' => 'string',
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string',
         'unique_group_id' => 'string',
         'intersections_count' => 'int'
     ];
@@ -369,7 +369,7 @@ class SerpGroupIntersection implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -379,7 +379,7 @@ class SerpGroupIntersection implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets customer_id
      *
-     * @param int $customer_id customer_id
+     * @param string $customer_id customer_id
      *
      * @return self
      */
@@ -396,7 +396,7 @@ class SerpGroupIntersection implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets campaign_id
      *
-     * @return int
+     * @return string
      */
     public function getCampaignId()
     {
@@ -406,7 +406,7 @@ class SerpGroupIntersection implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets campaign_id
      *
-     * @param int $campaign_id campaign_id
+     * @param string $campaign_id campaign_id
      *
      * @return self
      */
@@ -423,7 +423,7 @@ class SerpGroupIntersection implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets group_id
      *
-     * @return int
+     * @return string
      */
     public function getGroupId()
     {
@@ -433,7 +433,7 @@ class SerpGroupIntersection implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets group_id
      *
-     * @param int $group_id group_id
+     * @param string $group_id group_id
      *
      * @return self
      */

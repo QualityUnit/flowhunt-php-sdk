@@ -57,7 +57,7 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
+        'customer_id' => 'string',
         'click_id' => 'string',
         'click_id_name' => '\FlowHunt\Model\TrackingClickIdNames',
         'utm_source' => 'string',
@@ -404,7 +404,7 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -414,7 +414,7 @@ class TrackingSourceCreateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id customer_id
+     * @param string|null $customer_id customer_id
      *
      * @return self
      */

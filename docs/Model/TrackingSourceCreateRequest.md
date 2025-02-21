@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **int** |  | [optional]
+**customer_id** | **string** |  | [optional]
 **click_id** | **string** |  | [optional]
 **click_id_name** | [**\FlowHunt\Model\TrackingClickIdNames**](TrackingClickIdNames.md) |  | [optional]
 **utm_source** | **string** |  | [optional]

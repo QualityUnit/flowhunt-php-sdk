@@ -96,6 +96,8 @@ class TransactionType
 
     public const FAT_GC = 'FAT_GC';
 
+    public const CE_GC = 'CE_GC';
+
     public const VE_GC = 'VE_GC';
 
     public const CWP = 'CWP';
@@ -154,6 +156,7 @@ class TransactionType
             self::IGI,
             self::TR,
             self::FAT_GC,
+            self::CE_GC,
             self::VE_GC,
             self::CWP,
             self::SEQUENTIAL_AGENT,

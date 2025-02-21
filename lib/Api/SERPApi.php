@@ -535,9 +535,9 @@ class SERPApi
      *
      * Serp Cluster Add Queries
      *
-     * @param  int $customer_id customer_id (required)
-     * @param  int $campaign_id campaign_id (required)
-     * @param  int $group_id group_id (required)
+     * @param  string $customer_id customer_id (required)
+     * @param  string $campaign_id campaign_id (required)
+     * @param  string $group_id group_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterAddQueryRequests $serp_cluster_add_query_requests serp_cluster_add_query_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterAddQueries'] to see the possible values for this operation
@@ -557,9 +557,9 @@ class SERPApi
      *
      * Serp Cluster Add Queries
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterAddQueryRequests $serp_cluster_add_query_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterAddQueries'] to see the possible values for this operation
@@ -721,9 +721,9 @@ class SERPApi
      *
      * Serp Cluster Add Queries
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterAddQueryRequests $serp_cluster_add_query_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterAddQueries'] to see the possible values for this operation
@@ -746,9 +746,9 @@ class SERPApi
      *
      * Serp Cluster Add Queries
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterAddQueryRequests $serp_cluster_add_query_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterAddQueries'] to see the possible values for this operation
@@ -800,9 +800,9 @@ class SERPApi
     /**
      * Create request for operation 'serpClusterAddQueries'
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpClusterAddQueryRequests $serp_cluster_add_query_requests (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterAddQueries'] to see the possible values for this operation
@@ -967,8 +967,8 @@ class SERPApi
      *
      * Serp Cluster Delete Campaign
      *
-     * @param  int $customer_id customer_id (required)
-     * @param  int $campaign_id campaign_id (required)
+     * @param  string $customer_id customer_id (required)
+     * @param  string $campaign_id campaign_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCampaign'] to see the possible values for this operation
      *
@@ -987,8 +987,8 @@ class SERPApi
      *
      * Serp Cluster Delete Campaign
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCampaign'] to see the possible values for this operation
      *
@@ -1149,8 +1149,8 @@ class SERPApi
      *
      * Serp Cluster Delete Campaign
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCampaign'] to see the possible values for this operation
      *
@@ -1172,8 +1172,8 @@ class SERPApi
      *
      * Serp Cluster Delete Campaign
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCampaign'] to see the possible values for this operation
      *
@@ -1224,8 +1224,8 @@ class SERPApi
     /**
      * Create request for operation 'serpClusterDeleteCampaign'
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCampaign'] to see the possible values for this operation
      *
@@ -1360,7 +1360,7 @@ class SERPApi
      *
      * Serp Cluster Delete Customer
      *
-     * @param  int $customer_id customer_id (required)
+     * @param  string $customer_id customer_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCustomer'] to see the possible values for this operation
      *
@@ -1379,7 +1379,7 @@ class SERPApi
      *
      * Serp Cluster Delete Customer
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCustomer'] to see the possible values for this operation
      *
@@ -1540,7 +1540,7 @@ class SERPApi
      *
      * Serp Cluster Delete Customer
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCustomer'] to see the possible values for this operation
      *
@@ -1562,7 +1562,7 @@ class SERPApi
      *
      * Serp Cluster Delete Customer
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCustomer'] to see the possible values for this operation
      *
@@ -1613,7 +1613,7 @@ class SERPApi
     /**
      * Create request for operation 'serpClusterDeleteCustomer'
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteCustomer'] to see the possible values for this operation
      *
@@ -1733,9 +1733,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group
      *
-     * @param  int $customer_id customer_id (required)
-     * @param  int $campaign_id campaign_id (required)
-     * @param  int $group_id group_id (required)
+     * @param  string $customer_id customer_id (required)
+     * @param  string $campaign_id campaign_id (required)
+     * @param  string $group_id group_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroup'] to see the possible values for this operation
      *
@@ -1754,9 +1754,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroup'] to see the possible values for this operation
      *
@@ -1917,9 +1917,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroup'] to see the possible values for this operation
      *
@@ -1941,9 +1941,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroup'] to see the possible values for this operation
      *
@@ -1994,9 +1994,9 @@ class SERPApi
     /**
      * Create request for operation 'serpClusterDeleteGroup'
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroup'] to see the possible values for this operation
      *
@@ -2146,9 +2146,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group Queries
      *
-     * @param  int $customer_id customer_id (required)
-     * @param  int $campaign_id campaign_id (required)
-     * @param  int $group_id group_id (required)
+     * @param  string $customer_id customer_id (required)
+     * @param  string $campaign_id campaign_id (required)
+     * @param  string $group_id group_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  \FlowHunt\Model\SerpQueryRequest $serp_query_request serp_query_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroupQueries'] to see the possible values for this operation
@@ -2168,9 +2168,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group Queries
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpQueryRequest $serp_query_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroupQueries'] to see the possible values for this operation
@@ -2332,9 +2332,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group Queries
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpQueryRequest $serp_query_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroupQueries'] to see the possible values for this operation
@@ -2357,9 +2357,9 @@ class SERPApi
      *
      * Serp Cluster Delete Group Queries
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpQueryRequest $serp_query_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroupQueries'] to see the possible values for this operation
@@ -2411,9 +2411,9 @@ class SERPApi
     /**
      * Create request for operation 'serpClusterDeleteGroupQueries'
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\SerpQueryRequest $serp_query_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serpClusterDeleteGroupQueries'] to see the possible values for this operation

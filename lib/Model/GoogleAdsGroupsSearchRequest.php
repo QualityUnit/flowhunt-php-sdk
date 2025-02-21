@@ -57,9 +57,9 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string',
         'group_name' => 'string',
         'language_code' => 'string',
         'country' => 'string',
@@ -334,7 +334,7 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -344,7 +344,7 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id customer_id
+     * @param string|null $customer_id customer_id
      *
      * @return self
      */
@@ -368,7 +368,7 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -378,7 +378,7 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id campaign_id
+     * @param string|null $campaign_id campaign_id
      *
      * @return self
      */
@@ -402,7 +402,7 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets group_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getGroupId()
     {
@@ -412,7 +412,7 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets group_id
      *
-     * @param int|null $group_id group_id
+     * @param string|null $group_id group_id
      *
      * @return self
      */

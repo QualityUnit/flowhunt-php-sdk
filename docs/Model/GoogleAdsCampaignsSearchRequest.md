@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **int** |  | [optional]
-**campaign_id** | **int** |  | [optional]
+**customer_id** | **string** |  | [optional]
+**campaign_id** | **string** |  | [optional]
 **campaign_name** | **string** |  | [optional]
 **campaign_status** | [**\FlowHunt\Model\GoogleAdsCampaignStatus**](GoogleAdsCampaignStatus.md) |  | [optional]
 **language_code** | **string** |  | [optional]

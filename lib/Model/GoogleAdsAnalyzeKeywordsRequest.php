@@ -57,9 +57,10 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int'
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string',
+        'date_from' => '\DateTime'
     ];
 
     /**
@@ -72,7 +73,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     protected static $openAPIFormats = [
         'customer_id' => null,
         'campaign_id' => null,
-        'group_id' => null
+        'group_id' => null,
+        'date_from' => 'date'
     ];
 
     /**
@@ -83,7 +85,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     protected static array $openAPINullables = [
         'customer_id' => true,
         'campaign_id' => true,
-        'group_id' => true
+        'group_id' => true,
+        'date_from' => true
     ];
 
     /**
@@ -174,7 +177,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     protected static $attributeMap = [
         'customer_id' => 'customer_id',
         'campaign_id' => 'campaign_id',
-        'group_id' => 'group_id'
+        'group_id' => 'group_id',
+        'date_from' => 'date_from'
     ];
 
     /**
@@ -185,7 +189,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     protected static $setters = [
         'customer_id' => 'setCustomerId',
         'campaign_id' => 'setCampaignId',
-        'group_id' => 'setGroupId'
+        'group_id' => 'setGroupId',
+        'date_from' => 'setDateFrom'
     ];
 
     /**
@@ -196,7 +201,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     protected static $getters = [
         'customer_id' => 'getCustomerId',
         'campaign_id' => 'getCampaignId',
-        'group_id' => 'getGroupId'
+        'group_id' => 'getGroupId',
+        'date_from' => 'getDateFrom'
     ];
 
     /**
@@ -259,6 +265,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('customer_id', $data ?? [], null);
         $this->setIfExists('campaign_id', $data ?? [], null);
         $this->setIfExists('group_id', $data ?? [], null);
+        $this->setIfExists('date_from', $data ?? [], null);
     }
 
     /**
@@ -306,7 +313,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -316,7 +323,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id customer_id
+     * @param string|null $customer_id customer_id
      *
      * @return self
      */
@@ -340,7 +347,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -350,7 +357,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id campaign_id
+     * @param string|null $campaign_id campaign_id
      *
      * @return self
      */
@@ -374,7 +381,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets group_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getGroupId()
     {
@@ -384,7 +391,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets group_id
      *
-     * @param int|null $group_id group_id
+     * @param string|null $group_id group_id
      *
      * @return self
      */
@@ -401,6 +408,40 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['group_id'] = $group_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_from
+     *
+     * @return \DateTime|null
+     */
+    public function getDateFrom()
+    {
+        return $this->container['date_from'];
+    }
+
+    /**
+     * Sets date_from
+     *
+     * @param \DateTime|null $date_from date_from
+     *
+     * @return self
+     */
+    public function setDateFrom($date_from)
+    {
+        if (is_null($date_from)) {
+            array_push($this->openAPINullablesSetToNull, 'date_from');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('date_from', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['date_from'] = $date_from;
 
         return $this;
     }

@@ -57,7 +57,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
+        'customer_id' => 'string',
         'link_id' => 'string',
         'source_type' => '\FlowHunt\Model\TrackingSourceTypes',
         'click_id' => 'string',
@@ -393,7 +393,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -403,7 +403,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id customer_id
+     * @param string|null $customer_id customer_id
      *
      * @return self
      */

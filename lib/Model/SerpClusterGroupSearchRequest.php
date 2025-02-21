@@ -58,9 +58,9 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'search' => 'string',
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int'
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string'
     ];
 
     /**
@@ -347,7 +347,7 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -357,7 +357,7 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id customer_id
+     * @param string|null $customer_id customer_id
      *
      * @return self
      */
@@ -381,7 +381,7 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -391,7 +391,7 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id campaign_id
+     * @param string|null $campaign_id campaign_id
      *
      * @return self
      */
@@ -415,7 +415,7 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets group_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getGroupId()
     {
@@ -425,7 +425,7 @@ class SerpClusterGroupSearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets group_id
      *
-     * @param int|null $group_id group_id
+     * @param string|null $group_id group_id
      *
      * @return self
      */

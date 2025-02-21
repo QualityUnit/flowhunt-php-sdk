@@ -105,4 +105,13 @@ class GoogleAdsAnalyzeKeywordsRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "date_from"
+     */
+    public function testPropertyDateFrom()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

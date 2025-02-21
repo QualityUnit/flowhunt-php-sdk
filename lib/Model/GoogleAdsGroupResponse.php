@@ -58,9 +58,9 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'workspace_id' => 'string',
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string',
         'group_name' => 'string',
         'group_status' => '\FlowHunt\Model\GoogleAdsGroupStatus',
         'last_update' => '\DateTime',
@@ -403,7 +403,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -413,7 +413,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets customer_id
      *
-     * @param int $customer_id Google Ads Customer ID
+     * @param string $customer_id Google Ads Customer ID
      *
      * @return self
      */
@@ -430,7 +430,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets campaign_id
      *
-     * @return int
+     * @return string
      */
     public function getCampaignId()
     {
@@ -440,7 +440,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets campaign_id
      *
-     * @param int $campaign_id Google Ads Campaign ID
+     * @param string $campaign_id Google Ads Campaign ID
      *
      * @return self
      */
@@ -457,7 +457,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets group_id
      *
-     * @return int
+     * @return string
      */
     public function getGroupId()
     {
@@ -467,7 +467,7 @@ class GoogleAdsGroupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets group_id
      *
-     * @param int $group_id Google Ads Group
+     * @param string $group_id Google Ads Group
      *
      * @return self
      */

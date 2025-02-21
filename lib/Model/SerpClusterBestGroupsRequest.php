@@ -62,8 +62,8 @@ class SerpClusterBestGroupsRequest implements ModelInterface, ArrayAccess, \Json
         'language' => 'string',
         'country' => 'string',
         'search_engine' => '\FlowHunt\Model\SerpSearchEngineType',
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
         'min_cluster_strength' => 'int',
         'min_queries_count' => 'int'
     ];
@@ -517,7 +517,7 @@ class SerpClusterBestGroupsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -527,7 +527,7 @@ class SerpClusterBestGroupsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets customer_id
      *
-     * @param int $customer_id Customer ID of cluster
+     * @param string $customer_id Customer ID of cluster
      *
      * @return self
      */
@@ -544,7 +544,7 @@ class SerpClusterBestGroupsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -554,7 +554,7 @@ class SerpClusterBestGroupsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id campaign_id
+     * @param string|null $campaign_id campaign_id
      *
      * @return self
      */

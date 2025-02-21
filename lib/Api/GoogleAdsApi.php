@@ -538,7 +538,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Code Examples
      *
-     * @param  int $customer_id customer_id (required)
+     * @param  string $customer_id customer_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
      *
@@ -557,7 +557,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Code Examples
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
      *
@@ -718,7 +718,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Code Examples
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
      *
@@ -740,7 +740,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Code Examples
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
      *
@@ -791,7 +791,7 @@ class GoogleAdsApi
     /**
      * Create request for operation 'getConversionTrackingCodeExamples'
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
      *
@@ -911,7 +911,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Settings
      *
-     * @param  int $customer_id customer_id (required)
+     * @param  string $customer_id customer_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
      *
@@ -930,7 +930,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Settings
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
      *
@@ -1091,7 +1091,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Settings
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
      *
@@ -1113,7 +1113,7 @@ class GoogleAdsApi
      *
      * Get Conversion Tracking Settings
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
      *
@@ -1164,7 +1164,7 @@ class GoogleAdsApi
     /**
      * Create request for operation 'getConversionTrackingSettings'
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
      *
@@ -3850,7 +3850,7 @@ class GoogleAdsApi
      *
      * List Conversion Actions
      *
-     * @param  int $customer_id customer_id (required)
+     * @param  string $customer_id customer_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
      *
@@ -3869,7 +3869,7 @@ class GoogleAdsApi
      *
      * List Conversion Actions
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
      *
@@ -4030,7 +4030,7 @@ class GoogleAdsApi
      *
      * List Conversion Actions
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
      *
@@ -4052,7 +4052,7 @@ class GoogleAdsApi
      *
      * List Conversion Actions
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
      *
@@ -4103,7 +4103,7 @@ class GoogleAdsApi
     /**
      * Create request for operation 'listConversionActions'
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
      *
@@ -4223,8 +4223,8 @@ class GoogleAdsApi
      *
      * Update Google Ads Campaign
      *
-     * @param  int $customer_id customer_id (required)
-     * @param  int $campaign_id campaign_id (required)
+     * @param  string $customer_id customer_id (required)
+     * @param  string $campaign_id campaign_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCampaignUpdateRequest $google_ads_campaign_update_request google_ads_campaign_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCampaign'] to see the possible values for this operation
@@ -4244,8 +4244,8 @@ class GoogleAdsApi
      *
      * Update Google Ads Campaign
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCampaignUpdateRequest $google_ads_campaign_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCampaign'] to see the possible values for this operation
@@ -4407,8 +4407,8 @@ class GoogleAdsApi
      *
      * Update Google Ads Campaign
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCampaignUpdateRequest $google_ads_campaign_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCampaign'] to see the possible values for this operation
@@ -4431,8 +4431,8 @@ class GoogleAdsApi
      *
      * Update Google Ads Campaign
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCampaignUpdateRequest $google_ads_campaign_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCampaign'] to see the possible values for this operation
@@ -4484,8 +4484,8 @@ class GoogleAdsApi
     /**
      * Create request for operation 'updateGoogleAdsCampaign'
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCampaignUpdateRequest $google_ads_campaign_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCampaign'] to see the possible values for this operation
@@ -4635,7 +4635,7 @@ class GoogleAdsApi
      *
      * Update Google Ads Customer Update
      *
-     * @param  int $customer_id customer_id (required)
+     * @param  string $customer_id customer_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCustomerUpdateRequest $google_ads_customer_update_request google_ads_customer_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCustomerUpdate'] to see the possible values for this operation
@@ -4655,7 +4655,7 @@ class GoogleAdsApi
      *
      * Update Google Ads Customer Update
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCustomerUpdateRequest $google_ads_customer_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCustomerUpdate'] to see the possible values for this operation
@@ -4817,7 +4817,7 @@ class GoogleAdsApi
      *
      * Update Google Ads Customer Update
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCustomerUpdateRequest $google_ads_customer_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCustomerUpdate'] to see the possible values for this operation
@@ -4840,7 +4840,7 @@ class GoogleAdsApi
      *
      * Update Google Ads Customer Update
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCustomerUpdateRequest $google_ads_customer_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCustomerUpdate'] to see the possible values for this operation
@@ -4892,7 +4892,7 @@ class GoogleAdsApi
     /**
      * Create request for operation 'updateGoogleAdsCustomerUpdate'
      *
-     * @param  int $customer_id (required)
+     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsCustomerUpdateRequest $google_ads_customer_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsCustomerUpdate'] to see the possible values for this operation
@@ -5027,9 +5027,9 @@ class GoogleAdsApi
      *
      * Update Google Ads Group
      *
-     * @param  int $customer_id customer_id (required)
-     * @param  int $campaign_id campaign_id (required)
-     * @param  int $group_id group_id (required)
+     * @param  string $customer_id customer_id (required)
+     * @param  string $campaign_id campaign_id (required)
+     * @param  string $group_id group_id (required)
      * @param  string $workspace_id workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsGroupUpdateRequest $google_ads_group_update_request google_ads_group_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsGroup'] to see the possible values for this operation
@@ -5049,9 +5049,9 @@ class GoogleAdsApi
      *
      * Update Google Ads Group
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsGroupUpdateRequest $google_ads_group_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsGroup'] to see the possible values for this operation
@@ -5213,9 +5213,9 @@ class GoogleAdsApi
      *
      * Update Google Ads Group
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsGroupUpdateRequest $google_ads_group_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsGroup'] to see the possible values for this operation
@@ -5238,9 +5238,9 @@ class GoogleAdsApi
      *
      * Update Google Ads Group
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsGroupUpdateRequest $google_ads_group_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsGroup'] to see the possible values for this operation
@@ -5292,9 +5292,9 @@ class GoogleAdsApi
     /**
      * Create request for operation 'updateGoogleAdsGroup'
      *
-     * @param  int $customer_id (required)
-     * @param  int $campaign_id (required)
-     * @param  int $group_id (required)
+     * @param  string $customer_id (required)
+     * @param  string $campaign_id (required)
+     * @param  string $group_id (required)
      * @param  string $workspace_id (required)
      * @param  \FlowHunt\Model\GoogleAdsGroupUpdateRequest $google_ads_group_update_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateGoogleAdsGroup'] to see the possible values for this operation

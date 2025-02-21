@@ -57,9 +57,9 @@ class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string',
         'min_cluster_strength' => 'int',
         'suggest_other_matching_keywords' => 'bool',
         'include_group_keywords' => 'bool'
@@ -330,7 +330,7 @@ class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -340,7 +340,7 @@ class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets customer_id
      *
-     * @param int $customer_id Customer ID of cluster
+     * @param string $customer_id Customer ID of cluster
      *
      * @return self
      */
@@ -357,7 +357,7 @@ class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -367,7 +367,7 @@ class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id campaign_id
+     * @param string|null $campaign_id campaign_id
      *
      * @return self
      */
@@ -391,7 +391,7 @@ class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets group_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getGroupId()
     {
@@ -401,7 +401,7 @@ class SerpClusterGroupSubClustersRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets group_id
      *
-     * @param int|null $group_id group_id
+     * @param string|null $group_id group_id
      *
      * @return self
      */

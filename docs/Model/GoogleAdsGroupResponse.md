@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **workspace_id** | **string** | Workspace ID |
-**customer_id** | **int** | Google Ads Customer ID |
-**campaign_id** | **int** | Google Ads Campaign ID |
-**group_id** | **int** | Google Ads Group |
+**customer_id** | **string** | Google Ads Customer ID |
+**campaign_id** | **string** | Google Ads Campaign ID |
+**group_id** | **string** | Google Ads Group |
 **group_name** | **string** | Google Ads Group Name |
 **group_status** | [**\FlowHunt\Model\GoogleAdsGroupStatus**](GoogleAdsGroupStatus.md) | Group Status |
 **last_update** | **\DateTime** |  | [optional]

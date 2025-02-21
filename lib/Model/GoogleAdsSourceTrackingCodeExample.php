@@ -57,7 +57,7 @@ class GoogleAdsSourceTrackingCodeExample implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
+        'customer_id' => 'string',
         'customer_name' => 'string',
         'tracking_code' => 'string',
         'description' => 'string'
@@ -325,7 +325,7 @@ class GoogleAdsSourceTrackingCodeExample implements ModelInterface, ArrayAccess,
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -335,7 +335,7 @@ class GoogleAdsSourceTrackingCodeExample implements ModelInterface, ArrayAccess,
     /**
      * Sets customer_id
      *
-     * @param int $customer_id The ID of the customer
+     * @param string $customer_id The ID of the customer
      *
      * @return self
      */

@@ -57,7 +57,7 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'customer_id' => 'int',
+        'customer_id' => 'string',
         'customer_name' => 'string',
         'language_code' => 'string',
         'country' => 'string',
@@ -376,7 +376,7 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -386,7 +386,7 @@ class GoogleAdsCustomersSearchRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id customer_id
+     * @param string|null $customer_id customer_id
      *
      * @return self
      */

@@ -114,9 +114,9 @@ $apiInstance = new FlowHunt\Api\SERPApi(
     new GuzzleHttp\Client(),
     $config
 );
-$customer_id = 56; // int
-$campaign_id = 56; // int
-$group_id = 56; // int
+$customer_id = 'customer_id_example'; // string
+$campaign_id = 'campaign_id_example'; // string
+$group_id = 'group_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $serp_cluster_add_query_requests = new \FlowHunt\Model\SerpClusterAddQueryRequests(); // \FlowHunt\Model\SerpClusterAddQueryRequests
 
@@ -132,9 +132,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **int**|  | |
-| **campaign_id** | **int**|  | |
-| **group_id** | **int**|  | |
+| **customer_id** | **string**|  | |
+| **campaign_id** | **string**|  | |
+| **group_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **serp_cluster_add_query_requests** | [**\FlowHunt\Model\SerpClusterAddQueryRequests**](../Model/SerpClusterAddQueryRequests.md)|  | |
 
@@ -185,8 +185,8 @@ $apiInstance = new FlowHunt\Api\SERPApi(
     new GuzzleHttp\Client(),
     $config
 );
-$customer_id = 56; // int
-$campaign_id = 56; // int
+$customer_id = 'customer_id_example'; // string
+$campaign_id = 'campaign_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -201,8 +201,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **int**|  | |
-| **campaign_id** | **int**|  | |
+| **customer_id** | **string**|  | |
+| **campaign_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -252,7 +252,7 @@ $apiInstance = new FlowHunt\Api\SERPApi(
     new GuzzleHttp\Client(),
     $config
 );
-$customer_id = 56; // int
+$customer_id = 'customer_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -267,7 +267,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **int**|  | |
+| **customer_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -317,9 +317,9 @@ $apiInstance = new FlowHunt\Api\SERPApi(
     new GuzzleHttp\Client(),
     $config
 );
-$customer_id = 56; // int
-$campaign_id = 56; // int
-$group_id = 56; // int
+$customer_id = 'customer_id_example'; // string
+$campaign_id = 'campaign_id_example'; // string
+$group_id = 'group_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
@@ -334,9 +334,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **int**|  | |
-| **campaign_id** | **int**|  | |
-| **group_id** | **int**|  | |
+| **customer_id** | **string**|  | |
+| **campaign_id** | **string**|  | |
+| **group_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 
 ### Return type
@@ -386,9 +386,9 @@ $apiInstance = new FlowHunt\Api\SERPApi(
     new GuzzleHttp\Client(),
     $config
 );
-$customer_id = 56; // int
-$campaign_id = 56; // int
-$group_id = 56; // int
+$customer_id = 'customer_id_example'; // string
+$campaign_id = 'campaign_id_example'; // string
+$group_id = 'group_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 $serp_query_request = new \FlowHunt\Model\SerpQueryRequest(); // \FlowHunt\Model\SerpQueryRequest
 
@@ -404,9 +404,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **int**|  | |
-| **campaign_id** | **int**|  | |
-| **group_id** | **int**|  | |
+| **customer_id** | **string**|  | |
+| **campaign_id** | **string**|  | |
+| **group_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
 | **serp_query_request** | [**\FlowHunt\Model\SerpQueryRequest**](../Model/SerpQueryRequest.md)|  | |
 

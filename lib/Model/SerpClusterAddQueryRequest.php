@@ -59,9 +59,9 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPITypes = [
         'post_back_url' => 'string',
         'queries' => '\FlowHunt\Model\SerpKeyword[]',
-        'customer_id' => 'int',
-        'campaign_id' => 'int',
-        'group_id' => 'int',
+        'customer_id' => 'string',
+        'campaign_id' => 'string',
+        'group_id' => 'string',
         'group_name' => 'string'
     ];
 
@@ -391,7 +391,7 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets customer_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerId()
     {
@@ -401,7 +401,7 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets customer_id
      *
-     * @param int|null $customer_id Customer ID of cluster
+     * @param string|null $customer_id Customer ID of cluster
      *
      * @return self
      */
@@ -418,7 +418,7 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets campaign_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCampaignId()
     {
@@ -428,7 +428,7 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets campaign_id
      *
-     * @param int|null $campaign_id Campaign ID of cluster
+     * @param string|null $campaign_id Campaign ID of cluster
      *
      * @return self
      */
@@ -445,7 +445,7 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets group_id
      *
-     * @return int|null
+     * @return string|null
      */
     public function getGroupId()
     {
@@ -455,7 +455,7 @@ class SerpClusterAddQueryRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets group_id
      *
-     * @param int|null $group_id Group ID of cluster - will be generated if not provided
+     * @param string|null $group_id Group ID of cluster - will be generated if not provided
      *
      * @return self
      */

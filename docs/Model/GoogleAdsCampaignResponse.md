@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **workspace_id** | **string** | Workspace ID |
-**customer_id** | **int** | Google Ads Customer ID |
-**campaign_id** | **int** | Google Ads Campaign ID |
+**customer_id** | **string** | Google Ads Customer ID |
+**campaign_id** | **string** | Google Ads Campaign ID |
 **campaign_name** | **string** | Google Ads Campaign Name |
 **campaign_status** | [**\FlowHunt\Model\GoogleAdsCampaignStatus**](GoogleAdsCampaignStatus.md) | Campaign Status |
 **language_code** | **string** |  | [optional]

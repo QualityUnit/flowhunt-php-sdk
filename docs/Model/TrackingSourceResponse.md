@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **int** |  | [optional]
+**customer_id** | **string** |  | [optional]
 **link_id** | **string** |  | [optional]
 **source_type** | [**\FlowHunt\Model\TrackingSourceTypes**](TrackingSourceTypes.md) |  |
 **click_id** | **string** |  | [optional]

@@ -58,7 +58,7 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'workspace_id' => 'string',
-        'customer_id' => 'int',
+        'customer_id' => 'string',
         'customer_name' => 'string',
         'language_code' => 'string',
         'country' => 'string',
@@ -440,7 +440,7 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets customer_id
      *
-     * @return int
+     * @return string
      */
     public function getCustomerId()
     {
@@ -450,7 +450,7 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets customer_id
      *
-     * @param int $customer_id Google Ads Customer ID
+     * @param string $customer_id Google Ads Customer ID
      *
      * @return self
      */
