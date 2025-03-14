@@ -89,15 +89,6 @@ class TrackingEventSearchRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "conversion_action_id"
-     */
-    public function testPropertyConversionActionId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "from_date"
      */
     public function testPropertyFromDate()

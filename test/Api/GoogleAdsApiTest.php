@@ -72,36 +72,24 @@ class GoogleAdsApiTest extends TestCase
     }
 
     /**
+     * Test case for addKeywordToGroup
+     *
+     * Add Keyword To Group.
+     *
+     */
+    public function testAddKeywordToGroup()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for analyzeNotAssignedKeywords
      *
      * Analyze Not Assigned Keywords.
      *
      */
     public function testAnalyzeNotAssignedKeywords()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for getConversionTrackingCodeExamples
-     *
-     * Get Conversion Tracking Code Examples.
-     *
-     */
-    public function testGetConversionTrackingCodeExamples()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for getConversionTrackingSettings
-     *
-     * Get Conversion Tracking Settings.
-     *
-     */
-    public function testGetConversionTrackingSettings()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -144,12 +132,12 @@ class GoogleAdsApiTest extends TestCase
     }
 
     /**
-     * Test case for getSourceTrackingCodeExamples
+     * Test case for getRecommendations
      *
-     * Get Source Tracking Code Examples.
+     * Get Recommendations.
      *
      */
-    public function testGetSourceTrackingCodeExamples()
+    public function testGetRecommendations()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -192,12 +180,12 @@ class GoogleAdsApiTest extends TestCase
     }
 
     /**
-     * Test case for listConversionActions
+     * Test case for removeKeywordFromGroup
      *
-     * List Conversion Actions.
+     * Remove Keyword From Group.
      *
      */
-    public function testListConversionActions()
+    public function testRemoveKeywordFromGroup()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

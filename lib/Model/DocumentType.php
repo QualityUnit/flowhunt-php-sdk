@@ -84,6 +84,8 @@ class DocumentType
 
     public const WEBP = 'WEBP';
 
+    public const CSV = 'CSV';
+
     public const GOOGLE_DOCS = 'GOOGLE_DOCS';
 
     public const GOOGLE_SHEETS = 'GOOGLE_SHEETS';
@@ -116,6 +118,7 @@ class DocumentType
             self::PNG,
             self::GIF,
             self::WEBP,
+            self::CSV,
             self::GOOGLE_DOCS,
             self::GOOGLE_SHEETS
         ];

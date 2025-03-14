@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **flow_id** | **string** |  |
 **status** | [**\FlowHunt\Model\FlowCronStatus**](FlowCronStatus.md) |  |
 **input_text** | **string** |  | [optional]
-**variables** | **object** |  | [optional]
+**variables** | **array<string,mixed>** |  | [optional]
 **interval_settings** | **string** |  |
 **cron_name** | **string** |  |
 

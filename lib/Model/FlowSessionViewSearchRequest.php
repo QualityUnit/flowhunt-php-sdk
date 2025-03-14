@@ -61,14 +61,14 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'flow_id' => 'string',
         'tags' => 'string[]',
         'limit' => 'int',
-        'created_at_filter' => 'object',
-        'last_message_at_filter' => 'object',
-        'duration_filter' => 'object',
-        'msg_count_filter' => 'object',
-        'credits_filter' => 'object',
+        'created_at_filter' => 'array<string,mixed>',
+        'last_message_at_filter' => 'array<string,mixed>',
+        'duration_filter' => 'array<string,mixed>',
+        'msg_count_filter' => 'array<string,mixed>',
+        'credits_filter' => 'array<string,mixed>',
         'chatbot_name' => 'string',
         'flow_name' => 'string',
-        'ipaddress_filter' => 'object'
+        'ipaddress_filter' => 'array<string,mixed>'
     ];
 
     /**
@@ -505,7 +505,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets created_at_filter
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getCreatedAtFilter()
     {
@@ -515,7 +515,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets created_at_filter
      *
-     * @param object|null $created_at_filter created_at_filter
+     * @param array<string,mixed>|null $created_at_filter created_at_filter
      *
      * @return self
      */
@@ -539,7 +539,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets last_message_at_filter
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getLastMessageAtFilter()
     {
@@ -549,7 +549,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets last_message_at_filter
      *
-     * @param object|null $last_message_at_filter last_message_at_filter
+     * @param array<string,mixed>|null $last_message_at_filter last_message_at_filter
      *
      * @return self
      */
@@ -573,7 +573,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets duration_filter
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getDurationFilter()
     {
@@ -583,7 +583,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets duration_filter
      *
-     * @param object|null $duration_filter duration_filter
+     * @param array<string,mixed>|null $duration_filter duration_filter
      *
      * @return self
      */
@@ -607,7 +607,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets msg_count_filter
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getMsgCountFilter()
     {
@@ -617,7 +617,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets msg_count_filter
      *
-     * @param object|null $msg_count_filter msg_count_filter
+     * @param array<string,mixed>|null $msg_count_filter msg_count_filter
      *
      * @return self
      */
@@ -641,7 +641,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets credits_filter
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getCreditsFilter()
     {
@@ -651,7 +651,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets credits_filter
      *
-     * @param object|null $credits_filter credits_filter
+     * @param array<string,mixed>|null $credits_filter credits_filter
      *
      * @return self
      */
@@ -743,7 +743,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets ipaddress_filter
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getIpaddressFilter()
     {
@@ -753,7 +753,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets ipaddress_filter
      *
-     * @param object|null $ipaddress_filter ipaddress_filter
+     * @param array<string,mixed>|null $ipaddress_filter ipaddress_filter
      *
      * @return self
      */

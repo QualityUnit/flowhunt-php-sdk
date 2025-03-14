@@ -64,6 +64,7 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
         'utm_source' => 'string',
         'utm_medium' => 'string',
         'utm_campaign' => 'string',
+        'utm_channel' => 'string',
         'from_date' => '\DateTime',
         'to_date' => '\DateTime',
         'include_expired' => 'bool',
@@ -86,6 +87,7 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
         'utm_source' => null,
         'utm_medium' => null,
         'utm_campaign' => null,
+        'utm_channel' => null,
         'from_date' => 'date-time',
         'to_date' => 'date-time',
         'include_expired' => null,
@@ -106,6 +108,7 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
         'utm_source' => true,
         'utm_medium' => true,
         'utm_campaign' => true,
+        'utm_channel' => true,
         'from_date' => true,
         'to_date' => true,
         'include_expired' => true,
@@ -206,6 +209,7 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
         'utm_source' => 'utm_source',
         'utm_medium' => 'utm_medium',
         'utm_campaign' => 'utm_campaign',
+        'utm_channel' => 'utm_channel',
         'from_date' => 'from_date',
         'to_date' => 'to_date',
         'include_expired' => 'include_expired',
@@ -226,6 +230,7 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
         'utm_source' => 'setUtmSource',
         'utm_medium' => 'setUtmMedium',
         'utm_campaign' => 'setUtmCampaign',
+        'utm_channel' => 'setUtmChannel',
         'from_date' => 'setFromDate',
         'to_date' => 'setToDate',
         'include_expired' => 'setIncludeExpired',
@@ -246,6 +251,7 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
         'utm_source' => 'getUtmSource',
         'utm_medium' => 'getUtmMedium',
         'utm_campaign' => 'getUtmCampaign',
+        'utm_channel' => 'getUtmChannel',
         'from_date' => 'getFromDate',
         'to_date' => 'getToDate',
         'include_expired' => 'getIncludeExpired',
@@ -317,6 +323,7 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('utm_source', $data ?? [], null);
         $this->setIfExists('utm_medium', $data ?? [], null);
         $this->setIfExists('utm_campaign', $data ?? [], null);
+        $this->setIfExists('utm_channel', $data ?? [], null);
         $this->setIfExists('from_date', $data ?? [], null);
         $this->setIfExists('to_date', $data ?? [], null);
         $this->setIfExists('include_expired', $data ?? [], null);
@@ -612,6 +619,40 @@ class TrackingSourceSearchRequest implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['utm_campaign'] = $utm_campaign;
+
+        return $this;
+    }
+
+    /**
+     * Gets utm_channel
+     *
+     * @return string|null
+     */
+    public function getUtmChannel()
+    {
+        return $this->container['utm_channel'];
+    }
+
+    /**
+     * Sets utm_channel
+     *
+     * @param string|null $utm_channel utm_channel
+     *
+     * @return self
+     */
+    public function setUtmChannel($utm_channel)
+    {
+        if (is_null($utm_channel)) {
+            array_push($this->openAPINullablesSetToNull, 'utm_channel');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('utm_channel', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['utm_channel'] = $utm_channel;
 
         return $this;
     }

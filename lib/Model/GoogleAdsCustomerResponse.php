@@ -70,7 +70,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'next_update' => '\DateTime',
         'cron_settings' => 'string',
         'action_type' => '\FlowHunt\Model\GoogleAdsActionType',
-        'ga_measurement_id' => 'string'
+        'ga_measurement_id' => 'string',
+        'ga_api_secret' => 'string'
     ];
 
     /**
@@ -94,7 +95,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'next_update' => 'date-time',
         'cron_settings' => null,
         'action_type' => null,
-        'ga_measurement_id' => null
+        'ga_measurement_id' => null,
+        'ga_api_secret' => null
     ];
 
     /**
@@ -116,7 +118,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'next_update' => true,
         'cron_settings' => true,
         'action_type' => false,
-        'ga_measurement_id' => true
+        'ga_measurement_id' => true,
+        'ga_api_secret' => true
     ];
 
     /**
@@ -218,7 +221,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'next_update' => 'next_update',
         'cron_settings' => 'cron_settings',
         'action_type' => 'action_type',
-        'ga_measurement_id' => 'ga_measurement_id'
+        'ga_measurement_id' => 'ga_measurement_id',
+        'ga_api_secret' => 'ga_api_secret'
     ];
 
     /**
@@ -240,7 +244,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'next_update' => 'setNextUpdate',
         'cron_settings' => 'setCronSettings',
         'action_type' => 'setActionType',
-        'ga_measurement_id' => 'setGaMeasurementId'
+        'ga_measurement_id' => 'setGaMeasurementId',
+        'ga_api_secret' => 'setGaApiSecret'
     ];
 
     /**
@@ -262,7 +267,8 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         'next_update' => 'getNextUpdate',
         'cron_settings' => 'getCronSettings',
         'action_type' => 'getActionType',
-        'ga_measurement_id' => 'getGaMeasurementId'
+        'ga_measurement_id' => 'getGaMeasurementId',
+        'ga_api_secret' => 'getGaApiSecret'
     ];
 
     /**
@@ -336,6 +342,7 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('cron_settings', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
         $this->setIfExists('ga_measurement_id', $data ?? [], null);
+        $this->setIfExists('ga_api_secret', $data ?? [], null);
     }
 
     /**
@@ -812,6 +819,40 @@ class GoogleAdsCustomerResponse implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['ga_measurement_id'] = $ga_measurement_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets ga_api_secret
+     *
+     * @return string|null
+     */
+    public function getGaApiSecret()
+    {
+        return $this->container['ga_api_secret'];
+    }
+
+    /**
+     * Sets ga_api_secret
+     *
+     * @param string|null $ga_api_secret ga_api_secret
+     *
+     * @return self
+     */
+    public function setGaApiSecret($ga_api_secret)
+    {
+        if (is_null($ga_api_secret)) {
+            array_push($this->openAPINullablesSetToNull, 'ga_api_secret');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ga_api_secret', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ga_api_secret'] = $ga_api_secret;
 
         return $this;
     }

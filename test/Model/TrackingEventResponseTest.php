@@ -152,15 +152,6 @@ class TrackingEventResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "conversion_action_id"
-     */
-    public function testPropertyConversionActionId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "include_in_conversions_metric"
      */
     public function testPropertyIncludeInConversionsMetric()

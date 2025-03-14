@@ -63,13 +63,14 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'float',
         'published_at' => 'float',
         'title' => 'string',
+        'doc_name' => 'string',
         'lang' => 'string',
         'content_type' => 'string',
         'encoding' => 'string',
         'apparent_encoding' => 'string',
         'description' => 'string',
         'content' => 'string',
-        'metadata' => 'object',
+        'metadata' => 'array<string,mixed>',
         'alt_content' => 'string[]',
         'content_hash' => 'string',
         'author' => 'string',
@@ -96,6 +97,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => null,
         'published_at' => null,
         'title' => null,
+        'doc_name' => null,
         'lang' => null,
         'content_type' => null,
         'encoding' => null,
@@ -127,6 +129,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => true,
         'published_at' => true,
         'title' => true,
+        'doc_name' => true,
         'lang' => true,
         'content_type' => true,
         'encoding' => true,
@@ -238,6 +241,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'created_at',
         'published_at' => 'published_at',
         'title' => 'title',
+        'doc_name' => 'doc_name',
         'lang' => 'lang',
         'content_type' => 'content_type',
         'encoding' => 'encoding',
@@ -269,6 +273,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'setCreatedAt',
         'published_at' => 'setPublishedAt',
         'title' => 'setTitle',
+        'doc_name' => 'setDocName',
         'lang' => 'setLang',
         'content_type' => 'setContentType',
         'encoding' => 'setEncoding',
@@ -300,6 +305,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'getCreatedAt',
         'published_at' => 'getPublishedAt',
         'title' => 'getTitle',
+        'doc_name' => 'getDocName',
         'lang' => 'getLang',
         'content_type' => 'getContentType',
         'encoding' => 'getEncoding',
@@ -382,6 +388,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('published_at', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('doc_name', $data ?? [], null);
         $this->setIfExists('lang', $data ?? [], null);
         $this->setIfExists('content_type', $data ?? [], null);
         $this->setIfExists('encoding', $data ?? [], null);
@@ -648,6 +655,40 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets doc_name
+     *
+     * @return string|null
+     */
+    public function getDocName()
+    {
+        return $this->container['doc_name'];
+    }
+
+    /**
+     * Sets doc_name
+     *
+     * @param string|null $doc_name doc_name
+     *
+     * @return self
+     */
+    public function setDocName($doc_name)
+    {
+        if (is_null($doc_name)) {
+            array_push($this->openAPINullablesSetToNull, 'doc_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('doc_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['doc_name'] = $doc_name;
+
+        return $this;
+    }
+
+    /**
      * Gets lang
      *
      * @return string|null
@@ -854,7 +895,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metadata
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getMetadata()
     {
@@ -864,7 +905,7 @@ class YoutubeContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metadata
      *
-     * @param object|null $metadata metadata
+     * @param array<string,mixed>|null $metadata metadata
      *
      * @return self
      */

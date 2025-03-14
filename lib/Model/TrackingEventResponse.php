@@ -65,7 +65,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'currency' => 'string',
         'created_at' => '\DateTime',
         'valid_until' => '\DateTime',
-        'conversion_action_id' => 'string',
         'include_in_conversions_metric' => 'bool',
         'event_data' => '\FlowHunt\Model\TrackingEventData[]',
         'link_ids' => 'mixed[]'
@@ -87,7 +86,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'currency' => null,
         'created_at' => 'date-time',
         'valid_until' => 'date-time',
-        'conversion_action_id' => null,
         'include_in_conversions_metric' => null,
         'event_data' => null,
         'link_ids' => null
@@ -107,7 +105,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'currency' => true,
         'created_at' => true,
         'valid_until' => true,
-        'conversion_action_id' => true,
         'include_in_conversions_metric' => true,
         'event_data' => true,
         'link_ids' => true
@@ -207,7 +204,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'currency' => 'currency',
         'created_at' => 'created_at',
         'valid_until' => 'valid_until',
-        'conversion_action_id' => 'conversion_action_id',
         'include_in_conversions_metric' => 'include_in_conversions_metric',
         'event_data' => 'event_data',
         'link_ids' => 'link_ids'
@@ -227,7 +223,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'currency' => 'setCurrency',
         'created_at' => 'setCreatedAt',
         'valid_until' => 'setValidUntil',
-        'conversion_action_id' => 'setConversionActionId',
         'include_in_conversions_metric' => 'setIncludeInConversionsMetric',
         'event_data' => 'setEventData',
         'link_ids' => 'setLinkIds'
@@ -247,7 +242,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'currency' => 'getCurrency',
         'created_at' => 'getCreatedAt',
         'valid_until' => 'getValidUntil',
-        'conversion_action_id' => 'getConversionActionId',
         'include_in_conversions_metric' => 'getIncludeInConversionsMetric',
         'event_data' => 'getEventData',
         'link_ids' => 'getLinkIds'
@@ -318,7 +312,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('valid_until', $data ?? [], null);
-        $this->setIfExists('conversion_action_id', $data ?? [], null);
         $this->setIfExists('include_in_conversions_metric', $data ?? [], null);
         $this->setIfExists('event_data', $data ?? [], null);
         $this->setIfExists('link_ids', $data ?? [], null);
@@ -630,40 +623,6 @@ class TrackingEventResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['valid_until'] = $valid_until;
-
-        return $this;
-    }
-
-    /**
-     * Gets conversion_action_id
-     *
-     * @return string|null
-     */
-    public function getConversionActionId()
-    {
-        return $this->container['conversion_action_id'];
-    }
-
-    /**
-     * Sets conversion_action_id
-     *
-     * @param string|null $conversion_action_id conversion_action_id
-     *
-     * @return self
-     */
-    public function setConversionActionId($conversion_action_id)
-    {
-        if (is_null($conversion_action_id)) {
-            array_push($this->openAPINullablesSetToNull, 'conversion_action_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('conversion_action_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['conversion_action_id'] = $conversion_action_id;
 
         return $this;
     }

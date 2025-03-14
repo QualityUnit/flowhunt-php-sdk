@@ -60,7 +60,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         'customer_id' => 'string',
         'campaign_id' => 'string',
         'group_id' => 'string',
-        'date_from' => '\DateTime'
+        'date_from' => '\DateTime',
+        'force_update' => 'bool'
     ];
 
     /**
@@ -74,7 +75,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         'customer_id' => null,
         'campaign_id' => null,
         'group_id' => null,
-        'date_from' => 'date'
+        'date_from' => 'date',
+        'force_update' => null
     ];
 
     /**
@@ -86,7 +88,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         'customer_id' => true,
         'campaign_id' => true,
         'group_id' => true,
-        'date_from' => true
+        'date_from' => true,
+        'force_update' => true
     ];
 
     /**
@@ -178,7 +181,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         'customer_id' => 'customer_id',
         'campaign_id' => 'campaign_id',
         'group_id' => 'group_id',
-        'date_from' => 'date_from'
+        'date_from' => 'date_from',
+        'force_update' => 'force_update'
     ];
 
     /**
@@ -190,7 +194,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         'customer_id' => 'setCustomerId',
         'campaign_id' => 'setCampaignId',
         'group_id' => 'setGroupId',
-        'date_from' => 'setDateFrom'
+        'date_from' => 'setDateFrom',
+        'force_update' => 'setForceUpdate'
     ];
 
     /**
@@ -202,7 +207,8 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         'customer_id' => 'getCustomerId',
         'campaign_id' => 'getCampaignId',
         'group_id' => 'getGroupId',
-        'date_from' => 'getDateFrom'
+        'date_from' => 'getDateFrom',
+        'force_update' => 'getForceUpdate'
     ];
 
     /**
@@ -266,6 +272,7 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('campaign_id', $data ?? [], null);
         $this->setIfExists('group_id', $data ?? [], null);
         $this->setIfExists('date_from', $data ?? [], null);
+        $this->setIfExists('force_update', $data ?? [], null);
     }
 
     /**
@@ -442,6 +449,40 @@ class GoogleAdsAnalyzeKeywordsRequest implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['date_from'] = $date_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_update
+     *
+     * @return bool|null
+     */
+    public function getForceUpdate()
+    {
+        return $this->container['force_update'];
+    }
+
+    /**
+     * Sets force_update
+     *
+     * @param bool|null $force_update force_update
+     *
+     * @return self
+     */
+    public function setForceUpdate($force_update)
+    {
+        if (is_null($force_update)) {
+            array_push($this->openAPINullablesSetToNull, 'force_update');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('force_update', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['force_update'] = $force_update;
 
         return $this;
     }

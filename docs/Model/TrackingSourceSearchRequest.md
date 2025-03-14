@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **utm_source** | **string** |  | [optional]
 **utm_medium** | **string** |  | [optional]
 **utm_campaign** | **string** |  | [optional]
+**utm_channel** | **string** |  | [optional]
 **from_date** | **\DateTime** |  | [optional]
 **to_date** | **\DateTime** |  | [optional]
 **include_expired** | **bool** |  | [optional]

@@ -150,4 +150,13 @@ class FlowSessionCreateRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "on_chat_opened_postback_url"
+     */
+    public function testPropertyOnChatOpenedPostbackUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

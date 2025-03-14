@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **campaign_id** | **string** |  | [optional]
 **group_id** | **string** |  | [optional]
 **date_from** | **\DateTime** |  | [optional]
+**force_update** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

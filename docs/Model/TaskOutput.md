@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **summary** | **string** |  | [optional]
 **raw** | **string** | Raw output of the task | [optional] [default to '']
 **pydantic** | **object** |  | [optional]
-**json_dict** | **object** |  | [optional]
+**json_dict** | **array<string,mixed>** |  | [optional]
 **agent** | **string** | Agent that executed the task |
 **output_format** | [**\FlowHunt\Model\OutputFormat**](OutputFormat.md) | Output format of the task | [optional]
 

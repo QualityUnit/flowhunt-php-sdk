@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | [**\FlowHunt\Model\FlowCronStatus**](FlowCronStatus.md) |  | [optional]
 **input_text** | **string** |  | [optional]
-**variables** | **object** |  | [optional]
+**variables** | **array<string,mixed>** |  | [optional]
 **interval_settings** | **string** |  | [optional]
 **cron_name** | **string** |  | [optional]
 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **utm_campaign** | **string** |  | [optional]
 **utm_term** | **string** |  | [optional]
 **utm_content** | **string** |  | [optional]
+**utm_channel** | **string** |  | [optional]
 **ga** | **string** |  | [optional]
 **url** | **string** |  | [optional]
 **created_at** | **\DateTime** |  | [optional]

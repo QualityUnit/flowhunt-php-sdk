@@ -67,6 +67,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'utm_campaign' => 'string',
         'utm_term' => 'string',
         'utm_content' => 'string',
+        'utm_channel' => 'string',
         'ga' => 'string',
         'url' => 'string',
         'created_at' => '\DateTime',
@@ -92,6 +93,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'utm_campaign' => null,
         'utm_term' => null,
         'utm_content' => null,
+        'utm_channel' => null,
         'ga' => null,
         'url' => null,
         'created_at' => 'date-time',
@@ -115,6 +117,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'utm_campaign' => true,
         'utm_term' => true,
         'utm_content' => true,
+        'utm_channel' => true,
         'ga' => true,
         'url' => true,
         'created_at' => true,
@@ -218,6 +221,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'utm_campaign' => 'utm_campaign',
         'utm_term' => 'utm_term',
         'utm_content' => 'utm_content',
+        'utm_channel' => 'utm_channel',
         'ga' => 'ga',
         'url' => 'url',
         'created_at' => 'created_at',
@@ -241,6 +245,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'utm_campaign' => 'setUtmCampaign',
         'utm_term' => 'setUtmTerm',
         'utm_content' => 'setUtmContent',
+        'utm_channel' => 'setUtmChannel',
         'ga' => 'setGa',
         'url' => 'setUrl',
         'created_at' => 'setCreatedAt',
@@ -264,6 +269,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'utm_campaign' => 'getUtmCampaign',
         'utm_term' => 'getUtmTerm',
         'utm_content' => 'getUtmContent',
+        'utm_channel' => 'getUtmChannel',
         'ga' => 'getGa',
         'url' => 'getUrl',
         'created_at' => 'getCreatedAt',
@@ -338,6 +344,7 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('utm_campaign', $data ?? [], null);
         $this->setIfExists('utm_term', $data ?? [], null);
         $this->setIfExists('utm_content', $data ?? [], null);
+        $this->setIfExists('utm_channel', $data ?? [], null);
         $this->setIfExists('ga', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -719,6 +726,40 @@ class TrackingSourceResponse implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['utm_content'] = $utm_content;
+
+        return $this;
+    }
+
+    /**
+     * Gets utm_channel
+     *
+     * @return string|null
+     */
+    public function getUtmChannel()
+    {
+        return $this->container['utm_channel'];
+    }
+
+    /**
+     * Sets utm_channel
+     *
+     * @param string|null $utm_channel utm_channel
+     *
+     * @return self
+     */
+    public function setUtmChannel($utm_channel)
+    {
+        if (is_null($utm_channel)) {
+            array_push($this->openAPINullablesSetToNull, 'utm_channel');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('utm_channel', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['utm_channel'] = $utm_channel;
 
         return $this;
     }

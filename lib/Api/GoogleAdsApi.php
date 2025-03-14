@@ -71,13 +71,10 @@ class GoogleAdsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'addKeywordToGroup' => [
+            'application/json',
+        ],
         'analyzeNotAssignedKeywords' => [
-            'application/json',
-        ],
-        'getConversionTrackingCodeExamples' => [
-            'application/json',
-        ],
-        'getConversionTrackingSettings' => [
             'application/json',
         ],
         'getGoogleAdsCampaigns' => [
@@ -89,7 +86,7 @@ class GoogleAdsApi
         'getGoogleAdsGroups' => [
             'application/json',
         ],
-        'getSourceTrackingCodeExamples' => [
+        'getRecommendations' => [
             'application/json',
         ],
         'importGoogleAdsCampaigns' => [
@@ -101,7 +98,7 @@ class GoogleAdsApi
         'importGoogleAdsGroups' => [
             'application/json',
         ],
-        'listConversionActions' => [
+        'removeKeywordFromGroup' => [
             'application/json',
         ],
         'updateGoogleAdsCampaign' => [
@@ -159,6 +156,378 @@ class GoogleAdsApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation addKeywordToGroup
+     *
+     * Add Keyword To Group
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAdsKeywordAddRequest $google_ads_keyword_add_request google_ads_keyword_add_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addKeywordToGroup'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function addKeywordToGroup($workspace_id, $google_ads_keyword_add_request, string $contentType = self::contentTypes['addKeywordToGroup'][0])
+    {
+        list($response) = $this->addKeywordToGroupWithHttpInfo($workspace_id, $google_ads_keyword_add_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation addKeywordToGroupWithHttpInfo
+     *
+     * Add Keyword To Group
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAdsKeywordAddRequest $google_ads_keyword_add_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addKeywordToGroup'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function addKeywordToGroupWithHttpInfo($workspace_id, $google_ads_keyword_add_request, string $contentType = self::contentTypes['addKeywordToGroup'][0])
+    {
+        $request = $this->addKeywordToGroupRequest($workspace_id, $google_ads_keyword_add_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\FlowHunt\Model\Completed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation addKeywordToGroupAsync
+     *
+     * Add Keyword To Group
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAdsKeywordAddRequest $google_ads_keyword_add_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addKeywordToGroup'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addKeywordToGroupAsync($workspace_id, $google_ads_keyword_add_request, string $contentType = self::contentTypes['addKeywordToGroup'][0])
+    {
+        return $this->addKeywordToGroupAsyncWithHttpInfo($workspace_id, $google_ads_keyword_add_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation addKeywordToGroupAsyncWithHttpInfo
+     *
+     * Add Keyword To Group
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAdsKeywordAddRequest $google_ads_keyword_add_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addKeywordToGroup'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addKeywordToGroupAsyncWithHttpInfo($workspace_id, $google_ads_keyword_add_request, string $contentType = self::contentTypes['addKeywordToGroup'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->addKeywordToGroupRequest($workspace_id, $google_ads_keyword_add_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'addKeywordToGroup'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAdsKeywordAddRequest $google_ads_keyword_add_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addKeywordToGroup'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function addKeywordToGroupRequest($workspace_id, $google_ads_keyword_add_request, string $contentType = self::contentTypes['addKeywordToGroup'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling addKeywordToGroup'
+            );
+        }
+
+        // verify the required parameter 'google_ads_keyword_add_request' is set
+        if ($google_ads_keyword_add_request === null || (is_array($google_ads_keyword_add_request) && count($google_ads_keyword_add_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $google_ads_keyword_add_request when calling addKeywordToGroup'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/google_ads/keyword/add_to_group';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($google_ads_keyword_add_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($google_ads_keyword_add_request));
+            } else {
+                $httpBody = $google_ads_keyword_add_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**
@@ -479,752 +848,6 @@ class GoogleAdsApi
                 $httpBody = $google_ads_analyze_keywords_request;
             }
         } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getConversionTrackingCodeExamples
-     *
-     * Get Conversion Tracking Code Examples
-     *
-     * @param  string $customer_id customer_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse|\FlowHunt\Model\HTTPValidationError
-     */
-    public function getConversionTrackingCodeExamples($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingCodeExamples'][0])
-    {
-        list($response) = $this->getConversionTrackingCodeExamplesWithHttpInfo($customer_id, $workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getConversionTrackingCodeExamplesWithHttpInfo
-     *
-     * Get Conversion Tracking Code Examples
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getConversionTrackingCodeExamplesWithHttpInfo($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingCodeExamples'][0])
-    {
-        $request = $this->getConversionTrackingCodeExamplesRequest($customer_id, $workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getConversionTrackingCodeExamplesAsync
-     *
-     * Get Conversion Tracking Code Examples
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getConversionTrackingCodeExamplesAsync($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingCodeExamples'][0])
-    {
-        return $this->getConversionTrackingCodeExamplesAsyncWithHttpInfo($customer_id, $workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getConversionTrackingCodeExamplesAsyncWithHttpInfo
-     *
-     * Get Conversion Tracking Code Examples
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getConversionTrackingCodeExamplesAsyncWithHttpInfo($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingCodeExamples'][0])
-    {
-        $returnType = '\FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse';
-        $request = $this->getConversionTrackingCodeExamplesRequest($customer_id, $workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getConversionTrackingCodeExamples'
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingCodeExamples'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getConversionTrackingCodeExamplesRequest($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingCodeExamples'][0])
-    {
-
-        // verify the required parameter 'customer_id' is set
-        if ($customer_id === null || (is_array($customer_id) && count($customer_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $customer_id when calling getConversionTrackingCodeExamples'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getConversionTrackingCodeExamples'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/google_ads/conversion-tracking-code/{customer_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($customer_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'customer_id' . '}',
-                ObjectSerializer::toPathValue($customer_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
-        if ($apiKey !== null) {
-            $headers['Api-Key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getConversionTrackingSettings
-     *
-     * Get Conversion Tracking Settings
-     *
-     * @param  string $customer_id customer_id (required)
-     * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]|\FlowHunt\Model\HTTPValidationError
-     */
-    public function getConversionTrackingSettings($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingSettings'][0])
-    {
-        list($response) = $this->getConversionTrackingSettingsWithHttpInfo($customer_id, $workspace_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getConversionTrackingSettingsWithHttpInfo
-     *
-     * Get Conversion Tracking Settings
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
-     *
-     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getConversionTrackingSettingsWithHttpInfo($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingSettings'][0])
-    {
-        $request = $this->getConversionTrackingSettingsRequest($customer_id, $workspace_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\FlowHunt\Model\HTTPValidationError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\HTTPValidationError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\HTTPValidationError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\FlowHunt\Model\HTTPValidationError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getConversionTrackingSettingsAsync
-     *
-     * Get Conversion Tracking Settings
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getConversionTrackingSettingsAsync($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingSettings'][0])
-    {
-        return $this->getConversionTrackingSettingsAsyncWithHttpInfo($customer_id, $workspace_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getConversionTrackingSettingsAsyncWithHttpInfo
-     *
-     * Get Conversion Tracking Settings
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getConversionTrackingSettingsAsyncWithHttpInfo($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingSettings'][0])
-    {
-        $returnType = '\FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]';
-        $request = $this->getConversionTrackingSettingsRequest($customer_id, $workspace_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getConversionTrackingSettings'
-     *
-     * @param  string $customer_id (required)
-     * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversionTrackingSettings'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getConversionTrackingSettingsRequest($customer_id, $workspace_id, string $contentType = self::contentTypes['getConversionTrackingSettings'][0])
-    {
-
-        // verify the required parameter 'customer_id' is set
-        if ($customer_id === null || (is_array($customer_id) && count($customer_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $customer_id when calling getConversionTrackingSettings'
-            );
-        }
-
-        // verify the required parameter 'workspace_id' is set
-        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getConversionTrackingSettings'
-            );
-        }
-
-
-        $resourcePath = '/v2/integrations/google_ads/conversion-tracking-settings/{customer_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workspace_id,
-            'workspace_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-        // path params
-        if ($customer_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'customer_id' . '}',
-                ObjectSerializer::toPathValue($customer_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2396,38 +2019,40 @@ class GoogleAdsApi
     }
 
     /**
-     * Operation getSourceTrackingCodeExamples
+     * Operation getRecommendations
      *
-     * Get Source Tracking Code Examples
+     * Get Recommendations
      *
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSourceTrackingCodeExamples'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsRecommendationsRequest $google_ads_recommendations_request google_ads_recommendations_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRecommendations'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GoogleAdsKeywordRecommendation[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function getSourceTrackingCodeExamples($workspace_id, string $contentType = self::contentTypes['getSourceTrackingCodeExamples'][0])
+    public function getRecommendations($workspace_id, $google_ads_recommendations_request, string $contentType = self::contentTypes['getRecommendations'][0])
     {
-        list($response) = $this->getSourceTrackingCodeExamplesWithHttpInfo($workspace_id, $contentType);
+        list($response) = $this->getRecommendationsWithHttpInfo($workspace_id, $google_ads_recommendations_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation getSourceTrackingCodeExamplesWithHttpInfo
+     * Operation getRecommendationsWithHttpInfo
      *
-     * Get Source Tracking Code Examples
+     * Get Recommendations
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSourceTrackingCodeExamples'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsRecommendationsRequest $google_ads_recommendations_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRecommendations'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GoogleAdsKeywordRecommendation[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSourceTrackingCodeExamplesWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getSourceTrackingCodeExamples'][0])
+    public function getRecommendationsWithHttpInfo($workspace_id, $google_ads_recommendations_request, string $contentType = self::contentTypes['getRecommendations'][0])
     {
-        $request = $this->getSourceTrackingCodeExamplesRequest($workspace_id, $contentType);
+        $request = $this->getRecommendationsRequest($workspace_id, $google_ads_recommendations_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2454,11 +2079,11 @@ class GoogleAdsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\GoogleAdsKeywordRecommendation[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse' !== 'string') {
+                        if ('\FlowHunt\Model\GoogleAdsKeywordRecommendation[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2476,7 +2101,7 @@ class GoogleAdsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GoogleAdsKeywordRecommendation[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2522,7 +2147,7 @@ class GoogleAdsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse';
+            $returnType = '\FlowHunt\Model\GoogleAdsKeywordRecommendation[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2555,7 +2180,7 @@ class GoogleAdsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse',
+                        '\FlowHunt\Model\GoogleAdsKeywordRecommendation[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2574,19 +2199,20 @@ class GoogleAdsApi
     }
 
     /**
-     * Operation getSourceTrackingCodeExamplesAsync
+     * Operation getRecommendationsAsync
      *
-     * Get Source Tracking Code Examples
+     * Get Recommendations
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSourceTrackingCodeExamples'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsRecommendationsRequest $google_ads_recommendations_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRecommendations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSourceTrackingCodeExamplesAsync($workspace_id, string $contentType = self::contentTypes['getSourceTrackingCodeExamples'][0])
+    public function getRecommendationsAsync($workspace_id, $google_ads_recommendations_request, string $contentType = self::contentTypes['getRecommendations'][0])
     {
-        return $this->getSourceTrackingCodeExamplesAsyncWithHttpInfo($workspace_id, $contentType)
+        return $this->getRecommendationsAsyncWithHttpInfo($workspace_id, $google_ads_recommendations_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2595,20 +2221,21 @@ class GoogleAdsApi
     }
 
     /**
-     * Operation getSourceTrackingCodeExamplesAsyncWithHttpInfo
+     * Operation getRecommendationsAsyncWithHttpInfo
      *
-     * Get Source Tracking Code Examples
+     * Get Recommendations
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSourceTrackingCodeExamples'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsRecommendationsRequest $google_ads_recommendations_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRecommendations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSourceTrackingCodeExamplesAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getSourceTrackingCodeExamples'][0])
+    public function getRecommendationsAsyncWithHttpInfo($workspace_id, $google_ads_recommendations_request, string $contentType = self::contentTypes['getRecommendations'][0])
     {
-        $returnType = '\FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse';
-        $request = $this->getSourceTrackingCodeExamplesRequest($workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\GoogleAdsKeywordRecommendation[]';
+        $request = $this->getRecommendationsRequest($workspace_id, $google_ads_recommendations_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2647,26 +2274,34 @@ class GoogleAdsApi
     }
 
     /**
-     * Create request for operation 'getSourceTrackingCodeExamples'
+     * Create request for operation 'getRecommendations'
      *
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSourceTrackingCodeExamples'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsRecommendationsRequest $google_ads_recommendations_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRecommendations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSourceTrackingCodeExamplesRequest($workspace_id, string $contentType = self::contentTypes['getSourceTrackingCodeExamples'][0])
+    public function getRecommendationsRequest($workspace_id, $google_ads_recommendations_request, string $contentType = self::contentTypes['getRecommendations'][0])
     {
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling getSourceTrackingCodeExamples'
+                'Missing the required parameter $workspace_id when calling getRecommendations'
+            );
+        }
+
+        // verify the required parameter 'google_ads_recommendations_request' is set
+        if ($google_ads_recommendations_request === null || (is_array($google_ads_recommendations_request) && count($google_ads_recommendations_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $google_ads_recommendations_request when calling getRecommendations'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/google_ads/source-tracking-code';
+        $resourcePath = '/v2/integrations/google_ads/recommendations/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2693,7 +2328,14 @@ class GoogleAdsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($google_ads_recommendations_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($google_ads_recommendations_request));
+            } else {
+                $httpBody = $google_ads_recommendations_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -3846,40 +3488,40 @@ class GoogleAdsApi
     }
 
     /**
-     * Operation listConversionActions
+     * Operation removeKeywordFromGroup
      *
-     * List Conversion Actions
+     * Remove Keyword From Group
      *
-     * @param  string $customer_id customer_id (required)
      * @param  string $workspace_id workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsKeywordRemoveRequest $google_ads_keyword_remove_request google_ads_keyword_remove_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeKeywordFromGroup'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleAdsConversionActionsResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
      */
-    public function listConversionActions($customer_id, $workspace_id, string $contentType = self::contentTypes['listConversionActions'][0])
+    public function removeKeywordFromGroup($workspace_id, $google_ads_keyword_remove_request, string $contentType = self::contentTypes['removeKeywordFromGroup'][0])
     {
-        list($response) = $this->listConversionActionsWithHttpInfo($customer_id, $workspace_id, $contentType);
+        list($response) = $this->removeKeywordFromGroupWithHttpInfo($workspace_id, $google_ads_keyword_remove_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation listConversionActionsWithHttpInfo
+     * Operation removeKeywordFromGroupWithHttpInfo
      *
-     * List Conversion Actions
+     * Remove Keyword From Group
      *
-     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsKeywordRemoveRequest $google_ads_keyword_remove_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeKeywordFromGroup'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleAdsConversionActionsResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listConversionActionsWithHttpInfo($customer_id, $workspace_id, string $contentType = self::contentTypes['listConversionActions'][0])
+    public function removeKeywordFromGroupWithHttpInfo($workspace_id, $google_ads_keyword_remove_request, string $contentType = self::contentTypes['removeKeywordFromGroup'][0])
     {
-        $request = $this->listConversionActionsRequest($customer_id, $workspace_id, $contentType);
+        $request = $this->removeKeywordFromGroupRequest($workspace_id, $google_ads_keyword_remove_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3906,11 +3548,11 @@ class GoogleAdsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FlowHunt\Model\GoogleAdsConversionActionsResponse' === '\SplFileObject') {
+                    if ('\FlowHunt\Model\Completed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FlowHunt\Model\GoogleAdsConversionActionsResponse' !== 'string') {
+                        if ('\FlowHunt\Model\Completed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3928,7 +3570,7 @@ class GoogleAdsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\GoogleAdsConversionActionsResponse', []),
+                        ObjectSerializer::deserialize($content, '\FlowHunt\Model\Completed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3974,7 +3616,7 @@ class GoogleAdsApi
                 );
             }
 
-            $returnType = '\FlowHunt\Model\GoogleAdsConversionActionsResponse';
+            $returnType = '\FlowHunt\Model\Completed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4007,7 +3649,7 @@ class GoogleAdsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleAdsConversionActionsResponse',
+                        '\FlowHunt\Model\Completed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4026,20 +3668,20 @@ class GoogleAdsApi
     }
 
     /**
-     * Operation listConversionActionsAsync
+     * Operation removeKeywordFromGroupAsync
      *
-     * List Conversion Actions
+     * Remove Keyword From Group
      *
-     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsKeywordRemoveRequest $google_ads_keyword_remove_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeKeywordFromGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listConversionActionsAsync($customer_id, $workspace_id, string $contentType = self::contentTypes['listConversionActions'][0])
+    public function removeKeywordFromGroupAsync($workspace_id, $google_ads_keyword_remove_request, string $contentType = self::contentTypes['removeKeywordFromGroup'][0])
     {
-        return $this->listConversionActionsAsyncWithHttpInfo($customer_id, $workspace_id, $contentType)
+        return $this->removeKeywordFromGroupAsyncWithHttpInfo($workspace_id, $google_ads_keyword_remove_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4048,21 +3690,21 @@ class GoogleAdsApi
     }
 
     /**
-     * Operation listConversionActionsAsyncWithHttpInfo
+     * Operation removeKeywordFromGroupAsyncWithHttpInfo
      *
-     * List Conversion Actions
+     * Remove Keyword From Group
      *
-     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsKeywordRemoveRequest $google_ads_keyword_remove_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeKeywordFromGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listConversionActionsAsyncWithHttpInfo($customer_id, $workspace_id, string $contentType = self::contentTypes['listConversionActions'][0])
+    public function removeKeywordFromGroupAsyncWithHttpInfo($workspace_id, $google_ads_keyword_remove_request, string $contentType = self::contentTypes['removeKeywordFromGroup'][0])
     {
-        $returnType = '\FlowHunt\Model\GoogleAdsConversionActionsResponse';
-        $request = $this->listConversionActionsRequest($customer_id, $workspace_id, $contentType);
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->removeKeywordFromGroupRequest($workspace_id, $google_ads_keyword_remove_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4101,34 +3743,34 @@ class GoogleAdsApi
     }
 
     /**
-     * Create request for operation 'listConversionActions'
+     * Create request for operation 'removeKeywordFromGroup'
      *
-     * @param  string $customer_id (required)
      * @param  string $workspace_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversionActions'] to see the possible values for this operation
+     * @param  \FlowHunt\Model\GoogleAdsKeywordRemoveRequest $google_ads_keyword_remove_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeKeywordFromGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listConversionActionsRequest($customer_id, $workspace_id, string $contentType = self::contentTypes['listConversionActions'][0])
+    public function removeKeywordFromGroupRequest($workspace_id, $google_ads_keyword_remove_request, string $contentType = self::contentTypes['removeKeywordFromGroup'][0])
     {
-
-        // verify the required parameter 'customer_id' is set
-        if ($customer_id === null || (is_array($customer_id) && count($customer_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $customer_id when calling listConversionActions'
-            );
-        }
 
         // verify the required parameter 'workspace_id' is set
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $workspace_id when calling listConversionActions'
+                'Missing the required parameter $workspace_id when calling removeKeywordFromGroup'
+            );
+        }
+
+        // verify the required parameter 'google_ads_keyword_remove_request' is set
+        if ($google_ads_keyword_remove_request === null || (is_array($google_ads_keyword_remove_request) && count($google_ads_keyword_remove_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $google_ads_keyword_remove_request when calling removeKeywordFromGroup'
             );
         }
 
 
-        $resourcePath = '/v2/integrations/google_ads/conversion-actions/{customer_id}';
+        $resourcePath = '/v2/integrations/google_ads/keyword/remove_from_group';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -4146,14 +3788,6 @@ class GoogleAdsApi
         ) ?? []);
 
 
-        // path params
-        if ($customer_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'customer_id' . '}',
-                ObjectSerializer::toPathValue($customer_id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -4163,7 +3797,14 @@ class GoogleAdsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($google_ads_keyword_remove_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($google_ads_keyword_remove_request));
+            } else {
+                $httpBody = $google_ads_keyword_remove_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

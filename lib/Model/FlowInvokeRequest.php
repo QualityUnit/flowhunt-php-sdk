@@ -59,7 +59,7 @@ class FlowInvokeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPITypes = [
         'post_back_url' => 'string',
         'human_input' => 'string',
-        'variables' => 'object'
+        'variables' => 'array<string,mixed>'
     ];
 
     /**
@@ -370,7 +370,7 @@ class FlowInvokeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets variables
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getVariables()
     {
@@ -380,7 +380,7 @@ class FlowInvokeRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets variables
      *
-     * @param object|null $variables variables
+     * @param array<string,mixed>|null $variables variables
      *
      * @return self
      */

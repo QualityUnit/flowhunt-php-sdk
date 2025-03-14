@@ -170,6 +170,15 @@ class TrackingSourceResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "utm_channel"
+     */
+    public function testPropertyUtmChannel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "ga"
      */
     public function testPropertyGa()

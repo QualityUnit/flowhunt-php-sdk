@@ -102,6 +102,16 @@ class TransactionType
 
     public const CWP = 'CWP';
 
+    public const DE_GC = 'DE_GC';
+
+    public const AC_HS = 'AC_HS';
+
+    public const GC_HS = 'GC_HS';
+
+    public const UC_HS = 'UC_HS';
+
+    public const SC_HS = 'SC_HS';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -159,6 +169,11 @@ class TransactionType
             self::CE_GC,
             self::VE_GC,
             self::CWP,
+            self::DE_GC,
+            self::AC_HS,
+            self::GC_HS,
+            self::UC_HS,
+            self::SC_HS,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,

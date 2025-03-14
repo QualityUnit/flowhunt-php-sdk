@@ -85,7 +85,7 @@ try {
 ## `deleteFileFt()`
 
 ```php
-deleteFileFt($file_key, $workspace_id): mixed
+deleteFileFt($file_key, $workspace_id, $file_type): mixed
 ```
 
 Delete File Ft
@@ -114,9 +114,10 @@ $apiInstance = new FlowHunt\Api\FineTuningsApi(
 );
 $file_key = 'file_key_example'; // string
 $workspace_id = 'workspace_id_example'; // string
+$file_type = new \FlowHunt\Model\\FlowHunt\Model\InferenceFileType(); // \FlowHunt\Model\InferenceFileType
 
 try {
-    $result = $apiInstance->deleteFileFt($file_key, $workspace_id);
+    $result = $apiInstance->deleteFileFt($file_key, $workspace_id, $file_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FineTuningsApi->deleteFileFt: ', $e->getMessage(), PHP_EOL;
@@ -129,6 +130,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **file_key** | **string**|  | |
 | **workspace_id** | **string**|  | |
+| **file_type** | [**\FlowHunt\Model\InferenceFileType**](../Model/.md)|  | |
 
 ### Return type
 

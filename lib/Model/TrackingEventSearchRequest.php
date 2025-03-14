@@ -58,7 +58,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPITypes = [
         'event_name' => 'string',
-        'conversion_action_id' => 'string',
         'from_date' => '\DateTime',
         'to_date' => '\DateTime',
         'include_expired' => 'bool',
@@ -75,7 +74,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPIFormats = [
         'event_name' => null,
-        'conversion_action_id' => null,
         'from_date' => 'date-time',
         'to_date' => 'date-time',
         'include_expired' => null,
@@ -90,7 +88,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static array $openAPINullables = [
         'event_name' => true,
-        'conversion_action_id' => true,
         'from_date' => true,
         'to_date' => true,
         'include_expired' => true,
@@ -185,7 +182,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $attributeMap = [
         'event_name' => 'event_name',
-        'conversion_action_id' => 'conversion_action_id',
         'from_date' => 'from_date',
         'to_date' => 'to_date',
         'include_expired' => 'include_expired',
@@ -200,7 +196,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $setters = [
         'event_name' => 'setEventName',
-        'conversion_action_id' => 'setConversionActionId',
         'from_date' => 'setFromDate',
         'to_date' => 'setToDate',
         'include_expired' => 'setIncludeExpired',
@@ -215,7 +210,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $getters = [
         'event_name' => 'getEventName',
-        'conversion_action_id' => 'getConversionActionId',
         'from_date' => 'getFromDate',
         'to_date' => 'getToDate',
         'include_expired' => 'getIncludeExpired',
@@ -281,7 +275,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
     public function __construct(array $data = null)
     {
         $this->setIfExists('event_name', $data ?? [], null);
-        $this->setIfExists('conversion_action_id', $data ?? [], null);
         $this->setIfExists('from_date', $data ?? [], null);
         $this->setIfExists('to_date', $data ?? [], null);
         $this->setIfExists('include_expired', $data ?? [], null);
@@ -373,40 +366,6 @@ class TrackingEventSearchRequest implements ModelInterface, ArrayAccess, \JsonSe
             }
         }
         $this->container['event_name'] = $event_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets conversion_action_id
-     *
-     * @return string|null
-     */
-    public function getConversionActionId()
-    {
-        return $this->container['conversion_action_id'];
-    }
-
-    /**
-     * Sets conversion_action_id
-     *
-     * @param string|null $conversion_action_id conversion_action_id
-     *
-     * @return self
-     */
-    public function setConversionActionId($conversion_action_id)
-    {
-        if (is_null($conversion_action_id)) {
-            array_push($this->openAPINullablesSetToNull, 'conversion_action_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('conversion_action_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['conversion_action_id'] = $conversion_action_id;
 
         return $this;
     }

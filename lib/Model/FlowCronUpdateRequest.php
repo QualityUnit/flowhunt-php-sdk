@@ -59,7 +59,7 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'status' => '\FlowHunt\Model\FlowCronStatus',
         'input_text' => 'string',
-        'variables' => 'object',
+        'variables' => 'array<string,mixed>',
         'interval_settings' => 'string',
         'cron_name' => 'string'
     ];
@@ -388,7 +388,7 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets variables
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getVariables()
     {
@@ -398,7 +398,7 @@ class FlowCronUpdateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets variables
      *
-     * @param object|null $variables variables
+     * @param array<string,mixed>|null $variables variables
      *
      * @return self
      */

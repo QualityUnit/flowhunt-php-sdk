@@ -531,15 +531,16 @@ class FineTuningsApi
      *
      * @param  string $file_key file_key (required)
      * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type file_type (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed|\FlowHunt\Model\HTTPValidationError
      */
-    public function deleteFileFt($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    public function deleteFileFt($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['deleteFileFt'][0])
     {
-        list($response) = $this->deleteFileFtWithHttpInfo($file_key, $workspace_id, $contentType);
+        list($response) = $this->deleteFileFtWithHttpInfo($file_key, $workspace_id, $file_type, $contentType);
         return $response;
     }
 
@@ -550,15 +551,16 @@ class FineTuningsApi
      *
      * @param  string $file_key (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteFileFtWithHttpInfo($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    public function deleteFileFtWithHttpInfo($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['deleteFileFt'][0])
     {
-        $request = $this->deleteFileFtRequest($file_key, $workspace_id, $contentType);
+        $request = $this->deleteFileFtRequest($file_key, $workspace_id, $file_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -711,14 +713,15 @@ class FineTuningsApi
      *
      * @param  string $file_key (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFileFtAsync($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    public function deleteFileFtAsync($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['deleteFileFt'][0])
     {
-        return $this->deleteFileFtAsyncWithHttpInfo($file_key, $workspace_id, $contentType)
+        return $this->deleteFileFtAsyncWithHttpInfo($file_key, $workspace_id, $file_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -733,15 +736,16 @@ class FineTuningsApi
      *
      * @param  string $file_key (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFileFtAsyncWithHttpInfo($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    public function deleteFileFtAsyncWithHttpInfo($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['deleteFileFt'][0])
     {
         $returnType = 'mixed';
-        $request = $this->deleteFileFtRequest($file_key, $workspace_id, $contentType);
+        $request = $this->deleteFileFtRequest($file_key, $workspace_id, $file_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -784,12 +788,13 @@ class FineTuningsApi
      *
      * @param  string $file_key (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\InferenceFileType $file_type (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFileFt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFileFtRequest($file_key, $workspace_id, string $contentType = self::contentTypes['deleteFileFt'][0])
+    public function deleteFileFtRequest($file_key, $workspace_id, $file_type, string $contentType = self::contentTypes['deleteFileFt'][0])
     {
 
         // verify the required parameter 'file_key' is set
@@ -806,6 +811,13 @@ class FineTuningsApi
             );
         }
 
+        // verify the required parameter 'file_type' is set
+        if ($file_type === null || (is_array($file_type) && count($file_type) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file_type when calling deleteFileFt'
+            );
+        }
+
 
         $resourcePath = '/v2/fine_tunings/files/{file_key}';
         $formParams = [];
@@ -819,6 +831,15 @@ class FineTuningsApi
             $workspace_id,
             'workspace_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $file_type,
+            'file_type', // param base name
+            'InferenceFileType', // openApiType
             'form', // style
             true, // explode
             true // required

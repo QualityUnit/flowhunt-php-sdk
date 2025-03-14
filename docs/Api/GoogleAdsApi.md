@@ -4,21 +4,85 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addKeywordToGroup()**](GoogleAdsApi.md#addKeywordToGroup) | **POST** /v2/integrations/google_ads/keyword/add_to_group | Add Keyword To Group |
 | [**analyzeNotAssignedKeywords()**](GoogleAdsApi.md#analyzeNotAssignedKeywords) | **POST** /v2/integrations/google_ads/analyze_not_assigned_keywords | Analyze Not Assigned Keywords |
-| [**getConversionTrackingCodeExamples()**](GoogleAdsApi.md#getConversionTrackingCodeExamples) | **POST** /v2/integrations/google_ads/conversion-tracking-code/{customer_id} | Get Conversion Tracking Code Examples |
-| [**getConversionTrackingSettings()**](GoogleAdsApi.md#getConversionTrackingSettings) | **POST** /v2/integrations/google_ads/conversion-tracking-settings/{customer_id} | Get Conversion Tracking Settings |
 | [**getGoogleAdsCampaigns()**](GoogleAdsApi.md#getGoogleAdsCampaigns) | **POST** /v2/integrations/google_ads/campaigns | Get Google Ads Campaigns |
 | [**getGoogleAdsCustomers()**](GoogleAdsApi.md#getGoogleAdsCustomers) | **POST** /v2/integrations/google_ads/customers | Get Google Ads Customers |
 | [**getGoogleAdsGroups()**](GoogleAdsApi.md#getGoogleAdsGroups) | **POST** /v2/integrations/google_ads/groups | Get Google Ads Groups |
-| [**getSourceTrackingCodeExamples()**](GoogleAdsApi.md#getSourceTrackingCodeExamples) | **POST** /v2/integrations/google_ads/source-tracking-code | Get Source Tracking Code Examples |
+| [**getRecommendations()**](GoogleAdsApi.md#getRecommendations) | **POST** /v2/integrations/google_ads/recommendations/ | Get Recommendations |
 | [**importGoogleAdsCampaigns()**](GoogleAdsApi.md#importGoogleAdsCampaigns) | **POST** /v2/integrations/google_ads/campaigns/import | Import Google Ads Campaigns |
 | [**importGoogleAdsCustomers()**](GoogleAdsApi.md#importGoogleAdsCustomers) | **POST** /v2/integrations/google_ads/customers/import | Import Google Ads Customers |
 | [**importGoogleAdsGroups()**](GoogleAdsApi.md#importGoogleAdsGroups) | **POST** /v2/integrations/google_ads/groups/import | Import Google Ads Groups |
-| [**listConversionActions()**](GoogleAdsApi.md#listConversionActions) | **POST** /v2/integrations/google_ads/conversion-actions/{customer_id} | List Conversion Actions |
+| [**removeKeywordFromGroup()**](GoogleAdsApi.md#removeKeywordFromGroup) | **POST** /v2/integrations/google_ads/keyword/remove_from_group | Remove Keyword From Group |
 | [**updateGoogleAdsCampaign()**](GoogleAdsApi.md#updateGoogleAdsCampaign) | **PUT** /v2/integrations/google_ads/campaigns/{customer_id}/{campaign_id} | Update Google Ads Campaign |
 | [**updateGoogleAdsCustomerUpdate()**](GoogleAdsApi.md#updateGoogleAdsCustomerUpdate) | **PUT** /v2/integrations/google_ads/customers/{customer_id} | Update Google Ads Customer Update |
 | [**updateGoogleAdsGroup()**](GoogleAdsApi.md#updateGoogleAdsGroup) | **PUT** /v2/integrations/google_ads/groups/{customer_id}/{campaign_id}/{group_id} | Update Google Ads Group |
 
+
+## `addKeywordToGroup()`
+
+```php
+addKeywordToGroup($workspace_id, $google_ads_keyword_add_request): \FlowHunt\Model\Completed
+```
+
+Add Keyword To Group
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\GoogleAdsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$google_ads_keyword_add_request = new \FlowHunt\Model\GoogleAdsKeywordAddRequest(); // \FlowHunt\Model\GoogleAdsKeywordAddRequest
+
+try {
+    $result = $apiInstance->addKeywordToGroup($workspace_id, $google_ads_keyword_add_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GoogleAdsApi->addKeywordToGroup: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **google_ads_keyword_add_request** | [**\FlowHunt\Model\GoogleAdsKeywordAddRequest**](../Model/GoogleAdsKeywordAddRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `analyzeNotAssignedKeywords()`
 
@@ -79,138 +143,6 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getConversionTrackingCodeExamples()`
-
-```php
-getConversionTrackingCodeExamples($customer_id, $workspace_id): \FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse
-```
-
-Get Conversion Tracking Code Examples
-
-Get example tracking code for each conversion action in the Google Ads account.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: APIKeyHeader
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
-
-// Configure Bearer authorization: HTTPBearer
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new FlowHunt\Api\GoogleAdsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$customer_id = 'customer_id_example'; // string
-$workspace_id = 'workspace_id_example'; // string
-
-try {
-    $result = $apiInstance->getConversionTrackingCodeExamples($customer_id, $workspace_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling GoogleAdsApi->getConversionTrackingCodeExamples: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **string**|  | |
-| **workspace_id** | **string**|  | |
-
-### Return type
-
-[**\FlowHunt\Model\GoogleAdsConversionTrackingCodeExamplesResponse**](../Model/GoogleAdsConversionTrackingCodeExamplesResponse.md)
-
-### Authorization
-
-[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getConversionTrackingSettings()`
-
-```php
-getConversionTrackingSettings($customer_id, $workspace_id): \FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]
-```
-
-Get Conversion Tracking Settings
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: APIKeyHeader
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
-
-// Configure Bearer authorization: HTTPBearer
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new FlowHunt\Api\GoogleAdsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$customer_id = 'customer_id_example'; // string
-$workspace_id = 'workspace_id_example'; // string
-
-try {
-    $result = $apiInstance->getConversionTrackingSettings($customer_id, $workspace_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling GoogleAdsApi->getConversionTrackingSettings: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **string**|  | |
-| **workspace_id** | **string**|  | |
-
-### Return type
-
-[**\FlowHunt\Model\GoogleAdsConversionTrackingSettingsResponse[]**](../Model/GoogleAdsConversionTrackingSettingsResponse.md)
-
-### Authorization
-
-[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -412,15 +344,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getSourceTrackingCodeExamples()`
+## `getRecommendations()`
 
 ```php
-getSourceTrackingCodeExamples($workspace_id): \FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse
+getRecommendations($workspace_id, $google_ads_recommendations_request): \FlowHunt\Model\GoogleAdsKeywordRecommendation[]
 ```
 
-Get Source Tracking Code Examples
-
-Get example tracking code for each customer in the workspace.
+Get Recommendations
 
 ### Example
 
@@ -445,12 +375,13 @@ $apiInstance = new FlowHunt\Api\GoogleAdsApi(
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
+$google_ads_recommendations_request = new \FlowHunt\Model\GoogleAdsRecommendationsRequest(); // \FlowHunt\Model\GoogleAdsRecommendationsRequest
 
 try {
-    $result = $apiInstance->getSourceTrackingCodeExamples($workspace_id);
+    $result = $apiInstance->getRecommendations($workspace_id, $google_ads_recommendations_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling GoogleAdsApi->getSourceTrackingCodeExamples: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GoogleAdsApi->getRecommendations: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -459,10 +390,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
+| **google_ads_recommendations_request** | [**\FlowHunt\Model\GoogleAdsRecommendationsRequest**](../Model/GoogleAdsRecommendationsRequest.md)|  | |
 
 ### Return type
 
-[**\FlowHunt\Model\GoogleAdsSourceTrackingCodeExamplesResponse**](../Model/GoogleAdsSourceTrackingCodeExamplesResponse.md)
+[**\FlowHunt\Model\GoogleAdsKeywordRecommendation[]**](../Model/GoogleAdsKeywordRecommendation.md)
 
 ### Authorization
 
@@ -470,7 +402,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -670,13 +602,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listConversionActions()`
+## `removeKeywordFromGroup()`
 
 ```php
-listConversionActions($customer_id, $workspace_id): \FlowHunt\Model\GoogleAdsConversionActionsResponse
+removeKeywordFromGroup($workspace_id, $google_ads_keyword_remove_request): \FlowHunt\Model\Completed
 ```
 
-List Conversion Actions
+Remove Keyword From Group
 
 ### Example
 
@@ -700,14 +632,14 @@ $apiInstance = new FlowHunt\Api\GoogleAdsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$customer_id = 'customer_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
+$google_ads_keyword_remove_request = new \FlowHunt\Model\GoogleAdsKeywordRemoveRequest(); // \FlowHunt\Model\GoogleAdsKeywordRemoveRequest
 
 try {
-    $result = $apiInstance->listConversionActions($customer_id, $workspace_id);
+    $result = $apiInstance->removeKeywordFromGroup($workspace_id, $google_ads_keyword_remove_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling GoogleAdsApi->listConversionActions: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GoogleAdsApi->removeKeywordFromGroup: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -715,12 +647,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **customer_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
+| **google_ads_keyword_remove_request** | [**\FlowHunt\Model\GoogleAdsKeywordRemoveRequest**](../Model/GoogleAdsKeywordRemoveRequest.md)|  | |
 
 ### Return type
 
-[**\FlowHunt\Model\GoogleAdsConversionActionsResponse**](../Model/GoogleAdsConversionActionsResponse.md)
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
 
 ### Authorization
 
@@ -728,7 +660,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

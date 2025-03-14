@@ -114,4 +114,13 @@ class GoogleAdsAnalyzeKeywordsRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "force_update"
+     */
+    public function testPropertyForceUpdate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

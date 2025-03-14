@@ -64,7 +64,7 @@ class TaskOutput implements ModelInterface, ArrayAccess, \JsonSerializable
         'summary' => 'string',
         'raw' => 'string',
         'pydantic' => 'object',
-        'json_dict' => 'object',
+        'json_dict' => 'array<string,mixed>',
         'agent' => 'string',
         'output_format' => '\FlowHunt\Model\OutputFormat'
     ];
@@ -538,7 +538,7 @@ class TaskOutput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets json_dict
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getJsonDict()
     {
@@ -548,7 +548,7 @@ class TaskOutput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets json_dict
      *
-     * @param object|null $json_dict json_dict
+     * @param array<string,mixed>|null $json_dict json_dict
      *
      * @return self
      */

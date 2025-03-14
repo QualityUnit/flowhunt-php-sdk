@@ -65,7 +65,7 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => '\FlowHunt\Model\FlowCronStatus',
         'input_text' => 'string',
         'interval_settings' => 'string',
-        'variables' => 'object',
+        'variables' => 'array<string,mixed>',
         'cron_name' => 'string'
     ];
 
@@ -574,7 +574,7 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets variables
      *
-     * @return object|null
+     * @return array<string,mixed>|null
      */
     public function getVariables()
     {
@@ -584,7 +584,7 @@ class FlowCronResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets variables
      *
-     * @param object|null $variables variables
+     * @param array<string,mixed>|null $variables variables
      *
      * @return self
      */

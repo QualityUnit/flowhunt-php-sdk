@@ -134,6 +134,15 @@ class DocumentContentTest extends TestCase
     }
 
     /**
+     * Test attribute "doc_name"
+     */
+    public function testPropertyDocName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "lang"
      */
     public function testPropertyLang()
