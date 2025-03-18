@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageInferenceResultResponse
+ * ImagePromptResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * ImageInferenceResultResponse Class Doc Comment
+ * ImagePromptResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImagePromptResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageInferenceResultResponse';
+    protected static $openAPIModelName = 'ImagePromptResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\FlowHunt\Model\ImageInferenceResponse',
-        'status' => 'string',
-        'error_message' => 'string'
+        'prompt' => 'string'
     ];
 
     /**
@@ -70,9 +68,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'result' => null,
-        'status' => null,
-        'error_message' => null
+        'prompt' => null
     ];
 
     /**
@@ -81,9 +77,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'result' => true,
-        'status' => false,
-        'error_message' => true
+        'prompt' => false
     ];
 
     /**
@@ -172,9 +166,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'result' => 'result',
-        'status' => 'status',
-        'error_message' => 'error_message'
+        'prompt' => 'prompt'
     ];
 
     /**
@@ -183,9 +175,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'result' => 'setResult',
-        'status' => 'setStatus',
-        'error_message' => 'setErrorMessage'
+        'prompt' => 'setPrompt'
     ];
 
     /**
@@ -194,9 +184,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'result' => 'getResult',
-        'status' => 'getStatus',
-        'error_message' => 'getErrorMessage'
+        'prompt' => 'getPrompt'
     ];
 
     /**
@@ -256,9 +244,7 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('error_message', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
     }
 
     /**
@@ -288,8 +274,8 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+        if ($this->container['prompt'] === null) {
+            $invalidProperties[] = "'prompt' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,96 +293,28 @@ class ImageInferenceResultResponse implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets result
-     *
-     * @return \FlowHunt\Model\ImageInferenceResponse|null
-     */
-    public function getResult()
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param \FlowHunt\Model\ImageInferenceResponse|null $result result
-     *
-     * @return self
-     */
-    public function setResult($result)
-    {
-        if (is_null($result)) {
-            array_push($this->openAPINullablesSetToNull, 'result');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('result', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
+     * Gets prompt
      *
      * @return string
      */
-    public function getStatus()
+    public function getPrompt()
     {
-        return $this->container['status'];
+        return $this->container['prompt'];
     }
 
     /**
-     * Sets status
+     * Sets prompt
      *
-     * @param string $status Whether the inference is completed
+     * @param string $prompt The prompt generated for the inference
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setPrompt($prompt)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
         }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets error_message
-     *
-     * @return string|null
-     */
-    public function getErrorMessage()
-    {
-        return $this->container['error_message'];
-    }
-
-    /**
-     * Sets error_message
-     *
-     * @param string|null $error_message error_message
-     *
-     * @return self
-     */
-    public function setErrorMessage($error_message)
-    {
-        if (is_null($error_message)) {
-            array_push($this->openAPINullablesSetToNull, 'error_message');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_message', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['error_message'] = $error_message;
+        $this->container['prompt'] = $prompt;
 
         return $this;
     }

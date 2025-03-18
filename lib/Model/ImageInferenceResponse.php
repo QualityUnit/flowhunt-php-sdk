@@ -57,9 +57,15 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => 'string',
+        'inference_id' => 'string',
+        'image_url_outputs' => 'string[]',
         'date_created' => '\DateTime',
-        'prompt' => 'string'
+        'prompt' => 'string',
+        'styles' => 'string[]',
+        'effects' => 'string[]',
+        'aspect_ratio' => 'string',
+        'ai_model' => 'string',
+        'status' => 'string'
     ];
 
     /**
@@ -70,9 +76,15 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'url' => null,
+        'inference_id' => 'uuid',
+        'image_url_outputs' => null,
         'date_created' => 'date-time',
-        'prompt' => null
+        'prompt' => null,
+        'styles' => null,
+        'effects' => null,
+        'aspect_ratio' => null,
+        'ai_model' => null,
+        'status' => null
     ];
 
     /**
@@ -81,9 +93,15 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'url' => false,
+        'inference_id' => false,
+        'image_url_outputs' => false,
         'date_created' => false,
-        'prompt' => false
+        'prompt' => false,
+        'styles' => false,
+        'effects' => false,
+        'aspect_ratio' => false,
+        'ai_model' => false,
+        'status' => false
     ];
 
     /**
@@ -172,9 +190,15 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
+        'inference_id' => 'inference_id',
+        'image_url_outputs' => 'image_url_outputs',
         'date_created' => 'date_created',
-        'prompt' => 'prompt'
+        'prompt' => 'prompt',
+        'styles' => 'styles',
+        'effects' => 'effects',
+        'aspect_ratio' => 'aspect_ratio',
+        'ai_model' => 'ai_model',
+        'status' => 'status'
     ];
 
     /**
@@ -183,9 +207,15 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
+        'inference_id' => 'setInferenceId',
+        'image_url_outputs' => 'setImageUrlOutputs',
         'date_created' => 'setDateCreated',
-        'prompt' => 'setPrompt'
+        'prompt' => 'setPrompt',
+        'styles' => 'setStyles',
+        'effects' => 'setEffects',
+        'aspect_ratio' => 'setAspectRatio',
+        'ai_model' => 'setAiModel',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -194,9 +224,15 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
+        'inference_id' => 'getInferenceId',
+        'image_url_outputs' => 'getImageUrlOutputs',
         'date_created' => 'getDateCreated',
-        'prompt' => 'getPrompt'
+        'prompt' => 'getPrompt',
+        'styles' => 'getStyles',
+        'effects' => 'getEffects',
+        'aspect_ratio' => 'getAspectRatio',
+        'ai_model' => 'getAiModel',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -256,9 +292,15 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('inference_id', $data ?? [], null);
+        $this->setIfExists('image_url_outputs', $data ?? [], null);
         $this->setIfExists('date_created', $data ?? [], null);
         $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('styles', $data ?? [], null);
+        $this->setIfExists('effects', $data ?? [], null);
+        $this->setIfExists('aspect_ratio', $data ?? [], null);
+        $this->setIfExists('ai_model', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -288,14 +330,32 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+        if ($this->container['inference_id'] === null) {
+            $invalidProperties[] = "'inference_id' can't be null";
+        }
+        if ($this->container['image_url_outputs'] === null) {
+            $invalidProperties[] = "'image_url_outputs' can't be null";
         }
         if ($this->container['date_created'] === null) {
             $invalidProperties[] = "'date_created' can't be null";
         }
         if ($this->container['prompt'] === null) {
             $invalidProperties[] = "'prompt' can't be null";
+        }
+        if ($this->container['styles'] === null) {
+            $invalidProperties[] = "'styles' can't be null";
+        }
+        if ($this->container['effects'] === null) {
+            $invalidProperties[] = "'effects' can't be null";
+        }
+        if ($this->container['aspect_ratio'] === null) {
+            $invalidProperties[] = "'aspect_ratio' can't be null";
+        }
+        if ($this->container['ai_model'] === null) {
+            $invalidProperties[] = "'ai_model' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -313,28 +373,55 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets url
+     * Gets inference_id
      *
      * @return string
      */
-    public function getUrl()
+    public function getInferenceId()
     {
-        return $this->container['url'];
+        return $this->container['inference_id'];
     }
 
     /**
-     * Sets url
+     * Sets inference_id
      *
-     * @param string $url The URL of the image
+     * @param string $inference_id The ID of the inference
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setInferenceId($inference_id)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        if (is_null($inference_id)) {
+            throw new \InvalidArgumentException('non-nullable inference_id cannot be null');
         }
-        $this->container['url'] = $url;
+        $this->container['inference_id'] = $inference_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets image_url_outputs
+     *
+     * @return string[]
+     */
+    public function getImageUrlOutputs()
+    {
+        return $this->container['image_url_outputs'];
+    }
+
+    /**
+     * Sets image_url_outputs
+     *
+     * @param string[] $image_url_outputs The URL of the image
+     *
+     * @return self
+     */
+    public function setImageUrlOutputs($image_url_outputs)
+    {
+        if (is_null($image_url_outputs)) {
+            throw new \InvalidArgumentException('non-nullable image_url_outputs cannot be null');
+        }
+        $this->container['image_url_outputs'] = $image_url_outputs;
 
         return $this;
     }
@@ -389,6 +476,141 @@ class ImageInferenceResponse implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable prompt cannot be null');
         }
         $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets styles
+     *
+     * @return string[]
+     */
+    public function getStyles()
+    {
+        return $this->container['styles'];
+    }
+
+    /**
+     * Sets styles
+     *
+     * @param string[] $styles The styles used for the inference
+     *
+     * @return self
+     */
+    public function setStyles($styles)
+    {
+        if (is_null($styles)) {
+            throw new \InvalidArgumentException('non-nullable styles cannot be null');
+        }
+        $this->container['styles'] = $styles;
+
+        return $this;
+    }
+
+    /**
+     * Gets effects
+     *
+     * @return string[]
+     */
+    public function getEffects()
+    {
+        return $this->container['effects'];
+    }
+
+    /**
+     * Sets effects
+     *
+     * @param string[] $effects The effects used for the inference
+     *
+     * @return self
+     */
+    public function setEffects($effects)
+    {
+        if (is_null($effects)) {
+            throw new \InvalidArgumentException('non-nullable effects cannot be null');
+        }
+        $this->container['effects'] = $effects;
+
+        return $this;
+    }
+
+    /**
+     * Gets aspect_ratio
+     *
+     * @return string
+     */
+    public function getAspectRatio()
+    {
+        return $this->container['aspect_ratio'];
+    }
+
+    /**
+     * Sets aspect_ratio
+     *
+     * @param string $aspect_ratio The aspect ratio of the output images
+     *
+     * @return self
+     */
+    public function setAspectRatio($aspect_ratio)
+    {
+        if (is_null($aspect_ratio)) {
+            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        }
+        $this->container['aspect_ratio'] = $aspect_ratio;
+
+        return $this;
+    }
+
+    /**
+     * Gets ai_model
+     *
+     * @return string
+     */
+    public function getAiModel()
+    {
+        return $this->container['ai_model'];
+    }
+
+    /**
+     * Sets ai_model
+     *
+     * @param string $ai_model The AI model used for the inference
+     *
+     * @return self
+     */
+    public function setAiModel($ai_model)
+    {
+        if (is_null($ai_model)) {
+            throw new \InvalidArgumentException('non-nullable ai_model cannot be null');
+        }
+        $this->container['ai_model'] = $ai_model;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string $status The status of the inference
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }

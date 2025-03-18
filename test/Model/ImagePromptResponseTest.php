@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageInferenceResultResponseTest
+ * ImagePromptResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ImageInferenceResultResponseTest Class Doc Comment
+ * ImagePromptResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ImageInferenceResultResponse
+ * @description ImagePromptResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ImageInferenceResultResponseTest extends TestCase
+class ImagePromptResponseTest extends TestCase
 {
 
     /**
@@ -71,36 +71,18 @@ class ImageInferenceResultResponseTest extends TestCase
     }
 
     /**
-     * Test "ImageInferenceResultResponse"
+     * Test "ImagePromptResponse"
      */
-    public function testImageInferenceResultResponse()
+    public function testImagePromptResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "result"
+     * Test attribute "prompt"
      */
-    public function testPropertyResult()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "error_message"
-     */
-    public function testPropertyErrorMessage()
+    public function testPropertyPrompt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

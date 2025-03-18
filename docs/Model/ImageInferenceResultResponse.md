@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**results** | [**\FlowHunt\Model\ImageInferenceResponse[]**](ImageInferenceResponse.md) | The list of inference results |
+**result** | [**\FlowHunt\Model\ImageInferenceResponse**](ImageInferenceResponse.md) |  | [optional]
 **status** | **string** | Whether the inference is completed |
 **error_message** | **string** |  | [optional]
 

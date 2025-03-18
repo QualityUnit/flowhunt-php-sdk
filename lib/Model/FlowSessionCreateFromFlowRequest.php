@@ -64,7 +64,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
         'username' => 'string',
         'password' => 'string',
         'variables' => 'array<string,string>',
-        'flow_id' => 'string'
+        'flow_id' => 'string',
+        'on_chat_opened_postback_url' => 'string'
     ];
 
     /**
@@ -82,7 +83,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
         'username' => null,
         'password' => null,
         'variables' => null,
-        'flow_id' => 'uuid'
+        'flow_id' => 'uuid',
+        'on_chat_opened_postback_url' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
         'username' => true,
         'password' => true,
         'variables' => true,
-        'flow_id' => false
+        'flow_id' => false,
+        'on_chat_opened_postback_url' => true
     ];
 
     /**
@@ -194,7 +197,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
         'username' => 'username',
         'password' => 'password',
         'variables' => 'variables',
-        'flow_id' => 'flow_id'
+        'flow_id' => 'flow_id',
+        'on_chat_opened_postback_url' => 'on_chat_opened_postback_url'
     ];
 
     /**
@@ -210,7 +214,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
         'username' => 'setUsername',
         'password' => 'setPassword',
         'variables' => 'setVariables',
-        'flow_id' => 'setFlowId'
+        'flow_id' => 'setFlowId',
+        'on_chat_opened_postback_url' => 'setOnChatOpenedPostbackUrl'
     ];
 
     /**
@@ -226,7 +231,8 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
         'username' => 'getUsername',
         'password' => 'getPassword',
         'variables' => 'getVariables',
-        'flow_id' => 'getFlowId'
+        'flow_id' => 'getFlowId',
+        'on_chat_opened_postback_url' => 'getOnChatOpenedPostbackUrl'
     ];
 
     /**
@@ -294,6 +300,7 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
         $this->setIfExists('password', $data ?? [], null);
         $this->setIfExists('variables', $data ?? [], null);
         $this->setIfExists('flow_id', $data ?? [], null);
+        $this->setIfExists('on_chat_opened_postback_url', $data ?? [], null);
     }
 
     /**
@@ -602,6 +609,40 @@ class FlowSessionCreateFromFlowRequest implements ModelInterface, ArrayAccess, \
             throw new \InvalidArgumentException('non-nullable flow_id cannot be null');
         }
         $this->container['flow_id'] = $flow_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets on_chat_opened_postback_url
+     *
+     * @return string|null
+     */
+    public function getOnChatOpenedPostbackUrl()
+    {
+        return $this->container['on_chat_opened_postback_url'];
+    }
+
+    /**
+     * Sets on_chat_opened_postback_url
+     *
+     * @param string|null $on_chat_opened_postback_url on_chat_opened_postback_url
+     *
+     * @return self
+     */
+    public function setOnChatOpenedPostbackUrl($on_chat_opened_postback_url)
+    {
+        if (is_null($on_chat_opened_postback_url)) {
+            array_push($this->openAPINullablesSetToNull, 'on_chat_opened_postback_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('on_chat_opened_postback_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['on_chat_opened_postback_url'] = $on_chat_opened_postback_url;
 
         return $this;
     }

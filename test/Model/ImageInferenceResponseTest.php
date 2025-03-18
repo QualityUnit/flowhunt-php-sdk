@@ -80,9 +80,18 @@ class ImageInferenceResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "url"
+     * Test attribute "inference_id"
      */
-    public function testPropertyUrl()
+    public function testPropertyInferenceId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "image_url_outputs"
+     */
+    public function testPropertyImageUrlOutputs()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -101,6 +110,51 @@ class ImageInferenceResponseTest extends TestCase
      * Test attribute "prompt"
      */
     public function testPropertyPrompt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "styles"
+     */
+    public function testPropertyStyles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "effects"
+     */
+    public function testPropertyEffects()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "aspect_ratio"
+     */
+    public function testPropertyAspectRatio()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ai_model"
+     */
+    public function testPropertyAiModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

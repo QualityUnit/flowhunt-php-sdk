@@ -7,6 +7,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**createImageFt()**](FineTuningsApi.md#createImageFt) | **POST** /v2/fine_tunings/images/ | Create Image Ft |
 | [**deleteFileFt()**](FineTuningsApi.md#deleteFileFt) | **DELETE** /v2/fine_tunings/files/{file_key} | Delete File Ft |
 | [**deleteImageFt()**](FineTuningsApi.md#deleteImageFt) | **DELETE** /v2/fine_tunings/images/{ft_id} | Delete Image Ft |
+| [**generateImagePrompt()**](FineTuningsApi.md#generateImagePrompt) | **POST** /v2/fine_tunings/inference/images/generate-prompt | Generate Image Prompt |
 | [**generateImages()**](FineTuningsApi.md#generateImages) | **POST** /v2/fine_tunings/inference/images | Generate Images |
 | [**getFileFt()**](FineTuningsApi.md#getFileFt) | **GET** /v2/fine_tunings/files/{file_key} | Get File Ft |
 | [**getInferenceResults()**](FineTuningsApi.md#getInferenceResults) | **GET** /v2/fine_tunings/inference/results/{inference_id} | Get Inference Results |
@@ -200,6 +201,69 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `generateImagePrompt()`
+
+```php
+generateImagePrompt($workspace_id): \FlowHunt\Model\ImagePromptResponse
+```
+
+Generate Image Prompt
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FineTuningsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->generateImagePrompt($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FineTuningsApi->generateImagePrompt: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\ImagePromptResponse**](../Model/ImagePromptResponse.md)
 
 ### Authorization
 

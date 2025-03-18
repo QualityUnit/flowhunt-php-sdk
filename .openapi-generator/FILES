@@ -22,6 +22,7 @@ docs/Api/ImagesApi.md
 docs/Api/IntegrationsApi.md
 docs/Api/LogsApi.md
 docs/Api/MediaApi.md
+docs/Api/PhotoAIApi.md
 docs/Api/PromptsApi.md
 docs/Api/SERPApi.md
 docs/Api/SchedulesApi.md
@@ -48,6 +49,7 @@ docs/Model/ChatbotSearchRequest.md
 docs/Model/ChatbotStatus.md
 docs/Model/ChatbotUpdateRequest.md
 docs/Model/CheckoutCreateRequest.md
+docs/Model/CommunityImageGenerationsResponse.md
 docs/Model/Completed.md
 docs/Model/CreditBalanceResponse.md
 docs/Model/CreditDailyTransactionResponse.md
@@ -154,6 +156,7 @@ docs/Model/ImageInferenceResponse.md
 docs/Model/ImageInferenceResultResponse.md
 docs/Model/ImageInferenceScheduleResponse.md
 docs/Model/ImageOptimizeRequest.md
+docs/Model/ImagePromptResponse.md
 docs/Model/InferenceFileType.md
 docs/Model/InferenceHistorySearchRequest.md
 docs/Model/IntegrationCategory.md
@@ -171,6 +174,9 @@ docs/Model/MessageType.md
 docs/Model/Metadata.md
 docs/Model/NewPasswordRequest.md
 docs/Model/OutputFormat.md
+docs/Model/PhotoAIEffectResponse.md
+docs/Model/PhotoAIStyleResponse.md
+docs/Model/PhotoAITemplateResponse.md
 docs/Model/PlanResponse.md
 docs/Model/PointerType.md
 docs/Model/PromptCategoryCreateRequest.md
@@ -297,6 +303,7 @@ lib/Api/ImagesApi.php
 lib/Api/IntegrationsApi.php
 lib/Api/LogsApi.php
 lib/Api/MediaApi.php
+lib/Api/PhotoAIApi.php
 lib/Api/PromptsApi.php
 lib/Api/SERPApi.php
 lib/Api/SchedulesApi.php
@@ -326,6 +333,7 @@ lib/Model/ChatbotSearchRequest.php
 lib/Model/ChatbotStatus.php
 lib/Model/ChatbotUpdateRequest.php
 lib/Model/CheckoutCreateRequest.php
+lib/Model/CommunityImageGenerationsResponse.php
 lib/Model/Completed.php
 lib/Model/CreditBalanceResponse.php
 lib/Model/CreditDailyTransactionResponse.php
@@ -432,6 +440,7 @@ lib/Model/ImageInferenceResponse.php
 lib/Model/ImageInferenceResultResponse.php
 lib/Model/ImageInferenceScheduleResponse.php
 lib/Model/ImageOptimizeRequest.php
+lib/Model/ImagePromptResponse.php
 lib/Model/InferenceFileType.php
 lib/Model/InferenceHistorySearchRequest.php
 lib/Model/IntegrationCategory.php
@@ -450,6 +459,9 @@ lib/Model/Metadata.php
 lib/Model/ModelInterface.php
 lib/Model/NewPasswordRequest.php
 lib/Model/OutputFormat.php
+lib/Model/PhotoAIEffectResponse.php
+lib/Model/PhotoAIStyleResponse.php
+lib/Model/PhotoAITemplateResponse.php
 lib/Model/PlanResponse.php
 lib/Model/PointerType.php
 lib/Model/PromptCategoryCreateRequest.php
@@ -577,6 +589,7 @@ test/Api/ImagesApiTest.php
 test/Api/IntegrationsApiTest.php
 test/Api/LogsApiTest.php
 test/Api/MediaApiTest.php
+test/Api/PhotoAIApiTest.php
 test/Api/PromptsApiTest.php
 test/Api/SERPApiTest.php
 test/Api/SchedulesApiTest.php
@@ -603,6 +616,7 @@ test/Model/ChatbotSearchRequestTest.php
 test/Model/ChatbotStatusTest.php
 test/Model/ChatbotUpdateRequestTest.php
 test/Model/CheckoutCreateRequestTest.php
+test/Model/CommunityImageGenerationsResponseTest.php
 test/Model/CompletedTest.php
 test/Model/CreditBalanceResponseTest.php
 test/Model/CreditDailyTransactionResponseTest.php
@@ -709,6 +723,7 @@ test/Model/ImageInferenceResponseTest.php
 test/Model/ImageInferenceResultResponseTest.php
 test/Model/ImageInferenceScheduleResponseTest.php
 test/Model/ImageOptimizeRequestTest.php
+test/Model/ImagePromptResponseTest.php
 test/Model/InferenceFileTypeTest.php
 test/Model/InferenceHistorySearchRequestTest.php
 test/Model/IntegrationCategoryTest.php
@@ -726,6 +741,9 @@ test/Model/MessageTypeTest.php
 test/Model/MetadataTest.php
 test/Model/NewPasswordRequestTest.php
 test/Model/OutputFormatTest.php
+test/Model/PhotoAIEffectResponseTest.php
+test/Model/PhotoAIStyleResponseTest.php
+test/Model/PhotoAITemplateResponseTest.php
 test/Model/PlanResponseTest.php
 test/Model/PointerTypeTest.php
 test/Model/PromptCategoryCreateRequestTest.php

@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **password** | **string** |  | [optional]
 **variables** | **array<string,string>** |  | [optional]
 **flow_id** | **string** | The flow ID |
+**on_chat_opened_postback_url** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

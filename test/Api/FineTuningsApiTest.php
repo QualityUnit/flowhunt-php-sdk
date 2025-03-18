@@ -108,6 +108,18 @@ class FineTuningsApiTest extends TestCase
     }
 
     /**
+     * Test case for generateImagePrompt
+     *
+     * Generate Image Prompt.
+     *
+     */
+    public function testGenerateImagePrompt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for generateImages
      *
      * Generate Images.

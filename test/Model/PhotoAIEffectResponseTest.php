@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageInferenceResultResponseTest
+ * PhotoAIEffectResponseTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace FlowHunt\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ImageInferenceResultResponseTest Class Doc Comment
+ * PhotoAIEffectResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ImageInferenceResultResponse
+ * @description PhotoAIEffectResponse
  * @package     FlowHunt
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ImageInferenceResultResponseTest extends TestCase
+class PhotoAIEffectResponseTest extends TestCase
 {
 
     /**
@@ -71,36 +71,63 @@ class ImageInferenceResultResponseTest extends TestCase
     }
 
     /**
-     * Test "ImageInferenceResultResponse"
+     * Test "PhotoAIEffectResponse"
      */
-    public function testImageInferenceResultResponse()
+    public function testPhotoAIEffectResponse()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "result"
+     * Test attribute "id"
      */
-    public function testPropertyResult()
+    public function testPropertyId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "name"
      */
-    public function testPropertyStatus()
+    public function testPropertyName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "error_message"
+     * Test attribute "description"
      */
-    public function testPropertyErrorMessage()
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cover_image"
+     */
+    public function testPropertyCoverImage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "prompt"
+     */
+    public function testPropertyPrompt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "featured"
+     */
+    public function testPropertyFeatured()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -63,7 +63,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'number_of_outputs' => 'int',
         'aspect_ratio' => '\FlowHunt\Model\AspecRatio',
         'steps' => 'int',
-        'guidance_scale' => 'float'
+        'guidance_scale' => 'float',
+        'styles' => 'string[]',
+        'effects' => 'string[]',
+        'use_ai_agent' => 'bool'
     ];
 
     /**
@@ -80,7 +83,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'number_of_outputs' => null,
         'aspect_ratio' => null,
         'steps' => null,
-        'guidance_scale' => null
+        'guidance_scale' => null,
+        'styles' => null,
+        'effects' => null,
+        'use_ai_agent' => null
     ];
 
     /**
@@ -95,7 +101,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'number_of_outputs' => false,
         'aspect_ratio' => false,
         'steps' => false,
-        'guidance_scale' => false
+        'guidance_scale' => false,
+        'styles' => true,
+        'effects' => true,
+        'use_ai_agent' => true
     ];
 
     /**
@@ -190,7 +199,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'number_of_outputs' => 'number_of_outputs',
         'aspect_ratio' => 'aspect_ratio',
         'steps' => 'steps',
-        'guidance_scale' => 'guidance_scale'
+        'guidance_scale' => 'guidance_scale',
+        'styles' => 'styles',
+        'effects' => 'effects',
+        'use_ai_agent' => 'use_ai_agent'
     ];
 
     /**
@@ -205,7 +217,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'number_of_outputs' => 'setNumberOfOutputs',
         'aspect_ratio' => 'setAspectRatio',
         'steps' => 'setSteps',
-        'guidance_scale' => 'setGuidanceScale'
+        'guidance_scale' => 'setGuidanceScale',
+        'styles' => 'setStyles',
+        'effects' => 'setEffects',
+        'use_ai_agent' => 'setUseAiAgent'
     ];
 
     /**
@@ -220,7 +235,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'number_of_outputs' => 'getNumberOfOutputs',
         'aspect_ratio' => 'getAspectRatio',
         'steps' => 'getSteps',
-        'guidance_scale' => 'getGuidanceScale'
+        'guidance_scale' => 'getGuidanceScale',
+        'styles' => 'getStyles',
+        'effects' => 'getEffects',
+        'use_ai_agent' => 'getUseAiAgent'
     ];
 
     /**
@@ -287,6 +305,9 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('aspect_ratio', $data ?? [], null);
         $this->setIfExists('steps', $data ?? [], 28);
         $this->setIfExists('guidance_scale', $data ?? [], 3.5);
+        $this->setIfExists('styles', $data ?? [], null);
+        $this->setIfExists('effects', $data ?? [], null);
+        $this->setIfExists('use_ai_agent', $data ?? [], null);
     }
 
     /**
@@ -541,6 +562,108 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         }
 
         $this->container['guidance_scale'] = $guidance_scale;
+
+        return $this;
+    }
+
+    /**
+     * Gets styles
+     *
+     * @return string[]|null
+     */
+    public function getStyles()
+    {
+        return $this->container['styles'];
+    }
+
+    /**
+     * Sets styles
+     *
+     * @param string[]|null $styles styles
+     *
+     * @return self
+     */
+    public function setStyles($styles)
+    {
+        if (is_null($styles)) {
+            array_push($this->openAPINullablesSetToNull, 'styles');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('styles', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['styles'] = $styles;
+
+        return $this;
+    }
+
+    /**
+     * Gets effects
+     *
+     * @return string[]|null
+     */
+    public function getEffects()
+    {
+        return $this->container['effects'];
+    }
+
+    /**
+     * Sets effects
+     *
+     * @param string[]|null $effects effects
+     *
+     * @return self
+     */
+    public function setEffects($effects)
+    {
+        if (is_null($effects)) {
+            array_push($this->openAPINullablesSetToNull, 'effects');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('effects', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['effects'] = $effects;
+
+        return $this;
+    }
+
+    /**
+     * Gets use_ai_agent
+     *
+     * @return bool|null
+     */
+    public function getUseAiAgent()
+    {
+        return $this->container['use_ai_agent'];
+    }
+
+    /**
+     * Sets use_ai_agent
+     *
+     * @param bool|null $use_ai_agent use_ai_agent
+     *
+     * @return self
+     */
+    public function setUseAiAgent($use_ai_agent)
+    {
+        if (is_null($use_ai_agent)) {
+            array_push($this->openAPINullablesSetToNull, 'use_ai_agent');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('use_ai_agent', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['use_ai_agent'] = $use_ai_agent;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageFTResponse
+ * CommunityImageGenerationsResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FlowHunt\ObjectSerializer;
 
 /**
- * ImageFTResponse Class Doc Comment
+ * CommunityImageGenerationsResponse Class Doc Comment
  *
  * @category Class
  * @package  FlowHunt
@@ -40,7 +40,7 @@ use \FlowHunt\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class CommunityImageGenerationsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageFTResponse';
+    protected static $openAPIModelName = 'CommunityImageGenerationsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,15 +57,8 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'ft_type' => '\FlowHunt\Model\FTType',
-        'ft_id' => 'string',
-        'name' => 'string',
-        'steps' => 'int',
-        'lora_rank' => 'int',
-        'trigger_word' => 'string',
-        'training_images' => 'string[]',
-        'status' => '\FlowHunt\Model\FTStatus',
-        'cover_image' => 'string'
+        'generated_image' => 'string',
+        'prompt' => 'string'
     ];
 
     /**
@@ -76,15 +69,8 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'ft_type' => null,
-        'ft_id' => 'uuid',
-        'name' => null,
-        'steps' => null,
-        'lora_rank' => null,
-        'trigger_word' => null,
-        'training_images' => null,
-        'status' => null,
-        'cover_image' => null
+        'generated_image' => null,
+        'prompt' => null
     ];
 
     /**
@@ -93,15 +79,8 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'ft_type' => false,
-        'ft_id' => false,
-        'name' => false,
-        'steps' => false,
-        'lora_rank' => false,
-        'trigger_word' => false,
-        'training_images' => false,
-        'status' => false,
-        'cover_image' => true
+        'generated_image' => false,
+        'prompt' => false
     ];
 
     /**
@@ -190,15 +169,8 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'ft_type' => 'ft_type',
-        'ft_id' => 'ft_id',
-        'name' => 'name',
-        'steps' => 'steps',
-        'lora_rank' => 'lora_rank',
-        'trigger_word' => 'trigger_word',
-        'training_images' => 'training_images',
-        'status' => 'status',
-        'cover_image' => 'cover_image'
+        'generated_image' => 'generated_image',
+        'prompt' => 'prompt'
     ];
 
     /**
@@ -207,15 +179,8 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'ft_type' => 'setFtType',
-        'ft_id' => 'setFtId',
-        'name' => 'setName',
-        'steps' => 'setSteps',
-        'lora_rank' => 'setLoraRank',
-        'trigger_word' => 'setTriggerWord',
-        'training_images' => 'setTrainingImages',
-        'status' => 'setStatus',
-        'cover_image' => 'setCoverImage'
+        'generated_image' => 'setGeneratedImage',
+        'prompt' => 'setPrompt'
     ];
 
     /**
@@ -224,15 +189,8 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'ft_type' => 'getFtType',
-        'ft_id' => 'getFtId',
-        'name' => 'getName',
-        'steps' => 'getSteps',
-        'lora_rank' => 'getLoraRank',
-        'trigger_word' => 'getTriggerWord',
-        'training_images' => 'getTrainingImages',
-        'status' => 'getStatus',
-        'cover_image' => 'getCoverImage'
+        'generated_image' => 'getGeneratedImage',
+        'prompt' => 'getPrompt'
     ];
 
     /**
@@ -292,15 +250,8 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('ft_type', $data ?? [], null);
-        $this->setIfExists('ft_id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('steps', $data ?? [], null);
-        $this->setIfExists('lora_rank', $data ?? [], null);
-        $this->setIfExists('trigger_word', $data ?? [], null);
-        $this->setIfExists('training_images', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('cover_image', $data ?? [], null);
+        $this->setIfExists('generated_image', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
     }
 
     /**
@@ -330,32 +281,11 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['ft_type'] === null) {
-            $invalidProperties[] = "'ft_type' can't be null";
+        if ($this->container['generated_image'] === null) {
+            $invalidProperties[] = "'generated_image' can't be null";
         }
-        if ($this->container['ft_id'] === null) {
-            $invalidProperties[] = "'ft_id' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['steps'] === null) {
-            $invalidProperties[] = "'steps' can't be null";
-        }
-        if ($this->container['lora_rank'] === null) {
-            $invalidProperties[] = "'lora_rank' can't be null";
-        }
-        if ($this->container['trigger_word'] === null) {
-            $invalidProperties[] = "'trigger_word' can't be null";
-        }
-        if ($this->container['training_images'] === null) {
-            $invalidProperties[] = "'training_images' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        if ($this->container['cover_image'] === null) {
-            $invalidProperties[] = "'cover_image' can't be null";
+        if ($this->container['prompt'] === null) {
+            $invalidProperties[] = "'prompt' can't be null";
         }
         return $invalidProperties;
     }
@@ -373,251 +303,55 @@ class ImageFTResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets ft_type
-     *
-     * @return \FlowHunt\Model\FTType
-     */
-    public function getFtType()
-    {
-        return $this->container['ft_type'];
-    }
-
-    /**
-     * Sets ft_type
-     *
-     * @param \FlowHunt\Model\FTType $ft_type Fine tuning type
-     *
-     * @return self
-     */
-    public function setFtType($ft_type)
-    {
-        if (is_null($ft_type)) {
-            throw new \InvalidArgumentException('non-nullable ft_type cannot be null');
-        }
-        $this->container['ft_type'] = $ft_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets ft_id
+     * Gets generated_image
      *
      * @return string
      */
-    public function getFtId()
+    public function getGeneratedImage()
     {
-        return $this->container['ft_id'];
+        return $this->container['generated_image'];
     }
 
     /**
-     * Sets ft_id
+     * Sets generated_image
      *
-     * @param string $ft_id Fine tuning id
+     * @param string $generated_image generated_image
      *
      * @return self
      */
-    public function setFtId($ft_id)
+    public function setGeneratedImage($generated_image)
     {
-        if (is_null($ft_id)) {
-            throw new \InvalidArgumentException('non-nullable ft_id cannot be null');
+        if (is_null($generated_image)) {
+            throw new \InvalidArgumentException('non-nullable generated_image cannot be null');
         }
-        $this->container['ft_id'] = $ft_id;
+        $this->container['generated_image'] = $generated_image;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets prompt
      *
      * @return string
      */
-    public function getName()
+    public function getPrompt()
     {
-        return $this->container['name'];
+        return $this->container['prompt'];
     }
 
     /**
-     * Sets name
+     * Sets prompt
      *
-     * @param string $name Fine tuning name
+     * @param string $prompt prompt
      *
      * @return self
      */
-    public function setName($name)
+    public function setPrompt($prompt)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
         }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets steps
-     *
-     * @return int
-     */
-    public function getSteps()
-    {
-        return $this->container['steps'];
-    }
-
-    /**
-     * Sets steps
-     *
-     * @param int $steps Number of steps
-     *
-     * @return self
-     */
-    public function setSteps($steps)
-    {
-        if (is_null($steps)) {
-            throw new \InvalidArgumentException('non-nullable steps cannot be null');
-        }
-        $this->container['steps'] = $steps;
-
-        return $this;
-    }
-
-    /**
-     * Gets lora_rank
-     *
-     * @return int
-     */
-    public function getLoraRank()
-    {
-        return $this->container['lora_rank'];
-    }
-
-    /**
-     * Sets lora_rank
-     *
-     * @param int $lora_rank Lora rank
-     *
-     * @return self
-     */
-    public function setLoraRank($lora_rank)
-    {
-        if (is_null($lora_rank)) {
-            throw new \InvalidArgumentException('non-nullable lora_rank cannot be null');
-        }
-        $this->container['lora_rank'] = $lora_rank;
-
-        return $this;
-    }
-
-    /**
-     * Gets trigger_word
-     *
-     * @return string
-     */
-    public function getTriggerWord()
-    {
-        return $this->container['trigger_word'];
-    }
-
-    /**
-     * Sets trigger_word
-     *
-     * @param string $trigger_word Trigger word
-     *
-     * @return self
-     */
-    public function setTriggerWord($trigger_word)
-    {
-        if (is_null($trigger_word)) {
-            throw new \InvalidArgumentException('non-nullable trigger_word cannot be null');
-        }
-        $this->container['trigger_word'] = $trigger_word;
-
-        return $this;
-    }
-
-    /**
-     * Gets training_images
-     *
-     * @return string[]
-     */
-    public function getTrainingImages()
-    {
-        return $this->container['training_images'];
-    }
-
-    /**
-     * Sets training_images
-     *
-     * @param string[] $training_images Training images
-     *
-     * @return self
-     */
-    public function setTrainingImages($training_images)
-    {
-        if (is_null($training_images)) {
-            throw new \InvalidArgumentException('non-nullable training_images cannot be null');
-        }
-        $this->container['training_images'] = $training_images;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return \FlowHunt\Model\FTStatus
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param \FlowHunt\Model\FTStatus $status Status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets cover_image
-     *
-     * @return string
-     */
-    public function getCoverImage()
-    {
-        return $this->container['cover_image'];
-    }
-
-    /**
-     * Sets cover_image
-     *
-     * @param string $cover_image cover_image
-     *
-     * @return self
-     */
-    public function setCoverImage($cover_image)
-    {
-        if (is_null($cover_image)) {
-            array_push($this->openAPINullablesSetToNull, 'cover_image');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cover_image', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['cover_image'] = $cover_image;
+        $this->container['prompt'] = $prompt;
 
         return $this;
     }

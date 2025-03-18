@@ -141,4 +141,31 @@ class ImageInferenceRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "styles"
+     */
+    public function testPropertyStyles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "effects"
+     */
+    public function testPropertyEffects()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "use_ai_agent"
+     */
+    public function testPropertyUseAiAgent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
