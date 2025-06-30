@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **log_types** | **string[]** |  | [optional]
 **log_levels** | **string[]** |  | [optional]
-**category_ids** | **string** |  | [optional]
+**category_id** | **string** |  | [optional]
 **from_date** | **string** |  | [optional]
 **to_date** | **string** |  | [optional]
 **search_text** | **string** |  | [optional]

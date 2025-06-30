@@ -4,15 +4,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getWordpressPostCategories_0()**](WordPressApi.md#getWordpressPostCategories_0) | **GET** /v2/integrations/wordpress/{integration_id}/categories | Get Wordpress Post Categories |
-| [**getWordpressPostTags_0()**](WordPressApi.md#getWordpressPostTags_0) | **GET** /v2/integrations/wordpress/{integration_id}/tags | Get Wordpress Post Tags |
-| [**getWordpressSites_0()**](WordPressApi.md#getWordpressSites_0) | **GET** /v2/integrations/wordpress/sites | Get Wordpress Sites |
+| [**getWordpressPostCategories()**](WordPressApi.md#getWordpressPostCategories) | **GET** /v2/integrations/wordpress/{integration_id}/categories | Get Wordpress Post Categories |
+| [**getWordpressPostTags()**](WordPressApi.md#getWordpressPostTags) | **GET** /v2/integrations/wordpress/{integration_id}/tags | Get Wordpress Post Tags |
+| [**getWordpressSites()**](WordPressApi.md#getWordpressSites) | **GET** /v2/integrations/wordpress/sites | Get Wordpress Sites |
 
 
-## `getWordpressPostCategories_0()`
+## `getWordpressPostCategories()`
 
 ```php
-getWordpressPostCategories_0($integration_id, $workspace_id): \FlowHunt\Model\WordPressCategoryResponse[]
+getWordpressPostCategories($integration_id, $workspace_id): \FlowHunt\Model\WordPressCategoryResponse[]
 ```
 
 Get Wordpress Post Categories
@@ -43,10 +43,10 @@ $integration_id = 'integration_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getWordpressPostCategories_0($integration_id, $workspace_id);
+    $result = $apiInstance->getWordpressPostCategories($integration_id, $workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WordPressApi->getWordpressPostCategories_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WordPressApi->getWordpressPostCategories: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -74,10 +74,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getWordpressPostTags_0()`
+## `getWordpressPostTags()`
 
 ```php
-getWordpressPostTags_0($integration_id, $workspace_id): \FlowHunt\Model\WordPressTagsResponse[]
+getWordpressPostTags($integration_id, $workspace_id): \FlowHunt\Model\WordPressTagsResponse[]
 ```
 
 Get Wordpress Post Tags
@@ -108,10 +108,10 @@ $integration_id = 'integration_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getWordpressPostTags_0($integration_id, $workspace_id);
+    $result = $apiInstance->getWordpressPostTags($integration_id, $workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WordPressApi->getWordpressPostTags_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WordPressApi->getWordpressPostTags: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -139,10 +139,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getWordpressSites_0()`
+## `getWordpressSites()`
 
 ```php
-getWordpressSites_0($workspace_id): \FlowHunt\Model\WordPressSiteResponse[]
+getWordpressSites($workspace_id): \FlowHunt\Model\WordPressSiteResponse[]
 ```
 
 Get Wordpress Sites
@@ -172,10 +172,10 @@ $apiInstance = new FlowHunt\Api\WordPressApi(
 $workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getWordpressSites_0($workspace_id);
+    $result = $apiInstance->getWordpressSites($workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WordPressApi->getWordpressSites_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WordPressApi->getWordpressSites: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

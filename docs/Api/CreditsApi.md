@@ -18,6 +18,8 @@ getCreditBalance(): \FlowHunt\Model\CreditBalanceResponse
 
 Get Credit Balance
 
+Get the credit balance for the current user.
+
 ### Example
 
 ```php
@@ -77,6 +79,8 @@ getWorkspaceCreditBalance($workspace_id): \FlowHunt\Model\CreditBalanceResponse
 ```
 
 Get Workspace Credit Balance
+
+Get the credit balance for a workspace.
 
 ### Example
 
@@ -140,6 +144,8 @@ searchCreditTransactions($workspace_id, $credit_transaction_search_request): \Fl
 ```
 
 Search Credit Transactions
+
+Search for credit transactions based on criteria.
 
 ### Example
 
@@ -205,6 +211,8 @@ searchDailyCreditTransactions($workspace_id, $credit_daily_transaction_search_re
 ```
 
 Search Daily Credit Transactions
+
+Search for daily credit transactions based on criteria.
 
 ### Example
 

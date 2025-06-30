@@ -4,14 +4,14 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getSlackChannels_0()**](SlackApi.md#getSlackChannels_0) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels |
-| [**getSlackWorkspaces_0()**](SlackApi.md#getSlackWorkspaces_0) | **GET** /v2/integrations/slack/ | Get Slack Workspaces |
+| [**getSlackChannels()**](SlackApi.md#getSlackChannels) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels |
+| [**getSlackWorkspaces()**](SlackApi.md#getSlackWorkspaces) | **GET** /v2/integrations/slack/ | Get Slack Workspaces |
 
 
-## `getSlackChannels_0()`
+## `getSlackChannels()`
 
 ```php
-getSlackChannels_0($slack_team_id, $workspace_id): \FlowHunt\Model\SlackChannelResponse[]
+getSlackChannels($slack_team_id, $workspace_id): \FlowHunt\Model\SlackChannelResponse[]
 ```
 
 Get Slack Channels
@@ -37,10 +37,10 @@ $slack_team_id = 'slack_team_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getSlackChannels_0($slack_team_id, $workspace_id);
+    $result = $apiInstance->getSlackChannels($slack_team_id, $workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SlackApi->getSlackChannels_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SlackApi->getSlackChannels: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -68,10 +68,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getSlackWorkspaces_0()`
+## `getSlackWorkspaces()`
 
 ```php
-getSlackWorkspaces_0($workspace_id): \FlowHunt\Model\SlackWorkspaceResponse[]
+getSlackWorkspaces($workspace_id): \FlowHunt\Model\SlackWorkspaceResponse[]
 ```
 
 Get Slack Workspaces
@@ -96,10 +96,10 @@ $apiInstance = new FlowHunt\Api\SlackApi(
 $workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getSlackWorkspaces_0($workspace_id);
+    $result = $apiInstance->getSlackWorkspaces($workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SlackApi->getSlackWorkspaces_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SlackApi->getSlackWorkspaces: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

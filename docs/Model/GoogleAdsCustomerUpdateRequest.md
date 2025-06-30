@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **cluster_strength** | **int** |  | [optional]
 **min_impressions** | **int** |  | [optional]
 **min_clicks** | **int** |  | [optional]
+**process_negative_keywords** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  | [optional]
 **cron_settings** | **string** |  | [optional]
 **action_type** | [**\FlowHunt\Model\GoogleAdsActionType**](GoogleAdsActionType.md) |  | [optional]
 **ga_measurement_id** | **string** |  | [optional]

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **cluster_strength** | **int** | Cluster Strength |
 **min_impressions** | **int** | Minimum Impressions |
 **min_clicks** | **int** | Minimum Clicks |
+**process_negative_keywords** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  | [optional]
 **last_update** | **\DateTime** |  | [optional]
 **next_update** | **\DateTime** |  | [optional]
 **cron_settings** | **string** |  | [optional]

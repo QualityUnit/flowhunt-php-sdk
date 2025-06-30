@@ -7,7 +7,6 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**executeThirdPartyWebhook()**](FlowWebhooksApi.md#executeThirdPartyWebhook) | **POST** /v2/flows/webhooks/third_party_integrations/{trigger_type} | Execute Third Party Webhook |
 | [**executeWebhook()**](FlowWebhooksApi.md#executeWebhook) | **POST** /v2/flows/webhooks/{chatbot_id} | Execute Webhook |
 | [**executeWebhookFromFlow()**](FlowWebhooksApi.md#executeWebhookFromFlow) | **POST** /v2/flows/webhooks/from_flow/{flow_id} | Execute Webhook From Flow |
-| [**pollWebhookResponse()**](FlowWebhooksApi.md#pollWebhookResponse) | **POST** /v2/flows/webhooks/invocation_response/{message_id} | Poll Webhook Response |
 
 
 ## `executeThirdPartyWebhook()`
@@ -179,60 +178,6 @@ try {
 ### Authorization
 
 [APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `pollWebhookResponse()`
-
-```php
-pollWebhookResponse($message_id): \FlowHunt\Model\FlowSessionInvocationMessageResponse
-```
-
-Poll Webhook Response
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new FlowHunt\Api\FlowWebhooksApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$message_id = 'message_id_example'; // string
-
-try {
-    $result = $apiInstance->pollWebhookResponse($message_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling FlowWebhooksApi->pollWebhookResponse: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **message_id** | **string**|  | |
-
-### Return type
-
-[**\FlowHunt\Model\FlowSessionInvocationMessageResponse**](../Model/FlowSessionInvocationMessageResponse.md)
-
-### Authorization
-
-No authorization required
 
 ### HTTP request headers
 

@@ -4,14 +4,73 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getPickerToken_0()**](GoogleApi.md#getPickerToken_0) | **GET** /v2/integrations/google/picker_token | Get Picker Token |
-| [**getSheets_0()**](GoogleApi.md#getSheets_0) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets |
+| [**getCalendars()**](GoogleApi.md#getCalendars) | **GET** /v2/integrations/google/calendar | Get Calendars |
+| [**getPickerToken()**](GoogleApi.md#getPickerToken) | **GET** /v2/integrations/google/picker_token | Get Picker Token |
+| [**getSheets()**](GoogleApi.md#getSheets) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets |
 
 
-## `getPickerToken_0()`
+## `getCalendars()`
 
 ```php
-getPickerToken_0($workspace_id): \FlowHunt\Model\GooglePickerTokenResponse
+getCalendars($workspace_id): \FlowHunt\Model\GoogleCalendarsResponse
+```
+
+Get Calendars
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\GoogleApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getCalendars($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GoogleApi->getCalendars: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleCalendarsResponse**](../Model/GoogleCalendarsResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getPickerToken()`
+
+```php
+getPickerToken($workspace_id): \FlowHunt\Model\GooglePickerTokenResponse
 ```
 
 Get Picker Token
@@ -36,10 +95,10 @@ $apiInstance = new FlowHunt\Api\GoogleApi(
 $workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getPickerToken_0($workspace_id);
+    $result = $apiInstance->getPickerToken($workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling GoogleApi->getPickerToken_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GoogleApi->getPickerToken: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -66,10 +125,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getSheets_0()`
+## `getSheets()`
 
 ```php
-getSheets_0($document_id, $workspace_id): \FlowHunt\Model\GoogleSheetsResponse
+getSheets($document_id, $workspace_id): \FlowHunt\Model\GoogleSheetsResponse
 ```
 
 Get Sheets
@@ -95,10 +154,10 @@ $document_id = 'document_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
 
 try {
-    $result = $apiInstance->getSheets_0($document_id, $workspace_id);
+    $result = $apiInstance->getSheets($document_id, $workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling GoogleApi->getSheets_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GoogleApi->getSheets: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

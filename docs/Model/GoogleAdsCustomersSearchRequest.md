@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **country** | **string** |  | [optional]
 **min_queries** | **int** |  | [optional]
 **min_clicks** | **int** |  | [optional]
+**process_negative_keywords** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  | [optional]
 **min_impressions** | **int** |  | [optional]
 **cluster_strength** | **int** |  | [optional]
 **last_update** | **\DateTime** |  | [optional]

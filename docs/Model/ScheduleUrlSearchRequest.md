@@ -14,5 +14,7 @@ Name | Type | Description | Notes
 **is_original_url** | **bool** |  | [optional]
 **created_at_from** | **\DateTime** |  | [optional]
 **created_at_to** | **\DateTime** |  | [optional]
+**limit** | **int** |  | [optional]
+**pagination** | [**\FlowHunt\Model\Pagination**](Pagination.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

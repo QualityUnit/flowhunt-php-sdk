@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **component_count** | **int** | Component count |
 **executed_at** | **\DateTime** |  | [optional]
 **category_id** | **string** |  | [optional]
+**enable_cache** | **bool** | Enable cache |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -508,7 +508,7 @@ $apiInstance = new FlowHunt\Api\DocumentsApi(
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$file = "/path/to/file.txt"; // \SplFileObject
+$file = '/path/to/file.txt'; // \SplFileObject
 
 try {
     $result = $apiInstance->importFaq($workspace_id, $file);
@@ -970,7 +970,7 @@ $apiInstance = new FlowHunt\Api\DocumentsApi(
 );
 $cat_id = 'cat_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$file = "/path/to/file.txt"; // \SplFileObject
+$file = '/path/to/file.txt'; // \SplFileObject
 
 try {
     $result = $apiInstance->uploadDocument($cat_id, $workspace_id, $file);

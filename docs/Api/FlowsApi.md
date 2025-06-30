@@ -14,9 +14,11 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**deleteFlowCategory()**](FlowsApi.md#deleteFlowCategory) | **DELETE** /v2/flows/categories/{cat_id} | Delete Flow Category |
 | [**deleteFlowCron()**](FlowsApi.md#deleteFlowCron) | **DELETE** /v2/flows/crons/{flow_id}/{cron_id} | Delete Flow Cron |
 | [**executeFlowCron()**](FlowsApi.md#executeFlowCron) | **POST** /v2/flows/crons/{flow_id}/{cron_id}/execute | Execute Flow Cron |
+| [**generateCommitMessage()**](FlowsApi.md#generateCommitMessage) | **POST** /v2/flows/{flow_id}/generate-commit-msg | Generate Commit Message |
 | [**get()**](FlowsApi.md#get) | **GET** /v2/flows/{flow_id} | Get |
 | [**getAllComponents()**](FlowsApi.md#getAllComponents) | **GET** /v2/flows/components/all | Get All Components |
 | [**getAttachments()**](FlowsApi.md#getAttachments) | **GET** /v2/flows/sessions/{session_id}/attachments | Get Attachments |
+| [**getFlowVersions()**](FlowsApi.md#getFlowVersions) | **GET** /v2/flows/{flow_id}/version_history | Get Flow Versions |
 | [**getInvokedFlowResults()**](FlowsApi.md#getInvokedFlowResults) | **GET** /v2/flows/{flow_id}/{task_id} | Get Invoked Flow Results |
 | [**getPublicFlow()**](FlowsApi.md#getPublicFlow) | **GET** /v2/flows/public/{flow_id} | Get Public Flow |
 | [**getTriggerTypes()**](FlowsApi.md#getTriggerTypes) | **POST** /v2/flows/{flow_id}/triggers | Get Trigger Types |
@@ -24,11 +26,12 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**invokeFlowResponse()**](FlowsApi.md#invokeFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invoke | Invoke Flow Response |
 | [**invokeFlowSingleton()**](FlowsApi.md#invokeFlowSingleton) | **POST** /v2/flows/{flow_id}/invoke_singleton | Invoke Flow Singleton |
 | [**pollFlowResponse()**](FlowsApi.md#pollFlowResponse) | **POST** /v2/flows/sessions/{session_id}/invocation_response/{from_timestamp} | Poll Flow Response |
+| [**publishFlow()**](FlowsApi.md#publishFlow) | **POST** /v2/flows/{flow_id}/publish | Publish Flow |
+| [**restoreFlowVersion()**](FlowsApi.md#restoreFlowVersion) | **POST** /v2/flows/{flow_id}/version_history/{branch}/restore | Restore Flow Version |
 | [**search()**](FlowsApi.md#search) | **POST** /v2/flows/ | Search |
 | [**searchAll()**](FlowsApi.md#searchAll) | **POST** /v2/flows/all | Search All |
 | [**searchFlowCategories()**](FlowsApi.md#searchFlowCategories) | **POST** /v2/flows/categories/search | Search Flow Categories |
 | [**searchFlowCrons()**](FlowsApi.md#searchFlowCrons) | **POST** /v2/flows/crons/search | Search Flow Crons |
-| [**streamFlowResponse()**](FlowsApi.md#streamFlowResponse) | **POST** /v2/flows/sessions/{session_id}/stream | Stream Flow Response |
 | [**updateFlow()**](FlowsApi.md#updateFlow) | **PUT** /v2/flows/{flow_id} | Update Flow |
 | [**updateFlowCategory()**](FlowsApi.md#updateFlowCategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category |
 | [**updateFlowCron()**](FlowsApi.md#updateFlowCron) | **PUT** /v2/flows/crons/{flow_id}/{cron_id} | Update Flow Cron |
@@ -671,10 +674,75 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `generateCommitMessage()`
+
+```php
+generateCommitMessage($flow_id, $workspace_id): \FlowHunt\Model\FlowCommitResponse
+```
+
+Generate Commit Message
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->generateCommitMessage($flow_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->generateCommitMessage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowCommitResponse**](../Model/FlowCommitResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `get()`
 
 ```php
-get($flow_id, $workspace_id): \FlowHunt\Model\FlowDetailResponse
+get($flow_id, $workspace_id, $branch): \FlowHunt\Model\FlowDetailResponse
 ```
 
 Get
@@ -703,9 +771,10 @@ $apiInstance = new FlowHunt\Api\FlowsApi(
 );
 $flow_id = 'flow_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
+$branch = 'D'; // string
 
 try {
-    $result = $apiInstance->get($flow_id, $workspace_id);
+    $result = $apiInstance->get($flow_id, $workspace_id, $branch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FlowsApi->get: ', $e->getMessage(), PHP_EOL;
@@ -718,6 +787,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
+| **branch** | **string**|  | [optional] [default to &#39;D&#39;] |
 
 ### Return type
 
@@ -840,6 +910,71 @@ try {
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getFlowVersions()`
+
+```php
+getFlowVersions($flow_id, $workspace_id): \FlowHunt\Model\FlowVersionHistoryResponse[]
+```
+
+Get Flow Versions
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getFlowVersions($flow_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->getFlowVersions: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowVersionHistoryResponse[]**](../Model/FlowVersionHistoryResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -1291,6 +1426,140 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `publishFlow()`
+
+```php
+publishFlow($flow_id, $workspace_id, $flow_commit_request): \FlowHunt\Model\FlowDetailResponse
+```
+
+Publish Flow
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$flow_commit_request = new \FlowHunt\Model\FlowCommitRequest(); // \FlowHunt\Model\FlowCommitRequest
+
+try {
+    $result = $apiInstance->publishFlow($flow_id, $workspace_id, $flow_commit_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->publishFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **flow_commit_request** | [**\FlowHunt\Model\FlowCommitRequest**](../Model/FlowCommitRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowDetailResponse**](../Model/FlowDetailResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `restoreFlowVersion()`
+
+```php
+restoreFlowVersion($flow_id, $branch, $workspace_id): \FlowHunt\Model\Completed
+```
+
+Restore Flow Version
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$branch = 'branch_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->restoreFlowVersion($flow_id, $branch, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->restoreFlowVersion: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **branch** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `search()`
 
 ```php
@@ -1551,66 +1820,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `streamFlowResponse()`
-
-```php
-streamFlowResponse($session_id, $flow_session_stream_request): mixed
-```
-
-Stream Flow Response
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new FlowHunt\Api\FlowsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$session_id = 'session_id_example'; // string
-$flow_session_stream_request = new \FlowHunt\Model\FlowSessionStreamRequest(); // \FlowHunt\Model\FlowSessionStreamRequest
-
-try {
-    $result = $apiInstance->streamFlowResponse($session_id, $flow_session_stream_request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling FlowsApi->streamFlowResponse: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **session_id** | **string**|  | |
-| **flow_session_stream_request** | [**\FlowHunt\Model\FlowSessionStreamRequest**](../Model/FlowSessionStreamRequest.md)|  | |
-
-### Return type
-
-**mixed**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `updateFlow()`
 
 ```php
-updateFlow($flow_id, $workspace_id, $flow_create): \FlowHunt\Model\FlowDetailResponse
+updateFlow($flow_id, $workspace_id, $flow_update): \FlowHunt\Model\FlowDetailResponse
 ```
 
 Update Flow
@@ -1639,10 +1852,10 @@ $apiInstance = new FlowHunt\Api\FlowsApi(
 );
 $flow_id = 'flow_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$flow_create = new \FlowHunt\Model\FlowCreate(); // \FlowHunt\Model\FlowCreate
+$flow_update = new \FlowHunt\Model\FlowUpdate(); // \FlowHunt\Model\FlowUpdate
 
 try {
-    $result = $apiInstance->updateFlow($flow_id, $workspace_id, $flow_create);
+    $result = $apiInstance->updateFlow($flow_id, $workspace_id, $flow_update);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FlowsApi->updateFlow: ', $e->getMessage(), PHP_EOL;
@@ -1655,7 +1868,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
-| **flow_create** | [**\FlowHunt\Model\FlowCreate**](../Model/FlowCreate.md)|  | |
+| **flow_update** | [**\FlowHunt\Model\FlowUpdate**](../Model/FlowUpdate.md)|  | |
 
 ### Return type
 
@@ -1832,7 +2045,7 @@ $apiInstance = new FlowHunt\Api\FlowsApi(
     new GuzzleHttp\Client()
 );
 $session_id = 'session_id_example'; // string
-$file = "/path/to/file.txt"; // \SplFileObject
+$file = '/path/to/file.txt'; // \SplFileObject
 
 try {
     $result = $apiInstance->uploadAttachments($session_id, $file);

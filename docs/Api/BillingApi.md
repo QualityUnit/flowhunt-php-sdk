@@ -4,6 +4,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addAddonToSubscription()**](BillingApi.md#addAddonToSubscription) | **POST** /v2/billing/addons/{product_id}/add | Add Addon To Subscription |
 | [**createChangePlanPortal()**](BillingApi.md#createChangePlanPortal) | **POST** /v2/billing/portal/change-plan/create | Create Change Plan Portal |
 | [**createCheckout()**](BillingApi.md#createCheckout) | **POST** /v2/billing/checkout/create | Create Checkout |
 | [**createUpdateInfoPortal()**](BillingApi.md#createUpdateInfoPortal) | **POST** /v2/billing/portal/update-info/create | Create Update Info Portal |
@@ -11,6 +12,71 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getUserPlan()**](BillingApi.md#getUserPlan) | **GET** /v2/billing/plans/me | Get User Plan |
 | [**stripeWebhook()**](BillingApi.md#stripeWebhook) | **POST** /v2/billing/webhook | Stripe Webhook |
 
+
+## `addAddonToSubscription()`
+
+```php
+addAddonToSubscription($product_id, $workspace_id): string
+```
+
+Add Addon To Subscription
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\BillingApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$product_id = 'product_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->addAddonToSubscription($product_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BillingApi->addAddonToSubscription: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **product_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createChangePlanPortal()`
 
@@ -198,7 +264,7 @@ This endpoint does not need any parameter.
 ## `getPricingPlans()`
 
 ```php
-getPricingPlans(): \FlowHunt\Model\PlanResponse[]
+getPricingPlans(): \FlowHunt\Model\PlanResponse
 ```
 
 Get Pricing Plans
@@ -231,7 +297,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\FlowHunt\Model\PlanResponse[]**](../Model/PlanResponse.md)
+[**\FlowHunt\Model\PlanResponse**](../Model/PlanResponse.md)
 
 ### Authorization
 

@@ -4,18 +4,18 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**createImageFt()**](FineTuningsApi.md#createImageFt) | **POST** /v2/fine_tunings/images/ | Create Image Ft |
-| [**deleteFileFt()**](FineTuningsApi.md#deleteFileFt) | **DELETE** /v2/fine_tunings/files/{file_key} | Delete File Ft |
-| [**deleteImageFt()**](FineTuningsApi.md#deleteImageFt) | **DELETE** /v2/fine_tunings/images/{ft_id} | Delete Image Ft |
-| [**generateImagePrompt()**](FineTuningsApi.md#generateImagePrompt) | **POST** /v2/fine_tunings/inference/images/generate-prompt | Generate Image Prompt |
-| [**generateImages()**](FineTuningsApi.md#generateImages) | **POST** /v2/fine_tunings/inference/images | Generate Images |
-| [**getFileFt()**](FineTuningsApi.md#getFileFt) | **GET** /v2/fine_tunings/files/{file_key} | Get File Ft |
-| [**getInferenceResults()**](FineTuningsApi.md#getInferenceResults) | **GET** /v2/fine_tunings/inference/results/{inference_id} | Get Inference Results |
-| [**handleReplicateWebhook()**](FineTuningsApi.md#handleReplicateWebhook) | **POST** /v2/fine_tunings/webhooks/replicate | Handle Replicate Webhook |
-| [**searchImageFts()**](FineTuningsApi.md#searchImageFts) | **POST** /v2/fine_tunings/images/search | Search Image Fts |
-| [**searchInferenceHistory()**](FineTuningsApi.md#searchInferenceHistory) | **POST** /v2/fine_tunings/inference/history | Search Inference History |
-| [**updateImageFt()**](FineTuningsApi.md#updateImageFt) | **PUT** /v2/fine_tunings/images/{ft_id} | Update Image Ft |
-| [**uploadImageFt()**](FineTuningsApi.md#uploadImageFt) | **POST** /v2/fine_tunings/files/{ft_type}/upload | Upload Image Ft |
+| [**createImageFt()**](FineTuningsApi.md#createImageFt) | **POST** /v2/photo_ai/images/ | Create Image Ft |
+| [**deleteFileFt()**](FineTuningsApi.md#deleteFileFt) | **DELETE** /v2/photo_ai/files/{file_key} | Delete File Ft |
+| [**deleteImageFt()**](FineTuningsApi.md#deleteImageFt) | **DELETE** /v2/photo_ai/images/{ft_id} | Delete Image Ft |
+| [**generateImagePrompt()**](FineTuningsApi.md#generateImagePrompt) | **POST** /v2/photo_ai/inference/images/generate-prompt | Generate Image Prompt |
+| [**generateImages()**](FineTuningsApi.md#generateImages) | **POST** /v2/photo_ai/inference/images | Generate Images |
+| [**getFileFt()**](FineTuningsApi.md#getFileFt) | **GET** /v2/photo_ai/files/{file_key} | Get File Ft |
+| [**getInferenceResults()**](FineTuningsApi.md#getInferenceResults) | **GET** /v2/photo_ai/inference/results/{inference_id} | Get Inference Results |
+| [**handleReplicateWebhook()**](FineTuningsApi.md#handleReplicateWebhook) | **POST** /v2/photo_ai/webhooks/replicate | Handle Replicate Webhook |
+| [**searchImageFts()**](FineTuningsApi.md#searchImageFts) | **POST** /v2/photo_ai/images/search | Search Image Fts |
+| [**searchInferenceHistory()**](FineTuningsApi.md#searchInferenceHistory) | **POST** /v2/photo_ai/inference/history | Search Inference History |
+| [**updateImageFt()**](FineTuningsApi.md#updateImageFt) | **PUT** /v2/photo_ai/images/{ft_id} | Update Image Ft |
+| [**uploadImageFt()**](FineTuningsApi.md#uploadImageFt) | **POST** /v2/photo_ai/files/{ft_type}/upload | Upload Image Ft |
 
 
 ## `createImageFt()`
@@ -218,7 +218,7 @@ try {
 ## `generateImagePrompt()`
 
 ```php
-generateImagePrompt($workspace_id): \FlowHunt\Model\ImagePromptResponse
+generateImagePrompt($workspace_id, $image_prompt_generation_request): \FlowHunt\Model\ImagePromptResponse
 ```
 
 Generate Image Prompt
@@ -246,9 +246,10 @@ $apiInstance = new FlowHunt\Api\FineTuningsApi(
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
+$image_prompt_generation_request = new \FlowHunt\Model\ImagePromptGenerationRequest(); // \FlowHunt\Model\ImagePromptGenerationRequest
 
 try {
-    $result = $apiInstance->generateImagePrompt($workspace_id);
+    $result = $apiInstance->generateImagePrompt($workspace_id, $image_prompt_generation_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FineTuningsApi->generateImagePrompt: ', $e->getMessage(), PHP_EOL;
@@ -260,6 +261,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **workspace_id** | **string**|  | |
+| **image_prompt_generation_request** | [**\FlowHunt\Model\ImagePromptGenerationRequest**](../Model/ImagePromptGenerationRequest.md)|  | |
 
 ### Return type
 
@@ -271,7 +273,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -599,7 +601,7 @@ try {
 ## `searchInferenceHistory()`
 
 ```php
-searchInferenceHistory($workspace_id, $inference_history_search_request): \FlowHunt\Model\ImageInferenceResponse[]
+searchInferenceHistory($workspace_id, $inference_history_search_request): \FlowHunt\Model\ImageInferenceScrollResponse
 ```
 
 Search Inference History
@@ -646,7 +648,7 @@ try {
 
 ### Return type
 
-[**\FlowHunt\Model\ImageInferenceResponse[]**](../Model/ImageInferenceResponse.md)
+[**\FlowHunt\Model\ImageInferenceScrollResponse**](../Model/ImageInferenceScrollResponse.md)
 
 ### Authorization
 
@@ -760,7 +762,7 @@ $apiInstance = new FlowHunt\Api\FineTuningsApi(
 );
 $ft_type = new \FlowHunt\Model\\FlowHunt\Model\FTType(); // \FlowHunt\Model\FTType
 $workspace_id = 'workspace_id_example'; // string
-$file = "/path/to/file.txt"; // \SplFileObject
+$file = '/path/to/file.txt'; // \SplFileObject
 
 try {
     $result = $apiInstance->uploadImageFt($ft_type, $workspace_id, $file);

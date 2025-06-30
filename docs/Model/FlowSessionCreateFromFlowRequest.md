@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **variables** | **array<string,string>** |  | [optional]
 **flow_id** | **string** | The flow ID |
 **on_chat_opened_postback_url** | **string** |  | [optional]
+**flow_branch** | [**\FlowHunt\Model\FlowBranch**](FlowBranch.md) | The flow branch | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

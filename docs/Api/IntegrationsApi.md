@@ -5,8 +5,12 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createIntegration()**](IntegrationsApi.md#createIntegration) | **POST** /v2/integrations/{slug}/integrate | Create Integration |
+| [**customerDataRequest()**](IntegrationsApi.md#customerDataRequest) | **POST** /v2/integrations/shopify/webhooks/customers/data_request | Customer Data Request |
+| [**customerRedact()**](IntegrationsApi.md#customerRedact) | **POST** /v2/integrations/shopify/webhooks/customers/redact | Customer Redact |
 | [**deleteIntegration()**](IntegrationsApi.md#deleteIntegration) | **DELETE** /v2/integrations/{slug}/{integration_id} | Delete Integration |
+| [**getActors()**](IntegrationsApi.md#getActors) | **GET** /v2/integrations/hubspot/actors/ | Get Actors |
 | [**getAllIntegrations()**](IntegrationsApi.md#getAllIntegrations) | **GET** /v2/integrations/all | Get All Integrations |
+| [**getCalendars()**](IntegrationsApi.md#getCalendars) | **GET** /v2/integrations/google/calendar | Get Calendars |
 | [**getIntegration()**](IntegrationsApi.md#getIntegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration |
 | [**getPickerToken()**](IntegrationsApi.md#getPickerToken) | **GET** /v2/integrations/google/picker_token | Get Picker Token |
 | [**getSheets()**](IntegrationsApi.md#getSheets) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets |
@@ -17,6 +21,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getWordpressSites()**](IntegrationsApi.md#getWordpressSites) | **GET** /v2/integrations/wordpress/sites | Get Wordpress Sites |
 | [**integrationCallback()**](IntegrationsApi.md#integrationCallback) | **GET** /v2/integrations/{slug}/callback | Integration Callback |
 | [**searchIntegrations()**](IntegrationsApi.md#searchIntegrations) | **POST** /v2/integrations/{slug} | Search Integrations |
+| [**shopRedact()**](IntegrationsApi.md#shopRedact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact |
 
 
 ## `createIntegration()`
@@ -73,6 +78,126 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `customerDataRequest()`
+
+```php
+customerDataRequest($customer_data_request_payload): mixed
+```
+
+Customer Data Request
+
+Handle customer data request webhooks from Shopify.  This endpoint is called when a customer requests their data from a Shopify store.  Args:     request: The FastAPI request object     payload: The webhook payload  Returns:     A 200 OK response if the webhook is valid and processed successfully
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$customer_data_request_payload = new \FlowHunt\Model\CustomerDataRequestPayload(); // \FlowHunt\Model\CustomerDataRequestPayload
+
+try {
+    $result = $apiInstance->customerDataRequest($customer_data_request_payload);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->customerDataRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **customer_data_request_payload** | [**\FlowHunt\Model\CustomerDataRequestPayload**](../Model/CustomerDataRequestPayload.md)|  | |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `customerRedact()`
+
+```php
+customerRedact($customer_redact_payload): mixed
+```
+
+Customer Redact
+
+Handle customer redact webhooks from Shopify.  This endpoint is called when a customer requests their data to be deleted from a Shopify store.  Args:     request: The FastAPI request object     payload: The webhook payload  Returns:     A 200 OK response if the webhook is valid and processed successfully
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$customer_redact_payload = new \FlowHunt\Model\CustomerRedactPayload(); // \FlowHunt\Model\CustomerRedactPayload
+
+try {
+    $result = $apiInstance->customerRedact($customer_redact_payload);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->customerRedact: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **customer_redact_payload** | [**\FlowHunt\Model\CustomerRedactPayload**](../Model/CustomerRedactPayload.md)|  | |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -141,6 +266,64 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getActors()`
+
+```php
+getActors($workspace_id): \FlowHunt\Model\HubSpotActorsResponse
+```
+
+Get Actors
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getActors($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getActors: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\HubSpotActorsResponse**](../Model/HubSpotActorsResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getAllIntegrations()`
 
 ```php
@@ -194,6 +377,64 @@ try {
 ### Authorization
 
 [APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCalendars()`
+
+```php
+getCalendars($workspace_id): \FlowHunt\Model\GoogleCalendarsResponse
+```
+
+Get Calendars
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getCalendars($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getCalendars: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleCalendarsResponse**](../Model/GoogleCalendarsResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -797,6 +1038,66 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\IntegrationDetailResponse[]**](../Model/IntegrationDetailResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `shopRedact()`
+
+```php
+shopRedact($shop_redact_payload): mixed
+```
+
+Shop Redact
+
+Handle shop redact webhooks from Shopify.  This endpoint is called 48 hours after a store owner uninstalls the app.  Args:     request: The FastAPI request object     payload: The webhook payload  Returns:     A 200 OK response if the webhook is valid and processed successfully
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$shop_redact_payload = new \FlowHunt\Model\ShopRedactPayload(); // \FlowHunt\Model\ShopRedactPayload
+
+try {
+    $result = $apiInstance->shopRedact($shop_redact_payload);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->shopRedact: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **shop_redact_payload** | [**\FlowHunt\Model\ShopRedactPayload**](../Model/ShopRedactPayload.md)|  | |
+
+### Return type
+
+**mixed**
 
 ### Authorization
 

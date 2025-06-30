@@ -156,20 +156,11 @@ Get Chatbot
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: APIKeyHeader
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
-
-// Configure Bearer authorization: HTTPBearer
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new FlowHunt\Api\ChatbotsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 $chatbot_id = 'chatbot_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
@@ -195,7 +186,7 @@ try {
 
 ### Authorization
 
-[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 

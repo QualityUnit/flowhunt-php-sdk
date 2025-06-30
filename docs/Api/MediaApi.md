@@ -40,7 +40,7 @@ $apiInstance = new FlowHunt\Api\MediaApi(
     $config
 );
 $workspace_id = 'workspace_id_example'; // string
-$file = "/path/to/file.txt"; // \SplFileObject
+$file = '/path/to/file.txt'; // \SplFileObject
 $postback_url = 'postback_url_example'; // string | The post back URL where to send the response in body
 
 try {
