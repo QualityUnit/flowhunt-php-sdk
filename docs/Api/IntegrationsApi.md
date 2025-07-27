@@ -13,6 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getCalendars()**](IntegrationsApi.md#getCalendars) | **GET** /v2/integrations/google/calendar | Get Calendars |
 | [**getIntegration()**](IntegrationsApi.md#getIntegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration |
 | [**getPickerToken()**](IntegrationsApi.md#getPickerToken) | **GET** /v2/integrations/google/picker_token | Get Picker Token |
+| [**getProfileInformation()**](IntegrationsApi.md#getProfileInformation) | **GET** /v2/integrations/instagram/profile_information | Get Profile Information |
 | [**getSheets()**](IntegrationsApi.md#getSheets) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets |
 | [**getSlackChannels()**](IntegrationsApi.md#getSlackChannels) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels |
 | [**getSlackWorkspaces()**](IntegrationsApi.md#getSlackWorkspaces) | **GET** /v2/integrations/slack/ | Get Slack Workspaces |
@@ -22,6 +23,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**integrationCallback()**](IntegrationsApi.md#integrationCallback) | **GET** /v2/integrations/{slug}/callback | Integration Callback |
 | [**searchIntegrations()**](IntegrationsApi.md#searchIntegrations) | **POST** /v2/integrations/{slug} | Search Integrations |
 | [**shopRedact()**](IntegrationsApi.md#shopRedact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact |
+| [**updateAdminConsent()**](IntegrationsApi.md#updateAdminConsent) | **POST** /v2/integrations/microsoft_entra_id/admin_consent | Update Admin Consent |
 
 
 ## `createIntegration()`
@@ -551,6 +553,64 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\GooglePickerTokenResponse**](../Model/GooglePickerTokenResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getProfileInformation()`
+
+```php
+getProfileInformation($workspace_id): \FlowHunt\Model\InstagramProfileInformationResponse
+```
+
+Get Profile Information
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getProfileInformation($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getProfileInformation: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\InstagramProfileInformationResponse**](../Model/InstagramProfileInformationResponse.md)
 
 ### Authorization
 
@@ -1106,6 +1166,66 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateAdminConsent()`
+
+```php
+updateAdminConsent($workspace_id, $integration_id): \FlowHunt\Model\IntegrationDetailResponse
+```
+
+Update Admin Consent
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$integration_id = 'integration_id_example'; // string
+
+try {
+    $result = $apiInstance->updateAdminConsent($workspace_id, $integration_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->updateAdminConsent: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **integration_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\IntegrationDetailResponse**](../Model/IntegrationDetailResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

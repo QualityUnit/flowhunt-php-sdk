@@ -64,7 +64,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'component_count' => 'int',
         'executed_at' => '\DateTime',
         'category_id' => 'string',
-        'enable_cache' => 'bool'
+        'enable_cache' => 'bool',
+        'last_modified' => '\DateTime'
     ];
 
     /**
@@ -82,7 +83,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'component_count' => null,
         'executed_at' => 'date-time',
         'category_id' => 'uuid',
-        'enable_cache' => null
+        'enable_cache' => null,
+        'last_modified' => 'date-time'
     ];
 
     /**
@@ -98,7 +100,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'component_count' => false,
         'executed_at' => true,
         'category_id' => true,
-        'enable_cache' => false
+        'enable_cache' => false,
+        'last_modified' => true
     ];
 
     /**
@@ -194,7 +197,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'component_count' => 'component_count',
         'executed_at' => 'executed_at',
         'category_id' => 'category_id',
-        'enable_cache' => 'enable_cache'
+        'enable_cache' => 'enable_cache',
+        'last_modified' => 'last_modified'
     ];
 
     /**
@@ -210,7 +214,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'component_count' => 'setComponentCount',
         'executed_at' => 'setExecutedAt',
         'category_id' => 'setCategoryId',
-        'enable_cache' => 'setEnableCache'
+        'enable_cache' => 'setEnableCache',
+        'last_modified' => 'setLastModified'
     ];
 
     /**
@@ -226,7 +231,8 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'component_count' => 'getComponentCount',
         'executed_at' => 'getExecutedAt',
         'category_id' => 'getCategoryId',
-        'enable_cache' => 'getEnableCache'
+        'enable_cache' => 'getEnableCache',
+        'last_modified' => 'getLastModified'
     ];
 
     /**
@@ -294,6 +300,7 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('executed_at', $data ?? [], null);
         $this->setIfExists('category_id', $data ?? [], null);
         $this->setIfExists('enable_cache', $data ?? [], null);
+        $this->setIfExists('last_modified', $data ?? [], null);
     }
 
     /**
@@ -582,6 +589,40 @@ class FlowResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable enable_cache cannot be null');
         }
         $this->container['enable_cache'] = $enable_cache;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_modified
+     *
+     * @return \DateTime|null
+     */
+    public function getLastModified()
+    {
+        return $this->container['last_modified'];
+    }
+
+    /**
+     * Sets last_modified
+     *
+     * @param \DateTime|null $last_modified last_modified
+     *
+     * @return self
+     */
+    public function setLastModified($last_modified)
+    {
+        if (is_null($last_modified)) {
+            array_push($this->openAPINullablesSetToNull, 'last_modified');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_modified', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_modified'] = $last_modified;
 
         return $this;
     }

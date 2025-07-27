@@ -57,8 +57,7 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'commit_title' => 'string',
-        'commit_description' => 'string'
+        'commit_title' => 'string'
     ];
 
     /**
@@ -69,8 +68,7 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'commit_title' => null,
-        'commit_description' => null
+        'commit_title' => null
     ];
 
     /**
@@ -79,8 +77,7 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'commit_title' => true,
-        'commit_description' => true
+        'commit_title' => true
     ];
 
     /**
@@ -169,8 +166,7 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'commit_title' => 'commit_title',
-        'commit_description' => 'commit_description'
+        'commit_title' => 'commit_title'
     ];
 
     /**
@@ -179,8 +175,7 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'commit_title' => 'setCommitTitle',
-        'commit_description' => 'setCommitDescription'
+        'commit_title' => 'setCommitTitle'
     ];
 
     /**
@@ -189,8 +184,7 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'commit_title' => 'getCommitTitle',
-        'commit_description' => 'getCommitDescription'
+        'commit_title' => 'getCommitTitle'
     ];
 
     /**
@@ -251,7 +245,6 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(?array $data = null)
     {
         $this->setIfExists('commit_title', $data ?? [], null);
-        $this->setIfExists('commit_description', $data ?? [], null);
     }
 
     /**
@@ -326,40 +319,6 @@ class FlowCommitResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['commit_title'] = $commit_title;
-
-        return $this;
-    }
-
-    /**
-     * Gets commit_description
-     *
-     * @return string|null
-     */
-    public function getCommitDescription()
-    {
-        return $this->container['commit_description'];
-    }
-
-    /**
-     * Sets commit_description
-     *
-     * @param string|null $commit_description commit_description
-     *
-     * @return self
-     */
-    public function setCommitDescription($commit_description)
-    {
-        if (is_null($commit_description)) {
-            array_push($this->openAPINullablesSetToNull, 'commit_description');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('commit_description', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['commit_description'] = $commit_description;
 
         return $this;
     }

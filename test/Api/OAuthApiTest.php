@@ -214,4 +214,16 @@ class OAuthApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for samlCallback
+     *
+     * Saml Callback.
+     *
+     */
+    public function testSamlCallback()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

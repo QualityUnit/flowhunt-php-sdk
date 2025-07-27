@@ -16,6 +16,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**oauthRevoke()**](OAuthApi.md#oauthRevoke) | **POST** /v2/auth/oauth/revoke | Oauth Revoke |
 | [**oauthToken()**](OAuthApi.md#oauthToken) | **POST** /v2/auth/oauth/token | Oauth Token |
 | [**oauthUserinfo()**](OAuthApi.md#oauthUserinfo) | **GET** /v2/auth/oauth/userinfo | Oauth Userinfo |
+| [**samlCallback()**](OAuthApi.md#samlCallback) | **POST** /v2/auth/oauth/callback/saml/{random_id} | Saml Callback |
 
 
 ## `oauthAuthorize()`
@@ -636,6 +637,64 @@ try {
 ### Parameters
 
 This endpoint does not need any parameter.
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `samlCallback()`
+
+```php
+samlCallback($random_id, $workspace_id): mixed
+```
+
+Saml Callback
+
+SAML callback endpoint (Assertion Consumer Service) Handles the SAML response from the Identity Provider after successful authentication
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\OAuthApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$random_id = 'random_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->samlCallback($random_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuthApi->samlCallback: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **random_id** | **string**|  | |
+| **workspace_id** | **string**|  | [optional] |
 
 ### Return type
 

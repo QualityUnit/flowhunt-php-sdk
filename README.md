@@ -190,6 +190,7 @@ Class | Method | HTTP request | Description
 *ImagesApi* | [**convertImage**](docs/Api/ImagesApi.md#convertimage) | **POST** /v2/images/convert | Convert Image
 *ImagesApi* | [**getScreenshot**](docs/Api/ImagesApi.md#getscreenshot) | **POST** /v2/images/screenshot | Get Screenshot
 *ImagesApi* | [**optimizeImage**](docs/Api/ImagesApi.md#optimizeimage) | **POST** /v2/images/optimize | Optimize Image
+*InstagramApi* | [**getProfileInformation**](docs/Api/InstagramApi.md#getprofileinformation) | **GET** /v2/integrations/instagram/profile_information | Get Profile Information
 *IntegrationsApi* | [**createIntegration**](docs/Api/IntegrationsApi.md#createintegration) | **POST** /v2/integrations/{slug}/integrate | Create Integration
 *IntegrationsApi* | [**customerDataRequest**](docs/Api/IntegrationsApi.md#customerdatarequest) | **POST** /v2/integrations/shopify/webhooks/customers/data_request | Customer Data Request
 *IntegrationsApi* | [**customerRedact**](docs/Api/IntegrationsApi.md#customerredact) | **POST** /v2/integrations/shopify/webhooks/customers/redact | Customer Redact
@@ -199,6 +200,7 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**getCalendars**](docs/Api/IntegrationsApi.md#getcalendars) | **GET** /v2/integrations/google/calendar | Get Calendars
 *IntegrationsApi* | [**getIntegration**](docs/Api/IntegrationsApi.md#getintegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration
 *IntegrationsApi* | [**getPickerToken**](docs/Api/IntegrationsApi.md#getpickertoken) | **GET** /v2/integrations/google/picker_token | Get Picker Token
+*IntegrationsApi* | [**getProfileInformation**](docs/Api/IntegrationsApi.md#getprofileinformation) | **GET** /v2/integrations/instagram/profile_information | Get Profile Information
 *IntegrationsApi* | [**getSheets**](docs/Api/IntegrationsApi.md#getsheets) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets
 *IntegrationsApi* | [**getSlackChannels**](docs/Api/IntegrationsApi.md#getslackchannels) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels
 *IntegrationsApi* | [**getSlackWorkspaces**](docs/Api/IntegrationsApi.md#getslackworkspaces) | **GET** /v2/integrations/slack/ | Get Slack Workspaces
@@ -208,10 +210,18 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**integrationCallback**](docs/Api/IntegrationsApi.md#integrationcallback) | **GET** /v2/integrations/{slug}/callback | Integration Callback
 *IntegrationsApi* | [**searchIntegrations**](docs/Api/IntegrationsApi.md#searchintegrations) | **POST** /v2/integrations/{slug} | Search Integrations
 *IntegrationsApi* | [**shopRedact**](docs/Api/IntegrationsApi.md#shopredact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact
+*IntegrationsApi* | [**updateAdminConsent**](docs/Api/IntegrationsApi.md#updateadminconsent) | **POST** /v2/integrations/microsoft_entra_id/admin_consent | Update Admin Consent
 *LogsApi* | [**searchLogs**](docs/Api/LogsApi.md#searchlogs) | **POST** /v2/logs/search | Search logs
+*MCPServersApi* | [**createMcpServer**](docs/Api/MCPServersApi.md#createmcpserver) | **POST** /v2/mcp_servers/create | Create Mcp Server
+*MCPServersApi* | [**deleteMcpServer**](docs/Api/MCPServersApi.md#deletemcpserver) | **DELETE** /v2/mcp_servers/{mcp_server_id} | Delete Mcp Server
+*MCPServersApi* | [**getAllMcpSubservers**](docs/Api/MCPServersApi.md#getallmcpsubservers) | **GET** /v2/mcp_servers/all | Get All Mcp Subservers
+*MCPServersApi* | [**getMcpServer**](docs/Api/MCPServersApi.md#getmcpserver) | **GET** /v2/mcp_servers/{mcp_server_id} | Get Mcp Server
+*MCPServersApi* | [**searchMcpServers**](docs/Api/MCPServersApi.md#searchmcpservers) | **POST** /v2/mcp_servers/ | Search Mcp Servers
+*MCPServersApi* | [**updateMcpServer**](docs/Api/MCPServersApi.md#updatemcpserver) | **PUT** /v2/mcp_servers/{mcp_server_id} | Update Mcp Server
 *MediaApi* | [**getTranscript**](docs/Api/MediaApi.md#gettranscript) | **POST** /v2/media/transcript | Get Transcript
 *MediaApi* | [**getTranscriptResult**](docs/Api/MediaApi.md#gettranscriptresult) | **POST** /v2/media/transcript_status | Get Transcript Result
 *MediaApi* | [**getYoutubeTranscript**](docs/Api/MediaApi.md#getyoutubetranscript) | **POST** /v2/media/youtube/transcript | Get Youtube Transcript
+*MicrosoftOutlookApi* | [**updateAdminConsent**](docs/Api/MicrosoftOutlookApi.md#updateadminconsent) | **POST** /v2/integrations/microsoft_entra_id/admin_consent | Update Admin Consent
 *OAuthApi* | [**oauthAuthorize**](docs/Api/OAuthApi.md#oauthauthorize) | **GET** /v2/auth/oauth/authorize | Oauth Authorize
 *OAuthApi* | [**oauthAuthorizePost**](docs/Api/OAuthApi.md#oauthauthorizepost) | **POST** /v2/auth/oauth/authorize | Oauth Authorize Post
 *OAuthApi* | [**oauthCallback**](docs/Api/OAuthApi.md#oauthcallback) | **GET** /v2/auth/oauth/callback | Oauth Callback
@@ -224,6 +234,12 @@ Class | Method | HTTP request | Description
 *OAuthApi* | [**oauthRevoke**](docs/Api/OAuthApi.md#oauthrevoke) | **POST** /v2/auth/oauth/revoke | Oauth Revoke
 *OAuthApi* | [**oauthToken**](docs/Api/OAuthApi.md#oauthtoken) | **POST** /v2/auth/oauth/token | Oauth Token
 *OAuthApi* | [**oauthUserinfo**](docs/Api/OAuthApi.md#oauthuserinfo) | **GET** /v2/auth/oauth/userinfo | Oauth Userinfo
+*OAuthApi* | [**samlCallback**](docs/Api/OAuthApi.md#samlcallback) | **POST** /v2/auth/oauth/callback/saml/{random_id} | Saml Callback
+*ObservabilityDriverApi* | [**activateLangfuseObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#activatelangfuseobservabilitydriver) | **POST** /v2/observability_driver/langfuse | Activate Langfuse Observability Driver
+*ObservabilityDriverApi* | [**deleteObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#deleteobservabilitydriver) | **DELETE** /v2/observability_driver/{driver_type} | Delete Observability Driver
+*ObservabilityDriverApi* | [**getObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#getobservabilitydriver) | **GET** /v2/observability_driver/{driver_type} | Get Observability Driver
+*ObservabilityDriverApi* | [**getObservabilityDriverWorkspace**](docs/Api/ObservabilityDriverApi.md#getobservabilitydriverworkspace) | **POST** /v2/observability_driver/ | Get Observability Driver Workspace
+*ObservabilityDriverApi* | [**updateLangfuseObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#updatelangfuseobservabilitydriver) | **PUT** /v2/observability_driver/langfuse | Update Langfuse Observability Driver
 *PhotoAIApi* | [**explore**](docs/Api/PhotoAIApi.md#explore) | **GET** /v2/photo_ai/public/explore | Explore
 *PhotoAIApi* | [**getEffects**](docs/Api/PhotoAIApi.md#geteffects) | **GET** /v2/photo_ai/public/effects | Get Effects
 *PhotoAIApi* | [**getStyles**](docs/Api/PhotoAIApi.md#getstyles) | **GET** /v2/photo_ai/public/styles | Get Styles
@@ -289,6 +305,8 @@ Class | Method | HTTP request | Description
 *WebAuthApi* | [**registerSubmit**](docs/Api/WebAuthApi.md#registersubmit) | **POST** /v2/auth/register | Register Submit
 *WebAuthApi* | [**resetPasswordPage**](docs/Api/WebAuthApi.md#resetpasswordpage) | **GET** /v2/auth/reset-password | Reset Password Page
 *WebAuthApi* | [**resetPasswordSubmit**](docs/Api/WebAuthApi.md#resetpasswordsubmit) | **POST** /v2/auth/reset-password | Reset Password Submit
+*WebAuthApi* | [**ssoLoginPage**](docs/Api/WebAuthApi.md#ssologinpage) | **GET** /v2/auth/oauth/sso | Sso Login Page
+*WebAuthApi* | [**ssoLoginSubmit**](docs/Api/WebAuthApi.md#ssologinsubmit) | **POST** /v2/auth/oauth/sso | Sso Login Submit
 *WordPressApi* | [**getWordpressPostCategories**](docs/Api/WordPressApi.md#getwordpresspostcategories) | **GET** /v2/integrations/wordpress/{integration_id}/categories | Get Wordpress Post Categories
 *WordPressApi* | [**getWordpressPostTags**](docs/Api/WordPressApi.md#getwordpressposttags) | **GET** /v2/integrations/wordpress/{integration_id}/tags | Get Wordpress Post Tags
 *WordPressApi* | [**getWordpressSites**](docs/Api/WordPressApi.md#getwordpresssites) | **GET** /v2/integrations/wordpress/sites | Get Wordpress Sites
@@ -301,6 +319,15 @@ Class | Method | HTTP request | Description
 *WorkspacesApi* | [**searchWorkspaceUsers**](docs/Api/WorkspacesApi.md#searchworkspaceusers) | **POST** /v2/workspaces/{workspace_id}/users | Search Workspace Users
 *WorkspacesApi* | [**updateWorkspace**](docs/Api/WorkspacesApi.md#updateworkspace) | **PUT** /v2/workspaces/{workspace_id} | Update Workspace
 *WorkspacesApi* | [**updateWorkspaceUser**](docs/Api/WorkspacesApi.md#updateworkspaceuser) | **PUT** /v2/workspaces/{workspace_id}/{user_id} | Update Workspace User
+*WorkspacesSSOApi* | [**createWorkspaceSsoSettings**](docs/Api/WorkspacesSSOApi.md#createworkspacessosettings) | **POST** /v2/workspaces/{workspace_id}/sso | Create Workspace Sso Settings
+*WorkspacesSSOApi* | [**deleteWorkspaceSsoSettings**](docs/Api/WorkspacesSSOApi.md#deleteworkspacessosettings) | **DELETE** /v2/workspaces/{workspace_id}/sso/{provider} | Delete Workspace Sso Settings
+*WorkspacesSSOApi* | [**getWorkspaceSsoSettings**](docs/Api/WorkspacesSSOApi.md#getworkspacessosettings) | **GET** /v2/workspaces/{workspace_id}/sso/{provider} | Get Workspace Sso Settings
+*WorkspacesSSOApi* | [**listWorkspaceSsoSettings**](docs/Api/WorkspacesSSOApi.md#listworkspacessosettings) | **GET** /v2/workspaces/{workspace_id}/sso | List Workspace Sso Settings
+*WorkspacesSSOApi* | [**updateWorkspaceSsoSettings**](docs/Api/WorkspacesSSOApi.md#updateworkspacessosettings) | **PUT** /v2/workspaces/{workspace_id}/sso/{provider} | Update Workspace Sso Settings
+*WorkspacesSSODomainVerificationApi* | [**createDomainVerification**](docs/Api/WorkspacesSSODomainVerificationApi.md#createdomainverification) | **POST** /v2/workspaces/{workspace_id}/sso/domain-verification | Create Domain Verification
+*WorkspacesSSODomainVerificationApi* | [**deleteDomainVerification**](docs/Api/WorkspacesSSODomainVerificationApi.md#deletedomainverification) | **DELETE** /v2/workspaces/{workspace_id}/sso/domain-verification | Delete Domain Verification
+*WorkspacesSSODomainVerificationApi* | [**listDomainVerifications**](docs/Api/WorkspacesSSODomainVerificationApi.md#listdomainverifications) | **GET** /v2/workspaces/{workspace_id}/sso/domain-verification | List Domain Verifications
+*WorkspacesSSODomainVerificationApi* | [**verifyDomain**](docs/Api/WorkspacesSSODomainVerificationApi.md#verifydomain) | **POST** /v2/workspaces/{workspace_id}/sso/domain-verification/verify | Verify Domain
 
 ## Models
 
@@ -343,6 +370,8 @@ Class | Method | HTTP request | Description
 - [DocumentStatus](docs/Model/DocumentStatus.md)
 - [DocumentType](docs/Model/DocumentType.md)
 - [DocumentUpdateRequest](docs/Model/DocumentUpdateRequest.md)
+- [DriverSuccessResponse](docs/Model/DriverSuccessResponse.md)
+- [DriverType](docs/Model/DriverType.md)
 - [FTStatus](docs/Model/FTStatus.md)
 - [FTType](docs/Model/FTType.md)
 - [FaqCreateRequest](docs/Model/FaqCreateRequest.md)
@@ -399,6 +428,8 @@ Class | Method | HTTP request | Description
 - [FlowType](docs/Model/FlowType.md)
 - [FlowUpdate](docs/Model/FlowUpdate.md)
 - [FlowVersionHistoryResponse](docs/Model/FlowVersionHistoryResponse.md)
+- [GeneralMCPSubserverCapabilitiesResponse](docs/Model/GeneralMCPSubserverCapabilitiesResponse.md)
+- [GeneralMCPSubserverResponse](docs/Model/GeneralMCPSubserverResponse.md)
 - [GoogleAdsActionType](docs/Model/GoogleAdsActionType.md)
 - [GoogleAdsAnalyzeKeywordsRequest](docs/Model/GoogleAdsAnalyzeKeywordsRequest.md)
 - [GoogleAdsCampaignResponse](docs/Model/GoogleAdsCampaignResponse.md)
@@ -448,18 +479,26 @@ Class | Method | HTTP request | Description
 - [ImagePromptResponse](docs/Model/ImagePromptResponse.md)
 - [InferenceFileType](docs/Model/InferenceFileType.md)
 - [InferenceHistorySearchRequest](docs/Model/InferenceHistorySearchRequest.md)
+- [InstagramProfileInformationResponse](docs/Model/InstagramProfileInformationResponse.md)
 - [IntegrationCategory](docs/Model/IntegrationCategory.md)
 - [IntegrationDetailResponse](docs/Model/IntegrationDetailResponse.md)
 - [IntegrationFlowResponse](docs/Model/IntegrationFlowResponse.md)
 - [IntegrationResponse](docs/Model/IntegrationResponse.md)
 - [IntegrationSearchRequest](docs/Model/IntegrationSearchRequest.md)
 - [IntegrationSlug](docs/Model/IntegrationSlug.md)
+- [LangfuseRequest](docs/Model/LangfuseRequest.md)
 - [LogEntryLevel](docs/Model/LogEntryLevel.md)
 - [LogEntryType](docs/Model/LogEntryType.md)
 - [LogResponse](docs/Model/LogResponse.md)
 - [LogsSearchRequest](docs/Model/LogsSearchRequest.md)
+- [MCPCapabilityBinding](docs/Model/MCPCapabilityBinding.md)
+- [MCPServerCreateRequest](docs/Model/MCPServerCreateRequest.md)
+- [MCPServerResponse](docs/Model/MCPServerResponse.md)
+- [MCPServerSearchRequest](docs/Model/MCPServerSearchRequest.md)
+- [MCPSubServerBinding](docs/Model/MCPSubServerBinding.md)
 - [MessageType](docs/Model/MessageType.md)
 - [Metadata](docs/Model/Metadata.md)
+- [ObservabilityDriverResponse](docs/Model/ObservabilityDriverResponse.md)
 - [Pagination](docs/Model/Pagination.md)
 - [PhotoAIEffectResponse](docs/Model/PhotoAIEffectResponse.md)
 - [PhotoAIStyleResponse](docs/Model/PhotoAIStyleResponse.md)
@@ -478,6 +517,7 @@ Class | Method | HTTP request | Description
 - [QuerySimilarityRequest](docs/Model/QuerySimilarityRequest.md)
 - [QuerySimilarityTaskRequest](docs/Model/QuerySimilarityTaskRequest.md)
 - [Role](docs/Model/Role.md)
+- [SamlLoginMethod](docs/Model/SamlLoginMethod.md)
 - [ScheduleCreateRequest](docs/Model/ScheduleCreateRequest.md)
 - [ScheduleFrequency](docs/Model/ScheduleFrequency.md)
 - [ScheduleResponse](docs/Model/ScheduleResponse.md)
@@ -558,6 +598,12 @@ Class | Method | HTTP request | Description
 - [WorkspaceCreateRequest](docs/Model/WorkspaceCreateRequest.md)
 - [WorkspaceResponse](docs/Model/WorkspaceResponse.md)
 - [WorkspaceRole](docs/Model/WorkspaceRole.md)
+- [WorkspaceSSOCreateRequest](docs/Model/WorkspaceSSOCreateRequest.md)
+- [WorkspaceSSODomainVerificationCreateRequest](docs/Model/WorkspaceSSODomainVerificationCreateRequest.md)
+- [WorkspaceSSODomainVerificationResponse](docs/Model/WorkspaceSSODomainVerificationResponse.md)
+- [WorkspaceSSOListResponse](docs/Model/WorkspaceSSOListResponse.md)
+- [WorkspaceSSOResponse](docs/Model/WorkspaceSSOResponse.md)
+- [WorkspaceSSOUpdateRequest](docs/Model/WorkspaceSSOUpdateRequest.md)
 - [WorkspaceSearchRequest](docs/Model/WorkspaceSearchRequest.md)
 - [WorkspaceUpdateRequest](docs/Model/WorkspaceUpdateRequest.md)
 - [WorkspaceUserCreateRequest](docs/Model/WorkspaceUserCreateRequest.md)
@@ -600,6 +646,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `3.14.0`
+    - Package version: `3.14.1`
     - Generator version: `7.14.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

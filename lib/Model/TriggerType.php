@@ -58,6 +58,10 @@ class TriggerType
 
     public const ON_EMAIL_MESSAGE = 'on_email_message';
 
+    public const ON_OUTLOOK_MESSAGE = 'on_outlook_message';
+
+    public const ON_CALENDAR_EVENT_CREATED = 'on_calendar_event_created';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -72,7 +76,9 @@ class TriggerType
             self::SLACK_SHORTCUTS,
             self::ON_HUBSPOT_MESSAGE,
             self::ON_GMAIL_MESSAGE,
-            self::ON_EMAIL_MESSAGE
+            self::ON_EMAIL_MESSAGE,
+            self::ON_OUTLOOK_MESSAGE,
+            self::ON_CALENDAR_EVENT_CREATED
         ];
     }
 }

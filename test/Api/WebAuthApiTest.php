@@ -166,4 +166,28 @@ class WebAuthApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for ssoLoginPage
+     *
+     * Sso Login Page.
+     *
+     */
+    public function testSsoLoginPage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for ssoLoginSubmit
+     *
+     * Sso Login Submit.
+     *
+     */
+    public function testSsoLoginSubmit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

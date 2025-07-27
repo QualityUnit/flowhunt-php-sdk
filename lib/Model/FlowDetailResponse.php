@@ -68,7 +68,8 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'branch' => 'string',
         'enable_cache' => 'bool',
         'draft_version_nr' => 'int',
-        'prod_version_nr' => 'int'
+        'prod_version_nr' => 'int',
+        'last_modified' => '\DateTime'
     ];
 
     /**
@@ -90,7 +91,8 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'branch' => null,
         'enable_cache' => null,
         'draft_version_nr' => null,
-        'prod_version_nr' => null
+        'prod_version_nr' => null,
+        'last_modified' => 'date-time'
     ];
 
     /**
@@ -110,7 +112,8 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'branch' => false,
         'enable_cache' => false,
         'draft_version_nr' => true,
-        'prod_version_nr' => true
+        'prod_version_nr' => true,
+        'last_modified' => true
     ];
 
     /**
@@ -210,7 +213,8 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'branch' => 'branch',
         'enable_cache' => 'enable_cache',
         'draft_version_nr' => 'draft_version_nr',
-        'prod_version_nr' => 'prod_version_nr'
+        'prod_version_nr' => 'prod_version_nr',
+        'last_modified' => 'last_modified'
     ];
 
     /**
@@ -230,7 +234,8 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'branch' => 'setBranch',
         'enable_cache' => 'setEnableCache',
         'draft_version_nr' => 'setDraftVersionNr',
-        'prod_version_nr' => 'setProdVersionNr'
+        'prod_version_nr' => 'setProdVersionNr',
+        'last_modified' => 'setLastModified'
     ];
 
     /**
@@ -250,7 +255,8 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'branch' => 'getBranch',
         'enable_cache' => 'getEnableCache',
         'draft_version_nr' => 'getDraftVersionNr',
-        'prod_version_nr' => 'getProdVersionNr'
+        'prod_version_nr' => 'getProdVersionNr',
+        'last_modified' => 'getLastModified'
     ];
 
     /**
@@ -322,6 +328,7 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('enable_cache', $data ?? [], null);
         $this->setIfExists('draft_version_nr', $data ?? [], null);
         $this->setIfExists('prod_version_nr', $data ?? [], null);
+        $this->setIfExists('last_modified', $data ?? [], null);
     }
 
     /**
@@ -742,6 +749,40 @@ class FlowDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['prod_version_nr'] = $prod_version_nr;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_modified
+     *
+     * @return \DateTime|null
+     */
+    public function getLastModified()
+    {
+        return $this->container['last_modified'];
+    }
+
+    /**
+     * Sets last_modified
+     *
+     * @param \DateTime|null $last_modified last_modified
+     *
+     * @return self
+     */
+    public function setLastModified($last_modified)
+    {
+        if (is_null($last_modified)) {
+            array_push($this->openAPINullablesSetToNull, 'last_modified');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_modified', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_modified'] = $last_modified;
 
         return $this;
     }

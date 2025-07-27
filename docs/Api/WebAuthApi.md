@@ -12,6 +12,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**registerSubmit()**](WebAuthApi.md#registerSubmit) | **POST** /v2/auth/register | Register Submit |
 | [**resetPasswordPage()**](WebAuthApi.md#resetPasswordPage) | **GET** /v2/auth/reset-password | Reset Password Page |
 | [**resetPasswordSubmit()**](WebAuthApi.md#resetPasswordSubmit) | **POST** /v2/auth/reset-password | Reset Password Submit |
+| [**ssoLoginPage()**](WebAuthApi.md#ssoLoginPage) | **GET** /v2/auth/oauth/sso | Sso Login Page |
+| [**ssoLoginSubmit()**](WebAuthApi.md#ssoLoginSubmit) | **POST** /v2/auth/oauth/sso | Sso Login Submit |
 
 
 ## `activateAccount()`
@@ -457,6 +459,120 @@ try {
 | **token** | **string**|  | |
 | **password** | **string**|  | |
 | **confirm_password** | **string**|  | |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `ssoLoginPage()`
+
+```php
+ssoLoginPage($next): mixed
+```
+
+Sso Login Page
+
+SSO login page
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\WebAuthApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$next = 'next_example'; // string
+
+try {
+    $result = $apiInstance->ssoLoginPage($next);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling WebAuthApi->ssoLoginPage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **next** | **string**|  | [optional] |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `ssoLoginSubmit()`
+
+```php
+ssoLoginSubmit($email, $next): mixed
+```
+
+Sso Login Submit
+
+Handle SSO login form submission
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\WebAuthApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$email = 'email_example'; // string
+$next = '/'; // string
+
+try {
+    $result = $apiInstance->ssoLoginSubmit($email, $next);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling WebAuthApi->ssoLoginSubmit: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **email** | **string**|  | |
+| **next** | **string**|  | [optional] [default to &#39;/&#39;] |
 
 ### Return type
 

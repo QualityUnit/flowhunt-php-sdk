@@ -107,6 +107,15 @@ class FlowVersionHistoryResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "version_nr"
+     */
+    public function testPropertyVersionNr()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "flow_type"
      */
     public function testPropertyFlowType()
@@ -173,15 +182,6 @@ class FlowVersionHistoryResponseTest extends TestCase
      * Test attribute "commit_title"
      */
     public function testPropertyCommitTitle()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "commit_description"
-     */
-    public function testPropertyCommitDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

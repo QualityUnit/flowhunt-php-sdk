@@ -87,4 +87,13 @@ class WorkspaceSearchRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "workspace_id"
+     */
+    public function testPropertyWorkspaceId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

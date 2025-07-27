@@ -60,6 +60,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'string',
         'name' => 'string',
         'description' => 'string',
+        'version_nr' => 'int',
         'flow_type' => '\FlowHunt\Model\FlowType',
         'executed_at' => '\DateTime',
         'category_id' => 'string',
@@ -67,8 +68,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'user' => '\FlowHunt\Model\UserResponse',
         'branch' => 'string',
         'created_at' => '\DateTime',
-        'commit_title' => 'string',
-        'commit_description' => 'string'
+        'commit_title' => 'string'
     ];
 
     /**
@@ -82,6 +82,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'id' => null,
         'name' => null,
         'description' => null,
+        'version_nr' => null,
         'flow_type' => null,
         'executed_at' => 'date-time',
         'category_id' => 'uuid',
@@ -89,8 +90,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'user' => null,
         'branch' => null,
         'created_at' => 'date-time',
-        'commit_title' => null,
-        'commit_description' => null
+        'commit_title' => null
     ];
 
     /**
@@ -102,6 +102,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'id' => false,
         'name' => false,
         'description' => false,
+        'version_nr' => true,
         'flow_type' => false,
         'executed_at' => true,
         'category_id' => true,
@@ -109,8 +110,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'user' => true,
         'branch' => false,
         'created_at' => true,
-        'commit_title' => true,
-        'commit_description' => true
+        'commit_title' => true
     ];
 
     /**
@@ -202,6 +202,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'id',
         'name' => 'name',
         'description' => 'description',
+        'version_nr' => 'version_nr',
         'flow_type' => 'flow_type',
         'executed_at' => 'executed_at',
         'category_id' => 'category_id',
@@ -209,8 +210,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'user' => 'user',
         'branch' => 'branch',
         'created_at' => 'created_at',
-        'commit_title' => 'commit_title',
-        'commit_description' => 'commit_description'
+        'commit_title' => 'commit_title'
     ];
 
     /**
@@ -222,6 +222,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'setId',
         'name' => 'setName',
         'description' => 'setDescription',
+        'version_nr' => 'setVersionNr',
         'flow_type' => 'setFlowType',
         'executed_at' => 'setExecutedAt',
         'category_id' => 'setCategoryId',
@@ -229,8 +230,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'user' => 'setUser',
         'branch' => 'setBranch',
         'created_at' => 'setCreatedAt',
-        'commit_title' => 'setCommitTitle',
-        'commit_description' => 'setCommitDescription'
+        'commit_title' => 'setCommitTitle'
     ];
 
     /**
@@ -242,6 +242,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'getId',
         'name' => 'getName',
         'description' => 'getDescription',
+        'version_nr' => 'getVersionNr',
         'flow_type' => 'getFlowType',
         'executed_at' => 'getExecutedAt',
         'category_id' => 'getCategoryId',
@@ -249,8 +250,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         'user' => 'getUser',
         'branch' => 'getBranch',
         'created_at' => 'getCreatedAt',
-        'commit_title' => 'getCommitTitle',
-        'commit_description' => 'getCommitDescription'
+        'commit_title' => 'getCommitTitle'
     ];
 
     /**
@@ -313,6 +313,7 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('version_nr', $data ?? [], null);
         $this->setIfExists('flow_type', $data ?? [], null);
         $this->setIfExists('executed_at', $data ?? [], null);
         $this->setIfExists('category_id', $data ?? [], null);
@@ -321,7 +322,6 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('branch', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('commit_title', $data ?? [], null);
-        $this->setIfExists('commit_description', $data ?? [], null);
     }
 
     /**
@@ -461,6 +461,40 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets version_nr
+     *
+     * @return int|null
+     */
+    public function getVersionNr()
+    {
+        return $this->container['version_nr'];
+    }
+
+    /**
+     * Sets version_nr
+     *
+     * @param int|null $version_nr version_nr
+     *
+     * @return self
+     */
+    public function setVersionNr($version_nr)
+    {
+        if (is_null($version_nr)) {
+            array_push($this->openAPINullablesSetToNull, 'version_nr');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('version_nr', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['version_nr'] = $version_nr;
 
         return $this;
     }
@@ -712,40 +746,6 @@ class FlowVersionHistoryResponse implements ModelInterface, ArrayAccess, \JsonSe
             }
         }
         $this->container['commit_title'] = $commit_title;
-
-        return $this;
-    }
-
-    /**
-     * Gets commit_description
-     *
-     * @return string|null
-     */
-    public function getCommitDescription()
-    {
-        return $this->container['commit_description'];
-    }
-
-    /**
-     * Sets commit_description
-     *
-     * @param string|null $commit_description commit_description
-     *
-     * @return self
-     */
-    public function setCommitDescription($commit_description)
-    {
-        if (is_null($commit_description)) {
-            array_push($this->openAPINullablesSetToNull, 'commit_description');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('commit_description', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['commit_description'] = $commit_description;
 
         return $this;
     }

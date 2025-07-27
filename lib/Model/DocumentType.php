@@ -88,6 +88,8 @@ class DocumentType
 
     public const XML = 'XML';
 
+    public const JSON = 'JSON';
+
     public const GOOGLE_DOCS = 'GOOGLE_DOCS';
 
     public const GOOGLE_SHEETS = 'GOOGLE_SHEETS';
@@ -122,6 +124,7 @@ class DocumentType
             self::WEBP,
             self::CSV,
             self::XML,
+            self::JSON,
             self::GOOGLE_DOCS,
             self::GOOGLE_SHEETS
         ];

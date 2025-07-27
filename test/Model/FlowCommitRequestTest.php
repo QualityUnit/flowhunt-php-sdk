@@ -87,13 +87,4 @@ class FlowCommitRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "commit_description"
-     */
-    public function testPropertyCommitDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
 }

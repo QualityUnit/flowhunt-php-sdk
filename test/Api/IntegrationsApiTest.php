@@ -180,6 +180,18 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for getProfileInformation
+     *
+     * Get Profile Information.
+     *
+     */
+    public function testGetProfileInformation()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getSheets
      *
      * Get Sheets.
@@ -282,6 +294,18 @@ class IntegrationsApiTest extends TestCase
      *
      */
     public function testShopRedact()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateAdminConsent
+     *
+     * Update Admin Consent.
+     *
+     */
+    public function testUpdateAdminConsent()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

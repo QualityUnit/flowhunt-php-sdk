@@ -68,6 +68,10 @@ class IntegrationSlug
 
     public const INSTAGRAM_INTEGRATION = 'instagram_integration';
 
+    public const MICROSOFT_OUTLOOK_INTEGRATION = 'microsoft_outlook_integration';
+
+    public const ODOO_INTEGRATION = 'odoo_integration';
+
     public const GOOGLE_CALENDAR_INTEGRATION = 'google_calendar_integration';
 
     public const GOOGLE_ADS_INTEGRATION = 'google_ads_integration';
@@ -104,6 +108,8 @@ class IntegrationSlug
             self::WORDPRESS_INTEGRATION,
             self::GMAIL_INTEGRATION,
             self::INSTAGRAM_INTEGRATION,
+            self::MICROSOFT_OUTLOOK_INTEGRATION,
+            self::ODOO_INTEGRATION,
             self::GOOGLE_CALENDAR_INTEGRATION,
             self::GOOGLE_ADS_INTEGRATION,
             self::GOOGLE_DOCS_INTEGRATION,

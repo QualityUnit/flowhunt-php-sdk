@@ -57,7 +57,8 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string'
+        'name' => 'string',
+        'workspace_id' => 'string'
     ];
 
     /**
@@ -68,7 +69,8 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null
+        'name' => null,
+        'workspace_id' => 'uuid'
     ];
 
     /**
@@ -77,7 +79,8 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true
+        'name' => true,
+        'workspace_id' => true
     ];
 
     /**
@@ -166,7 +169,8 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name'
+        'name' => 'name',
+        'workspace_id' => 'workspace_id'
     ];
 
     /**
@@ -175,7 +179,8 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName'
+        'name' => 'setName',
+        'workspace_id' => 'setWorkspaceId'
     ];
 
     /**
@@ -184,7 +189,8 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName'
+        'name' => 'getName',
+        'workspace_id' => 'getWorkspaceId'
     ];
 
     /**
@@ -245,6 +251,7 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(?array $data = null)
     {
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('workspace_id', $data ?? [], null);
     }
 
     /**
@@ -319,6 +326,40 @@ class WorkspaceSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets workspace_id
+     *
+     * @return string|null
+     */
+    public function getWorkspaceId()
+    {
+        return $this->container['workspace_id'];
+    }
+
+    /**
+     * Sets workspace_id
+     *
+     * @param string|null $workspace_id workspace_id
+     *
+     * @return self
+     */
+    public function setWorkspaceId($workspace_id)
+    {
+        if (is_null($workspace_id)) {
+            array_push($this->openAPINullablesSetToNull, 'workspace_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('workspace_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['workspace_id'] = $workspace_id;
 
         return $this;
     }

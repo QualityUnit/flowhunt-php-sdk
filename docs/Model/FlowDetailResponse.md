@@ -16,5 +16,6 @@ Name | Type | Description | Notes
 **enable_cache** | **bool** | Enable cache |
 **draft_version_nr** | **int** |  | [optional]
 **prod_version_nr** | **int** |  | [optional]
+**last_modified** | **\DateTime** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

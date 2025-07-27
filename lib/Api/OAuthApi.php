@@ -110,6 +110,9 @@ class OAuthApi
         'oauthUserinfo' => [
             'application/json',
         ],
+        'samlCallback' => [
+            'application/json',
+        ],
     ];
 
     /**
@@ -3128,6 +3131,303 @@ class OAuthApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation samlCallback
+     *
+     * Saml Callback
+     *
+     * @param  string $random_id random_id (required)
+     * @param  string|null $workspace_id workspace_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['samlCallback'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function samlCallback($random_id, $workspace_id = null, string $contentType = self::contentTypes['samlCallback'][0])
+    {
+        list($response) = $this->samlCallbackWithHttpInfo($random_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation samlCallbackWithHttpInfo
+     *
+     * Saml Callback
+     *
+     * @param  string $random_id (required)
+     * @param  string|null $workspace_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['samlCallback'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function samlCallbackWithHttpInfo($random_id, $workspace_id = null, string $contentType = self::contentTypes['samlCallback'][0])
+    {
+        $request = $this->samlCallbackRequest($random_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        'mixed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                'mixed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation samlCallbackAsync
+     *
+     * Saml Callback
+     *
+     * @param  string $random_id (required)
+     * @param  string|null $workspace_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['samlCallback'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function samlCallbackAsync($random_id, $workspace_id = null, string $contentType = self::contentTypes['samlCallback'][0])
+    {
+        return $this->samlCallbackAsyncWithHttpInfo($random_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation samlCallbackAsyncWithHttpInfo
+     *
+     * Saml Callback
+     *
+     * @param  string $random_id (required)
+     * @param  string|null $workspace_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['samlCallback'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function samlCallbackAsyncWithHttpInfo($random_id, $workspace_id = null, string $contentType = self::contentTypes['samlCallback'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->samlCallbackRequest($random_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'samlCallback'
+     *
+     * @param  string $random_id (required)
+     * @param  string|null $workspace_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['samlCallback'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function samlCallbackRequest($random_id, $workspace_id = null, string $contentType = self::contentTypes['samlCallback'][0])
+    {
+
+        // verify the required parameter 'random_id' is set
+        if ($random_id === null || (is_array($random_id) && count($random_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $random_id when calling samlCallback'
+            );
+        }
+
+
+
+        $resourcePath = '/v2/auth/oauth/callback/saml/{random_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($random_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'random_id' . '}',
+                ObjectSerializer::toPathValue($random_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

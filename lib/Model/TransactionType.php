@@ -134,6 +134,10 @@ class TransactionType
 
     public const HC = 'HC';
 
+    public const CNE2 = 'CNE';
+
+    public const MCP = 'MCP';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -207,6 +211,8 @@ class TransactionType
             self::IG_API,
             self::FA,
             self::HC,
+            self::CNE2,
+            self::MCP,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,

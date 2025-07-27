@@ -150,4 +150,13 @@ class FlowResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "last_modified"
+     */
+    public function testPropertyLastModified()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
