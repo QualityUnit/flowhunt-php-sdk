@@ -134,7 +134,7 @@ class TransactionType
 
     public const HC = 'HC';
 
-    public const CNE2 = 'CNE';
+    public const COE = 'COE';
 
     public const MCP = 'MCP';
 
@@ -211,7 +211,7 @@ class TransactionType
             self::IG_API,
             self::FA,
             self::HC,
-            self::CNE2,
+            self::COE,
             self::MCP,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
