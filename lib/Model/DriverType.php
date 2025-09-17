@@ -44,7 +44,9 @@ class DriverType
      */
     public const LANGFUSE_DRIVER = 'langfuse_driver';
 
-    public const FLOW_HUNT_DRIVER = 'flow_hunt_driver';
+    public const FLOWHUNT_DRIVER = 'flowhunt_driver';
+
+    public const POWER_BI_DRIVER = 'power_bi_driver';
 
     /**
      * Gets allowable values of the enum
@@ -54,7 +56,8 @@ class DriverType
     {
         return [
             self::LANGFUSE_DRIVER,
-            self::FLOW_HUNT_DRIVER
+            self::FLOWHUNT_DRIVER,
+            self::POWER_BI_DRIVER
         ];
     }
 }

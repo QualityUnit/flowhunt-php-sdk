@@ -72,7 +72,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'with_screenshot' => '\FlowHunt\Model\BoolChar',
         'with_browser' => '\FlowHunt\Model\BoolChar',
         'follow_links' => '\FlowHunt\Model\BoolChar',
-        'with_proxy_rotation' => '\FlowHunt\Model\BoolChar',
+        'with_proxy_rotation' => 'string',
         'disallow_urls' => 'string',
         'filter_urls' => 'string',
         'custom_headers' => 'string'
@@ -435,9 +435,6 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['follow_links'] === null) {
             $invalidProperties[] = "'follow_links' can't be null";
-        }
-        if ($this->container['with_proxy_rotation'] === null) {
-            $invalidProperties[] = "'with_proxy_rotation' can't be null";
         }
         return $invalidProperties;
     }
@@ -925,7 +922,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets with_proxy_rotation
      *
-     * @return \FlowHunt\Model\BoolChar
+     * @return string|null
      */
     public function getWithProxyRotation()
     {
@@ -935,7 +932,7 @@ class ScheduleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets with_proxy_rotation
      *
-     * @param \FlowHunt\Model\BoolChar $with_proxy_rotation with_proxy_rotation
+     * @param string|null $with_proxy_rotation with_proxy_rotation
      *
      * @return self
      */

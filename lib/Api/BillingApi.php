@@ -77,6 +77,9 @@ class BillingApi
         'addAddonToSubscription' => [
             'application/json',
         ],
+        'confirmShopifySubscription' => [
+            'application/json',
+        ],
         'createChangePlanPortal' => [
             'application/json',
         ],
@@ -150,15 +153,16 @@ class BillingApi
      *
      * @param  string $product_id product_id (required)
      * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\AddOnAddRequest $add_on_add_request add_on_add_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addAddonToSubscription'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return string|\FlowHunt\Model\HTTPValidationError
      */
-    public function addAddonToSubscription($product_id, $workspace_id, string $contentType = self::contentTypes['addAddonToSubscription'][0])
+    public function addAddonToSubscription($product_id, $workspace_id, $add_on_add_request, string $contentType = self::contentTypes['addAddonToSubscription'][0])
     {
-        list($response) = $this->addAddonToSubscriptionWithHttpInfo($product_id, $workspace_id, $contentType);
+        list($response) = $this->addAddonToSubscriptionWithHttpInfo($product_id, $workspace_id, $add_on_add_request, $contentType);
         return $response;
     }
 
@@ -169,15 +173,16 @@ class BillingApi
      *
      * @param  string $product_id (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\AddOnAddRequest $add_on_add_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addAddonToSubscription'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of string|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addAddonToSubscriptionWithHttpInfo($product_id, $workspace_id, string $contentType = self::contentTypes['addAddonToSubscription'][0])
+    public function addAddonToSubscriptionWithHttpInfo($product_id, $workspace_id, $add_on_add_request, string $contentType = self::contentTypes['addAddonToSubscription'][0])
     {
-        $request = $this->addAddonToSubscriptionRequest($product_id, $workspace_id, $contentType);
+        $request = $this->addAddonToSubscriptionRequest($product_id, $workspace_id, $add_on_add_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -269,14 +274,15 @@ class BillingApi
      *
      * @param  string $product_id (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\AddOnAddRequest $add_on_add_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addAddonToSubscription'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addAddonToSubscriptionAsync($product_id, $workspace_id, string $contentType = self::contentTypes['addAddonToSubscription'][0])
+    public function addAddonToSubscriptionAsync($product_id, $workspace_id, $add_on_add_request, string $contentType = self::contentTypes['addAddonToSubscription'][0])
     {
-        return $this->addAddonToSubscriptionAsyncWithHttpInfo($product_id, $workspace_id, $contentType)
+        return $this->addAddonToSubscriptionAsyncWithHttpInfo($product_id, $workspace_id, $add_on_add_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -291,15 +297,16 @@ class BillingApi
      *
      * @param  string $product_id (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\AddOnAddRequest $add_on_add_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addAddonToSubscription'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addAddonToSubscriptionAsyncWithHttpInfo($product_id, $workspace_id, string $contentType = self::contentTypes['addAddonToSubscription'][0])
+    public function addAddonToSubscriptionAsyncWithHttpInfo($product_id, $workspace_id, $add_on_add_request, string $contentType = self::contentTypes['addAddonToSubscription'][0])
     {
         $returnType = 'string';
-        $request = $this->addAddonToSubscriptionRequest($product_id, $workspace_id, $contentType);
+        $request = $this->addAddonToSubscriptionRequest($product_id, $workspace_id, $add_on_add_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -342,12 +349,13 @@ class BillingApi
      *
      * @param  string $product_id (required)
      * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\AddOnAddRequest $add_on_add_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addAddonToSubscription'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addAddonToSubscriptionRequest($product_id, $workspace_id, string $contentType = self::contentTypes['addAddonToSubscription'][0])
+    public function addAddonToSubscriptionRequest($product_id, $workspace_id, $add_on_add_request, string $contentType = self::contentTypes['addAddonToSubscription'][0])
     {
 
         // verify the required parameter 'product_id' is set
@@ -361,6 +369,13 @@ class BillingApi
         if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $workspace_id when calling addAddonToSubscription'
+            );
+        }
+
+        // verify the required parameter 'add_on_add_request' is set
+        if ($add_on_add_request === null || (is_array($add_on_add_request) && count($add_on_add_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $add_on_add_request when calling addAddonToSubscription'
             );
         }
 
@@ -391,6 +406,326 @@ class BillingApi
                 $resourcePath
             );
         }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($add_on_add_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($add_on_add_request));
+            } else {
+                $httpBody = $add_on_add_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation confirmShopifySubscription
+     *
+     * Confirm Shopify Subscription
+     *
+     * @param  string $charge_id charge_id (required)
+     * @param  string $shop shop (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['confirmShopifySubscription'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ShopifySubscriptionConfirmResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function confirmShopifySubscription($charge_id, $shop, string $contentType = self::contentTypes['confirmShopifySubscription'][0])
+    {
+        list($response) = $this->confirmShopifySubscriptionWithHttpInfo($charge_id, $shop, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation confirmShopifySubscriptionWithHttpInfo
+     *
+     * Confirm Shopify Subscription
+     *
+     * @param  string $charge_id (required)
+     * @param  string $shop (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['confirmShopifySubscription'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ShopifySubscriptionConfirmResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function confirmShopifySubscriptionWithHttpInfo($charge_id, $shop, string $contentType = self::contentTypes['confirmShopifySubscription'][0])
+    {
+        $request = $this->confirmShopifySubscriptionRequest($charge_id, $shop, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\ShopifySubscriptionConfirmResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\ShopifySubscriptionConfirmResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ShopifySubscriptionConfirmResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation confirmShopifySubscriptionAsync
+     *
+     * Confirm Shopify Subscription
+     *
+     * @param  string $charge_id (required)
+     * @param  string $shop (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['confirmShopifySubscription'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function confirmShopifySubscriptionAsync($charge_id, $shop, string $contentType = self::contentTypes['confirmShopifySubscription'][0])
+    {
+        return $this->confirmShopifySubscriptionAsyncWithHttpInfo($charge_id, $shop, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation confirmShopifySubscriptionAsyncWithHttpInfo
+     *
+     * Confirm Shopify Subscription
+     *
+     * @param  string $charge_id (required)
+     * @param  string $shop (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['confirmShopifySubscription'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function confirmShopifySubscriptionAsyncWithHttpInfo($charge_id, $shop, string $contentType = self::contentTypes['confirmShopifySubscription'][0])
+    {
+        $returnType = '\FlowHunt\Model\ShopifySubscriptionConfirmResponse';
+        $request = $this->confirmShopifySubscriptionRequest($charge_id, $shop, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'confirmShopifySubscription'
+     *
+     * @param  string $charge_id (required)
+     * @param  string $shop (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['confirmShopifySubscription'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function confirmShopifySubscriptionRequest($charge_id, $shop, string $contentType = self::contentTypes['confirmShopifySubscription'][0])
+    {
+
+        // verify the required parameter 'charge_id' is set
+        if ($charge_id === null || (is_array($charge_id) && count($charge_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $charge_id when calling confirmShopifySubscription'
+            );
+        }
+
+        // verify the required parameter 'shop' is set
+        if ($shop === null || (is_array($shop) && count($shop) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $shop when calling confirmShopifySubscription'
+            );
+        }
+
+
+        $resourcePath = '/v2/billing/shopify/confirm';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $charge_id,
+            'charge_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $shop,
+            'shop', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -448,7 +783,7 @@ class BillingApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

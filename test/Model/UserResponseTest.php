@@ -141,4 +141,13 @@ class UserResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "billing_provider"
+     */
+    public function testPropertyBillingProvider()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

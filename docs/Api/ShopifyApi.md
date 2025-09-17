@@ -7,6 +7,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**customerDataRequest()**](ShopifyApi.md#customerDataRequest) | **POST** /v2/integrations/shopify/webhooks/customers/data_request | Customer Data Request |
 | [**customerRedact()**](ShopifyApi.md#customerRedact) | **POST** /v2/integrations/shopify/webhooks/customers/redact | Customer Redact |
 | [**shopRedact()**](ShopifyApi.md#shopRedact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact |
+| [**subscriptionCancel()**](ShopifyApi.md#subscriptionCancel) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_cancel | Subscription Cancel |
+| [**subscriptionUpdate()**](ShopifyApi.md#subscriptionUpdate) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_update | Subscription Update |
 
 
 ## `customerDataRequest()`
@@ -183,6 +185,130 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `subscriptionCancel()`
+
+```php
+subscriptionCancel($x_shopify_hmac_sha256, $x_shopify_topic): mixed
+```
+
+Subscription Cancel
+
+Handle subscription cancellation webhooks from Shopify.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\ShopifyApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$x_shopify_hmac_sha256 = 'x_shopify_hmac_sha256_example'; // string
+$x_shopify_topic = 'x_shopify_topic_example'; // string
+
+try {
+    $result = $apiInstance->subscriptionCancel($x_shopify_hmac_sha256, $x_shopify_topic);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ShopifyApi->subscriptionCancel: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **x_shopify_hmac_sha256** | **string**|  | [optional] |
+| **x_shopify_topic** | **string**|  | [optional] |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `subscriptionUpdate()`
+
+```php
+subscriptionUpdate($x_shopify_hmac_sha256, $x_shopify_topic): mixed
+```
+
+Subscription Update
+
+Handle subscription update webhooks from Shopify.  This is called when a subscription is created, updated, or activated.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\ShopifyApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$x_shopify_hmac_sha256 = 'x_shopify_hmac_sha256_example'; // string
+$x_shopify_topic = 'x_shopify_topic_example'; // string
+
+try {
+    $result = $apiInstance->subscriptionUpdate($x_shopify_hmac_sha256, $x_shopify_topic);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ShopifyApi->subscriptionUpdate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **x_shopify_hmac_sha256** | **string**|  | [optional] |
+| **x_shopify_topic** | **string**|  | [optional] |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

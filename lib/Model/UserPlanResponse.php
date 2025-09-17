@@ -62,7 +62,9 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'monthly_topup_credits' => 'int',
         'current_period_end' => '\DateTime',
         'subscription_plans' => 'array<string,\FlowHunt\Model\SubscriptionPlan>',
-        'can_remove_branding' => 'bool'
+        'can_remove_branding' => 'bool',
+        'extra_workspaces_count' => 'int',
+        'extra_credits_count' => 'int'
     ];
 
     /**
@@ -78,7 +80,9 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'monthly_topup_credits' => null,
         'current_period_end' => 'date-time',
         'subscription_plans' => null,
-        'can_remove_branding' => null
+        'can_remove_branding' => null,
+        'extra_workspaces_count' => null,
+        'extra_credits_count' => null
     ];
 
     /**
@@ -92,7 +96,9 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'monthly_topup_credits' => false,
         'current_period_end' => true,
         'subscription_plans' => false,
-        'can_remove_branding' => false
+        'can_remove_branding' => false,
+        'extra_workspaces_count' => true,
+        'extra_credits_count' => true
     ];
 
     /**
@@ -186,7 +192,9 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'monthly_topup_credits' => 'monthly_topup_credits',
         'current_period_end' => 'current_period_end',
         'subscription_plans' => 'subscription_plans',
-        'can_remove_branding' => 'can_remove_branding'
+        'can_remove_branding' => 'can_remove_branding',
+        'extra_workspaces_count' => 'extra_workspaces_count',
+        'extra_credits_count' => 'extra_credits_count'
     ];
 
     /**
@@ -200,7 +208,9 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'monthly_topup_credits' => 'setMonthlyTopupCredits',
         'current_period_end' => 'setCurrentPeriodEnd',
         'subscription_plans' => 'setSubscriptionPlans',
-        'can_remove_branding' => 'setCanRemoveBranding'
+        'can_remove_branding' => 'setCanRemoveBranding',
+        'extra_workspaces_count' => 'setExtraWorkspacesCount',
+        'extra_credits_count' => 'setExtraCreditsCount'
     ];
 
     /**
@@ -214,7 +224,9 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'monthly_topup_credits' => 'getMonthlyTopupCredits',
         'current_period_end' => 'getCurrentPeriodEnd',
         'subscription_plans' => 'getSubscriptionPlans',
-        'can_remove_branding' => 'getCanRemoveBranding'
+        'can_remove_branding' => 'getCanRemoveBranding',
+        'extra_workspaces_count' => 'getExtraWorkspacesCount',
+        'extra_credits_count' => 'getExtraCreditsCount'
     ];
 
     /**
@@ -280,6 +292,8 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('current_period_end', $data ?? [], null);
         $this->setIfExists('subscription_plans', $data ?? [], null);
         $this->setIfExists('can_remove_branding', $data ?? [], null);
+        $this->setIfExists('extra_workspaces_count', $data ?? [], null);
+        $this->setIfExists('extra_credits_count', $data ?? [], null);
     }
 
     /**
@@ -507,6 +521,74 @@ class UserPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable can_remove_branding cannot be null');
         }
         $this->container['can_remove_branding'] = $can_remove_branding;
+
+        return $this;
+    }
+
+    /**
+     * Gets extra_workspaces_count
+     *
+     * @return int|null
+     */
+    public function getExtraWorkspacesCount()
+    {
+        return $this->container['extra_workspaces_count'];
+    }
+
+    /**
+     * Sets extra_workspaces_count
+     *
+     * @param int|null $extra_workspaces_count extra_workspaces_count
+     *
+     * @return self
+     */
+    public function setExtraWorkspacesCount($extra_workspaces_count)
+    {
+        if (is_null($extra_workspaces_count)) {
+            array_push($this->openAPINullablesSetToNull, 'extra_workspaces_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('extra_workspaces_count', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['extra_workspaces_count'] = $extra_workspaces_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets extra_credits_count
+     *
+     * @return int|null
+     */
+    public function getExtraCreditsCount()
+    {
+        return $this->container['extra_credits_count'];
+    }
+
+    /**
+     * Sets extra_credits_count
+     *
+     * @param int|null $extra_credits_count extra_credits_count
+     *
+     * @return self
+     */
+    public function setExtraCreditsCount($extra_credits_count)
+    {
+        if (is_null($extra_credits_count)) {
+            array_push($this->openAPINullablesSetToNull, 'extra_credits_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('extra_credits_count', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['extra_credits_count'] = $extra_credits_count;
 
         return $this;
     }

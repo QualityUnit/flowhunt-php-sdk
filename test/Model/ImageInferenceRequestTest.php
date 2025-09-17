@@ -168,4 +168,13 @@ class ImageInferenceRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "reference_images"
+     */
+    public function testPropertyReferenceImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

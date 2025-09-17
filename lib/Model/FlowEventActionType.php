@@ -52,6 +52,8 @@ class FlowEventActionType
 
     public const FAILED = 'failed';
 
+    public const MESSAGE_FEEDBACK = 'message_feedback';
+
     public const ADD_COMPONENT = 'add_component';
 
     public const DELETE_COMPONENT = 'delete_component';
@@ -78,6 +80,7 @@ class FlowEventActionType
             self::TOOL_CALL,
             self::TASK_RESPONSE,
             self::FAILED,
+            self::MESSAGE_FEEDBACK,
             self::ADD_COMPONENT,
             self::DELETE_COMPONENT,
             self::CONNECT_COMPONENTS,

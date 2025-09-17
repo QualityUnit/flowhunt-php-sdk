@@ -106,4 +106,28 @@ class ShopifyApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for subscriptionCancel
+     *
+     * Subscription Cancel.
+     *
+     */
+    public function testSubscriptionCancel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for subscriptionUpdate
+     *
+     * Subscription Update.
+     *
+     */
+    public function testSubscriptionUpdate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

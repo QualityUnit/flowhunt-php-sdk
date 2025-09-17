@@ -57,7 +57,9 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'plans' => 'array<string,\FlowHunt\Model\PlanListItemResponse[]>'
+        'plans' => 'array<string,\FlowHunt\Model\PlanListItemResponse[]>',
+        'billing_provider' => '\FlowHunt\Model\BillingProvider',
+        'shopify_manage_url' => 'string'
     ];
 
     /**
@@ -68,7 +70,9 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'plans' => null
+        'plans' => null,
+        'billing_provider' => null,
+        'shopify_manage_url' => null
     ];
 
     /**
@@ -77,7 +81,9 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'plans' => false
+        'plans' => false,
+        'billing_provider' => true,
+        'shopify_manage_url' => true
     ];
 
     /**
@@ -166,7 +172,9 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'plans' => 'plans'
+        'plans' => 'plans',
+        'billing_provider' => 'billing_provider',
+        'shopify_manage_url' => 'shopify_manage_url'
     ];
 
     /**
@@ -175,7 +183,9 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'plans' => 'setPlans'
+        'plans' => 'setPlans',
+        'billing_provider' => 'setBillingProvider',
+        'shopify_manage_url' => 'setShopifyManageUrl'
     ];
 
     /**
@@ -184,7 +194,9 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'plans' => 'getPlans'
+        'plans' => 'getPlans',
+        'billing_provider' => 'getBillingProvider',
+        'shopify_manage_url' => 'getShopifyManageUrl'
     ];
 
     /**
@@ -245,6 +257,8 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('plans', $data ?? [], null);
+        $this->setIfExists('billing_provider', $data ?? [], null);
+        $this->setIfExists('shopify_manage_url', $data ?? [], null);
     }
 
     /**
@@ -315,6 +329,74 @@ class PlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable plans cannot be null');
         }
         $this->container['plans'] = $plans;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_provider
+     *
+     * @return \FlowHunt\Model\BillingProvider|null
+     */
+    public function getBillingProvider()
+    {
+        return $this->container['billing_provider'];
+    }
+
+    /**
+     * Sets billing_provider
+     *
+     * @param \FlowHunt\Model\BillingProvider|null $billing_provider billing_provider
+     *
+     * @return self
+     */
+    public function setBillingProvider($billing_provider)
+    {
+        if (is_null($billing_provider)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_provider');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_provider', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_provider'] = $billing_provider;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopify_manage_url
+     *
+     * @return string|null
+     */
+    public function getShopifyManageUrl()
+    {
+        return $this->container['shopify_manage_url'];
+    }
+
+    /**
+     * Sets shopify_manage_url
+     *
+     * @param string|null $shopify_manage_url shopify_manage_url
+     *
+     * @return self
+     */
+    public function setShopifyManageUrl($shopify_manage_url)
+    {
+        if (is_null($shopify_manage_url)) {
+            array_push($this->openAPINullablesSetToNull, 'shopify_manage_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('shopify_manage_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['shopify_manage_url'] = $shopify_manage_url;
 
         return $this;
     }

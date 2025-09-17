@@ -81,6 +81,7 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**searchApiKey**](docs/Api/ApiKeysApi.md#searchapikey) | **POST** /v2/api_keys/search | Search Api Key
 *ApiKeysApi* | [**updateApiKey**](docs/Api/ApiKeysApi.md#updateapikey) | **PUT** /v2/api_keys/{api_key_id} | Update Api Key
 *BillingApi* | [**addAddonToSubscription**](docs/Api/BillingApi.md#addaddontosubscription) | **POST** /v2/billing/addons/{product_id}/add | Add Addon To Subscription
+*BillingApi* | [**confirmShopifySubscription**](docs/Api/BillingApi.md#confirmshopifysubscription) | **GET** /v2/billing/shopify/confirm | Confirm Shopify Subscription
 *BillingApi* | [**createChangePlanPortal**](docs/Api/BillingApi.md#createchangeplanportal) | **POST** /v2/billing/portal/change-plan/create | Create Change Plan Portal
 *BillingApi* | [**createCheckout**](docs/Api/BillingApi.md#createcheckout) | **POST** /v2/billing/checkout/create | Create Checkout
 *BillingApi* | [**createUpdateInfoPortal**](docs/Api/BillingApi.md#createupdateinfoportal) | **POST** /v2/billing/portal/update-info/create | Create Update Info Portal
@@ -142,6 +143,7 @@ Class | Method | HTTP request | Description
 *FlowsApi* | [**createFlowCategory**](docs/Api/FlowsApi.md#createflowcategory) | **POST** /v2/flows/categories/create | Create Flow Category
 *FlowsApi* | [**createFlowCron**](docs/Api/FlowsApi.md#createflowcron) | **POST** /v2/flows/crons/create | Create Flow Cron
 *FlowsApi* | [**createFlowSession**](docs/Api/FlowsApi.md#createflowsession) | **POST** /v2/flows/sessions/from_flow/create | Create Flow Session
+*FlowsApi* | [**createMessageFeedback**](docs/Api/FlowsApi.md#createmessagefeedback) | **POST** /v2/flows/sessions/{session_id}/feedback | Create Message Feedback
 *FlowsApi* | [**deleteAttachment**](docs/Api/FlowsApi.md#deleteattachment) | **DELETE** /v2/flows/sessions/{session_id}/attachments/{file_id} | Delete Attachment
 *FlowsApi* | [**deleteFlow**](docs/Api/FlowsApi.md#deleteflow) | **DELETE** /v2/flows/{flow_id} | Delete Flow
 *FlowsApi* | [**deleteFlowCategory**](docs/Api/FlowsApi.md#deleteflowcategory) | **DELETE** /v2/flows/categories/{cat_id} | Delete Flow Category
@@ -198,6 +200,7 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**getActors**](docs/Api/IntegrationsApi.md#getactors) | **GET** /v2/integrations/hubspot/actors/ | Get Actors
 *IntegrationsApi* | [**getAllIntegrations**](docs/Api/IntegrationsApi.md#getallintegrations) | **GET** /v2/integrations/all | Get All Integrations
 *IntegrationsApi* | [**getCalendars**](docs/Api/IntegrationsApi.md#getcalendars) | **GET** /v2/integrations/google/calendar | Get Calendars
+*IntegrationsApi* | [**getHubspotCustomChannelConnect**](docs/Api/IntegrationsApi.md#gethubspotcustomchannelconnect) | **GET** /v2/integrations/hubspot_custom_channel_connect | Get Hubspot Custom Channel Connect
 *IntegrationsApi* | [**getIntegration**](docs/Api/IntegrationsApi.md#getintegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration
 *IntegrationsApi* | [**getPickerToken**](docs/Api/IntegrationsApi.md#getpickertoken) | **GET** /v2/integrations/google/picker_token | Get Picker Token
 *IntegrationsApi* | [**getProfileInformation**](docs/Api/IntegrationsApi.md#getprofileinformation) | **GET** /v2/integrations/instagram/profile_information | Get Profile Information
@@ -210,6 +213,8 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**integrationCallback**](docs/Api/IntegrationsApi.md#integrationcallback) | **GET** /v2/integrations/{slug}/callback | Integration Callback
 *IntegrationsApi* | [**searchIntegrations**](docs/Api/IntegrationsApi.md#searchintegrations) | **POST** /v2/integrations/{slug} | Search Integrations
 *IntegrationsApi* | [**shopRedact**](docs/Api/IntegrationsApi.md#shopredact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact
+*IntegrationsApi* | [**subscriptionCancel**](docs/Api/IntegrationsApi.md#subscriptioncancel) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_cancel | Subscription Cancel
+*IntegrationsApi* | [**subscriptionUpdate**](docs/Api/IntegrationsApi.md#subscriptionupdate) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_update | Subscription Update
 *IntegrationsApi* | [**updateAdminConsent**](docs/Api/IntegrationsApi.md#updateadminconsent) | **POST** /v2/integrations/microsoft_entra_id/admin_consent | Update Admin Consent
 *LogsApi* | [**searchLogs**](docs/Api/LogsApi.md#searchlogs) | **POST** /v2/logs/search | Search logs
 *MCPServersApi* | [**createMcpServer**](docs/Api/MCPServersApi.md#createmcpserver) | **POST** /v2/mcp_servers/create | Create Mcp Server
@@ -218,6 +223,8 @@ Class | Method | HTTP request | Description
 *MCPServersApi* | [**getMcpServer**](docs/Api/MCPServersApi.md#getmcpserver) | **GET** /v2/mcp_servers/{mcp_server_id} | Get Mcp Server
 *MCPServersApi* | [**searchMcpServers**](docs/Api/MCPServersApi.md#searchmcpservers) | **POST** /v2/mcp_servers/ | Search Mcp Servers
 *MCPServersApi* | [**updateMcpServer**](docs/Api/MCPServersApi.md#updatemcpserver) | **PUT** /v2/mcp_servers/{mcp_server_id} | Update Mcp Server
+*MeApi* | [**getUserSettings**](docs/Api/MeApi.md#getusersettings) | **GET** /v2/users/me/settings | Get User Settings
+*MeApi* | [**updateUserSettings**](docs/Api/MeApi.md#updateusersettings) | **PUT** /v2/users/me/settings | Update User Settings
 *MediaApi* | [**getTranscript**](docs/Api/MediaApi.md#gettranscript) | **POST** /v2/media/transcript | Get Transcript
 *MediaApi* | [**getTranscriptResult**](docs/Api/MediaApi.md#gettranscriptresult) | **POST** /v2/media/transcript_status | Get Transcript Result
 *MediaApi* | [**getYoutubeTranscript**](docs/Api/MediaApi.md#getyoutubetranscript) | **POST** /v2/media/youtube/transcript | Get Youtube Transcript
@@ -236,10 +243,17 @@ Class | Method | HTTP request | Description
 *OAuthApi* | [**oauthUserinfo**](docs/Api/OAuthApi.md#oauthuserinfo) | **GET** /v2/auth/oauth/userinfo | Oauth Userinfo
 *OAuthApi* | [**samlCallback**](docs/Api/OAuthApi.md#samlcallback) | **POST** /v2/auth/oauth/callback/saml/{random_id} | Saml Callback
 *ObservabilityDriverApi* | [**activateLangfuseObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#activatelangfuseobservabilitydriver) | **POST** /v2/observability_driver/langfuse | Activate Langfuse Observability Driver
+*ObservabilityDriverApi* | [**activatePowerBiObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#activatepowerbiobservabilitydriver) | **POST** /v2/observability_driver/power_bi/ | Activate Power Bi Observability Driver
+*ObservabilityDriverApi* | [**createPowerBiPushDataset**](docs/Api/ObservabilityDriverApi.md#createpowerbipushdataset) | **POST** /v2/observability_driver/power_bi/push_dataset | Create Power Bi Push Dataset
 *ObservabilityDriverApi* | [**deleteObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#deleteobservabilitydriver) | **DELETE** /v2/observability_driver/{driver_type} | Delete Observability Driver
 *ObservabilityDriverApi* | [**getObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#getobservabilitydriver) | **GET** /v2/observability_driver/{driver_type} | Get Observability Driver
 *ObservabilityDriverApi* | [**getObservabilityDriverWorkspace**](docs/Api/ObservabilityDriverApi.md#getobservabilitydriverworkspace) | **POST** /v2/observability_driver/ | Get Observability Driver Workspace
+*ObservabilityDriverApi* | [**listPowerBiDatasets**](docs/Api/ObservabilityDriverApi.md#listpowerbidatasets) | **POST** /v2/observability_driver/power_bi/datasets | List Power Bi Datasets
+*ObservabilityDriverApi* | [**listPowerBiTables**](docs/Api/ObservabilityDriverApi.md#listpowerbitables) | **POST** /v2/observability_driver/power_bi/tables | List Power Bi Tables
+*ObservabilityDriverApi* | [**listPowerBiWorkspaces**](docs/Api/ObservabilityDriverApi.md#listpowerbiworkspaces) | **GET** /v2/observability_driver/power_bi/workspaces | List Power Bi Workspaces
 *ObservabilityDriverApi* | [**updateLangfuseObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#updatelangfuseobservabilitydriver) | **PUT** /v2/observability_driver/langfuse | Update Langfuse Observability Driver
+*ObservabilityDriverApi* | [**updatePowerBiObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#updatepowerbiobservabilitydriver) | **PUT** /v2/observability_driver/power_bi/ | Update Power Bi Observability Driver
+*ObservabilityDriverApi* | [**validatePushDatasetTable**](docs/Api/ObservabilityDriverApi.md#validatepushdatasettable) | **POST** /v2/observability_driver/power_bi/validate_push_dataset | Validate Push Dataset Table
 *PhotoAIApi* | [**explore**](docs/Api/PhotoAIApi.md#explore) | **GET** /v2/photo_ai/public/explore | Explore
 *PhotoAIApi* | [**getEffects**](docs/Api/PhotoAIApi.md#geteffects) | **GET** /v2/photo_ai/public/effects | Get Effects
 *PhotoAIApi* | [**getStyles**](docs/Api/PhotoAIApi.md#getstyles) | **GET** /v2/photo_ai/public/styles | Get Styles
@@ -252,6 +266,8 @@ Class | Method | HTTP request | Description
 *PromptsApi* | [**searchPrompts**](docs/Api/PromptsApi.md#searchprompts) | **POST** /v2/prompts/search | Search Prompts
 *PromptsApi* | [**updatePrompt**](docs/Api/PromptsApi.md#updateprompt) | **PUT** /v2/prompts/{prompt_id} | Update Prompt
 *PromptsApi* | [**updatePromptCategory**](docs/Api/PromptsApi.md#updatepromptcategory) | **PUT** /v2/prompts/categories/{cat_id} | Update Prompt Category
+*ReindexApi* | [**getReindexStatus**](docs/Api/ReindexApi.md#getreindexstatus) | **GET** /v2/reindex/status | Get Reindex Status
+*ReindexApi* | [**triggerReindex**](docs/Api/ReindexApi.md#triggerreindex) | **POST** /v2/reindex/ | Trigger Reindex
 *SERPApi* | [**searchClusterQuery**](docs/Api/SERPApi.md#searchclusterquery) | **POST** /v2/serp/clusters/keywords | Search Cluster Query
 *SERPApi* | [**serpClusterAddQueries**](docs/Api/SERPApi.md#serpclusteraddqueries) | **POST** /v2/serp/clusters/{customer_id}/{campaign_id}/{group_id}/add_keywords | Serp Cluster Add Queries
 *SERPApi* | [**serpClusterDeleteCampaign**](docs/Api/SERPApi.md#serpclusterdeletecampaign) | **DELETE** /v2/serp/clusters/{customer_id}/{campaign_id} | Serp Cluster Delete Campaign
@@ -285,6 +301,8 @@ Class | Method | HTTP request | Description
 *ShopifyApi* | [**customerDataRequest**](docs/Api/ShopifyApi.md#customerdatarequest) | **POST** /v2/integrations/shopify/webhooks/customers/data_request | Customer Data Request
 *ShopifyApi* | [**customerRedact**](docs/Api/ShopifyApi.md#customerredact) | **POST** /v2/integrations/shopify/webhooks/customers/redact | Customer Redact
 *ShopifyApi* | [**shopRedact**](docs/Api/ShopifyApi.md#shopredact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact
+*ShopifyApi* | [**subscriptionCancel**](docs/Api/ShopifyApi.md#subscriptioncancel) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_cancel | Subscription Cancel
+*ShopifyApi* | [**subscriptionUpdate**](docs/Api/ShopifyApi.md#subscriptionupdate) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_update | Subscription Update
 *SlackApi* | [**getSlackChannels**](docs/Api/SlackApi.md#getslackchannels) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels
 *SlackApi* | [**getSlackWorkspaces**](docs/Api/SlackApi.md#getslackworkspaces) | **GET** /v2/integrations/slack/ | Get Slack Workspaces
 *TagsApi* | [**createTag**](docs/Api/TagsApi.md#createtag) | **POST** /v2/tags/create | Create Tag
@@ -331,6 +349,7 @@ Class | Method | HTTP request | Description
 
 ## Models
 
+- [AddOnAddRequest](docs/Model/AddOnAddRequest.md)
 - [AllFlowsSearchRequest](docs/Model/AllFlowsSearchRequest.md)
 - [ApiKeyCreateRequest](docs/Model/ApiKeyCreateRequest.md)
 - [ApiKeyResponse](docs/Model/ApiKeyResponse.md)
@@ -340,6 +359,7 @@ Class | Method | HTTP request | Description
 - [AppUrlOutput](docs/Model/AppUrlOutput.md)
 - [AspecRatio](docs/Model/AspecRatio.md)
 - [BaseFoundationModel](docs/Model/BaseFoundationModel.md)
+- [BillingProvider](docs/Model/BillingProvider.md)
 - [BoolChar](docs/Model/BoolChar.md)
 - [ChatbotCreateRequest](docs/Model/ChatbotCreateRequest.md)
 - [ChatbotResponse](docs/Model/ChatbotResponse.md)
@@ -409,6 +429,8 @@ Class | Method | HTTP request | Description
 - [FlowEventActionType](docs/Model/FlowEventActionType.md)
 - [FlowHuntProductSlug](docs/Model/FlowHuntProductSlug.md)
 - [FlowInvokeRequest](docs/Model/FlowInvokeRequest.md)
+- [FlowMessageFeedbackRequest](docs/Model/FlowMessageFeedbackRequest.md)
+- [FlowMessageFeedbackResponse](docs/Model/FlowMessageFeedbackResponse.md)
 - [FlowResponse](docs/Model/FlowResponse.md)
 - [FlowSearchRequest](docs/Model/FlowSearchRequest.md)
 - [FlowSessionAttachmentResponse](docs/Model/FlowSessionAttachmentResponse.md)
@@ -418,6 +440,7 @@ Class | Method | HTTP request | Description
 - [FlowSessionInvocationResponse](docs/Model/FlowSessionInvocationResponse.md)
 - [FlowSessionInvokeRequest](docs/Model/FlowSessionInvokeRequest.md)
 - [FlowSessionLoadingMetadata](docs/Model/FlowSessionLoadingMetadata.md)
+- [FlowSessionMessageFeedbackMetadata](docs/Model/FlowSessionMessageFeedbackMetadata.md)
 - [FlowSessionMessageMetadata](docs/Model/FlowSessionMessageMetadata.md)
 - [FlowSessionResponse](docs/Model/FlowSessionResponse.md)
 - [FlowSessionTaskResponseMetadata](docs/Model/FlowSessionTaskResponseMetadata.md)
@@ -496,8 +519,17 @@ Class | Method | HTTP request | Description
 - [MCPServerResponse](docs/Model/MCPServerResponse.md)
 - [MCPServerSearchRequest](docs/Model/MCPServerSearchRequest.md)
 - [MCPSubServerBinding](docs/Model/MCPSubServerBinding.md)
+- [MessageFeedback](docs/Model/MessageFeedback.md)
 - [MessageType](docs/Model/MessageType.md)
 - [Metadata](docs/Model/Metadata.md)
+- [MicrosoftPowerBiDatasetResponse](docs/Model/MicrosoftPowerBiDatasetResponse.md)
+- [MicrosoftPowerBiDatasetsResponse](docs/Model/MicrosoftPowerBiDatasetsResponse.md)
+- [MicrosoftPowerBiPushDatasetResponse](docs/Model/MicrosoftPowerBiPushDatasetResponse.md)
+- [MicrosoftPowerBiTableResponse](docs/Model/MicrosoftPowerBiTableResponse.md)
+- [MicrosoftPowerBiTableValidateResponse](docs/Model/MicrosoftPowerBiTableValidateResponse.md)
+- [MicrosoftPowerBiTablesResponse](docs/Model/MicrosoftPowerBiTablesResponse.md)
+- [MicrosoftPowerBiWorkspaceResponse](docs/Model/MicrosoftPowerBiWorkspaceResponse.md)
+- [MicrosoftPowerBiWorkspacesResponse](docs/Model/MicrosoftPowerBiWorkspacesResponse.md)
 - [ObservabilityDriverResponse](docs/Model/ObservabilityDriverResponse.md)
 - [Pagination](docs/Model/Pagination.md)
 - [PhotoAIEffectResponse](docs/Model/PhotoAIEffectResponse.md)
@@ -506,6 +538,10 @@ Class | Method | HTTP request | Description
 - [PlanListItemResponse](docs/Model/PlanListItemResponse.md)
 - [PlanResponse](docs/Model/PlanResponse.md)
 - [PointerType](docs/Model/PointerType.md)
+- [PowerBiDatasetRequest](docs/Model/PowerBiDatasetRequest.md)
+- [PowerBiPushDatasetRequest](docs/Model/PowerBiPushDatasetRequest.md)
+- [PowerBiRequest](docs/Model/PowerBiRequest.md)
+- [PowerBiTableRequest](docs/Model/PowerBiTableRequest.md)
 - [PromptCategoryCreateRequest](docs/Model/PromptCategoryCreateRequest.md)
 - [PromptCategoryResponse](docs/Model/PromptCategoryResponse.md)
 - [PromptCategorySearchRequest](docs/Model/PromptCategorySearchRequest.md)
@@ -516,6 +552,13 @@ Class | Method | HTTP request | Description
 - [PromptUpdateRequest](docs/Model/PromptUpdateRequest.md)
 - [QuerySimilarityRequest](docs/Model/QuerySimilarityRequest.md)
 - [QuerySimilarityTaskRequest](docs/Model/QuerySimilarityTaskRequest.md)
+- [ReindexDataSource](docs/Model/ReindexDataSource.md)
+- [ReindexProgress](docs/Model/ReindexProgress.md)
+- [ReindexRequest](docs/Model/ReindexRequest.md)
+- [ReindexScope](docs/Model/ReindexScope.md)
+- [ReindexStartResponse](docs/Model/ReindexStartResponse.md)
+- [ReindexStatus](docs/Model/ReindexStatus.md)
+- [ReindexStatusResponse](docs/Model/ReindexStatusResponse.md)
 - [Role](docs/Model/Role.md)
 - [SamlLoginMethod](docs/Model/SamlLoginMethod.md)
 - [ScheduleCreateRequest](docs/Model/ScheduleCreateRequest.md)
@@ -552,10 +595,12 @@ Class | Method | HTTP request | Description
 - [SerpSubclusterKeywordsResponse](docs/Model/SerpSubclusterKeywordsResponse.md)
 - [SerpVolumeRequest](docs/Model/SerpVolumeRequest.md)
 - [ShopRedactPayload](docs/Model/ShopRedactPayload.md)
+- [ShopifySubscriptionConfirmResponse](docs/Model/ShopifySubscriptionConfirmResponse.md)
 - [SlackChannelResponse](docs/Model/SlackChannelResponse.md)
 - [SlackWorkspaceResponse](docs/Model/SlackWorkspaceResponse.md)
 - [SortDirection](docs/Model/SortDirection.md)
 - [SubscriptionPlan](docs/Model/SubscriptionPlan.md)
+- [SystemMessageMetadata](docs/Model/SystemMessageMetadata.md)
 - [TagCreateRequest](docs/Model/TagCreateRequest.md)
 - [TagResponse](docs/Model/TagResponse.md)
 - [TagSearchRequest](docs/Model/TagSearchRequest.md)
@@ -583,10 +628,12 @@ Class | Method | HTTP request | Description
 - [TranscriptTaskRequest](docs/Model/TranscriptTaskRequest.md)
 - [TriggerResponse](docs/Model/TriggerResponse.md)
 - [TriggerType](docs/Model/TriggerType.md)
+- [UpdateUserSettingsRequest](docs/Model/UpdateUserSettingsRequest.md)
 - [UrlScreenshotResponse](docs/Model/UrlScreenshotResponse.md)
 - [UserDocumentStatus](docs/Model/UserDocumentStatus.md)
 - [UserPlanResponse](docs/Model/UserPlanResponse.md)
 - [UserResponse](docs/Model/UserResponse.md)
+- [UserSettingsResponse](docs/Model/UserSettingsResponse.md)
 - [ValidationError](docs/Model/ValidationError.md)
 - [ValidationErrorLocInner](docs/Model/ValidationErrorLocInner.md)
 - [VectorDocumentResponse](docs/Model/VectorDocumentResponse.md)
@@ -628,6 +675,13 @@ Authentication schemes defined for the API:
 
 - **Type**: Bearer authentication
 
+### sudo_api_key_header
+
+- **Type**: API key
+- **API key parameter name**: Sudo-Api-Key
+- **Location**: HTTP header
+
+
 ## Tests
 
 To run the tests, use:
@@ -646,6 +700,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `3.14.10`
+    - Package version: `3.15.0`
     - Generator version: `7.14.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

@@ -63,7 +63,9 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
         'campaign_status' => '\FlowHunt\Model\GoogleAdsCampaignStatus',
         'language_code' => 'string',
         'country' => 'string',
-        'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
+        'action_type' => '\FlowHunt\Model\GoogleAdsActionType',
+        'limit' => 'int',
+        'pagination' => '\FlowHunt\Model\Pagination'
     ];
 
     /**
@@ -80,7 +82,9 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
         'campaign_status' => null,
         'language_code' => null,
         'country' => null,
-        'action_type' => null
+        'action_type' => null,
+        'limit' => null,
+        'pagination' => null
     ];
 
     /**
@@ -95,7 +99,9 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
         'campaign_status' => true,
         'language_code' => true,
         'country' => true,
-        'action_type' => true
+        'action_type' => true,
+        'limit' => false,
+        'pagination' => true
     ];
 
     /**
@@ -190,7 +196,9 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
         'campaign_status' => 'campaign_status',
         'language_code' => 'language_code',
         'country' => 'country',
-        'action_type' => 'action_type'
+        'action_type' => 'action_type',
+        'limit' => 'limit',
+        'pagination' => 'pagination'
     ];
 
     /**
@@ -205,7 +213,9 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
         'campaign_status' => 'setCampaignStatus',
         'language_code' => 'setLanguageCode',
         'country' => 'setCountry',
-        'action_type' => 'setActionType'
+        'action_type' => 'setActionType',
+        'limit' => 'setLimit',
+        'pagination' => 'setPagination'
     ];
 
     /**
@@ -220,7 +230,9 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
         'campaign_status' => 'getCampaignStatus',
         'language_code' => 'getLanguageCode',
         'country' => 'getCountry',
-        'action_type' => 'getActionType'
+        'action_type' => 'getActionType',
+        'limit' => 'getLimit',
+        'pagination' => 'getPagination'
     ];
 
     /**
@@ -287,6 +299,8 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('language_code', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], 50);
+        $this->setIfExists('pagination', $data ?? [], null);
     }
 
     /**
@@ -565,6 +579,67 @@ class GoogleAdsCampaignsSearchRequest implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['action_type'] = $action_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets limit
+     *
+     * @return int|null
+     */
+    public function getLimit()
+    {
+        return $this->container['limit'];
+    }
+
+    /**
+     * Sets limit
+     *
+     * @param int|null $limit Limit of the search
+     *
+     * @return self
+     */
+    public function setLimit($limit)
+    {
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
+        }
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets pagination
+     *
+     * @return \FlowHunt\Model\Pagination|null
+     */
+    public function getPagination()
+    {
+        return $this->container['pagination'];
+    }
+
+    /**
+     * Sets pagination
+     *
+     * @param \FlowHunt\Model\Pagination|null $pagination pagination
+     *
+     * @return self
+     */
+    public function setPagination($pagination)
+    {
+        if (is_null($pagination)) {
+            array_push($this->openAPINullablesSetToNull, 'pagination');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('pagination', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['pagination'] = $pagination;
 
         return $this;
     }

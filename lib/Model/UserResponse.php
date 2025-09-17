@@ -63,7 +63,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_active' => 'bool',
         'avatar_url' => 'string',
         'api_key_workspace_id' => 'string',
-        'product_plans' => 'array<string,\FlowHunt\Model\SubscriptionPlan>'
+        'product_plans' => 'array<string,\FlowHunt\Model\SubscriptionPlan>',
+        'billing_provider' => '\FlowHunt\Model\BillingProvider'
     ];
 
     /**
@@ -80,7 +81,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_active' => null,
         'avatar_url' => null,
         'api_key_workspace_id' => 'uuid',
-        'product_plans' => null
+        'product_plans' => null,
+        'billing_provider' => null
     ];
 
     /**
@@ -95,7 +97,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_active' => true,
         'avatar_url' => true,
         'api_key_workspace_id' => true,
-        'product_plans' => true
+        'product_plans' => true,
+        'billing_provider' => true
     ];
 
     /**
@@ -190,7 +193,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_active' => 'is_active',
         'avatar_url' => 'avatar_url',
         'api_key_workspace_id' => 'api_key_workspace_id',
-        'product_plans' => 'product_plans'
+        'product_plans' => 'product_plans',
+        'billing_provider' => 'billing_provider'
     ];
 
     /**
@@ -205,7 +209,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_active' => 'setIsActive',
         'avatar_url' => 'setAvatarUrl',
         'api_key_workspace_id' => 'setApiKeyWorkspaceId',
-        'product_plans' => 'setProductPlans'
+        'product_plans' => 'setProductPlans',
+        'billing_provider' => 'setBillingProvider'
     ];
 
     /**
@@ -220,7 +225,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_active' => 'getIsActive',
         'avatar_url' => 'getAvatarUrl',
         'api_key_workspace_id' => 'getApiKeyWorkspaceId',
-        'product_plans' => 'getProductPlans'
+        'product_plans' => 'getProductPlans',
+        'billing_provider' => 'getBillingProvider'
     ];
 
     /**
@@ -287,6 +293,7 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('avatar_url', $data ?? [], null);
         $this->setIfExists('api_key_workspace_id', $data ?? [], null);
         $this->setIfExists('product_plans', $data ?? [], null);
+        $this->setIfExists('billing_provider', $data ?? [], null);
     }
 
     /**
@@ -553,6 +560,40 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['product_plans'] = $product_plans;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_provider
+     *
+     * @return \FlowHunt\Model\BillingProvider|null
+     */
+    public function getBillingProvider()
+    {
+        return $this->container['billing_provider'];
+    }
+
+    /**
+     * Sets billing_provider
+     *
+     * @param \FlowHunt\Model\BillingProvider|null $billing_provider billing_provider
+     *
+     * @return self
+     */
+    public function setBillingProvider($billing_provider)
+    {
+        if (is_null($billing_provider)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_provider');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_provider', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_provider'] = $billing_provider;
 
         return $this;
     }

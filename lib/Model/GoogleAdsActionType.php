@@ -46,6 +46,8 @@ class GoogleAdsActionType
 
     public const N = 'N';
 
+    public const O = 'O';
+
     public const Z = 'Z';
 
     public const R = 'R';
@@ -65,6 +67,7 @@ class GoogleAdsActionType
         return [
             self::I,
             self::N,
+            self::O,
             self::Z,
             self::R,
             self::H,

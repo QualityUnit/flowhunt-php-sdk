@@ -59,7 +59,8 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'plan_id' => 'string',
         'interval' => 'string',
-        'recurring' => 'bool'
+        'recurring' => 'bool',
+        'workspace_id' => 'string'
     ];
 
     /**
@@ -72,7 +73,8 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPIFormats = [
         'plan_id' => null,
         'interval' => null,
-        'recurring' => null
+        'recurring' => null,
+        'workspace_id' => 'uuid'
     ];
 
     /**
@@ -83,7 +85,8 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static array $openAPINullables = [
         'plan_id' => false,
         'interval' => false,
-        'recurring' => false
+        'recurring' => false,
+        'workspace_id' => false
     ];
 
     /**
@@ -174,7 +177,8 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $attributeMap = [
         'plan_id' => 'plan_id',
         'interval' => 'interval',
-        'recurring' => 'recurring'
+        'recurring' => 'recurring',
+        'workspace_id' => 'workspace_id'
     ];
 
     /**
@@ -185,7 +189,8 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $setters = [
         'plan_id' => 'setPlanId',
         'interval' => 'setInterval',
-        'recurring' => 'setRecurring'
+        'recurring' => 'setRecurring',
+        'workspace_id' => 'setWorkspaceId'
     ];
 
     /**
@@ -196,7 +201,8 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $getters = [
         'plan_id' => 'getPlanId',
         'interval' => 'getInterval',
-        'recurring' => 'getRecurring'
+        'recurring' => 'getRecurring',
+        'workspace_id' => 'getWorkspaceId'
     ];
 
     /**
@@ -274,6 +280,7 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
         $this->setIfExists('recurring', $data ?? [], true);
+        $this->setIfExists('workspace_id', $data ?? [], null);
     }
 
     /**
@@ -318,6 +325,9 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             );
         }
 
+        if ($this->container['workspace_id'] === null) {
+            $invalidProperties[] = "'workspace_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -420,6 +430,33 @@ class CheckoutCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable recurring cannot be null');
         }
         $this->container['recurring'] = $recurring;
+
+        return $this;
+    }
+
+    /**
+     * Gets workspace_id
+     *
+     * @return string
+     */
+    public function getWorkspaceId()
+    {
+        return $this->container['workspace_id'];
+    }
+
+    /**
+     * Sets workspace_id
+     *
+     * @param string $workspace_id workspace_id
+     *
+     * @return self
+     */
+    public function setWorkspaceId($workspace_id)
+    {
+        if (is_null($workspace_id)) {
+            throw new \InvalidArgumentException('non-nullable workspace_id cannot be null');
+        }
+        $this->container['workspace_id'] = $workspace_id;
 
         return $this;
     }

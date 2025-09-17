@@ -105,4 +105,22 @@ class GoogleAdsRecommendationsRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "limit"
+     */
+    public function testPropertyLimit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "pagination"
+     */
+    public function testPropertyPagination()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

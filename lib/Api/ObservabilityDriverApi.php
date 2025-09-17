@@ -77,6 +77,12 @@ class ObservabilityDriverApi
         'activateLangfuseObservabilityDriver' => [
             'application/json',
         ],
+        'activatePowerBiObservabilityDriver' => [
+            'application/json',
+        ],
+        'createPowerBiPushDataset' => [
+            'application/json',
+        ],
         'deleteObservabilityDriver' => [
             'application/json',
         ],
@@ -86,7 +92,22 @@ class ObservabilityDriverApi
         'getObservabilityDriverWorkspace' => [
             'application/json',
         ],
+        'listPowerBiDatasets' => [
+            'application/json',
+        ],
+        'listPowerBiTables' => [
+            'application/json',
+        ],
+        'listPowerBiWorkspaces' => [
+            'application/json',
+        ],
         'updateLangfuseObservabilityDriver' => [
+            'application/json',
+        ],
+        'updatePowerBiObservabilityDriver' => [
+            'application/json',
+        ],
+        'validatePushDatasetTable' => [
             'application/json',
         ],
     ];
@@ -392,6 +413,618 @@ class ObservabilityDriverApi
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($langfuse_request));
             } else {
                 $httpBody = $langfuse_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation activatePowerBiObservabilityDriver
+     *
+     * Activate Power Bi Observability Driver
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ObservabilityDriverResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function activatePowerBiObservabilityDriver($workspace_id, $power_bi_request, string $contentType = self::contentTypes['activatePowerBiObservabilityDriver'][0])
+    {
+        list($response) = $this->activatePowerBiObservabilityDriverWithHttpInfo($workspace_id, $power_bi_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation activatePowerBiObservabilityDriverWithHttpInfo
+     *
+     * Activate Power Bi Observability Driver
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ObservabilityDriverResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function activatePowerBiObservabilityDriverWithHttpInfo($workspace_id, $power_bi_request, string $contentType = self::contentTypes['activatePowerBiObservabilityDriver'][0])
+    {
+        $request = $this->activatePowerBiObservabilityDriverRequest($workspace_id, $power_bi_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\ObservabilityDriverResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\ObservabilityDriverResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ObservabilityDriverResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation activatePowerBiObservabilityDriverAsync
+     *
+     * Activate Power Bi Observability Driver
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function activatePowerBiObservabilityDriverAsync($workspace_id, $power_bi_request, string $contentType = self::contentTypes['activatePowerBiObservabilityDriver'][0])
+    {
+        return $this->activatePowerBiObservabilityDriverAsyncWithHttpInfo($workspace_id, $power_bi_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation activatePowerBiObservabilityDriverAsyncWithHttpInfo
+     *
+     * Activate Power Bi Observability Driver
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function activatePowerBiObservabilityDriverAsyncWithHttpInfo($workspace_id, $power_bi_request, string $contentType = self::contentTypes['activatePowerBiObservabilityDriver'][0])
+    {
+        $returnType = '\FlowHunt\Model\ObservabilityDriverResponse';
+        $request = $this->activatePowerBiObservabilityDriverRequest($workspace_id, $power_bi_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'activatePowerBiObservabilityDriver'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function activatePowerBiObservabilityDriverRequest($workspace_id, $power_bi_request, string $contentType = self::contentTypes['activatePowerBiObservabilityDriver'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling activatePowerBiObservabilityDriver'
+            );
+        }
+
+        // verify the required parameter 'power_bi_request' is set
+        if ($power_bi_request === null || (is_array($power_bi_request) && count($power_bi_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $power_bi_request when calling activatePowerBiObservabilityDriver'
+            );
+        }
+
+
+        $resourcePath = '/v2/observability_driver/power_bi/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($power_bi_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($power_bi_request));
+            } else {
+                $httpBody = $power_bi_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createPowerBiPushDataset
+     *
+     * Create Power Bi Push Dataset
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiPushDatasetRequest $power_bi_push_dataset_request power_bi_push_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPowerBiPushDataset'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\MicrosoftPowerBiPushDatasetResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function createPowerBiPushDataset($workspace_id, $power_bi_push_dataset_request, string $contentType = self::contentTypes['createPowerBiPushDataset'][0])
+    {
+        list($response) = $this->createPowerBiPushDatasetWithHttpInfo($workspace_id, $power_bi_push_dataset_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createPowerBiPushDatasetWithHttpInfo
+     *
+     * Create Power Bi Push Dataset
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiPushDatasetRequest $power_bi_push_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPowerBiPushDataset'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\MicrosoftPowerBiPushDatasetResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createPowerBiPushDatasetWithHttpInfo($workspace_id, $power_bi_push_dataset_request, string $contentType = self::contentTypes['createPowerBiPushDataset'][0])
+    {
+        $request = $this->createPowerBiPushDatasetRequest($workspace_id, $power_bi_push_dataset_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\MicrosoftPowerBiPushDatasetResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\MicrosoftPowerBiPushDatasetResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\MicrosoftPowerBiPushDatasetResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createPowerBiPushDatasetAsync
+     *
+     * Create Power Bi Push Dataset
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiPushDatasetRequest $power_bi_push_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPowerBiPushDataset'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPowerBiPushDatasetAsync($workspace_id, $power_bi_push_dataset_request, string $contentType = self::contentTypes['createPowerBiPushDataset'][0])
+    {
+        return $this->createPowerBiPushDatasetAsyncWithHttpInfo($workspace_id, $power_bi_push_dataset_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPowerBiPushDatasetAsyncWithHttpInfo
+     *
+     * Create Power Bi Push Dataset
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiPushDatasetRequest $power_bi_push_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPowerBiPushDataset'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPowerBiPushDatasetAsyncWithHttpInfo($workspace_id, $power_bi_push_dataset_request, string $contentType = self::contentTypes['createPowerBiPushDataset'][0])
+    {
+        $returnType = '\FlowHunt\Model\MicrosoftPowerBiPushDatasetResponse';
+        $request = $this->createPowerBiPushDatasetRequest($workspace_id, $power_bi_push_dataset_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createPowerBiPushDataset'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiPushDatasetRequest $power_bi_push_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPowerBiPushDataset'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createPowerBiPushDatasetRequest($workspace_id, $power_bi_push_dataset_request, string $contentType = self::contentTypes['createPowerBiPushDataset'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling createPowerBiPushDataset'
+            );
+        }
+
+        // verify the required parameter 'power_bi_push_dataset_request' is set
+        if ($power_bi_push_dataset_request === null || (is_array($power_bi_push_dataset_request) && count($power_bi_push_dataset_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $power_bi_push_dataset_request when calling createPowerBiPushDataset'
+            );
+        }
+
+
+        $resourcePath = '/v2/observability_driver/power_bi/push_dataset';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($power_bi_push_dataset_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($power_bi_push_dataset_request));
+            } else {
+                $httpBody = $power_bi_push_dataset_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1345,6 +1978,905 @@ class ObservabilityDriverApi
     }
 
     /**
+     * Operation listPowerBiDatasets
+     *
+     * List Power Bi Datasets
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiDatasetRequest $power_bi_dataset_request power_bi_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiDatasets'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\MicrosoftPowerBiDatasetsResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function listPowerBiDatasets($workspace_id, $power_bi_dataset_request, string $contentType = self::contentTypes['listPowerBiDatasets'][0])
+    {
+        list($response) = $this->listPowerBiDatasetsWithHttpInfo($workspace_id, $power_bi_dataset_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listPowerBiDatasetsWithHttpInfo
+     *
+     * List Power Bi Datasets
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiDatasetRequest $power_bi_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiDatasets'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\MicrosoftPowerBiDatasetsResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listPowerBiDatasetsWithHttpInfo($workspace_id, $power_bi_dataset_request, string $contentType = self::contentTypes['listPowerBiDatasets'][0])
+    {
+        $request = $this->listPowerBiDatasetsRequest($workspace_id, $power_bi_dataset_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\MicrosoftPowerBiDatasetsResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\MicrosoftPowerBiDatasetsResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\MicrosoftPowerBiDatasetsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listPowerBiDatasetsAsync
+     *
+     * List Power Bi Datasets
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiDatasetRequest $power_bi_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiDatasets'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPowerBiDatasetsAsync($workspace_id, $power_bi_dataset_request, string $contentType = self::contentTypes['listPowerBiDatasets'][0])
+    {
+        return $this->listPowerBiDatasetsAsyncWithHttpInfo($workspace_id, $power_bi_dataset_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listPowerBiDatasetsAsyncWithHttpInfo
+     *
+     * List Power Bi Datasets
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiDatasetRequest $power_bi_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiDatasets'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPowerBiDatasetsAsyncWithHttpInfo($workspace_id, $power_bi_dataset_request, string $contentType = self::contentTypes['listPowerBiDatasets'][0])
+    {
+        $returnType = '\FlowHunt\Model\MicrosoftPowerBiDatasetsResponse';
+        $request = $this->listPowerBiDatasetsRequest($workspace_id, $power_bi_dataset_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listPowerBiDatasets'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiDatasetRequest $power_bi_dataset_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiDatasets'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listPowerBiDatasetsRequest($workspace_id, $power_bi_dataset_request, string $contentType = self::contentTypes['listPowerBiDatasets'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling listPowerBiDatasets'
+            );
+        }
+
+        // verify the required parameter 'power_bi_dataset_request' is set
+        if ($power_bi_dataset_request === null || (is_array($power_bi_dataset_request) && count($power_bi_dataset_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $power_bi_dataset_request when calling listPowerBiDatasets'
+            );
+        }
+
+
+        $resourcePath = '/v2/observability_driver/power_bi/datasets';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($power_bi_dataset_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($power_bi_dataset_request));
+            } else {
+                $httpBody = $power_bi_dataset_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listPowerBiTables
+     *
+     * List Power Bi Tables
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiTableRequest $power_bi_table_request power_bi_table_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiTables'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\MicrosoftPowerBiTablesResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function listPowerBiTables($workspace_id, $power_bi_table_request, string $contentType = self::contentTypes['listPowerBiTables'][0])
+    {
+        list($response) = $this->listPowerBiTablesWithHttpInfo($workspace_id, $power_bi_table_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listPowerBiTablesWithHttpInfo
+     *
+     * List Power Bi Tables
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiTableRequest $power_bi_table_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiTables'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\MicrosoftPowerBiTablesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listPowerBiTablesWithHttpInfo($workspace_id, $power_bi_table_request, string $contentType = self::contentTypes['listPowerBiTables'][0])
+    {
+        $request = $this->listPowerBiTablesRequest($workspace_id, $power_bi_table_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\MicrosoftPowerBiTablesResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\MicrosoftPowerBiTablesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\MicrosoftPowerBiTablesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listPowerBiTablesAsync
+     *
+     * List Power Bi Tables
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiTableRequest $power_bi_table_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiTables'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPowerBiTablesAsync($workspace_id, $power_bi_table_request, string $contentType = self::contentTypes['listPowerBiTables'][0])
+    {
+        return $this->listPowerBiTablesAsyncWithHttpInfo($workspace_id, $power_bi_table_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listPowerBiTablesAsyncWithHttpInfo
+     *
+     * List Power Bi Tables
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiTableRequest $power_bi_table_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiTables'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPowerBiTablesAsyncWithHttpInfo($workspace_id, $power_bi_table_request, string $contentType = self::contentTypes['listPowerBiTables'][0])
+    {
+        $returnType = '\FlowHunt\Model\MicrosoftPowerBiTablesResponse';
+        $request = $this->listPowerBiTablesRequest($workspace_id, $power_bi_table_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listPowerBiTables'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiTableRequest $power_bi_table_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiTables'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listPowerBiTablesRequest($workspace_id, $power_bi_table_request, string $contentType = self::contentTypes['listPowerBiTables'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling listPowerBiTables'
+            );
+        }
+
+        // verify the required parameter 'power_bi_table_request' is set
+        if ($power_bi_table_request === null || (is_array($power_bi_table_request) && count($power_bi_table_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $power_bi_table_request when calling listPowerBiTables'
+            );
+        }
+
+
+        $resourcePath = '/v2/observability_driver/power_bi/tables';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($power_bi_table_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($power_bi_table_request));
+            } else {
+                $httpBody = $power_bi_table_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listPowerBiWorkspaces
+     *
+     * List Power Bi Workspaces
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\MicrosoftPowerBiWorkspacesResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function listPowerBiWorkspaces($workspace_id, string $contentType = self::contentTypes['listPowerBiWorkspaces'][0])
+    {
+        list($response) = $this->listPowerBiWorkspacesWithHttpInfo($workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listPowerBiWorkspacesWithHttpInfo
+     *
+     * List Power Bi Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\MicrosoftPowerBiWorkspacesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listPowerBiWorkspacesWithHttpInfo($workspace_id, string $contentType = self::contentTypes['listPowerBiWorkspaces'][0])
+    {
+        $request = $this->listPowerBiWorkspacesRequest($workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\MicrosoftPowerBiWorkspacesResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\MicrosoftPowerBiWorkspacesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\MicrosoftPowerBiWorkspacesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listPowerBiWorkspacesAsync
+     *
+     * List Power Bi Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPowerBiWorkspacesAsync($workspace_id, string $contentType = self::contentTypes['listPowerBiWorkspaces'][0])
+    {
+        return $this->listPowerBiWorkspacesAsyncWithHttpInfo($workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listPowerBiWorkspacesAsyncWithHttpInfo
+     *
+     * List Power Bi Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPowerBiWorkspacesAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['listPowerBiWorkspaces'][0])
+    {
+        $returnType = '\FlowHunt\Model\MicrosoftPowerBiWorkspacesResponse';
+        $request = $this->listPowerBiWorkspacesRequest($workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listPowerBiWorkspaces'
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPowerBiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listPowerBiWorkspacesRequest($workspace_id, string $contentType = self::contentTypes['listPowerBiWorkspaces'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling listPowerBiWorkspaces'
+            );
+        }
+
+
+        $resourcePath = '/v2/observability_driver/power_bi/workspaces';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation updateLangfuseObservabilityDriver
      *
      * Update Langfuse Observability Driver
@@ -1644,6 +3176,618 @@ class ObservabilityDriverApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updatePowerBiObservabilityDriver
+     *
+     * Update Power Bi Observability Driver
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ObservabilityDriverResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function updatePowerBiObservabilityDriver($workspace_id, $power_bi_request, string $contentType = self::contentTypes['updatePowerBiObservabilityDriver'][0])
+    {
+        list($response) = $this->updatePowerBiObservabilityDriverWithHttpInfo($workspace_id, $power_bi_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updatePowerBiObservabilityDriverWithHttpInfo
+     *
+     * Update Power Bi Observability Driver
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ObservabilityDriverResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updatePowerBiObservabilityDriverWithHttpInfo($workspace_id, $power_bi_request, string $contentType = self::contentTypes['updatePowerBiObservabilityDriver'][0])
+    {
+        $request = $this->updatePowerBiObservabilityDriverRequest($workspace_id, $power_bi_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\ObservabilityDriverResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\ObservabilityDriverResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ObservabilityDriverResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updatePowerBiObservabilityDriverAsync
+     *
+     * Update Power Bi Observability Driver
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updatePowerBiObservabilityDriverAsync($workspace_id, $power_bi_request, string $contentType = self::contentTypes['updatePowerBiObservabilityDriver'][0])
+    {
+        return $this->updatePowerBiObservabilityDriverAsyncWithHttpInfo($workspace_id, $power_bi_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updatePowerBiObservabilityDriverAsyncWithHttpInfo
+     *
+     * Update Power Bi Observability Driver
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updatePowerBiObservabilityDriverAsyncWithHttpInfo($workspace_id, $power_bi_request, string $contentType = self::contentTypes['updatePowerBiObservabilityDriver'][0])
+    {
+        $returnType = '\FlowHunt\Model\ObservabilityDriverResponse';
+        $request = $this->updatePowerBiObservabilityDriverRequest($workspace_id, $power_bi_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updatePowerBiObservabilityDriver'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePowerBiObservabilityDriver'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updatePowerBiObservabilityDriverRequest($workspace_id, $power_bi_request, string $contentType = self::contentTypes['updatePowerBiObservabilityDriver'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updatePowerBiObservabilityDriver'
+            );
+        }
+
+        // verify the required parameter 'power_bi_request' is set
+        if ($power_bi_request === null || (is_array($power_bi_request) && count($power_bi_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $power_bi_request when calling updatePowerBiObservabilityDriver'
+            );
+        }
+
+
+        $resourcePath = '/v2/observability_driver/power_bi/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($power_bi_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($power_bi_request));
+            } else {
+                $httpBody = $power_bi_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation validatePushDatasetTable
+     *
+     * Validate Push Dataset Table
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePushDatasetTable'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\MicrosoftPowerBiTableValidateResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function validatePushDatasetTable($workspace_id, $power_bi_request, string $contentType = self::contentTypes['validatePushDatasetTable'][0])
+    {
+        list($response) = $this->validatePushDatasetTableWithHttpInfo($workspace_id, $power_bi_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation validatePushDatasetTableWithHttpInfo
+     *
+     * Validate Push Dataset Table
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePushDatasetTable'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\MicrosoftPowerBiTableValidateResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function validatePushDatasetTableWithHttpInfo($workspace_id, $power_bi_request, string $contentType = self::contentTypes['validatePushDatasetTable'][0])
+    {
+        $request = $this->validatePushDatasetTableRequest($workspace_id, $power_bi_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\MicrosoftPowerBiTableValidateResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\MicrosoftPowerBiTableValidateResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\MicrosoftPowerBiTableValidateResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation validatePushDatasetTableAsync
+     *
+     * Validate Push Dataset Table
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePushDatasetTable'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function validatePushDatasetTableAsync($workspace_id, $power_bi_request, string $contentType = self::contentTypes['validatePushDatasetTable'][0])
+    {
+        return $this->validatePushDatasetTableAsyncWithHttpInfo($workspace_id, $power_bi_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation validatePushDatasetTableAsyncWithHttpInfo
+     *
+     * Validate Push Dataset Table
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePushDatasetTable'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function validatePushDatasetTableAsyncWithHttpInfo($workspace_id, $power_bi_request, string $contentType = self::contentTypes['validatePushDatasetTable'][0])
+    {
+        $returnType = '\FlowHunt\Model\MicrosoftPowerBiTableValidateResponse';
+        $request = $this->validatePushDatasetTableRequest($workspace_id, $power_bi_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'validatePushDatasetTable'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\PowerBiRequest $power_bi_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePushDatasetTable'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function validatePushDatasetTableRequest($workspace_id, $power_bi_request, string $contentType = self::contentTypes['validatePushDatasetTable'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling validatePushDatasetTable'
+            );
+        }
+
+        // verify the required parameter 'power_bi_request' is set
+        if ($power_bi_request === null || (is_array($power_bi_request) && count($power_bi_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $power_bi_request when calling validatePushDatasetTable'
+            );
+        }
+
+
+        $resourcePath = '/v2/observability_driver/power_bi/validate_push_dataset';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($power_bi_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($power_bi_request));
+            } else {
+                $httpBody = $power_bi_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

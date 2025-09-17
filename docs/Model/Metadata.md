@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **icon** | **string** |  | [optional]
 **color** | **string** |  | [optional]
 **detailed_description** | **string** |  | [optional]
+**feedback_message_id** | **string** | Message ID |
+**feedback** | [**\FlowHunt\Model\MessageFeedback**](MessageFeedback.md) |  | [optional]
 **agent_query** | **string** | Search query |
 **tool_response** | **string** | Tool response |
 **task_name** | **string** |  |

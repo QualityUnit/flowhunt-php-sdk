@@ -84,6 +84,18 @@ class BillingApiTest extends TestCase
     }
 
     /**
+     * Test case for confirmShopifySubscription
+     *
+     * Confirm Shopify Subscription.
+     *
+     */
+    public function testConfirmShopifySubscription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createChangePlanPortal
      *
      * Create Change Plan Portal.

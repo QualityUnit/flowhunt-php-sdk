@@ -152,7 +152,7 @@ try {
 ## `getGoogleAdsCampaigns()`
 
 ```php
-getGoogleAdsCampaigns($workspace_id, $google_ads_campaigns_search_request): \FlowHunt\Model\GoogleAdsCampaignsResponse
+getGoogleAdsCampaigns($workspace_id, $google_ads_campaigns_search_request): \FlowHunt\Model\GoogleAdsCampaignResponse[]
 ```
 
 Get Google Ads Campaigns
@@ -199,7 +199,7 @@ try {
 
 ### Return type
 
-[**\FlowHunt\Model\GoogleAdsCampaignsResponse**](../Model/GoogleAdsCampaignsResponse.md)
+[**\FlowHunt\Model\GoogleAdsCampaignResponse[]**](../Model/GoogleAdsCampaignResponse.md)
 
 ### Authorization
 
@@ -282,7 +282,7 @@ try {
 ## `getGoogleAdsGroups()`
 
 ```php
-getGoogleAdsGroups($workspace_id, $google_ads_groups_search_request): \FlowHunt\Model\GoogleAdsGroupsResponse
+getGoogleAdsGroups($workspace_id, $google_ads_groups_search_request): \FlowHunt\Model\GoogleAdsGroupResponse[]
 ```
 
 Get Google Ads Groups
@@ -329,7 +329,7 @@ try {
 
 ### Return type
 
-[**\FlowHunt\Model\GoogleAdsGroupsResponse**](../Model/GoogleAdsGroupsResponse.md)
+[**\FlowHunt\Model\GoogleAdsGroupResponse[]**](../Model/GoogleAdsGroupResponse.md)
 
 ### Authorization
 

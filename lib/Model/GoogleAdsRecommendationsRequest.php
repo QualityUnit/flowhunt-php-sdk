@@ -59,7 +59,9 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
     protected static $openAPITypes = [
         'customer_id' => 'string',
         'campaign_id' => 'string',
-        'group_id' => 'string'
+        'group_id' => 'string',
+        'limit' => 'int',
+        'pagination' => '\FlowHunt\Model\Pagination'
     ];
 
     /**
@@ -72,7 +74,9 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
     protected static $openAPIFormats = [
         'customer_id' => null,
         'campaign_id' => null,
-        'group_id' => null
+        'group_id' => null,
+        'limit' => null,
+        'pagination' => null
     ];
 
     /**
@@ -83,7 +87,9 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
     protected static array $openAPINullables = [
         'customer_id' => false,
         'campaign_id' => true,
-        'group_id' => true
+        'group_id' => true,
+        'limit' => false,
+        'pagination' => true
     ];
 
     /**
@@ -174,7 +180,9 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
     protected static $attributeMap = [
         'customer_id' => 'customer_id',
         'campaign_id' => 'campaign_id',
-        'group_id' => 'group_id'
+        'group_id' => 'group_id',
+        'limit' => 'limit',
+        'pagination' => 'pagination'
     ];
 
     /**
@@ -185,7 +193,9 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
     protected static $setters = [
         'customer_id' => 'setCustomerId',
         'campaign_id' => 'setCampaignId',
-        'group_id' => 'setGroupId'
+        'group_id' => 'setGroupId',
+        'limit' => 'setLimit',
+        'pagination' => 'setPagination'
     ];
 
     /**
@@ -196,7 +206,9 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
     protected static $getters = [
         'customer_id' => 'getCustomerId',
         'campaign_id' => 'getCampaignId',
-        'group_id' => 'getGroupId'
+        'group_id' => 'getGroupId',
+        'limit' => 'getLimit',
+        'pagination' => 'getPagination'
     ];
 
     /**
@@ -259,6 +271,8 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('customer_id', $data ?? [], null);
         $this->setIfExists('campaign_id', $data ?? [], null);
         $this->setIfExists('group_id', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], 50);
+        $this->setIfExists('pagination', $data ?? [], null);
     }
 
     /**
@@ -397,6 +411,67 @@ class GoogleAdsRecommendationsRequest implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['group_id'] = $group_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets limit
+     *
+     * @return int|null
+     */
+    public function getLimit()
+    {
+        return $this->container['limit'];
+    }
+
+    /**
+     * Sets limit
+     *
+     * @param int|null $limit Limit of the search
+     *
+     * @return self
+     */
+    public function setLimit($limit)
+    {
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
+        }
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets pagination
+     *
+     * @return \FlowHunt\Model\Pagination|null
+     */
+    public function getPagination()
+    {
+        return $this->container['pagination'];
+    }
+
+    /**
+     * Sets pagination
+     *
+     * @param \FlowHunt\Model\Pagination|null $pagination pagination
+     *
+     * @return self
+     */
+    public function setPagination($pagination)
+    {
+        if (is_null($pagination)) {
+            array_push($this->openAPINullablesSetToNull, 'pagination');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('pagination', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['pagination'] = $pagination;
 
         return $this;
     }

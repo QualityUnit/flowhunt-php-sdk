@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **with_screenshot** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  |
 **with_browser** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  |
 **follow_links** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  |
-**with_proxy_rotation** | [**\FlowHunt\Model\BoolChar**](BoolChar.md) |  |
+**with_proxy_rotation** | **string** |  | [optional]
 **disallow_urls** | **string** |  | [optional]
 **filter_urls** | **string** |  | [optional]
 **custom_headers** | **string** |  | [optional]

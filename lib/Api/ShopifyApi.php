@@ -83,6 +83,12 @@ class ShopifyApi
         'shopRedact' => [
             'application/json',
         ],
+        'subscriptionCancel' => [
+            'application/json',
+        ],
+        'subscriptionUpdate' => [
+            'application/json',
+        ],
     ];
 
     /**
@@ -937,6 +943,578 @@ class ShopifyApi
                 $httpBody = $shop_redact_payload;
             }
         } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation subscriptionCancel
+     *
+     * Subscription Cancel
+     *
+     * @param  string|null $x_shopify_hmac_sha256 x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionCancel'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function subscriptionCancel($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionCancel'][0])
+    {
+        list($response) = $this->subscriptionCancelWithHttpInfo($x_shopify_hmac_sha256, $x_shopify_topic, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation subscriptionCancelWithHttpInfo
+     *
+     * Subscription Cancel
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionCancel'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function subscriptionCancelWithHttpInfo($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionCancel'][0])
+    {
+        $request = $this->subscriptionCancelRequest($x_shopify_hmac_sha256, $x_shopify_topic, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        'mixed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                'mixed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation subscriptionCancelAsync
+     *
+     * Subscription Cancel
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionCancel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function subscriptionCancelAsync($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionCancel'][0])
+    {
+        return $this->subscriptionCancelAsyncWithHttpInfo($x_shopify_hmac_sha256, $x_shopify_topic, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation subscriptionCancelAsyncWithHttpInfo
+     *
+     * Subscription Cancel
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionCancel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function subscriptionCancelAsyncWithHttpInfo($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionCancel'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->subscriptionCancelRequest($x_shopify_hmac_sha256, $x_shopify_topic, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'subscriptionCancel'
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionCancel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function subscriptionCancelRequest($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionCancel'][0])
+    {
+
+
+
+
+        $resourcePath = '/v2/integrations/shopify/webhooks/billing/subscription_cancel';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_shopify_hmac_sha256 !== null) {
+            $headerParams['x-shopify-hmac-sha256'] = ObjectSerializer::toHeaderValue($x_shopify_hmac_sha256);
+        }
+        // header params
+        if ($x_shopify_topic !== null) {
+            $headerParams['x-shopify-topic'] = ObjectSerializer::toHeaderValue($x_shopify_topic);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation subscriptionUpdate
+     *
+     * Subscription Update
+     *
+     * @param  string|null $x_shopify_hmac_sha256 x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionUpdate'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function subscriptionUpdate($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionUpdate'][0])
+    {
+        list($response) = $this->subscriptionUpdateWithHttpInfo($x_shopify_hmac_sha256, $x_shopify_topic, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation subscriptionUpdateWithHttpInfo
+     *
+     * Subscription Update
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionUpdate'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function subscriptionUpdateWithHttpInfo($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionUpdate'][0])
+    {
+        $request = $this->subscriptionUpdateRequest($x_shopify_hmac_sha256, $x_shopify_topic, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        'mixed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                'mixed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation subscriptionUpdateAsync
+     *
+     * Subscription Update
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionUpdate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function subscriptionUpdateAsync($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionUpdate'][0])
+    {
+        return $this->subscriptionUpdateAsyncWithHttpInfo($x_shopify_hmac_sha256, $x_shopify_topic, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation subscriptionUpdateAsyncWithHttpInfo
+     *
+     * Subscription Update
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionUpdate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function subscriptionUpdateAsyncWithHttpInfo($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionUpdate'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->subscriptionUpdateRequest($x_shopify_hmac_sha256, $x_shopify_topic, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'subscriptionUpdate'
+     *
+     * @param  string|null $x_shopify_hmac_sha256 (optional)
+     * @param  string|null $x_shopify_topic (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['subscriptionUpdate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function subscriptionUpdateRequest($x_shopify_hmac_sha256 = null, $x_shopify_topic = null, string $contentType = self::contentTypes['subscriptionUpdate'][0])
+    {
+
+
+
+
+        $resourcePath = '/v2/integrations/shopify/webhooks/billing/subscription_update';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_shopify_hmac_sha256 !== null) {
+            $headerParams['x-shopify-hmac-sha256'] = ObjectSerializer::toHeaderValue($x_shopify_hmac_sha256);
+        }
+        // header params
+        if ($x_shopify_topic !== null) {
+            $headerParams['x-shopify-topic'] = ObjectSerializer::toHeaderValue($x_shopify_topic);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

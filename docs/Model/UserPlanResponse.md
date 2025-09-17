@@ -10,5 +10,7 @@ Name | Type | Description | Notes
 **current_period_end** | **\DateTime** |  |
 **subscription_plans** | [**array<string,\FlowHunt\Model\SubscriptionPlan>**](SubscriptionPlan.md) |  |
 **can_remove_branding** | **bool** |  |
+**extra_workspaces_count** | **int** |  | [optional]
+**extra_credits_count** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

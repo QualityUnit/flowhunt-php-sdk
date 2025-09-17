@@ -66,7 +66,8 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'guidance_scale' => 'float',
         'styles' => 'string[]',
         'effects' => 'string[]',
-        'use_ai_agent' => 'bool'
+        'use_ai_agent' => 'bool',
+        'reference_images' => 'string[]'
     ];
 
     /**
@@ -86,7 +87,8 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'guidance_scale' => null,
         'styles' => null,
         'effects' => null,
-        'use_ai_agent' => null
+        'use_ai_agent' => null,
+        'reference_images' => null
     ];
 
     /**
@@ -104,7 +106,8 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'guidance_scale' => true,
         'styles' => true,
         'effects' => true,
-        'use_ai_agent' => true
+        'use_ai_agent' => true,
+        'reference_images' => true
     ];
 
     /**
@@ -202,7 +205,8 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'guidance_scale' => 'guidance_scale',
         'styles' => 'styles',
         'effects' => 'effects',
-        'use_ai_agent' => 'use_ai_agent'
+        'use_ai_agent' => 'use_ai_agent',
+        'reference_images' => 'reference_images'
     ];
 
     /**
@@ -220,7 +224,8 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'guidance_scale' => 'setGuidanceScale',
         'styles' => 'setStyles',
         'effects' => 'setEffects',
-        'use_ai_agent' => 'setUseAiAgent'
+        'use_ai_agent' => 'setUseAiAgent',
+        'reference_images' => 'setReferenceImages'
     ];
 
     /**
@@ -238,7 +243,8 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'guidance_scale' => 'getGuidanceScale',
         'styles' => 'getStyles',
         'effects' => 'getEffects',
-        'use_ai_agent' => 'getUseAiAgent'
+        'use_ai_agent' => 'getUseAiAgent',
+        'reference_images' => 'getReferenceImages'
     ];
 
     /**
@@ -308,6 +314,7 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('styles', $data ?? [], null);
         $this->setIfExists('effects', $data ?? [], null);
         $this->setIfExists('use_ai_agent', $data ?? [], null);
+        $this->setIfExists('reference_images', $data ?? [], null);
     }
 
     /**
@@ -678,6 +685,40 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['use_ai_agent'] = $use_ai_agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference_images
+     *
+     * @return string[]|null
+     */
+    public function getReferenceImages()
+    {
+        return $this->container['reference_images'];
+    }
+
+    /**
+     * Sets reference_images
+     *
+     * @param string[]|null $reference_images reference_images
+     *
+     * @return self
+     */
+    public function setReferenceImages($reference_images)
+    {
+        if (is_null($reference_images)) {
+            array_push($this->openAPINullablesSetToNull, 'reference_images');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reference_images', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['reference_images'] = $reference_images;
 
         return $this;
     }

@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **avatar_url** | **string** |  | [optional]
 **api_key_workspace_id** | **string** |  | [optional]
 **product_plans** | [**array<string,\FlowHunt\Model\SubscriptionPlan>**](SubscriptionPlan.md) |  | [optional]
+**billing_provider** | [**\FlowHunt\Model\BillingProvider**](BillingProvider.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

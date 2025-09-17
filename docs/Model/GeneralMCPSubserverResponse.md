@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **icon** | **string** |  | [optional]
 **version** | **string** | Version of the MCP subserver |
 **capabilities** | [**\FlowHunt\Model\GeneralMCPSubserverCapabilitiesResponse[]**](GeneralMCPSubserverCapabilitiesResponse.md) | List of capabilities for the MCP subserver | [optional]
-**integration_slug** | [**\FlowHunt\Model\IntegrationSlug**](IntegrationSlug.md) | Integration slug for the MCP subserver |
+**integration_slug** | [**\FlowHunt\Model\IntegrationSlug**](IntegrationSlug.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

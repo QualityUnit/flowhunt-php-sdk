@@ -63,7 +63,10 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
         'group_name' => 'string',
         'language_code' => 'string',
         'country' => 'string',
-        'action_type' => '\FlowHunt\Model\GoogleAdsActionType'
+        'action_type' => '\FlowHunt\Model\GoogleAdsActionType',
+        'group_status' => '\FlowHunt\Model\GoogleAdsGroupStatus',
+        'limit' => 'int',
+        'pagination' => '\FlowHunt\Model\Pagination'
     ];
 
     /**
@@ -80,7 +83,10 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
         'group_name' => null,
         'language_code' => null,
         'country' => null,
-        'action_type' => null
+        'action_type' => null,
+        'group_status' => null,
+        'limit' => null,
+        'pagination' => null
     ];
 
     /**
@@ -95,7 +101,10 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
         'group_name' => true,
         'language_code' => true,
         'country' => true,
-        'action_type' => true
+        'action_type' => true,
+        'group_status' => true,
+        'limit' => false,
+        'pagination' => true
     ];
 
     /**
@@ -190,7 +199,10 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
         'group_name' => 'group_name',
         'language_code' => 'language_code',
         'country' => 'country',
-        'action_type' => 'action_type'
+        'action_type' => 'action_type',
+        'group_status' => 'group_status',
+        'limit' => 'limit',
+        'pagination' => 'pagination'
     ];
 
     /**
@@ -205,7 +217,10 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
         'group_name' => 'setGroupName',
         'language_code' => 'setLanguageCode',
         'country' => 'setCountry',
-        'action_type' => 'setActionType'
+        'action_type' => 'setActionType',
+        'group_status' => 'setGroupStatus',
+        'limit' => 'setLimit',
+        'pagination' => 'setPagination'
     ];
 
     /**
@@ -220,7 +235,10 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
         'group_name' => 'getGroupName',
         'language_code' => 'getLanguageCode',
         'country' => 'getCountry',
-        'action_type' => 'getActionType'
+        'action_type' => 'getActionType',
+        'group_status' => 'getGroupStatus',
+        'limit' => 'getLimit',
+        'pagination' => 'getPagination'
     ];
 
     /**
@@ -287,6 +305,9 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('language_code', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('action_type', $data ?? [], null);
+        $this->setIfExists('group_status', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], 50);
+        $this->setIfExists('pagination', $data ?? [], null);
     }
 
     /**
@@ -565,6 +586,101 @@ class GoogleAdsGroupsSearchRequest implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['action_type'] = $action_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets group_status
+     *
+     * @return \FlowHunt\Model\GoogleAdsGroupStatus|null
+     */
+    public function getGroupStatus()
+    {
+        return $this->container['group_status'];
+    }
+
+    /**
+     * Sets group_status
+     *
+     * @param \FlowHunt\Model\GoogleAdsGroupStatus|null $group_status group_status
+     *
+     * @return self
+     */
+    public function setGroupStatus($group_status)
+    {
+        if (is_null($group_status)) {
+            array_push($this->openAPINullablesSetToNull, 'group_status');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('group_status', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['group_status'] = $group_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets limit
+     *
+     * @return int|null
+     */
+    public function getLimit()
+    {
+        return $this->container['limit'];
+    }
+
+    /**
+     * Sets limit
+     *
+     * @param int|null $limit Limit of the search
+     *
+     * @return self
+     */
+    public function setLimit($limit)
+    {
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
+        }
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets pagination
+     *
+     * @return \FlowHunt\Model\Pagination|null
+     */
+    public function getPagination()
+    {
+        return $this->container['pagination'];
+    }
+
+    /**
+     * Sets pagination
+     *
+     * @param \FlowHunt\Model\Pagination|null $pagination pagination
+     *
+     * @return self
+     */
+    public function setPagination($pagination)
+    {
+        if (is_null($pagination)) {
+            array_push($this->openAPINullablesSetToNull, 'pagination');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('pagination', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['pagination'] = $pagination;
 
         return $this;
     }

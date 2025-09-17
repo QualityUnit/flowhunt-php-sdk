@@ -14,5 +14,6 @@ Name | Type | Description | Notes
 **styles** | **string[]** |  | [optional]
 **effects** | **string[]** |  | [optional]
 **use_ai_agent** | **bool** |  | [optional]
+**reference_images** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -99,7 +99,7 @@ class GeneralMCPSubserverResponse implements ModelInterface, ArrayAccess, \JsonS
         'icon' => true,
         'version' => false,
         'capabilities' => false,
-        'integration_slug' => false
+        'integration_slug' => true
     ];
 
     /**
@@ -570,14 +570,21 @@ class GeneralMCPSubserverResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets integration_slug
      *
-     * @param \FlowHunt\Model\IntegrationSlug $integration_slug Integration slug for the MCP subserver
+     * @param \FlowHunt\Model\IntegrationSlug $integration_slug integration_slug
      *
      * @return self
      */
     public function setIntegrationSlug($integration_slug)
     {
         if (is_null($integration_slug)) {
-            throw new \InvalidArgumentException('non-nullable integration_slug cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'integration_slug');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('integration_slug', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['integration_slug'] = $integration_slug;
 

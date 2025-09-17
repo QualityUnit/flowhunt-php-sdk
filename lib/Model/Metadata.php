@@ -65,6 +65,8 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'string',
         'color' => 'string',
         'detailed_description' => 'string',
+        'feedback_message_id' => 'string',
+        'feedback' => '\FlowHunt\Model\MessageFeedback',
         'agent_query' => 'string',
         'tool_response' => 'string',
         'task_name' => 'string',
@@ -101,6 +103,8 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => null,
         'color' => null,
         'detailed_description' => null,
+        'feedback_message_id' => null,
+        'feedback' => null,
         'agent_query' => null,
         'tool_response' => null,
         'task_name' => null,
@@ -135,6 +139,8 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => false,
         'color' => false,
         'detailed_description' => false,
+        'feedback_message_id' => false,
+        'feedback' => false,
         'agent_query' => false,
         'tool_response' => false,
         'task_name' => false,
@@ -249,6 +255,8 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'icon',
         'color' => 'color',
         'detailed_description' => 'detailed_description',
+        'feedback_message_id' => 'feedback_message_id',
+        'feedback' => 'feedback',
         'agent_query' => 'agent_query',
         'tool_response' => 'tool_response',
         'task_name' => 'task_name',
@@ -283,6 +291,8 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'setIcon',
         'color' => 'setColor',
         'detailed_description' => 'setDetailedDescription',
+        'feedback_message_id' => 'setFeedbackMessageId',
+        'feedback' => 'setFeedback',
         'agent_query' => 'setAgentQuery',
         'tool_response' => 'setToolResponse',
         'task_name' => 'setTaskName',
@@ -317,6 +327,8 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'getIcon',
         'color' => 'getColor',
         'detailed_description' => 'getDetailedDescription',
+        'feedback_message_id' => 'getFeedbackMessageId',
+        'feedback' => 'getFeedback',
         'agent_query' => 'getAgentQuery',
         'tool_response' => 'getToolResponse',
         'task_name' => 'getTaskName',
@@ -402,6 +414,8 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('detailed_description', $data ?? [], null);
+        $this->setIfExists('feedback_message_id', $data ?? [], null);
+        $this->setIfExists('feedback', $data ?? [], null);
         $this->setIfExists('agent_query', $data ?? [], null);
         $this->setIfExists('tool_response', $data ?? [], null);
         $this->setIfExists('task_name', $data ?? [], null);
@@ -461,6 +475,9 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['loading_desc'] === null) {
             $invalidProperties[] = "'loading_desc' can't be null";
+        }
+        if ($this->container['feedback_message_id'] === null) {
+            $invalidProperties[] = "'feedback_message_id' can't be null";
         }
         if ($this->container['agent_query'] === null) {
             $invalidProperties[] = "'agent_query' can't be null";
@@ -701,6 +718,60 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable detailed_description cannot be null');
         }
         $this->container['detailed_description'] = $detailed_description;
+
+        return $this;
+    }
+
+    /**
+     * Gets feedback_message_id
+     *
+     * @return string
+     */
+    public function getFeedbackMessageId()
+    {
+        return $this->container['feedback_message_id'];
+    }
+
+    /**
+     * Sets feedback_message_id
+     *
+     * @param string $feedback_message_id Message ID
+     *
+     * @return self
+     */
+    public function setFeedbackMessageId($feedback_message_id)
+    {
+        if (is_null($feedback_message_id)) {
+            throw new \InvalidArgumentException('non-nullable feedback_message_id cannot be null');
+        }
+        $this->container['feedback_message_id'] = $feedback_message_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets feedback
+     *
+     * @return \FlowHunt\Model\MessageFeedback|null
+     */
+    public function getFeedback()
+    {
+        return $this->container['feedback'];
+    }
+
+    /**
+     * Sets feedback
+     *
+     * @param \FlowHunt\Model\MessageFeedback|null $feedback feedback
+     *
+     * @return self
+     */
+    public function setFeedback($feedback)
+    {
+        if (is_null($feedback)) {
+            throw new \InvalidArgumentException('non-nullable feedback cannot be null');
+        }
+        $this->container['feedback'] = $feedback;
 
         return $this;
     }

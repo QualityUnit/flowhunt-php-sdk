@@ -46,6 +46,10 @@ class DocumentType
 
     public const DOCX = 'DOCX';
 
+    public const XLSX = 'XLSX';
+
+    public const PPTX = 'PPTX';
+
     public const MD = 'MD';
 
     public const TXT = 'TXT';
@@ -94,6 +98,8 @@ class DocumentType
 
     public const GOOGLE_SHEETS = 'GOOGLE_SHEETS';
 
+    public const RSS_XML = 'RSS_XML';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -103,6 +109,8 @@ class DocumentType
         return [
             self::PDF,
             self::DOCX,
+            self::XLSX,
+            self::PPTX,
             self::MD,
             self::TXT,
             self::HTML,
@@ -126,7 +134,8 @@ class DocumentType
             self::XML,
             self::JSON,
             self::GOOGLE_DOCS,
-            self::GOOGLE_SHEETS
+            self::GOOGLE_SHEETS,
+            self::RSS_XML
         ];
     }
 }

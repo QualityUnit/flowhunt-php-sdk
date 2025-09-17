@@ -62,6 +62,8 @@ class IntegrationCategory
 
     public const COMMUNICATION = 'communication';
 
+    public const ANALYTICS = 'analytics';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -78,7 +80,8 @@ class IntegrationCategory
             self::MARKETING,
             self::CMS,
             self::GOOGLE,
-            self::COMMUNICATION
+            self::COMMUNICATION,
+            self::ANALYTICS
         ];
     }
 }

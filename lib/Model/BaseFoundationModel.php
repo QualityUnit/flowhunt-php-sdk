@@ -70,6 +70,12 @@ class BaseFoundationModel
 
     public const IDEOGRAM_V3_BALANCED = 'ideogram-v3-balanced';
 
+    public const GPT_IMAGE_1 = 'gpt-image-1';
+
+    public const NANO_BANANA = 'nano-banana';
+
+    public const GEMINI_2_5_FLASH = 'gemini-2.5-flash';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -90,7 +96,10 @@ class BaseFoundationModel
             self::IDEOGRAM_V2A_TURBO,
             self::IDEOGRAM_V3_QUALITY,
             self::IDEOGRAM_V3_TURBO,
-            self::IDEOGRAM_V3_BALANCED
+            self::IDEOGRAM_V3_BALANCED,
+            self::GPT_IMAGE_1,
+            self::NANO_BANANA,
+            self::GEMINI_2_5_FLASH
         ];
     }
 }

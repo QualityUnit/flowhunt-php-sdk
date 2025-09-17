@@ -132,4 +132,22 @@ class UserPlanResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "extra_workspaces_count"
+     */
+    public function testPropertyExtraWorkspacesCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "extra_credits_count"
+     */
+    public function testPropertyExtraCreditsCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

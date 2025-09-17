@@ -9,6 +9,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**createFlowCategory()**](FlowsApi.md#createFlowCategory) | **POST** /v2/flows/categories/create | Create Flow Category |
 | [**createFlowCron()**](FlowsApi.md#createFlowCron) | **POST** /v2/flows/crons/create | Create Flow Cron |
 | [**createFlowSession()**](FlowsApi.md#createFlowSession) | **POST** /v2/flows/sessions/from_flow/create | Create Flow Session |
+| [**createMessageFeedback()**](FlowsApi.md#createMessageFeedback) | **POST** /v2/flows/sessions/{session_id}/feedback | Create Message Feedback |
 | [**deleteAttachment()**](FlowsApi.md#deleteAttachment) | **DELETE** /v2/flows/sessions/{session_id}/attachments/{file_id} | Delete Attachment |
 | [**deleteFlow()**](FlowsApi.md#deleteFlow) | **DELETE** /v2/flows/{flow_id} | Delete Flow |
 | [**deleteFlowCategory()**](FlowsApi.md#deleteFlowCategory) | **DELETE** /v2/flows/categories/{cat_id} | Delete Flow Category |
@@ -344,6 +345,62 @@ try {
 ### Authorization
 
 [APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createMessageFeedback()`
+
+```php
+createMessageFeedback($session_id, $flow_message_feedback_request): \FlowHunt\Model\FlowMessageFeedbackResponse
+```
+
+Create Message Feedback
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+$flow_message_feedback_request = new \FlowHunt\Model\FlowMessageFeedbackRequest(); // \FlowHunt\Model\FlowMessageFeedbackRequest
+
+try {
+    $result = $apiInstance->createMessageFeedback($session_id, $flow_message_feedback_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->createMessageFeedback: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+| **flow_message_feedback_request** | [**\FlowHunt\Model\FlowMessageFeedbackRequest**](../Model/FlowMessageFeedbackRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowMessageFeedbackResponse**](../Model/FlowMessageFeedbackResponse.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

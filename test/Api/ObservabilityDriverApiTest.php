@@ -84,6 +84,30 @@ class ObservabilityDriverApiTest extends TestCase
     }
 
     /**
+     * Test case for activatePowerBiObservabilityDriver
+     *
+     * Activate Power Bi Observability Driver.
+     *
+     */
+    public function testActivatePowerBiObservabilityDriver()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createPowerBiPushDataset
+     *
+     * Create Power Bi Push Dataset.
+     *
+     */
+    public function testCreatePowerBiPushDataset()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteObservabilityDriver
      *
      * Delete Observability Driver.
@@ -120,12 +144,72 @@ class ObservabilityDriverApiTest extends TestCase
     }
 
     /**
+     * Test case for listPowerBiDatasets
+     *
+     * List Power Bi Datasets.
+     *
+     */
+    public function testListPowerBiDatasets()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listPowerBiTables
+     *
+     * List Power Bi Tables.
+     *
+     */
+    public function testListPowerBiTables()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listPowerBiWorkspaces
+     *
+     * List Power Bi Workspaces.
+     *
+     */
+    public function testListPowerBiWorkspaces()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateLangfuseObservabilityDriver
      *
      * Update Langfuse Observability Driver.
      *
      */
     public function testUpdateLangfuseObservabilityDriver()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updatePowerBiObservabilityDriver
+     *
+     * Update Power Bi Observability Driver.
+     *
+     */
+    public function testUpdatePowerBiObservabilityDriver()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for validatePushDatasetTable
+     *
+     * Validate Push Dataset Table.
+     *
+     */
+    public function testValidatePushDatasetTable()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

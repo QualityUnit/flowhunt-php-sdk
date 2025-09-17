@@ -794,7 +794,7 @@ class GoogleAdsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleAdsCampaignsResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GoogleAdsCampaignResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getGoogleAdsCampaigns($workspace_id, $google_ads_campaigns_search_request, string $contentType = self::contentTypes['getGoogleAdsCampaigns'][0])
     {
@@ -813,7 +813,7 @@ class GoogleAdsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleAdsCampaignsResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GoogleAdsCampaignResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getGoogleAdsCampaignsWithHttpInfo($workspace_id, $google_ads_campaigns_search_request, string $contentType = self::contentTypes['getGoogleAdsCampaigns'][0])
     {
@@ -845,7 +845,7 @@ class GoogleAdsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FlowHunt\Model\GoogleAdsCampaignsResponse',
+                        '\FlowHunt\Model\GoogleAdsCampaignResponse[]',
                         $request,
                         $response,
                     );
@@ -873,7 +873,7 @@ class GoogleAdsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FlowHunt\Model\GoogleAdsCampaignsResponse',
+                '\FlowHunt\Model\GoogleAdsCampaignResponse[]',
                 $request,
                 $response,
             );
@@ -882,7 +882,7 @@ class GoogleAdsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleAdsCampaignsResponse',
+                        '\FlowHunt\Model\GoogleAdsCampaignResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -938,7 +938,7 @@ class GoogleAdsApi
      */
     public function getGoogleAdsCampaignsAsyncWithHttpInfo($workspace_id, $google_ads_campaigns_search_request, string $contentType = self::contentTypes['getGoogleAdsCampaigns'][0])
     {
-        $returnType = '\FlowHunt\Model\GoogleAdsCampaignsResponse';
+        $returnType = '\FlowHunt\Model\GoogleAdsCampaignResponse[]';
         $request = $this->getGoogleAdsCampaignsRequest($workspace_id, $google_ads_campaigns_search_request, $contentType);
 
         return $this->client
@@ -1416,7 +1416,7 @@ class GoogleAdsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\GoogleAdsGroupsResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\GoogleAdsGroupResponse[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getGoogleAdsGroups($workspace_id, $google_ads_groups_search_request, string $contentType = self::contentTypes['getGoogleAdsGroups'][0])
     {
@@ -1435,7 +1435,7 @@ class GoogleAdsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\GoogleAdsGroupsResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\GoogleAdsGroupResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getGoogleAdsGroupsWithHttpInfo($workspace_id, $google_ads_groups_search_request, string $contentType = self::contentTypes['getGoogleAdsGroups'][0])
     {
@@ -1467,7 +1467,7 @@ class GoogleAdsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FlowHunt\Model\GoogleAdsGroupsResponse',
+                        '\FlowHunt\Model\GoogleAdsGroupResponse[]',
                         $request,
                         $response,
                     );
@@ -1495,7 +1495,7 @@ class GoogleAdsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FlowHunt\Model\GoogleAdsGroupsResponse',
+                '\FlowHunt\Model\GoogleAdsGroupResponse[]',
                 $request,
                 $response,
             );
@@ -1504,7 +1504,7 @@ class GoogleAdsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\GoogleAdsGroupsResponse',
+                        '\FlowHunt\Model\GoogleAdsGroupResponse[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1560,7 +1560,7 @@ class GoogleAdsApi
      */
     public function getGoogleAdsGroupsAsyncWithHttpInfo($workspace_id, $google_ads_groups_search_request, string $contentType = self::contentTypes['getGoogleAdsGroups'][0])
     {
-        $returnType = '\FlowHunt\Model\GoogleAdsGroupsResponse';
+        $returnType = '\FlowHunt\Model\GoogleAdsGroupResponse[]';
         $request = $this->getGoogleAdsGroupsRequest($workspace_id, $google_ads_groups_search_request, $contentType);
 
         return $this->client

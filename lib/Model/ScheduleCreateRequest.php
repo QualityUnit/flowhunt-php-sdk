@@ -63,7 +63,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_screenshot' => '\FlowHunt\Model\BoolChar',
         'with_browser' => '\FlowHunt\Model\BoolChar',
         'follow_links' => '\FlowHunt\Model\BoolChar',
-        'with_proxy_rotation' => '\FlowHunt\Model\BoolChar',
+        'with_proxy_rotation' => 'string',
         'disallow_urls' => 'string',
         'filter_urls' => 'string',
         'custom_headers' => 'string'
@@ -547,7 +547,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets with_proxy_rotation
      *
-     * @return \FlowHunt\Model\BoolChar|null
+     * @return string|null
      */
     public function getWithProxyRotation()
     {
@@ -557,7 +557,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets with_proxy_rotation
      *
-     * @param \FlowHunt\Model\BoolChar|null $with_proxy_rotation with_proxy_rotation
+     * @param string|null $with_proxy_rotation with_proxy_rotation
      *
      * @return self
      */

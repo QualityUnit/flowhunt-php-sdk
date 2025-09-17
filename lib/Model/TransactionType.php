@@ -98,6 +98,8 @@ class TransactionType
 
     public const CE_GC = 'CE_GC';
 
+    public const UE_GC = 'UE_GC';
+
     public const VE_GC = 'VE_GC';
 
     public const CWP = 'CWP';
@@ -111,6 +113,8 @@ class TransactionType
     public const UC_HS = 'UC_HS';
 
     public const SC_HS = 'SC_HS';
+
+    public const ETA_HS = 'ETA_HS';
 
     public const CNM_HS = 'CNM_HS';
 
@@ -138,6 +142,38 @@ class TransactionType
 
     public const MCP = 'MCP';
 
+    public const S_O = 'S_O';
+
+    public const S_P = 'S_P';
+
+    public const Y_F = 'Y_F';
+
+    public const X_S = 'X_S';
+
+    public const V_T = 'V_T';
+
+    public const S_SM = 'S_SM';
+
+    public const F_VT = 'F_VT';
+
+    public const R_FT = 'R_FT';
+
+    public const N_ET = 'N_ET';
+
+    public const L_TM = 'L_TM';
+
+    public const J_ST = 'J_ST';
+
+    public const D_RT = 'D_RT';
+
+    public const CDT_T = 'CDT_T';
+
+    public const CSV_ST = 'CSV_ST';
+
+    public const CL_T = 'CL_T';
+
+    public const API_T = 'API_T';
+
     public const SEQUENTIAL_AGENT = 'SEQUENTIAL_AGENT';
 
     public const SELF_MANAGED_AGENT = 'SELF_MANAGED_AGENT';
@@ -157,6 +193,8 @@ class TransactionType
     public const TOOL_PUBMED = 'TOOL_PUBMED';
 
     public const TOOL_STACK_EXCHANGE = 'TOOL_STACK_EXCHANGE';
+
+    public const M_T = 'M_T';
 
     /**
      * Gets allowable values of the enum
@@ -193,6 +231,7 @@ class TransactionType
             self::TR,
             self::FAT_GC,
             self::CE_GC,
+            self::UE_GC,
             self::VE_GC,
             self::CWP,
             self::DE_GC,
@@ -200,6 +239,7 @@ class TransactionType
             self::GC_HS,
             self::UC_HS,
             self::SC_HS,
+            self::ETA_HS,
             self::CNM_HS,
             self::CNE,
             self::SE,
@@ -213,6 +253,22 @@ class TransactionType
             self::HC,
             self::COE,
             self::MCP,
+            self::S_O,
+            self::S_P,
+            self::Y_F,
+            self::X_S,
+            self::V_T,
+            self::S_SM,
+            self::F_VT,
+            self::R_FT,
+            self::N_ET,
+            self::L_TM,
+            self::J_ST,
+            self::D_RT,
+            self::CDT_T,
+            self::CSV_ST,
+            self::CL_T,
+            self::API_T,
             self::SEQUENTIAL_AGENT,
             self::SELF_MANAGED_AGENT,
             self::TOOL_ARXIV,
@@ -222,7 +278,8 @@ class TransactionType
             self::TOOL_YOUTUBE_SEARCH,
             self::TOOL_IFTTT_WEBHOOK,
             self::TOOL_PUBMED,
-            self::TOOL_STACK_EXCHANGE
+            self::TOOL_STACK_EXCHANGE,
+            self::M_T
         ];
     }
 }

@@ -156,6 +156,18 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for getHubspotCustomChannelConnect
+     *
+     * Get Hubspot Custom Channel Connect.
+     *
+     */
+    public function testGetHubspotCustomChannelConnect()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getIntegration
      *
      * Get Integration.
@@ -294,6 +306,30 @@ class IntegrationsApiTest extends TestCase
      *
      */
     public function testShopRedact()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for subscriptionCancel
+     *
+     * Subscription Cancel.
+     *
+     */
+    public function testSubscriptionCancel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for subscriptionUpdate
+     *
+     * Subscription Update.
+     *
+     */
+    public function testSubscriptionUpdate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

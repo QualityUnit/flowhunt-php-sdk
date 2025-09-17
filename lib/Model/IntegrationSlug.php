@@ -70,7 +70,27 @@ class IntegrationSlug
 
     public const MICROSOFT_OUTLOOK_INTEGRATION = 'microsoft_outlook_integration';
 
+    public const MICROSOFT_INTEGRATION = 'microsoft_integration';
+
     public const ODOO_INTEGRATION = 'odoo_integration';
+
+    public const ATLASSIAN_TOKEN_INTEGRATION = 'atlassian_token_integration';
+
+    public const BIZNISWEB_INTEGRATION = 'biznisweb_integration';
+
+    public const BITRIX24_INTEGRATION = 'bitrix24_integration';
+
+    public const API_SPORTS_INTEGRATION = 'api_sports_integration';
+
+    public const GITHUB_INTEGRATION = 'github_integration';
+
+    public const POWERBI_INTEGRATION = 'powerbi_integration';
+
+    public const BEXIO_INTEGRATION = 'bexio_integration';
+
+    public const MAILCHIMP_INTEGRATION = 'mailchimp_integration';
+
+    public const LINKEDIN_INTEGRATION = 'linkedin_integration';
 
     public const GOOGLE_CALENDAR_INTEGRATION = 'google_calendar_integration';
 
@@ -87,6 +107,26 @@ class IntegrationSlug
     public const GOOGLE_MEET_INTEGRATION = 'google_meet_integration';
 
     public const GOOGLE_SLIDES_INTEGRATION = 'google_slides_integration';
+
+    public const GOOGLE_SEARCH_CONSOLE_INTEGRATION = 'google_search_console_integration';
+
+    public const MICROSOFT_CALENDAR_INTEGRATION = 'microsoft_calendar_integration';
+
+    public const MICROSOFT_EXCEL_INTEGRATION = 'microsoft_excel_integration';
+
+    public const MICROSOFT_ONEDRIVE_INTEGRATION = 'microsoft_onedrive_integration';
+
+    public const MICROSOFT_SHAREPOINT_INTEGRATION = 'microsoft_sharepoint_integration';
+
+    public const MICROSOFT_ONENOTE_INTEGRATION = 'microsoft_onenote_integration';
+
+    public const MICROSOFT_TODO_INTEGRATION = 'microsoft_todo_integration';
+
+    public const MICROSOFT_PLANNER_INTEGRATION = 'microsoft_planner_integration';
+
+    public const MICROSOFT_OUTLOOK_CONTACTS_INTEGRATION = 'microsoft_outlook_contacts_integration';
+
+    public const MICROSOFT_TEAMS_INTEGRATION = 'microsoft_teams_integration';
 
     /**
      * Gets allowable values of the enum
@@ -109,7 +149,17 @@ class IntegrationSlug
             self::GMAIL_INTEGRATION,
             self::INSTAGRAM_INTEGRATION,
             self::MICROSOFT_OUTLOOK_INTEGRATION,
+            self::MICROSOFT_INTEGRATION,
             self::ODOO_INTEGRATION,
+            self::ATLASSIAN_TOKEN_INTEGRATION,
+            self::BIZNISWEB_INTEGRATION,
+            self::BITRIX24_INTEGRATION,
+            self::API_SPORTS_INTEGRATION,
+            self::GITHUB_INTEGRATION,
+            self::POWERBI_INTEGRATION,
+            self::BEXIO_INTEGRATION,
+            self::MAILCHIMP_INTEGRATION,
+            self::LINKEDIN_INTEGRATION,
             self::GOOGLE_CALENDAR_INTEGRATION,
             self::GOOGLE_ADS_INTEGRATION,
             self::GOOGLE_DOCS_INTEGRATION,
@@ -117,7 +167,17 @@ class IntegrationSlug
             self::GOOGLE_SHEETS_INTEGRATION,
             self::GOOGLE_TASKS_INTEGRATION,
             self::GOOGLE_MEET_INTEGRATION,
-            self::GOOGLE_SLIDES_INTEGRATION
+            self::GOOGLE_SLIDES_INTEGRATION,
+            self::GOOGLE_SEARCH_CONSOLE_INTEGRATION,
+            self::MICROSOFT_CALENDAR_INTEGRATION,
+            self::MICROSOFT_EXCEL_INTEGRATION,
+            self::MICROSOFT_ONEDRIVE_INTEGRATION,
+            self::MICROSOFT_SHAREPOINT_INTEGRATION,
+            self::MICROSOFT_ONENOTE_INTEGRATION,
+            self::MICROSOFT_TODO_INTEGRATION,
+            self::MICROSOFT_PLANNER_INTEGRATION,
+            self::MICROSOFT_OUTLOOK_CONTACTS_INTEGRATION,
+            self::MICROSOFT_TEAMS_INTEGRATION
         ];
     }
 }

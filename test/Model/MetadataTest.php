@@ -143,6 +143,24 @@ class MetadataTest extends TestCase
     }
 
     /**
+     * Test attribute "feedback_message_id"
+     */
+    public function testPropertyFeedbackMessageId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "feedback"
+     */
+    public function testPropertyFeedback()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "agent_query"
      */
     public function testPropertyAgentQuery()
