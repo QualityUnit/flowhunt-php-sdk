@@ -96,6 +96,18 @@ class ShopifyApiTest extends TestCase
     }
 
     /**
+     * Test case for getShopify
+     *
+     * Get Shopify.
+     *
+     */
+    public function testGetShopify()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for shopRedact
      *
      * Shop Redact.

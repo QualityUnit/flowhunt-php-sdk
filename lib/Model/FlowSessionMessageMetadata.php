@@ -58,7 +58,8 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPITypes = [
         'message_id' => 'string',
-        'message' => 'string'
+        'message' => 'string',
+        'sender' => '\FlowHunt\Model\HumanAgentSender'
     ];
 
     /**
@@ -70,7 +71,8 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPIFormats = [
         'message_id' => null,
-        'message' => null
+        'message' => null,
+        'sender' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static array $openAPINullables = [
         'message_id' => false,
-        'message' => false
+        'message' => false,
+        'sender' => true
     ];
 
     /**
@@ -170,7 +173,8 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $attributeMap = [
         'message_id' => 'message_id',
-        'message' => 'message'
+        'message' => 'message',
+        'sender' => 'sender'
     ];
 
     /**
@@ -180,7 +184,8 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $setters = [
         'message_id' => 'setMessageId',
-        'message' => 'setMessage'
+        'message' => 'setMessage',
+        'sender' => 'setSender'
     ];
 
     /**
@@ -190,7 +195,8 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $getters = [
         'message_id' => 'getMessageId',
-        'message' => 'getMessage'
+        'message' => 'getMessage',
+        'sender' => 'getSender'
     ];
 
     /**
@@ -252,6 +258,7 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
     {
         $this->setIfExists('message_id', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('sender', $data ?? [], null);
     }
 
     /**
@@ -352,6 +359,40 @@ class FlowSessionMessageMetadata implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
         $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets sender
+     *
+     * @return \FlowHunt\Model\HumanAgentSender|null
+     */
+    public function getSender()
+    {
+        return $this->container['sender'];
+    }
+
+    /**
+     * Sets sender
+     *
+     * @param \FlowHunt\Model\HumanAgentSender|null $sender sender
+     *
+     * @return self
+     */
+    public function setSender($sender)
+    {
+        if (is_null($sender)) {
+            array_push($this->openAPINullablesSetToNull, 'sender');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sender', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['sender'] = $sender;
 
         return $this;
     }

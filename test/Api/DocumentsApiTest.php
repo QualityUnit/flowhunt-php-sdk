@@ -240,24 +240,24 @@ class DocumentsApiTest extends TestCase
     }
 
     /**
-     * Test case for uploadDocument
-     *
-     * Upload Document.
-     *
-     */
-    public function testUploadDocument()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for uploadFromUrlDocument
      *
      * Upload From Url Document.
      *
      */
     public function testUploadFromUrlDocument()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for uploadMemoryDocument
+     *
+     * Upload Memory Document.
+     *
+     */
+    public function testUploadMemoryDocument()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

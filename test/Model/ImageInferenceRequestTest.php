@@ -177,4 +177,31 @@ class ImageInferenceRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "reference_videos"
+     */
+    public function testPropertyReferenceVideos()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "duration"
+     */
+    public function testPropertyDuration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "resolution"
+     */
+    public function testPropertyResolution()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

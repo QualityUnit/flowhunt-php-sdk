@@ -67,7 +67,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'styles' => 'string[]',
         'effects' => 'string[]',
         'use_ai_agent' => 'bool',
-        'reference_images' => 'string[]'
+        'reference_images' => 'string[]',
+        'reference_videos' => 'string[]',
+        'duration' => 'int',
+        'resolution' => 'string'
     ];
 
     /**
@@ -88,7 +91,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'styles' => null,
         'effects' => null,
         'use_ai_agent' => null,
-        'reference_images' => null
+        'reference_images' => null,
+        'reference_videos' => null,
+        'duration' => null,
+        'resolution' => null
     ];
 
     /**
@@ -107,7 +113,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'styles' => true,
         'effects' => true,
         'use_ai_agent' => true,
-        'reference_images' => true
+        'reference_images' => true,
+        'reference_videos' => true,
+        'duration' => true,
+        'resolution' => true
     ];
 
     /**
@@ -206,7 +215,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'styles' => 'styles',
         'effects' => 'effects',
         'use_ai_agent' => 'use_ai_agent',
-        'reference_images' => 'reference_images'
+        'reference_images' => 'reference_images',
+        'reference_videos' => 'reference_videos',
+        'duration' => 'duration',
+        'resolution' => 'resolution'
     ];
 
     /**
@@ -225,7 +237,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'styles' => 'setStyles',
         'effects' => 'setEffects',
         'use_ai_agent' => 'setUseAiAgent',
-        'reference_images' => 'setReferenceImages'
+        'reference_images' => 'setReferenceImages',
+        'reference_videos' => 'setReferenceVideos',
+        'duration' => 'setDuration',
+        'resolution' => 'setResolution'
     ];
 
     /**
@@ -244,7 +259,10 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'styles' => 'getStyles',
         'effects' => 'getEffects',
         'use_ai_agent' => 'getUseAiAgent',
-        'reference_images' => 'getReferenceImages'
+        'reference_images' => 'getReferenceImages',
+        'reference_videos' => 'getReferenceVideos',
+        'duration' => 'getDuration',
+        'resolution' => 'getResolution'
     ];
 
     /**
@@ -315,6 +333,9 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('effects', $data ?? [], null);
         $this->setIfExists('use_ai_agent', $data ?? [], null);
         $this->setIfExists('reference_images', $data ?? [], null);
+        $this->setIfExists('reference_videos', $data ?? [], null);
+        $this->setIfExists('duration', $data ?? [], null);
+        $this->setIfExists('resolution', $data ?? [], null);
     }
 
     /**
@@ -719,6 +740,108 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['reference_images'] = $reference_images;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference_videos
+     *
+     * @return string[]|null
+     */
+    public function getReferenceVideos()
+    {
+        return $this->container['reference_videos'];
+    }
+
+    /**
+     * Sets reference_videos
+     *
+     * @param string[]|null $reference_videos reference_videos
+     *
+     * @return self
+     */
+    public function setReferenceVideos($reference_videos)
+    {
+        if (is_null($reference_videos)) {
+            array_push($this->openAPINullablesSetToNull, 'reference_videos');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reference_videos', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['reference_videos'] = $reference_videos;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration
+     *
+     * @return int|null
+     */
+    public function getDuration()
+    {
+        return $this->container['duration'];
+    }
+
+    /**
+     * Sets duration
+     *
+     * @param int|null $duration duration
+     *
+     * @return self
+     */
+    public function setDuration($duration)
+    {
+        if (is_null($duration)) {
+            array_push($this->openAPINullablesSetToNull, 'duration');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('duration', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['duration'] = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolution
+     *
+     * @return string|null
+     */
+    public function getResolution()
+    {
+        return $this->container['resolution'];
+    }
+
+    /**
+     * Sets resolution
+     *
+     * @param string|null $resolution resolution
+     *
+     * @return self
+     */
+    public function setResolution($resolution)
+    {
+        if (is_null($resolution)) {
+            array_push($this->openAPINullablesSetToNull, 'resolution');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resolution', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resolution'] = $resolution;
 
         return $this;
     }

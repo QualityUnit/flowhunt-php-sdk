@@ -204,4 +204,22 @@ class FlowSessionViewResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "positive_feedback_count"
+     */
+    public function testPropertyPositiveFeedbackCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "negative_feedback_count"
+     */
+    public function testPropertyNegativeFeedbackCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

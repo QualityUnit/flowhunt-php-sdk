@@ -50,6 +50,8 @@ class ScheduleType
 
     public const Y = 'Y';
 
+    public const L = 'L';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -60,7 +62,8 @@ class ScheduleType
             self::U,
             self::D,
             self::S,
-            self::Y
+            self::Y,
+            self::L
         ];
     }
 }

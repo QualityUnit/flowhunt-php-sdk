@@ -59,7 +59,8 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPITypes = [
         'cat_id' => 'string',
         'cat_name' => 'string',
-        'limit' => 'int'
+        'limit' => 'int',
+        'cat_type' => '\FlowHunt\Model\CategoryType'
     ];
 
     /**
@@ -72,7 +73,8 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPIFormats = [
         'cat_id' => 'uuid',
         'cat_name' => null,
-        'limit' => null
+        'limit' => null,
+        'cat_type' => null
     ];
 
     /**
@@ -83,7 +85,8 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     protected static array $openAPINullables = [
         'cat_id' => true,
         'cat_name' => true,
-        'limit' => true
+        'limit' => true,
+        'cat_type' => true
     ];
 
     /**
@@ -174,7 +177,8 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     protected static $attributeMap = [
         'cat_id' => 'cat_id',
         'cat_name' => 'cat_name',
-        'limit' => 'limit'
+        'limit' => 'limit',
+        'cat_type' => 'cat_type'
     ];
 
     /**
@@ -185,7 +189,8 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     protected static $setters = [
         'cat_id' => 'setCatId',
         'cat_name' => 'setCatName',
-        'limit' => 'setLimit'
+        'limit' => 'setLimit',
+        'cat_type' => 'setCatType'
     ];
 
     /**
@@ -196,7 +201,8 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     protected static $getters = [
         'cat_id' => 'getCatId',
         'cat_name' => 'getCatName',
-        'limit' => 'getLimit'
+        'limit' => 'getLimit',
+        'cat_type' => 'getCatType'
     ];
 
     /**
@@ -259,6 +265,7 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('cat_id', $data ?? [], null);
         $this->setIfExists('cat_name', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('cat_type', $data ?? [], null);
     }
 
     /**
@@ -401,6 +408,40 @@ class DocumentCategorySearchRequest implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets cat_type
+     *
+     * @return \FlowHunt\Model\CategoryType|null
+     */
+    public function getCatType()
+    {
+        return $this->container['cat_type'];
+    }
+
+    /**
+     * Sets cat_type
+     *
+     * @param \FlowHunt\Model\CategoryType|null $cat_type cat_type
+     *
+     * @return self
+     */
+    public function setCatType($cat_type)
+    {
+        if (is_null($cat_type)) {
+            array_push($this->openAPINullablesSetToNull, 'cat_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cat_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cat_type'] = $cat_type;
 
         return $this;
     }

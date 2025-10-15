@@ -6,6 +6,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**customerDataRequest()**](ShopifyApi.md#customerDataRequest) | **POST** /v2/integrations/shopify/webhooks/customers/data_request | Customer Data Request |
 | [**customerRedact()**](ShopifyApi.md#customerRedact) | **POST** /v2/integrations/shopify/webhooks/customers/redact | Customer Redact |
+| [**getShopify()**](ShopifyApi.md#getShopify) | **GET** /v2/integrations/shopify/ | Get Shopify |
 | [**shopRedact()**](ShopifyApi.md#shopRedact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact |
 | [**subscriptionCancel()**](ShopifyApi.md#subscriptionCancel) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_cancel | Subscription Cancel |
 | [**subscriptionUpdate()**](ShopifyApi.md#subscriptionUpdate) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_update | Subscription Update |
@@ -125,6 +126,64 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getShopify()`
+
+```php
+getShopify($workspace_id): \FlowHunt\Model\ShopifyIntegrationResponse
+```
+
+Get Shopify
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\ShopifyApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getShopify($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ShopifyApi->getShopify: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\ShopifyIntegrationResponse**](../Model/ShopifyIntegrationResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

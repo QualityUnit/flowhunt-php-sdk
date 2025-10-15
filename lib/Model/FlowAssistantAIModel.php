@@ -42,8 +42,6 @@ class FlowAssistantAIModel
     /**
      * Possible values of this enum
      */
-    public const CLAUDE_3_5_SONNET = 'Claude 3.5 Sonnet';
-
     public const CLAUDE_3_7_SONNET = 'Claude 3.7 Sonnet';
 
     public const GPT4_1 = 'GPT4.1';
@@ -59,7 +57,6 @@ class FlowAssistantAIModel
     public static function getAllowableEnumValues()
     {
         return [
-            self::CLAUDE_3_5_SONNET,
             self::CLAUDE_3_7_SONNET,
             self::GPT4_1,
             self::O4_MINI,

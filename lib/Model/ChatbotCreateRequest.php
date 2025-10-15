@@ -81,7 +81,9 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'chatbot_style' => 'string',
         'session_message_history' => 'bool',
         'chatbot_bubble_size' => 'int',
-        'message_header_logo_url' => 'string'
+        'message_header_logo_url' => 'string',
+        'popup_messages' => 'string[]',
+        'popup_messages_delay' => 'int'
     ];
 
     /**
@@ -116,7 +118,9 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'chatbot_style' => null,
         'session_message_history' => null,
         'chatbot_bubble_size' => null,
-        'message_header_logo_url' => null
+        'message_header_logo_url' => null,
+        'popup_messages' => null,
+        'popup_messages_delay' => null
     ];
 
     /**
@@ -149,7 +153,9 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'chatbot_style' => true,
         'session_message_history' => true,
         'chatbot_bubble_size' => true,
-        'message_header_logo_url' => true
+        'message_header_logo_url' => true,
+        'popup_messages' => true,
+        'popup_messages_delay' => true
     ];
 
     /**
@@ -262,7 +268,9 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'chatbot_style' => 'chatbot_style',
         'session_message_history' => 'session_message_history',
         'chatbot_bubble_size' => 'chatbot_bubble_size',
-        'message_header_logo_url' => 'message_header_logo_url'
+        'message_header_logo_url' => 'message_header_logo_url',
+        'popup_messages' => 'popup_messages',
+        'popup_messages_delay' => 'popup_messages_delay'
     ];
 
     /**
@@ -295,7 +303,9 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'chatbot_style' => 'setChatbotStyle',
         'session_message_history' => 'setSessionMessageHistory',
         'chatbot_bubble_size' => 'setChatbotBubbleSize',
-        'message_header_logo_url' => 'setMessageHeaderLogoUrl'
+        'message_header_logo_url' => 'setMessageHeaderLogoUrl',
+        'popup_messages' => 'setPopupMessages',
+        'popup_messages_delay' => 'setPopupMessagesDelay'
     ];
 
     /**
@@ -328,7 +338,9 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'chatbot_style' => 'getChatbotStyle',
         'session_message_history' => 'getSessionMessageHistory',
         'chatbot_bubble_size' => 'getChatbotBubbleSize',
-        'message_header_logo_url' => 'getMessageHeaderLogoUrl'
+        'message_header_logo_url' => 'getMessageHeaderLogoUrl',
+        'popup_messages' => 'getPopupMessages',
+        'popup_messages_delay' => 'getPopupMessagesDelay'
     ];
 
     /**
@@ -413,6 +425,8 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('session_message_history', $data ?? [], null);
         $this->setIfExists('chatbot_bubble_size', $data ?? [], null);
         $this->setIfExists('message_header_logo_url', $data ?? [], null);
+        $this->setIfExists('popup_messages', $data ?? [], null);
+        $this->setIfExists('popup_messages_delay', $data ?? [], null);
     }
 
     /**
@@ -1376,6 +1390,74 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['message_header_logo_url'] = $message_header_logo_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets popup_messages
+     *
+     * @return string[]|null
+     */
+    public function getPopupMessages()
+    {
+        return $this->container['popup_messages'];
+    }
+
+    /**
+     * Sets popup_messages
+     *
+     * @param string[]|null $popup_messages popup_messages
+     *
+     * @return self
+     */
+    public function setPopupMessages($popup_messages)
+    {
+        if (is_null($popup_messages)) {
+            array_push($this->openAPINullablesSetToNull, 'popup_messages');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('popup_messages', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['popup_messages'] = $popup_messages;
+
+        return $this;
+    }
+
+    /**
+     * Gets popup_messages_delay
+     *
+     * @return int|null
+     */
+    public function getPopupMessagesDelay()
+    {
+        return $this->container['popup_messages_delay'];
+    }
+
+    /**
+     * Sets popup_messages_delay
+     *
+     * @param int|null $popup_messages_delay popup_messages_delay
+     *
+     * @return self
+     */
+    public function setPopupMessagesDelay($popup_messages_delay)
+    {
+        if (is_null($popup_messages_delay)) {
+            array_push($this->openAPINullablesSetToNull, 'popup_messages_delay');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('popup_messages_delay', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['popup_messages_delay'] = $popup_messages_delay;
 
         return $this;
     }

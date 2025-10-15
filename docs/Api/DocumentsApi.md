@@ -18,8 +18,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**updateDocument()**](DocumentsApi.md#updateDocument) | **PUT** /v2/documents/{doc_id} | Update Document |
 | [**updateDocumentCategory()**](DocumentsApi.md#updateDocumentCategory) | **PUT** /v2/documents/categories/{cat_id} | Update Document Category |
 | [**updateFaq()**](DocumentsApi.md#updateFaq) | **PUT** /v2/documents/faqs/{faq_id} | Update Faq |
-| [**uploadDocument()**](DocumentsApi.md#uploadDocument) | **POST** /v2/documents/upload/{cat_id} | Upload Document |
 | [**uploadFromUrlDocument()**](DocumentsApi.md#uploadFromUrlDocument) | **POST** /v2/documents/upload-from-url/{cat_id} | Upload From Url Document |
+| [**uploadMemoryDocument()**](DocumentsApi.md#uploadMemoryDocument) | **POST** /v2/documents/upload/{cat_id} | Upload Memory Document |
 
 
 ## `createDocumentCategory()`
@@ -480,7 +480,7 @@ try {
 ## `importFaq()`
 
 ```php
-importFaq($workspace_id, $file): \FlowHunt\Model\FaqResponse[]
+importFaq($workspace_id, $file): \FlowHunt\Model\FaqImportResponse
 ```
 
 Import Faq
@@ -527,7 +527,7 @@ try {
 
 ### Return type
 
-[**\FlowHunt\Model\FaqResponse[]**](../Model/FaqResponse.md)
+[**\FlowHunt\Model\FaqImportResponse**](../Model/FaqImportResponse.md)
 
 ### Authorization
 
@@ -938,73 +938,6 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `uploadDocument()`
-
-```php
-uploadDocument($cat_id, $workspace_id, $file): \FlowHunt\Model\DocumentResponse
-```
-
-Upload Document
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: APIKeyHeader
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
-
-// Configure Bearer authorization: HTTPBearer
-$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new FlowHunt\Api\DocumentsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$cat_id = 'cat_id_example'; // string
-$workspace_id = 'workspace_id_example'; // string
-$file = '/path/to/file.txt'; // \SplFileObject
-
-try {
-    $result = $apiInstance->uploadDocument($cat_id, $workspace_id, $file);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DocumentsApi->uploadDocument: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **cat_id** | **string**|  | |
-| **workspace_id** | **string**|  | |
-| **file** | **\SplFileObject****\SplFileObject**|  | |
-
-### Return type
-
-[**\FlowHunt\Model\DocumentResponse**](../Model/DocumentResponse.md)
-
-### Authorization
-
-[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
-
-### HTTP request headers
-
-- **Content-Type**: `multipart/form-data`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `uploadFromUrlDocument()`
 
 ```php
@@ -1066,6 +999,73 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `uploadMemoryDocument()`
+
+```php
+uploadMemoryDocument($cat_id, $workspace_id, $file): \FlowHunt\Model\DocumentResponse
+```
+
+Upload Memory Document
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$cat_id = 'cat_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$file = '/path/to/file.txt'; // \SplFileObject
+
+try {
+    $result = $apiInstance->uploadMemoryDocument($cat_id, $workspace_id, $file);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->uploadMemoryDocument: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **cat_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **file** | **\SplFileObject****\SplFileObject**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\DocumentResponse**](../Model/DocumentResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

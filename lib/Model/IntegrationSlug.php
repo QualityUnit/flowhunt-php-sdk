@@ -92,6 +92,16 @@ class IntegrationSlug
 
     public const LINKEDIN_INTEGRATION = 'linkedin_integration';
 
+    public const MAGENTO2_INTEGRATION = 'magento2_integration';
+
+    public const ALPACA_INTEGRATION = 'alpaca_integration';
+
+    public const POLYGON_INTEGRATION = 'polygon_integration';
+
+    public const POSTAFFILIATEPRO_INTEGRATION = 'postaffiliatepro_integration';
+
+    public const KLAVIYO_INTEGRATION = 'klaviyo_integration';
+
     public const GOOGLE_CALENDAR_INTEGRATION = 'google_calendar_integration';
 
     public const GOOGLE_ADS_INTEGRATION = 'google_ads_integration';
@@ -160,6 +170,11 @@ class IntegrationSlug
             self::BEXIO_INTEGRATION,
             self::MAILCHIMP_INTEGRATION,
             self::LINKEDIN_INTEGRATION,
+            self::MAGENTO2_INTEGRATION,
+            self::ALPACA_INTEGRATION,
+            self::POLYGON_INTEGRATION,
+            self::POSTAFFILIATEPRO_INTEGRATION,
+            self::KLAVIYO_INTEGRATION,
             self::GOOGLE_CALENDAR_INTEGRATION,
             self::GOOGLE_ADS_INTEGRATION,
             self::GOOGLE_DOCS_INTEGRATION,

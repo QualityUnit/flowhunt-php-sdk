@@ -64,6 +64,8 @@ class IntegrationCategory
 
     public const ANALYTICS = 'analytics';
 
+    public const FINANCE = 'finance';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -81,7 +83,8 @@ class IntegrationCategory
             self::CMS,
             self::GOOGLE,
             self::COMMUNICATION,
-            self::ANALYTICS
+            self::ANALYTICS,
+            self::FINANCE
         ];
     }
 }

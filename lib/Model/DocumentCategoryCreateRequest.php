@@ -58,7 +58,8 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'cat_name' => 'string',
-        'cat_color' => 'string'
+        'cat_color' => 'string',
+        'cat_type' => '\FlowHunt\Model\CategoryType'
     ];
 
     /**
@@ -70,7 +71,8 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPIFormats = [
         'cat_name' => null,
-        'cat_color' => null
+        'cat_color' => null,
+        'cat_type' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
       */
     protected static array $openAPINullables = [
         'cat_name' => false,
-        'cat_color' => false
+        'cat_color' => false,
+        'cat_type' => true
     ];
 
     /**
@@ -170,7 +173,8 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $attributeMap = [
         'cat_name' => 'cat_name',
-        'cat_color' => 'cat_color'
+        'cat_color' => 'cat_color',
+        'cat_type' => 'cat_type'
     ];
 
     /**
@@ -180,7 +184,8 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $setters = [
         'cat_name' => 'setCatName',
-        'cat_color' => 'setCatColor'
+        'cat_color' => 'setCatColor',
+        'cat_type' => 'setCatType'
     ];
 
     /**
@@ -190,7 +195,8 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $getters = [
         'cat_name' => 'getCatName',
-        'cat_color' => 'getCatColor'
+        'cat_color' => 'getCatColor',
+        'cat_type' => 'getCatType'
     ];
 
     /**
@@ -252,6 +258,7 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
     {
         $this->setIfExists('cat_name', $data ?? [], null);
         $this->setIfExists('cat_color', $data ?? [], null);
+        $this->setIfExists('cat_type', $data ?? [], null);
     }
 
     /**
@@ -352,6 +359,40 @@ class DocumentCategoryCreateRequest implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable cat_color cannot be null');
         }
         $this->container['cat_color'] = $cat_color;
+
+        return $this;
+    }
+
+    /**
+     * Gets cat_type
+     *
+     * @return \FlowHunt\Model\CategoryType|null
+     */
+    public function getCatType()
+    {
+        return $this->container['cat_type'];
+    }
+
+    /**
+     * Sets cat_type
+     *
+     * @param \FlowHunt\Model\CategoryType|null $cat_type cat_type
+     *
+     * @return self
+     */
+    public function setCatType($cat_type)
+    {
+        if (is_null($cat_type)) {
+            array_push($this->openAPINullablesSetToNull, 'cat_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cat_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cat_type'] = $cat_type;
 
         return $this;
     }

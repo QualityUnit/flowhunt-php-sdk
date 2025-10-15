@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message_id** | **string** | Message ID |
 **message** | **string** | Message |
+**sender** | [**\FlowHunt\Model\HumanAgentSender**](HumanAgentSender.md) |  | [optional]
 **tool_name** | **string** | Tool name |
 **loading_desc** | **string** | Loading description |
 **icon** | **string** |  | [optional]

@@ -76,6 +76,20 @@ class BaseFoundationModel
 
     public const GEMINI_2_5_FLASH = 'gemini-2.5-flash';
 
+    public const QWEN_IMAGE_EDIT_PLUS = 'qwen-image-edit-plus';
+
+    public const QWEN_IMAGE = 'qwen-image';
+
+    public const WAN_2_2_ANIMATE_REPLACE = 'wan-2.2-animate-replace';
+
+    public const WAN_2_5_T2V_FAST = 'wan-2.5-t2v-fast';
+
+    public const WAN_2_2_ANIMATE_ANIMATION = 'wan-2.2-animate-animation';
+
+    public const WAN_2_5_I2V_FAST = 'wan-2.5-i2v-fast';
+
+    public const WAN_2_5_I2V = 'wan-2.5-i2v';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -99,7 +113,14 @@ class BaseFoundationModel
             self::IDEOGRAM_V3_BALANCED,
             self::GPT_IMAGE_1,
             self::NANO_BANANA,
-            self::GEMINI_2_5_FLASH
+            self::GEMINI_2_5_FLASH,
+            self::QWEN_IMAGE_EDIT_PLUS,
+            self::QWEN_IMAGE,
+            self::WAN_2_2_ANIMATE_REPLACE,
+            self::WAN_2_5_T2V_FAST,
+            self::WAN_2_2_ANIMATE_ANIMATION,
+            self::WAN_2_5_I2V_FAST,
+            self::WAN_2_5_I2V
         ];
     }
 }

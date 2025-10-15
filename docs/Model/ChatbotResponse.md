@@ -31,5 +31,7 @@ Name | Type | Description | Notes
 **session_message_history** | **bool** |  | [optional]
 **chatbot_bubble_size** | **int** |  | [optional]
 **message_header_logo_url** | **string** |  | [optional]
+**popup_messages** | **string[]** |  | [optional]
+**popup_messages_delay** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

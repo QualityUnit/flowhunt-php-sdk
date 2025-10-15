@@ -686,7 +686,7 @@ class ObservabilityDriverApi
         }
 
 
-        $resourcePath = '/v2/observability_driver/power_bi/';
+        $resourcePath = '/v2/observability_driver/power_bi';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3404,7 +3404,7 @@ class ObservabilityDriverApi
         }
 
 
-        $resourcePath = '/v2/observability_driver/power_bi/';
+        $resourcePath = '/v2/observability_driver/power_bi';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -5,7 +5,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**activateLangfuseObservabilityDriver()**](ObservabilityDriverApi.md#activateLangfuseObservabilityDriver) | **POST** /v2/observability_driver/langfuse | Activate Langfuse Observability Driver |
-| [**activatePowerBiObservabilityDriver()**](ObservabilityDriverApi.md#activatePowerBiObservabilityDriver) | **POST** /v2/observability_driver/power_bi/ | Activate Power Bi Observability Driver |
+| [**activatePowerBiObservabilityDriver()**](ObservabilityDriverApi.md#activatePowerBiObservabilityDriver) | **POST** /v2/observability_driver/power_bi | Activate Power Bi Observability Driver |
 | [**createPowerBiPushDataset()**](ObservabilityDriverApi.md#createPowerBiPushDataset) | **POST** /v2/observability_driver/power_bi/push_dataset | Create Power Bi Push Dataset |
 | [**deleteObservabilityDriver()**](ObservabilityDriverApi.md#deleteObservabilityDriver) | **DELETE** /v2/observability_driver/{driver_type} | Delete Observability Driver |
 | [**getObservabilityDriver()**](ObservabilityDriverApi.md#getObservabilityDriver) | **GET** /v2/observability_driver/{driver_type} | Get Observability Driver |
@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**listPowerBiTables()**](ObservabilityDriverApi.md#listPowerBiTables) | **POST** /v2/observability_driver/power_bi/tables | List Power Bi Tables |
 | [**listPowerBiWorkspaces()**](ObservabilityDriverApi.md#listPowerBiWorkspaces) | **GET** /v2/observability_driver/power_bi/workspaces | List Power Bi Workspaces |
 | [**updateLangfuseObservabilityDriver()**](ObservabilityDriverApi.md#updateLangfuseObservabilityDriver) | **PUT** /v2/observability_driver/langfuse | Update Langfuse Observability Driver |
-| [**updatePowerBiObservabilityDriver()**](ObservabilityDriverApi.md#updatePowerBiObservabilityDriver) | **PUT** /v2/observability_driver/power_bi/ | Update Power Bi Observability Driver |
+| [**updatePowerBiObservabilityDriver()**](ObservabilityDriverApi.md#updatePowerBiObservabilityDriver) | **PUT** /v2/observability_driver/power_bi | Update Power Bi Observability Driver |
 | [**validatePushDatasetTable()**](ObservabilityDriverApi.md#validatePushDatasetTable) | **POST** /v2/observability_driver/power_bi/validate_push_dataset | Validate Push Dataset Table |
 
 

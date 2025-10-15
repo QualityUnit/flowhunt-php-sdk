@@ -195,4 +195,22 @@ class FlowSessionViewSearchRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "positive_feedback"
+     */
+    public function testPropertyPositiveFeedback()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "negative_feedback"
+     */
+    public function testPropertyNegativeFeedback()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

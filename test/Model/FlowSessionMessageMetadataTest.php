@@ -96,4 +96,13 @@ class FlowSessionMessageMetadataTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "sender"
+     */
+    public function testPropertySender()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

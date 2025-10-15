@@ -108,6 +108,10 @@ class TransactionType
 
     public const AC_HS = 'AC_HS';
 
+    public const LAHA_HS = 'LAHA_HS';
+
+    public const LT_HS = 'LT_HS';
+
     public const GC_HS = 'GC_HS';
 
     public const UC_HS = 'UC_HS';
@@ -236,6 +240,8 @@ class TransactionType
             self::CWP,
             self::DE_GC,
             self::AC_HS,
+            self::LAHA_HS,
+            self::LT_HS,
             self::GC_HS,
             self::UC_HS,
             self::SC_HS,

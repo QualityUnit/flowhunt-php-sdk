@@ -44,6 +44,8 @@ class FTType
      */
     public const I = 'I';
 
+    public const V = 'V';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -51,7 +53,8 @@ class FTType
     public static function getAllowableEnumValues()
     {
         return [
-            self::I
+            self::I,
+            self::V
         ];
     }
 }

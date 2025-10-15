@@ -5,7 +5,10 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**deleteChatbotSessionView()**](FlowSessionsApi.md#deleteChatbotSessionView) | **DELETE** /v2/chatbots/sessions/{session_id} | Delete Chatbot Session View |
+| [**getChartFeedback()**](FlowSessionsApi.md#getChartFeedback) | **POST** /v2/chatbots/sessions/charts | Get Chart Feedback |
+| [**getChartSessionDuration()**](FlowSessionsApi.md#getChartSessionDuration) | **POST** /v2/chatbots/sessions/chart_session_duration | Get Chart Session Duration |
 | [**getChatbotSessionView()**](FlowSessionsApi.md#getChatbotSessionView) | **GET** /v2/chatbots/sessions/{session_id} | Get Chatbot Session View |
+| [**getToolCallsChartFeedback()**](FlowSessionsApi.md#getToolCallsChartFeedback) | **POST** /v2/chatbots/sessions/chart_tool_calls | Get Tool Calls Chart Feedback |
 | [**searchChatbotSessionsView()**](FlowSessionsApi.md#searchChatbotSessionsView) | **POST** /v2/chatbots/sessions/search | Search Chatbot Sessions View |
 | [**updateChatbotSessionView()**](FlowSessionsApi.md#updateChatbotSessionView) | **PUT** /v2/chatbots/sessions/{session_id} | Update Chatbot Session View |
 
@@ -75,6 +78,136 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getChartFeedback()`
+
+```php
+getChartFeedback($workspace_id, $charts_feedback_request): \FlowHunt\Model\FeedbackChartResponse
+```
+
+Get Chart Feedback
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowSessionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$charts_feedback_request = new \FlowHunt\Model\ChartsFeedbackRequest(); // \FlowHunt\Model\ChartsFeedbackRequest
+
+try {
+    $result = $apiInstance->getChartFeedback($workspace_id, $charts_feedback_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowSessionsApi->getChartFeedback: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **charts_feedback_request** | [**\FlowHunt\Model\ChartsFeedbackRequest**](../Model/ChartsFeedbackRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FeedbackChartResponse**](../Model/FeedbackChartResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getChartSessionDuration()`
+
+```php
+getChartSessionDuration($workspace_id, $charts_feedback_request): \FlowHunt\Model\ChartSessionDurationResponse
+```
+
+Get Chart Session Duration
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowSessionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$charts_feedback_request = new \FlowHunt\Model\ChartsFeedbackRequest(); // \FlowHunt\Model\ChartsFeedbackRequest
+
+try {
+    $result = $apiInstance->getChartSessionDuration($workspace_id, $charts_feedback_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowSessionsApi->getChartSessionDuration: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **charts_feedback_request** | [**\FlowHunt\Model\ChartsFeedbackRequest**](../Model/ChartsFeedbackRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\ChartSessionDurationResponse**](../Model/ChartSessionDurationResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getChatbotSessionView()`
 
 ```php
@@ -134,6 +267,71 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getToolCallsChartFeedback()`
+
+```php
+getToolCallsChartFeedback($workspace_id, $charts_feedback_request): \FlowHunt\Model\ToolCallFeedbackResponse[]
+```
+
+Get Tool Calls Chart Feedback
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowSessionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$charts_feedback_request = new \FlowHunt\Model\ChartsFeedbackRequest(); // \FlowHunt\Model\ChartsFeedbackRequest
+
+try {
+    $result = $apiInstance->getToolCallsChartFeedback($workspace_id, $charts_feedback_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowSessionsApi->getToolCallsChartFeedback: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **charts_feedback_request** | [**\FlowHunt\Model\ChartsFeedbackRequest**](../Model/ChartsFeedbackRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\ToolCallFeedbackResponse[]**](../Model/ToolCallFeedbackResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

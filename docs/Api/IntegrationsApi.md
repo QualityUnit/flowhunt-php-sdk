@@ -16,6 +16,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getPickerToken()**](IntegrationsApi.md#getPickerToken) | **GET** /v2/integrations/google/picker_token | Get Picker Token |
 | [**getProfileInformation()**](IntegrationsApi.md#getProfileInformation) | **GET** /v2/integrations/instagram/profile_information | Get Profile Information |
 | [**getSheets()**](IntegrationsApi.md#getSheets) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets |
+| [**getShopify()**](IntegrationsApi.md#getShopify) | **GET** /v2/integrations/shopify/ | Get Shopify |
 | [**getSlackChannels()**](IntegrationsApi.md#getSlackChannels) | **GET** /v2/integrations/slack/{slack_team_id}/channels | Get Slack Channels |
 | [**getSlackWorkspaces()**](IntegrationsApi.md#getSlackWorkspaces) | **GET** /v2/integrations/slack/ | Get Slack Workspaces |
 | [**getWordpressPostCategories()**](IntegrationsApi.md#getWordpressPostCategories) | **GET** /v2/integrations/wordpress/{integration_id}/categories | Get Wordpress Post Categories |
@@ -725,6 +726,64 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\GoogleSheetsResponse**](../Model/GoogleSheetsResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getShopify()`
+
+```php
+getShopify($workspace_id): \FlowHunt\Model\ShopifyIntegrationResponse
+```
+
+Get Shopify
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getShopify($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getShopify: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\ShopifyIntegrationResponse**](../Model/ShopifyIntegrationResponse.md)
 
 ### Authorization
 

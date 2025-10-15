@@ -66,7 +66,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_proxy_rotation' => 'string',
         'disallow_urls' => 'string',
         'filter_urls' => 'string',
-        'custom_headers' => 'string'
+        'custom_headers' => 'string',
+        'urls_extra_config' => 'string'
     ];
 
     /**
@@ -86,7 +87,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_proxy_rotation' => null,
         'disallow_urls' => null,
         'filter_urls' => null,
-        'custom_headers' => null
+        'custom_headers' => null,
+        'urls_extra_config' => null
     ];
 
     /**
@@ -104,7 +106,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_proxy_rotation' => true,
         'disallow_urls' => true,
         'filter_urls' => true,
-        'custom_headers' => true
+        'custom_headers' => true,
+        'urls_extra_config' => true
     ];
 
     /**
@@ -202,7 +205,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_proxy_rotation' => 'with_proxy_rotation',
         'disallow_urls' => 'disallow_urls',
         'filter_urls' => 'filter_urls',
-        'custom_headers' => 'custom_headers'
+        'custom_headers' => 'custom_headers',
+        'urls_extra_config' => 'urls_extra_config'
     ];
 
     /**
@@ -220,7 +224,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_proxy_rotation' => 'setWithProxyRotation',
         'disallow_urls' => 'setDisallowUrls',
         'filter_urls' => 'setFilterUrls',
-        'custom_headers' => 'setCustomHeaders'
+        'custom_headers' => 'setCustomHeaders',
+        'urls_extra_config' => 'setUrlsExtraConfig'
     ];
 
     /**
@@ -238,7 +243,8 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'with_proxy_rotation' => 'getWithProxyRotation',
         'disallow_urls' => 'getDisallowUrls',
         'filter_urls' => 'getFilterUrls',
-        'custom_headers' => 'getCustomHeaders'
+        'custom_headers' => 'getCustomHeaders',
+        'urls_extra_config' => 'getUrlsExtraConfig'
     ];
 
     /**
@@ -308,6 +314,7 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('disallow_urls', $data ?? [], null);
         $this->setIfExists('filter_urls', $data ?? [], null);
         $this->setIfExists('custom_headers', $data ?? [], null);
+        $this->setIfExists('urls_extra_config', $data ?? [], null);
     }
 
     /**
@@ -676,6 +683,40 @@ class ScheduleCreateRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['custom_headers'] = $custom_headers;
+
+        return $this;
+    }
+
+    /**
+     * Gets urls_extra_config
+     *
+     * @return string|null
+     */
+    public function getUrlsExtraConfig()
+    {
+        return $this->container['urls_extra_config'];
+    }
+
+    /**
+     * Sets urls_extra_config
+     *
+     * @param string|null $urls_extra_config urls_extra_config
+     *
+     * @return self
+     */
+    public function setUrlsExtraConfig($urls_extra_config)
+    {
+        if (is_null($urls_extra_config)) {
+            array_push($this->openAPINullablesSetToNull, 'urls_extra_config');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('urls_extra_config', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['urls_extra_config'] = $urls_extra_config;
 
         return $this;
     }

@@ -321,4 +321,22 @@ class ChatbotResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "popup_messages"
+     */
+    public function testPropertyPopupMessages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "popup_messages_delay"
+     */
+    public function testPropertyPopupMessagesDelay()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

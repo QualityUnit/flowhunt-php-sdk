@@ -69,7 +69,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'chatbot_name' => 'string',
         'flow_name' => 'string',
         'ipaddress_filter' => 'array<string,mixed>',
-        'pagination' => '\FlowHunt\Model\Pagination'
+        'pagination' => '\FlowHunt\Model\Pagination',
+        'positive_feedback' => 'int',
+        'negative_feedback' => 'int'
     ];
 
     /**
@@ -92,7 +94,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'chatbot_name' => null,
         'flow_name' => null,
         'ipaddress_filter' => null,
-        'pagination' => null
+        'pagination' => null,
+        'positive_feedback' => null,
+        'negative_feedback' => null
     ];
 
     /**
@@ -113,7 +117,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'chatbot_name' => true,
         'flow_name' => true,
         'ipaddress_filter' => true,
-        'pagination' => true
+        'pagination' => true,
+        'positive_feedback' => true,
+        'negative_feedback' => true
     ];
 
     /**
@@ -214,7 +220,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'chatbot_name' => 'chatbot_name',
         'flow_name' => 'flow_name',
         'ipaddress_filter' => 'ipaddress_filter',
-        'pagination' => 'pagination'
+        'pagination' => 'pagination',
+        'positive_feedback' => 'positive_feedback',
+        'negative_feedback' => 'negative_feedback'
     ];
 
     /**
@@ -235,7 +243,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'chatbot_name' => 'setChatbotName',
         'flow_name' => 'setFlowName',
         'ipaddress_filter' => 'setIpaddressFilter',
-        'pagination' => 'setPagination'
+        'pagination' => 'setPagination',
+        'positive_feedback' => 'setPositiveFeedback',
+        'negative_feedback' => 'setNegativeFeedback'
     ];
 
     /**
@@ -256,7 +266,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'chatbot_name' => 'getChatbotName',
         'flow_name' => 'getFlowName',
         'ipaddress_filter' => 'getIpaddressFilter',
-        'pagination' => 'getPagination'
+        'pagination' => 'getPagination',
+        'positive_feedback' => 'getPositiveFeedback',
+        'negative_feedback' => 'getNegativeFeedback'
     ];
 
     /**
@@ -329,6 +341,8 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('flow_name', $data ?? [], null);
         $this->setIfExists('ipaddress_filter', $data ?? [], null);
         $this->setIfExists('pagination', $data ?? [], null);
+        $this->setIfExists('positive_feedback', $data ?? [], null);
+        $this->setIfExists('negative_feedback', $data ?? [], null);
     }
 
     /**
@@ -811,6 +825,74 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['pagination'] = $pagination;
+
+        return $this;
+    }
+
+    /**
+     * Gets positive_feedback
+     *
+     * @return int|null
+     */
+    public function getPositiveFeedback()
+    {
+        return $this->container['positive_feedback'];
+    }
+
+    /**
+     * Sets positive_feedback
+     *
+     * @param int|null $positive_feedback positive_feedback
+     *
+     * @return self
+     */
+    public function setPositiveFeedback($positive_feedback)
+    {
+        if (is_null($positive_feedback)) {
+            array_push($this->openAPINullablesSetToNull, 'positive_feedback');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('positive_feedback', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['positive_feedback'] = $positive_feedback;
+
+        return $this;
+    }
+
+    /**
+     * Gets negative_feedback
+     *
+     * @return int|null
+     */
+    public function getNegativeFeedback()
+    {
+        return $this->container['negative_feedback'];
+    }
+
+    /**
+     * Sets negative_feedback
+     *
+     * @param int|null $negative_feedback negative_feedback
+     *
+     * @return self
+     */
+    public function setNegativeFeedback($negative_feedback)
+    {
+        if (is_null($negative_feedback)) {
+            array_push($this->openAPINullablesSetToNull, 'negative_feedback');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('negative_feedback', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['negative_feedback'] = $negative_feedback;
 
         return $this;
     }

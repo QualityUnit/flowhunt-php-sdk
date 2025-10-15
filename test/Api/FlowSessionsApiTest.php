@@ -84,12 +84,48 @@ class FlowSessionsApiTest extends TestCase
     }
 
     /**
+     * Test case for getChartFeedback
+     *
+     * Get Chart Feedback.
+     *
+     */
+    public function testGetChartFeedback()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getChartSessionDuration
+     *
+     * Get Chart Session Duration.
+     *
+     */
+    public function testGetChartSessionDuration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getChatbotSessionView
      *
      * Get Chatbot Session View.
      *
      */
     public function testGetChatbotSessionView()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getToolCallsChartFeedback
+     *
+     * Get Tool Calls Chart Feedback.
+     *
+     */
+    public function testGetToolCallsChartFeedback()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

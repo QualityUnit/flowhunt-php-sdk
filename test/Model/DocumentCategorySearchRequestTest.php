@@ -105,4 +105,13 @@ class DocumentCategorySearchRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "cat_type"
+     */
+    public function testPropertyCatType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

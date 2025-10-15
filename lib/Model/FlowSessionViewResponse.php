@@ -70,7 +70,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'tags' => 'string[]',
         'duration' => 'int',
         'ipaddress' => 'string',
-        'url' => 'string'
+        'url' => 'string',
+        'positive_feedback_count' => 'int',
+        'negative_feedback_count' => 'int'
     ];
 
     /**
@@ -94,7 +96,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'tags' => null,
         'duration' => null,
         'ipaddress' => null,
-        'url' => null
+        'url' => null,
+        'positive_feedback_count' => null,
+        'negative_feedback_count' => null
     ];
 
     /**
@@ -116,7 +120,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'tags' => true,
         'duration' => true,
         'ipaddress' => true,
-        'url' => true
+        'url' => true,
+        'positive_feedback_count' => true,
+        'negative_feedback_count' => true
     ];
 
     /**
@@ -218,7 +224,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'tags' => 'tags',
         'duration' => 'duration',
         'ipaddress' => 'ipaddress',
-        'url' => 'url'
+        'url' => 'url',
+        'positive_feedback_count' => 'positive_feedback_count',
+        'negative_feedback_count' => 'negative_feedback_count'
     ];
 
     /**
@@ -240,7 +248,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'tags' => 'setTags',
         'duration' => 'setDuration',
         'ipaddress' => 'setIpaddress',
-        'url' => 'setUrl'
+        'url' => 'setUrl',
+        'positive_feedback_count' => 'setPositiveFeedbackCount',
+        'negative_feedback_count' => 'setNegativeFeedbackCount'
     ];
 
     /**
@@ -262,7 +272,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'tags' => 'getTags',
         'duration' => 'getDuration',
         'ipaddress' => 'getIpaddress',
-        'url' => 'getUrl'
+        'url' => 'getUrl',
+        'positive_feedback_count' => 'getPositiveFeedbackCount',
+        'negative_feedback_count' => 'getNegativeFeedbackCount'
     ];
 
     /**
@@ -336,6 +348,8 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('duration', $data ?? [], null);
         $this->setIfExists('ipaddress', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('positive_feedback_count', $data ?? [], null);
+        $this->setIfExists('negative_feedback_count', $data ?? [], null);
     }
 
     /**
@@ -836,6 +850,74 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
             }
         }
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets positive_feedback_count
+     *
+     * @return int|null
+     */
+    public function getPositiveFeedbackCount()
+    {
+        return $this->container['positive_feedback_count'];
+    }
+
+    /**
+     * Sets positive_feedback_count
+     *
+     * @param int|null $positive_feedback_count positive_feedback_count
+     *
+     * @return self
+     */
+    public function setPositiveFeedbackCount($positive_feedback_count)
+    {
+        if (is_null($positive_feedback_count)) {
+            array_push($this->openAPINullablesSetToNull, 'positive_feedback_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('positive_feedback_count', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['positive_feedback_count'] = $positive_feedback_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets negative_feedback_count
+     *
+     * @return int|null
+     */
+    public function getNegativeFeedbackCount()
+    {
+        return $this->container['negative_feedback_count'];
+    }
+
+    /**
+     * Sets negative_feedback_count
+     *
+     * @param int|null $negative_feedback_count negative_feedback_count
+     *
+     * @return self
+     */
+    public function setNegativeFeedbackCount($negative_feedback_count)
+    {
+        if (is_null($negative_feedback_count)) {
+            array_push($this->openAPINullablesSetToNull, 'negative_feedback_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('negative_feedback_count', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['negative_feedback_count'] = $negative_feedback_count;
 
         return $this;
     }

@@ -98,6 +98,15 @@ class MetadataTest extends TestCase
     }
 
     /**
+     * Test attribute "sender"
+     */
+    public function testPropertySender()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "tool_name"
      */
     public function testPropertyToolName()

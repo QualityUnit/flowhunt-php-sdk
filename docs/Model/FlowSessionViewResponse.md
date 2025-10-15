@@ -18,5 +18,7 @@ Name | Type | Description | Notes
 **duration** | **int** |  | [optional]
 **ipaddress** | **string** |  | [optional]
 **url** | **string** |  | [optional]
+**positive_feedback_count** | **int** |  | [optional]
+**negative_feedback_count** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

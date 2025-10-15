@@ -60,6 +60,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'message_id' => 'string',
         'message' => 'string',
+        'sender' => '\FlowHunt\Model\HumanAgentSender',
         'tool_name' => 'string',
         'loading_desc' => 'string',
         'icon' => 'string',
@@ -98,6 +99,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'message_id' => null,
         'message' => null,
+        'sender' => null,
         'tool_name' => null,
         'loading_desc' => null,
         'icon' => null,
@@ -134,6 +136,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'message_id' => false,
         'message' => false,
+        'sender' => false,
         'tool_name' => false,
         'loading_desc' => false,
         'icon' => false,
@@ -250,6 +253,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'message_id' => 'message_id',
         'message' => 'message',
+        'sender' => 'sender',
         'tool_name' => 'tool_name',
         'loading_desc' => 'loading_desc',
         'icon' => 'icon',
@@ -286,6 +290,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'message_id' => 'setMessageId',
         'message' => 'setMessage',
+        'sender' => 'setSender',
         'tool_name' => 'setToolName',
         'loading_desc' => 'setLoadingDesc',
         'icon' => 'setIcon',
@@ -322,6 +327,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'message_id' => 'getMessageId',
         'message' => 'getMessage',
+        'sender' => 'getSender',
         'tool_name' => 'getToolName',
         'loading_desc' => 'getLoadingDesc',
         'icon' => 'getIcon',
@@ -409,6 +415,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('message_id', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('sender', $data ?? [], null);
         $this->setIfExists('tool_name', $data ?? [], null);
         $this->setIfExists('loading_desc', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
@@ -583,6 +590,33 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
         $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets sender
+     *
+     * @return \FlowHunt\Model\HumanAgentSender|null
+     */
+    public function getSender()
+    {
+        return $this->container['sender'];
+    }
+
+    /**
+     * Sets sender
+     *
+     * @param \FlowHunt\Model\HumanAgentSender|null $sender sender
+     *
+     * @return self
+     */
+    public function setSender($sender)
+    {
+        if (is_null($sender)) {
+            throw new \InvalidArgumentException('non-nullable sender cannot be null');
+        }
+        $this->container['sender'] = $sender;
 
         return $this;
     }
