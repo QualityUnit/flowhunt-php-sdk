@@ -62,7 +62,8 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'int',
         'session_count' => 'int',
         'human_message_count' => 'int',
-        'tool_calling_count' => 'int'
+        'tool_calling_count' => 'int',
+        'error_message_count' => 'int'
     ];
 
     /**
@@ -78,7 +79,8 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => null,
         'session_count' => null,
         'human_message_count' => null,
-        'tool_calling_count' => null
+        'tool_calling_count' => null,
+        'error_message_count' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => false,
         'session_count' => false,
         'human_message_count' => false,
-        'tool_calling_count' => false
+        'tool_calling_count' => false,
+        'error_message_count' => false
     ];
 
     /**
@@ -186,7 +189,8 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'negative',
         'session_count' => 'session_count',
         'human_message_count' => 'human_message_count',
-        'tool_calling_count' => 'tool_calling_count'
+        'tool_calling_count' => 'tool_calling_count',
+        'error_message_count' => 'error_message_count'
     ];
 
     /**
@@ -200,7 +204,8 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'setNegative',
         'session_count' => 'setSessionCount',
         'human_message_count' => 'setHumanMessageCount',
-        'tool_calling_count' => 'setToolCallingCount'
+        'tool_calling_count' => 'setToolCallingCount',
+        'error_message_count' => 'setErrorMessageCount'
     ];
 
     /**
@@ -214,7 +219,8 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'getNegative',
         'session_count' => 'getSessionCount',
         'human_message_count' => 'getHumanMessageCount',
-        'tool_calling_count' => 'getToolCallingCount'
+        'tool_calling_count' => 'getToolCallingCount',
+        'error_message_count' => 'getErrorMessageCount'
     ];
 
     /**
@@ -280,6 +286,7 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('session_count', $data ?? [], 0);
         $this->setIfExists('human_message_count', $data ?? [], 0);
         $this->setIfExists('tool_calling_count', $data ?? [], null);
+        $this->setIfExists('error_message_count', $data ?? [], 0);
     }
 
     /**
@@ -485,6 +492,33 @@ class PerDayFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable tool_calling_count cannot be null');
         }
         $this->container['tool_calling_count'] = $tool_calling_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message_count
+     *
+     * @return int|null
+     */
+    public function getErrorMessageCount()
+    {
+        return $this->container['error_message_count'];
+    }
+
+    /**
+     * Sets error_message_count
+     *
+     * @param int|null $error_message_count Count of error messages
+     *
+     * @return self
+     */
+    public function setErrorMessageCount($error_message_count)
+    {
+        if (is_null($error_message_count)) {
+            throw new \InvalidArgumentException('non-nullable error_message_count cannot be null');
+        }
+        $this->container['error_message_count'] = $error_message_count;
 
         return $this;
     }

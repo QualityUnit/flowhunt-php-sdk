@@ -72,6 +72,42 @@ class SchedulesApiTest extends TestCase
     }
 
     /**
+     * Test case for bulkDeleteSchedules
+     *
+     * Bulk Delete Schedules.
+     *
+     */
+    public function testBulkDeleteSchedules()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkRunSchedules
+     *
+     * Bulk Run Schedules.
+     *
+     */
+    public function testBulkRunSchedules()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkUpdateSchedules
+     *
+     * Bulk Update Schedules.
+     *
+     */
+    public function testBulkUpdateSchedules()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createSchedules
      *
      * Create Schedules.

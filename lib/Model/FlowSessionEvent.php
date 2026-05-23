@@ -65,7 +65,8 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'action_type' => '\FlowHunt\Model\FlowEventActionType',
         'credits' => 'float',
         'metadata' => '\FlowHunt\Model\Metadata',
-        'component_name' => 'string'
+        'component_name' => 'string',
+        'run_id' => 'string'
     ];
 
     /**
@@ -84,7 +85,8 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'action_type' => null,
         'credits' => null,
         'metadata' => null,
-        'component_name' => null
+        'component_name' => null,
+        'run_id' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'action_type' => false,
         'credits' => false,
         'metadata' => true,
-        'component_name' => true
+        'component_name' => true,
+        'run_id' => true
     ];
 
     /**
@@ -198,7 +201,8 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'action_type' => 'action_type',
         'credits' => 'credits',
         'metadata' => 'metadata',
-        'component_name' => 'component_name'
+        'component_name' => 'component_name',
+        'run_id' => 'run_id'
     ];
 
     /**
@@ -215,7 +219,8 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'action_type' => 'setActionType',
         'credits' => 'setCredits',
         'metadata' => 'setMetadata',
-        'component_name' => 'setComponentName'
+        'component_name' => 'setComponentName',
+        'run_id' => 'setRunId'
     ];
 
     /**
@@ -232,7 +237,8 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'action_type' => 'getActionType',
         'credits' => 'getCredits',
         'metadata' => 'getMetadata',
-        'component_name' => 'getComponentName'
+        'component_name' => 'getComponentName',
+        'run_id' => 'getRunId'
     ];
 
     /**
@@ -301,6 +307,7 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('credits', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('component_name', $data ?? [], null);
+        $this->setIfExists('run_id', $data ?? [], null);
     }
 
     /**
@@ -619,6 +626,40 @@ class FlowSessionEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['component_name'] = $component_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets run_id
+     *
+     * @return string|null
+     */
+    public function getRunId()
+    {
+        return $this->container['run_id'];
+    }
+
+    /**
+     * Sets run_id
+     *
+     * @param string|null $run_id run_id
+     *
+     * @return self
+     */
+    public function setRunId($run_id)
+    {
+        if (is_null($run_id)) {
+            array_push($this->openAPINullablesSetToNull, 'run_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('run_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['run_id'] = $run_id;
 
         return $this;
     }

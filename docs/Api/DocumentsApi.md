@@ -4,6 +4,11 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**bulkDeleteDocumentCategories()**](DocumentsApi.md#bulkDeleteDocumentCategories) | **POST** /v2/documents/categories/delete | Bulk Delete Document Categories |
+| [**bulkDeleteDocuments()**](DocumentsApi.md#bulkDeleteDocuments) | **POST** /v2/documents/delete | Bulk Delete Documents |
+| [**bulkDeleteFaqs()**](DocumentsApi.md#bulkDeleteFaqs) | **POST** /v2/documents/faqs/delete | Bulk Delete Faqs |
+| [**bulkUpdateDocuments()**](DocumentsApi.md#bulkUpdateDocuments) | **PUT** /v2/documents/update | Bulk Update Documents |
+| [**bulkUpdateFaqs()**](DocumentsApi.md#bulkUpdateFaqs) | **PUT** /v2/documents/faqs/update | Bulk Update Faqs |
 | [**createDocumentCategory()**](DocumentsApi.md#createDocumentCategory) | **POST** /v2/documents/categories/create | Create Document Category |
 | [**createFaq()**](DocumentsApi.md#createFaq) | **POST** /v2/documents/faqs/create | Create Faq |
 | [**deleteDocument()**](DocumentsApi.md#deleteDocument) | **DELETE** /v2/documents/{doc_id} | Delete Document |
@@ -21,6 +26,331 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**uploadFromUrlDocument()**](DocumentsApi.md#uploadFromUrlDocument) | **POST** /v2/documents/upload-from-url/{cat_id} | Upload From Url Document |
 | [**uploadMemoryDocument()**](DocumentsApi.md#uploadMemoryDocument) | **POST** /v2/documents/upload/{cat_id} | Upload Memory Document |
 
+
+## `bulkDeleteDocumentCategories()`
+
+```php
+bulkDeleteDocumentCategories($workspace_id, $document_category_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Document Categories
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$document_category_bulk_delete_request = new \FlowHunt\Model\DocumentCategoryBulkDeleteRequest(); // \FlowHunt\Model\DocumentCategoryBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteDocumentCategories($workspace_id, $document_category_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->bulkDeleteDocumentCategories: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **document_category_bulk_delete_request** | [**\FlowHunt\Model\DocumentCategoryBulkDeleteRequest**](../Model/DocumentCategoryBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkDeleteDocuments()`
+
+```php
+bulkDeleteDocuments($workspace_id, $document_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Documents
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$document_bulk_delete_request = new \FlowHunt\Model\DocumentBulkDeleteRequest(); // \FlowHunt\Model\DocumentBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteDocuments($workspace_id, $document_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->bulkDeleteDocuments: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **document_bulk_delete_request** | [**\FlowHunt\Model\DocumentBulkDeleteRequest**](../Model/DocumentBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkDeleteFaqs()`
+
+```php
+bulkDeleteFaqs($workspace_id, $faq_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Faqs
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$faq_bulk_delete_request = new \FlowHunt\Model\FaqBulkDeleteRequest(); // \FlowHunt\Model\FaqBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteFaqs($workspace_id, $faq_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->bulkDeleteFaqs: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **faq_bulk_delete_request** | [**\FlowHunt\Model\FaqBulkDeleteRequest**](../Model/FaqBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkUpdateDocuments()`
+
+```php
+bulkUpdateDocuments($workspace_id, $document_bulk_update_request): \FlowHunt\Model\Completed
+```
+
+Bulk Update Documents
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$document_bulk_update_request = new \FlowHunt\Model\DocumentBulkUpdateRequest(); // \FlowHunt\Model\DocumentBulkUpdateRequest
+
+try {
+    $result = $apiInstance->bulkUpdateDocuments($workspace_id, $document_bulk_update_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->bulkUpdateDocuments: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **document_bulk_update_request** | [**\FlowHunt\Model\DocumentBulkUpdateRequest**](../Model/DocumentBulkUpdateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkUpdateFaqs()`
+
+```php
+bulkUpdateFaqs($workspace_id, $faq_bulk_update_request): \FlowHunt\Model\Completed
+```
+
+Bulk Update Faqs
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$faq_bulk_update_request = new \FlowHunt\Model\FaqBulkUpdateRequest(); // \FlowHunt\Model\FaqBulkUpdateRequest
+
+try {
+    $result = $apiInstance->bulkUpdateFaqs($workspace_id, $faq_bulk_update_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->bulkUpdateFaqs: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **faq_bulk_update_request** | [**\FlowHunt\Model\FaqBulkUpdateRequest**](../Model/FaqBulkUpdateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createDocumentCategory()`
 

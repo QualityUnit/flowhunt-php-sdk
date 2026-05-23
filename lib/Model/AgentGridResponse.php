@@ -64,7 +64,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'string',
         'schema_fields' => '\FlowHunt\Model\AgentGridFieldResponse[]',
         'semantic_search_enabled' => 'bool',
-        'row_count' => 'int',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime'
     ];
@@ -83,7 +82,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => null,
         'schema_fields' => null,
         'semantic_search_enabled' => null,
-        'row_count' => null,
         'created_at' => 'date-time',
         'updated_at' => 'date-time'
     ];
@@ -100,7 +98,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => true,
         'schema_fields' => false,
         'semantic_search_enabled' => false,
-        'row_count' => false,
         'created_at' => false,
         'updated_at' => false
     ];
@@ -197,7 +194,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'description',
         'schema_fields' => 'schema_fields',
         'semantic_search_enabled' => 'semantic_search_enabled',
-        'row_count' => 'row_count',
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
@@ -214,7 +210,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'setDescription',
         'schema_fields' => 'setSchemaFields',
         'semantic_search_enabled' => 'setSemanticSearchEnabled',
-        'row_count' => 'setRowCount',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt'
     ];
@@ -231,7 +226,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'getDescription',
         'schema_fields' => 'getSchemaFields',
         'semantic_search_enabled' => 'getSemanticSearchEnabled',
-        'row_count' => 'getRowCount',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt'
     ];
@@ -299,7 +293,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('schema_fields', $data ?? [], null);
         $this->setIfExists('semantic_search_enabled', $data ?? [], null);
-        $this->setIfExists('row_count', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
@@ -345,9 +338,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
         if ($this->container['semantic_search_enabled'] === null) {
             $invalidProperties[] = "'semantic_search_enabled' can't be null";
-        }
-        if ($this->container['row_count'] === null) {
-            $invalidProperties[] = "'row_count' can't be null";
         }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
@@ -535,33 +525,6 @@ class AgentGridResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable semantic_search_enabled cannot be null');
         }
         $this->container['semantic_search_enabled'] = $semantic_search_enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets row_count
-     *
-     * @return int
-     */
-    public function getRowCount()
-    {
-        return $this->container['row_count'];
-    }
-
-    /**
-     * Sets row_count
-     *
-     * @param int $row_count Number of rows in the table
-     *
-     * @return self
-     */
-    public function setRowCount($row_count)
-    {
-        if (is_null($row_count)) {
-            throw new \InvalidArgumentException('non-nullable row_count cannot be null');
-        }
-        $this->container['row_count'] = $row_count;
 
         return $this;
     }

@@ -96,6 +96,18 @@ class PhotoAIApiTest extends TestCase
     }
 
     /**
+     * Test case for getModels
+     *
+     * Get Models.
+     *
+     */
+    public function testGetModels()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getStyles
      *
      * Get Styles.

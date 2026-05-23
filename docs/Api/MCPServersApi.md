@@ -4,6 +4,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**bulkDeleteMcpServers()**](MCPServersApi.md#bulkDeleteMcpServers) | **POST** /v2/mcp_servers/delete | Bulk Delete Mcp Servers |
 | [**createMcpServer()**](MCPServersApi.md#createMcpServer) | **POST** /v2/mcp_servers/create | Create Mcp Server |
 | [**deleteMcpServer()**](MCPServersApi.md#deleteMcpServer) | **DELETE** /v2/mcp_servers/{mcp_server_id} | Delete Mcp Server |
 | [**getAllMcpSubservers()**](MCPServersApi.md#getAllMcpSubservers) | **GET** /v2/mcp_servers/all | Get All Mcp Subservers |
@@ -11,6 +12,71 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**searchMcpServers()**](MCPServersApi.md#searchMcpServers) | **POST** /v2/mcp_servers/ | Search Mcp Servers |
 | [**updateMcpServer()**](MCPServersApi.md#updateMcpServer) | **PUT** /v2/mcp_servers/{mcp_server_id} | Update Mcp Server |
 
+
+## `bulkDeleteMcpServers()`
+
+```php
+bulkDeleteMcpServers($workspace_id, $mcp_server_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Mcp Servers
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\MCPServersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$mcp_server_bulk_delete_request = new \FlowHunt\Model\MCPServerBulkDeleteRequest(); // \FlowHunt\Model\MCPServerBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteMcpServers($workspace_id, $mcp_server_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MCPServersApi->bulkDeleteMcpServers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **mcp_server_bulk_delete_request** | [**\FlowHunt\Model\MCPServerBulkDeleteRequest**](../Model/MCPServerBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createMcpServer()`
 

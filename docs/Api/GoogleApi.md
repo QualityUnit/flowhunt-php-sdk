@@ -4,10 +4,71 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**getAllowedDirectories()**](GoogleApi.md#getAllowedDirectories) | **GET** /v2/integrations/google/allowed_directories | Get Allowed Directories |
 | [**getCalendars()**](GoogleApi.md#getCalendars) | **GET** /v2/integrations/google/calendar | Get Calendars |
+| [**getDriveFolders()**](GoogleApi.md#getDriveFolders) | **GET** /v2/integrations/google/drive_folders | Get Drive Folders |
 | [**getPickerToken()**](GoogleApi.md#getPickerToken) | **GET** /v2/integrations/google/picker_token | Get Picker Token |
 | [**getSheets()**](GoogleApi.md#getSheets) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets |
+| [**updateAllowedDirectories()**](GoogleApi.md#updateAllowedDirectories) | **PUT** /v2/integrations/google/allowed_directories | Update Allowed Directories |
 
+
+## `getAllowedDirectories()`
+
+```php
+getAllowedDirectories($workspace_id): \FlowHunt\Model\GoogleAllowedDirectoriesResponse
+```
+
+Get Allowed Directories
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\GoogleApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getAllowedDirectories($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GoogleApi->getAllowedDirectories: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleAllowedDirectoriesResponse**](../Model/GoogleAllowedDirectoriesResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `getCalendars()`
 
@@ -53,6 +114,64 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\GoogleCalendarsResponse**](../Model/GoogleCalendarsResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getDriveFolders()`
+
+```php
+getDriveFolders($workspace_id): \FlowHunt\Model\GoogleDriveFoldersResponse
+```
+
+Get Drive Folders
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\GoogleApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getDriveFolders($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GoogleApi->getDriveFolders: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleDriveFoldersResponse**](../Model/GoogleDriveFoldersResponse.md)
 
 ### Authorization
 
@@ -179,6 +298,66 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateAllowedDirectories()`
+
+```php
+updateAllowedDirectories($workspace_id, $google_allowed_directories_request): \FlowHunt\Model\GoogleAllowedDirectoriesResponse
+```
+
+Update Allowed Directories
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\GoogleApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$google_allowed_directories_request = new \FlowHunt\Model\GoogleAllowedDirectoriesRequest(); // \FlowHunt\Model\GoogleAllowedDirectoriesRequest
+
+try {
+    $result = $apiInstance->updateAllowedDirectories($workspace_id, $google_allowed_directories_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GoogleApi->updateAllowedDirectories: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **google_allowed_directories_request** | [**\FlowHunt\Model\GoogleAllowedDirectoriesRequest**](../Model/GoogleAllowedDirectoriesRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleAllowedDirectoriesResponse**](../Model/GoogleAllowedDirectoriesResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

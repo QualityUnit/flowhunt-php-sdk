@@ -60,7 +60,7 @@ class InferenceHistorySearchRequest implements ModelInterface, ArrayAccess, \Jso
         'from_date' => '\DateTime',
         'to_date' => '\DateTime',
         'limit' => 'int',
-        'search_after' => 'mixed[]',
+        'search_after' => '\FlowHunt\Model\InferenceHistorySearchRequestSearchAfterInner[]',
         'base_model' => '\FlowHunt\Model\BaseFoundationModel',
         'style' => 'string',
         'effect' => 'string',
@@ -323,6 +323,14 @@ class InferenceHistorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 1000)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 1)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -428,6 +436,14 @@ class InferenceHistorySearchRequest implements ModelInterface, ArrayAccess, \Jso
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling InferenceHistorySearchRequest., must be smaller than or equal to 1000.');
+        }
+        if (($limit < 1)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling InferenceHistorySearchRequest., must be bigger than or equal to 1.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -436,7 +452,7 @@ class InferenceHistorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets search_after
      *
-     * @return mixed[]|null
+     * @return \FlowHunt\Model\InferenceHistorySearchRequestSearchAfterInner[]|null
      */
     public function getSearchAfter()
     {
@@ -446,7 +462,7 @@ class InferenceHistorySearchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets search_after
      *
-     * @param mixed[]|null $search_after search_after
+     * @param \FlowHunt\Model\InferenceHistorySearchRequestSearchAfterInner[]|null $search_after search_after
      *
      * @return self
      */

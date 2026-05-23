@@ -4,6 +4,9 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**bulkDeleteSchedules()**](SchedulesApi.md#bulkDeleteSchedules) | **POST** /v2/schedules/delete | Bulk Delete Schedules |
+| [**bulkRunSchedules()**](SchedulesApi.md#bulkRunSchedules) | **POST** /v2/schedules/run | Bulk Run Schedules |
+| [**bulkUpdateSchedules()**](SchedulesApi.md#bulkUpdateSchedules) | **PUT** /v2/schedules/update | Bulk Update Schedules |
 | [**createSchedules()**](SchedulesApi.md#createSchedules) | **POST** /v2/schedules/create | Create Schedules |
 | [**deleteSchedule()**](SchedulesApi.md#deleteSchedule) | **DELETE** /v2/schedules/{schedule_id} | Delete Schedule |
 | [**deleteScheduleUrl()**](SchedulesApi.md#deleteScheduleUrl) | **DELETE** /v2/schedules/{schedule_id}/urls/{domain_id}/{url_id} | Delete Schedule Url |
@@ -14,6 +17,201 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**searchScheduleUrls()**](SchedulesApi.md#searchScheduleUrls) | **POST** /v2/schedules/urls/ | Search Schedule Urls |
 | [**updateSchedule()**](SchedulesApi.md#updateSchedule) | **PUT** /v2/schedules/{schedule_id} | Update Schedule |
 
+
+## `bulkDeleteSchedules()`
+
+```php
+bulkDeleteSchedules($workspace_id, $schedule_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Schedules
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\SchedulesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$schedule_bulk_delete_request = new \FlowHunt\Model\ScheduleBulkDeleteRequest(); // \FlowHunt\Model\ScheduleBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteSchedules($workspace_id, $schedule_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SchedulesApi->bulkDeleteSchedules: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **schedule_bulk_delete_request** | [**\FlowHunt\Model\ScheduleBulkDeleteRequest**](../Model/ScheduleBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkRunSchedules()`
+
+```php
+bulkRunSchedules($workspace_id, $schedule_bulk_run_request): \FlowHunt\Model\Completed
+```
+
+Bulk Run Schedules
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\SchedulesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$schedule_bulk_run_request = new \FlowHunt\Model\ScheduleBulkRunRequest(); // \FlowHunt\Model\ScheduleBulkRunRequest
+
+try {
+    $result = $apiInstance->bulkRunSchedules($workspace_id, $schedule_bulk_run_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SchedulesApi->bulkRunSchedules: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **schedule_bulk_run_request** | [**\FlowHunt\Model\ScheduleBulkRunRequest**](../Model/ScheduleBulkRunRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkUpdateSchedules()`
+
+```php
+bulkUpdateSchedules($workspace_id, $schedule_bulk_update_request): \FlowHunt\Model\Completed
+```
+
+Bulk Update Schedules
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\SchedulesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$schedule_bulk_update_request = new \FlowHunt\Model\ScheduleBulkUpdateRequest(); // \FlowHunt\Model\ScheduleBulkUpdateRequest
+
+try {
+    $result = $apiInstance->bulkUpdateSchedules($workspace_id, $schedule_bulk_update_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SchedulesApi->bulkUpdateSchedules: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **schedule_bulk_update_request** | [**\FlowHunt\Model\ScheduleBulkUpdateRequest**](../Model/ScheduleBulkUpdateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createSchedules()`
 

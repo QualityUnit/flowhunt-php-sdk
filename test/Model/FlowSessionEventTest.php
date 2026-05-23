@@ -159,4 +159,13 @@ class FlowSessionEventTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "run_id"
+     */
+    public function testPropertyRunId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

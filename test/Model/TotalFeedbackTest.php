@@ -123,4 +123,13 @@ class TotalFeedbackTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "avg_error_message"
+     */
+    public function testPropertyAvgErrorMessage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

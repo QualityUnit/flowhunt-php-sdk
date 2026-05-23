@@ -146,6 +146,12 @@ class FlowBatchApi
         'listBatchRuns_0' => [
             'application/json',
         ],
+        'searchBatchRun' => [
+            'application/json',
+        ],
+        'searchBatchRun_0' => [
+            'application/json',
+        ],
         'startExportZip' => [
             'application/json',
         ],
@@ -8564,6 +8570,708 @@ class FlowBatchApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchBatchRun
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id flow_id (required)
+     * @param  string $batch_run_id batch_run_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\FlowBatchRunDetailResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchBatchRun($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun'][0])
+    {
+        list($response) = $this->searchBatchRunWithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchBatchRunWithHttpInfo
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\FlowBatchRunDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchBatchRunWithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun'][0])
+    {
+        $request = $this->searchBatchRunRequest($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\FlowBatchRunDetailResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\FlowBatchRunDetailResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\FlowBatchRunDetailResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchBatchRunAsync
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchBatchRunAsync($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun'][0])
+    {
+        return $this->searchBatchRunAsyncWithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchBatchRunAsyncWithHttpInfo
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchBatchRunAsyncWithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun'][0])
+    {
+        $returnType = '\FlowHunt\Model\FlowBatchRunDetailResponse';
+        $request = $this->searchBatchRunRequest($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchBatchRun'
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchBatchRunRequest($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun'][0])
+    {
+
+        // verify the required parameter 'flow_id' is set
+        if ($flow_id === null || (is_array($flow_id) && count($flow_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_id when calling searchBatchRun'
+            );
+        }
+
+        // verify the required parameter 'batch_run_id' is set
+        if ($batch_run_id === null || (is_array($batch_run_id) && count($batch_run_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $batch_run_id when calling searchBatchRun'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling searchBatchRun'
+            );
+        }
+
+        // verify the required parameter 'flow_batch_search_request' is set
+        if ($flow_batch_search_request === null || (is_array($flow_batch_search_request) && count($flow_batch_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_batch_search_request when calling searchBatchRun'
+            );
+        }
+
+
+        $resourcePath = '/v2/flows/{flow_id}/batch/{batch_run_id}/search';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($flow_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'flow_id' . '}',
+                ObjectSerializer::toPathValue($flow_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($batch_run_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'batch_run_id' . '}',
+                ObjectSerializer::toPathValue($batch_run_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($flow_batch_search_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_batch_search_request));
+            } else {
+                $httpBody = $flow_batch_search_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation searchBatchRun_0
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id flow_id (required)
+     * @param  string $batch_run_id batch_run_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun_0'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\FlowBatchRunDetailResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function searchBatchRun_0($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun_0'][0])
+    {
+        list($response) = $this->searchBatchRun_0WithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation searchBatchRun_0WithHttpInfo
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun_0'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\FlowBatchRunDetailResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function searchBatchRun_0WithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun_0'][0])
+    {
+        $request = $this->searchBatchRun_0Request($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\FlowBatchRunDetailResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\FlowBatchRunDetailResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\FlowBatchRunDetailResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation searchBatchRun_0Async
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun_0'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchBatchRun_0Async($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun_0'][0])
+    {
+        return $this->searchBatchRun_0AsyncWithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchBatchRun_0AsyncWithHttpInfo
+     *
+     * Search Batch Run
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun_0'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchBatchRun_0AsyncWithHttpInfo($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun_0'][0])
+    {
+        $returnType = '\FlowHunt\Model\FlowBatchRunDetailResponse';
+        $request = $this->searchBatchRun_0Request($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'searchBatchRun_0'
+     *
+     * @param  string $flow_id (required)
+     * @param  string $batch_run_id (required)
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBatchSearchRequest $flow_batch_search_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchBatchRun_0'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function searchBatchRun_0Request($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request, string $contentType = self::contentTypes['searchBatchRun_0'][0])
+    {
+
+        // verify the required parameter 'flow_id' is set
+        if ($flow_id === null || (is_array($flow_id) && count($flow_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_id when calling searchBatchRun_0'
+            );
+        }
+
+        // verify the required parameter 'batch_run_id' is set
+        if ($batch_run_id === null || (is_array($batch_run_id) && count($batch_run_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $batch_run_id when calling searchBatchRun_0'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling searchBatchRun_0'
+            );
+        }
+
+        // verify the required parameter 'flow_batch_search_request' is set
+        if ($flow_batch_search_request === null || (is_array($flow_batch_search_request) && count($flow_batch_search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_batch_search_request when calling searchBatchRun_0'
+            );
+        }
+
+
+        $resourcePath = '/v2/flows/{flow_id}/batch/{batch_run_id}/search';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($flow_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'flow_id' . '}',
+                ObjectSerializer::toPathValue($flow_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($batch_run_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'batch_run_id' . '}',
+                ObjectSerializer::toPathValue($batch_run_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($flow_batch_search_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_batch_search_request));
+            } else {
+                $httpBody = $flow_batch_search_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

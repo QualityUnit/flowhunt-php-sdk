@@ -79,7 +79,7 @@ class ApiKeyUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'display_name' => false,
+        'display_name' => true,
         'valid_to' => true
     ];
 
@@ -281,9 +281,6 @@ class ApiKeyUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -302,7 +299,7 @@ class ApiKeyUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets display_name
      *
-     * @return string
+     * @return string|null
      */
     public function getDisplayName()
     {
@@ -312,14 +309,21 @@ class ApiKeyUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets display_name
      *
-     * @param string $display_name User defined name of the API key
+     * @param string|null $display_name display_name
      *
      * @return self
      */
     public function setDisplayName($display_name)
     {
         if (is_null($display_name)) {
-            throw new \InvalidArgumentException('non-nullable display_name cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'display_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('display_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['display_name'] = $display_name;
 

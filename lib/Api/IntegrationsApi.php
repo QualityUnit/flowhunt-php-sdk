@@ -110,6 +110,21 @@ class IntegrationsApi
         'getAllIntegrations' => [
             'application/json',
         ],
+        'getAllowedDirectories' => [
+            'application/json',
+        ],
+        'getAsanaProjectTasks' => [
+            'application/json',
+        ],
+        'getAsanaProjects' => [
+            'application/json',
+        ],
+        'getAsanaUsers' => [
+            'application/json',
+        ],
+        'getAsanaWorkspaces' => [
+            'application/json',
+        ],
         'getBranches' => [
             'application/json',
         ],
@@ -126,6 +141,9 @@ class IntegrationsApi
             'application/json',
         ],
         'getConfluenceSpaces' => [
+            'application/json',
+        ],
+        'getDriveFolders' => [
             'application/json',
         ],
         'getHubspotCustomChannelConnect' => [
@@ -150,6 +168,9 @@ class IntegrationsApi
             'application/json',
         ],
         'getPickerToken' => [
+            'application/json',
+        ],
+        'getPowerbiWorkspaces' => [
             'application/json',
         ],
         'getProfileInformation' => [
@@ -206,6 +227,9 @@ class IntegrationsApi
         'messagingWebhookHead' => [
             'application/json',
         ],
+        'resolveIntegrationGatewayToken' => [
+            'application/json',
+        ],
         'searchIntegrations' => [
             'application/json',
         ],
@@ -219,6 +243,9 @@ class IntegrationsApi
             'application/json',
         ],
         'updateAdminConsent' => [
+            'application/json',
+        ],
+        'updateAllowedDirectories' => [
             'application/json',
         ],
     ];
@@ -3657,6 +3684,1521 @@ class IntegrationsApi
     }
 
     /**
+     * Operation getAllowedDirectories
+     *
+     * Get Allowed Directories
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GoogleAllowedDirectoriesResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getAllowedDirectories($workspace_id, string $contentType = self::contentTypes['getAllowedDirectories'][0])
+    {
+        list($response) = $this->getAllowedDirectoriesWithHttpInfo($workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAllowedDirectoriesWithHttpInfo
+     *
+     * Get Allowed Directories
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GoogleAllowedDirectoriesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAllowedDirectoriesWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getAllowedDirectories'][0])
+    {
+        $request = $this->getAllowedDirectoriesRequest($workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\GoogleAllowedDirectoriesResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\GoogleAllowedDirectoriesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GoogleAllowedDirectoriesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAllowedDirectoriesAsync
+     *
+     * Get Allowed Directories
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllowedDirectoriesAsync($workspace_id, string $contentType = self::contentTypes['getAllowedDirectories'][0])
+    {
+        return $this->getAllowedDirectoriesAsyncWithHttpInfo($workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAllowedDirectoriesAsyncWithHttpInfo
+     *
+     * Get Allowed Directories
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllowedDirectoriesAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getAllowedDirectories'][0])
+    {
+        $returnType = '\FlowHunt\Model\GoogleAllowedDirectoriesResponse';
+        $request = $this->getAllowedDirectoriesRequest($workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAllowedDirectories'
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAllowedDirectoriesRequest($workspace_id, string $contentType = self::contentTypes['getAllowedDirectories'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getAllowedDirectories'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/google/allowed_directories';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAsanaProjectTasks
+     *
+     * Get Asana Project Tasks
+     *
+     * @param  string $integration_id integration_id (required)
+     * @param  string $project_gid project_gid (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjectTasks'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\AsanaTaskResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getAsanaProjectTasks($integration_id, $project_gid, $workspace_id, string $contentType = self::contentTypes['getAsanaProjectTasks'][0])
+    {
+        list($response) = $this->getAsanaProjectTasksWithHttpInfo($integration_id, $project_gid, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAsanaProjectTasksWithHttpInfo
+     *
+     * Get Asana Project Tasks
+     *
+     * @param  string $integration_id (required)
+     * @param  string $project_gid (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjectTasks'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\AsanaTaskResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAsanaProjectTasksWithHttpInfo($integration_id, $project_gid, $workspace_id, string $contentType = self::contentTypes['getAsanaProjectTasks'][0])
+    {
+        $request = $this->getAsanaProjectTasksRequest($integration_id, $project_gid, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\AsanaTaskResponse[]',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\AsanaTaskResponse[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\AsanaTaskResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAsanaProjectTasksAsync
+     *
+     * Get Asana Project Tasks
+     *
+     * @param  string $integration_id (required)
+     * @param  string $project_gid (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjectTasks'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaProjectTasksAsync($integration_id, $project_gid, $workspace_id, string $contentType = self::contentTypes['getAsanaProjectTasks'][0])
+    {
+        return $this->getAsanaProjectTasksAsyncWithHttpInfo($integration_id, $project_gid, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAsanaProjectTasksAsyncWithHttpInfo
+     *
+     * Get Asana Project Tasks
+     *
+     * @param  string $integration_id (required)
+     * @param  string $project_gid (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjectTasks'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaProjectTasksAsyncWithHttpInfo($integration_id, $project_gid, $workspace_id, string $contentType = self::contentTypes['getAsanaProjectTasks'][0])
+    {
+        $returnType = '\FlowHunt\Model\AsanaTaskResponse[]';
+        $request = $this->getAsanaProjectTasksRequest($integration_id, $project_gid, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAsanaProjectTasks'
+     *
+     * @param  string $integration_id (required)
+     * @param  string $project_gid (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjectTasks'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAsanaProjectTasksRequest($integration_id, $project_gid, $workspace_id, string $contentType = self::contentTypes['getAsanaProjectTasks'][0])
+    {
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling getAsanaProjectTasks'
+            );
+        }
+
+        // verify the required parameter 'project_gid' is set
+        if ($project_gid === null || (is_array($project_gid) && count($project_gid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $project_gid when calling getAsanaProjectTasks'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getAsanaProjectTasks'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/asana/{integration_id}/projects/{project_gid}/tasks';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($integration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($project_gid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'project_gid' . '}',
+                ObjectSerializer::toPathValue($project_gid),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAsanaProjects
+     *
+     * Get Asana Projects
+     *
+     * @param  string $integration_id integration_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjects'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\AsanaProjectResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getAsanaProjects($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaProjects'][0])
+    {
+        list($response) = $this->getAsanaProjectsWithHttpInfo($integration_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAsanaProjectsWithHttpInfo
+     *
+     * Get Asana Projects
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjects'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\AsanaProjectResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAsanaProjectsWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaProjects'][0])
+    {
+        $request = $this->getAsanaProjectsRequest($integration_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\AsanaProjectResponse[]',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\AsanaProjectResponse[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\AsanaProjectResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAsanaProjectsAsync
+     *
+     * Get Asana Projects
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjects'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaProjectsAsync($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaProjects'][0])
+    {
+        return $this->getAsanaProjectsAsyncWithHttpInfo($integration_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAsanaProjectsAsyncWithHttpInfo
+     *
+     * Get Asana Projects
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjects'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaProjectsAsyncWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaProjects'][0])
+    {
+        $returnType = '\FlowHunt\Model\AsanaProjectResponse[]';
+        $request = $this->getAsanaProjectsRequest($integration_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAsanaProjects'
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaProjects'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAsanaProjectsRequest($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaProjects'][0])
+    {
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling getAsanaProjects'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getAsanaProjects'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/asana/{integration_id}/projects';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($integration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAsanaUsers
+     *
+     * Get Asana Users
+     *
+     * @param  string $integration_id integration_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaUsers'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\AsanaUserResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getAsanaUsers($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaUsers'][0])
+    {
+        list($response) = $this->getAsanaUsersWithHttpInfo($integration_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAsanaUsersWithHttpInfo
+     *
+     * Get Asana Users
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaUsers'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\AsanaUserResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAsanaUsersWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaUsers'][0])
+    {
+        $request = $this->getAsanaUsersRequest($integration_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\AsanaUserResponse[]',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\AsanaUserResponse[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\AsanaUserResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAsanaUsersAsync
+     *
+     * Get Asana Users
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaUsers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaUsersAsync($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaUsers'][0])
+    {
+        return $this->getAsanaUsersAsyncWithHttpInfo($integration_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAsanaUsersAsyncWithHttpInfo
+     *
+     * Get Asana Users
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaUsers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaUsersAsyncWithHttpInfo($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaUsers'][0])
+    {
+        $returnType = '\FlowHunt\Model\AsanaUserResponse[]';
+        $request = $this->getAsanaUsersRequest($integration_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAsanaUsers'
+     *
+     * @param  string $integration_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaUsers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAsanaUsersRequest($integration_id, $workspace_id, string $contentType = self::contentTypes['getAsanaUsers'][0])
+    {
+
+        // verify the required parameter 'integration_id' is set
+        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $integration_id when calling getAsanaUsers'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getAsanaUsers'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/asana/{integration_id}/users';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($integration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'integration_id' . '}',
+                ObjectSerializer::toPathValue($integration_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAsanaWorkspaces
+     *
+     * Get Asana Workspaces
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\AsanaWorkspaceResponse[]|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getAsanaWorkspaces($workspace_id, string $contentType = self::contentTypes['getAsanaWorkspaces'][0])
+    {
+        list($response) = $this->getAsanaWorkspacesWithHttpInfo($workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAsanaWorkspacesWithHttpInfo
+     *
+     * Get Asana Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\AsanaWorkspaceResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAsanaWorkspacesWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getAsanaWorkspaces'][0])
+    {
+        $request = $this->getAsanaWorkspacesRequest($workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\AsanaWorkspaceResponse[]',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\AsanaWorkspaceResponse[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\AsanaWorkspaceResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAsanaWorkspacesAsync
+     *
+     * Get Asana Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaWorkspacesAsync($workspace_id, string $contentType = self::contentTypes['getAsanaWorkspaces'][0])
+    {
+        return $this->getAsanaWorkspacesAsyncWithHttpInfo($workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAsanaWorkspacesAsyncWithHttpInfo
+     *
+     * Get Asana Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsanaWorkspacesAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getAsanaWorkspaces'][0])
+    {
+        $returnType = '\FlowHunt\Model\AsanaWorkspaceResponse[]';
+        $request = $this->getAsanaWorkspacesRequest($workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAsanaWorkspaces'
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsanaWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAsanaWorkspacesRequest($workspace_id, string $contentType = self::contentTypes['getAsanaWorkspaces'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getAsanaWorkspaces'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/asana/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getBranches
      *
      * Get Branches
@@ -5363,6 +6905,293 @@ class IntegrationsApi
 
 
         $resourcePath = '/v2/integrations/atlassian/confluence/spaces';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getDriveFolders
+     *
+     * Get Drive Folders
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveFolders'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GoogleDriveFoldersResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getDriveFolders($workspace_id, string $contentType = self::contentTypes['getDriveFolders'][0])
+    {
+        list($response) = $this->getDriveFoldersWithHttpInfo($workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getDriveFoldersWithHttpInfo
+     *
+     * Get Drive Folders
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveFolders'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GoogleDriveFoldersResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getDriveFoldersWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getDriveFolders'][0])
+    {
+        $request = $this->getDriveFoldersRequest($workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\GoogleDriveFoldersResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\GoogleDriveFoldersResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GoogleDriveFoldersResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getDriveFoldersAsync
+     *
+     * Get Drive Folders
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveFolders'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getDriveFoldersAsync($workspace_id, string $contentType = self::contentTypes['getDriveFolders'][0])
+    {
+        return $this->getDriveFoldersAsyncWithHttpInfo($workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getDriveFoldersAsyncWithHttpInfo
+     *
+     * Get Drive Folders
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveFolders'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getDriveFoldersAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getDriveFolders'][0])
+    {
+        $returnType = '\FlowHunt\Model\GoogleDriveFoldersResponse';
+        $request = $this->getDriveFoldersRequest($workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getDriveFolders'
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDriveFolders'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getDriveFoldersRequest($workspace_id, string $contentType = self::contentTypes['getDriveFolders'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getDriveFolders'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/google/drive_folders';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -7797,6 +9626,293 @@ class IntegrationsApi
     }
 
     /**
+     * Operation getPowerbiWorkspaces
+     *
+     * Get Powerbi Workspaces
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPowerbiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\PowerBIWorkspacesResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function getPowerbiWorkspaces($workspace_id, string $contentType = self::contentTypes['getPowerbiWorkspaces'][0])
+    {
+        list($response) = $this->getPowerbiWorkspacesWithHttpInfo($workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPowerbiWorkspacesWithHttpInfo
+     *
+     * Get Powerbi Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPowerbiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\PowerBIWorkspacesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPowerbiWorkspacesWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getPowerbiWorkspaces'][0])
+    {
+        $request = $this->getPowerbiWorkspacesRequest($workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\PowerBIWorkspacesResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\PowerBIWorkspacesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\PowerBIWorkspacesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPowerbiWorkspacesAsync
+     *
+     * Get Powerbi Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPowerbiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPowerbiWorkspacesAsync($workspace_id, string $contentType = self::contentTypes['getPowerbiWorkspaces'][0])
+    {
+        return $this->getPowerbiWorkspacesAsyncWithHttpInfo($workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPowerbiWorkspacesAsyncWithHttpInfo
+     *
+     * Get Powerbi Workspaces
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPowerbiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPowerbiWorkspacesAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['getPowerbiWorkspaces'][0])
+    {
+        $returnType = '\FlowHunt\Model\PowerBIWorkspacesResponse';
+        $request = $this->getPowerbiWorkspacesRequest($workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPowerbiWorkspaces'
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPowerbiWorkspaces'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPowerbiWorkspacesRequest($workspace_id, string $contentType = self::contentTypes['getPowerbiWorkspaces'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling getPowerbiWorkspaces'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/powerbi/workspaces';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getProfileInformation
      *
      * Get Profile Information
@@ -9258,15 +11374,16 @@ class IntegrationsApi
      *
      * @param  string $slack_team_id slack_team_id (required)
      * @param  string $workspace_id workspace_id (required)
+     * @param  string|null $types types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\SlackChannelResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function getSlackChannels($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannels($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
-        list($response) = $this->getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, $contentType);
+        list($response) = $this->getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, $types, $contentType);
         return $response;
     }
 
@@ -9277,15 +11394,16 @@ class IntegrationsApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\SlackChannelResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
-        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $contentType);
+        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $types, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -9377,14 +11495,15 @@ class IntegrationsApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSlackChannelsAsync($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsAsync($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
-        return $this->getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, $contentType)
+        return $this->getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, $types, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -9399,15 +11518,16 @@ class IntegrationsApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
         $returnType = '\FlowHunt\Model\SlackChannelResponse[]';
-        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $contentType);
+        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $types, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -9450,12 +11570,13 @@ class IntegrationsApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSlackChannelsRequest($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsRequest($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
 
         // verify the required parameter 'slack_team_id' is set
@@ -9473,6 +11594,7 @@ class IntegrationsApi
         }
 
 
+
         $resourcePath = '/v2/integrations/slack/{slack_team_id}/channels';
         $formParams = [];
         $queryParams = [];
@@ -9488,6 +11610,15 @@ class IntegrationsApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $types,
+            'types', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
 
@@ -12981,6 +15112,288 @@ class IntegrationsApi
     }
 
     /**
+     * Operation resolveIntegrationGatewayToken
+     *
+     * Resolve an integration gateway token
+     *
+     * @param  string $token token (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resolveIntegrationGatewayToken'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\IntegrationGatewayResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function resolveIntegrationGatewayToken($token, string $contentType = self::contentTypes['resolveIntegrationGatewayToken'][0])
+    {
+        list($response) = $this->resolveIntegrationGatewayTokenWithHttpInfo($token, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation resolveIntegrationGatewayTokenWithHttpInfo
+     *
+     * Resolve an integration gateway token
+     *
+     * @param  string $token (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resolveIntegrationGatewayToken'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\IntegrationGatewayResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function resolveIntegrationGatewayTokenWithHttpInfo($token, string $contentType = self::contentTypes['resolveIntegrationGatewayToken'][0])
+    {
+        $request = $this->resolveIntegrationGatewayTokenRequest($token, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\IntegrationGatewayResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\IntegrationGatewayResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\IntegrationGatewayResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation resolveIntegrationGatewayTokenAsync
+     *
+     * Resolve an integration gateway token
+     *
+     * @param  string $token (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resolveIntegrationGatewayToken'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function resolveIntegrationGatewayTokenAsync($token, string $contentType = self::contentTypes['resolveIntegrationGatewayToken'][0])
+    {
+        return $this->resolveIntegrationGatewayTokenAsyncWithHttpInfo($token, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation resolveIntegrationGatewayTokenAsyncWithHttpInfo
+     *
+     * Resolve an integration gateway token
+     *
+     * @param  string $token (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resolveIntegrationGatewayToken'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function resolveIntegrationGatewayTokenAsyncWithHttpInfo($token, string $contentType = self::contentTypes['resolveIntegrationGatewayToken'][0])
+    {
+        $returnType = '\FlowHunt\Model\IntegrationGatewayResponse';
+        $request = $this->resolveIntegrationGatewayTokenRequest($token, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'resolveIntegrationGatewayToken'
+     *
+     * @param  string $token (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resolveIntegrationGatewayToken'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function resolveIntegrationGatewayTokenRequest($token, string $contentType = self::contentTypes['resolveIntegrationGatewayToken'][0])
+    {
+
+        // verify the required parameter 'token' is set
+        if ($token === null || (is_array($token) && count($token) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $token when calling resolveIntegrationGatewayToken'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/integrate/gateway/{token}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($token !== null) {
+            $resourcePath = str_replace(
+                '{' . 'token' . '}',
+                ObjectSerializer::toPathValue($token),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation searchIntegrations
      *
      * Search Integrations
@@ -14465,6 +16878,312 @@ class IntegrationsApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateAllowedDirectories
+     *
+     * Update Allowed Directories
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAllowedDirectoriesRequest $google_allowed_directories_request google_allowed_directories_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\GoogleAllowedDirectoriesResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function updateAllowedDirectories($workspace_id, $google_allowed_directories_request, string $contentType = self::contentTypes['updateAllowedDirectories'][0])
+    {
+        list($response) = $this->updateAllowedDirectoriesWithHttpInfo($workspace_id, $google_allowed_directories_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateAllowedDirectoriesWithHttpInfo
+     *
+     * Update Allowed Directories
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAllowedDirectoriesRequest $google_allowed_directories_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\GoogleAllowedDirectoriesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateAllowedDirectoriesWithHttpInfo($workspace_id, $google_allowed_directories_request, string $contentType = self::contentTypes['updateAllowedDirectories'][0])
+    {
+        $request = $this->updateAllowedDirectoriesRequest($workspace_id, $google_allowed_directories_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\GoogleAllowedDirectoriesResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\GoogleAllowedDirectoriesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\GoogleAllowedDirectoriesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateAllowedDirectoriesAsync
+     *
+     * Update Allowed Directories
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAllowedDirectoriesRequest $google_allowed_directories_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAllowedDirectoriesAsync($workspace_id, $google_allowed_directories_request, string $contentType = self::contentTypes['updateAllowedDirectories'][0])
+    {
+        return $this->updateAllowedDirectoriesAsyncWithHttpInfo($workspace_id, $google_allowed_directories_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateAllowedDirectoriesAsyncWithHttpInfo
+     *
+     * Update Allowed Directories
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAllowedDirectoriesRequest $google_allowed_directories_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAllowedDirectoriesAsyncWithHttpInfo($workspace_id, $google_allowed_directories_request, string $contentType = self::contentTypes['updateAllowedDirectories'][0])
+    {
+        $returnType = '\FlowHunt\Model\GoogleAllowedDirectoriesResponse';
+        $request = $this->updateAllowedDirectoriesRequest($workspace_id, $google_allowed_directories_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateAllowedDirectories'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\GoogleAllowedDirectoriesRequest $google_allowed_directories_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAllowedDirectories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateAllowedDirectoriesRequest($workspace_id, $google_allowed_directories_request, string $contentType = self::contentTypes['updateAllowedDirectories'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling updateAllowedDirectories'
+            );
+        }
+
+        // verify the required parameter 'google_allowed_directories_request' is set
+        if ($google_allowed_directories_request === null || (is_array($google_allowed_directories_request) && count($google_allowed_directories_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $google_allowed_directories_request when calling updateAllowedDirectories'
+            );
+        }
+
+
+        $resourcePath = '/v2/integrations/google/allowed_directories';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($google_allowed_directories_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($google_allowed_directories_request));
+            } else {
+                $httpBody = $google_allowed_directories_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

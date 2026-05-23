@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **query** | **string** |  | [optional]
-**filters** | **array<string,mixed>** |  | [optional]
+**filters** | [**array<string,\FlowHunt\Model\AgentGridSearchRequestFiltersValue>**](AgentGridSearchRequestFiltersValue.md) |  | [optional]
 **limit** | **int** | Maximum number of rows to return | [optional] [default to 50]
 **offset** | **int** | Number of rows to skip | [optional] [default to 0]
 

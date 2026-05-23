@@ -123,4 +123,13 @@ class WorkspaceRoleTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "can_white_label"
+     */
+    public function testPropertyCanWhiteLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

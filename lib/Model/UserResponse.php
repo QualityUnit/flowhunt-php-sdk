@@ -65,7 +65,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_workspace_id' => 'string',
         'product_plans' => 'array<string,\FlowHunt\Model\SubscriptionPlan>',
         'billing_provider' => '\FlowHunt\Model\BillingProvider',
-        'sudoer' => 'bool'
+        'sudoer' => 'bool',
+        'onboarding' => '\FlowHunt\Model\OnboardingStateResponse'
     ];
 
     /**
@@ -84,7 +85,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_workspace_id' => 'uuid',
         'product_plans' => null,
         'billing_provider' => null,
-        'sudoer' => null
+        'sudoer' => null,
+        'onboarding' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_workspace_id' => true,
         'product_plans' => true,
         'billing_provider' => true,
-        'sudoer' => false
+        'sudoer' => false,
+        'onboarding' => true
     ];
 
     /**
@@ -198,7 +201,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_workspace_id' => 'api_key_workspace_id',
         'product_plans' => 'product_plans',
         'billing_provider' => 'billing_provider',
-        'sudoer' => 'sudoer'
+        'sudoer' => 'sudoer',
+        'onboarding' => 'onboarding'
     ];
 
     /**
@@ -215,7 +219,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_workspace_id' => 'setApiKeyWorkspaceId',
         'product_plans' => 'setProductPlans',
         'billing_provider' => 'setBillingProvider',
-        'sudoer' => 'setSudoer'
+        'sudoer' => 'setSudoer',
+        'onboarding' => 'setOnboarding'
     ];
 
     /**
@@ -232,7 +237,8 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'api_key_workspace_id' => 'getApiKeyWorkspaceId',
         'product_plans' => 'getProductPlans',
         'billing_provider' => 'getBillingProvider',
-        'sudoer' => 'getSudoer'
+        'sudoer' => 'getSudoer',
+        'onboarding' => 'getOnboarding'
     ];
 
     /**
@@ -301,6 +307,7 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('product_plans', $data ?? [], null);
         $this->setIfExists('billing_provider', $data ?? [], null);
         $this->setIfExists('sudoer', $data ?? [], false);
+        $this->setIfExists('onboarding', $data ?? [], null);
     }
 
     /**
@@ -628,6 +635,40 @@ class UserResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable sudoer cannot be null');
         }
         $this->container['sudoer'] = $sudoer;
+
+        return $this;
+    }
+
+    /**
+     * Gets onboarding
+     *
+     * @return \FlowHunt\Model\OnboardingStateResponse|null
+     */
+    public function getOnboarding()
+    {
+        return $this->container['onboarding'];
+    }
+
+    /**
+     * Sets onboarding
+     *
+     * @param \FlowHunt\Model\OnboardingStateResponse|null $onboarding onboarding
+     *
+     * @return self
+     */
+    public function setOnboarding($onboarding)
+    {
+        if (is_null($onboarding)) {
+            array_push($this->openAPINullablesSetToNull, 'onboarding');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('onboarding', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['onboarding'] = $onboarding;
 
         return $this;
     }

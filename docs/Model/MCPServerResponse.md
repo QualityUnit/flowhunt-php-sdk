@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** | Creation timestamp |
 **updated_at** | **\DateTime** | Last update timestamp |
 **remote_mcp_url** | **string** |  | [optional]
+**mcp_api_key** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -4,10 +4,75 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**deleteBranding()**](DefaultApi.md#deleteBranding) | **DELETE** /v2/settings/branding | Delete Branding |
 | [**getBranding()**](DefaultApi.md#getBranding) | **GET** /v2/settings/branding | Get Branding |
 | [**getPublicBranding()**](DefaultApi.md#getPublicBranding) | **GET** /v2/settings/branding/public | Get Public Branding |
 | [**updateBranding()**](DefaultApi.md#updateBranding) | **PUT** /v2/settings/branding | Update Branding |
 
+
+## `deleteBranding()`
+
+```php
+deleteBranding($workspace_id)
+```
+
+Delete Branding
+
+Delete all white-label branding settings for the workspace.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $apiInstance->deleteBranding($workspace_id);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->deleteBranding: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `getBranding()`
 
@@ -77,12 +142,12 @@ try {
 ## `getPublicBranding()`
 
 ```php
-getPublicBranding($slug): \FlowHunt\Model\BrandingResponse
+getPublicBranding($domain): \FlowHunt\Model\BrandingResponse
 ```
 
 Get Public Branding
 
-Get branding by slug (public, no auth required).
+Get branding by custom domain (public, no auth required).
 
 ### Example
 
@@ -97,10 +162,10 @@ $apiInstance = new FlowHunt\Api\DefaultApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$slug = 'slug_example'; // string
+$domain = 'domain_example'; // string
 
 try {
-    $result = $apiInstance->getPublicBranding($slug);
+    $result = $apiInstance->getPublicBranding($domain);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getPublicBranding: ', $e->getMessage(), PHP_EOL;
@@ -111,7 +176,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **slug** | **string**|  | |
+| **domain** | **string**|  | |
 
 ### Return type
 

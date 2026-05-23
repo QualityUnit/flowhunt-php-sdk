@@ -60,7 +60,8 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'name' => 'string',
         'field_type' => '\FlowHunt\Model\AgentGridFieldType',
-        'required' => 'bool'
+        'required' => 'bool',
+        'unique' => 'bool'
     ];
 
     /**
@@ -73,7 +74,8 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPIFormats = [
         'name' => null,
         'field_type' => null,
-        'required' => null
+        'required' => null,
+        'unique' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static array $openAPINullables = [
         'name' => false,
         'field_type' => false,
-        'required' => false
+        'required' => false,
+        'unique' => false
     ];
 
     /**
@@ -175,7 +178,8 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $attributeMap = [
         'name' => 'name',
         'field_type' => 'field_type',
-        'required' => 'required'
+        'required' => 'required',
+        'unique' => 'unique'
     ];
 
     /**
@@ -186,7 +190,8 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $setters = [
         'name' => 'setName',
         'field_type' => 'setFieldType',
-        'required' => 'setRequired'
+        'required' => 'setRequired',
+        'unique' => 'setUnique'
     ];
 
     /**
@@ -197,7 +202,8 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $getters = [
         'name' => 'getName',
         'field_type' => 'getFieldType',
-        'required' => 'getRequired'
+        'required' => 'getRequired',
+        'unique' => 'getUnique'
     ];
 
     /**
@@ -260,6 +266,7 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('field_type', $data ?? [], null);
         $this->setIfExists('required', $data ?? [], false);
+        $this->setIfExists('unique', $data ?? [], false);
     }
 
     /**
@@ -402,6 +409,33 @@ class AgentGridFieldRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable required cannot be null');
         }
         $this->container['required'] = $required;
+
+        return $this;
+    }
+
+    /**
+     * Gets unique
+     *
+     * @return bool|null
+     */
+    public function getUnique()
+    {
+        return $this->container['unique'];
+    }
+
+    /**
+     * Sets unique
+     *
+     * @param bool|null $unique Whether the field is part of the unique-key set. Rows with the same composite values across all unique fields upsert in place instead of duplicating. Unique fields must also be required and cannot be of type boolean.
+     *
+     * @return self
+     */
+    public function setUnique($unique)
+    {
+        if (is_null($unique)) {
+            throw new \InvalidArgumentException('non-nullable unique cannot be null');
+        }
+        $this->container['unique'] = $unique;
 
         return $this;
     }

@@ -13,6 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**searchWorkspaceUsers()**](WorkspacesApi.md#searchWorkspaceUsers) | **POST** /v2/workspaces/{workspace_id}/users | Search Workspace Users |
 | [**transferWorkspaceOwnership()**](WorkspacesApi.md#transferWorkspaceOwnership) | **POST** /v2/workspaces/{workspace_id}/transfer-ownership/{new_owner_user_id} | Transfer Workspace Ownership |
 | [**updateWorkspace()**](WorkspacesApi.md#updateWorkspace) | **PUT** /v2/workspaces/{workspace_id} | Update Workspace |
+| [**updateWorkspaceAutoRecharge()**](WorkspacesApi.md#updateWorkspaceAutoRecharge) | **PUT** /v2/workspaces/{workspace_id}/auto-recharge | Update Workspace Auto Recharge |
 | [**updateWorkspaceCreditAlertThreshold()**](WorkspacesApi.md#updateWorkspaceCreditAlertThreshold) | **PUT** /v2/workspaces/{workspace_id}/credit-alert-threshold | Update Workspace Credit Alert Threshold |
 | [**updateWorkspaceCreditLimit()**](WorkspacesApi.md#updateWorkspaceCreditLimit) | **PUT** /v2/workspaces/{workspace_id}/credit-limit | Update Workspace Credit Limit |
 | [**updateWorkspaceUser()**](WorkspacesApi.md#updateWorkspaceUser) | **PUT** /v2/workspaces/{workspace_id}/{user_id} | Update Workspace User |
@@ -583,6 +584,73 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateWorkspaceAutoRecharge()`
+
+```php
+updateWorkspaceAutoRecharge($workspace_id, $workspace_auto_recharge_request): \FlowHunt\Model\WorkspaceResponse
+```
+
+Update Workspace Auto Recharge
+
+Update the auto-recharge settings for a workspace.  When enabled, the workspace is automatically topped up with ``amount`` credits whenever the available balance drops below ``threshold``. Requires a paid subscription plan with a payment method on file. Only workspace owners and admins can update this setting.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\WorkspacesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$workspace_auto_recharge_request = new \FlowHunt\Model\WorkspaceAutoRechargeRequest(); // \FlowHunt\Model\WorkspaceAutoRechargeRequest
+
+try {
+    $result = $apiInstance->updateWorkspaceAutoRecharge($workspace_id, $workspace_auto_recharge_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling WorkspacesApi->updateWorkspaceAutoRecharge: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **workspace_auto_recharge_request** | [**\FlowHunt\Model\WorkspaceAutoRechargeRequest**](../Model/WorkspaceAutoRechargeRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\WorkspaceResponse**](../Model/WorkspaceResponse.md)
 
 ### Authorization
 

@@ -85,6 +85,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'remove_branding' => 'bool',
         'chatbot_style' => 'string',
         'session_message_history' => 'bool',
+        'show_embed_close_button' => 'bool',
         'chatbot_bubble_size' => 'int',
         'message_header_logo_url' => 'string',
         'popup_messages' => 'string[]',
@@ -129,6 +130,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'remove_branding' => null,
         'chatbot_style' => null,
         'session_message_history' => null,
+        'show_embed_close_button' => null,
         'chatbot_bubble_size' => null,
         'message_header_logo_url' => null,
         'popup_messages' => null,
@@ -171,6 +173,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'remove_branding' => true,
         'chatbot_style' => true,
         'session_message_history' => true,
+        'show_embed_close_button' => true,
         'chatbot_bubble_size' => true,
         'message_header_logo_url' => true,
         'popup_messages' => true,
@@ -293,6 +296,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'remove_branding' => 'remove_branding',
         'chatbot_style' => 'chatbot_style',
         'session_message_history' => 'session_message_history',
+        'show_embed_close_button' => 'show_embed_close_button',
         'chatbot_bubble_size' => 'chatbot_bubble_size',
         'message_header_logo_url' => 'message_header_logo_url',
         'popup_messages' => 'popup_messages',
@@ -335,6 +339,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'remove_branding' => 'setRemoveBranding',
         'chatbot_style' => 'setChatbotStyle',
         'session_message_history' => 'setSessionMessageHistory',
+        'show_embed_close_button' => 'setShowEmbedCloseButton',
         'chatbot_bubble_size' => 'setChatbotBubbleSize',
         'message_header_logo_url' => 'setMessageHeaderLogoUrl',
         'popup_messages' => 'setPopupMessages',
@@ -377,6 +382,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'remove_branding' => 'getRemoveBranding',
         'chatbot_style' => 'getChatbotStyle',
         'session_message_history' => 'getSessionMessageHistory',
+        'show_embed_close_button' => 'getShowEmbedCloseButton',
         'chatbot_bubble_size' => 'getChatbotBubbleSize',
         'message_header_logo_url' => 'getMessageHeaderLogoUrl',
         'popup_messages' => 'getPopupMessages',
@@ -470,6 +476,7 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('remove_branding', $data ?? [], null);
         $this->setIfExists('chatbot_style', $data ?? [], null);
         $this->setIfExists('session_message_history', $data ?? [], null);
+        $this->setIfExists('show_embed_close_button', $data ?? [], null);
         $this->setIfExists('chatbot_bubble_size', $data ?? [], null);
         $this->setIfExists('message_header_logo_url', $data ?? [], null);
         $this->setIfExists('popup_messages', $data ?? [], null);
@@ -1577,6 +1584,40 @@ class ChatbotCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['session_message_history'] = $session_message_history;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_embed_close_button
+     *
+     * @return bool|null
+     */
+    public function getShowEmbedCloseButton()
+    {
+        return $this->container['show_embed_close_button'];
+    }
+
+    /**
+     * Sets show_embed_close_button
+     *
+     * @param bool|null $show_embed_close_button show_embed_close_button
+     *
+     * @return self
+     */
+    public function setShowEmbedCloseButton($show_embed_close_button)
+    {
+        if (is_null($show_embed_close_button)) {
+            array_push($this->openAPINullablesSetToNull, 'show_embed_close_button');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('show_embed_close_button', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['show_embed_close_button'] = $show_embed_close_button;
 
         return $this;
     }

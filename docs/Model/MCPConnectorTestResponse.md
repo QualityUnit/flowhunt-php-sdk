@@ -1,0 +1,11 @@
+# # MCPConnectorTestResponse
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**success** | **bool** |  |
+**error** | **string** |  | [optional]
+**tools** | [**\FlowHunt\Model\MCPConnectorTestTool[]**](MCPConnectorTestTool.md) |  | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

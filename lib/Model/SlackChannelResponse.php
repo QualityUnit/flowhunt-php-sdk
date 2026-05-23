@@ -58,7 +58,9 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'channel_id' => 'string',
-        'channel_name' => 'string'
+        'channel_name' => 'string',
+        'channel_type' => 'string',
+        'is_private' => 'bool'
     ];
 
     /**
@@ -70,7 +72,9 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'channel_id' => null,
-        'channel_name' => null
+        'channel_name' => null,
+        'channel_type' => null,
+        'is_private' => null
     ];
 
     /**
@@ -80,7 +84,9 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'channel_id' => false,
-        'channel_name' => false
+        'channel_name' => false,
+        'channel_type' => false,
+        'is_private' => false
     ];
 
     /**
@@ -170,7 +176,9 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'channel_id' => 'channel_id',
-        'channel_name' => 'channel_name'
+        'channel_name' => 'channel_name',
+        'channel_type' => 'channel_type',
+        'is_private' => 'is_private'
     ];
 
     /**
@@ -180,7 +188,9 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'channel_id' => 'setChannelId',
-        'channel_name' => 'setChannelName'
+        'channel_name' => 'setChannelName',
+        'channel_type' => 'setChannelType',
+        'is_private' => 'setIsPrivate'
     ];
 
     /**
@@ -190,7 +200,9 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'channel_id' => 'getChannelId',
-        'channel_name' => 'getChannelName'
+        'channel_name' => 'getChannelName',
+        'channel_type' => 'getChannelType',
+        'is_private' => 'getIsPrivate'
     ];
 
     /**
@@ -252,6 +264,8 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->setIfExists('channel_id', $data ?? [], null);
         $this->setIfExists('channel_name', $data ?? [], null);
+        $this->setIfExists('channel_type', $data ?? [], null);
+        $this->setIfExists('is_private', $data ?? [], null);
     }
 
     /**
@@ -286,6 +300,12 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         }
         if ($this->container['channel_name'] === null) {
             $invalidProperties[] = "'channel_name' can't be null";
+        }
+        if ($this->container['channel_type'] === null) {
+            $invalidProperties[] = "'channel_type' can't be null";
+        }
+        if ($this->container['is_private'] === null) {
+            $invalidProperties[] = "'is_private' can't be null";
         }
         return $invalidProperties;
     }
@@ -352,6 +372,60 @@ class SlackChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable channel_name cannot be null');
         }
         $this->container['channel_name'] = $channel_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets channel_type
+     *
+     * @return string
+     */
+    public function getChannelType()
+    {
+        return $this->container['channel_type'];
+    }
+
+    /**
+     * Sets channel_type
+     *
+     * @param string $channel_type channel_type
+     *
+     * @return self
+     */
+    public function setChannelType($channel_type)
+    {
+        if (is_null($channel_type)) {
+            throw new \InvalidArgumentException('non-nullable channel_type cannot be null');
+        }
+        $this->container['channel_type'] = $channel_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_private
+     *
+     * @return bool
+     */
+    public function getIsPrivate()
+    {
+        return $this->container['is_private'];
+    }
+
+    /**
+     * Sets is_private
+     *
+     * @param bool $is_private is_private
+     *
+     * @return self
+     */
+    public function setIsPrivate($is_private)
+    {
+        if (is_null($is_private)) {
+            throw new \InvalidArgumentException('non-nullable is_private cannot be null');
+        }
+        $this->container['is_private'] = $is_private;
 
         return $this;
     }

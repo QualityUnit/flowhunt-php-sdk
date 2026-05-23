@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **remove_branding** | **bool** |  | [optional]
 **chatbot_style** | **string** |  | [optional]
 **session_message_history** | **bool** |  | [optional]
+**show_embed_close_button** | **bool** |  | [optional]
 **chatbot_bubble_size** | **int** |  | [optional]
 **message_header_logo_url** | **string** |  | [optional]
 **popup_messages** | **string[]** |  | [optional]

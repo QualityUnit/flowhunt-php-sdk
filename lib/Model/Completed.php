@@ -57,7 +57,8 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'status' => 'string'
+        'status' => 'string',
+        'failed' => 'string[]'
     ];
 
     /**
@@ -68,7 +69,8 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'status' => null
+        'status' => null,
+        'failed' => null
     ];
 
     /**
@@ -77,7 +79,8 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'status' => false
+        'status' => false,
+        'failed' => false
     ];
 
     /**
@@ -166,7 +169,8 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status'
+        'status' => 'status',
+        'failed' => 'failed'
     ];
 
     /**
@@ -175,7 +179,8 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'failed' => 'setFailed'
     ];
 
     /**
@@ -184,7 +189,8 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'failed' => 'getFailed'
     ];
 
     /**
@@ -245,6 +251,7 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('failed', $data ?? [], null);
     }
 
     /**
@@ -315,6 +322,33 @@ class Completed implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets failed
+     *
+     * @return string[]|null
+     */
+    public function getFailed()
+    {
+        return $this->container['failed'];
+    }
+
+    /**
+     * Sets failed
+     *
+     * @param string[]|null $failed IDs of items that failed to process in bulk operations
+     *
+     * @return self
+     */
+    public function setFailed($failed)
+    {
+        if (is_null($failed)) {
+            throw new \InvalidArgumentException('non-nullable failed cannot be null');
+        }
+        $this->container['failed'] = $failed;
 
         return $this;
     }

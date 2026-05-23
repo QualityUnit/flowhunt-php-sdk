@@ -96,6 +96,18 @@ class V3ApiTest extends TestCase
     }
 
     /**
+     * Test case for fireSessionClosed
+     *
+     * Fire Session Closed.
+     *
+     */
+    public function testFireSessionClosed()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getAllComponentsV3
      *
      * Get All Components V3.

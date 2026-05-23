@@ -74,6 +74,9 @@ class DefaultApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'deleteBranding' => [
+            'application/json',
+        ],
         'getBranding' => [
             'application/json',
         ],
@@ -129,6 +132,242 @@ class DefaultApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation deleteBranding
+     *
+     * Delete Branding
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBranding'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteBranding($workspace_id, string $contentType = self::contentTypes['deleteBranding'][0])
+    {
+        $this->deleteBrandingWithHttpInfo($workspace_id, $contentType);
+    }
+
+    /**
+     * Operation deleteBrandingWithHttpInfo
+     *
+     * Delete Branding
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBranding'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteBrandingWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteBranding'][0])
+    {
+        $request = $this->deleteBrandingRequest($workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            return [null, $statusCode, $response->getHeaders()];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteBrandingAsync
+     *
+     * Delete Branding
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBranding'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBrandingAsync($workspace_id, string $contentType = self::contentTypes['deleteBranding'][0])
+    {
+        return $this->deleteBrandingAsyncWithHttpInfo($workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteBrandingAsyncWithHttpInfo
+     *
+     * Delete Branding
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBranding'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBrandingAsyncWithHttpInfo($workspace_id, string $contentType = self::contentTypes['deleteBranding'][0])
+    {
+        $returnType = '';
+        $request = $this->deleteBrandingRequest($workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteBranding'
+     *
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBranding'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteBrandingRequest($workspace_id, string $contentType = self::contentTypes['deleteBranding'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling deleteBranding'
+            );
+        }
+
+
+        $resourcePath = '/v2/settings/branding';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**
@@ -428,16 +667,16 @@ class DefaultApi
      *
      * Get Public Branding
      *
-     * @param  string $slug slug (required)
+     * @param  string $domain domain (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicBranding'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\BrandingResponse|\FlowHunt\Model\HTTPValidationError
      */
-    public function getPublicBranding($slug, string $contentType = self::contentTypes['getPublicBranding'][0])
+    public function getPublicBranding($domain, string $contentType = self::contentTypes['getPublicBranding'][0])
     {
-        list($response) = $this->getPublicBrandingWithHttpInfo($slug, $contentType);
+        list($response) = $this->getPublicBrandingWithHttpInfo($domain, $contentType);
         return $response;
     }
 
@@ -446,16 +685,16 @@ class DefaultApi
      *
      * Get Public Branding
      *
-     * @param  string $slug (required)
+     * @param  string $domain (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicBranding'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\BrandingResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPublicBrandingWithHttpInfo($slug, string $contentType = self::contentTypes['getPublicBranding'][0])
+    public function getPublicBrandingWithHttpInfo($domain, string $contentType = self::contentTypes['getPublicBranding'][0])
     {
-        $request = $this->getPublicBrandingRequest($slug, $contentType);
+        $request = $this->getPublicBrandingRequest($domain, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -545,15 +784,15 @@ class DefaultApi
      *
      * Get Public Branding
      *
-     * @param  string $slug (required)
+     * @param  string $domain (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicBranding'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPublicBrandingAsync($slug, string $contentType = self::contentTypes['getPublicBranding'][0])
+    public function getPublicBrandingAsync($domain, string $contentType = self::contentTypes['getPublicBranding'][0])
     {
-        return $this->getPublicBrandingAsyncWithHttpInfo($slug, $contentType)
+        return $this->getPublicBrandingAsyncWithHttpInfo($domain, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -566,16 +805,16 @@ class DefaultApi
      *
      * Get Public Branding
      *
-     * @param  string $slug (required)
+     * @param  string $domain (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicBranding'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPublicBrandingAsyncWithHttpInfo($slug, string $contentType = self::contentTypes['getPublicBranding'][0])
+    public function getPublicBrandingAsyncWithHttpInfo($domain, string $contentType = self::contentTypes['getPublicBranding'][0])
     {
         $returnType = '\FlowHunt\Model\BrandingResponse';
-        $request = $this->getPublicBrandingRequest($slug, $contentType);
+        $request = $this->getPublicBrandingRequest($domain, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -616,22 +855,25 @@ class DefaultApi
     /**
      * Create request for operation 'getPublicBranding'
      *
-     * @param  string $slug (required)
+     * @param  string $domain (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicBranding'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPublicBrandingRequest($slug, string $contentType = self::contentTypes['getPublicBranding'][0])
+    public function getPublicBrandingRequest($domain, string $contentType = self::contentTypes['getPublicBranding'][0])
     {
 
-        // verify the required parameter 'slug' is set
-        if ($slug === null || (is_array($slug) && count($slug) === 0)) {
+        // verify the required parameter 'domain' is set
+        if ($domain === null || (is_array($domain) && count($domain) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $slug when calling getPublicBranding'
+                'Missing the required parameter $domain when calling getPublicBranding'
             );
         }
-
+        if (strlen($domain) > 253) {
+            throw new \InvalidArgumentException('invalid length for "$domain" when calling DefaultApi.getPublicBranding, must be smaller than or equal to 253.');
+        }
+        
 
         $resourcePath = '/v2/settings/branding/public';
         $formParams = [];
@@ -642,8 +884,8 @@ class DefaultApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $slug,
-            'slug', // param base name
+            $domain,
+            'domain', // param base name
             'string', // openApiType
             'form', // style
             true, // explode

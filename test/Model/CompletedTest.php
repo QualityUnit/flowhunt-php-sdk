@@ -87,4 +87,13 @@ class CompletedTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "failed"
+     */
+    public function testPropertyFailed()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

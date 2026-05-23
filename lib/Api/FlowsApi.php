@@ -74,6 +74,12 @@ class FlowsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'bulkDeleteFlows' => [
+            'application/json',
+        ],
+        'bulkUpdateFlows' => [
+            'application/json',
+        ],
         'cancelFlowSession' => [
             'application/json',
         ],
@@ -111,6 +117,9 @@ class FlowsApi
             'application/json',
         ],
         'executeFlowCron' => [
+            'application/json',
+        ],
+        'fireChatHook' => [
             'application/json',
         ],
         'generateCommitMessage' => [
@@ -182,6 +191,9 @@ class FlowsApi
         'updateFlowCron' => [
             'application/json',
         ],
+        'updateSessionVariables' => [
+            'application/json',
+        ],
         'uploadAttachments' => [
             'multipart/form-data',
         ],
@@ -231,6 +243,628 @@ class FlowsApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation bulkDeleteFlows
+     *
+     * Bulk Delete Flows
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkDeleteRequest $flow_bulk_delete_request flow_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteFlows'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function bulkDeleteFlows($workspace_id, $flow_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteFlows'][0])
+    {
+        list($response) = $this->bulkDeleteFlowsWithHttpInfo($workspace_id, $flow_bulk_delete_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation bulkDeleteFlowsWithHttpInfo
+     *
+     * Bulk Delete Flows
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkDeleteRequest $flow_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteFlows'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function bulkDeleteFlowsWithHttpInfo($workspace_id, $flow_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteFlows'][0])
+    {
+        $request = $this->bulkDeleteFlowsRequest($workspace_id, $flow_bulk_delete_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\Completed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\Completed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation bulkDeleteFlowsAsync
+     *
+     * Bulk Delete Flows
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkDeleteRequest $flow_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteFlows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkDeleteFlowsAsync($workspace_id, $flow_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteFlows'][0])
+    {
+        return $this->bulkDeleteFlowsAsyncWithHttpInfo($workspace_id, $flow_bulk_delete_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation bulkDeleteFlowsAsyncWithHttpInfo
+     *
+     * Bulk Delete Flows
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkDeleteRequest $flow_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteFlows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkDeleteFlowsAsyncWithHttpInfo($workspace_id, $flow_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteFlows'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->bulkDeleteFlowsRequest($workspace_id, $flow_bulk_delete_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'bulkDeleteFlows'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkDeleteRequest $flow_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteFlows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function bulkDeleteFlowsRequest($workspace_id, $flow_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteFlows'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling bulkDeleteFlows'
+            );
+        }
+
+        // verify the required parameter 'flow_bulk_delete_request' is set
+        if ($flow_bulk_delete_request === null || (is_array($flow_bulk_delete_request) && count($flow_bulk_delete_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_bulk_delete_request when calling bulkDeleteFlows'
+            );
+        }
+
+
+        $resourcePath = '/v2/flows/delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($flow_bulk_delete_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_bulk_delete_request));
+            } else {
+                $httpBody = $flow_bulk_delete_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation bulkUpdateFlows
+     *
+     * Bulk Update Flows
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkUpdateRequest $flow_bulk_update_request flow_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateFlows'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function bulkUpdateFlows($workspace_id, $flow_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateFlows'][0])
+    {
+        list($response) = $this->bulkUpdateFlowsWithHttpInfo($workspace_id, $flow_bulk_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation bulkUpdateFlowsWithHttpInfo
+     *
+     * Bulk Update Flows
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkUpdateRequest $flow_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateFlows'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function bulkUpdateFlowsWithHttpInfo($workspace_id, $flow_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateFlows'][0])
+    {
+        $request = $this->bulkUpdateFlowsRequest($workspace_id, $flow_bulk_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\Completed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\Completed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation bulkUpdateFlowsAsync
+     *
+     * Bulk Update Flows
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkUpdateRequest $flow_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateFlows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkUpdateFlowsAsync($workspace_id, $flow_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateFlows'][0])
+    {
+        return $this->bulkUpdateFlowsAsyncWithHttpInfo($workspace_id, $flow_bulk_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation bulkUpdateFlowsAsyncWithHttpInfo
+     *
+     * Bulk Update Flows
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkUpdateRequest $flow_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateFlows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkUpdateFlowsAsyncWithHttpInfo($workspace_id, $flow_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateFlows'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->bulkUpdateFlowsRequest($workspace_id, $flow_bulk_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'bulkUpdateFlows'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\FlowBulkUpdateRequest $flow_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateFlows'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function bulkUpdateFlowsRequest($workspace_id, $flow_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateFlows'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling bulkUpdateFlows'
+            );
+        }
+
+        // verify the required parameter 'flow_bulk_update_request' is set
+        if ($flow_bulk_update_request === null || (is_array($flow_bulk_update_request) && count($flow_bulk_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_bulk_update_request when calling bulkUpdateFlows'
+            );
+        }
+
+
+        $resourcePath = '/v2/flows/update';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($flow_bulk_update_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_bulk_update_request));
+            } else {
+                $httpBody = $flow_bulk_update_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**
@@ -4264,6 +4898,307 @@ class FlowsApi
     }
 
     /**
+     * Operation fireChatHook
+     *
+     * Fire Chat Hook
+     *
+     * @param  string $session_id session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionHookRequest $flow_session_hook_request flow_session_hook_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireChatHook'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\FlowSessionInvocationResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function fireChatHook($session_id, $flow_session_hook_request, string $contentType = self::contentTypes['fireChatHook'][0])
+    {
+        list($response) = $this->fireChatHookWithHttpInfo($session_id, $flow_session_hook_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation fireChatHookWithHttpInfo
+     *
+     * Fire Chat Hook
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionHookRequest $flow_session_hook_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireChatHook'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\FlowSessionInvocationResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function fireChatHookWithHttpInfo($session_id, $flow_session_hook_request, string $contentType = self::contentTypes['fireChatHook'][0])
+    {
+        $request = $this->fireChatHookRequest($session_id, $flow_session_hook_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\FlowSessionInvocationResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\FlowSessionInvocationResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\FlowSessionInvocationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation fireChatHookAsync
+     *
+     * Fire Chat Hook
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionHookRequest $flow_session_hook_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireChatHook'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fireChatHookAsync($session_id, $flow_session_hook_request, string $contentType = self::contentTypes['fireChatHook'][0])
+    {
+        return $this->fireChatHookAsyncWithHttpInfo($session_id, $flow_session_hook_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation fireChatHookAsyncWithHttpInfo
+     *
+     * Fire Chat Hook
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionHookRequest $flow_session_hook_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireChatHook'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fireChatHookAsyncWithHttpInfo($session_id, $flow_session_hook_request, string $contentType = self::contentTypes['fireChatHook'][0])
+    {
+        $returnType = '\FlowHunt\Model\FlowSessionInvocationResponse';
+        $request = $this->fireChatHookRequest($session_id, $flow_session_hook_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'fireChatHook'
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionHookRequest $flow_session_hook_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireChatHook'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function fireChatHookRequest($session_id, $flow_session_hook_request, string $contentType = self::contentTypes['fireChatHook'][0])
+    {
+
+        // verify the required parameter 'session_id' is set
+        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $session_id when calling fireChatHook'
+            );
+        }
+
+        // verify the required parameter 'flow_session_hook_request' is set
+        if ($flow_session_hook_request === null || (is_array($flow_session_hook_request) && count($flow_session_hook_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_session_hook_request when calling fireChatHook'
+            );
+        }
+
+
+        $resourcePath = '/v2/flows/sessions/{session_id}/hook';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($session_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'session_id' . '}',
+                ObjectSerializer::toPathValue($session_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($flow_session_hook_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_hook_request));
+            } else {
+                $httpBody = $flow_session_hook_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation generateCommitMessage
      *
      * Generate Commit Message
@@ -5471,7 +6406,7 @@ class FlowsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\FlowSessionAttachmentResponse[]|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\InhouseAttachment[]|\FlowHunt\Model\HTTPValidationError
      */
     public function getAttachments($session_id, string $contentType = self::contentTypes['getAttachments'][0])
     {
@@ -5489,7 +6424,7 @@ class FlowsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\FlowSessionAttachmentResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\InhouseAttachment[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAttachmentsWithHttpInfo($session_id, string $contentType = self::contentTypes['getAttachments'][0])
     {
@@ -5521,7 +6456,7 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FlowHunt\Model\FlowSessionAttachmentResponse[]',
+                        '\FlowHunt\Model\InhouseAttachment[]',
                         $request,
                         $response,
                     );
@@ -5549,7 +6484,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FlowHunt\Model\FlowSessionAttachmentResponse[]',
+                '\FlowHunt\Model\InhouseAttachment[]',
                 $request,
                 $response,
             );
@@ -5558,7 +6493,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\FlowSessionAttachmentResponse[]',
+                        '\FlowHunt\Model\InhouseAttachment[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5612,7 +6547,7 @@ class FlowsApi
      */
     public function getAttachmentsAsyncWithHttpInfo($session_id, string $contentType = self::contentTypes['getAttachments'][0])
     {
-        $returnType = '\FlowHunt\Model\FlowSessionAttachmentResponse[]';
+        $returnType = '\FlowHunt\Model\InhouseAttachment[]';
         $request = $this->getAttachmentsRequest($session_id, $contentType);
 
         return $this->client
@@ -11477,6 +12412,307 @@ class FlowsApi
     }
 
     /**
+     * Operation updateSessionVariables
+     *
+     * Update Session Variables
+     *
+     * @param  string $session_id session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionVariablesRequest $flow_session_variables_request flow_session_variables_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSessionVariables'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\FlowSessionVariablesResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function updateSessionVariables($session_id, $flow_session_variables_request, string $contentType = self::contentTypes['updateSessionVariables'][0])
+    {
+        list($response) = $this->updateSessionVariablesWithHttpInfo($session_id, $flow_session_variables_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateSessionVariablesWithHttpInfo
+     *
+     * Update Session Variables
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionVariablesRequest $flow_session_variables_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSessionVariables'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\FlowSessionVariablesResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateSessionVariablesWithHttpInfo($session_id, $flow_session_variables_request, string $contentType = self::contentTypes['updateSessionVariables'][0])
+    {
+        $request = $this->updateSessionVariablesRequest($session_id, $flow_session_variables_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\FlowSessionVariablesResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\FlowSessionVariablesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\FlowSessionVariablesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateSessionVariablesAsync
+     *
+     * Update Session Variables
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionVariablesRequest $flow_session_variables_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSessionVariables'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateSessionVariablesAsync($session_id, $flow_session_variables_request, string $contentType = self::contentTypes['updateSessionVariables'][0])
+    {
+        return $this->updateSessionVariablesAsyncWithHttpInfo($session_id, $flow_session_variables_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateSessionVariablesAsyncWithHttpInfo
+     *
+     * Update Session Variables
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionVariablesRequest $flow_session_variables_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSessionVariables'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateSessionVariablesAsyncWithHttpInfo($session_id, $flow_session_variables_request, string $contentType = self::contentTypes['updateSessionVariables'][0])
+    {
+        $returnType = '\FlowHunt\Model\FlowSessionVariablesResponse';
+        $request = $this->updateSessionVariablesRequest($session_id, $flow_session_variables_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateSessionVariables'
+     *
+     * @param  string $session_id (required)
+     * @param  \FlowHunt\Model\FlowSessionVariablesRequest $flow_session_variables_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSessionVariables'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateSessionVariablesRequest($session_id, $flow_session_variables_request, string $contentType = self::contentTypes['updateSessionVariables'][0])
+    {
+
+        // verify the required parameter 'session_id' is set
+        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $session_id when calling updateSessionVariables'
+            );
+        }
+
+        // verify the required parameter 'flow_session_variables_request' is set
+        if ($flow_session_variables_request === null || (is_array($flow_session_variables_request) && count($flow_session_variables_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_session_variables_request when calling updateSessionVariables'
+            );
+        }
+
+
+        $resourcePath = '/v2/flows/sessions/{session_id}/variables';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($session_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'session_id' . '}',
+                ObjectSerializer::toPathValue($session_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($flow_session_variables_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($flow_session_variables_request));
+            } else {
+                $httpBody = $flow_session_variables_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PATCH',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation uploadAttachments
      *
      * Upload Attachments
@@ -11487,7 +12723,7 @@ class FlowsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FlowHunt\Model\FlowSessionAttachmentResponse|\FlowHunt\Model\HTTPValidationError
+     * @return \FlowHunt\Model\InhouseAttachment|\FlowHunt\Model\HTTPValidationError
      */
     public function uploadAttachments($session_id, $file, string $contentType = self::contentTypes['uploadAttachments'][0])
     {
@@ -11506,7 +12742,7 @@ class FlowsApi
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FlowHunt\Model\FlowSessionAttachmentResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FlowHunt\Model\InhouseAttachment|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function uploadAttachmentsWithHttpInfo($session_id, $file, string $contentType = self::contentTypes['uploadAttachments'][0])
     {
@@ -11538,7 +12774,7 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\FlowHunt\Model\FlowSessionAttachmentResponse',
+                        '\FlowHunt\Model\InhouseAttachment',
                         $request,
                         $response,
                     );
@@ -11566,7 +12802,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\FlowHunt\Model\FlowSessionAttachmentResponse',
+                '\FlowHunt\Model\InhouseAttachment',
                 $request,
                 $response,
             );
@@ -11575,7 +12811,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FlowHunt\Model\FlowSessionAttachmentResponse',
+                        '\FlowHunt\Model\InhouseAttachment',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -11631,7 +12867,7 @@ class FlowsApi
      */
     public function uploadAttachmentsAsyncWithHttpInfo($session_id, $file, string $contentType = self::contentTypes['uploadAttachments'][0])
     {
-        $returnType = '\FlowHunt\Model\FlowSessionAttachmentResponse';
+        $returnType = '\FlowHunt\Model\InhouseAttachment';
         $request = $this->uploadAttachmentsRequest($session_id, $file, $contentType);
 
         return $this->client

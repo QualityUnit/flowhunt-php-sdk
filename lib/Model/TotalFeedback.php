@@ -61,7 +61,8 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'int',
         'session_count' => 'int',
         'human_message_count' => 'float',
-        'tool_calling_count' => 'float'
+        'tool_calling_count' => 'float',
+        'avg_error_message' => 'float'
     ];
 
     /**
@@ -76,7 +77,8 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => null,
         'session_count' => null,
         'human_message_count' => null,
-        'tool_calling_count' => null
+        'tool_calling_count' => null,
+        'avg_error_message' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => false,
         'session_count' => false,
         'human_message_count' => false,
-        'tool_calling_count' => false
+        'tool_calling_count' => false,
+        'avg_error_message' => false
     ];
 
     /**
@@ -182,7 +185,8 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'negative',
         'session_count' => 'session_count',
         'human_message_count' => 'human_message_count',
-        'tool_calling_count' => 'tool_calling_count'
+        'tool_calling_count' => 'tool_calling_count',
+        'avg_error_message' => 'avg_error_message'
     ];
 
     /**
@@ -195,7 +199,8 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'setNegative',
         'session_count' => 'setSessionCount',
         'human_message_count' => 'setHumanMessageCount',
-        'tool_calling_count' => 'setToolCallingCount'
+        'tool_calling_count' => 'setToolCallingCount',
+        'avg_error_message' => 'setAvgErrorMessage'
     ];
 
     /**
@@ -208,7 +213,8 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         'negative' => 'getNegative',
         'session_count' => 'getSessionCount',
         'human_message_count' => 'getHumanMessageCount',
-        'tool_calling_count' => 'getToolCallingCount'
+        'tool_calling_count' => 'getToolCallingCount',
+        'avg_error_message' => 'getAvgErrorMessage'
     ];
 
     /**
@@ -273,6 +279,7 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('session_count', $data ?? [], 0);
         $this->setIfExists('human_message_count', $data ?? [], 0.0);
         $this->setIfExists('tool_calling_count', $data ?? [], 0.0);
+        $this->setIfExists('avg_error_message', $data ?? [], 0.0);
     }
 
     /**
@@ -448,6 +455,33 @@ class TotalFeedback implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable tool_calling_count cannot be null');
         }
         $this->container['tool_calling_count'] = $tool_calling_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets avg_error_message
+     *
+     * @return float|null
+     */
+    public function getAvgErrorMessage()
+    {
+        return $this->container['avg_error_message'];
+    }
+
+    /**
+     * Sets avg_error_message
+     *
+     * @param float|null $avg_error_message Average error messages per session
+     *
+     * @return self
+     */
+    public function setAvgErrorMessage($avg_error_message)
+    {
+        if (is_null($avg_error_message)) {
+            throw new \InvalidArgumentException('non-nullable avg_error_message cannot be null');
+        }
+        $this->container['avg_error_message'] = $avg_error_message;
 
         return $this;
     }

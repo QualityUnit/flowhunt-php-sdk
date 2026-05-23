@@ -216,6 +216,66 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for getAllowedDirectories
+     *
+     * Get Allowed Directories.
+     *
+     */
+    public function testGetAllowedDirectories()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAsanaProjectTasks
+     *
+     * Get Asana Project Tasks.
+     *
+     */
+    public function testGetAsanaProjectTasks()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAsanaProjects
+     *
+     * Get Asana Projects.
+     *
+     */
+    public function testGetAsanaProjects()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAsanaUsers
+     *
+     * Get Asana Users.
+     *
+     */
+    public function testGetAsanaUsers()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAsanaWorkspaces
+     *
+     * Get Asana Workspaces.
+     *
+     */
+    public function testGetAsanaWorkspaces()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getBranches
      *
      * Get Branches.
@@ -282,6 +342,18 @@ class IntegrationsApiTest extends TestCase
      *
      */
     public function testGetConfluenceSpaces()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getDriveFolders
+     *
+     * Get Drive Folders.
+     *
+     */
+    public function testGetDriveFolders()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -378,6 +450,18 @@ class IntegrationsApiTest extends TestCase
      *
      */
     public function testGetPickerToken()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPowerbiWorkspaces
+     *
+     * Get Powerbi Workspaces.
+     *
+     */
+    public function testGetPowerbiWorkspaces()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -600,6 +684,18 @@ class IntegrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for resolveIntegrationGatewayToken
+     *
+     * Resolve an integration gateway token.
+     *
+     */
+    public function testResolveIntegrationGatewayToken()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for searchIntegrations
      *
      * Search Integrations.
@@ -654,6 +750,18 @@ class IntegrationsApiTest extends TestCase
      *
      */
     public function testUpdateAdminConsent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateAllowedDirectories
+     *
+     * Update Allowed Directories.
+     *
+     */
+    public function testUpdateAllowedDirectories()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

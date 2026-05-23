@@ -65,7 +65,8 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_active' => 'bool',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
-        'remote_mcp_url' => 'string'
+        'remote_mcp_url' => 'string',
+        'mcp_api_key' => 'string'
     ];
 
     /**
@@ -83,7 +84,8 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_active' => null,
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
-        'remote_mcp_url' => null
+        'remote_mcp_url' => null,
+        'mcp_api_key' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_active' => false,
         'created_at' => false,
         'updated_at' => false,
-        'remote_mcp_url' => true
+        'remote_mcp_url' => true,
+        'mcp_api_key' => true
     ];
 
     /**
@@ -195,7 +198,8 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_active' => 'is_active',
         'created_at' => 'created_at',
         'updated_at' => 'updated_at',
-        'remote_mcp_url' => 'remote_mcp_url'
+        'remote_mcp_url' => 'remote_mcp_url',
+        'mcp_api_key' => 'mcp_api_key'
     ];
 
     /**
@@ -211,7 +215,8 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_active' => 'setIsActive',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
-        'remote_mcp_url' => 'setRemoteMcpUrl'
+        'remote_mcp_url' => 'setRemoteMcpUrl',
+        'mcp_api_key' => 'setMcpApiKey'
     ];
 
     /**
@@ -227,7 +232,8 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_active' => 'getIsActive',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
-        'remote_mcp_url' => 'getRemoteMcpUrl'
+        'remote_mcp_url' => 'getRemoteMcpUrl',
+        'mcp_api_key' => 'getMcpApiKey'
     ];
 
     /**
@@ -295,6 +301,7 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('remote_mcp_url', $data ?? [], null);
+        $this->setIfExists('mcp_api_key', $data ?? [], null);
     }
 
     /**
@@ -579,6 +586,40 @@ class MCPServerResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['remote_mcp_url'] = $remote_mcp_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets mcp_api_key
+     *
+     * @return string|null
+     */
+    public function getMcpApiKey()
+    {
+        return $this->container['mcp_api_key'];
+    }
+
+    /**
+     * Sets mcp_api_key
+     *
+     * @param string|null $mcp_api_key mcp_api_key
+     *
+     * @return self
+     */
+    public function setMcpApiKey($mcp_api_key)
+    {
+        if (is_null($mcp_api_key)) {
+            array_push($this->openAPINullablesSetToNull, 'mcp_api_key');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('mcp_api_key', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['mcp_api_key'] = $mcp_api_key;
 
         return $this;
     }

@@ -124,7 +124,15 @@ class IntegrationSlug
 
     public const CLICKUP_INTEGRATION = 'clickup_integration';
 
+    public const ASANA_INTEGRATION = 'asana_integration';
+
+    public const SALESFORCE_INTEGRATION = 'salesforce_integration';
+
+    public const FINSTAT_INTEGRATION = 'finstat_integration';
+
     public const KLAVIYO_INTEGRATION = 'klaviyo_integration';
+
+    public const SMTP_MAIL_INTEGRATION = 'smtp_mail_integration';
 
     public const GOOGLE_CALENDAR_INTEGRATION = 'google_calendar_integration';
 
@@ -214,7 +222,11 @@ class IntegrationSlug
             self::ZENDESK_INTEGRATION,
             self::GITLAB_INTEGRATION,
             self::CLICKUP_INTEGRATION,
+            self::ASANA_INTEGRATION,
+            self::SALESFORCE_INTEGRATION,
+            self::FINSTAT_INTEGRATION,
             self::KLAVIYO_INTEGRATION,
+            self::SMTP_MAIL_INTEGRATION,
             self::GOOGLE_CALENDAR_INTEGRATION,
             self::GOOGLE_ADS_INTEGRATION,
             self::GOOGLE_DOCS_INTEGRATION,

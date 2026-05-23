@@ -59,11 +59,27 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'branding_logo_url' => 'string',
         'brand_avatar_url' => 'string',
-        'slug' => 'string',
         'dashboard_primary_color' => 'string',
         'dashboard_secondary_color' => 'string',
         'show_ads_ai' => 'bool',
-        'show_photomatic_ai' => 'bool'
+        'show_photomatic_ai' => 'bool',
+        'show_ai_factory' => 'bool',
+        'custom_my_agents_label' => 'string',
+        'custom_my_assistants_label' => 'string',
+        'custom_active_services_label' => 'string',
+        'custom_more_label' => 'string',
+        'custom_agents_search_label' => 'string',
+        'custom_no_agents_label' => 'string',
+        'custom_agent_column_label' => 'string',
+        'entity_name' => 'string',
+        'project_name' => 'string',
+        'smtp_host' => 'string',
+        'smtp_port' => 'int',
+        'smtp_encryption' => '\FlowHunt\Model\SmtpEncryption',
+        'smtp_sender_email' => 'string',
+        'smtp_password_is_set' => 'bool',
+        'custom_domain' => 'string',
+        'custom_domain_status' => 'string'
     ];
 
     /**
@@ -76,11 +92,27 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'branding_logo_url' => null,
         'brand_avatar_url' => null,
-        'slug' => null,
         'dashboard_primary_color' => null,
         'dashboard_secondary_color' => null,
         'show_ads_ai' => null,
-        'show_photomatic_ai' => null
+        'show_photomatic_ai' => null,
+        'show_ai_factory' => null,
+        'custom_my_agents_label' => null,
+        'custom_my_assistants_label' => null,
+        'custom_active_services_label' => null,
+        'custom_more_label' => null,
+        'custom_agents_search_label' => null,
+        'custom_no_agents_label' => null,
+        'custom_agent_column_label' => null,
+        'entity_name' => null,
+        'project_name' => null,
+        'smtp_host' => null,
+        'smtp_port' => null,
+        'smtp_encryption' => null,
+        'smtp_sender_email' => null,
+        'smtp_password_is_set' => null,
+        'custom_domain' => null,
+        'custom_domain_status' => null
     ];
 
     /**
@@ -91,11 +123,27 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'branding_logo_url' => true,
         'brand_avatar_url' => true,
-        'slug' => false,
         'dashboard_primary_color' => true,
         'dashboard_secondary_color' => true,
         'show_ads_ai' => false,
-        'show_photomatic_ai' => false
+        'show_photomatic_ai' => false,
+        'show_ai_factory' => false,
+        'custom_my_agents_label' => true,
+        'custom_my_assistants_label' => true,
+        'custom_active_services_label' => true,
+        'custom_more_label' => true,
+        'custom_agents_search_label' => true,
+        'custom_no_agents_label' => true,
+        'custom_agent_column_label' => true,
+        'entity_name' => true,
+        'project_name' => true,
+        'smtp_host' => true,
+        'smtp_port' => true,
+        'smtp_encryption' => true,
+        'smtp_sender_email' => true,
+        'smtp_password_is_set' => false,
+        'custom_domain' => true,
+        'custom_domain_status' => true
     ];
 
     /**
@@ -186,11 +234,27 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'branding_logo_url' => 'branding_logo_url',
         'brand_avatar_url' => 'brand_avatar_url',
-        'slug' => 'slug',
         'dashboard_primary_color' => 'dashboard_primary_color',
         'dashboard_secondary_color' => 'dashboard_secondary_color',
         'show_ads_ai' => 'show_ads_ai',
-        'show_photomatic_ai' => 'show_photomatic_ai'
+        'show_photomatic_ai' => 'show_photomatic_ai',
+        'show_ai_factory' => 'show_ai_factory',
+        'custom_my_agents_label' => 'custom_my_agents_label',
+        'custom_my_assistants_label' => 'custom_my_assistants_label',
+        'custom_active_services_label' => 'custom_active_services_label',
+        'custom_more_label' => 'custom_more_label',
+        'custom_agents_search_label' => 'custom_agents_search_label',
+        'custom_no_agents_label' => 'custom_no_agents_label',
+        'custom_agent_column_label' => 'custom_agent_column_label',
+        'entity_name' => 'entity_name',
+        'project_name' => 'project_name',
+        'smtp_host' => 'smtp_host',
+        'smtp_port' => 'smtp_port',
+        'smtp_encryption' => 'smtp_encryption',
+        'smtp_sender_email' => 'smtp_sender_email',
+        'smtp_password_is_set' => 'smtp_password_is_set',
+        'custom_domain' => 'custom_domain',
+        'custom_domain_status' => 'custom_domain_status'
     ];
 
     /**
@@ -201,11 +265,27 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'branding_logo_url' => 'setBrandingLogoUrl',
         'brand_avatar_url' => 'setBrandAvatarUrl',
-        'slug' => 'setSlug',
         'dashboard_primary_color' => 'setDashboardPrimaryColor',
         'dashboard_secondary_color' => 'setDashboardSecondaryColor',
         'show_ads_ai' => 'setShowAdsAi',
-        'show_photomatic_ai' => 'setShowPhotomaticAi'
+        'show_photomatic_ai' => 'setShowPhotomaticAi',
+        'show_ai_factory' => 'setShowAiFactory',
+        'custom_my_agents_label' => 'setCustomMyAgentsLabel',
+        'custom_my_assistants_label' => 'setCustomMyAssistantsLabel',
+        'custom_active_services_label' => 'setCustomActiveServicesLabel',
+        'custom_more_label' => 'setCustomMoreLabel',
+        'custom_agents_search_label' => 'setCustomAgentsSearchLabel',
+        'custom_no_agents_label' => 'setCustomNoAgentsLabel',
+        'custom_agent_column_label' => 'setCustomAgentColumnLabel',
+        'entity_name' => 'setEntityName',
+        'project_name' => 'setProjectName',
+        'smtp_host' => 'setSmtpHost',
+        'smtp_port' => 'setSmtpPort',
+        'smtp_encryption' => 'setSmtpEncryption',
+        'smtp_sender_email' => 'setSmtpSenderEmail',
+        'smtp_password_is_set' => 'setSmtpPasswordIsSet',
+        'custom_domain' => 'setCustomDomain',
+        'custom_domain_status' => 'setCustomDomainStatus'
     ];
 
     /**
@@ -216,11 +296,27 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'branding_logo_url' => 'getBrandingLogoUrl',
         'brand_avatar_url' => 'getBrandAvatarUrl',
-        'slug' => 'getSlug',
         'dashboard_primary_color' => 'getDashboardPrimaryColor',
         'dashboard_secondary_color' => 'getDashboardSecondaryColor',
         'show_ads_ai' => 'getShowAdsAi',
-        'show_photomatic_ai' => 'getShowPhotomaticAi'
+        'show_photomatic_ai' => 'getShowPhotomaticAi',
+        'show_ai_factory' => 'getShowAiFactory',
+        'custom_my_agents_label' => 'getCustomMyAgentsLabel',
+        'custom_my_assistants_label' => 'getCustomMyAssistantsLabel',
+        'custom_active_services_label' => 'getCustomActiveServicesLabel',
+        'custom_more_label' => 'getCustomMoreLabel',
+        'custom_agents_search_label' => 'getCustomAgentsSearchLabel',
+        'custom_no_agents_label' => 'getCustomNoAgentsLabel',
+        'custom_agent_column_label' => 'getCustomAgentColumnLabel',
+        'entity_name' => 'getEntityName',
+        'project_name' => 'getProjectName',
+        'smtp_host' => 'getSmtpHost',
+        'smtp_port' => 'getSmtpPort',
+        'smtp_encryption' => 'getSmtpEncryption',
+        'smtp_sender_email' => 'getSmtpSenderEmail',
+        'smtp_password_is_set' => 'getSmtpPasswordIsSet',
+        'custom_domain' => 'getCustomDomain',
+        'custom_domain_status' => 'getCustomDomainStatus'
     ];
 
     /**
@@ -282,11 +378,27 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('branding_logo_url', $data ?? [], null);
         $this->setIfExists('brand_avatar_url', $data ?? [], null);
-        $this->setIfExists('slug', $data ?? [], '');
         $this->setIfExists('dashboard_primary_color', $data ?? [], null);
         $this->setIfExists('dashboard_secondary_color', $data ?? [], null);
         $this->setIfExists('show_ads_ai', $data ?? [], true);
         $this->setIfExists('show_photomatic_ai', $data ?? [], true);
+        $this->setIfExists('show_ai_factory', $data ?? [], true);
+        $this->setIfExists('custom_my_agents_label', $data ?? [], null);
+        $this->setIfExists('custom_my_assistants_label', $data ?? [], null);
+        $this->setIfExists('custom_active_services_label', $data ?? [], null);
+        $this->setIfExists('custom_more_label', $data ?? [], null);
+        $this->setIfExists('custom_agents_search_label', $data ?? [], null);
+        $this->setIfExists('custom_no_agents_label', $data ?? [], null);
+        $this->setIfExists('custom_agent_column_label', $data ?? [], null);
+        $this->setIfExists('entity_name', $data ?? [], null);
+        $this->setIfExists('project_name', $data ?? [], null);
+        $this->setIfExists('smtp_host', $data ?? [], null);
+        $this->setIfExists('smtp_port', $data ?? [], null);
+        $this->setIfExists('smtp_encryption', $data ?? [], null);
+        $this->setIfExists('smtp_sender_email', $data ?? [], null);
+        $this->setIfExists('smtp_password_is_set', $data ?? [], false);
+        $this->setIfExists('custom_domain', $data ?? [], null);
+        $this->setIfExists('custom_domain_status', $data ?? [], null);
     }
 
     /**
@@ -395,33 +507,6 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['brand_avatar_url'] = $brand_avatar_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets slug
-     *
-     * @return string|null
-     */
-    public function getSlug()
-    {
-        return $this->container['slug'];
-    }
-
-    /**
-     * Sets slug
-     *
-     * @param string|null $slug slug
-     *
-     * @return self
-     */
-    public function setSlug($slug)
-    {
-        if (is_null($slug)) {
-            throw new \InvalidArgumentException('non-nullable slug cannot be null');
-        }
-        $this->container['slug'] = $slug;
 
         return $this;
     }
@@ -544,6 +629,570 @@ class BrandingResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable show_photomatic_ai cannot be null');
         }
         $this->container['show_photomatic_ai'] = $show_photomatic_ai;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_ai_factory
+     *
+     * @return bool|null
+     */
+    public function getShowAiFactory()
+    {
+        return $this->container['show_ai_factory'];
+    }
+
+    /**
+     * Sets show_ai_factory
+     *
+     * @param bool|null $show_ai_factory show_ai_factory
+     *
+     * @return self
+     */
+    public function setShowAiFactory($show_ai_factory)
+    {
+        if (is_null($show_ai_factory)) {
+            throw new \InvalidArgumentException('non-nullable show_ai_factory cannot be null');
+        }
+        $this->container['show_ai_factory'] = $show_ai_factory;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_my_agents_label
+     *
+     * @return string|null
+     */
+    public function getCustomMyAgentsLabel()
+    {
+        return $this->container['custom_my_agents_label'];
+    }
+
+    /**
+     * Sets custom_my_agents_label
+     *
+     * @param string|null $custom_my_agents_label custom_my_agents_label
+     *
+     * @return self
+     */
+    public function setCustomMyAgentsLabel($custom_my_agents_label)
+    {
+        if (is_null($custom_my_agents_label)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_my_agents_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_my_agents_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_my_agents_label'] = $custom_my_agents_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_my_assistants_label
+     *
+     * @return string|null
+     */
+    public function getCustomMyAssistantsLabel()
+    {
+        return $this->container['custom_my_assistants_label'];
+    }
+
+    /**
+     * Sets custom_my_assistants_label
+     *
+     * @param string|null $custom_my_assistants_label custom_my_assistants_label
+     *
+     * @return self
+     */
+    public function setCustomMyAssistantsLabel($custom_my_assistants_label)
+    {
+        if (is_null($custom_my_assistants_label)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_my_assistants_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_my_assistants_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_my_assistants_label'] = $custom_my_assistants_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_active_services_label
+     *
+     * @return string|null
+     */
+    public function getCustomActiveServicesLabel()
+    {
+        return $this->container['custom_active_services_label'];
+    }
+
+    /**
+     * Sets custom_active_services_label
+     *
+     * @param string|null $custom_active_services_label custom_active_services_label
+     *
+     * @return self
+     */
+    public function setCustomActiveServicesLabel($custom_active_services_label)
+    {
+        if (is_null($custom_active_services_label)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_active_services_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_active_services_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_active_services_label'] = $custom_active_services_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_more_label
+     *
+     * @return string|null
+     */
+    public function getCustomMoreLabel()
+    {
+        return $this->container['custom_more_label'];
+    }
+
+    /**
+     * Sets custom_more_label
+     *
+     * @param string|null $custom_more_label custom_more_label
+     *
+     * @return self
+     */
+    public function setCustomMoreLabel($custom_more_label)
+    {
+        if (is_null($custom_more_label)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_more_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_more_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_more_label'] = $custom_more_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_agents_search_label
+     *
+     * @return string|null
+     */
+    public function getCustomAgentsSearchLabel()
+    {
+        return $this->container['custom_agents_search_label'];
+    }
+
+    /**
+     * Sets custom_agents_search_label
+     *
+     * @param string|null $custom_agents_search_label custom_agents_search_label
+     *
+     * @return self
+     */
+    public function setCustomAgentsSearchLabel($custom_agents_search_label)
+    {
+        if (is_null($custom_agents_search_label)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_agents_search_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_agents_search_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_agents_search_label'] = $custom_agents_search_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_no_agents_label
+     *
+     * @return string|null
+     */
+    public function getCustomNoAgentsLabel()
+    {
+        return $this->container['custom_no_agents_label'];
+    }
+
+    /**
+     * Sets custom_no_agents_label
+     *
+     * @param string|null $custom_no_agents_label custom_no_agents_label
+     *
+     * @return self
+     */
+    public function setCustomNoAgentsLabel($custom_no_agents_label)
+    {
+        if (is_null($custom_no_agents_label)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_no_agents_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_no_agents_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_no_agents_label'] = $custom_no_agents_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_agent_column_label
+     *
+     * @return string|null
+     */
+    public function getCustomAgentColumnLabel()
+    {
+        return $this->container['custom_agent_column_label'];
+    }
+
+    /**
+     * Sets custom_agent_column_label
+     *
+     * @param string|null $custom_agent_column_label custom_agent_column_label
+     *
+     * @return self
+     */
+    public function setCustomAgentColumnLabel($custom_agent_column_label)
+    {
+        if (is_null($custom_agent_column_label)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_agent_column_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_agent_column_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_agent_column_label'] = $custom_agent_column_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets entity_name
+     *
+     * @return string|null
+     */
+    public function getEntityName()
+    {
+        return $this->container['entity_name'];
+    }
+
+    /**
+     * Sets entity_name
+     *
+     * @param string|null $entity_name entity_name
+     *
+     * @return self
+     */
+    public function setEntityName($entity_name)
+    {
+        if (is_null($entity_name)) {
+            array_push($this->openAPINullablesSetToNull, 'entity_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('entity_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['entity_name'] = $entity_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets project_name
+     *
+     * @return string|null
+     */
+    public function getProjectName()
+    {
+        return $this->container['project_name'];
+    }
+
+    /**
+     * Sets project_name
+     *
+     * @param string|null $project_name project_name
+     *
+     * @return self
+     */
+    public function setProjectName($project_name)
+    {
+        if (is_null($project_name)) {
+            array_push($this->openAPINullablesSetToNull, 'project_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('project_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['project_name'] = $project_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_host
+     *
+     * @return string|null
+     */
+    public function getSmtpHost()
+    {
+        return $this->container['smtp_host'];
+    }
+
+    /**
+     * Sets smtp_host
+     *
+     * @param string|null $smtp_host smtp_host
+     *
+     * @return self
+     */
+    public function setSmtpHost($smtp_host)
+    {
+        if (is_null($smtp_host)) {
+            array_push($this->openAPINullablesSetToNull, 'smtp_host');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('smtp_host', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['smtp_host'] = $smtp_host;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_port
+     *
+     * @return int|null
+     */
+    public function getSmtpPort()
+    {
+        return $this->container['smtp_port'];
+    }
+
+    /**
+     * Sets smtp_port
+     *
+     * @param int|null $smtp_port smtp_port
+     *
+     * @return self
+     */
+    public function setSmtpPort($smtp_port)
+    {
+        if (is_null($smtp_port)) {
+            array_push($this->openAPINullablesSetToNull, 'smtp_port');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('smtp_port', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['smtp_port'] = $smtp_port;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_encryption
+     *
+     * @return \FlowHunt\Model\SmtpEncryption|null
+     */
+    public function getSmtpEncryption()
+    {
+        return $this->container['smtp_encryption'];
+    }
+
+    /**
+     * Sets smtp_encryption
+     *
+     * @param \FlowHunt\Model\SmtpEncryption|null $smtp_encryption smtp_encryption
+     *
+     * @return self
+     */
+    public function setSmtpEncryption($smtp_encryption)
+    {
+        if (is_null($smtp_encryption)) {
+            array_push($this->openAPINullablesSetToNull, 'smtp_encryption');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('smtp_encryption', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['smtp_encryption'] = $smtp_encryption;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_sender_email
+     *
+     * @return string|null
+     */
+    public function getSmtpSenderEmail()
+    {
+        return $this->container['smtp_sender_email'];
+    }
+
+    /**
+     * Sets smtp_sender_email
+     *
+     * @param string|null $smtp_sender_email smtp_sender_email
+     *
+     * @return self
+     */
+    public function setSmtpSenderEmail($smtp_sender_email)
+    {
+        if (is_null($smtp_sender_email)) {
+            array_push($this->openAPINullablesSetToNull, 'smtp_sender_email');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('smtp_sender_email', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['smtp_sender_email'] = $smtp_sender_email;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_password_is_set
+     *
+     * @return bool|null
+     */
+    public function getSmtpPasswordIsSet()
+    {
+        return $this->container['smtp_password_is_set'];
+    }
+
+    /**
+     * Sets smtp_password_is_set
+     *
+     * @param bool|null $smtp_password_is_set smtp_password_is_set
+     *
+     * @return self
+     */
+    public function setSmtpPasswordIsSet($smtp_password_is_set)
+    {
+        if (is_null($smtp_password_is_set)) {
+            throw new \InvalidArgumentException('non-nullable smtp_password_is_set cannot be null');
+        }
+        $this->container['smtp_password_is_set'] = $smtp_password_is_set;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_domain
+     *
+     * @return string|null
+     */
+    public function getCustomDomain()
+    {
+        return $this->container['custom_domain'];
+    }
+
+    /**
+     * Sets custom_domain
+     *
+     * @param string|null $custom_domain custom_domain
+     *
+     * @return self
+     */
+    public function setCustomDomain($custom_domain)
+    {
+        if (is_null($custom_domain)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_domain');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_domain', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_domain'] = $custom_domain;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_domain_status
+     *
+     * @return string|null
+     */
+    public function getCustomDomainStatus()
+    {
+        return $this->container['custom_domain_status'];
+    }
+
+    /**
+     * Sets custom_domain_status
+     *
+     * @param string|null $custom_domain_status custom_domain_status
+     *
+     * @return self
+     */
+    public function setCustomDomainStatus($custom_domain_status)
+    {
+        if (is_null($custom_domain_status)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_domain_status');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_domain_status', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_domain_status'] = $custom_domain_status;
 
         return $this;
     }

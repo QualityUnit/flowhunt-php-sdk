@@ -4,12 +4,144 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**bulkDeleteChatbots()**](ChatbotsApi.md#bulkDeleteChatbots) | **POST** /v2/chatbots/delete | Bulk Delete Chatbots |
+| [**bulkUpdateChatbots()**](ChatbotsApi.md#bulkUpdateChatbots) | **PUT** /v2/chatbots/update | Bulk Update Chatbots |
 | [**createChatbot()**](ChatbotsApi.md#createChatbot) | **POST** /v2/chatbots/create | Create Chatbot |
 | [**deleteChatbot()**](ChatbotsApi.md#deleteChatbot) | **DELETE** /v2/chatbots/{chatbot_id} | Delete Chatbot |
 | [**getChatbot()**](ChatbotsApi.md#getChatbot) | **GET** /v2/chatbots/{chatbot_id} | Get Chatbot |
 | [**searchChatbots()**](ChatbotsApi.md#searchChatbots) | **POST** /v2/chatbots/ | Search Chatbots |
 | [**updateChatbot()**](ChatbotsApi.md#updateChatbot) | **PUT** /v2/chatbots/{chatbot_id} | Update Chatbot |
 
+
+## `bulkDeleteChatbots()`
+
+```php
+bulkDeleteChatbots($workspace_id, $chatbot_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Chatbots
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\ChatbotsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$chatbot_bulk_delete_request = new \FlowHunt\Model\ChatbotBulkDeleteRequest(); // \FlowHunt\Model\ChatbotBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteChatbots($workspace_id, $chatbot_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ChatbotsApi->bulkDeleteChatbots: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **chatbot_bulk_delete_request** | [**\FlowHunt\Model\ChatbotBulkDeleteRequest**](../Model/ChatbotBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkUpdateChatbots()`
+
+```php
+bulkUpdateChatbots($workspace_id, $chatbot_bulk_update_request): \FlowHunt\Model\Completed
+```
+
+Bulk Update Chatbots
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\ChatbotsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$chatbot_bulk_update_request = new \FlowHunt\Model\ChatbotBulkUpdateRequest(); // \FlowHunt\Model\ChatbotBulkUpdateRequest
+
+try {
+    $result = $apiInstance->bulkUpdateChatbots($workspace_id, $chatbot_bulk_update_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ChatbotsApi->bulkUpdateChatbots: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **chatbot_bulk_update_request** | [**\FlowHunt\Model\ChatbotBulkUpdateRequest**](../Model/ChatbotBulkUpdateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createChatbot()`
 

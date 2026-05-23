@@ -28,6 +28,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**importCsv_0()**](FlowBatchApi.md#importCsv_0) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/import-csv | Import Csv |
 | [**listBatchRuns()**](FlowBatchApi.md#listBatchRuns) | **GET** /v2/flows/{flow_id}/batch | List Batch Runs |
 | [**listBatchRuns_0()**](FlowBatchApi.md#listBatchRuns_0) | **GET** /v2/flows/{flow_id}/batch | List Batch Runs |
+| [**searchBatchRun()**](FlowBatchApi.md#searchBatchRun) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/search | Search Batch Run |
+| [**searchBatchRun_0()**](FlowBatchApi.md#searchBatchRun_0) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/search | Search Batch Run |
 | [**startExportZip()**](FlowBatchApi.md#startExportZip) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/export-zip | Start Export Zip |
 | [**startExportZip_0()**](FlowBatchApi.md#startExportZip_0) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/export-zip | Start Export Zip |
 | [**stopAllRows()**](FlowBatchApi.md#stopAllRows) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/stop-all | Stop All Rows |
@@ -1172,7 +1174,7 @@ getBatchRun($flow_id, $batch_run_id, $workspace_id, $rows_limit, $rows_cursor, $
 
 Get Batch Run
 
-Get batch run details with cursor-based paginated rows.  Use ``rows_cursor`` (the ``next_cursor`` from a previous response) to fetch subsequent pages.  ``rows_status`` filters rows by their execution status.
+Get batch run details with paginated rows.
 
 ### Example
 
@@ -1247,7 +1249,7 @@ getBatchRun_0($flow_id, $batch_run_id, $workspace_id, $rows_limit, $rows_cursor,
 
 Get Batch Run
 
-Get batch run details with cursor-based paginated rows.  Use ``rows_cursor`` (the ``next_cursor`` from a previous response) to fetch subsequent pages.  ``rows_status`` filters rows by their execution status.
+Get batch run details with paginated rows.
 
 ### Example
 
@@ -1734,6 +1736,148 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchBatchRun()`
+
+```php
+searchBatchRun($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request): \FlowHunt\Model\FlowBatchRunDetailResponse
+```
+
+Search Batch Run
+
+Search batch run details with paginated rows using POST request.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowBatchApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$batch_run_id = 'batch_run_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$flow_batch_search_request = new \FlowHunt\Model\FlowBatchSearchRequest(); // \FlowHunt\Model\FlowBatchSearchRequest
+
+try {
+    $result = $apiInstance->searchBatchRun($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowBatchApi->searchBatchRun: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **batch_run_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **flow_batch_search_request** | [**\FlowHunt\Model\FlowBatchSearchRequest**](../Model/FlowBatchSearchRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowBatchRunDetailResponse**](../Model/FlowBatchRunDetailResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchBatchRun_0()`
+
+```php
+searchBatchRun_0($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request): \FlowHunt\Model\FlowBatchRunDetailResponse
+```
+
+Search Batch Run
+
+Search batch run details with paginated rows using POST request.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowBatchApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flow_id = 'flow_id_example'; // string
+$batch_run_id = 'batch_run_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+$flow_batch_search_request = new \FlowHunt\Model\FlowBatchSearchRequest(); // \FlowHunt\Model\FlowBatchSearchRequest
+
+try {
+    $result = $apiInstance->searchBatchRun_0($flow_id, $batch_run_id, $workspace_id, $flow_batch_search_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowBatchApi->searchBatchRun_0: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **batch_run_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+| **flow_batch_search_request** | [**\FlowHunt\Model\FlowBatchSearchRequest**](../Model/FlowBatchSearchRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowBatchRunDetailResponse**](../Model/FlowBatchRunDetailResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

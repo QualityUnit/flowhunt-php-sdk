@@ -6,6 +6,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**explore()**](PhotoAIApi.md#explore) | **GET** /v2/photo_ai/public/explore | Explore |
 | [**getEffects()**](PhotoAIApi.md#getEffects) | **GET** /v2/photo_ai/public/effects | Get Effects |
+| [**getModels()**](PhotoAIApi.md#getModels) | **GET** /v2/photo_ai/public/models | Get Models |
 | [**getStyles()**](PhotoAIApi.md#getStyles) | **GET** /v2/photo_ai/public/styles | Get Styles |
 | [**getTemplates()**](PhotoAIApi.md#getTemplates) | **GET** /v2/photo_ai/public/templates | Get Templates |
 
@@ -98,6 +99,57 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\FlowHunt\Model\PhotoAIEffectResponse[]**](../Model/PhotoAIEffectResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getModels()`
+
+```php
+getModels(): \FlowHunt\Model\ModelCategoryResponse[]
+```
+
+Get Models
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\PhotoAIApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->getModels();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PhotoAIApi->getModels: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\FlowHunt\Model\ModelCategoryResponse[]**](../Model/ModelCategoryResponse.md)
 
 ### Authorization
 

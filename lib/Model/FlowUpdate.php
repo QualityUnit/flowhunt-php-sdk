@@ -104,7 +104,7 @@ class FlowUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
         'category_id' => true,
         'engine_version' => true,
         'try_flow_input_placeholder' => true,
-        'disable_text_input' => true,
+        'disable_text_input' => false,
         'branch' => false,
         'enable_cache' => true,
         'version_nr' => true
@@ -311,7 +311,7 @@ class FlowUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('category_id', $data ?? [], null);
         $this->setIfExists('engine_version', $data ?? [], null);
         $this->setIfExists('try_flow_input_placeholder', $data ?? [], null);
-        $this->setIfExists('disable_text_input', $data ?? [], null);
+        $this->setIfExists('disable_text_input', $data ?? [], false);
         $this->setIfExists('branch', $data ?? [], null);
         $this->setIfExists('enable_cache', $data ?? [], null);
         $this->setIfExists('version_nr', $data ?? [], null);
@@ -598,21 +598,14 @@ class FlowUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets disable_text_input
      *
-     * @param bool|null $disable_text_input disable_text_input
+     * @param bool|null $disable_text_input Disable the text input area in the chatbot for this flow
      *
      * @return self
      */
     public function setDisableTextInput($disable_text_input)
     {
         if (is_null($disable_text_input)) {
-            array_push($this->openAPINullablesSetToNull, 'disable_text_input');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('disable_text_input', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable disable_text_input cannot be null');
         }
         $this->container['disable_text_input'] = $disable_text_input;
 

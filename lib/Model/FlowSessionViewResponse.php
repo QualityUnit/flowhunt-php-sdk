@@ -72,7 +72,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'ipaddress' => 'string',
         'url' => 'string',
         'positive_feedback_count' => 'int',
-        'negative_feedback_count' => 'int'
+        'negative_feedback_count' => 'int',
+        'error_message_count' => 'int',
+        'chat_session_title' => 'string'
     ];
 
     /**
@@ -98,7 +100,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'ipaddress' => null,
         'url' => null,
         'positive_feedback_count' => null,
-        'negative_feedback_count' => null
+        'negative_feedback_count' => null,
+        'error_message_count' => null,
+        'chat_session_title' => null
     ];
 
     /**
@@ -122,7 +126,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'ipaddress' => true,
         'url' => true,
         'positive_feedback_count' => true,
-        'negative_feedback_count' => true
+        'negative_feedback_count' => true,
+        'error_message_count' => true,
+        'chat_session_title' => true
     ];
 
     /**
@@ -226,7 +232,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'ipaddress' => 'ipaddress',
         'url' => 'url',
         'positive_feedback_count' => 'positive_feedback_count',
-        'negative_feedback_count' => 'negative_feedback_count'
+        'negative_feedback_count' => 'negative_feedback_count',
+        'error_message_count' => 'error_message_count',
+        'chat_session_title' => 'chat_session_title'
     ];
 
     /**
@@ -250,7 +258,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'ipaddress' => 'setIpaddress',
         'url' => 'setUrl',
         'positive_feedback_count' => 'setPositiveFeedbackCount',
-        'negative_feedback_count' => 'setNegativeFeedbackCount'
+        'negative_feedback_count' => 'setNegativeFeedbackCount',
+        'error_message_count' => 'setErrorMessageCount',
+        'chat_session_title' => 'setChatSessionTitle'
     ];
 
     /**
@@ -274,7 +284,9 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'ipaddress' => 'getIpaddress',
         'url' => 'getUrl',
         'positive_feedback_count' => 'getPositiveFeedbackCount',
-        'negative_feedback_count' => 'getNegativeFeedbackCount'
+        'negative_feedback_count' => 'getNegativeFeedbackCount',
+        'error_message_count' => 'getErrorMessageCount',
+        'chat_session_title' => 'getChatSessionTitle'
     ];
 
     /**
@@ -350,6 +362,8 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('positive_feedback_count', $data ?? [], null);
         $this->setIfExists('negative_feedback_count', $data ?? [], null);
+        $this->setIfExists('error_message_count', $data ?? [], null);
+        $this->setIfExists('chat_session_title', $data ?? [], null);
     }
 
     /**
@@ -918,6 +932,74 @@ class FlowSessionViewResponse implements ModelInterface, ArrayAccess, \JsonSeria
             }
         }
         $this->container['negative_feedback_count'] = $negative_feedback_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message_count
+     *
+     * @return int|null
+     */
+    public function getErrorMessageCount()
+    {
+        return $this->container['error_message_count'];
+    }
+
+    /**
+     * Sets error_message_count
+     *
+     * @param int|null $error_message_count error_message_count
+     *
+     * @return self
+     */
+    public function setErrorMessageCount($error_message_count)
+    {
+        if (is_null($error_message_count)) {
+            array_push($this->openAPINullablesSetToNull, 'error_message_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('error_message_count', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['error_message_count'] = $error_message_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets chat_session_title
+     *
+     * @return string|null
+     */
+    public function getChatSessionTitle()
+    {
+        return $this->container['chat_session_title'];
+    }
+
+    /**
+     * Sets chat_session_title
+     *
+     * @param string|null $chat_session_title chat_session_title
+     *
+     * @return self
+     */
+    public function setChatSessionTitle($chat_session_title)
+    {
+        if (is_null($chat_session_title)) {
+            array_push($this->openAPINullablesSetToNull, 'chat_session_title');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('chat_session_title', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['chat_session_title'] = $chat_session_title;
 
         return $this;
     }

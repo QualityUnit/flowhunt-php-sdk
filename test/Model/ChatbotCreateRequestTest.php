@@ -332,6 +332,15 @@ class ChatbotCreateRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "show_embed_close_button"
+     */
+    public function testPropertyShowEmbedCloseButton()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "chatbot_bubble_size"
      */
     public function testPropertyChatbotBubbleSize()

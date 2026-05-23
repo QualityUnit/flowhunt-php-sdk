@@ -64,14 +64,16 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'created_at_filter' => 'array<string,mixed>',
         'last_message_at_filter' => 'array<string,mixed>',
         'duration_filter' => 'array<string,mixed>',
-        'msg_count_filter' => 'array<string,mixed>',
+        'msg_count_filter' => 'int',
         'credits_filter' => 'array<string,mixed>',
         'chatbot_name' => 'string',
         'flow_name' => 'string',
         'ipaddress_filter' => 'array<string,mixed>',
         'pagination' => '\FlowHunt\Model\Pagination',
         'positive_feedback' => 'int',
-        'negative_feedback' => 'int'
+        'negative_feedback' => 'int',
+        'error_message' => 'int',
+        'status_filter' => 'string'
     ];
 
     /**
@@ -96,7 +98,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'ipaddress_filter' => null,
         'pagination' => null,
         'positive_feedback' => null,
-        'negative_feedback' => null
+        'negative_feedback' => null,
+        'error_message' => null,
+        'status_filter' => null
     ];
 
     /**
@@ -119,7 +123,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'ipaddress_filter' => true,
         'pagination' => true,
         'positive_feedback' => true,
-        'negative_feedback' => true
+        'negative_feedback' => true,
+        'error_message' => true,
+        'status_filter' => true
     ];
 
     /**
@@ -222,7 +228,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'ipaddress_filter' => 'ipaddress_filter',
         'pagination' => 'pagination',
         'positive_feedback' => 'positive_feedback',
-        'negative_feedback' => 'negative_feedback'
+        'negative_feedback' => 'negative_feedback',
+        'error_message' => 'error_message',
+        'status_filter' => 'status_filter'
     ];
 
     /**
@@ -245,7 +253,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'ipaddress_filter' => 'setIpaddressFilter',
         'pagination' => 'setPagination',
         'positive_feedback' => 'setPositiveFeedback',
-        'negative_feedback' => 'setNegativeFeedback'
+        'negative_feedback' => 'setNegativeFeedback',
+        'error_message' => 'setErrorMessage',
+        'status_filter' => 'setStatusFilter'
     ];
 
     /**
@@ -268,7 +278,9 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         'ipaddress_filter' => 'getIpaddressFilter',
         'pagination' => 'getPagination',
         'positive_feedback' => 'getPositiveFeedback',
-        'negative_feedback' => 'getNegativeFeedback'
+        'negative_feedback' => 'getNegativeFeedback',
+        'error_message' => 'getErrorMessage',
+        'status_filter' => 'getStatusFilter'
     ];
 
     /**
@@ -343,6 +355,8 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('pagination', $data ?? [], null);
         $this->setIfExists('positive_feedback', $data ?? [], null);
         $this->setIfExists('negative_feedback', $data ?? [], null);
+        $this->setIfExists('error_message', $data ?? [], null);
+        $this->setIfExists('status_filter', $data ?? [], null);
     }
 
     /**
@@ -371,6 +385,10 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['msg_count_filter']) && ($this->container['msg_count_filter'] > 100000)) {
+            $invalidProperties[] = "invalid value for 'msg_count_filter', must be smaller than or equal to 100000.";
+        }
 
         return $invalidProperties;
     }
@@ -628,7 +646,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets msg_count_filter
      *
-     * @return array<string,mixed>|null
+     * @return int|null
      */
     public function getMsgCountFilter()
     {
@@ -638,7 +656,7 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets msg_count_filter
      *
-     * @param array<string,mixed>|null $msg_count_filter msg_count_filter
+     * @param int|null $msg_count_filter msg_count_filter
      *
      * @return self
      */
@@ -654,6 +672,11 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($msg_count_filter) && ($msg_count_filter > 100000)) {
+            throw new \InvalidArgumentException('invalid value for $msg_count_filter when calling FlowSessionViewSearchRequest., must be smaller than or equal to 100000.');
+        }
+
         $this->container['msg_count_filter'] = $msg_count_filter;
 
         return $this;
@@ -893,6 +916,74 @@ class FlowSessionViewSearchRequest implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['negative_feedback'] = $negative_feedback;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message
+     *
+     * @return int|null
+     */
+    public function getErrorMessage()
+    {
+        return $this->container['error_message'];
+    }
+
+    /**
+     * Sets error_message
+     *
+     * @param int|null $error_message error_message
+     *
+     * @return self
+     */
+    public function setErrorMessage($error_message)
+    {
+        if (is_null($error_message)) {
+            array_push($this->openAPINullablesSetToNull, 'error_message');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('error_message', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['error_message'] = $error_message;
+
+        return $this;
+    }
+
+    /**
+     * Gets status_filter
+     *
+     * @return string|null
+     */
+    public function getStatusFilter()
+    {
+        return $this->container['status_filter'];
+    }
+
+    /**
+     * Sets status_filter
+     *
+     * @param string|null $status_filter status_filter
+     *
+     * @return self
+     */
+    public function setStatusFilter($status_filter)
+    {
+        if (is_null($status_filter)) {
+            array_push($this->openAPINullablesSetToNull, 'status_filter');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('status_filter', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['status_filter'] = $status_filter;
 
         return $this;
     }

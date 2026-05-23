@@ -46,15 +46,53 @@ class BaseFoundationModel
 
     public const FLUX_SCHNELL = 'flux-schnell';
 
+    public const FLUX_2_MAX = 'flux-2-max';
+
+    public const FLUX_2_FLEX = 'flux-2-flex';
+
+    public const FLUX_2_PRO = 'flux-2-pro';
+
+    public const FLUX_KONTEXT_MAX = 'flux-kontext-max';
+
+    public const FLUX_KONTEXT_PRO = 'flux-kontext-pro';
+
+    public const FLUX_1_1_PRO_ULTRA = 'flux-1.1-pro-ultra';
+
+    public const FLUX_2_KLEIN_4B = 'flux-2-klein-4b';
+
+    public const FLUX_DEV_LORA = 'flux-dev-lora';
+
+    public const FLUX_FAST = 'flux-fast';
+
+    public const FLUX_KONTEXT_DEV = 'flux-kontext-dev';
+
+    public const FLUX_KONTEXT_FAST = 'flux-kontext-fast';
+
+    public const MULTI_IMAGE_KONTEXT_MAX = 'multi-image-kontext-max';
+
+    public const MULTI_IMAGE_KONTEXT_PRO = 'multi-image-kontext-pro';
+
+    public const RESTORE_IMAGE = 'restore-image';
+
+    public const MULTI_IMAGE_LIST = 'multi-image-list';
+
     public const STABLE_DIFFUSION_3_5_MEDIUM = 'stable-diffusion-3.5-medium';
 
     public const STABLE_DIFFUSION_3_5_LARGE_TURBO = 'stable-diffusion-3.5-large-turbo';
 
     public const STABLE_DIFFUSION_3_5_LARGE = 'stable-diffusion-3.5-large';
 
+    public const STABLE_DIFFUSION = 'stable-diffusion';
+
     public const IMAGEN_3 = 'imagen-3';
 
     public const IMAGEN_3_FAST = 'imagen-3-fast';
+
+    public const IMAGEN_4 = 'imagen-4';
+
+    public const IMAGEN_4_ULTRA = 'imagen-4-ultra';
+
+    public const IMAGEN_4_FAST = 'imagen-4-fast';
 
     public const IDEOGRAM_V2 = 'ideogram-v2';
 
@@ -72,6 +110,8 @@ class BaseFoundationModel
 
     public const GPT_IMAGE_1_5 = 'gpt-image-1.5';
 
+    public const GPT_IMAGE_2 = 'gpt-image-2';
+
     public const SORA_2 = 'sora-2';
 
     public const NANO_BANANA = 'nano-banana';
@@ -83,6 +123,80 @@ class BaseFoundationModel
     public const QWEN_IMAGE_EDIT_PLUS = 'qwen-image-edit-plus';
 
     public const QWEN_IMAGE = 'qwen-image';
+
+    public const QWEN_IMAGE_EDIT = 'qwen-image-edit';
+
+    public const RECRAFT_V4 = 'recraft-v4';
+
+    public const RECRAFT_V4_PRO = 'recraft-v4-pro';
+
+    public const RECRAFT_V4_SVG = 'recraft-v4-svg';
+
+    public const RECRAFT_V4_PRO_SVG = 'recraft-v4-pro-svg';
+
+    public const RECRAFT_V3 = 'recraft-v3';
+
+    public const RECRAFT_V3_SVG = 'recraft-v3-svg';
+
+    public const SEEDREAM_4_5 = 'seedream-4.5';
+
+    public const SEEDREAM_4 = 'seedream-4';
+
+    public const SEEDREAM_3 = 'seedream-3';
+
+    public const PHOTON = 'photon';
+
+    public const PHOTON_FLASH = 'photon-flash';
+
+    public const GROK_IMAGINE_IMAGE = 'grok-imagine-image';
+
+    public const HUNYUAN_IMAGE_3 = 'hunyuan-image-3';
+
+    public const MINIMAX_IMAGE_01 = 'minimax-image-01';
+
+    public const Z_IMAGE_TURBO = 'z-image-turbo';
+
+    public const P_IMAGE = 'p-image';
+
+    public const P_IMAGE_LORA = 'p-image-lora';
+
+    public const P_IMAGE_EDIT = 'p-image-edit';
+
+    public const SDXL_LIGHTNING = 'sdxl-lightning';
+
+    public const WAN_2_2_IMAGE = 'wan-2.2-image';
+
+    public const GROK_IMAGINE_VIDEO = 'grok-imagine-video';
+
+    public const GEN_4_5 = 'gen-4.5';
+
+    public const KLING_V3_VIDEO = 'kling-v3-video';
+
+    public const KLING_V3_OMNI_VIDEO = 'kling-v3-omni-video';
+
+    public const KLING_O1 = 'kling-o1';
+
+    public const KLING_V2_6 = 'kling-v2.6';
+
+    public const KLING_V2_5_TURBO_PRO = 'kling-v2.5-turbo-pro';
+
+    public const KLING_V2_1_MASTER = 'kling-v2.1-master';
+
+    public const KLING_V2_1 = 'kling-v2.1';
+
+    public const KLING_V2_0 = 'kling-v2.0';
+
+    public const KLING_V1_6_PRO = 'kling-v1.6-pro';
+
+    public const KLING_V1_6_STANDARD = 'kling-v1.6-standard';
+
+    public const DREAMACTOR_M2_0 = 'dreamactor-m2.0';
+
+    public const SEEDANCE_1_PRO = 'seedance-1-pro';
+
+    public const SEEDANCE_1_LITE = 'seedance-1-lite';
+
+    public const SEEDANCE_1_PRO_FAST = 'seedance-1-pro-fast';
 
     public const WAN_2_2_ANIMATE_REPLACE = 'wan-2.2-animate-replace';
 
@@ -107,11 +221,30 @@ class BaseFoundationModel
         return [
             self::FLUX_DEV,
             self::FLUX_SCHNELL,
+            self::FLUX_2_MAX,
+            self::FLUX_2_FLEX,
+            self::FLUX_2_PRO,
+            self::FLUX_KONTEXT_MAX,
+            self::FLUX_KONTEXT_PRO,
+            self::FLUX_1_1_PRO_ULTRA,
+            self::FLUX_2_KLEIN_4B,
+            self::FLUX_DEV_LORA,
+            self::FLUX_FAST,
+            self::FLUX_KONTEXT_DEV,
+            self::FLUX_KONTEXT_FAST,
+            self::MULTI_IMAGE_KONTEXT_MAX,
+            self::MULTI_IMAGE_KONTEXT_PRO,
+            self::RESTORE_IMAGE,
+            self::MULTI_IMAGE_LIST,
             self::STABLE_DIFFUSION_3_5_MEDIUM,
             self::STABLE_DIFFUSION_3_5_LARGE_TURBO,
             self::STABLE_DIFFUSION_3_5_LARGE,
+            self::STABLE_DIFFUSION,
             self::IMAGEN_3,
             self::IMAGEN_3_FAST,
+            self::IMAGEN_4,
+            self::IMAGEN_4_ULTRA,
+            self::IMAGEN_4_FAST,
             self::IDEOGRAM_V2,
             self::IDEOGRAM_V2_TURBO,
             self::IDEOGRAM_V2A,
@@ -120,12 +253,50 @@ class BaseFoundationModel
             self::IDEOGRAM_V3_TURBO,
             self::IDEOGRAM_V3_BALANCED,
             self::GPT_IMAGE_1_5,
+            self::GPT_IMAGE_2,
             self::SORA_2,
             self::NANO_BANANA,
             self::NANO_BANANA_PRO,
             self::GEMINI_2_5_FLASH,
             self::QWEN_IMAGE_EDIT_PLUS,
             self::QWEN_IMAGE,
+            self::QWEN_IMAGE_EDIT,
+            self::RECRAFT_V4,
+            self::RECRAFT_V4_PRO,
+            self::RECRAFT_V4_SVG,
+            self::RECRAFT_V4_PRO_SVG,
+            self::RECRAFT_V3,
+            self::RECRAFT_V3_SVG,
+            self::SEEDREAM_4_5,
+            self::SEEDREAM_4,
+            self::SEEDREAM_3,
+            self::PHOTON,
+            self::PHOTON_FLASH,
+            self::GROK_IMAGINE_IMAGE,
+            self::HUNYUAN_IMAGE_3,
+            self::MINIMAX_IMAGE_01,
+            self::Z_IMAGE_TURBO,
+            self::P_IMAGE,
+            self::P_IMAGE_LORA,
+            self::P_IMAGE_EDIT,
+            self::SDXL_LIGHTNING,
+            self::WAN_2_2_IMAGE,
+            self::GROK_IMAGINE_VIDEO,
+            self::GEN_4_5,
+            self::KLING_V3_VIDEO,
+            self::KLING_V3_OMNI_VIDEO,
+            self::KLING_O1,
+            self::KLING_V2_6,
+            self::KLING_V2_5_TURBO_PRO,
+            self::KLING_V2_1_MASTER,
+            self::KLING_V2_1,
+            self::KLING_V2_0,
+            self::KLING_V1_6_PRO,
+            self::KLING_V1_6_STANDARD,
+            self::DREAMACTOR_M2_0,
+            self::SEEDANCE_1_PRO,
+            self::SEEDANCE_1_LITE,
+            self::SEEDANCE_1_PRO_FAST,
             self::WAN_2_2_ANIMATE_REPLACE,
             self::WAN_2_5_T2V_FAST,
             self::WAN_2_2_ANIMATE_ANIMATION,

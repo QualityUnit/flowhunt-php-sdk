@@ -105,4 +105,13 @@ class AgentGridFieldRequestTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "unique"
+     */
+    public function testPropertyUnique()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

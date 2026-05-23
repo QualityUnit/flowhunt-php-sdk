@@ -74,6 +74,9 @@ class MCPServersApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'bulkDeleteMcpServers' => [
+            'application/json',
+        ],
         'createMcpServer' => [
             'application/json',
         ],
@@ -138,6 +141,317 @@ class MCPServersApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation bulkDeleteMcpServers
+     *
+     * Bulk Delete Mcp Servers
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\MCPServerBulkDeleteRequest $mcp_server_bulk_delete_request mcp_server_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteMcpServers'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function bulkDeleteMcpServers($workspace_id, $mcp_server_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteMcpServers'][0])
+    {
+        list($response) = $this->bulkDeleteMcpServersWithHttpInfo($workspace_id, $mcp_server_bulk_delete_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation bulkDeleteMcpServersWithHttpInfo
+     *
+     * Bulk Delete Mcp Servers
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\MCPServerBulkDeleteRequest $mcp_server_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteMcpServers'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function bulkDeleteMcpServersWithHttpInfo($workspace_id, $mcp_server_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteMcpServers'][0])
+    {
+        $request = $this->bulkDeleteMcpServersRequest($workspace_id, $mcp_server_bulk_delete_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\Completed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\Completed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation bulkDeleteMcpServersAsync
+     *
+     * Bulk Delete Mcp Servers
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\MCPServerBulkDeleteRequest $mcp_server_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteMcpServers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkDeleteMcpServersAsync($workspace_id, $mcp_server_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteMcpServers'][0])
+    {
+        return $this->bulkDeleteMcpServersAsyncWithHttpInfo($workspace_id, $mcp_server_bulk_delete_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation bulkDeleteMcpServersAsyncWithHttpInfo
+     *
+     * Bulk Delete Mcp Servers
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\MCPServerBulkDeleteRequest $mcp_server_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteMcpServers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkDeleteMcpServersAsyncWithHttpInfo($workspace_id, $mcp_server_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteMcpServers'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->bulkDeleteMcpServersRequest($workspace_id, $mcp_server_bulk_delete_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'bulkDeleteMcpServers'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\MCPServerBulkDeleteRequest $mcp_server_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteMcpServers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function bulkDeleteMcpServersRequest($workspace_id, $mcp_server_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteMcpServers'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling bulkDeleteMcpServers'
+            );
+        }
+
+        // verify the required parameter 'mcp_server_bulk_delete_request' is set
+        if ($mcp_server_bulk_delete_request === null || (is_array($mcp_server_bulk_delete_request) && count($mcp_server_bulk_delete_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $mcp_server_bulk_delete_request when calling bulkDeleteMcpServers'
+            );
+        }
+
+
+        $resourcePath = '/v2/mcp_servers/delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($mcp_server_bulk_delete_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($mcp_server_bulk_delete_request));
+            } else {
+                $httpBody = $mcp_server_bulk_delete_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**

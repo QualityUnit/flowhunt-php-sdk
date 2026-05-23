@@ -52,6 +52,8 @@ class Role
 
     public const G = 'G';
 
+    public const T = 'T';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -63,7 +65,8 @@ class Role
             self::A,
             self::E,
             self::M,
-            self::G
+            self::G,
+            self::T
         ];
     }
 }

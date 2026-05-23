@@ -14,6 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**insertRow()**](AgentGridsApi.md#insertRow) | **POST** /v2/agent_grids/{agent_grid_id}/rows | Insert a row |
 | [**insertRowsBulk()**](AgentGridsApi.md#insertRowsBulk) | **POST** /v2/agent_grids/{agent_grid_id}/rows/bulk | Bulk insert rows |
 | [**listAgentGrids()**](AgentGridsApi.md#listAgentGrids) | **GET** /v2/agent_grids/ | List all Flow Tables |
+| [**searchAgentGrids()**](AgentGridsApi.md#searchAgentGrids) | **POST** /v2/agent_grids/search | Search Flow Tables |
 | [**searchRows()**](AgentGridsApi.md#searchRows) | **POST** /v2/agent_grids/{agent_grid_id}/search | Search rows |
 
 
@@ -691,6 +692,73 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchAgentGrids()`
+
+```php
+searchAgentGrids($workspace_id, $agent_grid_search_list_request): \FlowHunt\Model\AgentGridResponse[]
+```
+
+Search Flow Tables
+
+Returns Flow Tables (Agent Grids) for the workspace, optionally filtered by a case-insensitive substring match on name or description. An empty body returns the full list.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\AgentGridsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$agent_grid_search_list_request = new \FlowHunt\Model\AgentGridSearchListRequest(); // \FlowHunt\Model\AgentGridSearchListRequest
+
+try {
+    $result = $apiInstance->searchAgentGrids($workspace_id, $agent_grid_search_list_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AgentGridsApi->searchAgentGrids: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **agent_grid_search_list_request** | [**\FlowHunt\Model\AgentGridSearchListRequest**](../Model/AgentGridSearchListRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\AgentGridResponse[]**](../Model/AgentGridResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

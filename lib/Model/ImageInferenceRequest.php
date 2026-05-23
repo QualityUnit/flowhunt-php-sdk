@@ -395,6 +395,22 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['image_fts'] === null) {
             $invalidProperties[] = "'image_fts' can't be null";
         }
+        if (!is_null($this->container['number_of_outputs']) && ($this->container['number_of_outputs'] > 4)) {
+            $invalidProperties[] = "invalid value for 'number_of_outputs', must be smaller than or equal to 4.";
+        }
+
+        if (!is_null($this->container['number_of_outputs']) && ($this->container['number_of_outputs'] < 1)) {
+            $invalidProperties[] = "invalid value for 'number_of_outputs', must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['steps']) && ($this->container['steps'] > 100)) {
+            $invalidProperties[] = "invalid value for 'steps', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['steps']) && ($this->container['steps'] < 1)) {
+            $invalidProperties[] = "invalid value for 'steps', must be bigger than or equal to 1.";
+        }
+
         if (!is_null($this->container['guidance_scale']) && ($this->container['guidance_scale'] > 10.0)) {
             $invalidProperties[] = "invalid value for 'guidance_scale', must be smaller than or equal to 10.0.";
         }
@@ -521,6 +537,14 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($number_of_outputs)) {
             throw new \InvalidArgumentException('non-nullable number_of_outputs cannot be null');
         }
+
+        if (($number_of_outputs > 4)) {
+            throw new \InvalidArgumentException('invalid value for $number_of_outputs when calling ImageInferenceRequest., must be smaller than or equal to 4.');
+        }
+        if (($number_of_outputs < 1)) {
+            throw new \InvalidArgumentException('invalid value for $number_of_outputs when calling ImageInferenceRequest., must be bigger than or equal to 1.');
+        }
+
         $this->container['number_of_outputs'] = $number_of_outputs;
 
         return $this;
@@ -582,6 +606,14 @@ class ImageInferenceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($steps) && ($steps > 100)) {
+            throw new \InvalidArgumentException('invalid value for $steps when calling ImageInferenceRequest., must be smaller than or equal to 100.');
+        }
+        if (!is_null($steps) && ($steps < 1)) {
+            throw new \InvalidArgumentException('invalid value for $steps when calling ImageInferenceRequest., must be bigger than or equal to 1.');
+        }
+
         $this->container['steps'] = $steps;
 
         return $this;

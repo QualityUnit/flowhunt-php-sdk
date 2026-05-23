@@ -77,6 +77,12 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'artefacts' => '\FlowHunt\Model\FlowSessionArtefactInfo[]',
         'cot_id' => 'string',
         'content' => 'string',
+        'agent_name' => 'string',
+        'agent_type' => 'string',
+        'model' => 'string',
+        'task' => 'string',
+        'started_by' => 'string',
+        'target_agent' => 'string',
         'todo_id' => 'string',
         'todos' => '\FlowHunt\Model\TodoItem[]',
         'action_description' => 'string',
@@ -85,6 +91,14 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'hook_id' => 'string',
         'hook_name' => 'string',
         'prompt_message' => 'string',
+        'script' => 'string',
+        'timeout_ms' => 'int',
+        'request_id' => 'string',
+        'hitl_id' => 'string',
+        'tool_args' => 'array<string,mixed>',
+        'tool_description' => 'string',
+        'channel' => 'string',
+        'channel_config' => 'array<string,mixed>',
         'action_id' => 'string',
         'component_id' => 'string',
         'component_type' => 'string',
@@ -101,7 +115,10 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'file_id' => 'string',
         'file_name' => 'string',
         'file_type' => 'string',
-        'document_type' => '\FlowHunt\Model\DocumentType'
+        'document_type' => 'string',
+        'slug' => 'string',
+        'integration_url' => 'string',
+        'document_id' => 'string'
     ];
 
     /**
@@ -131,6 +148,12 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'artefacts' => null,
         'cot_id' => null,
         'content' => null,
+        'agent_name' => null,
+        'agent_type' => null,
+        'model' => null,
+        'task' => null,
+        'started_by' => null,
+        'target_agent' => null,
         'todo_id' => null,
         'todos' => null,
         'action_description' => null,
@@ -139,6 +162,14 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'hook_id' => null,
         'hook_name' => null,
         'prompt_message' => null,
+        'script' => null,
+        'timeout_ms' => null,
+        'request_id' => null,
+        'hitl_id' => null,
+        'tool_args' => null,
+        'tool_description' => null,
+        'channel' => null,
+        'channel_config' => null,
         'action_id' => null,
         'component_id' => null,
         'component_type' => null,
@@ -155,7 +186,10 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'file_id' => null,
         'file_name' => null,
         'file_type' => null,
-        'document_type' => null
+        'document_type' => null,
+        'slug' => null,
+        'integration_url' => null,
+        'document_id' => null
     ];
 
     /**
@@ -183,6 +217,12 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'artefacts' => false,
         'cot_id' => false,
         'content' => false,
+        'agent_name' => false,
+        'agent_type' => false,
+        'model' => false,
+        'task' => false,
+        'started_by' => false,
+        'target_agent' => false,
         'todo_id' => false,
         'todos' => false,
         'action_description' => false,
@@ -191,6 +231,14 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'hook_id' => false,
         'hook_name' => false,
         'prompt_message' => false,
+        'script' => false,
+        'timeout_ms' => false,
+        'request_id' => false,
+        'hitl_id' => false,
+        'tool_args' => false,
+        'tool_description' => false,
+        'channel' => false,
+        'channel_config' => false,
         'action_id' => false,
         'component_id' => false,
         'component_type' => false,
@@ -207,7 +255,10 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'file_id' => false,
         'file_name' => false,
         'file_type' => false,
-        'document_type' => false
+        'document_type' => false,
+        'slug' => false,
+        'integration_url' => false,
+        'document_id' => false
     ];
 
     /**
@@ -315,6 +366,12 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'artefacts' => 'artefacts',
         'cot_id' => 'cot_id',
         'content' => 'content',
+        'agent_name' => 'agent_name',
+        'agent_type' => 'agent_type',
+        'model' => 'model',
+        'task' => 'task',
+        'started_by' => 'started_by',
+        'target_agent' => 'target_agent',
         'todo_id' => 'todo_id',
         'todos' => 'todos',
         'action_description' => 'action_description',
@@ -323,6 +380,14 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'hook_id' => 'hook_id',
         'hook_name' => 'hook_name',
         'prompt_message' => 'prompt_message',
+        'script' => 'script',
+        'timeout_ms' => 'timeout_ms',
+        'request_id' => 'request_id',
+        'hitl_id' => 'hitl_id',
+        'tool_args' => 'tool_args',
+        'tool_description' => 'tool_description',
+        'channel' => 'channel',
+        'channel_config' => 'channel_config',
         'action_id' => 'action_id',
         'component_id' => 'component_id',
         'component_type' => 'component_type',
@@ -339,7 +404,10 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'file_id' => 'file_id',
         'file_name' => 'file_name',
         'file_type' => 'file_type',
-        'document_type' => 'document_type'
+        'document_type' => 'document_type',
+        'slug' => 'slug',
+        'integration_url' => 'integration_url',
+        'document_id' => 'document_id'
     ];
 
     /**
@@ -367,6 +435,12 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'artefacts' => 'setArtefacts',
         'cot_id' => 'setCotId',
         'content' => 'setContent',
+        'agent_name' => 'setAgentName',
+        'agent_type' => 'setAgentType',
+        'model' => 'setModel',
+        'task' => 'setTask',
+        'started_by' => 'setStartedBy',
+        'target_agent' => 'setTargetAgent',
         'todo_id' => 'setTodoId',
         'todos' => 'setTodos',
         'action_description' => 'setActionDescription',
@@ -375,6 +449,14 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'hook_id' => 'setHookId',
         'hook_name' => 'setHookName',
         'prompt_message' => 'setPromptMessage',
+        'script' => 'setScript',
+        'timeout_ms' => 'setTimeoutMs',
+        'request_id' => 'setRequestId',
+        'hitl_id' => 'setHitlId',
+        'tool_args' => 'setToolArgs',
+        'tool_description' => 'setToolDescription',
+        'channel' => 'setChannel',
+        'channel_config' => 'setChannelConfig',
         'action_id' => 'setActionId',
         'component_id' => 'setComponentId',
         'component_type' => 'setComponentType',
@@ -391,7 +473,10 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'file_id' => 'setFileId',
         'file_name' => 'setFileName',
         'file_type' => 'setFileType',
-        'document_type' => 'setDocumentType'
+        'document_type' => 'setDocumentType',
+        'slug' => 'setSlug',
+        'integration_url' => 'setIntegrationUrl',
+        'document_id' => 'setDocumentId'
     ];
 
     /**
@@ -419,6 +504,12 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'artefacts' => 'getArtefacts',
         'cot_id' => 'getCotId',
         'content' => 'getContent',
+        'agent_name' => 'getAgentName',
+        'agent_type' => 'getAgentType',
+        'model' => 'getModel',
+        'task' => 'getTask',
+        'started_by' => 'getStartedBy',
+        'target_agent' => 'getTargetAgent',
         'todo_id' => 'getTodoId',
         'todos' => 'getTodos',
         'action_description' => 'getActionDescription',
@@ -427,6 +518,14 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'hook_id' => 'getHookId',
         'hook_name' => 'getHookName',
         'prompt_message' => 'getPromptMessage',
+        'script' => 'getScript',
+        'timeout_ms' => 'getTimeoutMs',
+        'request_id' => 'getRequestId',
+        'hitl_id' => 'getHitlId',
+        'tool_args' => 'getToolArgs',
+        'tool_description' => 'getToolDescription',
+        'channel' => 'getChannel',
+        'channel_config' => 'getChannelConfig',
         'action_id' => 'getActionId',
         'component_id' => 'getComponentId',
         'component_type' => 'getComponentType',
@@ -443,7 +542,10 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'file_id' => 'getFileId',
         'file_name' => 'getFileName',
         'file_type' => 'getFileType',
-        'document_type' => 'getDocumentType'
+        'document_type' => 'getDocumentType',
+        'slug' => 'getSlug',
+        'integration_url' => 'getIntegrationUrl',
+        'document_id' => 'getDocumentId'
     ];
 
     /**
@@ -504,7 +606,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], '');
         $this->setIfExists('sender', $data ?? [], null);
         $this->setIfExists('tool_name', $data ?? [], null);
         $this->setIfExists('loading_desc', $data ?? [], null);
@@ -522,6 +624,12 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('artefacts', $data ?? [], null);
         $this->setIfExists('cot_id', $data ?? [], null);
         $this->setIfExists('content', $data ?? [], null);
+        $this->setIfExists('agent_name', $data ?? [], null);
+        $this->setIfExists('agent_type', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('task', $data ?? [], null);
+        $this->setIfExists('started_by', $data ?? [], null);
+        $this->setIfExists('target_agent', $data ?? [], null);
         $this->setIfExists('todo_id', $data ?? [], null);
         $this->setIfExists('todos', $data ?? [], null);
         $this->setIfExists('action_description', $data ?? [], null);
@@ -530,6 +638,14 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('hook_id', $data ?? [], null);
         $this->setIfExists('hook_name', $data ?? [], null);
         $this->setIfExists('prompt_message', $data ?? [], null);
+        $this->setIfExists('script', $data ?? [], null);
+        $this->setIfExists('timeout_ms', $data ?? [], 5000);
+        $this->setIfExists('request_id', $data ?? [], null);
+        $this->setIfExists('hitl_id', $data ?? [], '');
+        $this->setIfExists('tool_args', $data ?? [], null);
+        $this->setIfExists('tool_description', $data ?? [], '');
+        $this->setIfExists('channel', $data ?? [], 'flowhunt');
+        $this->setIfExists('channel_config', $data ?? [], null);
         $this->setIfExists('action_id', $data ?? [], null);
         $this->setIfExists('component_id', $data ?? [], null);
         $this->setIfExists('component_type', $data ?? [], null);
@@ -547,6 +663,9 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('file_name', $data ?? [], null);
         $this->setIfExists('file_type', $data ?? [], null);
         $this->setIfExists('document_type', $data ?? [], null);
+        $this->setIfExists('slug', $data ?? [], null);
+        $this->setIfExists('integration_url', $data ?? [], null);
+        $this->setIfExists('document_id', $data ?? [], null);
     }
 
     /**
@@ -618,6 +737,24 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['content'] === null) {
             $invalidProperties[] = "'content' can't be null";
         }
+        if ($this->container['agent_name'] === null) {
+            $invalidProperties[] = "'agent_name' can't be null";
+        }
+        if ($this->container['agent_type'] === null) {
+            $invalidProperties[] = "'agent_type' can't be null";
+        }
+        if ($this->container['model'] === null) {
+            $invalidProperties[] = "'model' can't be null";
+        }
+        if ($this->container['task'] === null) {
+            $invalidProperties[] = "'task' can't be null";
+        }
+        if ($this->container['started_by'] === null) {
+            $invalidProperties[] = "'started_by' can't be null";
+        }
+        if ($this->container['target_agent'] === null) {
+            $invalidProperties[] = "'target_agent' can't be null";
+        }
         if ($this->container['todo_id'] === null) {
             $invalidProperties[] = "'todo_id' can't be null";
         }
@@ -635,6 +772,15 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['prompt_message'] === null) {
             $invalidProperties[] = "'prompt_message' can't be null";
+        }
+        if ($this->container['script'] === null) {
+            $invalidProperties[] = "'script' can't be null";
+        }
+        if ($this->container['request_id'] === null) {
+            $invalidProperties[] = "'request_id' can't be null";
+        }
+        if ($this->container['tool_args'] === null) {
+            $invalidProperties[] = "'tool_args' can't be null";
         }
         if ($this->container['action_id'] === null) {
             $invalidProperties[] = "'action_id' can't be null";
@@ -662,6 +808,18 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['file_name'] === null) {
             $invalidProperties[] = "'file_name' can't be null";
+        }
+        if ($this->container['document_type'] === null) {
+            $invalidProperties[] = "'document_type' can't be null";
+        }
+        if ($this->container['slug'] === null) {
+            $invalidProperties[] = "'slug' can't be null";
+        }
+        if ($this->container['integration_url'] === null) {
+            $invalidProperties[] = "'integration_url' can't be null";
+        }
+        if ($this->container['document_id'] === null) {
+            $invalidProperties[] = "'document_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -718,7 +876,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets message
      *
-     * @param string $message Message
+     * @param string $message User-facing message explaining why access is needed
      *
      * @return self
      */
@@ -772,7 +930,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tool_name
      *
-     * @param string $tool_name Tool name
+     * @param string $tool_name Name of the tool requiring approval
      *
      * @return self
      */
@@ -1192,6 +1350,168 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets agent_name
+     *
+     * @return string
+     */
+    public function getAgentName()
+    {
+        return $this->container['agent_name'];
+    }
+
+    /**
+     * Sets agent_name
+     *
+     * @param string $agent_name Name of the agent
+     *
+     * @return self
+     */
+    public function setAgentName($agent_name)
+    {
+        if (is_null($agent_name)) {
+            throw new \InvalidArgumentException('non-nullable agent_name cannot be null');
+        }
+        $this->container['agent_name'] = $agent_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent_type
+     *
+     * @return string
+     */
+    public function getAgentType()
+    {
+        return $this->container['agent_type'];
+    }
+
+    /**
+     * Sets agent_type
+     *
+     * @param string $agent_type Agent type: supervisor, lead, or worker
+     *
+     * @return self
+     */
+    public function setAgentType($agent_type)
+    {
+        if (is_null($agent_type)) {
+            throw new \InvalidArgumentException('non-nullable agent_type cannot be null');
+        }
+        $this->container['agent_type'] = $agent_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string $model LLM model name used by the agent
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Gets task
+     *
+     * @return string
+     */
+    public function getTask()
+    {
+        return $this->container['task'];
+    }
+
+    /**
+     * Sets task
+     *
+     * @param string $task The full prompt sent to the subagent.
+     *
+     * @return self
+     */
+    public function setTask($task)
+    {
+        if (is_null($task)) {
+            throw new \InvalidArgumentException('non-nullable task cannot be null');
+        }
+        $this->container['task'] = $task;
+
+        return $this;
+    }
+
+    /**
+     * Gets started_by
+     *
+     * @return string
+     */
+    public function getStartedBy()
+    {
+        return $this->container['started_by'];
+    }
+
+    /**
+     * Sets started_by
+     *
+     * @param string $started_by Name of the agent that initiated this delegation.
+     *
+     * @return self
+     */
+    public function setStartedBy($started_by)
+    {
+        if (is_null($started_by)) {
+            throw new \InvalidArgumentException('non-nullable started_by cannot be null');
+        }
+        $this->container['started_by'] = $started_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets target_agent
+     *
+     * @return string
+     */
+    public function getTargetAgent()
+    {
+        return $this->container['target_agent'];
+    }
+
+    /**
+     * Sets target_agent
+     *
+     * @param string $target_agent Name of the subagent receiving the task.
+     *
+     * @return self
+     */
+    public function setTargetAgent($target_agent)
+    {
+        if (is_null($target_agent)) {
+            throw new \InvalidArgumentException('non-nullable target_agent cannot be null');
+        }
+        $this->container['target_agent'] = $target_agent;
+
+        return $this;
+    }
+
+    /**
      * Gets todo_id
      *
      * @return string
@@ -1366,7 +1686,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets hook_name
      *
-     * @param string $hook_name Hook name (e.g., 'wait_for_user_input')
+     * @param string $hook_name Internal pyworkflow hook name
      *
      * @return self
      */
@@ -1403,6 +1723,222 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable prompt_message cannot be null');
         }
         $this->container['prompt_message'] = $prompt_message;
+
+        return $this;
+    }
+
+    /**
+     * Gets script
+     *
+     * @return string
+     */
+    public function getScript()
+    {
+        return $this->container['script'];
+    }
+
+    /**
+     * Sets script
+     *
+     * @param string $script JS expression to evaluate in the visitor's browser
+     *
+     * @return self
+     */
+    public function setScript($script)
+    {
+        if (is_null($script)) {
+            throw new \InvalidArgumentException('non-nullable script cannot be null');
+        }
+        $this->container['script'] = $script;
+
+        return $this;
+    }
+
+    /**
+     * Gets timeout_ms
+     *
+     * @return int|null
+     */
+    public function getTimeoutMs()
+    {
+        return $this->container['timeout_ms'];
+    }
+
+    /**
+     * Sets timeout_ms
+     *
+     * @param int|null $timeout_ms Maximum time the widget should wait before returning a timeout error
+     *
+     * @return self
+     */
+    public function setTimeoutMs($timeout_ms)
+    {
+        if (is_null($timeout_ms)) {
+            throw new \InvalidArgumentException('non-nullable timeout_ms cannot be null');
+        }
+        $this->container['timeout_ms'] = $timeout_ms;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_id
+     *
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->container['request_id'];
+    }
+
+    /**
+     * Sets request_id
+     *
+     * @param string $request_id Correlates the request with the response posted back from the widget
+     *
+     * @return self
+     */
+    public function setRequestId($request_id)
+    {
+        if (is_null($request_id)) {
+            throw new \InvalidArgumentException('non-nullable request_id cannot be null');
+        }
+        $this->container['request_id'] = $request_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets hitl_id
+     *
+     * @return string|null
+     */
+    public function getHitlId()
+    {
+        return $this->container['hitl_id'];
+    }
+
+    /**
+     * Sets hitl_id
+     *
+     * @param string|null $hitl_id HITL request ID for correlation
+     *
+     * @return self
+     */
+    public function setHitlId($hitl_id)
+    {
+        if (is_null($hitl_id)) {
+            throw new \InvalidArgumentException('non-nullable hitl_id cannot be null');
+        }
+        $this->container['hitl_id'] = $hitl_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets tool_args
+     *
+     * @return array<string,mixed>
+     */
+    public function getToolArgs()
+    {
+        return $this->container['tool_args'];
+    }
+
+    /**
+     * Sets tool_args
+     *
+     * @param array<string,mixed> $tool_args Arguments the tool would be called with
+     *
+     * @return self
+     */
+    public function setToolArgs($tool_args)
+    {
+        if (is_null($tool_args)) {
+            throw new \InvalidArgumentException('non-nullable tool_args cannot be null');
+        }
+        $this->container['tool_args'] = $tool_args;
+
+        return $this;
+    }
+
+    /**
+     * Gets tool_description
+     *
+     * @return string|null
+     */
+    public function getToolDescription()
+    {
+        return $this->container['tool_description'];
+    }
+
+    /**
+     * Sets tool_description
+     *
+     * @param string|null $tool_description Description of the tool
+     *
+     * @return self
+     */
+    public function setToolDescription($tool_description)
+    {
+        if (is_null($tool_description)) {
+            throw new \InvalidArgumentException('non-nullable tool_description cannot be null');
+        }
+        $this->container['tool_description'] = $tool_description;
+
+        return $this;
+    }
+
+    /**
+     * Gets channel
+     *
+     * @return string|null
+     */
+    public function getChannel()
+    {
+        return $this->container['channel'];
+    }
+
+    /**
+     * Sets channel
+     *
+     * @param string|null $channel Notification channel type
+     *
+     * @return self
+     */
+    public function setChannel($channel)
+    {
+        if (is_null($channel)) {
+            throw new \InvalidArgumentException('non-nullable channel cannot be null');
+        }
+        $this->container['channel'] = $channel;
+
+        return $this;
+    }
+
+    /**
+     * Gets channel_config
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getChannelConfig()
+    {
+        return $this->container['channel_config'];
+    }
+
+    /**
+     * Sets channel_config
+     *
+     * @param array<string,mixed>|null $channel_config Channel-specific configuration
+     *
+     * @return self
+     */
+    public function setChannelConfig($channel_config)
+    {
+        if (is_null($channel_config)) {
+            throw new \InvalidArgumentException('non-nullable channel_config cannot be null');
+        }
+        $this->container['channel_config'] = $channel_config;
 
         return $this;
     }
@@ -1842,7 +2378,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets document_type
      *
-     * @return \FlowHunt\Model\DocumentType|null
+     * @return string
      */
     public function getDocumentType()
     {
@@ -1852,7 +2388,7 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets document_type
      *
-     * @param \FlowHunt\Model\DocumentType|null $document_type document_type
+     * @param string $document_type Type of document (e.g., google_sheets)
      *
      * @return self
      */
@@ -1862,6 +2398,87 @@ class Metadata implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable document_type cannot be null');
         }
         $this->container['document_type'] = $document_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->container['slug'];
+    }
+
+    /**
+     * Sets slug
+     *
+     * @param string $slug Integration slug that is missing
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        if (is_null($slug)) {
+            throw new \InvalidArgumentException('non-nullable slug cannot be null');
+        }
+        $this->container['slug'] = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Gets integration_url
+     *
+     * @return string
+     */
+    public function getIntegrationUrl()
+    {
+        return $this->container['integration_url'];
+    }
+
+    /**
+     * Sets integration_url
+     *
+     * @param string $integration_url URL for the user to set up the integration
+     *
+     * @return self
+     */
+    public function setIntegrationUrl($integration_url)
+    {
+        if (is_null($integration_url)) {
+            throw new \InvalidArgumentException('non-nullable integration_url cannot be null');
+        }
+        $this->container['integration_url'] = $integration_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets document_id
+     *
+     * @return string
+     */
+    public function getDocumentId()
+    {
+        return $this->container['document_id'];
+    }
+
+    /**
+     * Sets document_id
+     *
+     * @param string $document_id ID of the document requiring access
+     *
+     * @return self
+     */
+    public function setDocumentId($document_id)
+    {
+        if (is_null($document_id)) {
+            throw new \InvalidArgumentException('non-nullable document_id cannot be null');
+        }
+        $this->container['document_id'] = $document_id;
 
         return $this;
     }

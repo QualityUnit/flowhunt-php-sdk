@@ -72,6 +72,18 @@ class DefaultApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteBranding
+     *
+     * Delete Branding.
+     *
+     */
+    public function testDeleteBranding()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getBranding
      *
      * Get Branding.

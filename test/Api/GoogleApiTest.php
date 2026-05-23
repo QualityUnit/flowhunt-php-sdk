@@ -72,12 +72,36 @@ class GoogleApiTest extends TestCase
     }
 
     /**
+     * Test case for getAllowedDirectories
+     *
+     * Get Allowed Directories.
+     *
+     */
+    public function testGetAllowedDirectories()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getCalendars
      *
      * Get Calendars.
      *
      */
     public function testGetCalendars()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getDriveFolders
+     *
+     * Get Drive Folders.
+     *
+     */
+    public function testGetDriveFolders()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -102,6 +126,18 @@ class GoogleApiTest extends TestCase
      *
      */
     public function testGetSheets()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateAllowedDirectories
+     *
+     * Update Allowed Directories.
+     *
+     */
+    public function testUpdateAllowedDirectories()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

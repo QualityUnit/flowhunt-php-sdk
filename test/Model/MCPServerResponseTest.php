@@ -150,4 +150,13 @@ class MCPServerResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "mcp_api_key"
+     */
+    public function testPropertyMcpApiKey()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

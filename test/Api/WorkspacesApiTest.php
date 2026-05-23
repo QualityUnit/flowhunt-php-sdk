@@ -180,6 +180,18 @@ class WorkspacesApiTest extends TestCase
     }
 
     /**
+     * Test case for updateWorkspaceAutoRecharge
+     *
+     * Update Workspace Auto Recharge.
+     *
+     */
+    public function testUpdateWorkspaceAutoRecharge()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateWorkspaceCreditAlertThreshold
      *
      * Update Workspace Credit Alert Threshold.

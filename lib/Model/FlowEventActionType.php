@@ -70,6 +70,20 @@ class FlowEventActionType
 
     public const HOOK_WAITING_FOR_INPUT = 'hook_waiting_for_input';
 
+    public const EVALUATE_CLIENT_JS = 'evaluate_client_js';
+
+    public const SESSION_CLOSED = 'session_closed';
+
+    public const AGENT_INITIALIZED = 'agent_initialized';
+
+    public const SUBAGENT_PROMPT = 'subagent_prompt';
+
+    public const HITL_APPROVAL_REQUESTED = 'hitl_approval_requested';
+
+    public const INTEGRATION_MISSING = 'integration_missing';
+
+    public const FILE_ACCESS_REQUIRED = 'file_access_required';
+
     public const ADD_COMPONENT = 'add_component';
 
     public const DELETE_COMPONENT = 'delete_component';
@@ -105,6 +119,13 @@ class FlowEventActionType
             self::V3_TOOL_CALL_END,
             self::V3_FLOW_ASSISTANT_INIT,
             self::HOOK_WAITING_FOR_INPUT,
+            self::EVALUATE_CLIENT_JS,
+            self::SESSION_CLOSED,
+            self::AGENT_INITIALIZED,
+            self::SUBAGENT_PROMPT,
+            self::HITL_APPROVAL_REQUESTED,
+            self::INTEGRATION_MISSING,
+            self::FILE_ACCESS_REQUIRED,
             self::ADD_COMPONENT,
             self::DELETE_COMPONENT,
             self::CONNECT_COMPONENTS,

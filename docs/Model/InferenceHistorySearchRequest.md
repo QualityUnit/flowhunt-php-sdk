@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **from_date** | **\DateTime** |  | [optional]
 **to_date** | **\DateTime** |  | [optional]
 **limit** | **int** | The number of results to return | [optional] [default to 10]
-**search_after** | **mixed[]** |  | [optional]
+**search_after** | [**\FlowHunt\Model\InferenceHistorySearchRequestSearchAfterInner[]**](InferenceHistorySearchRequestSearchAfterInner.md) |  | [optional]
 **base_model** | [**\FlowHunt\Model\BaseFoundationModel**](BaseFoundationModel.md) |  | [optional]
 **style** | **string** |  | [optional]
 **effect** | **string** |  | [optional]

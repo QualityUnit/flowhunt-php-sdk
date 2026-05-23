@@ -74,6 +74,15 @@ class SchedulesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'bulkDeleteSchedules' => [
+            'application/json',
+        ],
+        'bulkRunSchedules' => [
+            'application/json',
+        ],
+        'bulkUpdateSchedules' => [
+            'application/json',
+        ],
         'createSchedules' => [
             'application/json',
         ],
@@ -147,6 +156,939 @@ class SchedulesApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation bulkDeleteSchedules
+     *
+     * Bulk Delete Schedules
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkDeleteRequest $schedule_bulk_delete_request schedule_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteSchedules'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function bulkDeleteSchedules($workspace_id, $schedule_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteSchedules'][0])
+    {
+        list($response) = $this->bulkDeleteSchedulesWithHttpInfo($workspace_id, $schedule_bulk_delete_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation bulkDeleteSchedulesWithHttpInfo
+     *
+     * Bulk Delete Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkDeleteRequest $schedule_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteSchedules'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function bulkDeleteSchedulesWithHttpInfo($workspace_id, $schedule_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteSchedules'][0])
+    {
+        $request = $this->bulkDeleteSchedulesRequest($workspace_id, $schedule_bulk_delete_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\Completed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\Completed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation bulkDeleteSchedulesAsync
+     *
+     * Bulk Delete Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkDeleteRequest $schedule_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkDeleteSchedulesAsync($workspace_id, $schedule_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteSchedules'][0])
+    {
+        return $this->bulkDeleteSchedulesAsyncWithHttpInfo($workspace_id, $schedule_bulk_delete_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation bulkDeleteSchedulesAsyncWithHttpInfo
+     *
+     * Bulk Delete Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkDeleteRequest $schedule_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkDeleteSchedulesAsyncWithHttpInfo($workspace_id, $schedule_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteSchedules'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->bulkDeleteSchedulesRequest($workspace_id, $schedule_bulk_delete_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'bulkDeleteSchedules'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkDeleteRequest $schedule_bulk_delete_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkDeleteSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function bulkDeleteSchedulesRequest($workspace_id, $schedule_bulk_delete_request, string $contentType = self::contentTypes['bulkDeleteSchedules'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling bulkDeleteSchedules'
+            );
+        }
+
+        // verify the required parameter 'schedule_bulk_delete_request' is set
+        if ($schedule_bulk_delete_request === null || (is_array($schedule_bulk_delete_request) && count($schedule_bulk_delete_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_bulk_delete_request when calling bulkDeleteSchedules'
+            );
+        }
+
+
+        $resourcePath = '/v2/schedules/delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($schedule_bulk_delete_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($schedule_bulk_delete_request));
+            } else {
+                $httpBody = $schedule_bulk_delete_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation bulkRunSchedules
+     *
+     * Bulk Run Schedules
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkRunRequest $schedule_bulk_run_request schedule_bulk_run_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkRunSchedules'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function bulkRunSchedules($workspace_id, $schedule_bulk_run_request, string $contentType = self::contentTypes['bulkRunSchedules'][0])
+    {
+        list($response) = $this->bulkRunSchedulesWithHttpInfo($workspace_id, $schedule_bulk_run_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation bulkRunSchedulesWithHttpInfo
+     *
+     * Bulk Run Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkRunRequest $schedule_bulk_run_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkRunSchedules'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function bulkRunSchedulesWithHttpInfo($workspace_id, $schedule_bulk_run_request, string $contentType = self::contentTypes['bulkRunSchedules'][0])
+    {
+        $request = $this->bulkRunSchedulesRequest($workspace_id, $schedule_bulk_run_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\Completed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\Completed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation bulkRunSchedulesAsync
+     *
+     * Bulk Run Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkRunRequest $schedule_bulk_run_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkRunSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkRunSchedulesAsync($workspace_id, $schedule_bulk_run_request, string $contentType = self::contentTypes['bulkRunSchedules'][0])
+    {
+        return $this->bulkRunSchedulesAsyncWithHttpInfo($workspace_id, $schedule_bulk_run_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation bulkRunSchedulesAsyncWithHttpInfo
+     *
+     * Bulk Run Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkRunRequest $schedule_bulk_run_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkRunSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkRunSchedulesAsyncWithHttpInfo($workspace_id, $schedule_bulk_run_request, string $contentType = self::contentTypes['bulkRunSchedules'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->bulkRunSchedulesRequest($workspace_id, $schedule_bulk_run_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'bulkRunSchedules'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkRunRequest $schedule_bulk_run_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkRunSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function bulkRunSchedulesRequest($workspace_id, $schedule_bulk_run_request, string $contentType = self::contentTypes['bulkRunSchedules'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling bulkRunSchedules'
+            );
+        }
+
+        // verify the required parameter 'schedule_bulk_run_request' is set
+        if ($schedule_bulk_run_request === null || (is_array($schedule_bulk_run_request) && count($schedule_bulk_run_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_bulk_run_request when calling bulkRunSchedules'
+            );
+        }
+
+
+        $resourcePath = '/v2/schedules/run';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($schedule_bulk_run_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($schedule_bulk_run_request));
+            } else {
+                $httpBody = $schedule_bulk_run_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation bulkUpdateSchedules
+     *
+     * Bulk Update Schedules
+     *
+     * @param  string $workspace_id workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkUpdateRequest $schedule_bulk_update_request schedule_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateSchedules'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError
+     */
+    public function bulkUpdateSchedules($workspace_id, $schedule_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateSchedules'][0])
+    {
+        list($response) = $this->bulkUpdateSchedulesWithHttpInfo($workspace_id, $schedule_bulk_update_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation bulkUpdateSchedulesWithHttpInfo
+     *
+     * Bulk Update Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkUpdateRequest $schedule_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateSchedules'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\Completed|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function bulkUpdateSchedulesWithHttpInfo($workspace_id, $schedule_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateSchedules'][0])
+    {
+        $request = $this->bulkUpdateSchedulesRequest($workspace_id, $schedule_bulk_update_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\Completed',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\Completed',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\Completed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation bulkUpdateSchedulesAsync
+     *
+     * Bulk Update Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkUpdateRequest $schedule_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkUpdateSchedulesAsync($workspace_id, $schedule_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateSchedules'][0])
+    {
+        return $this->bulkUpdateSchedulesAsyncWithHttpInfo($workspace_id, $schedule_bulk_update_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation bulkUpdateSchedulesAsyncWithHttpInfo
+     *
+     * Bulk Update Schedules
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkUpdateRequest $schedule_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function bulkUpdateSchedulesAsyncWithHttpInfo($workspace_id, $schedule_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateSchedules'][0])
+    {
+        $returnType = '\FlowHunt\Model\Completed';
+        $request = $this->bulkUpdateSchedulesRequest($workspace_id, $schedule_bulk_update_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'bulkUpdateSchedules'
+     *
+     * @param  string $workspace_id (required)
+     * @param  \FlowHunt\Model\ScheduleBulkUpdateRequest $schedule_bulk_update_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bulkUpdateSchedules'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function bulkUpdateSchedulesRequest($workspace_id, $schedule_bulk_update_request, string $contentType = self::contentTypes['bulkUpdateSchedules'][0])
+    {
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling bulkUpdateSchedules'
+            );
+        }
+
+        // verify the required parameter 'schedule_bulk_update_request' is set
+        if ($schedule_bulk_update_request === null || (is_array($schedule_bulk_update_request) && count($schedule_bulk_update_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $schedule_bulk_update_request when calling bulkUpdateSchedules'
+            );
+        }
+
+
+        $resourcePath = '/v2/schedules/update';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($schedule_bulk_update_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($schedule_bulk_update_request));
+            } else {
+                $httpBody = $schedule_bulk_update_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Api-Key');
+        if ($apiKey !== null) {
+            $headers['Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**

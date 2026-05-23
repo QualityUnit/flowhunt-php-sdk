@@ -4,6 +4,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**bulkDeleteFlows()**](FlowsApi.md#bulkDeleteFlows) | **POST** /v2/flows/delete | Bulk Delete Flows |
+| [**bulkUpdateFlows()**](FlowsApi.md#bulkUpdateFlows) | **POST** /v2/flows/update | Bulk Update Flows |
 | [**cancelFlowSession()**](FlowsApi.md#cancelFlowSession) | **POST** /v2/flows/sessions/{session_id}/cancel | Cancel Flow Session |
 | [**createChatbotSession()**](FlowsApi.md#createChatbotSession) | **POST** /v2/flows/sessions/create | Create Chatbot Session |
 | [**createFlow()**](FlowsApi.md#createFlow) | **POST** /v2/flows/create | Create Flow |
@@ -17,6 +19,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**deleteFlowCron()**](FlowsApi.md#deleteFlowCron) | **DELETE** /v2/flows/crons/{flow_id}/{cron_id} | Delete Flow Cron |
 | [**downloadAttachment()**](FlowsApi.md#downloadAttachment) | **GET** /v2/flows/sessions/{session_id}/attachments/{file_id} | Download attachment |
 | [**executeFlowCron()**](FlowsApi.md#executeFlowCron) | **POST** /v2/flows/crons/{flow_id}/{cron_id}/execute | Execute Flow Cron |
+| [**fireChatHook()**](FlowsApi.md#fireChatHook) | **POST** /v2/flows/sessions/{session_id}/hook | Fire Chat Hook |
 | [**generateCommitMessage()**](FlowsApi.md#generateCommitMessage) | **POST** /v2/flows/{flow_id}/generate-commit-msg | Generate Commit Message |
 | [**get()**](FlowsApi.md#get) | **GET** /v2/flows/{flow_id} | Get |
 | [**getAllComponents()**](FlowsApi.md#getAllComponents) | **GET** /v2/flows/components/all | Get All Components |
@@ -40,8 +43,139 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**updateFlow()**](FlowsApi.md#updateFlow) | **PUT** /v2/flows/{flow_id} | Update Flow |
 | [**updateFlowCategory()**](FlowsApi.md#updateFlowCategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category |
 | [**updateFlowCron()**](FlowsApi.md#updateFlowCron) | **PUT** /v2/flows/crons/{flow_id}/{cron_id} | Update Flow Cron |
+| [**updateSessionVariables()**](FlowsApi.md#updateSessionVariables) | **PATCH** /v2/flows/sessions/{session_id}/variables | Update Session Variables |
 | [**uploadAttachments()**](FlowsApi.md#uploadAttachments) | **POST** /v2/flows/sessions/{session_id}/attachments | Upload Attachments |
 
+
+## `bulkDeleteFlows()`
+
+```php
+bulkDeleteFlows($workspace_id, $flow_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Flows
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$flow_bulk_delete_request = new \FlowHunt\Model\FlowBulkDeleteRequest(); // \FlowHunt\Model\FlowBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteFlows($workspace_id, $flow_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->bulkDeleteFlows: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **flow_bulk_delete_request** | [**\FlowHunt\Model\FlowBulkDeleteRequest**](../Model/FlowBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkUpdateFlows()`
+
+```php
+bulkUpdateFlows($workspace_id, $flow_bulk_update_request): \FlowHunt\Model\Completed
+```
+
+Bulk Update Flows
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: APIKeyHeader
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Api-Key', 'Bearer');
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$flow_bulk_update_request = new \FlowHunt\Model\FlowBulkUpdateRequest(); // \FlowHunt\Model\FlowBulkUpdateRequest
+
+try {
+    $result = $apiInstance->bulkUpdateFlows($workspace_id, $flow_bulk_update_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->bulkUpdateFlows: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **flow_bulk_update_request** | [**\FlowHunt\Model\FlowBulkUpdateRequest**](../Model/FlowBulkUpdateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[APIKeyHeader](../../README.md#APIKeyHeader), [HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `cancelFlowSession()`
 
@@ -856,6 +990,62 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `fireChatHook()`
+
+```php
+fireChatHook($session_id, $flow_session_hook_request): \FlowHunt\Model\FlowSessionInvocationResponse
+```
+
+Fire Chat Hook
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+$flow_session_hook_request = new \FlowHunt\Model\FlowSessionHookRequest(); // \FlowHunt\Model\FlowSessionHookRequest
+
+try {
+    $result = $apiInstance->fireChatHook($session_id, $flow_session_hook_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->fireChatHook: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+| **flow_session_hook_request** | [**\FlowHunt\Model\FlowSessionHookRequest**](../Model/FlowSessionHookRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowSessionInvocationResponse**](../Model/FlowSessionInvocationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `generateCommitMessage()`
 
 ```php
@@ -1109,7 +1299,7 @@ No authorization required
 ## `getAttachments()`
 
 ```php
-getAttachments($session_id): \FlowHunt\Model\FlowSessionAttachmentResponse[]
+getAttachments($session_id): \FlowHunt\Model\InhouseAttachment[]
 ```
 
 Get Attachments
@@ -1145,7 +1335,7 @@ try {
 
 ### Return type
 
-[**\FlowHunt\Model\FlowSessionAttachmentResponse[]**](../Model/FlowSessionAttachmentResponse.md)
+[**\FlowHunt\Model\InhouseAttachment[]**](../Model/InhouseAttachment.md)
 
 ### Authorization
 
@@ -2319,10 +2509,66 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `updateSessionVariables()`
+
+```php
+updateSessionVariables($session_id, $flow_session_variables_request): \FlowHunt\Model\FlowSessionVariablesResponse
+```
+
+Update Session Variables
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\FlowsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$session_id = 'session_id_example'; // string
+$flow_session_variables_request = new \FlowHunt\Model\FlowSessionVariablesRequest(); // \FlowHunt\Model\FlowSessionVariablesRequest
+
+try {
+    $result = $apiInstance->updateSessionVariables($session_id, $flow_session_variables_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlowsApi->updateSessionVariables: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **session_id** | **string**|  | |
+| **flow_session_variables_request** | [**\FlowHunt\Model\FlowSessionVariablesRequest**](../Model/FlowSessionVariablesRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\FlowSessionVariablesResponse**](../Model/FlowSessionVariablesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `uploadAttachments()`
 
 ```php
-uploadAttachments($session_id, $file): \FlowHunt\Model\FlowSessionAttachmentResponse
+uploadAttachments($session_id, $file): \FlowHunt\Model\InhouseAttachment
 ```
 
 Upload Attachments
@@ -2360,7 +2606,7 @@ try {
 
 ### Return type
 
-[**\FlowHunt\Model\FlowSessionAttachmentResponse**](../Model/FlowSessionAttachmentResponse.md)
+[**\FlowHunt\Model\InhouseAttachment**](../Model/InhouseAttachment.md)
 
 ### Authorization
 

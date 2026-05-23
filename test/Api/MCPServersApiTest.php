@@ -72,6 +72,18 @@ class MCPServersApiTest extends TestCase
     }
 
     /**
+     * Test case for bulkDeleteMcpServers
+     *
+     * Bulk Delete Mcp Servers.
+     *
+     */
+    public function testBulkDeleteMcpServers()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createMcpServer
      *
      * Create Mcp Server.

@@ -72,6 +72,66 @@ class DocumentsApiTest extends TestCase
     }
 
     /**
+     * Test case for bulkDeleteDocumentCategories
+     *
+     * Bulk Delete Document Categories.
+     *
+     */
+    public function testBulkDeleteDocumentCategories()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkDeleteDocuments
+     *
+     * Bulk Delete Documents.
+     *
+     */
+    public function testBulkDeleteDocuments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkDeleteFaqs
+     *
+     * Bulk Delete Faqs.
+     *
+     */
+    public function testBulkDeleteFaqs()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkUpdateDocuments
+     *
+     * Bulk Update Documents.
+     *
+     */
+    public function testBulkUpdateDocuments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkUpdateFaqs
+     *
+     * Bulk Update Faqs.
+     *
+     */
+    public function testBulkUpdateFaqs()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createDocumentCategory
      *
      * Create Document Category.

@@ -360,6 +360,30 @@ class FlowBatchApiTest extends TestCase
     }
 
     /**
+     * Test case for searchBatchRun
+     *
+     * Search Batch Run.
+     *
+     */
+    public function testSearchBatchRun()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for searchBatchRun_0
+     *
+     * Search Batch Run.
+     *
+     */
+    public function testSearchBatchRun0()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for startExportZip
      *
      * Start Export Zip.

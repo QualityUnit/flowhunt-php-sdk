@@ -72,6 +72,30 @@ class ApiKeysApiTest extends TestCase
     }
 
     /**
+     * Test case for bulkDeleteApiKeys
+     *
+     * Bulk Delete Api Keys.
+     *
+     */
+    public function testBulkDeleteApiKeys()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkUpdateApiKeys
+     *
+     * Bulk Update Api Keys.
+     *
+     */
+    public function testBulkUpdateApiKeys()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createApiKey
      *
      * Create Api Key.

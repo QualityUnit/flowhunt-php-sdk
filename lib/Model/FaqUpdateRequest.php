@@ -83,10 +83,10 @@ class FaqUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'cat_id' => false,
-        'primary_question' => false,
-        'answer' => false,
-        'secondary_questions' => false
+        'cat_id' => true,
+        'primary_question' => true,
+        'answer' => true,
+        'secondary_questions' => true
     ];
 
     /**
@@ -323,14 +323,21 @@ class FaqUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cat_id
      *
-     * @param string|null $cat_id Category ID
+     * @param string|null $cat_id cat_id
      *
      * @return self
      */
     public function setCatId($cat_id)
     {
         if (is_null($cat_id)) {
-            throw new \InvalidArgumentException('non-nullable cat_id cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'cat_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cat_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['cat_id'] = $cat_id;
 
@@ -350,14 +357,21 @@ class FaqUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets primary_question
      *
-     * @param string|null $primary_question Question
+     * @param string|null $primary_question primary_question
      *
      * @return self
      */
     public function setPrimaryQuestion($primary_question)
     {
         if (is_null($primary_question)) {
-            throw new \InvalidArgumentException('non-nullable primary_question cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'primary_question');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('primary_question', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['primary_question'] = $primary_question;
 
@@ -377,14 +391,21 @@ class FaqUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets answer
      *
-     * @param string|null $answer Answer formatted as markdow
+     * @param string|null $answer answer
      *
      * @return self
      */
     public function setAnswer($answer)
     {
         if (is_null($answer)) {
-            throw new \InvalidArgumentException('non-nullable answer cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'answer');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('answer', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['answer'] = $answer;
 
@@ -404,14 +425,21 @@ class FaqUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets secondary_questions
      *
-     * @param string[]|null $secondary_questions Parent FAQ ID if current question points to other answer
+     * @param string[]|null $secondary_questions secondary_questions
      *
      * @return self
      */
     public function setSecondaryQuestions($secondary_questions)
     {
         if (is_null($secondary_questions)) {
-            throw new \InvalidArgumentException('non-nullable secondary_questions cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'secondary_questions');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('secondary_questions', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['secondary_questions'] = $secondary_questions;
 

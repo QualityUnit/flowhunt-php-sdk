@@ -57,20 +57,20 @@ $config = FlowHunt\Configuration::getDefaultConfiguration()->setApiKey('Api-Key'
 $config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new FlowHunt\Api\AgentGridsApi(
+$apiInstance = new FlowHunt\Api\AIProjectsLibraryApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$template_id = 'template_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
-$agent_grid_create_request = new \FlowHunt\Model\AgentGridCreateRequest(); // \FlowHunt\Model\AgentGridCreateRequest
 
 try {
-    $result = $apiInstance->createAgentGrid($workspace_id, $agent_grid_create_request);
+    $result = $apiInstance->getAiProjectsTemplate($template_id, $workspace_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AgentGridsApi->createAgentGrid: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AIProjectsLibraryApi->getAiProjectsTemplate: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -81,6 +81,10 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AIProjectsLibraryApi* | [**getAiProjectsTemplate**](docs/Api/AIProjectsLibraryApi.md#getaiprojectstemplate) | **GET** /v2/ai_projects_library/templates/{template_id} | Get Ai Projects Template
+*AIProjectsLibraryApi* | [**listAiProjectsTemplates**](docs/Api/AIProjectsLibraryApi.md#listaiprojectstemplates) | **GET** /v2/ai_projects_library/templates | List Ai Projects Templates
+*AIStudioLibraryApi* | [**getAiStudioTemplate**](docs/Api/AIStudioLibraryApi.md#getaistudiotemplate) | **GET** /v2/ai_studio_library/templates/{template_id} | Get Ai Studio Template
+*AIStudioLibraryApi* | [**listAiStudioTemplates**](docs/Api/AIStudioLibraryApi.md#listaistudiotemplates) | **GET** /v2/ai_studio_library/templates | List Ai Studio Templates
 *AgentGridsApi* | [**createAgentGrid**](docs/Api/AgentGridsApi.md#createagentgrid) | **POST** /v2/agent_grids/ | Create a Flow Table
 *AgentGridsApi* | [**deleteAgentGrid**](docs/Api/AgentGridsApi.md#deleteagentgrid) | **DELETE** /v2/agent_grids/{agent_grid_id} | Delete a Flow Table
 *AgentGridsApi* | [**deleteAgentGridRow**](docs/Api/AgentGridsApi.md#deleteagentgridrow) | **DELETE** /v2/agent_grids/{agent_grid_id}/rows/{row_id} | Delete a row
@@ -91,13 +95,35 @@ Class | Method | HTTP request | Description
 *AgentGridsApi* | [**insertRow**](docs/Api/AgentGridsApi.md#insertrow) | **POST** /v2/agent_grids/{agent_grid_id}/rows | Insert a row
 *AgentGridsApi* | [**insertRowsBulk**](docs/Api/AgentGridsApi.md#insertrowsbulk) | **POST** /v2/agent_grids/{agent_grid_id}/rows/bulk | Bulk insert rows
 *AgentGridsApi* | [**listAgentGrids**](docs/Api/AgentGridsApi.md#listagentgrids) | **GET** /v2/agent_grids/ | List all Flow Tables
+*AgentGridsApi* | [**searchAgentGrids**](docs/Api/AgentGridsApi.md#searchagentgrids) | **POST** /v2/agent_grids/search | Search Flow Tables
 *AgentGridsApi* | [**searchRows**](docs/Api/AgentGridsApi.md#searchrows) | **POST** /v2/agent_grids/{agent_grid_id}/search | Search rows
+*AgentTeamProjectsApi* | [**cancelChat**](docs/Api/AgentTeamProjectsApi.md#cancelchat) | **POST** /v2/projects/{project_id}/chat/{session_id}/cancel | Cancel Chat
+*AgentTeamProjectsApi* | [**createProject**](docs/Api/AgentTeamProjectsApi.md#createproject) | **POST** /v2/projects/create | Create Project
+*AgentTeamProjectsApi* | [**deleteAgentTeamProject**](docs/Api/AgentTeamProjectsApi.md#deleteagentteamproject) | **DELETE** /v2/projects/{project_id} | Delete Agent Team Project
+*AgentTeamProjectsApi* | [**generateSuggestions**](docs/Api/AgentTeamProjectsApi.md#generatesuggestions) | **POST** /v2/projects/{project_id}/suggestions/generate | Generate Suggestions
+*AgentTeamProjectsApi* | [**generateTitle**](docs/Api/AgentTeamProjectsApi.md#generatetitle) | **POST** /v2/projects/{project_id}/chat/{session_id}/generate-title | Generate Title
+*AgentTeamProjectsApi* | [**getProject**](docs/Api/AgentTeamProjectsApi.md#getproject) | **GET** /v2/projects/{project_id} | Get Project
+*AgentTeamProjectsApi* | [**getSuggestions**](docs/Api/AgentTeamProjectsApi.md#getsuggestions) | **GET** /v2/projects/{project_id}/suggestions | Get Suggestions
+*AgentTeamProjectsApi* | [**hitlRespond**](docs/Api/AgentTeamProjectsApi.md#hitlrespond) | **POST** /v2/projects/{project_id}/chat/{session_id}/hitl-respond | Hitl Respond
+*AgentTeamProjectsApi* | [**pollChat**](docs/Api/AgentTeamProjectsApi.md#pollchat) | **POST** /v2/projects/{project_id}/chat/{session_id}/events/{from_timestamp} | Poll Chat
+*AgentTeamProjectsApi* | [**pollGenerateAgentConfig**](docs/Api/AgentTeamProjectsApi.md#pollgenerateagentconfig) | **POST** /v2/projects/generate-agent-config/{session_id}/events/{from_timestamp} | Poll Generate Agent Config
+*AgentTeamProjectsApi* | [**searchProjects**](docs/Api/AgentTeamProjectsApi.md#searchprojects) | **POST** /v2/projects/ | Search Projects
+*AgentTeamProjectsApi* | [**startChat**](docs/Api/AgentTeamProjectsApi.md#startchat) | **POST** /v2/projects/{project_id}/chat | Start Chat
+*AgentTeamProjectsApi* | [**startGenerateAgentConfig**](docs/Api/AgentTeamProjectsApi.md#startgenerateagentconfig) | **POST** /v2/projects/generate-agent-config | Start Generate Agent Config
+*AgentTeamProjectsApi* | [**testChannelConnection**](docs/Api/AgentTeamProjectsApi.md#testchannelconnection) | **POST** /v2/projects/channels/test | Test Channel Connection
+*AgentTeamProjectsApi* | [**updateProject**](docs/Api/AgentTeamProjectsApi.md#updateproject) | **PUT** /v2/projects/{project_id} | Update Project
 *AirtableApi* | [**getAirtableBases**](docs/Api/AirtableApi.md#getairtablebases) | **GET** /v2/integrations/airtable/ | Get Airtable Bases
 *AirtableApi* | [**getAirtableTables**](docs/Api/AirtableApi.md#getairtabletables) | **GET** /v2/integrations/airtable/bases/{base_id}/tables | Get Airtable Tables
+*ApiKeysApi* | [**bulkDeleteApiKeys**](docs/Api/ApiKeysApi.md#bulkdeleteapikeys) | **POST** /v2/api_keys/delete | Bulk Delete Api Keys
+*ApiKeysApi* | [**bulkUpdateApiKeys**](docs/Api/ApiKeysApi.md#bulkupdateapikeys) | **PUT** /v2/api_keys/update | Bulk Update Api Keys
 *ApiKeysApi* | [**createApiKey**](docs/Api/ApiKeysApi.md#createapikey) | **POST** /v2/api_keys/create | Create Api Key
 *ApiKeysApi* | [**deleteApiKey**](docs/Api/ApiKeysApi.md#deleteapikey) | **DELETE** /v2/api_keys/{api_key_id} | Delete Api Key
 *ApiKeysApi* | [**searchApiKey**](docs/Api/ApiKeysApi.md#searchapikey) | **POST** /v2/api_keys/search | Search Api Key
 *ApiKeysApi* | [**updateApiKey**](docs/Api/ApiKeysApi.md#updateapikey) | **PUT** /v2/api_keys/{api_key_id} | Update Api Key
+*AsanaApi* | [**getAsanaProjectTasks**](docs/Api/AsanaApi.md#getasanaprojecttasks) | **GET** /v2/integrations/asana/{integration_id}/projects/{project_gid}/tasks | Get Asana Project Tasks
+*AsanaApi* | [**getAsanaProjects**](docs/Api/AsanaApi.md#getasanaprojects) | **GET** /v2/integrations/asana/{integration_id}/projects | Get Asana Projects
+*AsanaApi* | [**getAsanaUsers**](docs/Api/AsanaApi.md#getasanausers) | **GET** /v2/integrations/asana/{integration_id}/users | Get Asana Users
+*AsanaApi* | [**getAsanaWorkspaces**](docs/Api/AsanaApi.md#getasanaworkspaces) | **GET** /v2/integrations/asana/ | Get Asana Workspaces
 *AtlassianApi* | [**deleteJiraWebhook**](docs/Api/AtlassianApi.md#deletejirawebhook) | **DELETE** /v2/integrations/atlassian/jira/webhooks/{webhook_id} | Delete Jira Webhook
 *AtlassianApi* | [**getConfluencePages**](docs/Api/AtlassianApi.md#getconfluencepages) | **GET** /v2/integrations/atlassian/confluence/spaces/{space_key}/pages | Get Confluence Pages
 *AtlassianApi* | [**getConfluenceSpaces**](docs/Api/AtlassianApi.md#getconfluencespaces) | **GET** /v2/integrations/atlassian/confluence/spaces | Get Confluence Spaces
@@ -106,6 +132,8 @@ Class | Method | HTTP request | Description
 *AtlassianApi* | [**getJiraProjects**](docs/Api/AtlassianApi.md#getjiraprojects) | **GET** /v2/integrations/atlassian/jira/projects | Get Jira Projects
 *AtlassianApi* | [**getJiraTransitions**](docs/Api/AtlassianApi.md#getjiratransitions) | **GET** /v2/integrations/atlassian/jira/issues/{issue_key}/transitions | Get Jira Transitions
 *AtlassianApi* | [**listJiraWebhooks**](docs/Api/AtlassianApi.md#listjirawebhooks) | **GET** /v2/integrations/atlassian/jira/webhooks | List Jira Webhooks
+*ChatbotsApi* | [**bulkDeleteChatbots**](docs/Api/ChatbotsApi.md#bulkdeletechatbots) | **POST** /v2/chatbots/delete | Bulk Delete Chatbots
+*ChatbotsApi* | [**bulkUpdateChatbots**](docs/Api/ChatbotsApi.md#bulkupdatechatbots) | **PUT** /v2/chatbots/update | Bulk Update Chatbots
 *ChatbotsApi* | [**createChatbot**](docs/Api/ChatbotsApi.md#createchatbot) | **POST** /v2/chatbots/create | Create Chatbot
 *ChatbotsApi* | [**deleteChatbot**](docs/Api/ChatbotsApi.md#deletechatbot) | **DELETE** /v2/chatbots/{chatbot_id} | Delete Chatbot
 *ChatbotsApi* | [**getChatbot**](docs/Api/ChatbotsApi.md#getchatbot) | **GET** /v2/chatbots/{chatbot_id} | Get Chatbot
@@ -118,9 +146,22 @@ Class | Method | HTTP request | Description
 *CreditsApi* | [**getWorkspaceCreditBalance**](docs/Api/CreditsApi.md#getworkspacecreditbalance) | **GET** /v2/credits/workspace_balance | Get Workspace Credit Balance
 *CreditsApi* | [**searchCreditTransactions**](docs/Api/CreditsApi.md#searchcredittransactions) | **POST** /v2/credits/search | Search Credit Transactions
 *CreditsApi* | [**searchDailyCreditTransactions**](docs/Api/CreditsApi.md#searchdailycredittransactions) | **POST** /v2/credits/search_daily | Search Daily Credit Transactions
+*CustomModelsApi* | [**bulkDeleteCustomModels**](docs/Api/CustomModelsApi.md#bulkdeletecustommodels) | **POST** /v2/custom-models/delete | Bulk Delete Custom Models
+*CustomModelsApi* | [**createCustomModel**](docs/Api/CustomModelsApi.md#createcustommodel) | **POST** /v2/custom-models/create | Create Custom Model
+*CustomModelsApi* | [**deleteCustomModel**](docs/Api/CustomModelsApi.md#deletecustommodel) | **DELETE** /v2/custom-models/{custom_model_id} | Delete Custom Model
+*CustomModelsApi* | [**getAvailableModels**](docs/Api/CustomModelsApi.md#getavailablemodels) | **GET** /v2/custom-models/available | Get Available Models
+*CustomModelsApi* | [**listOllamaModels**](docs/Api/CustomModelsApi.md#listollamamodels) | **POST** /v2/custom-models/list-ollama-models | List Ollama Models
+*CustomModelsApi* | [**searchCustomModels**](docs/Api/CustomModelsApi.md#searchcustommodels) | **POST** /v2/custom-models/search | Search Custom Models
+*CustomModelsApi* | [**updateCustomModel**](docs/Api/CustomModelsApi.md#updatecustommodel) | **PUT** /v2/custom-models/{custom_model_id} | Update Custom Model
+*DefaultApi* | [**deleteBranding**](docs/Api/DefaultApi.md#deletebranding) | **DELETE** /v2/settings/branding | Delete Branding
 *DefaultApi* | [**getBranding**](docs/Api/DefaultApi.md#getbranding) | **GET** /v2/settings/branding | Get Branding
 *DefaultApi* | [**getPublicBranding**](docs/Api/DefaultApi.md#getpublicbranding) | **GET** /v2/settings/branding/public | Get Public Branding
 *DefaultApi* | [**updateBranding**](docs/Api/DefaultApi.md#updatebranding) | **PUT** /v2/settings/branding | Update Branding
+*DocumentsApi* | [**bulkDeleteDocumentCategories**](docs/Api/DocumentsApi.md#bulkdeletedocumentcategories) | **POST** /v2/documents/categories/delete | Bulk Delete Document Categories
+*DocumentsApi* | [**bulkDeleteDocuments**](docs/Api/DocumentsApi.md#bulkdeletedocuments) | **POST** /v2/documents/delete | Bulk Delete Documents
+*DocumentsApi* | [**bulkDeleteFaqs**](docs/Api/DocumentsApi.md#bulkdeletefaqs) | **POST** /v2/documents/faqs/delete | Bulk Delete Faqs
+*DocumentsApi* | [**bulkUpdateDocuments**](docs/Api/DocumentsApi.md#bulkupdatedocuments) | **PUT** /v2/documents/update | Bulk Update Documents
+*DocumentsApi* | [**bulkUpdateFaqs**](docs/Api/DocumentsApi.md#bulkupdatefaqs) | **PUT** /v2/documents/faqs/update | Bulk Update Faqs
 *DocumentsApi* | [**createDocumentCategory**](docs/Api/DocumentsApi.md#createdocumentcategory) | **POST** /v2/documents/categories/create | Create Document Category
 *DocumentsApi* | [**createFaq**](docs/Api/DocumentsApi.md#createfaq) | **POST** /v2/documents/faqs/create | Create Faq
 *DocumentsApi* | [**deleteDocument**](docs/Api/DocumentsApi.md#deletedocument) | **DELETE** /v2/documents/{doc_id} | Delete Document
@@ -176,6 +217,8 @@ Class | Method | HTTP request | Description
 *FlowBatchApi* | [**importCsv_0**](docs/Api/FlowBatchApi.md#importcsv_0) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/import-csv | Import Csv
 *FlowBatchApi* | [**listBatchRuns**](docs/Api/FlowBatchApi.md#listbatchruns) | **GET** /v2/flows/{flow_id}/batch | List Batch Runs
 *FlowBatchApi* | [**listBatchRuns_0**](docs/Api/FlowBatchApi.md#listbatchruns_0) | **GET** /v2/flows/{flow_id}/batch | List Batch Runs
+*FlowBatchApi* | [**searchBatchRun**](docs/Api/FlowBatchApi.md#searchbatchrun) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/search | Search Batch Run
+*FlowBatchApi* | [**searchBatchRun_0**](docs/Api/FlowBatchApi.md#searchbatchrun_0) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/search | Search Batch Run
 *FlowBatchApi* | [**startExportZip**](docs/Api/FlowBatchApi.md#startexportzip) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/export-zip | Start Export Zip
 *FlowBatchApi* | [**startExportZip_0**](docs/Api/FlowBatchApi.md#startexportzip_0) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/export-zip | Start Export Zip
 *FlowBatchApi* | [**stopAllRows**](docs/Api/FlowBatchApi.md#stopallrows) | **POST** /v2/flows/{flow_id}/batch/{batch_run_id}/stop-all | Stop All Rows
@@ -201,6 +244,8 @@ Class | Method | HTTP request | Description
 *FlowWebhooksApi* | [**executeWebhookTriggerGet**](docs/Api/FlowWebhooksApi.md#executewebhooktriggerget) | **GET** /v2/flows/webhooks/trigger/{webhook_id} | Execute Webhook Trigger Get
 *FlowWebhooksApi* | [**executeWebhookTriggerPost**](docs/Api/FlowWebhooksApi.md#executewebhooktriggerpost) | **POST** /v2/flows/webhooks/trigger/{webhook_id} | Execute Webhook Trigger Post
 *FlowWebhooksApi* | [**getInstallationMetadata**](docs/Api/FlowWebhooksApi.md#getinstallationmetadata) | **GET** /v2/flows/webhooks/third_party_integrations/installation_metadata | Get Installation Metadata
+*FlowsApi* | [**bulkDeleteFlows**](docs/Api/FlowsApi.md#bulkdeleteflows) | **POST** /v2/flows/delete | Bulk Delete Flows
+*FlowsApi* | [**bulkUpdateFlows**](docs/Api/FlowsApi.md#bulkupdateflows) | **POST** /v2/flows/update | Bulk Update Flows
 *FlowsApi* | [**cancelFlowSession**](docs/Api/FlowsApi.md#cancelflowsession) | **POST** /v2/flows/sessions/{session_id}/cancel | Cancel Flow Session
 *FlowsApi* | [**createChatbotSession**](docs/Api/FlowsApi.md#createchatbotsession) | **POST** /v2/flows/sessions/create | Create Chatbot Session
 *FlowsApi* | [**createFlow**](docs/Api/FlowsApi.md#createflow) | **POST** /v2/flows/create | Create Flow
@@ -214,6 +259,7 @@ Class | Method | HTTP request | Description
 *FlowsApi* | [**deleteFlowCron**](docs/Api/FlowsApi.md#deleteflowcron) | **DELETE** /v2/flows/crons/{flow_id}/{cron_id} | Delete Flow Cron
 *FlowsApi* | [**downloadAttachment**](docs/Api/FlowsApi.md#downloadattachment) | **GET** /v2/flows/sessions/{session_id}/attachments/{file_id} | Download attachment
 *FlowsApi* | [**executeFlowCron**](docs/Api/FlowsApi.md#executeflowcron) | **POST** /v2/flows/crons/{flow_id}/{cron_id}/execute | Execute Flow Cron
+*FlowsApi* | [**fireChatHook**](docs/Api/FlowsApi.md#firechathook) | **POST** /v2/flows/sessions/{session_id}/hook | Fire Chat Hook
 *FlowsApi* | [**generateCommitMessage**](docs/Api/FlowsApi.md#generatecommitmessage) | **POST** /v2/flows/{flow_id}/generate-commit-msg | Generate Commit Message
 *FlowsApi* | [**get**](docs/Api/FlowsApi.md#get) | **GET** /v2/flows/{flow_id} | Get
 *FlowsApi* | [**getAllComponents**](docs/Api/FlowsApi.md#getallcomponents) | **GET** /v2/flows/components/all | Get All Components
@@ -237,13 +283,18 @@ Class | Method | HTTP request | Description
 *FlowsApi* | [**updateFlow**](docs/Api/FlowsApi.md#updateflow) | **PUT** /v2/flows/{flow_id} | Update Flow
 *FlowsApi* | [**updateFlowCategory**](docs/Api/FlowsApi.md#updateflowcategory) | **PUT** /v2/flows/categories/{cat_id} | Update Flow Category
 *FlowsApi* | [**updateFlowCron**](docs/Api/FlowsApi.md#updateflowcron) | **PUT** /v2/flows/crons/{flow_id}/{cron_id} | Update Flow Cron
+*FlowsApi* | [**updateSessionVariables**](docs/Api/FlowsApi.md#updatesessionvariables) | **PATCH** /v2/flows/sessions/{session_id}/variables | Update Session Variables
 *FlowsApi* | [**uploadAttachments**](docs/Api/FlowsApi.md#uploadattachments) | **POST** /v2/flows/sessions/{session_id}/attachments | Upload Attachments
+*GatewayApi* | [**resolveIntegrationGatewayToken**](docs/Api/GatewayApi.md#resolveintegrationgatewaytoken) | **GET** /v2/integrations/integrate/gateway/{token} | Resolve an integration gateway token
 *GitHubApi* | [**getRepos**](docs/Api/GitHubApi.md#getrepos) | **GET** /v2/integrations/github/repos | Get Repos
 *GitLabApi* | [**getBranches**](docs/Api/GitLabApi.md#getbranches) | **GET** /v2/integrations/gitlab/branches | Get Branches
 *GitLabApi* | [**getProjects**](docs/Api/GitLabApi.md#getprojects) | **GET** /v2/integrations/gitlab/projects | Get Projects
+*GoogleApi* | [**getAllowedDirectories**](docs/Api/GoogleApi.md#getalloweddirectories) | **GET** /v2/integrations/google/allowed_directories | Get Allowed Directories
 *GoogleApi* | [**getCalendars**](docs/Api/GoogleApi.md#getcalendars) | **GET** /v2/integrations/google/calendar | Get Calendars
+*GoogleApi* | [**getDriveFolders**](docs/Api/GoogleApi.md#getdrivefolders) | **GET** /v2/integrations/google/drive_folders | Get Drive Folders
 *GoogleApi* | [**getPickerToken**](docs/Api/GoogleApi.md#getpickertoken) | **GET** /v2/integrations/google/picker_token | Get Picker Token
 *GoogleApi* | [**getSheets**](docs/Api/GoogleApi.md#getsheets) | **GET** /v2/integrations/google/sheets/{document_id} | Get Sheets
+*GoogleApi* | [**updateAllowedDirectories**](docs/Api/GoogleApi.md#updatealloweddirectories) | **PUT** /v2/integrations/google/allowed_directories | Update Allowed Directories
 *GoogleAdsApi* | [**addKeywordToGroup**](docs/Api/GoogleAdsApi.md#addkeywordtogroup) | **POST** /v2/integrations/google_ads/keyword/add_to_group | Add Keyword To Group
 *GoogleAdsApi* | [**analyzeNotAssignedKeywords**](docs/Api/GoogleAdsApi.md#analyzenotassignedkeywords) | **POST** /v2/integrations/google_ads/analyze_not_assigned_keywords | Analyze Not Assigned Keywords
 *GoogleAdsApi* | [**getGoogleAdsCampaigns**](docs/Api/GoogleAdsApi.md#getgoogleadscampaigns) | **POST** /v2/integrations/google_ads/campaigns | Get Google Ads Campaigns
@@ -274,12 +325,18 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**getAirtableBases**](docs/Api/IntegrationsApi.md#getairtablebases) | **GET** /v2/integrations/airtable/ | Get Airtable Bases
 *IntegrationsApi* | [**getAirtableTables**](docs/Api/IntegrationsApi.md#getairtabletables) | **GET** /v2/integrations/airtable/bases/{base_id}/tables | Get Airtable Tables
 *IntegrationsApi* | [**getAllIntegrations**](docs/Api/IntegrationsApi.md#getallintegrations) | **GET** /v2/integrations/all | Get All Integrations
+*IntegrationsApi* | [**getAllowedDirectories**](docs/Api/IntegrationsApi.md#getalloweddirectories) | **GET** /v2/integrations/google/allowed_directories | Get Allowed Directories
+*IntegrationsApi* | [**getAsanaProjectTasks**](docs/Api/IntegrationsApi.md#getasanaprojecttasks) | **GET** /v2/integrations/asana/{integration_id}/projects/{project_gid}/tasks | Get Asana Project Tasks
+*IntegrationsApi* | [**getAsanaProjects**](docs/Api/IntegrationsApi.md#getasanaprojects) | **GET** /v2/integrations/asana/{integration_id}/projects | Get Asana Projects
+*IntegrationsApi* | [**getAsanaUsers**](docs/Api/IntegrationsApi.md#getasanausers) | **GET** /v2/integrations/asana/{integration_id}/users | Get Asana Users
+*IntegrationsApi* | [**getAsanaWorkspaces**](docs/Api/IntegrationsApi.md#getasanaworkspaces) | **GET** /v2/integrations/asana/ | Get Asana Workspaces
 *IntegrationsApi* | [**getBranches**](docs/Api/IntegrationsApi.md#getbranches) | **GET** /v2/integrations/gitlab/branches | Get Branches
 *IntegrationsApi* | [**getCalendars**](docs/Api/IntegrationsApi.md#getcalendars) | **GET** /v2/integrations/google/calendar | Get Calendars
 *IntegrationsApi* | [**getClickupSpaces**](docs/Api/IntegrationsApi.md#getclickupspaces) | **GET** /v2/integrations/clickup/{integration_id}/spaces | Get Clickup Spaces
 *IntegrationsApi* | [**getClickupWorkspaces**](docs/Api/IntegrationsApi.md#getclickupworkspaces) | **GET** /v2/integrations/clickup/ | Get Clickup Workspaces
 *IntegrationsApi* | [**getConfluencePages**](docs/Api/IntegrationsApi.md#getconfluencepages) | **GET** /v2/integrations/atlassian/confluence/spaces/{space_key}/pages | Get Confluence Pages
 *IntegrationsApi* | [**getConfluenceSpaces**](docs/Api/IntegrationsApi.md#getconfluencespaces) | **GET** /v2/integrations/atlassian/confluence/spaces | Get Confluence Spaces
+*IntegrationsApi* | [**getDriveFolders**](docs/Api/IntegrationsApi.md#getdrivefolders) | **GET** /v2/integrations/google/drive_folders | Get Drive Folders
 *IntegrationsApi* | [**getHubspotCustomChannelConnect**](docs/Api/IntegrationsApi.md#gethubspotcustomchannelconnect) | **GET** /v2/integrations/hubspot_custom_channel_connect | Get Hubspot Custom Channel Connect
 *IntegrationsApi* | [**getIntegration**](docs/Api/IntegrationsApi.md#getintegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration
 *IntegrationsApi* | [**getJiraAssignees**](docs/Api/IntegrationsApi.md#getjiraassignees) | **GET** /v2/integrations/atlassian/jira/projects/{project_key}/assignees | Get Jira Assignees
@@ -288,6 +345,7 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**getJiraTransitions**](docs/Api/IntegrationsApi.md#getjiratransitions) | **GET** /v2/integrations/atlassian/jira/issues/{issue_key}/transitions | Get Jira Transitions
 *IntegrationsApi* | [**getMembers**](docs/Api/IntegrationsApi.md#getmembers) | **GET** /v2/integrations/wix/members | Get Members
 *IntegrationsApi* | [**getPickerToken**](docs/Api/IntegrationsApi.md#getpickertoken) | **GET** /v2/integrations/google/picker_token | Get Picker Token
+*IntegrationsApi* | [**getPowerbiWorkspaces**](docs/Api/IntegrationsApi.md#getpowerbiworkspaces) | **GET** /v2/integrations/powerbi/workspaces | Get Powerbi Workspaces
 *IntegrationsApi* | [**getProfileInformation**](docs/Api/IntegrationsApi.md#getprofileinformation) | **GET** /v2/integrations/instagram/profile_information | Get Profile Information
 *IntegrationsApi* | [**getProjects**](docs/Api/IntegrationsApi.md#getprojects) | **GET** /v2/integrations/gitlab/projects | Get Projects
 *IntegrationsApi* | [**getRepos**](docs/Api/IntegrationsApi.md#getrepos) | **GET** /v2/integrations/github/repos | Get Repos
@@ -306,18 +364,29 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**manifest**](docs/Api/IntegrationsApi.md#manifest) | **GET** /v2/integrations/zendesk_channel/manifest.json | Manifest
 *IntegrationsApi* | [**messagingWebhook**](docs/Api/IntegrationsApi.md#messagingwebhook) | **POST** /v2/integrations/zendesk_channel/messaging_webhook | Messaging Webhook
 *IntegrationsApi* | [**messagingWebhookHead**](docs/Api/IntegrationsApi.md#messagingwebhookhead) | **HEAD** /v2/integrations/zendesk_channel/messaging_webhook | Messaging Webhook Head
+*IntegrationsApi* | [**resolveIntegrationGatewayToken**](docs/Api/IntegrationsApi.md#resolveintegrationgatewaytoken) | **GET** /v2/integrations/integrate/gateway/{token} | Resolve an integration gateway token
 *IntegrationsApi* | [**searchIntegrations**](docs/Api/IntegrationsApi.md#searchintegrations) | **POST** /v2/integrations/{slug} | Search Integrations
 *IntegrationsApi* | [**shopRedact**](docs/Api/IntegrationsApi.md#shopredact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact
 *IntegrationsApi* | [**subscriptionCancel**](docs/Api/IntegrationsApi.md#subscriptioncancel) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_cancel | Subscription Cancel
 *IntegrationsApi* | [**subscriptionUpdate**](docs/Api/IntegrationsApi.md#subscriptionupdate) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_update | Subscription Update
 *IntegrationsApi* | [**updateAdminConsent**](docs/Api/IntegrationsApi.md#updateadminconsent) | **POST** /v2/integrations/microsoft_entra_id/admin_consent | Update Admin Consent
+*IntegrationsApi* | [**updateAllowedDirectories**](docs/Api/IntegrationsApi.md#updatealloweddirectories) | **PUT** /v2/integrations/google/allowed_directories | Update Allowed Directories
 *LogsApi* | [**searchLogs**](docs/Api/LogsApi.md#searchlogs) | **POST** /v2/logs/search | Search logs
+*MCPConnectorsApi* | [**createMcpConnector**](docs/Api/MCPConnectorsApi.md#createmcpconnector) | **POST** /v2/mcp_connectors/create | Create Mcp Connector
+*MCPConnectorsApi* | [**deleteMcpConnector**](docs/Api/MCPConnectorsApi.md#deletemcpconnector) | **DELETE** /v2/mcp_connectors/{connector_id} | Delete Mcp Connector
+*MCPConnectorsApi* | [**getMcpConnector**](docs/Api/MCPConnectorsApi.md#getmcpconnector) | **GET** /v2/mcp_connectors/{connector_id} | Get Mcp Connector
+*MCPConnectorsApi* | [**searchMcpConnectors**](docs/Api/MCPConnectorsApi.md#searchmcpconnectors) | **POST** /v2/mcp_connectors/search | Search Mcp Connectors
+*MCPConnectorsApi* | [**testMcpConnector**](docs/Api/MCPConnectorsApi.md#testmcpconnector) | **POST** /v2/mcp_connectors/{connector_id}/test | Test Mcp Connector
+*MCPConnectorsApi* | [**updateMcpConnector**](docs/Api/MCPConnectorsApi.md#updatemcpconnector) | **PUT** /v2/mcp_connectors/{connector_id} | Update Mcp Connector
+*MCPServersApi* | [**bulkDeleteMcpServers**](docs/Api/MCPServersApi.md#bulkdeletemcpservers) | **POST** /v2/mcp_servers/delete | Bulk Delete Mcp Servers
 *MCPServersApi* | [**createMcpServer**](docs/Api/MCPServersApi.md#createmcpserver) | **POST** /v2/mcp_servers/create | Create Mcp Server
 *MCPServersApi* | [**deleteMcpServer**](docs/Api/MCPServersApi.md#deletemcpserver) | **DELETE** /v2/mcp_servers/{mcp_server_id} | Delete Mcp Server
 *MCPServersApi* | [**getAllMcpSubservers**](docs/Api/MCPServersApi.md#getallmcpsubservers) | **GET** /v2/mcp_servers/all | Get All Mcp Subservers
 *MCPServersApi* | [**getMcpServer**](docs/Api/MCPServersApi.md#getmcpserver) | **GET** /v2/mcp_servers/{mcp_server_id} | Get Mcp Server
 *MCPServersApi* | [**searchMcpServers**](docs/Api/MCPServersApi.md#searchmcpservers) | **POST** /v2/mcp_servers/ | Search Mcp Servers
 *MCPServersApi* | [**updateMcpServer**](docs/Api/MCPServersApi.md#updatemcpserver) | **PUT** /v2/mcp_servers/{mcp_server_id} | Update Mcp Server
+*MeApi* | [**completeUserOnboarding**](docs/Api/MeApi.md#completeuseronboarding) | **PATCH** /v2/users/me/onboarding | Complete User Onboarding
+*MeApi* | [**getUserOnboarding**](docs/Api/MeApi.md#getuseronboarding) | **GET** /v2/users/me/onboarding | Get User Onboarding
 *MediaApi* | [**getTranscript**](docs/Api/MediaApi.md#gettranscript) | **POST** /v2/media/transcript | Get Transcript
 *MediaApi* | [**getTranscriptResult**](docs/Api/MediaApi.md#gettranscriptresult) | **POST** /v2/media/transcript_status | Get Transcript Result
 *MediaApi* | [**getYoutubeTranscript**](docs/Api/MediaApi.md#getyoutubetranscript) | **POST** /v2/media/youtube/transcript | Get Youtube Transcript
@@ -333,21 +402,36 @@ Class | Method | HTTP request | Description
 *MemoryApi* | [**uploadMemoryNodeDocument**](docs/Api/MemoryApi.md#uploadmemorynodedocument) | **POST** /v2/memory/upload/{cat_id} | Upload Memory Node Document
 *MicrosoftOutlookApi* | [**updateAdminConsent**](docs/Api/MicrosoftOutlookApi.md#updateadminconsent) | **POST** /v2/integrations/microsoft_entra_id/admin_consent | Update Admin Consent
 *ObservabilityDriverApi* | [**activateLangfuseObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#activatelangfuseobservabilitydriver) | **POST** /v2/observability_driver/langfuse | Activate Langfuse Observability Driver
-*ObservabilityDriverApi* | [**activatePowerBiObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#activatepowerbiobservabilitydriver) | **POST** /v2/observability_driver/power_bi | Activate Power Bi Observability Driver
-*ObservabilityDriverApi* | [**createPowerBiPushDataset**](docs/Api/ObservabilityDriverApi.md#createpowerbipushdataset) | **POST** /v2/observability_driver/power_bi/push_dataset | Create Power Bi Push Dataset
 *ObservabilityDriverApi* | [**deleteObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#deleteobservabilitydriver) | **DELETE** /v2/observability_driver/{driver_type} | Delete Observability Driver
 *ObservabilityDriverApi* | [**getObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#getobservabilitydriver) | **GET** /v2/observability_driver/{driver_type} | Get Observability Driver
 *ObservabilityDriverApi* | [**getObservabilityDriverWorkspace**](docs/Api/ObservabilityDriverApi.md#getobservabilitydriverworkspace) | **POST** /v2/observability_driver/ | Get Observability Driver Workspace
-*ObservabilityDriverApi* | [**listPowerBiDatasets**](docs/Api/ObservabilityDriverApi.md#listpowerbidatasets) | **POST** /v2/observability_driver/power_bi/datasets | List Power Bi Datasets
-*ObservabilityDriverApi* | [**listPowerBiTables**](docs/Api/ObservabilityDriverApi.md#listpowerbitables) | **POST** /v2/observability_driver/power_bi/tables | List Power Bi Tables
-*ObservabilityDriverApi* | [**listPowerBiWorkspaces**](docs/Api/ObservabilityDriverApi.md#listpowerbiworkspaces) | **GET** /v2/observability_driver/power_bi/workspaces | List Power Bi Workspaces
 *ObservabilityDriverApi* | [**updateLangfuseObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#updatelangfuseobservabilitydriver) | **PUT** /v2/observability_driver/langfuse | Update Langfuse Observability Driver
-*ObservabilityDriverApi* | [**updatePowerBiObservabilityDriver**](docs/Api/ObservabilityDriverApi.md#updatepowerbiobservabilitydriver) | **PUT** /v2/observability_driver/power_bi | Update Power Bi Observability Driver
-*ObservabilityDriverApi* | [**validatePushDatasetTable**](docs/Api/ObservabilityDriverApi.md#validatepushdatasettable) | **POST** /v2/observability_driver/power_bi/validate_push_dataset | Validate Push Dataset Table
 *PhotoAIApi* | [**explore**](docs/Api/PhotoAIApi.md#explore) | **GET** /v2/photo_ai/public/explore | Explore
 *PhotoAIApi* | [**getEffects**](docs/Api/PhotoAIApi.md#geteffects) | **GET** /v2/photo_ai/public/effects | Get Effects
+*PhotoAIApi* | [**getModels**](docs/Api/PhotoAIApi.md#getmodels) | **GET** /v2/photo_ai/public/models | Get Models
 *PhotoAIApi* | [**getStyles**](docs/Api/PhotoAIApi.md#getstyles) | **GET** /v2/photo_ai/public/styles | Get Styles
 *PhotoAIApi* | [**getTemplates**](docs/Api/PhotoAIApi.md#gettemplates) | **GET** /v2/photo_ai/public/templates | Get Templates
+*PowerBIApi* | [**getPowerbiWorkspaces**](docs/Api/PowerBIApi.md#getpowerbiworkspaces) | **GET** /v2/integrations/powerbi/workspaces | Get Powerbi Workspaces
+*ProjectInboxApi* | [**archive**](docs/Api/ProjectInboxApi.md#archive) | **POST** /v2/projects/{project_id}/inbox/{entry_id}/archive | Archive
+*ProjectInboxApi* | [**deleteEntry**](docs/Api/ProjectInboxApi.md#deleteentry) | **DELETE** /v2/projects/{project_id}/inbox/{entry_id} | Delete Entry
+*ProjectInboxApi* | [**getEntry**](docs/Api/ProjectInboxApi.md#getentry) | **GET** /v2/projects/{project_id}/inbox/{entry_id} | Get Entry
+*ProjectInboxApi* | [**markAllRead**](docs/Api/ProjectInboxApi.md#markallread) | **POST** /v2/projects/{project_id}/inbox/mark-all-read | Mark All Read
+*ProjectInboxApi* | [**markRead**](docs/Api/ProjectInboxApi.md#markread) | **POST** /v2/projects/{project_id}/inbox/{entry_id}/read | Mark Read
+*ProjectInboxApi* | [**searchProjectInbox**](docs/Api/ProjectInboxApi.md#searchprojectinbox) | **POST** /v2/projects/{project_id}/inbox/ | Search Project Inbox
+*ProjectInboxApi* | [**unreadCount**](docs/Api/ProjectInboxApi.md#unreadcount) | **GET** /v2/projects/{project_id}/inbox/unread-count | Unread Count
+*ProjectIssueTagsApi* | [**createProjectIssueTag**](docs/Api/ProjectIssueTagsApi.md#createprojectissuetag) | **POST** /v2/projects/{project_id}/tags/create | Create Project Issue Tag
+*ProjectIssueTagsApi* | [**deleteProjectIssueTag**](docs/Api/ProjectIssueTagsApi.md#deleteprojectissuetag) | **DELETE** /v2/projects/{project_id}/tags/{tag_id} | Delete Project Issue Tag
+*ProjectIssueTagsApi* | [**getProjectIssueTag**](docs/Api/ProjectIssueTagsApi.md#getprojectissuetag) | **GET** /v2/projects/{project_id}/tags/{tag_id} | Get Project Issue Tag
+*ProjectIssueTagsApi* | [**searchProjectIssueTags**](docs/Api/ProjectIssueTagsApi.md#searchprojectissuetags) | **POST** /v2/projects/{project_id}/tags/ | Search Project Issue Tags
+*ProjectIssueTagsApi* | [**updateProjectIssueTag**](docs/Api/ProjectIssueTagsApi.md#updateprojectissuetag) | **PUT** /v2/projects/{project_id}/tags/{tag_id} | Update Project Issue Tag
+*ProjectIssuesApi* | [**addUserComment**](docs/Api/ProjectIssuesApi.md#addusercomment) | **POST** /v2/projects/{project_id}/issues/{issue_id}/comments | Add User Comment
+*ProjectIssuesApi* | [**cancelAllIssues**](docs/Api/ProjectIssuesApi.md#cancelallissues) | **POST** /v2/projects/{project_id}/issues/cancel-all | Cancel All Issues
+*ProjectIssuesApi* | [**cancelIssue**](docs/Api/ProjectIssuesApi.md#cancelissue) | **POST** /v2/projects/{project_id}/issues/{issue_id}/cancel | Cancel Issue
+*ProjectIssuesApi* | [**createProjectIssue**](docs/Api/ProjectIssuesApi.md#createprojectissue) | **POST** /v2/projects/{project_id}/issues/create | Create Project Issue
+*ProjectIssuesApi* | [**deleteIssue**](docs/Api/ProjectIssuesApi.md#deleteissue) | **DELETE** /v2/projects/{project_id}/issues/{issue_id} | Delete Issue
+*ProjectIssuesApi* | [**getProjectIssue**](docs/Api/ProjectIssuesApi.md#getprojectissue) | **GET** /v2/projects/{project_id}/issues/{issue_id} | Get Project Issue
+*ProjectIssuesApi* | [**searchProjectIssues**](docs/Api/ProjectIssuesApi.md#searchprojectissues) | **POST** /v2/projects/{project_id}/issues/ | Search Project Issues
+*ProjectIssuesApi* | [**updateProjectIssue**](docs/Api/ProjectIssuesApi.md#updateprojectissue) | **PUT** /v2/projects/{project_id}/issues/{issue_id} | Update Project Issue
 *PromptsApi* | [**createPrompt**](docs/Api/PromptsApi.md#createprompt) | **POST** /v2/prompts/create | Create Prompt
 *PromptsApi* | [**createPromptCategory**](docs/Api/PromptsApi.md#createpromptcategory) | **POST** /v2/prompts/categories/create | Create Prompt Category
 *PromptsApi* | [**deletePrompt**](docs/Api/PromptsApi.md#deleteprompt) | **DELETE** /v2/prompts/{prompt_id} | Delete Prompt
@@ -370,6 +454,9 @@ Class | Method | HTTP request | Description
 *SERPApi* | [**serpSearch**](docs/Api/SERPApi.md#serpsearch) | **POST** /v2/serp/serp/search | Serp Search
 *SERPApi* | [**serpVolumes**](docs/Api/SERPApi.md#serpvolumes) | **POST** /v2/serp/serp/volumes | Serp Volumes
 *SERPApi* | [**serpVolumesPingback**](docs/Api/SERPApi.md#serpvolumespingback) | **GET** /v2/serp/serp/volumes/pingback/{id}/{tag} | Serp Volumes Pingback
+*SchedulesApi* | [**bulkDeleteSchedules**](docs/Api/SchedulesApi.md#bulkdeleteschedules) | **POST** /v2/schedules/delete | Bulk Delete Schedules
+*SchedulesApi* | [**bulkRunSchedules**](docs/Api/SchedulesApi.md#bulkrunschedules) | **POST** /v2/schedules/run | Bulk Run Schedules
+*SchedulesApi* | [**bulkUpdateSchedules**](docs/Api/SchedulesApi.md#bulkupdateschedules) | **PUT** /v2/schedules/update | Bulk Update Schedules
 *SchedulesApi* | [**createSchedules**](docs/Api/SchedulesApi.md#createschedules) | **POST** /v2/schedules/create | Create Schedules
 *SchedulesApi* | [**deleteSchedule**](docs/Api/SchedulesApi.md#deleteschedule) | **DELETE** /v2/schedules/{schedule_id} | Delete Schedule
 *SchedulesApi* | [**deleteScheduleUrl**](docs/Api/SchedulesApi.md#deletescheduleurl) | **DELETE** /v2/schedules/{schedule_id}/urls/{domain_id}/{url_id} | Delete Schedule Url
@@ -403,6 +490,7 @@ Class | Method | HTTP request | Description
 *TrackingApi* | [**trackLink**](docs/Api/TrackingApi.md#tracklink) | **POST** /v2/tracking/lnk | Track Link
 *V3Api* | [**checkMigrationReadiness**](docs/Api/V3Api.md#checkmigrationreadiness) | **GET** /v3/flows/{flow_id}/migration-readiness | Check Migration Readiness
 *V3Api* | [**createV3FlowAssistantSession**](docs/Api/V3Api.md#createv3flowassistantsession) | **POST** /v3/flow-assistants/create | Create V3 Flow Assistant Session
+*V3Api* | [**fireSessionClosed**](docs/Api/V3Api.md#firesessionclosed) | **POST** /v3/flows/{flow_id}/sessions/{session_id}/fire-session-closed | Fire Session Closed
 *V3Api* | [**getAllComponentsV3**](docs/Api/V3Api.md#getallcomponentsv3) | **GET** /v3/flows/components/all | Get All Components V3
 *V3Api* | [**getTool**](docs/Api/V3Api.md#gettool) | **GET** /v3/tools/{step_name} | Get Tool
 *V3Api* | [**getV3Components**](docs/Api/V3Api.md#getv3components) | **GET** /v3/flows/components/v3 | Get V3 Components
@@ -426,6 +514,7 @@ Class | Method | HTTP request | Description
 *WorkspacesApi* | [**searchWorkspaceUsers**](docs/Api/WorkspacesApi.md#searchworkspaceusers) | **POST** /v2/workspaces/{workspace_id}/users | Search Workspace Users
 *WorkspacesApi* | [**transferWorkspaceOwnership**](docs/Api/WorkspacesApi.md#transferworkspaceownership) | **POST** /v2/workspaces/{workspace_id}/transfer-ownership/{new_owner_user_id} | Transfer Workspace Ownership
 *WorkspacesApi* | [**updateWorkspace**](docs/Api/WorkspacesApi.md#updateworkspace) | **PUT** /v2/workspaces/{workspace_id} | Update Workspace
+*WorkspacesApi* | [**updateWorkspaceAutoRecharge**](docs/Api/WorkspacesApi.md#updateworkspaceautorecharge) | **PUT** /v2/workspaces/{workspace_id}/auto-recharge | Update Workspace Auto Recharge
 *WorkspacesApi* | [**updateWorkspaceCreditAlertThreshold**](docs/Api/WorkspacesApi.md#updateworkspacecreditalertthreshold) | **PUT** /v2/workspaces/{workspace_id}/credit-alert-threshold | Update Workspace Credit Alert Threshold
 *WorkspacesApi* | [**updateWorkspaceCreditLimit**](docs/Api/WorkspacesApi.md#updateworkspacecreditlimit) | **PUT** /v2/workspaces/{workspace_id}/credit-limit | Update Workspace Credit Limit
 *WorkspacesApi* | [**updateWorkspaceUser**](docs/Api/WorkspacesApi.md#updateworkspaceuser) | **PUT** /v2/workspaces/{workspace_id}/{user_id} | Update Workspace User
@@ -441,6 +530,9 @@ Class | Method | HTTP request | Description
 
 ## Models
 
+- [AIProjectTemplateCardResponse](docs/Model/AIProjectTemplateCardResponse.md)
+- [AIProjectTemplateDetailResponse](docs/Model/AIProjectTemplateDetailResponse.md)
+- [AIStudioFlowTemplateResponse](docs/Model/AIStudioFlowTemplateResponse.md)
 - [AgentGridBulkInsertResponse](docs/Model/AgentGridBulkInsertResponse.md)
 - [AgentGridCreateRequest](docs/Model/AgentGridCreateRequest.md)
 - [AgentGridFieldRequest](docs/Model/AgentGridFieldRequest.md)
@@ -454,8 +546,15 @@ Class | Method | HTTP request | Description
 - [AgentGridRowInsertRequest](docs/Model/AgentGridRowInsertRequest.md)
 - [AgentGridRowInsertResponse](docs/Model/AgentGridRowInsertResponse.md)
 - [AgentGridRowsBulkInsertRequest](docs/Model/AgentGridRowsBulkInsertRequest.md)
+- [AgentGridSearchListRequest](docs/Model/AgentGridSearchListRequest.md)
 - [AgentGridSearchRequest](docs/Model/AgentGridSearchRequest.md)
+- [AgentGridSearchRequestFiltersValue](docs/Model/AgentGridSearchRequestFiltersValue.md)
 - [AgentGridSearchResponse](docs/Model/AgentGridSearchResponse.md)
+- [AgentTeamProjectChatRequest](docs/Model/AgentTeamProjectChatRequest.md)
+- [AgentTeamProjectCreate](docs/Model/AgentTeamProjectCreate.md)
+- [AgentTeamProjectResponse](docs/Model/AgentTeamProjectResponse.md)
+- [AgentTeamProjectSearchRequest](docs/Model/AgentTeamProjectSearchRequest.md)
+- [AgentTeamProjectUpdate](docs/Model/AgentTeamProjectUpdate.md)
 - [AirtableBaseResponse](docs/Model/AirtableBaseResponse.md)
 - [AirtableBasesResponse](docs/Model/AirtableBasesResponse.md)
 - [AirtableFieldResponse](docs/Model/AirtableFieldResponse.md)
@@ -463,21 +562,36 @@ Class | Method | HTTP request | Description
 - [AirtableTablesResponse](docs/Model/AirtableTablesResponse.md)
 - [AirtableViewResponse](docs/Model/AirtableViewResponse.md)
 - [AllFlowsSearchRequest](docs/Model/AllFlowsSearchRequest.md)
+- [ApiKeyBulkDeleteRequest](docs/Model/ApiKeyBulkDeleteRequest.md)
+- [ApiKeyBulkUpdateItem](docs/Model/ApiKeyBulkUpdateItem.md)
+- [ApiKeyBulkUpdateRequest](docs/Model/ApiKeyBulkUpdateRequest.md)
 - [ApiKeyCreateRequest](docs/Model/ApiKeyCreateRequest.md)
 - [ApiKeyResponse](docs/Model/ApiKeyResponse.md)
 - [ApiKeySearchRequest](docs/Model/ApiKeySearchRequest.md)
 - [ApiKeyUpdateRequest](docs/Model/ApiKeyUpdateRequest.md)
 - [AppUrlInput](docs/Model/AppUrlInput.md)
 - [AppUrlOutput](docs/Model/AppUrlOutput.md)
+- [AsanaProjectResponse](docs/Model/AsanaProjectResponse.md)
+- [AsanaTaskResponse](docs/Model/AsanaTaskResponse.md)
+- [AsanaUserResponse](docs/Model/AsanaUserResponse.md)
+- [AsanaWorkspaceResponse](docs/Model/AsanaWorkspaceResponse.md)
 - [AspecRatio](docs/Model/AspecRatio.md)
+- [AvailableModelsResponse](docs/Model/AvailableModelsResponse.md)
+- [AvatarChip](docs/Model/AvatarChip.md)
 - [BaseFoundationModel](docs/Model/BaseFoundationModel.md)
 - [BillingProvider](docs/Model/BillingProvider.md)
 - [BoolChar](docs/Model/BoolChar.md)
 - [BrandingResponse](docs/Model/BrandingResponse.md)
 - [BrandingUpdateRequest](docs/Model/BrandingUpdateRequest.md)
 - [CategoryType](docs/Model/CategoryType.md)
+- [ChannelTestRequest](docs/Model/ChannelTestRequest.md)
+- [ChannelTestResponse](docs/Model/ChannelTestResponse.md)
 - [ChartSessionDurationResponse](docs/Model/ChartSessionDurationResponse.md)
 - [ChartsFeedbackRequest](docs/Model/ChartsFeedbackRequest.md)
+- [ChatStartResponse](docs/Model/ChatStartResponse.md)
+- [ChatbotBulkDeleteRequest](docs/Model/ChatbotBulkDeleteRequest.md)
+- [ChatbotBulkUpdateItem](docs/Model/ChatbotBulkUpdateItem.md)
+- [ChatbotBulkUpdateRequest](docs/Model/ChatbotBulkUpdateRequest.md)
 - [ChatbotCreateRequest](docs/Model/ChatbotCreateRequest.md)
 - [ChatbotResponse](docs/Model/ChatbotResponse.md)
 - [ChatbotSearchRequest](docs/Model/ChatbotSearchRequest.md)
@@ -486,6 +600,7 @@ Class | Method | HTTP request | Description
 - [ClickUpSpaceResponse](docs/Model/ClickUpSpaceResponse.md)
 - [ClickUpWorkspaceResponse](docs/Model/ClickUpWorkspaceResponse.md)
 - [CommunityImageGenerationsResponse](docs/Model/CommunityImageGenerationsResponse.md)
+- [CompleteOnboardingRequest](docs/Model/CompleteOnboardingRequest.md)
 - [Completed](docs/Model/Completed.md)
 - [ComponentValidateRequest](docs/Model/ComponentValidateRequest.md)
 - [ComponentValidationError](docs/Model/ComponentValidationError.md)
@@ -502,10 +617,22 @@ Class | Method | HTTP request | Description
 - [CreditDailyTransactionSearchRequest](docs/Model/CreditDailyTransactionSearchRequest.md)
 - [CreditTransactionResponse](docs/Model/CreditTransactionResponse.md)
 - [CreditTransactionSearchRequest](docs/Model/CreditTransactionSearchRequest.md)
+- [CustomModelBulkDeleteRequest](docs/Model/CustomModelBulkDeleteRequest.md)
+- [CustomModelCompatibility](docs/Model/CustomModelCompatibility.md)
+- [CustomModelCreateRequest](docs/Model/CustomModelCreateRequest.md)
+- [CustomModelFamily](docs/Model/CustomModelFamily.md)
+- [CustomModelProvider](docs/Model/CustomModelProvider.md)
+- [CustomModelResponse](docs/Model/CustomModelResponse.md)
+- [CustomModelSearchRequest](docs/Model/CustomModelSearchRequest.md)
+- [CustomModelUpdateRequest](docs/Model/CustomModelUpdateRequest.md)
 - [CustomerDataRequestPayload](docs/Model/CustomerDataRequestPayload.md)
 - [CustomerRedactPayload](docs/Model/CustomerRedactPayload.md)
 - [Data](docs/Model/Data.md)
 - [DeleteNodeRequest](docs/Model/DeleteNodeRequest.md)
+- [DocumentBulkDeleteRequest](docs/Model/DocumentBulkDeleteRequest.md)
+- [DocumentBulkUpdateItem](docs/Model/DocumentBulkUpdateItem.md)
+- [DocumentBulkUpdateRequest](docs/Model/DocumentBulkUpdateRequest.md)
+- [DocumentCategoryBulkDeleteRequest](docs/Model/DocumentCategoryBulkDeleteRequest.md)
 - [DocumentCategoryCreateRequest](docs/Model/DocumentCategoryCreateRequest.md)
 - [DocumentCategoryResponse](docs/Model/DocumentCategoryResponse.md)
 - [DocumentCategorySearchRequest](docs/Model/DocumentCategorySearchRequest.md)
@@ -524,6 +651,9 @@ Class | Method | HTTP request | Description
 - [FTStatus](docs/Model/FTStatus.md)
 - [FTType](docs/Model/FTType.md)
 - [FailedFaqItem](docs/Model/FailedFaqItem.md)
+- [FaqBulkDeleteRequest](docs/Model/FaqBulkDeleteRequest.md)
+- [FaqBulkUpdateItem](docs/Model/FaqBulkUpdateItem.md)
+- [FaqBulkUpdateRequest](docs/Model/FaqBulkUpdateRequest.md)
 - [FaqCreateRequest](docs/Model/FaqCreateRequest.md)
 - [FaqImportResponse](docs/Model/FaqImportResponse.md)
 - [FaqResponse](docs/Model/FaqResponse.md)
@@ -555,7 +685,11 @@ Class | Method | HTTP request | Description
 - [FlowBatchRunResponse](docs/Model/FlowBatchRunResponse.md)
 - [FlowBatchRunStatus](docs/Model/FlowBatchRunStatus.md)
 - [FlowBatchRunUpdateRequest](docs/Model/FlowBatchRunUpdateRequest.md)
+- [FlowBatchSearchRequest](docs/Model/FlowBatchSearchRequest.md)
 - [FlowBranch](docs/Model/FlowBranch.md)
+- [FlowBulkCategoryUpdateItem](docs/Model/FlowBulkCategoryUpdateItem.md)
+- [FlowBulkDeleteRequest](docs/Model/FlowBulkDeleteRequest.md)
+- [FlowBulkUpdateRequest](docs/Model/FlowBulkUpdateRequest.md)
 - [FlowCategoryCreateRequest](docs/Model/FlowCategoryCreateRequest.md)
 - [FlowCategoryResponse](docs/Model/FlowCategoryResponse.md)
 - [FlowCategorySearchRequest](docs/Model/FlowCategorySearchRequest.md)
@@ -582,15 +716,20 @@ Class | Method | HTTP request | Description
 - [FlowResponse](docs/Model/FlowResponse.md)
 - [FlowSearchRequest](docs/Model/FlowSearchRequest.md)
 - [FlowSessionAgentCotMetadata](docs/Model/FlowSessionAgentCotMetadata.md)
+- [FlowSessionAgentInitializedMetadata](docs/Model/FlowSessionAgentInitializedMetadata.md)
 - [FlowSessionArtefactContentResponse](docs/Model/FlowSessionArtefactContentResponse.md)
 - [FlowSessionArtefactInfo](docs/Model/FlowSessionArtefactInfo.md)
 - [FlowSessionArtefactsMetadata](docs/Model/FlowSessionArtefactsMetadata.md)
 - [FlowSessionAttachmentMetadata](docs/Model/FlowSessionAttachmentMetadata.md)
-- [FlowSessionAttachmentResponse](docs/Model/FlowSessionAttachmentResponse.md)
 - [FlowSessionCreateFromFlowRequest](docs/Model/FlowSessionCreateFromFlowRequest.md)
 - [FlowSessionCreateRequest](docs/Model/FlowSessionCreateRequest.md)
+- [FlowSessionEvaluateClientJsMetadata](docs/Model/FlowSessionEvaluateClientJsMetadata.md)
 - [FlowSessionEvent](docs/Model/FlowSessionEvent.md)
+- [FlowSessionFileAccessRequiredMetadata](docs/Model/FlowSessionFileAccessRequiredMetadata.md)
+- [FlowSessionHITLApprovalMetadata](docs/Model/FlowSessionHITLApprovalMetadata.md)
+- [FlowSessionHookRequest](docs/Model/FlowSessionHookRequest.md)
 - [FlowSessionHookWaitingMetadata](docs/Model/FlowSessionHookWaitingMetadata.md)
+- [FlowSessionIntegrationMissingMetadata](docs/Model/FlowSessionIntegrationMissingMetadata.md)
 - [FlowSessionInvocationResponse](docs/Model/FlowSessionInvocationResponse.md)
 - [FlowSessionInvokeRequest](docs/Model/FlowSessionInvokeRequest.md)
 - [FlowSessionLoadingMetadata](docs/Model/FlowSessionLoadingMetadata.md)
@@ -598,12 +737,16 @@ Class | Method | HTTP request | Description
 - [FlowSessionMessageMetadata](docs/Model/FlowSessionMessageMetadata.md)
 - [FlowSessionResponse](docs/Model/FlowSessionResponse.md)
 - [FlowSessionResumeHookRequest](docs/Model/FlowSessionResumeHookRequest.md)
+- [FlowSessionStatus](docs/Model/FlowSessionStatus.md)
+- [FlowSessionSubagentPromptMetadata](docs/Model/FlowSessionSubagentPromptMetadata.md)
 - [FlowSessionTaskResponseMetadata](docs/Model/FlowSessionTaskResponseMetadata.md)
 - [FlowSessionTodoListMetadata](docs/Model/FlowSessionTodoListMetadata.md)
 - [FlowSessionToolCallMetadata](docs/Model/FlowSessionToolCallMetadata.md)
 - [FlowSessionV3FlowAssistantInitMetadata](docs/Model/FlowSessionV3FlowAssistantInitMetadata.md)
 - [FlowSessionV3ToolCallEndMetadata](docs/Model/FlowSessionV3ToolCallEndMetadata.md)
 - [FlowSessionV3ToolCallStartMetadata](docs/Model/FlowSessionV3ToolCallStartMetadata.md)
+- [FlowSessionVariablesRequest](docs/Model/FlowSessionVariablesRequest.md)
+- [FlowSessionVariablesResponse](docs/Model/FlowSessionVariablesResponse.md)
 - [FlowSessionViewResponse](docs/Model/FlowSessionViewResponse.md)
 - [FlowSessionViewSearchRequest](docs/Model/FlowSessionViewSearchRequest.md)
 - [FlowSessionViewUpdateRequest](docs/Model/FlowSessionViewUpdateRequest.md)
@@ -615,6 +758,8 @@ Class | Method | HTTP request | Description
 - [FlowVersionHistoryResponse](docs/Model/FlowVersionHistoryResponse.md)
 - [GeneralMCPSubserverCapabilitiesResponse](docs/Model/GeneralMCPSubserverCapabilitiesResponse.md)
 - [GeneralMCPSubserverResponse](docs/Model/GeneralMCPSubserverResponse.md)
+- [GenerateAgentConfigRequest](docs/Model/GenerateAgentConfigRequest.md)
+- [GenerateAgentConfigStartResponse](docs/Model/GenerateAgentConfigStartResponse.md)
 - [GetNodeRequest](docs/Model/GetNodeRequest.md)
 - [GitHubRepoResponse](docs/Model/GitHubRepoResponse.md)
 - [GitHubReposResponse](docs/Model/GitHubReposResponse.md)
@@ -647,12 +792,17 @@ Class | Method | HTTP request | Description
 - [GoogleAdsRecommendationStatus](docs/Model/GoogleAdsRecommendationStatus.md)
 - [GoogleAdsRecommendationType](docs/Model/GoogleAdsRecommendationType.md)
 - [GoogleAdsRecommendationsRequest](docs/Model/GoogleAdsRecommendationsRequest.md)
+- [GoogleAllowedDirectoriesRequest](docs/Model/GoogleAllowedDirectoriesRequest.md)
+- [GoogleAllowedDirectoriesResponse](docs/Model/GoogleAllowedDirectoriesResponse.md)
 - [GoogleCalendarResponse](docs/Model/GoogleCalendarResponse.md)
 - [GoogleCalendarsResponse](docs/Model/GoogleCalendarsResponse.md)
+- [GoogleDriveFolderResponse](docs/Model/GoogleDriveFolderResponse.md)
+- [GoogleDriveFoldersResponse](docs/Model/GoogleDriveFoldersResponse.md)
 - [GooglePickerTokenResponse](docs/Model/GooglePickerTokenResponse.md)
 - [GoogleSheetResponse](docs/Model/GoogleSheetResponse.md)
 - [GoogleSheetsResponse](docs/Model/GoogleSheetsResponse.md)
 - [GroupingPeriod](docs/Model/GroupingPeriod.md)
+- [HITLRespondRequest](docs/Model/HITLRespondRequest.md)
 - [HTTPValidationError](docs/Model/HTTPValidationError.md)
 - [HubSpotActorIdResponse](docs/Model/HubSpotActorIdResponse.md)
 - [HubSpotActorsResponse](docs/Model/HubSpotActorsResponse.md)
@@ -672,10 +822,14 @@ Class | Method | HTTP request | Description
 - [ImagePromptResponse](docs/Model/ImagePromptResponse.md)
 - [InferenceFileType](docs/Model/InferenceFileType.md)
 - [InferenceHistorySearchRequest](docs/Model/InferenceHistorySearchRequest.md)
+- [InferenceHistorySearchRequestSearchAfterInner](docs/Model/InferenceHistorySearchRequestSearchAfterInner.md)
+- [InhouseAttachment](docs/Model/InhouseAttachment.md)
+- [InitialIssueSeed](docs/Model/InitialIssueSeed.md)
 - [InstagramProfileInformationResponse](docs/Model/InstagramProfileInformationResponse.md)
 - [IntegrationCategory](docs/Model/IntegrationCategory.md)
 - [IntegrationDetailResponse](docs/Model/IntegrationDetailResponse.md)
 - [IntegrationFlowResponse](docs/Model/IntegrationFlowResponse.md)
+- [IntegrationGatewayResponse](docs/Model/IntegrationGatewayResponse.md)
 - [IntegrationResponse](docs/Model/IntegrationResponse.md)
 - [IntegrationSearchRequest](docs/Model/IntegrationSearchRequest.md)
 - [IntegrationSlug](docs/Model/IntegrationSlug.md)
@@ -695,10 +849,20 @@ Class | Method | HTTP request | Description
 - [LogResponse](docs/Model/LogResponse.md)
 - [LogsSearchRequest](docs/Model/LogsSearchRequest.md)
 - [MCPCapabilityBinding](docs/Model/MCPCapabilityBinding.md)
+- [MCPConnectorAuthPayload](docs/Model/MCPConnectorAuthPayload.md)
+- [MCPConnectorCreateRequest](docs/Model/MCPConnectorCreateRequest.md)
+- [MCPConnectorResponse](docs/Model/MCPConnectorResponse.md)
+- [MCPConnectorSearchRequest](docs/Model/MCPConnectorSearchRequest.md)
+- [MCPConnectorTestResponse](docs/Model/MCPConnectorTestResponse.md)
+- [MCPConnectorTestTool](docs/Model/MCPConnectorTestTool.md)
+- [MCPConnectorUpdateRequest](docs/Model/MCPConnectorUpdateRequest.md)
+- [MCPServerBulkDeleteRequest](docs/Model/MCPServerBulkDeleteRequest.md)
 - [MCPServerCreateRequest](docs/Model/MCPServerCreateRequest.md)
 - [MCPServerResponse](docs/Model/MCPServerResponse.md)
 - [MCPServerSearchRequest](docs/Model/MCPServerSearchRequest.md)
 - [MCPSubServerBinding](docs/Model/MCPSubServerBinding.md)
+- [ManualSessionClosedResponse](docs/Model/ManualSessionClosedResponse.md)
+- [MatchFilter](docs/Model/MatchFilter.md)
 - [MemoryDocumentProcessRequest](docs/Model/MemoryDocumentProcessRequest.md)
 - [MemoryDocumentUploadResponse](docs/Model/MemoryDocumentUploadResponse.md)
 - [MemoryMessageResponse](docs/Model/MemoryMessageResponse.md)
@@ -712,17 +876,17 @@ Class | Method | HTTP request | Description
 - [MessageFeedback](docs/Model/MessageFeedback.md)
 - [MessageType](docs/Model/MessageType.md)
 - [Metadata](docs/Model/Metadata.md)
-- [MicrosoftPowerBiDatasetResponse](docs/Model/MicrosoftPowerBiDatasetResponse.md)
-- [MicrosoftPowerBiDatasetsResponse](docs/Model/MicrosoftPowerBiDatasetsResponse.md)
-- [MicrosoftPowerBiPushDatasetResponse](docs/Model/MicrosoftPowerBiPushDatasetResponse.md)
-- [MicrosoftPowerBiTableResponse](docs/Model/MicrosoftPowerBiTableResponse.md)
-- [MicrosoftPowerBiTableValidateResponse](docs/Model/MicrosoftPowerBiTableValidateResponse.md)
-- [MicrosoftPowerBiTablesResponse](docs/Model/MicrosoftPowerBiTablesResponse.md)
-- [MicrosoftPowerBiWorkspaceResponse](docs/Model/MicrosoftPowerBiWorkspaceResponse.md)
-- [MicrosoftPowerBiWorkspacesResponse](docs/Model/MicrosoftPowerBiWorkspacesResponse.md)
+- [ModelCapabilitiesResponse](docs/Model/ModelCapabilitiesResponse.md)
+- [ModelCategoryResponse](docs/Model/ModelCategoryResponse.md)
+- [ModelLimitsResponse](docs/Model/ModelLimitsResponse.md)
+- [ModelResponse](docs/Model/ModelResponse.md)
 - [NodeDetailRequest](docs/Model/NodeDetailRequest.md)
 - [NodeUpdateRequest](docs/Model/NodeUpdateRequest.md)
 - [ObservabilityDriverResponse](docs/Model/ObservabilityDriverResponse.md)
+- [OllamaListModelsRequest](docs/Model/OllamaListModelsRequest.md)
+- [OllamaListModelsResponse](docs/Model/OllamaListModelsResponse.md)
+- [OnboardingPrimaryGoal](docs/Model/OnboardingPrimaryGoal.md)
+- [OnboardingStateResponse](docs/Model/OnboardingStateResponse.md)
 - [OptimizedPromptResponse](docs/Model/OptimizedPromptResponse.md)
 - [Pagination](docs/Model/Pagination.md)
 - [PerDayFeedback](docs/Model/PerDayFeedback.md)
@@ -731,10 +895,24 @@ Class | Method | HTTP request | Description
 - [PhotoAIStyleResponse](docs/Model/PhotoAIStyleResponse.md)
 - [PhotoAITemplateResponse](docs/Model/PhotoAITemplateResponse.md)
 - [PointerType](docs/Model/PointerType.md)
-- [PowerBiDatasetRequest](docs/Model/PowerBiDatasetRequest.md)
-- [PowerBiPushDatasetRequest](docs/Model/PowerBiPushDatasetRequest.md)
-- [PowerBiRequest](docs/Model/PowerBiRequest.md)
-- [PowerBiTableRequest](docs/Model/PowerBiTableRequest.md)
+- [PowerBIWorkspaceResponse](docs/Model/PowerBIWorkspaceResponse.md)
+- [PowerBIWorkspacesResponse](docs/Model/PowerBIWorkspacesResponse.md)
+- [ProjectInboxEntryResponse](docs/Model/ProjectInboxEntryResponse.md)
+- [ProjectInboxSearchRequest](docs/Model/ProjectInboxSearchRequest.md)
+- [ProjectInboxSearchResponse](docs/Model/ProjectInboxSearchResponse.md)
+- [ProjectInboxUnreadCountResponse](docs/Model/ProjectInboxUnreadCountResponse.md)
+- [ProjectIssueCommentArtefactResponse](docs/Model/ProjectIssueCommentArtefactResponse.md)
+- [ProjectIssueCommentCreate](docs/Model/ProjectIssueCommentCreate.md)
+- [ProjectIssueCommentResponse](docs/Model/ProjectIssueCommentResponse.md)
+- [ProjectIssueCreate](docs/Model/ProjectIssueCreate.md)
+- [ProjectIssueResponse](docs/Model/ProjectIssueResponse.md)
+- [ProjectIssueSearchRequest](docs/Model/ProjectIssueSearchRequest.md)
+- [ProjectIssueSearchResponse](docs/Model/ProjectIssueSearchResponse.md)
+- [ProjectIssueTagCreate](docs/Model/ProjectIssueTagCreate.md)
+- [ProjectIssueTagResponse](docs/Model/ProjectIssueTagResponse.md)
+- [ProjectIssueTagSearchRequest](docs/Model/ProjectIssueTagSearchRequest.md)
+- [ProjectIssueTagUpdate](docs/Model/ProjectIssueTagUpdate.md)
+- [ProjectIssueUpdate](docs/Model/ProjectIssueUpdate.md)
 - [PromptCategoryCreateRequest](docs/Model/PromptCategoryCreateRequest.md)
 - [PromptCategoryResponse](docs/Model/PromptCategoryResponse.md)
 - [PromptCategorySearchRequest](docs/Model/PromptCategorySearchRequest.md)
@@ -746,7 +924,13 @@ Class | Method | HTTP request | Description
 - [PromptUpdateRequest](docs/Model/PromptUpdateRequest.md)
 - [QuerySimilarityRequest](docs/Model/QuerySimilarityRequest.md)
 - [QuerySimilarityTaskRequest](docs/Model/QuerySimilarityTaskRequest.md)
+- [RangeFilter](docs/Model/RangeFilter.md)
+- [RequiredIntegration](docs/Model/RequiredIntegration.md)
 - [Role](docs/Model/Role.md)
+- [ScheduleBulkDeleteRequest](docs/Model/ScheduleBulkDeleteRequest.md)
+- [ScheduleBulkRunRequest](docs/Model/ScheduleBulkRunRequest.md)
+- [ScheduleBulkUpdateItem](docs/Model/ScheduleBulkUpdateItem.md)
+- [ScheduleBulkUpdateRequest](docs/Model/ScheduleBulkUpdateRequest.md)
 - [ScheduleCreateRequest](docs/Model/ScheduleCreateRequest.md)
 - [ScheduleFrequency](docs/Model/ScheduleFrequency.md)
 - [ScheduleResponse](docs/Model/ScheduleResponse.md)
@@ -782,9 +966,11 @@ Class | Method | HTTP request | Description
 - [ShopifyIntegrationResponse](docs/Model/ShopifyIntegrationResponse.md)
 - [SlackChannelResponse](docs/Model/SlackChannelResponse.md)
 - [SlackWorkspaceResponse](docs/Model/SlackWorkspaceResponse.md)
+- [SmtpEncryption](docs/Model/SmtpEncryption.md)
 - [SortDirection](docs/Model/SortDirection.md)
 - [Source](docs/Model/Source.md)
 - [SubscriptionPlan](docs/Model/SubscriptionPlan.md)
+- [SuggestionResponse](docs/Model/SuggestionResponse.md)
 - [SystemMessageMetadata](docs/Model/SystemMessageMetadata.md)
 - [TagCreateRequest](docs/Model/TagCreateRequest.md)
 - [TagResponse](docs/Model/TagResponse.md)
@@ -792,6 +978,9 @@ Class | Method | HTTP request | Description
 - [TagUpdateRequest](docs/Model/TagUpdateRequest.md)
 - [TaskResponse](docs/Model/TaskResponse.md)
 - [TaskStatus](docs/Model/TaskStatus.md)
+- [TeamPreview](docs/Model/TeamPreview.md)
+- [TermFilter](docs/Model/TermFilter.md)
+- [TermsFilter](docs/Model/TermsFilter.md)
 - [TodoItem](docs/Model/TodoItem.md)
 - [ToolCallFeedbackResponse](docs/Model/ToolCallFeedbackResponse.md)
 - [ToolFeedback](docs/Model/ToolFeedback.md)
@@ -834,6 +1023,7 @@ Class | Method | HTTP request | Description
 - [WordPressCategoryResponse](docs/Model/WordPressCategoryResponse.md)
 - [WordPressSiteResponse](docs/Model/WordPressSiteResponse.md)
 - [WordPressTagsResponse](docs/Model/WordPressTagsResponse.md)
+- [WorkspaceAutoRechargeRequest](docs/Model/WorkspaceAutoRechargeRequest.md)
 - [WorkspaceCreateRequest](docs/Model/WorkspaceCreateRequest.md)
 - [WorkspaceCreditAlertThresholdRequest](docs/Model/WorkspaceCreditAlertThresholdRequest.md)
 - [WorkspaceCreditLimitRequest](docs/Model/WorkspaceCreditLimitRequest.md)
@@ -884,6 +1074,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.0.0`
-    - Package version: `3.18.2`
+    - Package version: `3.19.1`
     - Generator version: `7.14.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

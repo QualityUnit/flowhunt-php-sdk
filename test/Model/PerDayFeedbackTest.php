@@ -132,4 +132,13 @@ class PerDayFeedbackTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "error_message_count"
+     */
+    public function testPropertyErrorMessageCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

@@ -80,6 +80,9 @@ class V3Api
         'createV3FlowAssistantSession' => [
             'application/json',
         ],
+        'fireSessionClosed' => [
+            'application/json',
+        ],
         'getAllComponentsV3' => [
             'application/json',
         ],
@@ -742,6 +745,329 @@ class V3Api
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation fireSessionClosed
+     *
+     * Fire Session Closed
+     *
+     * @param  string $flow_id flow_id (required)
+     * @param  string $session_id session_id (required)
+     * @param  string $workspace_id workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireSessionClosed'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FlowHunt\Model\ManualSessionClosedResponse|\FlowHunt\Model\HTTPValidationError
+     */
+    public function fireSessionClosed($flow_id, $session_id, $workspace_id, string $contentType = self::contentTypes['fireSessionClosed'][0])
+    {
+        list($response) = $this->fireSessionClosedWithHttpInfo($flow_id, $session_id, $workspace_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation fireSessionClosedWithHttpInfo
+     *
+     * Fire Session Closed
+     *
+     * @param  string $flow_id (required)
+     * @param  string $session_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireSessionClosed'] to see the possible values for this operation
+     *
+     * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FlowHunt\Model\ManualSessionClosedResponse|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function fireSessionClosedWithHttpInfo($flow_id, $session_id, $workspace_id, string $contentType = self::contentTypes['fireSessionClosed'][0])
+    {
+        $request = $this->fireSessionClosedRequest($flow_id, $session_id, $workspace_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\ManualSessionClosedResponse',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\FlowHunt\Model\ManualSessionClosedResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\ManualSessionClosedResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FlowHunt\Model\HTTPValidationError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation fireSessionClosedAsync
+     *
+     * Fire Session Closed
+     *
+     * @param  string $flow_id (required)
+     * @param  string $session_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireSessionClosed'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fireSessionClosedAsync($flow_id, $session_id, $workspace_id, string $contentType = self::contentTypes['fireSessionClosed'][0])
+    {
+        return $this->fireSessionClosedAsyncWithHttpInfo($flow_id, $session_id, $workspace_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation fireSessionClosedAsyncWithHttpInfo
+     *
+     * Fire Session Closed
+     *
+     * @param  string $flow_id (required)
+     * @param  string $session_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireSessionClosed'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fireSessionClosedAsyncWithHttpInfo($flow_id, $session_id, $workspace_id, string $contentType = self::contentTypes['fireSessionClosed'][0])
+    {
+        $returnType = '\FlowHunt\Model\ManualSessionClosedResponse';
+        $request = $this->fireSessionClosedRequest($flow_id, $session_id, $workspace_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'fireSessionClosed'
+     *
+     * @param  string $flow_id (required)
+     * @param  string $session_id (required)
+     * @param  string $workspace_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fireSessionClosed'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function fireSessionClosedRequest($flow_id, $session_id, $workspace_id, string $contentType = self::contentTypes['fireSessionClosed'][0])
+    {
+
+        // verify the required parameter 'flow_id' is set
+        if ($flow_id === null || (is_array($flow_id) && count($flow_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $flow_id when calling fireSessionClosed'
+            );
+        }
+
+        // verify the required parameter 'session_id' is set
+        if ($session_id === null || (is_array($session_id) && count($session_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $session_id when calling fireSessionClosed'
+            );
+        }
+
+        // verify the required parameter 'workspace_id' is set
+        if ($workspace_id === null || (is_array($workspace_id) && count($workspace_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $workspace_id when calling fireSessionClosed'
+            );
+        }
+
+
+        $resourcePath = '/v3/flows/{flow_id}/sessions/{session_id}/fire-session-closed';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $workspace_id,
+            'workspace_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+        // path params
+        if ($flow_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'flow_id' . '}',
+                ObjectSerializer::toPathValue($flow_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($session_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'session_id' . '}',
+                ObjectSerializer::toPathValue($session_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **product_plans** | [**array<string,\FlowHunt\Model\SubscriptionPlan>**](SubscriptionPlan.md) |  | [optional]
 **billing_provider** | [**\FlowHunt\Model\BillingProvider**](BillingProvider.md) |  | [optional]
 **sudoer** | **bool** | Whether the user has superuser privileges | [optional] [default to false]
+**onboarding** | [**\FlowHunt\Model\OnboardingStateResponse**](OnboardingStateResponse.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

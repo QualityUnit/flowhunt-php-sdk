@@ -16,12 +16,18 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getAirtableBases()**](IntegrationsApi.md#getAirtableBases) | **GET** /v2/integrations/airtable/ | Get Airtable Bases |
 | [**getAirtableTables()**](IntegrationsApi.md#getAirtableTables) | **GET** /v2/integrations/airtable/bases/{base_id}/tables | Get Airtable Tables |
 | [**getAllIntegrations()**](IntegrationsApi.md#getAllIntegrations) | **GET** /v2/integrations/all | Get All Integrations |
+| [**getAllowedDirectories()**](IntegrationsApi.md#getAllowedDirectories) | **GET** /v2/integrations/google/allowed_directories | Get Allowed Directories |
+| [**getAsanaProjectTasks()**](IntegrationsApi.md#getAsanaProjectTasks) | **GET** /v2/integrations/asana/{integration_id}/projects/{project_gid}/tasks | Get Asana Project Tasks |
+| [**getAsanaProjects()**](IntegrationsApi.md#getAsanaProjects) | **GET** /v2/integrations/asana/{integration_id}/projects | Get Asana Projects |
+| [**getAsanaUsers()**](IntegrationsApi.md#getAsanaUsers) | **GET** /v2/integrations/asana/{integration_id}/users | Get Asana Users |
+| [**getAsanaWorkspaces()**](IntegrationsApi.md#getAsanaWorkspaces) | **GET** /v2/integrations/asana/ | Get Asana Workspaces |
 | [**getBranches()**](IntegrationsApi.md#getBranches) | **GET** /v2/integrations/gitlab/branches | Get Branches |
 | [**getCalendars()**](IntegrationsApi.md#getCalendars) | **GET** /v2/integrations/google/calendar | Get Calendars |
 | [**getClickupSpaces()**](IntegrationsApi.md#getClickupSpaces) | **GET** /v2/integrations/clickup/{integration_id}/spaces | Get Clickup Spaces |
 | [**getClickupWorkspaces()**](IntegrationsApi.md#getClickupWorkspaces) | **GET** /v2/integrations/clickup/ | Get Clickup Workspaces |
 | [**getConfluencePages()**](IntegrationsApi.md#getConfluencePages) | **GET** /v2/integrations/atlassian/confluence/spaces/{space_key}/pages | Get Confluence Pages |
 | [**getConfluenceSpaces()**](IntegrationsApi.md#getConfluenceSpaces) | **GET** /v2/integrations/atlassian/confluence/spaces | Get Confluence Spaces |
+| [**getDriveFolders()**](IntegrationsApi.md#getDriveFolders) | **GET** /v2/integrations/google/drive_folders | Get Drive Folders |
 | [**getHubspotCustomChannelConnect()**](IntegrationsApi.md#getHubspotCustomChannelConnect) | **GET** /v2/integrations/hubspot_custom_channel_connect | Get Hubspot Custom Channel Connect |
 | [**getIntegration()**](IntegrationsApi.md#getIntegration) | **GET** /v2/integrations/{slug}/{integration_id} | Get Integration |
 | [**getJiraAssignees()**](IntegrationsApi.md#getJiraAssignees) | **GET** /v2/integrations/atlassian/jira/projects/{project_key}/assignees | Get Jira Assignees |
@@ -30,6 +36,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getJiraTransitions()**](IntegrationsApi.md#getJiraTransitions) | **GET** /v2/integrations/atlassian/jira/issues/{issue_key}/transitions | Get Jira Transitions |
 | [**getMembers()**](IntegrationsApi.md#getMembers) | **GET** /v2/integrations/wix/members | Get Members |
 | [**getPickerToken()**](IntegrationsApi.md#getPickerToken) | **GET** /v2/integrations/google/picker_token | Get Picker Token |
+| [**getPowerbiWorkspaces()**](IntegrationsApi.md#getPowerbiWorkspaces) | **GET** /v2/integrations/powerbi/workspaces | Get Powerbi Workspaces |
 | [**getProfileInformation()**](IntegrationsApi.md#getProfileInformation) | **GET** /v2/integrations/instagram/profile_information | Get Profile Information |
 | [**getProjects()**](IntegrationsApi.md#getProjects) | **GET** /v2/integrations/gitlab/projects | Get Projects |
 | [**getRepos()**](IntegrationsApi.md#getRepos) | **GET** /v2/integrations/github/repos | Get Repos |
@@ -48,11 +55,13 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**manifest()**](IntegrationsApi.md#manifest) | **GET** /v2/integrations/zendesk_channel/manifest.json | Manifest |
 | [**messagingWebhook()**](IntegrationsApi.md#messagingWebhook) | **POST** /v2/integrations/zendesk_channel/messaging_webhook | Messaging Webhook |
 | [**messagingWebhookHead()**](IntegrationsApi.md#messagingWebhookHead) | **HEAD** /v2/integrations/zendesk_channel/messaging_webhook | Messaging Webhook Head |
+| [**resolveIntegrationGatewayToken()**](IntegrationsApi.md#resolveIntegrationGatewayToken) | **GET** /v2/integrations/integrate/gateway/{token} | Resolve an integration gateway token |
 | [**searchIntegrations()**](IntegrationsApi.md#searchIntegrations) | **POST** /v2/integrations/{slug} | Search Integrations |
 | [**shopRedact()**](IntegrationsApi.md#shopRedact) | **POST** /v2/integrations/shopify/webhooks/shop/redact | Shop Redact |
 | [**subscriptionCancel()**](IntegrationsApi.md#subscriptionCancel) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_cancel | Subscription Cancel |
 | [**subscriptionUpdate()**](IntegrationsApi.md#subscriptionUpdate) | **POST** /v2/integrations/shopify/webhooks/billing/subscription_update | Subscription Update |
 | [**updateAdminConsent()**](IntegrationsApi.md#updateAdminConsent) | **POST** /v2/integrations/microsoft_entra_id/admin_consent | Update Admin Consent |
+| [**updateAllowedDirectories()**](IntegrationsApi.md#updateAllowedDirectories) | **PUT** /v2/integrations/google/allowed_directories | Update Allowed Directories |
 
 
 ## `adminUi()`
@@ -762,6 +771,304 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAllowedDirectories()`
+
+```php
+getAllowedDirectories($workspace_id): \FlowHunt\Model\GoogleAllowedDirectoriesResponse
+```
+
+Get Allowed Directories
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getAllowedDirectories($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getAllowedDirectories: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleAllowedDirectoriesResponse**](../Model/GoogleAllowedDirectoriesResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAsanaProjectTasks()`
+
+```php
+getAsanaProjectTasks($integration_id, $project_gid, $workspace_id): \FlowHunt\Model\AsanaTaskResponse[]
+```
+
+Get Asana Project Tasks
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$integration_id = 'integration_id_example'; // string
+$project_gid = 'project_gid_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getAsanaProjectTasks($integration_id, $project_gid, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getAsanaProjectTasks: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **integration_id** | **string**|  | |
+| **project_gid** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\AsanaTaskResponse[]**](../Model/AsanaTaskResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAsanaProjects()`
+
+```php
+getAsanaProjects($integration_id, $workspace_id): \FlowHunt\Model\AsanaProjectResponse[]
+```
+
+Get Asana Projects
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$integration_id = 'integration_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getAsanaProjects($integration_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getAsanaProjects: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **integration_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\AsanaProjectResponse[]**](../Model/AsanaProjectResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAsanaUsers()`
+
+```php
+getAsanaUsers($integration_id, $workspace_id): \FlowHunt\Model\AsanaUserResponse[]
+```
+
+Get Asana Users
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$integration_id = 'integration_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getAsanaUsers($integration_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getAsanaUsers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **integration_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\AsanaUserResponse[]**](../Model/AsanaUserResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAsanaWorkspaces()`
+
+```php
+getAsanaWorkspaces($workspace_id): \FlowHunt\Model\AsanaWorkspaceResponse[]
+```
+
+Get Asana Workspaces
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getAsanaWorkspaces($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getAsanaWorkspaces: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\AsanaWorkspaceResponse[]**](../Model/AsanaWorkspaceResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getBranches()`
 
 ```php
@@ -1106,6 +1413,64 @@ try {
 ### Return type
 
 [**\FlowHunt\Model\ConfluenceSpacesResponse**](../Model/ConfluenceSpacesResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getDriveFolders()`
+
+```php
+getDriveFolders($workspace_id): \FlowHunt\Model\GoogleDriveFoldersResponse
+```
+
+Get Drive Folders
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getDriveFolders($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getDriveFolders: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleDriveFoldersResponse**](../Model/GoogleDriveFoldersResponse.md)
 
 ### Authorization
 
@@ -1595,6 +1960,64 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getPowerbiWorkspaces()`
+
+```php
+getPowerbiWorkspaces($workspace_id): \FlowHunt\Model\PowerBIWorkspacesResponse
+```
+
+Get Powerbi Workspaces
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->getPowerbiWorkspaces($workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->getPowerbiWorkspaces: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\PowerBIWorkspacesResponse**](../Model/PowerBIWorkspacesResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getProfileInformation()`
 
 ```php
@@ -1890,7 +2313,7 @@ try {
 ## `getSlackChannels()`
 
 ```php
-getSlackChannels($slack_team_id, $workspace_id): \FlowHunt\Model\SlackChannelResponse[]
+getSlackChannels($slack_team_id, $workspace_id, $types): \FlowHunt\Model\SlackChannelResponse[]
 ```
 
 Get Slack Channels
@@ -1914,9 +2337,10 @@ $apiInstance = new FlowHunt\Api\IntegrationsApi(
 );
 $slack_team_id = 'slack_team_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
+$types = 'types_example'; // string
 
 try {
-    $result = $apiInstance->getSlackChannels($slack_team_id, $workspace_id);
+    $result = $apiInstance->getSlackChannels($slack_team_id, $workspace_id, $types);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IntegrationsApi->getSlackChannels: ', $e->getMessage(), PHP_EOL;
@@ -1929,6 +2353,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **slack_team_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
+| **types** | **string**|  | [optional] |
 
 ### Return type
 
@@ -2664,6 +3089,62 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `resolveIntegrationGatewayToken()`
+
+```php
+resolveIntegrationGatewayToken($token): \FlowHunt\Model\IntegrationGatewayResponse
+```
+
+Resolve an integration gateway token
+
+Resolves a temporary token issued by an AI agent when a required integration is missing.  Returns the workspace and slug so the frontend can redirect to the integration setup page.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$token = 'token_example'; // string
+
+try {
+    $result = $apiInstance->resolveIntegrationGatewayToken($token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->resolveIntegrationGatewayToken: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **token** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\IntegrationGatewayResponse**](../Model/IntegrationGatewayResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `searchIntegrations()`
 
 ```php
@@ -2964,6 +3445,66 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateAllowedDirectories()`
+
+```php
+updateAllowedDirectories($workspace_id, $google_allowed_directories_request): \FlowHunt\Model\GoogleAllowedDirectoriesResponse
+```
+
+Update Allowed Directories
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$google_allowed_directories_request = new \FlowHunt\Model\GoogleAllowedDirectoriesRequest(); // \FlowHunt\Model\GoogleAllowedDirectoriesRequest
+
+try {
+    $result = $apiInstance->updateAllowedDirectories($workspace_id, $google_allowed_directories_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IntegrationsApi->updateAllowedDirectories: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **google_allowed_directories_request** | [**\FlowHunt\Model\GoogleAllowedDirectoriesRequest**](../Model/GoogleAllowedDirectoriesRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\GoogleAllowedDirectoriesResponse**](../Model/GoogleAllowedDirectoriesResponse.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

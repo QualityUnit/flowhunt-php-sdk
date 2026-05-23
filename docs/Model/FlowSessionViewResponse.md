@@ -20,5 +20,7 @@ Name | Type | Description | Notes
 **url** | **string** |  | [optional]
 **positive_feedback_count** | **int** |  | [optional]
 **negative_feedback_count** | **int** |  | [optional]
+**error_message_count** | **int** |  | [optional]
+**chat_session_title** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

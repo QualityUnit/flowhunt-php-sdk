@@ -251,6 +251,60 @@ class MetadataTest extends TestCase
     }
 
     /**
+     * Test attribute "agent_name"
+     */
+    public function testPropertyAgentName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "agent_type"
+     */
+    public function testPropertyAgentType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "model"
+     */
+    public function testPropertyModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "task"
+     */
+    public function testPropertyTask()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "started_by"
+     */
+    public function testPropertyStartedBy()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "target_agent"
+     */
+    public function testPropertyTargetAgent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "todo_id"
      */
     public function testPropertyTodoId()
@@ -317,6 +371,78 @@ class MetadataTest extends TestCase
      * Test attribute "prompt_message"
      */
     public function testPropertyPromptMessage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "script"
+     */
+    public function testPropertyScript()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "timeout_ms"
+     */
+    public function testPropertyTimeoutMs()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "request_id"
+     */
+    public function testPropertyRequestId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "hitl_id"
+     */
+    public function testPropertyHitlId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tool_args"
+     */
+    public function testPropertyToolArgs()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tool_description"
+     */
+    public function testPropertyToolDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "channel"
+     */
+    public function testPropertyChannel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "channel_config"
+     */
+    public function testPropertyChannelConfig()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -470,6 +596,33 @@ class MetadataTest extends TestCase
      * Test attribute "document_type"
      */
     public function testPropertyDocumentType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "slug"
+     */
+    public function testPropertySlug()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "integration_url"
+     */
+    public function testPropertyIntegrationUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "document_id"
+     */
+    public function testPropertyDocumentId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -72,6 +72,30 @@ class ChatbotsApiTest extends TestCase
     }
 
     /**
+     * Test case for bulkDeleteChatbots
+     *
+     * Bulk Delete Chatbots.
+     *
+     */
+    public function testBulkDeleteChatbots()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkUpdateChatbots
+     *
+     * Bulk Update Chatbots.
+     *
+     */
+    public function testBulkUpdateChatbots()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createChatbot
      *
      * Create Chatbot.

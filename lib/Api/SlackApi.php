@@ -135,15 +135,16 @@ class SlackApi
      *
      * @param  string $slack_team_id slack_team_id (required)
      * @param  string $workspace_id workspace_id (required)
+     * @param  string|null $types types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \FlowHunt\Model\SlackChannelResponse[]|\FlowHunt\Model\HTTPValidationError
      */
-    public function getSlackChannels($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannels($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
-        list($response) = $this->getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, $contentType);
+        list($response) = $this->getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, $types, $contentType);
         return $response;
     }
 
@@ -154,15 +155,16 @@ class SlackApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \FlowHunt\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \FlowHunt\Model\SlackChannelResponse[]|\FlowHunt\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsWithHttpInfo($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
-        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $contentType);
+        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $types, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -254,14 +256,15 @@ class SlackApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSlackChannelsAsync($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsAsync($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
-        return $this->getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, $contentType)
+        return $this->getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, $types, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -276,15 +279,16 @@ class SlackApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsAsyncWithHttpInfo($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
         $returnType = '\FlowHunt\Model\SlackChannelResponse[]';
-        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $contentType);
+        $request = $this->getSlackChannelsRequest($slack_team_id, $workspace_id, $types, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -327,12 +331,13 @@ class SlackApi
      *
      * @param  string $slack_team_id (required)
      * @param  string $workspace_id (required)
+     * @param  string|null $types (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSlackChannels'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSlackChannelsRequest($slack_team_id, $workspace_id, string $contentType = self::contentTypes['getSlackChannels'][0])
+    public function getSlackChannelsRequest($slack_team_id, $workspace_id, $types = null, string $contentType = self::contentTypes['getSlackChannels'][0])
     {
 
         // verify the required parameter 'slack_team_id' is set
@@ -350,6 +355,7 @@ class SlackApi
         }
 
 
+
         $resourcePath = '/v2/integrations/slack/{slack_team_id}/channels';
         $formParams = [];
         $queryParams = [];
@@ -365,6 +371,15 @@ class SlackApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $types,
+            'types', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
 

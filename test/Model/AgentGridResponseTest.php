@@ -134,15 +134,6 @@ class AgentGridResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "row_count"
-     */
-    public function testPropertyRowCount()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

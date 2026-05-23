@@ -11,7 +11,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `getSlackChannels()`
 
 ```php
-getSlackChannels($slack_team_id, $workspace_id): \FlowHunt\Model\SlackChannelResponse[]
+getSlackChannels($slack_team_id, $workspace_id, $types): \FlowHunt\Model\SlackChannelResponse[]
 ```
 
 Get Slack Channels
@@ -35,9 +35,10 @@ $apiInstance = new FlowHunt\Api\SlackApi(
 );
 $slack_team_id = 'slack_team_id_example'; // string
 $workspace_id = 'workspace_id_example'; // string
+$types = 'types_example'; // string
 
 try {
-    $result = $apiInstance->getSlackChannels($slack_team_id, $workspace_id);
+    $result = $apiInstance->getSlackChannels($slack_team_id, $workspace_id, $types);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SlackApi->getSlackChannels: ', $e->getMessage(), PHP_EOL;
@@ -50,6 +51,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **slack_team_id** | **string**|  | |
 | **workspace_id** | **string**|  | |
+| **types** | **string**|  | [optional] |
 
 ### Return type
 

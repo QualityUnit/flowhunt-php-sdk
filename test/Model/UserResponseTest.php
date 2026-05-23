@@ -159,4 +159,13 @@ class UserResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "onboarding"
+     */
+    public function testPropertyOnboarding()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

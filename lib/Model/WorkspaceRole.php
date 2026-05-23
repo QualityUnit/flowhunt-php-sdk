@@ -61,7 +61,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_name' => 'string',
         'owner_name' => 'string',
         'owner_email' => 'string',
-        'role' => 'string'
+        'role' => 'string',
+        'can_white_label' => 'bool'
     ];
 
     /**
@@ -76,7 +77,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_name' => null,
         'owner_name' => null,
         'owner_email' => null,
-        'role' => null
+        'role' => null,
+        'can_white_label' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_name' => false,
         'owner_name' => false,
         'owner_email' => false,
-        'role' => false
+        'role' => false,
+        'can_white_label' => false
     ];
 
     /**
@@ -182,7 +185,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_name' => 'workspace_name',
         'owner_name' => 'owner_name',
         'owner_email' => 'owner_email',
-        'role' => 'role'
+        'role' => 'role',
+        'can_white_label' => 'can_white_label'
     ];
 
     /**
@@ -195,7 +199,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_name' => 'setWorkspaceName',
         'owner_name' => 'setOwnerName',
         'owner_email' => 'setOwnerEmail',
-        'role' => 'setRole'
+        'role' => 'setRole',
+        'can_white_label' => 'setCanWhiteLabel'
     ];
 
     /**
@@ -208,7 +213,8 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'workspace_name' => 'getWorkspaceName',
         'owner_name' => 'getOwnerName',
         'owner_email' => 'getOwnerEmail',
-        'role' => 'getRole'
+        'role' => 'getRole',
+        'can_white_label' => 'getCanWhiteLabel'
     ];
 
     /**
@@ -273,6 +279,7 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('owner_name', $data ?? [], null);
         $this->setIfExists('owner_email', $data ?? [], null);
         $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('can_white_label', $data ?? [], false);
     }
 
     /**
@@ -463,6 +470,33 @@ class WorkspaceRole implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable role cannot be null');
         }
         $this->container['role'] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Gets can_white_label
+     *
+     * @return bool|null
+     */
+    public function getCanWhiteLabel()
+    {
+        return $this->container['can_white_label'];
+    }
+
+    /**
+     * Sets can_white_label
+     *
+     * @param bool|null $can_white_label Whether the workspace owner has white label enabled
+     *
+     * @return self
+     */
+    public function setCanWhiteLabel($can_white_label)
+    {
+        if (is_null($can_white_label)) {
+            throw new \InvalidArgumentException('non-nullable can_white_label cannot be null');
+        }
+        $this->container['can_white_label'] = $can_white_label;
 
         return $this;
     }

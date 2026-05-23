@@ -59,7 +59,7 @@ class AgentGridSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'query' => 'string',
-        'filters' => 'array<string,mixed>',
+        'filters' => 'array<string,\FlowHunt\Model\AgentGridSearchRequestFiltersValue>',
         'limit' => 'int',
         'offset' => 'int'
     ];
@@ -368,7 +368,7 @@ class AgentGridSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets filters
      *
-     * @return array<string,mixed>|null
+     * @return array<string,\FlowHunt\Model\AgentGridSearchRequestFiltersValue>|null
      */
     public function getFilters()
     {
@@ -378,7 +378,7 @@ class AgentGridSearchRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets filters
      *
-     * @param array<string,mixed>|null $filters filters
+     * @param array<string,\FlowHunt\Model\AgentGridSearchRequestFiltersValue>|null $filters filters
      *
      * @return self
      */

@@ -4,11 +4,133 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**bulkDeleteApiKeys()**](ApiKeysApi.md#bulkDeleteApiKeys) | **POST** /v2/api_keys/delete | Bulk Delete Api Keys |
+| [**bulkUpdateApiKeys()**](ApiKeysApi.md#bulkUpdateApiKeys) | **PUT** /v2/api_keys/update | Bulk Update Api Keys |
 | [**createApiKey()**](ApiKeysApi.md#createApiKey) | **POST** /v2/api_keys/create | Create Api Key |
 | [**deleteApiKey()**](ApiKeysApi.md#deleteApiKey) | **DELETE** /v2/api_keys/{api_key_id} | Delete Api Key |
 | [**searchApiKey()**](ApiKeysApi.md#searchApiKey) | **POST** /v2/api_keys/search | Search Api Key |
 | [**updateApiKey()**](ApiKeysApi.md#updateApiKey) | **PUT** /v2/api_keys/{api_key_id} | Update Api Key |
 
+
+## `bulkDeleteApiKeys()`
+
+```php
+bulkDeleteApiKeys($workspace_id, $api_key_bulk_delete_request): \FlowHunt\Model\Completed
+```
+
+Bulk Delete Api Keys
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\ApiKeysApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$api_key_bulk_delete_request = new \FlowHunt\Model\ApiKeyBulkDeleteRequest(); // \FlowHunt\Model\ApiKeyBulkDeleteRequest
+
+try {
+    $result = $apiInstance->bulkDeleteApiKeys($workspace_id, $api_key_bulk_delete_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ApiKeysApi->bulkDeleteApiKeys: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **api_key_bulk_delete_request** | [**\FlowHunt\Model\ApiKeyBulkDeleteRequest**](../Model/ApiKeyBulkDeleteRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `bulkUpdateApiKeys()`
+
+```php
+bulkUpdateApiKeys($workspace_id, $api_key_bulk_update_request): \FlowHunt\Model\Completed
+```
+
+Bulk Update Api Keys
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: HTTPBearer
+$config = FlowHunt\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new FlowHunt\Api\ApiKeysApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$workspace_id = 'workspace_id_example'; // string
+$api_key_bulk_update_request = new \FlowHunt\Model\ApiKeyBulkUpdateRequest(); // \FlowHunt\Model\ApiKeyBulkUpdateRequest
+
+try {
+    $result = $apiInstance->bulkUpdateApiKeys($workspace_id, $api_key_bulk_update_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ApiKeysApi->bulkUpdateApiKeys: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **workspace_id** | **string**|  | |
+| **api_key_bulk_update_request** | [**\FlowHunt\Model\ApiKeyBulkUpdateRequest**](../Model/ApiKeyBulkUpdateRequest.md)|  | |
+
+### Return type
+
+[**\FlowHunt\Model\Completed**](../Model/Completed.md)
+
+### Authorization
+
+[HTTPBearer](../../README.md#HTTPBearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createApiKey()`
 

@@ -222,4 +222,22 @@ class FlowSessionViewResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "error_message_count"
+     */
+    public function testPropertyErrorMessageCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "chat_session_title"
+     */
+    public function testPropertyChatSessionTitle()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

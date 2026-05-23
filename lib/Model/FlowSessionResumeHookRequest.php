@@ -291,9 +291,21 @@ class FlowSessionResumeHookRequest implements ModelInterface, ArrayAccess, \Json
         if ($this->container['hook_id'] === null) {
             $invalidProperties[] = "'hook_id' can't be null";
         }
+        if ((mb_strlen($this->container['hook_id']) > 256)) {
+            $invalidProperties[] = "invalid value for 'hook_id', the character length must be smaller than or equal to 256.";
+        }
+
+        if ((mb_strlen($this->container['hook_id']) < 1)) {
+            $invalidProperties[] = "invalid value for 'hook_id', the character length must be bigger than or equal to 1.";
+        }
+
         if ($this->container['message'] === null) {
             $invalidProperties[] = "'message' can't be null";
         }
+        if ((mb_strlen($this->container['message']) > 65536)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 65536.";
+        }
+
         return $invalidProperties;
     }
 
@@ -331,6 +343,13 @@ class FlowSessionResumeHookRequest implements ModelInterface, ArrayAccess, \Json
         if (is_null($hook_id)) {
             throw new \InvalidArgumentException('non-nullable hook_id cannot be null');
         }
+        if ((mb_strlen($hook_id) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $hook_id when calling FlowSessionResumeHookRequest., must be smaller than or equal to 256.');
+        }
+        if ((mb_strlen($hook_id) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $hook_id when calling FlowSessionResumeHookRequest., must be bigger than or equal to 1.');
+        }
+
         $this->container['hook_id'] = $hook_id;
 
         return $this;
@@ -358,6 +377,10 @@ class FlowSessionResumeHookRequest implements ModelInterface, ArrayAccess, \Json
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
+        if ((mb_strlen($message) > 65536)) {
+            throw new \InvalidArgumentException('invalid length for $message when calling FlowSessionResumeHookRequest., must be smaller than or equal to 65536.');
+        }
+
         $this->container['message'] = $message;
 
         return $this;

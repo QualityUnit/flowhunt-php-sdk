@@ -72,6 +72,30 @@ class FlowsApiTest extends TestCase
     }
 
     /**
+     * Test case for bulkDeleteFlows
+     *
+     * Bulk Delete Flows.
+     *
+     */
+    public function testBulkDeleteFlows()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for bulkUpdateFlows
+     *
+     * Bulk Update Flows.
+     *
+     */
+    public function testBulkUpdateFlows()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for cancelFlowSession
      *
      * Cancel Flow Session.
@@ -222,6 +246,18 @@ class FlowsApiTest extends TestCase
      *
      */
     public function testExecuteFlowCron()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for fireChatHook
+     *
+     * Fire Chat Hook.
+     *
+     */
+    public function testFireChatHook()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -498,6 +534,18 @@ class FlowsApiTest extends TestCase
      *
      */
     public function testUpdateFlowCron()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateSessionVariables
+     *
+     * Update Session Variables.
+     *
+     */
+    public function testUpdateSessionVariables()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

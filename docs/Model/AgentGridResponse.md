@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **description** | **string** |  | [optional]
 **schema_fields** | [**\FlowHunt\Model\AgentGridFieldResponse[]**](AgentGridFieldResponse.md) | List of fields defining the table schema |
 **semantic_search_enabled** | **bool** | Whether semantic search is enabled |
-**row_count** | **int** | Number of rows in the table |
 **created_at** | **\DateTime** | Creation timestamp |
 **updated_at** | **\DateTime** | Last update timestamp |
 

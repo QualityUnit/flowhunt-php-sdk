@@ -61,7 +61,10 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'name' => 'string',
         'credit_limit' => 'int',
         'credits_consumed' => 'int',
-        'credit_alert_threshold' => 'int'
+        'credit_alert_threshold' => 'int',
+        'auto_recharge_enabled' => 'bool',
+        'auto_recharge_threshold' => 'int',
+        'auto_recharge_amount' => 'int'
     ];
 
     /**
@@ -76,7 +79,10 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'name' => null,
         'credit_limit' => null,
         'credits_consumed' => null,
-        'credit_alert_threshold' => null
+        'credit_alert_threshold' => null,
+        'auto_recharge_enabled' => null,
+        'auto_recharge_threshold' => null,
+        'auto_recharge_amount' => null
     ];
 
     /**
@@ -89,7 +95,10 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'name' => false,
         'credit_limit' => true,
         'credits_consumed' => true,
-        'credit_alert_threshold' => true
+        'credit_alert_threshold' => true,
+        'auto_recharge_enabled' => false,
+        'auto_recharge_threshold' => true,
+        'auto_recharge_amount' => true
     ];
 
     /**
@@ -182,7 +191,10 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'name' => 'name',
         'credit_limit' => 'credit_limit',
         'credits_consumed' => 'credits_consumed',
-        'credit_alert_threshold' => 'credit_alert_threshold'
+        'credit_alert_threshold' => 'credit_alert_threshold',
+        'auto_recharge_enabled' => 'auto_recharge_enabled',
+        'auto_recharge_threshold' => 'auto_recharge_threshold',
+        'auto_recharge_amount' => 'auto_recharge_amount'
     ];
 
     /**
@@ -195,7 +207,10 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'name' => 'setName',
         'credit_limit' => 'setCreditLimit',
         'credits_consumed' => 'setCreditsConsumed',
-        'credit_alert_threshold' => 'setCreditAlertThreshold'
+        'credit_alert_threshold' => 'setCreditAlertThreshold',
+        'auto_recharge_enabled' => 'setAutoRechargeEnabled',
+        'auto_recharge_threshold' => 'setAutoRechargeThreshold',
+        'auto_recharge_amount' => 'setAutoRechargeAmount'
     ];
 
     /**
@@ -208,7 +223,10 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         'name' => 'getName',
         'credit_limit' => 'getCreditLimit',
         'credits_consumed' => 'getCreditsConsumed',
-        'credit_alert_threshold' => 'getCreditAlertThreshold'
+        'credit_alert_threshold' => 'getCreditAlertThreshold',
+        'auto_recharge_enabled' => 'getAutoRechargeEnabled',
+        'auto_recharge_threshold' => 'getAutoRechargeThreshold',
+        'auto_recharge_amount' => 'getAutoRechargeAmount'
     ];
 
     /**
@@ -273,6 +291,9 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('credit_limit', $data ?? [], null);
         $this->setIfExists('credits_consumed', $data ?? [], null);
         $this->setIfExists('credit_alert_threshold', $data ?? [], null);
+        $this->setIfExists('auto_recharge_enabled', $data ?? [], false);
+        $this->setIfExists('auto_recharge_threshold', $data ?? [], null);
+        $this->setIfExists('auto_recharge_amount', $data ?? [], null);
     }
 
     /**
@@ -475,6 +496,101 @@ class WorkspaceResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['credit_alert_threshold'] = $credit_alert_threshold;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_recharge_enabled
+     *
+     * @return bool|null
+     */
+    public function getAutoRechargeEnabled()
+    {
+        return $this->container['auto_recharge_enabled'];
+    }
+
+    /**
+     * Sets auto_recharge_enabled
+     *
+     * @param bool|null $auto_recharge_enabled Whether auto-recharge is enabled for this workspace.
+     *
+     * @return self
+     */
+    public function setAutoRechargeEnabled($auto_recharge_enabled)
+    {
+        if (is_null($auto_recharge_enabled)) {
+            throw new \InvalidArgumentException('non-nullable auto_recharge_enabled cannot be null');
+        }
+        $this->container['auto_recharge_enabled'] = $auto_recharge_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_recharge_threshold
+     *
+     * @return int|null
+     */
+    public function getAutoRechargeThreshold()
+    {
+        return $this->container['auto_recharge_threshold'];
+    }
+
+    /**
+     * Sets auto_recharge_threshold
+     *
+     * @param int|null $auto_recharge_threshold auto_recharge_threshold
+     *
+     * @return self
+     */
+    public function setAutoRechargeThreshold($auto_recharge_threshold)
+    {
+        if (is_null($auto_recharge_threshold)) {
+            array_push($this->openAPINullablesSetToNull, 'auto_recharge_threshold');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('auto_recharge_threshold', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['auto_recharge_threshold'] = $auto_recharge_threshold;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_recharge_amount
+     *
+     * @return int|null
+     */
+    public function getAutoRechargeAmount()
+    {
+        return $this->container['auto_recharge_amount'];
+    }
+
+    /**
+     * Sets auto_recharge_amount
+     *
+     * @param int|null $auto_recharge_amount auto_recharge_amount
+     *
+     * @return self
+     */
+    public function setAutoRechargeAmount($auto_recharge_amount)
+    {
+        if (is_null($auto_recharge_amount)) {
+            array_push($this->openAPINullablesSetToNull, 'auto_recharge_amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('auto_recharge_amount', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['auto_recharge_amount'] = $auto_recharge_amount;
 
         return $this;
     }

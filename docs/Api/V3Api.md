@@ -6,6 +6,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**checkMigrationReadiness()**](V3Api.md#checkMigrationReadiness) | **GET** /v3/flows/{flow_id}/migration-readiness | Check Migration Readiness |
 | [**createV3FlowAssistantSession()**](V3Api.md#createV3FlowAssistantSession) | **POST** /v3/flow-assistants/create | Create V3 Flow Assistant Session |
+| [**fireSessionClosed()**](V3Api.md#fireSessionClosed) | **POST** /v3/flows/{flow_id}/sessions/{session_id}/fire-session-closed | Fire Session Closed |
 | [**getAllComponentsV3()**](V3Api.md#getAllComponentsV3) | **GET** /v3/flows/components/all | Get All Components V3 |
 | [**getTool()**](V3Api.md#getTool) | **GET** /v3/tools/{step_name} | Get Tool |
 | [**getV3Components()**](V3Api.md#getV3Components) | **GET** /v3/flows/components/v3 | Get V3 Components |
@@ -131,6 +132,66 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `fireSessionClosed()`
+
+```php
+fireSessionClosed($flow_id, $session_id, $workspace_id): \FlowHunt\Model\ManualSessionClosedResponse
+```
+
+Fire Session Closed
+
+Manually fire the SessionClosed trigger for a live session.  Used from the flow-editor playground so authors can iterate on their close-session branch without waiting ~3h for the natural idle timer.  Behaviour: - Loads the DRAFT branch of the flow (the version being authored). - Validates the flow contains a SessionClosed trigger node. - Validates the session exists in Redis and belongs to the workspace. - Rejects (409) when the session is already suppressed/escalated. - Revokes the pending Celery close-session task. - Marks the session ``session_close_suppressed`` so the scheduled task   cannot fire after this manual run. - Synchronously starts the close-session execution; the actual branch   output streams via the regular session event channel.  Args:     workspace_id: The workspace ID.     flow_id: The flow whose SessionClosed branch should fire.     session_id: The live session id to close.     flow_v3_controller: Injected controller.     user: Current authenticated user (must have UPDATE permission on         the workspace).  Returns:     ManualSessionClosedResponse with run_id and pending status.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new FlowHunt\Api\V3Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$flow_id = 'flow_id_example'; // string
+$session_id = 'session_id_example'; // string
+$workspace_id = 'workspace_id_example'; // string
+
+try {
+    $result = $apiInstance->fireSessionClosed($flow_id, $session_id, $workspace_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V3Api->fireSessionClosed: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flow_id** | **string**|  | |
+| **session_id** | **string**|  | |
+| **workspace_id** | **string**|  | |
+
+### Return type
+
+[**\FlowHunt\Model\ManualSessionClosedResponse**](../Model/ManualSessionClosedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

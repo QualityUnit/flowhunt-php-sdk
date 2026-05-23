@@ -123,4 +123,31 @@ class WorkspaceResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "auto_recharge_enabled"
+     */
+    public function testPropertyAutoRechargeEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "auto_recharge_threshold"
+     */
+    public function testPropertyAutoRechargeThreshold()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "auto_recharge_amount"
+     */
+    public function testPropertyAutoRechargeAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

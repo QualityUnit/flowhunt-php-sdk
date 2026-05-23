@@ -98,15 +98,6 @@ class BrandingUpdateRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "slug"
-     */
-    public function testPropertySlug()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "dashboard_primary_color"
      */
     public function testPropertyDashboardPrimaryColor()
@@ -137,6 +128,150 @@ class BrandingUpdateRequestTest extends TestCase
      * Test attribute "show_photomatic_ai"
      */
     public function testPropertyShowPhotomaticAi()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "show_ai_factory"
+     */
+    public function testPropertyShowAiFactory()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_my_agents_label"
+     */
+    public function testPropertyCustomMyAgentsLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_my_assistants_label"
+     */
+    public function testPropertyCustomMyAssistantsLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_active_services_label"
+     */
+    public function testPropertyCustomActiveServicesLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_more_label"
+     */
+    public function testPropertyCustomMoreLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_agents_search_label"
+     */
+    public function testPropertyCustomAgentsSearchLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_no_agents_label"
+     */
+    public function testPropertyCustomNoAgentsLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_agent_column_label"
+     */
+    public function testPropertyCustomAgentColumnLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "entity_name"
+     */
+    public function testPropertyEntityName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "project_name"
+     */
+    public function testPropertyProjectName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "smtp_host"
+     */
+    public function testPropertySmtpHost()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "smtp_port"
+     */
+    public function testPropertySmtpPort()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "smtp_encryption"
+     */
+    public function testPropertySmtpEncryption()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "smtp_sender_email"
+     */
+    public function testPropertySmtpSenderEmail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "smtp_password"
+     */
+    public function testPropertySmtpPassword()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_domain"
+     */
+    public function testPropertyCustomDomain()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

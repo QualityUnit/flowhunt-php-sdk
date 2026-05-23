@@ -96,4 +96,22 @@ class SlackChannelResponseTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "channel_type"
+     */
+    public function testPropertyChannelType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "is_private"
+     */
+    public function testPropertyIsPrivate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

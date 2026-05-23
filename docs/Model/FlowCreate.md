@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **category_id** | **string** |  | [optional]
 **engine_version** | [**\FlowHunt\Model\FlowEngineVersion**](FlowEngineVersion.md) |  | [optional]
 **try_flow_input_placeholder** | **string** |  | [optional]
-**disable_text_input** | **bool** |  | [optional]
+**disable_text_input** | **bool** | Disable the text input area in the chatbot for this flow | [optional] [default to false]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
